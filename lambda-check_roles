@@ -1,0 +1,57 @@
+#!/usr/bin/env fish 
+
+#if string match -rq "$accountid" "$role"
+#			set_color green
+#			echo "Attached to customer managed role: $role"
+#			set role_name (echo $role | sed "s|arn:aws:iam::$accountid:role/||g")
+#		else
+#			set_color orange
+#			echo "Attached to AWS managed role: $role"
+#		end
+
+set accountid (aws sts get-caller-identity --query 'Account' --output text)
+
+set i 0
+set lambdafunctions (aws lambda list-functions --query 'Functions[].FunctionName' | jq -r 'join("\n")')
+set totalcount (count $lambdafunctions)
+for name in (aws lambda list-functions --query 'Functions[].FunctionName' | jq -r 'join("\n")')
+	set_color blue
+	set i (math $i+1)
+	echo -n "[$i/$totalcount] Checking lambda function:"; set_color normal; echo " $name"
+	
+	set role (aws lambda get-function --function-name $name --query 'Configuration.Role' --output text)
+	if [ -n "$role" -a "$role" != 'None' ]
+		set_color blue
+		set role_name (echo $role | sed "s|arn:aws:iam::$accountid:role/||g")
+		echo -n "[*] Attached Role:"; set_color green; echo " $role_name"
+		
+		set inlinepolicies (aws iam list-role-policies --role-name $role_name --query 'PolicyNames[]' | jq -r '.[]')
+		set number_of_policies (count $inlinepolicies)
+		if [ $number_of_policies -gt 0 ]
+			set_color blue; echo -n "[*] "; set_color green; echo -n "$role_name"; set_color normal; echo -n " has"; set_color blue; echo -n " $number_of_policies"; set_color normal; echo " inline policies!"
+			set x 0
+			for policyname in $inlinepolicies
+				set x (math $x+1)
+				set_color blue; echo -n "[$x/$number_of_policies] "; set_color normal; echo -n "Policy statements for inline policy"; set_color magenta; echo " $policyname:"; set_color red
+				aws iam get-role-policy --role-name $role_name --policy-name $policyname --query 'PolicyDocument.Statement'
+			end
+		end
+
+		set attached_policies (aws iam list-attached-role-policies --role-name $role_name --query 'AttachedPolicies[].PolicyArn' | jq -r '.[]')
+		set number_of_policies (count $attached_policies)
+		if [ $number_of_policies -gt 0 ]
+			set_color blue; echo -n "[*] "; set_color cyan; echo -n "$role_name"; set_color normal; echo -n " has"; set_color blue; echo -n " $number_of_policies"; set_color normal; echo " attached policies!"
+			set x 0
+			for policyname in $attached_policies
+				set x (math $x+1)
+				if string match -rq "$accountid" "$policyname"
+					set_color blue; echo -n "[$x/$number_of_policies] "; set_color normal; echo -n "Policy statements for"; set_color red; echo -n " Customer Managed"; set_color normal; echo -n " attached policy"; set_color cyan; echo " $policyname:"; set_color red
+				else
+					set_color blue; echo -n "[$x/$number_of_policies] "; set_color normal; echo -n "Policy statements for"; set_color yellow; echo -n " AWS Managed"; set_color normal; echo -n " attached policy"; set_color cyan; echo " $policyname:"; set_color yellow
+				end
+				set versionid (aws iam get-policy  --policy-arn $policyname --query 'Policy.DefaultVersionId' --output text)
+				aws iam get-policy-version --version-id $versionid --policy-arn $policyname --query 'PolicyVersion.Document.Statement'
+			end
+		end
+	end
+end | tee lambda-roles.output

@@ -11,6 +11,13 @@ def parse_service(url):
     page = requests.get(url)
     soup = BeautifulSoup(page.content, 'html.parser')
 #check = soup.find_all('h2', id='awsaccounts-resources-for-iam-policies')[0]
+
+    resource_table = soup.find_all('table')[1]
+
+    action_table = soup.find_all('table')[0]
+    rows = action_table.findAll('tr')[1:]
+
+
     check = soup.find_all('h2', id=re.compile('resources-for-iam-policies'))[0]
     if re.search('does not support',check.next_element.next_element.next_element.contents[0]):
         #print("FAILED CHECK")
