@@ -144,7 +144,7 @@ if principal['type'] == 'User':
 
 ###################################################
 # Enumerate Inline Policies
-print(sep)
+logger.info(sep)
 logger.info("Enumerating in-line policies...")
 if principal['type'] == 'User':
     inline_policies = iam.list_user_policies(UserName=principal['name'])['PolicyNames']
@@ -154,6 +154,7 @@ else:
 if not inline_policies:
     logger.info(f"{colored('[*]','red')} {principal['type']} has no in-line policies")
 else:
+    print(sep)
     total_inline_policies = len(inline_policies)
     print(f"Found {colored(total_inline_policies, 'green')} in-line policies")
     for count,policy in enumerate(inline_policies,1):
@@ -166,7 +167,7 @@ else:
 
 ###################################################
 # Enumerate Attached Policies
-print(sep)
+logger.info(sep)
 logger.info("Enumerating attached policies...")
 if principal['type'] == 'User':
     attached_policies = iam.list_attached_user_policies(UserName=principal['name'])['AttachedPolicies']
