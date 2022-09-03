@@ -17,6 +17,9 @@ def parse_service(url):
     action_table = soup.find_all('table')[0]
     rows = action_table.findAll('tr')[1:]
 
+    for row in rows:
+        documentation_url = row.findAll('td')[0].findAll('a')[1].attrs['href']
+
 
     check = soup.find_all('h2', id=re.compile('resources-for-iam-policies'))[0]
     if re.search('does not support',check.next_element.next_element.next_element.contents[0]):
