@@ -1,0 +1,2543 @@
+{
+    "approve_skill": {
+        "SkillId": {
+            "Description": "The unique identifier of the skill.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_contact_with_address_book": {
+        "ContactArn": {
+            "Description": "The ARN of the contact to associate with an address book.",
+            "Type": "string",
+            "Required": true
+        },
+        "AddressBookArn": {
+            "Description": "The ARN of the address book with which to associate the contact.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_device_with_network_profile": {
+        "DeviceArn": {
+            "Description": "The device ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkProfileArn": {
+            "Description": "The ARN of the network profile to associate with a device.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_device_with_room": {
+        "DeviceArn": {
+            "Description": "The ARN of the device to associate to a room. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoomArn": {
+            "Description": "The ARN of the room with which to associate the device. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_skill_group_with_room": {
+        "SkillGroupArn": {
+            "Description": "The ARN of the skill group to associate with a room. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoomArn": {
+            "Description": "The ARN of the room with which to associate the skill group. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_skill_with_skill_group": {
+        "SkillGroupArn": {
+            "Description": "The ARN of the skill group to associate the skill to. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "SkillId": {
+            "Description": "The unique identifier of the skill.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_skill_with_users": {
+        "SkillId": {
+            "Description": "The private skill ID you want to make available to enrolled users.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_address_book": {
+        "Name": {
+            "Description": "The name of the address book.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the address book.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, user-specified identifier for the request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified resource. Do not provide system tags.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_business_report_schedule": {
+        "ScheduleName": {
+            "Description": "The name identifier of the schedule.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3BucketName": {
+            "Description": "The S3 bucket name of the output reports. If this isn't specified, the report can be retrieved from a download link by calling ListBusinessReportSchedule.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3KeyPrefix": {
+            "Description": "The S3 key where the report is delivered.",
+            "Type": "string",
+            "Required": false
+        },
+        "Format": {
+            "Description": "The format of the generated report (individual CSV files or zipped files of individual files).",
+            "Type": "string",
+            "Required": true
+        },
+        "ContentRange": {
+            "Description": "The content range of the reports.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "Interval": {
+                    "Description": "The interval of the content range.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "Recurrence": {
+            "Description": "The recurrence of the reports. If this isn't specified, the report will only be delivered one time when the API is called.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "StartDate": {
+                    "Description": "The start date.",
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "Description": "The client request token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags for the business report schedule.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_conference_provider": {
+        "ConferenceProviderName": {
+            "Description": "The name of the conference provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConferenceProviderType": {
+            "Description": "Represents a type within a list of predefined types.",
+            "Type": "string",
+            "Required": true
+        },
+        "IPDialIn": {
+            "Description": "The IP endpoint and protocol for calling.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "Endpoint": {
+                    "Description": "The IP address.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "CommsProtocol": {
+                    "Description": "The protocol, including SIP, SIPS, and H323.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "PSTNDialIn": {
+            "Description": "The information for PSTN conferencing.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "CountryCode": {
+                    "Description": "The zip code.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "PhoneNumber": {
+                    "Description": "The phone number to call to join the conference.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "OneClickIdDelay": {
+                    "Description": "The delay duration before Alexa enters the conference ID with dual-tone multi-frequency (DTMF). Each number on the dial pad corresponds to a DTMF tone, which is how we send data over the telephone network.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "OneClickPinDelay": {
+                    "Description": "The delay duration before Alexa enters the conference pin with dual-tone multi-frequency (DTMF). Each number on the dial pad corresponds to a DTMF tone, which is how we send data over the telephone network.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "MeetingSetting": {
+            "Description": "The meeting settings for the conference provider.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "RequirePin": {
+                    "Description": "The values that indicate whether the pin is always required.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "ClientRequestToken": {
+            "Description": "The request token of the client.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified resource. Do not provide system tags.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_contact": {
+        "DisplayName": {
+            "Description": "The name of the contact to display on the console.",
+            "Type": "string",
+            "Required": false
+        },
+        "FirstName": {
+            "Description": "The first name of the contact that is used to call the contact on the device.",
+            "Type": "string",
+            "Required": true
+        },
+        "LastName": {
+            "Description": "The last name of the contact that is used to call the contact on the device.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumber": {
+            "Description": "The phone number of the contact in E.164 format. The phone number type defaults to WORK. You can specify PhoneNumber or PhoneNumbers. We recommend that you use PhoneNumbers, which lets you specify the phone number type and multiple numbers.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumbers": {
+            "Description": "The list of phone numbers for the contact.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Number",
+                    "Description": "The phone number for the contact containing the raw number and phone number type.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Number": {
+                            "Description": "The raw value of the phone number.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Type": {
+                            "Description": "The type of the phone number.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SipAddresses": {
+            "Description": "The list of SIP addresses for the contact.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Uri",
+                    "Description": "The SIP address for the contact containing the URI and SIP address type.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Uri": {
+                            "Description": "The URI for the SIP address.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Type": {
+                            "Description": "The type of the SIP address.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, user-specified identifier for this request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified resource. Do not provide system tags.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_gateway_group": {
+        "Name": {
+            "Description": "The name of the gateway group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the gateway group.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, user-specified identifier for the request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified resource. Do not provide system tags.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_network_profile": {
+        "NetworkProfileName": {
+            "Description": "The name of the network profile associated with a device.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Detailed information about a device's network profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "Ssid": {
+            "Description": "The SSID of the Wi-Fi network.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecurityType": {
+            "Description": "The security type of the Wi-Fi network. This can be WPA2_ENTERPRISE, WPA2_PSK, WPA_PSK, WEP, or OPEN.",
+            "Type": "string",
+            "Required": true
+        },
+        "EapMethod": {
+            "Description": "The authentication standard that is used in the EAP framework. Currently, EAP_TLS is supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "CurrentPassword": {
+            "Description": "The current password of the Wi-Fi network.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextPassword": {
+            "Description": "The next, or subsequent, password of the Wi-Fi network. This password is asynchronously transmitted to the device and is used when the password of the network changes to NextPassword.",
+            "Type": "string",
+            "Required": false
+        },
+        "CertificateAuthorityArn": {
+            "Description": "The ARN of the Private Certificate Authority (PCA) created in AWS Certificate Manager (ACM). This is used to issue certificates to the devices.",
+            "Type": "string",
+            "Required": false
+        },
+        "TrustAnchors": {
+            "Description": "The root certificates of your authentication server that is installed on your devices and used to trust your authentication server during EAP negotiation.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, user-specified identifier for the request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified resource. Do not provide system tags.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_profile": {
+        "ProfileName": {
+            "Description": "The name of a room profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "Timezone": {
+            "Description": "The time zone used by a room profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "Address": {
+            "Description": "The valid address for the room.",
+            "Type": "string",
+            "Required": true
+        },
+        "DistanceUnit": {
+            "Description": "The distance unit to be used by devices in the profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemperatureUnit": {
+            "Description": "The temperature unit to be used by devices in the profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "WakeWord": {
+            "Description": "A wake word for Alexa, Echo, Amazon, or a computer.",
+            "Type": "string",
+            "Required": true
+        },
+        "Locale": {
+            "Description": "The locale of the room profile. (This is currently only available to a limited preview audience.)",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The user-specified token that is used during the creation of a profile.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "SetupModeDisabled": {
+            "Description": "Whether room profile setup is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MaxVolumeLimit": {
+            "Description": "The maximum volume limit for a room profile.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PSTNEnabled": {
+            "Description": "Whether PSTN calling is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DataRetentionOptIn": {
+            "Description": "Whether data retention of the profile is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MeetingRoomConfiguration": {
+            "Description": "The meeting room settings of a room profile.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "RoomUtilizationMetricsEnabled": {
+                    "Description": "Whether room utilization metrics are enabled or not.",
+                    "Type": "boolean",
+                    "Required": false
+                },
+                "EndOfMeetingReminder": {
+                    "Description": "Creates settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending.",
+                    "Type": "dict",
+                    "Required": false
+                },
+                "InstantBooking": {
+                    "Description": "Settings to automatically book a room for a configured duration if it's free when joining a meeting with Alexa.",
+                    "Type": "dict",
+                    "Required": false
+                },
+                "RequireCheckIn": {
+                    "Description": "Settings for requiring a check in when a room is reserved. Alexa can cancel a room reservation if it's not checked into to make the room available for others. Users can check in by joining the meeting with Alexa or an AVS device, or by saying \u201cAlexa, check in.\u201d",
+                    "Type": "dict",
+                    "Required": false
+                }
+            }
+        },
+        "Tags": {
+            "Description": "The tags for the profile.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_room": {
+        "RoomName": {
+            "Description": "The name for the room.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the room.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProfileArn": {
+            "Description": "The profile ARN for the room. This is required.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProviderCalendarId": {
+            "Description": "The calendar ARN for the room.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, user-specified identifier for this request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags for the room.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_skill_group": {
+        "SkillGroupName": {
+            "Description": "The name for the skill group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the skill group.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, user-specified identifier for this request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags for the skill group.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_user": {
+        "UserId": {
+            "Description": "The ARN for the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "FirstName": {
+            "Description": "The first name for the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "LastName": {
+            "Description": "The last name for the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "Email": {
+            "Description": "The email address for the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, user-specified identifier for this request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags for the user.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "delete_address_book": {
+        "AddressBookArn": {
+            "Description": "The ARN of the address book to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_business_report_schedule": {
+        "ScheduleArn": {
+            "Description": "The ARN of the business report schedule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_conference_provider": {
+        "ConferenceProviderArn": {
+            "Description": "The ARN of the conference provider.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_contact": {
+        "ContactArn": {
+            "Description": "The ARN of the contact to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_device": {
+        "DeviceArn": {
+            "Description": "The ARN of the device for which to request details.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_device_usage_data": {
+        "DeviceArn": {
+            "Description": "The ARN of the device.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceUsageType": {
+            "Description": "The type of usage data to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_gateway_group": {
+        "GatewayGroupArn": {
+            "Description": "The ARN of the gateway group to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_network_profile": {
+        "NetworkProfileArn": {
+            "Description": "The ARN of the network profile associated with a device.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_profile": {
+        "ProfileArn": {
+            "Description": "The ARN of the room profile to delete. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_room": {
+        "RoomArn": {
+            "Description": "The ARN of the room to delete. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_room_skill_parameter": {
+        "RoomArn": {
+            "Description": "The ARN of the room from which to remove the room skill parameter details.",
+            "Type": "string",
+            "Required": false
+        },
+        "SkillId": {
+            "Description": "The ID of the skill from which to remove the room skill parameter details.",
+            "Type": "string",
+            "Required": true
+        },
+        "ParameterKey": {
+            "Description": "The room skill parameter key for which to remove details.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_skill_authorization": {
+        "SkillId": {
+            "Description": "The unique identifier of a skill.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomArn": {
+            "Description": "The room that the skill is authorized for.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_skill_group": {
+        "SkillGroupArn": {
+            "Description": "The ARN of the skill group to delete. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_user": {
+        "UserArn": {
+            "Description": "The ARN of the user to delete in the organization. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnrollmentId": {
+            "Description": "The ARN of the user's enrollment in the organization. Required.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_contact_from_address_book": {
+        "ContactArn": {
+            "Description": "The ARN of the contact to disassociate from an address book.",
+            "Type": "string",
+            "Required": true
+        },
+        "AddressBookArn": {
+            "Description": "The ARN of the address from which to disassociate the contact.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_device_from_room": {
+        "DeviceArn": {
+            "Description": "The ARN of the device to disassociate from a room. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_skill_from_skill_group": {
+        "SkillGroupArn": {
+            "Description": "The unique identifier of a skill. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "SkillId": {
+            "Description": "The ARN of a skill group to associate to a skill.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_skill_from_users": {
+        "SkillId": {
+            "Description": "The private skill ID you want to make unavailable for enrolled users.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_skill_group_from_room": {
+        "SkillGroupArn": {
+            "Description": "The ARN of the skill group to disassociate from a room. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoomArn": {
+            "Description": "The ARN of the room from which the skill group is to be disassociated. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "forget_smart_home_appliances": {
+        "RoomArn": {
+            "Description": "The room that the appliances are associated with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_address_book": {
+        "AddressBookArn": {
+            "Description": "The ARN of the address book for which to request details.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_conference_preference": "No parameters defined",
+    "get_conference_provider": {
+        "ConferenceProviderArn": {
+            "Description": "The ARN of the newly created conference provider.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_contact": {
+        "ContactArn": {
+            "Description": "The ARN of the contact for which to request details.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_device": {
+        "DeviceArn": {
+            "Description": "The ARN of the device for which to request details. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_gateway": {
+        "GatewayArn": {
+            "Description": "The ARN of the gateway to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_gateway_group": {
+        "GatewayGroupArn": {
+            "Description": "The ARN of the gateway group to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_invitation_configuration": "No parameters defined",
+    "get_network_profile": {
+        "NetworkProfileArn": {
+            "Description": "The ARN of the network profile associated with a device.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_profile": {
+        "ProfileArn": {
+            "Description": "The ARN of the room profile for which to request details. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_room": {
+        "RoomArn": {
+            "Description": "The ARN of the room for which to request details. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_room_skill_parameter": {
+        "RoomArn": {
+            "Description": "The ARN of the room from which to get the room skill parameter details.",
+            "Type": "string",
+            "Required": false
+        },
+        "SkillId": {
+            "Description": "The ARN of the skill from which to get the room skill parameter details. Required.",
+            "Type": "string",
+            "Required": true
+        },
+        "ParameterKey": {
+            "Description": "The room skill parameter key for which to get details. Required.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_skill_group": {
+        "SkillGroupArn": {
+            "Description": "The ARN of the skill group for which to get details. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_business_report_schedules": {
+        "NextToken": {
+            "Description": "The token used to list the remaining schedules from the previous API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of schedules listed in the call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_conference_providers": {
+        "NextToken": {
+            "Description": "The tokens used for pagination.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of conference providers to be returned, per paginated calls.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_device_events": {
+        "DeviceArn": {
+            "Description": "The ARN of a device.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventType": {
+            "Description": "The event type to filter device events. If EventType isn't specified, this returns a list of all device events in reverse chronological order. If EventType is specified, this returns a list of device events for that EventType in reverse chronological order.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response only includes results beyond the token, up to the value specified by MaxResults. When the end of results is reached, the response has a value of null.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. The default value is 50. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_gateway_groups": {
+        "NextToken": {
+            "Description": "The token used to paginate though multiple pages of gateway group summaries.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of gateway group summaries to return. The default is 50.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_gateways": {
+        "GatewayGroupArn": {
+            "Description": "The gateway group ARN for which to list gateways.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token used to paginate though multiple pages of gateway summaries.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of gateway summaries to return. The default is 50.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_skills": {
+        "SkillGroupArn": {
+            "Description": "The ARN of the skill group for which to list enabled skills.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnablementType": {
+            "Description": "Whether the skill is enabled under the user's account.",
+            "Type": "string",
+            "Required": false
+        },
+        "SkillType": {
+            "Description": "Whether the skill is publicly available or is a private skill.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_skills_store_categories": {
+        "NextToken": {
+            "Description": "The tokens used for pagination.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of categories returned, per paginated calls.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_skills_store_skills_by_category": {
+        "CategoryId": {
+            "Description": "The category ID for which the skills are being retrieved from the skill store.",
+            "Type": "integer",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The tokens used for pagination.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of skills returned per paginated calls.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_smart_home_appliances": {
+        "RoomArn": {
+            "Description": "The room that the appliances are associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of appliances to be returned, per paginated calls.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The tokens used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags": {
+        "Arn": {
+            "Description": "The ARN of the specified resource for which to list tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_conference_preference": {
+        "DefaultConferenceProviderArn": {
+            "Description": "The ARN of the default conference provider.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_invitation_configuration": {
+        "OrganizationName": {
+            "Description": "The name of the organization sending the enrollment invite to a user.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContactEmail": {
+            "Description": "The email ID of the organization or individual contact that the enrolled user can use.",
+            "Type": "string",
+            "Required": false
+        },
+        "PrivateSkillIds": {
+            "Description": "The list of private skill IDs that you want to recommend to the user to enable in the invitation.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        }
+    },
+    "put_room_skill_parameter": {
+        "RoomArn": {
+            "Description": "The ARN of the room associated with the room skill parameter. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "SkillId": {
+            "Description": "The ARN of the skill associated with the room skill parameter. Required.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomSkillParameter": {
+            "Description": "The updated room skill parameter. Required.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "ParameterKey": {
+                    "Description": "The parameter key of a room skill parameter. ParameterKey is an enumerated type that only takes \u201cDEFAULT\u201d or \u201cSCOPE\u201d as valid values.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "ParameterValue": {
+                    "Description": "The parameter value of a room skill parameter.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        }
+    },
+    "put_skill_authorization": {
+        "AuthorizationResult": {
+            "Description": "The authorization result specific to OAUTH code grant output. \"Code\u201d must be populated in the AuthorizationResult map to establish the authorization.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        },
+        "SkillId": {
+            "Description": "The unique identifier of a skill.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomArn": {
+            "Description": "The room that the skill is authorized for.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_avs_device": {
+        "ClientId": {
+            "Description": "The client ID of the OEM used for code-based linking authorization on an AVS device.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserCode": {
+            "Description": "The code that is obtained after your AVS device has made a POST request to LWA as a part of the Device Authorization Request component of the OAuth code-based linking specification.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProductId": {
+            "Description": "The product ID used to identify your AVS device during authorization.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceSerialNumber": {
+            "Description": "The key generated by the OEM that uniquely identifies a specified instance of your AVS device.",
+            "Type": "string",
+            "Required": false
+        },
+        "AmazonId": {
+            "Description": "The device type ID for your AVS device generated by Amazon when the OEM creates a new product on Amazon's Developer Console.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomArn": {
+            "Description": "The Amazon Resource Name (ARN) of the room with which to associate your AVS device.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified resource. Do not provide system tags.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "reject_skill": {
+        "SkillId": {
+            "Description": "The unique identifier of the skill.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "resolve_room": {
+        "UserId": {
+            "Description": "The ARN of the user. Required.",
+            "Type": "string",
+            "Required": true
+        },
+        "SkillId": {
+            "Description": "The ARN of the skill that was requested. Required.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "revoke_invitation": {
+        "UserArn": {
+            "Description": "The ARN of the user for whom to revoke an enrollment invitation. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnrollmentId": {
+            "Description": "The ARN of the enrollment invitation to revoke. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "search_address_books": {
+        "Filters": {
+            "Description": "The filters to use to list a specified set of address books. The supported filter key is AddressBookName.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the specified set of address books. The supported sort key is AddressBookName.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response only includes results beyond the token, up to the value specified by MaxResults.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_contacts": {
+        "Filters": {
+            "Description": "The filters to use to list a specified set of address books. The supported filter keys are DisplayName, FirstName, LastName, and AddressBookArns.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the specified set of contacts. The supported sort keys are DisplayName, FirstName, and LastName.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response only includes results beyond the token, up to the value specified by MaxResults.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_devices": {
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The filters to use to list a specified set of devices. Supported filter keys are DeviceName, DeviceStatus, DeviceStatusDetailCode, RoomName, DeviceType, DeviceSerialNumber, UnassociatedOnly, ConnectionStatus (ONLINE and OFFLINE), NetworkProfileName, NetworkProfileArn, Feature, and FailureCode.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the specified set of devices. Supported sort keys are DeviceName, DeviceStatus, RoomName, DeviceType, DeviceSerialNumber, ConnectionStatus, NetworkProfileName, NetworkProfileArn, Feature, and FailureCode.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "search_network_profiles": {
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The filters to use to list a specified set of network profiles. Valid filters are NetworkProfileName, Ssid, and SecurityType.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use to list the specified set of network profiles. Valid sort criteria includes NetworkProfileName, Ssid, and SecurityType.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "search_profiles": {
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The filters to use to list a specified set of room profiles. Supported filter keys are ProfileName and Address. Required.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the specified set of room profiles. Supported sort keys are ProfileName and Address.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "search_rooms": {
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The filters to use to list a specified set of rooms. The supported filter keys are RoomName and ProfileName.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the specified set of rooms. The supported sort keys are RoomName and ProfileName.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "search_skill_groups": {
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults . Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The filters to use to list a specified set of skill groups. The supported filter key is SkillGroupName.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the specified set of skill groups. The supported sort key is SkillGroupName.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "search_users": {
+        "NextToken": {
+            "Description": "An optional token returned from a prior request. Use this token for pagination of results from this action. If this parameter is specified, the response includes only results beyond the token, up to the value specified by MaxResults . Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved. Required.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The filters to use for listing a specific set of users. Required. Supported filter keys are UserId, FirstName, LastName, Email, and EnrollmentStatus.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the filtered set of users. Required. Supported sort keys are UserId, FirstName, LastName, Email, and EnrollmentStatus.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "send_announcement": {
+        "RoomFilters": {
+            "Description": "The filters to use to send an announcement to a specified list of rooms. The supported filter keys are RoomName, ProfileName, RoomArn, and ProfileArn. To send to all rooms, specify an empty RoomFilters list.",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "Content": {
+            "Description": "The announcement content. This can contain only one of the three possible announcement types (text, SSML or audio).",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "TextList": {
+                    "Description": "The list of text messages.",
+                    "Type": "list",
+                    "Required": false
+                },
+                "SsmlList": {
+                    "Description": "The list of SSML messages.",
+                    "Type": "list",
+                    "Required": false
+                },
+                "AudioList": {
+                    "Description": "The list of audio messages.",
+                    "Type": "list",
+                    "Required": false
+                }
+            }
+        },
+        "TimeToLiveInSeconds": {
+            "Description": "The time to live for an announcement. Default is 300. If delivery doesn't occur within this time, the announcement is not delivered.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The unique, user-specified identifier for the request that ensures idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "send_invitation": {
+        "UserArn": {
+            "Description": "The ARN of the user to whom to send an invitation. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_device_sync": {
+        "RoomArn": {
+            "Description": "The ARN of the room with which the device to sync is associated. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeviceArn": {
+            "Description": "The ARN of the device to sync. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "Features": {
+            "Description": "Request structure to start the device sync. Required.",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        }
+    },
+    "start_smart_home_appliance_discovery": {
+        "RoomArn": {
+            "Description": "The room where smart home appliance discovery was initiated.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "Arn": {
+            "Description": "The ARN of the resource to which to add metadata tags. Required.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified resource. Do not provide system tags. Required.",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A key-value pair that can be associated with a resource.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a tag. Tag keys are case-sensitive.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The value of a tag. Tag values are case sensitive and can be null.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "untag_resource": {
+        "Arn": {
+            "Description": "The ARN of the resource from which to remove metadata tags. Required.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tags to be removed from the specified resource. Do not provide system tags. Required.",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        }
+    },
+    "update_address_book": {
+        "AddressBookArn": {
+            "Description": "The ARN of the room to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The updated name of the room.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of the room.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_business_report_schedule": {
+        "ScheduleArn": {
+            "Description": "The ARN of the business report schedule.",
+            "Type": "string",
+            "Required": true
+        },
+        "S3BucketName": {
+            "Description": "The S3 location of the output reports.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3KeyPrefix": {
+            "Description": "The S3 key where the report is delivered.",
+            "Type": "string",
+            "Required": false
+        },
+        "Format": {
+            "Description": "The format of the generated report (individual CSV files or zipped files of individual files).",
+            "Type": "string",
+            "Required": false
+        },
+        "ScheduleName": {
+            "Description": "The name identifier of the schedule.",
+            "Type": "string",
+            "Required": false
+        },
+        "Recurrence": {
+            "Description": "The recurrence of the reports.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "StartDate": {
+                    "Description": "The start date.",
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        }
+    },
+    "update_conference_provider": {
+        "ConferenceProviderArn": {
+            "Description": "The ARN of the conference provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConferenceProviderType": {
+            "Description": "The type of the conference provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "IPDialIn": {
+            "Description": "The IP endpoint and protocol for calling.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "Endpoint": {
+                    "Description": "The IP address.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "CommsProtocol": {
+                    "Description": "The protocol, including SIP, SIPS, and H323.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "PSTNDialIn": {
+            "Description": "The information for PSTN conferencing.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "CountryCode": {
+                    "Description": "The zip code.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "PhoneNumber": {
+                    "Description": "The phone number to call to join the conference.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "OneClickIdDelay": {
+                    "Description": "The delay duration before Alexa enters the conference ID with dual-tone multi-frequency (DTMF). Each number on the dial pad corresponds to a DTMF tone, which is how we send data over the telephone network.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "OneClickPinDelay": {
+                    "Description": "The delay duration before Alexa enters the conference pin with dual-tone multi-frequency (DTMF). Each number on the dial pad corresponds to a DTMF tone, which is how we send data over the telephone network.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "MeetingSetting": {
+            "Description": "The meeting settings for the conference provider.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "RequirePin": {
+                    "Description": "The values that indicate whether the pin is always required.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        }
+    },
+    "update_contact": {
+        "ContactArn": {
+            "Description": "The ARN of the contact to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The updated display name of the contact.",
+            "Type": "string",
+            "Required": false
+        },
+        "FirstName": {
+            "Description": "The updated first name of the contact.",
+            "Type": "string",
+            "Required": false
+        },
+        "LastName": {
+            "Description": "The updated last name of the contact.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumber": {
+            "Description": "The updated phone number of the contact. The phone number type defaults to WORK. You can either specify PhoneNumber or PhoneNumbers. We recommend that you use PhoneNumbers, which lets you specify the phone number type and multiple numbers.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumbers": {
+            "Description": "The list of phone numbers for the contact.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Number",
+                    "Description": "The phone number for the contact containing the raw number and phone number type.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Number": {
+                            "Description": "The raw value of the phone number.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Type": {
+                            "Description": "The type of the phone number.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SipAddresses": {
+            "Description": "The list of SIP addresses for the contact.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Uri",
+                    "Description": "The SIP address for the contact containing the URI and SIP address type.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Uri": {
+                            "Description": "The URI for the SIP address.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Type": {
+                            "Description": "The type of the SIP address.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "update_device": {
+        "DeviceArn": {
+            "Description": "The ARN of the device to update. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeviceName": {
+            "Description": "The updated device name. Required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_gateway": {
+        "GatewayArn": {
+            "Description": "The ARN of the gateway to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The updated name of the gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of the gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "SoftwareVersion": {
+            "Description": "The updated software version of the gateway. The gateway automatically updates its software version during normal operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_gateway_group": {
+        "GatewayGroupArn": {
+            "Description": "The ARN of the gateway group to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The updated name of the gateway group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of the gateway group.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_network_profile": {
+        "NetworkProfileArn": {
+            "Description": "The ARN of the network profile associated with a device.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkProfileName": {
+            "Description": "The name of the network profile associated with a device.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "Detailed information about a device's network profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "CurrentPassword": {
+            "Description": "The current password of the Wi-Fi network.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextPassword": {
+            "Description": "The next, or subsequent, password of the Wi-Fi network. This password is asynchronously transmitted to the device and is used when the password of the network changes to NextPassword.",
+            "Type": "string",
+            "Required": false
+        },
+        "CertificateAuthorityArn": {
+            "Description": "The ARN of the Private Certificate Authority (PCA) created in AWS Certificate Manager (ACM). This is used to issue certificates to the devices.",
+            "Type": "string",
+            "Required": false
+        },
+        "TrustAnchors": {
+            "Description": "The root certificate(s) of your authentication server that will be installed on your devices and used to trust your authentication server during EAP negotiation.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        }
+    },
+    "update_profile": {
+        "ProfileArn": {
+            "Description": "The ARN of the room profile to update. Required.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProfileName": {
+            "Description": "The updated name for the room profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "IsDefault": {
+            "Description": "Sets the profile as default if selected. If this is missing, no update is done to the default status.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Timezone": {
+            "Description": "The updated timezone for the room profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "Address": {
+            "Description": "The updated address for the room profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "DistanceUnit": {
+            "Description": "The updated distance unit for the room profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemperatureUnit": {
+            "Description": "The updated temperature unit for the room profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "WakeWord": {
+            "Description": "The updated wake word for the room profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "Locale": {
+            "Description": "The updated locale for the room profile. (This is currently only available to a limited preview audience.)",
+            "Type": "string",
+            "Required": false
+        },
+        "SetupModeDisabled": {
+            "Description": "Whether the setup mode of the profile is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MaxVolumeLimit": {
+            "Description": "The updated maximum volume limit for the room profile.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PSTNEnabled": {
+            "Description": "Whether the PSTN setting of the room profile is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DataRetentionOptIn": {
+            "Description": "Whether data retention of the profile is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MeetingRoomConfiguration": {
+            "Description": "The updated meeting room settings of a room profile.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "RoomUtilizationMetricsEnabled": {
+                    "Description": "Whether room utilization metrics are enabled or not.",
+                    "Type": "boolean",
+                    "Required": false
+                },
+                "EndOfMeetingReminder": {
+                    "Description": "Settings for the end of meeting reminder feature that are applied to a room profile. The end of meeting reminder enables Alexa to remind users when a meeting is ending.",
+                    "Type": "dict",
+                    "Required": false
+                },
+                "InstantBooking": {
+                    "Description": "Settings to automatically book an available room available for a configured duration when joining a meeting with Alexa.",
+                    "Type": "dict",
+                    "Required": false
+                },
+                "RequireCheckIn": {
+                    "Description": "Settings for requiring a check in when a room is reserved. Alexa can cancel a room reservation if it's not checked into to make the room available for others. Users can check in by joining the meeting with Alexa or an AVS device, or by saying \u201cAlexa, check in.\u201d",
+                    "Type": "dict",
+                    "Required": false
+                }
+            }
+        }
+    },
+    "update_room": {
+        "RoomArn": {
+            "Description": "The ARN of the room to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoomName": {
+            "Description": "The updated name for the room.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description for the room.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProviderCalendarId": {
+            "Description": "The updated provider calendar ARN for the room.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProfileArn": {
+            "Description": "The updated profile ARN for the room.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_skill_group": {
+        "SkillGroupArn": {
+            "Description": "The ARN of the skill group to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "SkillGroupName": {
+            "Description": "The updated name for the skill group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description for the skill group.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "Filters": {
+            "Description": "The filters to use for listing a specific set of users. Required. Supported filter keys are UserId, FirstName, LastName, Email, and EnrollmentStatus.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "A filter name and value pair that is used to return a more specific list of results. Filters can be used to match a set of resources by various criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The key of a filter.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Values": {
+                            "Description": "The values of a filter.",
+                            "Type": "list",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "SortCriteria": {
+            "Description": "The sort order to use in listing the filtered set of users. Required. Supported sort keys are UserId, FirstName, LastName, Email, and EnrollmentStatus.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "An object representing a sort criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "The sort key of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "The sort value of a sort object.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "MaxItems": {
+                    "Description": "The total number of items to return. If the total number of items available is more than the value specified in max-items then a NextToken will be provided in the output that you can use to resume pagination.",
+                    "Type": "integer",
+                    "Required": false
+                },
+                "PageSize": {
+                    "Description": "The size of each page.",
+                    "Type": "integer",
+                    "Required": false
+                },
+                "StartingToken": {
+                    "Description": "A token to specify where to start paginating. This is the NextToken from a previous response.",
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        }
+    }
+}

@@ -19,6 +19,8 @@ def parse_service(url):
 
     for row in rows:
         documentation_url = row.findAll('td')[0].findAll('a')[1].attrs['href']
+        documentation_page = requests.get(documentation_url)
+        documentation_soup = BeautifulSoup(documentation_page.content, 'html.parser')
 
 
     check = soup.find_all('h2', id=re.compile('resources-for-iam-policies'))[0]

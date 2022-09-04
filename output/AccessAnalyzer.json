@@ -1,0 +1,648 @@
+{
+    "apply_archive_rule": {
+        "analyzerArn": {
+            "Description": "The Amazon resource name (ARN) of the analyzer.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ruleName": {
+            "Description": "The name of the rule to apply.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_policy_generation": {
+        "jobId": {
+            "Description": "The JobId that is returned by the StartPolicyGeneration operation. The JobId can be used with GetGeneratedPolicy to retrieve the generated policies or used with CancelPolicyGeneration to cancel the policy generation request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_access_preview": {
+        "analyzerArn": {
+            "Description": "The ARN of the account analyzer used to generate the access preview. You can only create an access preview for analyzers with an Account type and Active status.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "configurations": {
+            "Description": "Access control configuration for your resource that is used to generate the access preview. The access preview includes findings for external access allowed to the resource with the proposed access control configuration. The configuration must contain exactly one element.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        }
+    },
+    "create_analyzer": {
+        "analyzerName": {
+            "Description": "The name of the analyzer to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "archiveRules": {
+            "Description": "Specifies the archive rules to add for the analyzer. Archive rules automatically archive findings that meet the criteria you define for the rule.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "filter",
+                    "Description": "An criterion statement in an archive rule. Each archive rule may have multiple criteria.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "filter": {
+                            "Description": "The condition and values for a criterion.",
+                            "Type": "dict",
+                            "Required": true
+                        },
+                        "ruleName": {
+                            "Description": "The name of the rule.",
+                            "Type": "string",
+                            "Required": true
+                        }
+                    }
+                }
+            ]
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags to apply to the analyzer.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        },
+        "type": {
+            "Description": "The type of analyzer to create. Only ACCOUNT and ORGANIZATION analyzers are supported. You can create only one analyzer per account per Region. You can create up to 5 analyzers per organization per Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_archive_rule": {
+        "analyzerName": {
+            "Description": "The name of the created analyzer.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "filter": {
+            "Description": "The criteria for the rule.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        },
+        "ruleName": {
+            "Description": "The name of the rule to create.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_analyzer": {
+        "analyzerName": {
+            "Description": "The name of the analyzer to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_archive_rule": {
+        "analyzerName": {
+            "Description": "The name of the analyzer that associated with the archive rule to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ruleName": {
+            "Description": "The name of the rule to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_preview": {
+        "accessPreviewId": {
+            "Description": "The unique ID for the access preview.",
+            "Type": "string",
+            "Required": true
+        },
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer used to generate the access preview.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_analyzed_resource": {
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer to retrieve information from.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArn": {
+            "Description": "The ARN of the resource to retrieve information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_analyzer": {
+        "analyzerName": {
+            "Description": "The name of the analyzer retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_archive_rule": {
+        "analyzerName": {
+            "Description": "The name of the analyzer to retrieve rules from.",
+            "Type": "string",
+            "Required": true
+        },
+        "ruleName": {
+            "Description": "The name of the rule to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_finding": {
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer that generated the finding.",
+            "Type": "string",
+            "Required": true
+        },
+        "id": {
+            "Description": "The ID of the finding to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_generated_policy": {
+        "includeResourcePlaceholders": {
+            "Description": "The level of detail that you want to generate. You can specify whether to generate policies with placeholders for resource ARNs for actions that support resource level granularity in policies.\nFor example, in the resource section of a policy, you can receive a placeholder such as \"Resource\":\"arn:aws:s3:::${BucketName}\" instead of \"*\" .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "includeServiceLevelTemplate": {
+            "Description": "The level of detail that you want to generate. You can specify whether to generate service-level policies.\nIAM Access Analyzer uses iam:servicelastaccessed to identify services that have been used recently to create this service-level template.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "jobId": {
+            "Description": "The JobId that is returned by the StartPolicyGeneration operation. The JobId can be used with GetGeneratedPolicy to retrieve the generated policies or used with CancelPolicyGeneration to cancel the policy generation request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_access_preview_findings": {
+        "accessPreviewId": {
+            "Description": "The unique ID for the access preview.",
+            "Type": "string",
+            "Required": true
+        },
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer used to generate the access.",
+            "Type": "string",
+            "Required": true
+        },
+        "filter": {
+            "Description": "Criteria to filter the returned findings.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_access_previews": {
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer used to generate the access preview.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_analyzed_resources": {
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer to retrieve a list of analyzed resources from.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceType": {
+            "Description": "The type of resource.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_analyzers": {
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "The type of analyzer.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_archive_rules": {
+        "analyzerName": {
+            "Description": "The name of the analyzer to retrieve rules from.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_findings": {
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer to retrieve findings from.",
+            "Type": "string",
+            "Required": true
+        },
+        "filter": {
+            "Description": "A filter to match for the findings to return.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "sort": {
+            "Description": "The sort order for the findings returned.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "attributeName": {
+                    "Description": "The name of the attribute to sort on.",
+                    "Type": "string",
+                    "Required": false
+                },
+                "orderBy": {
+                    "Description": "The sort order, ascending or descending.",
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        }
+    },
+    "list_policy_generations": {
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "principalArn": {
+            "Description": "The ARN of the IAM entity (user or role) for which you are generating a policy. Use this with ListGeneratedPolicies to filter the results to only include results for a specific principal.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource to retrieve tags from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_policy_generation": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect.\nIf you do not specify a client token, one is automatically generated by the Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "cloudTrailDetails": {
+            "Description": "A CloudTrailDetails object that contains details about a Trail that you want to analyze to generate policies.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "accessRole": {
+                    "Description": "The ARN of the service role that IAM Access Analyzer uses to access your CloudTrail trail and service last accessed information.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "endTime": {
+                    "Description": "The end of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp after this time are not considered to generate a policy. If this is not included in the request, the default value is the current time.",
+                    "Type": "datetime",
+                    "Required": false
+                },
+                "startTime": {
+                    "Description": "The start of the time range for which IAM Access Analyzer reviews your CloudTrail events. Events with a timestamp before this time are not considered to generate a policy.",
+                    "Type": "datetime",
+                    "Required": true
+                },
+                "trails": {
+                    "Description": "A Trail object that contains settings for a trail.",
+                    "Type": "list",
+                    "Required": true
+                }
+            }
+        },
+        "policyGenerationDetails": {
+            "Description": "Contains the ARN of the IAM entity (user or role) for which you are generating a policy.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "principalArn": {
+                    "Description": "The ARN of the IAM entity (user or role) for which you are generating a policy.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        }
+    },
+    "start_resource_scan": {
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer to use to scan the policies applied to the specified resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArn": {
+            "Description": "The ARN of the resource to scan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource to add the tag to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to add to the resource.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource to remove the tag from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The key for the tag to add.",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        }
+    },
+    "update_archive_rule": {
+        "analyzerName": {
+            "Description": "The name of the analyzer to update the archive rules for.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "filter": {
+            "Description": "A filter to match for the rules to update. Only rules that match the filter are updated.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "null": {
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        },
+        "ruleName": {
+            "Description": "The name of the rule to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_findings": {
+        "analyzerArn": {
+            "Description": "The ARN of the analyzer that generated the findings to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ids": {
+            "Description": "The IDs of the findings to update.",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        },
+        "resourceArn": {
+            "Description": "The ARN of the resource identified in the finding.",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "The state represents the action to take to update the finding Status. Use ARCHIVE to change an Active finding to an Archived finding. Use ACTIVE to change an Archived finding to an Active finding.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "validate_policy": {
+        "locale": {
+            "Description": "The locale to use for localizing the findings.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used for pagination of results returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyDocument": {
+            "Description": "The JSON policy document to use as the content for the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyType": {
+            "Description": "The type of policy to validate. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups. They also include service-control policies (SCPs) that are attached to an Amazon Web Services organization, organizational unit (OU), or an account.\nResource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "validatePolicyResourceType": {
+            "Description": "The type of resource to attach to your resource policy. Specify a value for the policy validation resource type only if the policy type is RESOURCE_POLICY. For example, to validate a resource policy to attach to an Amazon S3 bucket, you can choose AWS::S3::Bucket for the policy validation resource type.\nFor resource types not supported as valid values, IAM Access Analyzer runs policy checks that apply to all resource policies. For example, to validate a resource policy to attach to a KMS key, do not specify a value for the policy validation resource type and IAM Access Analyzer will run policy checks that apply to all resource policies.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "locale": {
+            "Description": "The locale to use for localizing the findings.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyDocument": {
+            "Description": "The JSON policy document to use as the content for the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyType": {
+            "Description": "The type of policy to validate. Identity policies grant permissions to IAM principals. Identity policies include managed and inline policies for IAM roles, users, and groups. They also include service-control policies (SCPs) that are attached to an Amazon Web Services organization, organizational unit (OU), or an account.\nResource policies grant permissions on Amazon Web Services resources. Resource policies include trust policies for IAM roles and bucket policies for Amazon S3 buckets. You can provide a generic input such as identity policy or resource policy or a specific input such as managed policy or Amazon S3 bucket policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "validatePolicyResourceType": {
+            "Description": "The type of resource to attach to your resource policy. Specify a value for the policy validation resource type only if the policy type is RESOURCE_POLICY. For example, to validate a resource policy to attach to an Amazon S3 bucket, you can choose AWS::S3::Bucket for the policy validation resource type.\nFor resource types not supported as valid values, IAM Access Analyzer runs policy checks that apply to all resource policies. For example, to validate a resource policy to attach to a KMS key, do not specify a value for the policy validation resource type and IAM Access Analyzer will run policy checks that apply to all resource policies.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "MaxItems": {
+                    "Description": "The total number of items to return. If the total number of items available is more than the value specified in max-items then a NextToken will be provided in the output that you can use to resume pagination.",
+                    "Type": "integer",
+                    "Required": false
+                },
+                "PageSize": {
+                    "Description": "The size of each page.",
+                    "Type": "integer",
+                    "Required": false
+                },
+                "StartingToken": {
+                    "Description": "A token to specify where to start paginating. This is the NextToken from a previous response.",
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        }
+    }
+}

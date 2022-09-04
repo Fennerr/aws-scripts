@@ -1,0 +1,556 @@
+{
+    "create_certificate_authority": {
+        "CertificateAuthorityConfiguration": {
+            "Description": "Name and bit size of the private key algorithm, the name of the signing algorithm, and X.500 certificate subject information.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "KeyAlgorithm": {
+                    "Description": "Type of the public key algorithm and size, in bits, of the key pair that your CA creates when it issues a certificate. When you create a subordinate CA, you must use a key algorithm supported by the parent CA.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "SigningAlgorithm": {
+                    "Description": "Name of the algorithm your private CA uses to sign certificate requests.\nThis parameter should not be confused with the SigningAlgorithm parameter used to sign certificates when they are issued.",
+                    "Type": "string",
+                    "Required": true
+                },
+                "Subject": {
+                    "Description": "Structure that contains X.500 distinguished name information for your private CA.",
+                    "Type": "dict",
+                    "Required": true
+                },
+                "CsrExtensions": {
+                    "Description": "Specifies information to be added to the extension section of the certificate signing request (CSR).",
+                    "Type": "dict",
+                    "Required": false
+                }
+            }
+        },
+        "RevocationConfiguration": {
+            "Description": "Contains information to enable Online Certificate Status Protocol (OCSP) support, to enable a certificate revocation list (CRL), to enable both, or to enable neither. The default is for both certificate validation mechanisms to be disabled. For more information, see the OcspConfiguration and CrlConfiguration types.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "CrlConfiguration": {
+                    "Description": "Configuration of the certificate revocation list (CRL), if any, maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, ACM Private CA makes further attempts every 15 minutes.",
+                    "Type": "dict",
+                    "Required": false
+                },
+                "OcspConfiguration": {
+                    "Description": "Configuration of Online Certificate Status Protocol (OCSP) support, if any, maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.",
+                    "Type": "dict",
+                    "Required": false
+                }
+            }
+        },
+        "CertificateAuthorityType": {
+            "Description": "The type of the certificate authority.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdempotencyToken": {
+            "Description": "Custom string that can be used to distinguish between calls to the CreateCertificateAuthority action. Idempotency tokens for CreateCertificateAuthority time out after five minutes. Therefore, if you call CreateCertificateAuthority multiple times with the same idempotency token within five minutes, ACM Private CA recognizes that you are requesting only certificate authority and will issue only one. If you change the idempotency token for each call, PCA recognizes that you are requesting multiple certificate authorities.",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyStorageSecurityStandard": {
+            "Description": "Specifies a cryptographic key management compliance standard used for handling CA keys.\nDefault: FIPS_140_2_LEVEL_3_OR_HIGHER\nWhen creating a CA in these Regions, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER as the argument for KeyStorageSecurityStandard. Failure to do this results in an InvalidArgsException with the message, \"A certificate authority cannot be created in this region with the specified security standard.\"",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Key-value pairs that will be attached to the new private CA. You can associate up to 50 tags with a private CA. For information using tags with IAM to manage permissions, see Controlling Access Using IAM Tags .",
+            "Type": "list",
+            "Required": false,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "Tags are labels that you can use to identify and organize your private CAs. Each tag consists of a key and an optional value. You can associate up to 50 tags with a private CA. To add one or more tags to a private CA, call the TagCertificateAuthority action. To remove a tag, call the UntagCertificateAuthority action.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "Key (name) of the tag.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "Value of the tag.",
+                            "Type": "string",
+                            "Required": false
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "create_certificate_authority_audit_report": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) of the CA to be audited. This is of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "S3BucketName": {
+            "Description": "The name of the S3 bucket that will contain the audit report.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuditReportResponseFormat": {
+            "Description": "The format in which to create the report. This can be either JSON or CSV .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_permission": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) of the CA that grants the permissions. You can find the ARN by calling the ListCertificateAuthorities action. This must have the following form:",
+            "Type": "string",
+            "Required": true
+        },
+        "Principal": {
+            "Description": "The Amazon Web Services service or identity that receives the permission. At this time, the only valid principal is acm.amazonaws.com .",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceAccount": {
+            "Description": "The ID of the calling account.",
+            "Type": "string",
+            "Required": false
+        },
+        "Actions": {
+            "Description": "The actions that the specified Amazon Web Services service principal can use. These include IssueCertificate, GetCertificate, and ListPermissions .",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": null,
+                    "Description": null,
+                    "Type": "string",
+                    "Required": false
+                }
+            ]
+        }
+    },
+    "delete_certificate_authority": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must have the following form:",
+            "Type": "string",
+            "Required": true
+        },
+        "PermanentDeletionTimeInDays": {
+            "Description": "The number of days to make a CA restorable after it has been deleted. This can be anywhere from 7 to 30 days, with 30 being the default.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_permission": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Number (ARN) of the private CA that issued the permissions. You can find the CA's ARN by calling the ListCertificateAuthorities action. This must have the following form:",
+            "Type": "string",
+            "Required": true
+        },
+        "Principal": {
+            "Description": "The Amazon Web Services service or identity that will have its CA permissions revoked. At this time, the only valid service principal is acm.amazonaws.com",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceAccount": {
+            "Description": "The Amazon Web Services account that calls this action.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Number (ARN) of the private CA that will have its policy deleted. You can find the CA's ARN by calling the ListCertificateAuthorities action. The ARN value must have the form arn:aws:acm-pca:region:account:certificate-authority/01234567-89ab-cdef-0123-0123456789ab .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_certificate_authority": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_certificate_authority_audit_report": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) of the private CA. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "AuditReportId": {
+            "Description": "The report ID returned by calling the CreateCertificateAuthorityAuditReport action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_certificate": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateArn": {
+            "Description": "The ARN of the issued certificate. The ARN contains the certificate serial number and must be in the following form:",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_certificate_authority_certificate": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) of your private CA. This is of the form:",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_certificate_authority_csr": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called the CreateCertificateAuthority action. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Number (ARN) of the private CA that will have its policy retrieved. You can find the CA's ARN by calling the ListCertificateAuthorities action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_certificate_authority_certificate": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "Certificate": {
+            "Description": "The PEM-encoded certificate for a private CA. This may be a self-signed certificate in the case of a root CA, or it may be signed by another CA that you control.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "CertificateChain": {
+            "Description": "A PEM-encoded file that contains all of your certificates, other than the certificate you're importing, chaining up to your root CA. Your ACM Private CA-hosted or on-premises root certificate is the last in the chain, and each certificate in the chain signs the one preceding.\nThis parameter must be supplied when you import a subordinate CA. When you import a root CA, there is no chain.",
+            "Type": "bytes",
+            "Required": false
+        }
+    },
+    "issue_certificate": {
+        "ApiPassthrough": {
+            "Description": "Specifies X.509 certificate information to be included in the issued certificate. An APIPassthrough or APICSRPassthrough template variant must be selected, or else this parameter is ignored. For more information about using these templates, see Understanding Certificate Templates .\nIf conflicting or duplicate certificate information is supplied during certificate issuance, ACM Private CA applies order of operation rules to determine what information is used.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "Extensions": {
+                    "Description": "Specifies X.509 extension information for a certificate.",
+                    "Type": "dict",
+                    "Required": false
+                },
+                "Subject": {
+                    "Description": "Contains information about the certificate subject. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate.",
+                    "Type": "dict",
+                    "Required": false
+                }
+            }
+        },
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "Csr": {
+            "Description": "The certificate signing request (CSR) for the certificate you want to issue. As an example, you can use the following OpenSSL command to create the CSR and a 2048 bit RSA private key.\nIf you have a configuration file, you can then use the following OpenSSL command. The usr_cert block in the configuration file contains your X509 version 3 extensions.\nNote: A CSR must provide either a subject name or a subject alternative name or the request will be rejected.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "SigningAlgorithm": {
+            "Description": "The name of the algorithm that will be used to sign the certificate to be issued.\nThis parameter should not be confused with the SigningAlgorithm parameter used to sign a CSR in the CreateCertificateAuthority action.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateArn": {
+            "Description": "Specifies a custom configuration template to use when issuing a certificate. If this parameter is not provided, ACM Private CA defaults to the EndEntityCertificate/V1 template. For CA certificates, you should choose the shortest path length that meets your needs. The path length is indicated by the PathLen*N* portion of the ARN, where N is the CA depth .\nNote: The CA depth configured on a subordinate CA certificate must not exceed the limit set by its parents in the CA hierarchy.\nFor a list of TemplateArn values supported by ACM Private CA, see Understanding Certificate Templates .",
+            "Type": "string",
+            "Required": false
+        },
+        "Validity": {
+            "Description": "Information describing the end of the validity period of the certificate. This parameter sets the \u201cNot After\u201d date for the certificate.\nCertificate validity is the period of time during which a certificate is valid. Validity can be expressed as an explicit date and time when the certificate expires, or as a span of time after issuance, stated in days, months, or years. For more information, see Validity in RFC 5280.\nThis value is unaffected when ValidityNotBefore is also specified. For example, if Validity is set to 20 days in the future, the certificate will expire 20 days from issuance time regardless of the ValidityNotBefore value.\nThe end of the validity period configured on a certificate must not exceed the limit set on its parents in the CA hierarchy.",
+            "Type": "dict",
+            "Required": true,
+            "Dict Variable": {
+                "Value": {
+                    "Description": "A long integer interpreted according to the value of Type, below.",
+                    "Type": "integer",
+                    "Required": true
+                },
+                "Type": {
+                    "Description": "Determines how ACM Private CA interprets the Value parameter, an integer. Supported validity types include those listed below. Type definitions with values include a sample input value and the resulting output.\nExample if DAYS, issued on 10/12/2020 at 12:34:54 UTC:\nThe minimum validity duration for a certificate using relative time (DAYS ) is one day. The minimum validity for a certificate using absolute time (ABSOLUTE or END_DATE ) is one second.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "ValidityNotBefore": {
+            "Description": "Information describing the start of the validity period of the certificate. This parameter sets the \u201cNot Before\" date for the certificate.\nBy default, when issuing a certificate, ACM Private CA sets the \"Not Before\" date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ValidityNotBefore parameter can be used to customize the \u201cNot Before\u201d value.\nUnlike the Validity parameter, the ValidityNotBefore parameter is optional.\nThe ValidityNotBefore value is expressed as an explicit date and time, using the Validity type value ABSOLUTE. For more information, see Validity in this API reference and Validity in RFC 5280.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "Value": {
+                    "Description": "A long integer interpreted according to the value of Type, below.",
+                    "Type": "integer",
+                    "Required": true
+                },
+                "Type": {
+                    "Description": "Determines how ACM Private CA interprets the Value parameter, an integer. Supported validity types include those listed below. Type definitions with values include a sample input value and the resulting output.\nExample if DAYS, issued on 10/12/2020 at 12:34:54 UTC:\nThe minimum validity duration for a certificate using relative time (DAYS ) is one day. The minimum validity for a certificate using absolute time (ABSOLUTE or END_DATE ) is one second.",
+                    "Type": "string",
+                    "Required": true
+                }
+            }
+        },
+        "IdempotencyToken": {
+            "Description": "Alphanumeric string that can be used to distinguish between calls to the IssueCertificate action. Idempotency tokens for IssueCertificate time out after one minute. Therefore, if you call IssueCertificate multiple times with the same idempotency token within one minute, ACM Private CA recognizes that you are requesting only one certificate and will issue only one. If you change the idempotency token for each call, PCA recognizes that you are requesting multiple certificates.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_certificate_authorities": {
+        "NextToken": {
+            "Description": "Use this parameter when paginating results in a subsequent request after you receive a response with truncated results. Set it to the value of the NextToken parameter from the response you just received.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Use this parameter when paginating results to specify the maximum number of items to return in the response on each page. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ResourceOwner": {
+            "Description": "Use this parameter to filter the returned set of certificate authorities based on their owner. The default is SELF.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_permissions": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Number (ARN) of the private CA to inspect. You can find the ARN by calling the ListCertificateAuthorities action. This must be of the form: arn:aws:acm-pca:region:account:certificate-authority/12345678-1234-1234-1234-123456789012 You can get a private CA's ARN by running the ListCertificateAuthorities action.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "When paginating results, use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextToken from the response you just received.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "When paginating results, use this parameter to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called the CreateCertificateAuthority action. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Use this parameter when paginating results in a subsequent request after you receive a response with truncated results. Set it to the value of NextToken from the response you just received.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Use this parameter when paginating results to specify the maximum number of items to return in the response. If additional items exist beyond the number you specify, the NextToken element is sent in the response. Use this NextToken value in a subsequent request to retrieve additional items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Number (ARN) of the private CA to associate with the policy. The ARN of the CA can be found by calling the ListCertificateAuthorities action.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The path and file name of a JSON-formatted IAM policy to attach to the specified private CA resource. If this policy does not contain all required statements or if it includes any statement that is not allowed, the PutPolicy action returns an InvalidPolicyException. For information about IAM policy and statement structure, see Overview of JSON Policies .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restore_certificate_authority": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called the CreateCertificateAuthority action. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "revoke_certificate": {
+        "CertificateAuthorityArn": {
+            "Description": "Amazon Resource Name (ARN) of the private CA that issued the certificate to be revoked. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateSerial": {
+            "Description": "Serial number of the certificate to be revoked. This must be in hexadecimal format. You can retrieve the serial number by calling GetCertificate with the Amazon Resource Name (ARN) of the certificate you want and the ARN of your private CA. The GetCertificate action retrieves the certificate in the PEM format. You can use the following OpenSSL command to list the certificate in text format and copy the hexadecimal serial number.\nYou can also copy the serial number from the console or use the DescribeCertificate action in the Certificate Manager API Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "RevocationReason": {
+            "Description": "Specifies why you revoked the certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_certificate_authority": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "List of tags to be associated with the CA.",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "Tags are labels that you can use to identify and organize your private CAs. Each tag consists of a key and an optional value. You can associate up to 50 tags with a private CA. To add one or more tags to a private CA, call the TagCertificateAuthority action. To remove a tag, call the UntagCertificateAuthority action.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "Key (name) of the tag.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "Value of the tag.",
+                            "Type": "string",
+                            "Required": false
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "untag_certificate_authority": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "List of tags to be removed from the CA.",
+            "Type": "list",
+            "Required": true,
+            "List Variables": [
+                {
+                    "Name": "Key",
+                    "Description": "Tags are labels that you can use to identify and organize your private CAs. Each tag consists of a key and an optional value. You can associate up to 50 tags with a private CA. To add one or more tags to a private CA, call the TagCertificateAuthority action. To remove a tag, call the UntagCertificateAuthority action.",
+                    "Type": "dict",
+                    "Required": false,
+                    "Dict Variable": {
+                        "Key": {
+                            "Description": "Key (name) of the tag.",
+                            "Type": "string",
+                            "Required": true
+                        },
+                        "Value": {
+                            "Description": "Value of the tag.",
+                            "Type": "string",
+                            "Required": false
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "update_certificate_authority": {
+        "CertificateAuthorityArn": {
+            "Description": "Amazon Resource Name (ARN) of the private CA that issued the certificate to be revoked. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "RevocationConfiguration": {
+            "Description": "Contains information to enable Online Certificate Status Protocol (OCSP) support, to enable a certificate revocation list (CRL), to enable both, or to enable neither. If this parameter is not supplied, existing capibilites remain unchanged. For more information, see the OcspConfiguration and CrlConfiguration types.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "CrlConfiguration": {
+                    "Description": "Configuration of the certificate revocation list (CRL), if any, maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, ACM Private CA makes further attempts every 15 minutes.",
+                    "Type": "dict",
+                    "Required": false
+                },
+                "OcspConfiguration": {
+                    "Description": "Configuration of Online Certificate Status Protocol (OCSP) support, if any, maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.",
+                    "Type": "dict",
+                    "Required": false
+                }
+            }
+        },
+        "Status": {
+            "Description": "Status of your private CA.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called the CreateCertificateAuthority action. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "MaxItems": {
+                    "Description": "The total number of items to return. If the total number of items available is more than the value specified in max-items then a NextToken will be provided in the output that you can use to resume pagination.",
+                    "Type": "integer",
+                    "Required": false
+                },
+                "PageSize": {
+                    "Description": "The size of each page.",
+                    "Type": "integer",
+                    "Required": false
+                },
+                "StartingToken": {
+                    "Description": "A token to specify where to start paginating. This is the NextToken from a previous response.",
+                    "Type": "string",
+                    "Required": false
+                }
+            }
+        }
+    },
+    "wait": {
+        "CertificateAuthorityArn": {
+            "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateArn": {
+            "Description": "The ARN of the issued certificate. The ARN contains the certificate serial number and must be in the following form:",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "Dict Variable": {
+                "Delay": {
+                    "Description": "The amount of time in seconds to wait between attempts. Default: 3",
+                    "Type": "integer",
+                    "Required": false
+                },
+                "MaxAttempts": {
+                    "Description": "The maximum number of attempts to be made. Default: 60",
+                    "Type": "integer",
+                    "Required": false
+                }
+            }
+        }
+    }
+}
