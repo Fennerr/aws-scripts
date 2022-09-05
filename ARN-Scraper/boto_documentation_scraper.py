@@ -131,7 +131,7 @@ def parse_parameter(parameter):
 
 def save_data(filename,data):
     # Make output dir if it doesnt exist
-    output_dir = pathlib.Path().absolute() / 'output'
+    output_dir = pathlib.Path(__file__).parent.absolute() / 'output'
     output_dir.mkdir(exist_ok=True)
     filepath = output_dir / filename
     with filepath.open("w") as write_file:

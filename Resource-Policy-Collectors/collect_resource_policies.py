@@ -3,7 +3,7 @@ import boto3
 import argparse
 import json
 import logging
-
+import pathlib
 ###################################################
 # Input Variables
 parser = argparse.ArgumentParser()
@@ -39,7 +39,16 @@ def find_not_allowed_regions():
 
 def write_output(filename,results):
     with open(filename, 'w') as outputfile:
-        json.dump(results, outputfile)
+        ## Need to make indentation an option
+        json.dump(results, outputfile, indent=4)
+
+def save_data(filename,data):
+    # Make output dir if it doesnt exist
+    output_dir = pathlib.Path(__file__).parent.absolute() / 'output'
+    output_dir.mkdir(exist_ok=True)
+    filepath = output_dir / filename
+    with filepath.open("w") as write_file:
+        json.dump(data, write_file, indent=4)
 
 
 ###################################################
@@ -62,8 +71,73 @@ def get_cloudwatch_log_policies(specific_region):
         }
         policies.append(data)
         logger.debug(json.dumps(data))
-    write_output(f"{account_id}-cloudwatch_log_policies.json",policies)
-         
+    save_data(f"{account_id}-cloudwatch_log_policies.json",policies)
+
+def get_ecr_repository_policies(specific_region):
+    if specific_region == None:
+        regions = s.get_available_regions('lambda')
+        regions = [i for i in regions if i not in not_allowed_regions]
+    else:
+        regions = [specific_region]
+    policies = []
+
+    for region in regions:
+        ecr = s.client('ecr',region_name=region)
+        try:
+            ecr_respositories = ecr.describe_repositories()["repositories"]
+        except ecr.exceptions.ClientError as e:
+            logging.warning("Unexpected error for region %s: %s" % (region,e))
+            continue
+        
+        if not ecr_respositories:
+            logger.info(f"No ECR respositories in {region}")
+            continue
+
+        logger.info(f"Found {len(ecr_respositories)} ECR respositories in {region}")
+
+        for ecr_respository in ecr_respositories:
+            respoitory_name = ecr_respository.get("repositoryName")
+            try:
+                data = {
+                    'ECR Repository': respoitory_name,
+                    'Region': region,
+                    'Policy': json.loads(ecr.get_repository_policy(repositoryName=respoitory_name).get('Policy'))
+                }
+                policies.append(data)
+                logger.debug(f"{respoitory_name} has the following access policy defined")
+                logger.debug(json.dumps(data))
+            except ecr.exceptions.RepositoryPolicyNotFoundException:
+                logger.debug(f"{respoitory_name} does not have an access policy defined")
+                continue
+    save_data(f"{account_id}-ecr_respository_policies.json",policies)
+
+def get_iam_role_trust_policies(specific_region):
+    if specific_region:
+        region_name = specific_region
+    else:
+        region_name = 'us-east-1'
+    iam = s.client('iam',region_name=region_name)
+
+    
+    roles = []
+    response = iam.list_roles()
+    roles.extend(response['Roles'])
+    while 'Marker' in response.keys():
+        response = iam.list_roles(Marker = response['Marker'])
+        roles.extend(response['Roles'])
+    logger.info(f"Found {len(roles)} roles")
+
+    role_trust_policies = {}
+    for role in roles:
+        role_name = role.get('RoleName')
+        try:
+            role_trust_policies[role_name] = iam.get_role(RoleName=role_name).get('Role').get('AssumeRolePolicyDocument')
+            logger.debug(f"{role_name} has the following trust policy defined")
+            logger.debug(json.dumps(role_trust_policies[role_name]))
+        except iam.exceptions.ClientError as e:
+            logger.warning("[IAM] Unexpected error: %s" % e)
+    save_data(f"{account_id}-iam_role_trust_policies.json",role_trust_policies)
+
 
 def get_lambda_policies(specific_region):
     if specific_region == None:
@@ -99,7 +173,7 @@ def get_lambda_policies(specific_region):
                 logger.debug(json.dumps(data))
             except lc.exceptions.ResourceNotFoundException:
                 continue
-    write_output(f"{account_id}-lambda_policies.json",policies)
+    save_data(f"{account_id}-lambda_policies.json",policies)
 
 
 def get_s3_bucket_policies(region):
@@ -122,7 +196,7 @@ def get_s3_bucket_policies(region):
             logger.debug(json.dumps(bucket_policies[bucket_name]))
         except s3.exceptions.ClientError as e:
             logger.warning("[S3] Unexpected error: %s" % e)
-    write_output(f"{account_id}-s3_bucket_policies.json",bucket_policies)
+    save_data(f"{account_id}-s3_bucket_policies.json",bucket_policies)
 
 
 def get_sqs_access_policies(specific_region):
@@ -158,7 +232,7 @@ def get_sqs_access_policies(specific_region):
                 logger.debug(json.dumps(data))
             except sqs.exceptions.ClientError as e:
                 logger.warning("[SQS] Unexpected error: {e}")
-    write_output(f"{account_id}-sqs_access_policies.json",queue_policies)
+    save_data(f"{account_id}-sqs_access_policies.json",queue_policies)
     # Analysis Ideas
     # Get a list of trusted AWS principals: cat 123456789012-sqs_access_policies.json | jq -r '.[].Policy.Statement[].Principal'  | more 
     # View access policies allowing access to a principal: cat 123456789012-sqs_access_policies.json | jq '.[] | select(.Policy.Statement[].Principal.AWS=="arn:aws:iam::123456789012:root")' | more
@@ -229,6 +303,8 @@ if not args.region:
     else:
         logger.debug("All regions are allowed")
 
-get_lambda_policies(specific_region=args.region)
-get_sqs_access_policies(specific_region=args.region)
-get_cloudwatch_log_policies(specific_region=args.region)
+# get_lambda_policies(specific_region=args.region)
+# get_sqs_access_policies(specific_region=args.region)
+# get_cloudwatch_log_policies(specific_region=args.region)
+# get_ecr_repository_policies(specific_region=args.region)
+get_iam_role_trust_policies(specific_region=args.region)
