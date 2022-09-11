@@ -1,0 +1,464 @@
+{
+    "create_application": {
+        "ApiGatewayProxy": {
+            "Description": "A wrapper object holding the API Gateway endpoint type and stage name for the proxy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The unique identifier of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name to use for the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProxyType": {
+            "Description": "The proxy type of the proxy created within the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to assign to the application. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key-value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VpcId": {
+            "Description": "The ID of the virtual private cloud (VPC).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_environment": {
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkFabricType": {
+            "Description": "The network fabric type of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to assign to the environment. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key-value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_route": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application within which the route is being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultRoute": {
+            "Description": "Configuration for the default route type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment in which the route is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteType": {
+            "Description": "The route type of the route. DEFAULT indicates that all traffic that does not match another route is forwarded to the default route. Applications must have a default route before any other routes can be created. URI_PATH indicates a route that is based on a URI path.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceIdentifier": {
+            "Description": "The ID of the service in which the route is created. Traffic that matches this route is forwarded to this service.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to assign to the route. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key-value pair..",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UriPathRoute": {
+            "Description": "The configuration for the URI path route type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_service": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application which the service is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the service.",
+            "Type": "string",
+            "Required": false
+        },
+        "EndpointType": {
+            "Description": "The type of endpoint to use for the service. The type can be a URL in a VPC or an Lambda function.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment in which the service is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "LambdaEndpoint": {
+            "Description": "The configuration for the Lambda endpoint type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Name": {
+            "Description": "The name of the service.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to assign to the service. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key-value pair..",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UrlEndpoint": {
+            "Description": "The configuration for the URL endpoint type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VpcId": {
+            "Description": "The ID of the VPC.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_application": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment": {
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_policy": {
+        "Identifier": {
+            "Description": "Amazon Resource Name (ARN) of the resource associated with the policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_route": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application to delete the route from.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment to delete the route from.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteIdentifier": {
+            "Description": "The ID of the route to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_service": {
+        "ApplicationIdentifier": {
+            "Description": "Deletes a Refactor Spaces service.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment that the service is in.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceIdentifier": {
+            "Description": "The ID of the service to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_application": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment": {
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_resource_policy": {
+        "Identifier": {
+            "Description": "The Amazon Resource Name (ARN) of the resource associated with the policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_route": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteIdentifier": {
+            "Description": "The ID of the route.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_service": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceIdentifier": {
+            "Description": "The ID of the service.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_applications": {
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environment_vpcs": {
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environments": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_routes": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_services": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_resource_policy": {
+        "Policy": {
+            "Description": "A JSON-formatted string for an Amazon Web Services resource-based policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which the policy is being attached.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The new or modified tags for the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of keys of the tags to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_route": {
+        "ActivationState": {
+            "Description": "If set to ACTIVE, traffic is forwarded to this route\u2019s service after the route is updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application within which the route is being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment in which the route is being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteIdentifier": {
+            "Description": "The unique identifier of the route to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "ApplicationIdentifier": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The ID of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,87 @@
+{
+    "get_personalized_ranking": {
+        "campaignArn": {
+            "Description": "The Amazon Resource Name (ARN) of the campaign to use for generating the personalized ranking.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputList": {
+            "Description": "A list of items (by itemId ) to rank. If an item was not included in the training dataset, the item is appended to the end of the reranked list. The maximum is 500.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "userId": {
+            "Description": "The user for which you want the campaign to provide a personalized ranking.",
+            "Type": "string",
+            "Required": true
+        },
+        "context": {
+            "Description": "The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "filterArn": {
+            "Description": "The Amazon Resource Name (ARN) of a filter you created to include items or exclude items from recommendations for a given user. For more information, see Filtering Recommendations .",
+            "Type": "string",
+            "Required": false
+        },
+        "filterValues": {
+            "Description": "The values to use when filtering recommendations. For each placeholder parameter in your filter expression, provide the parameter name (in matching case) as a key and the filter value(s) as the corresponding value. Separate multiple values for one parameter with a comma.\nFor filter expressions that use an INCLUDE element to include items, you must provide values for all parameters that are defined in the expression. For filters with expressions that use an EXCLUDE element to exclude items, you can omit the filter-values .In this case, Amazon Personalize doesn't use that portion of the expression to filter recommendations.\nFor more information, see Filtering Recommendations .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_recommendations": {
+        "campaignArn": {
+            "Description": "The Amazon Resource Name (ARN) of the campaign to use for getting recommendations.",
+            "Type": "string",
+            "Required": false
+        },
+        "itemId": {
+            "Description": "The item ID to provide recommendations for.\nRequired for RELATED_ITEMS recipe type.",
+            "Type": "string",
+            "Required": false
+        },
+        "userId": {
+            "Description": "The user ID to provide recommendations for.\nRequired for USER_PERSONALIZATION recipe type.",
+            "Type": "string",
+            "Required": false
+        },
+        "numResults": {
+            "Description": "The number of results to return. The default is 25. The maximum is 500.",
+            "Type": "integer",
+            "Required": false
+        },
+        "context": {
+            "Description": "The contextual metadata to use when getting recommendations. Contextual metadata includes any interaction information that might be relevant when getting a user's recommendations, such as the user's current location or device type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "filterArn": {
+            "Description": "The ARN of the filter to apply to the returned recommendations. For more information, see Filtering Recommendations .\nWhen using this parameter, be sure the filter resource is ACTIVE .",
+            "Type": "string",
+            "Required": false
+        },
+        "filterValues": {
+            "Description": "The values to use when filtering recommendations. For each placeholder parameter in your filter expression, provide the parameter name (in matching case) as a key and the filter value(s) as the corresponding value. Separate multiple values for one parameter with a comma.\nFor filter expressions that use an INCLUDE element to include items, you must provide values for all parameters that are defined in the expression. For filters with expressions that use an EXCLUDE element to exclude items, you can omit the filter-values .In this case, Amazon Personalize doesn't use that portion of the expression to filter recommendations.\nFor more information, see Filtering recommendations and user segments .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "recommenderArn": {
+            "Description": "The Amazon Resource Name (ARN) of the recommender to use to get recommendations. Provide a recommender ARN if you created a Domain dataset group with a recommender for a domain use case.",
+            "Type": "string",
+            "Required": false
+        },
+        "promotions": {
+            "Description": "The promotions to apply to the recommendation request. A promotion defines additional business rules that apply to a configurable subset of recommended items.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    }
+}

@@ -1,0 +1,176 @@
+{
+    "complete_snapshot": {
+        "SnapshotId": {
+            "Description": "The ID of the snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangedBlocksCount": {
+            "Description": "The number of blocks that were written to the snapshot.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Checksum": {
+            "Description": "An aggregated Base-64 SHA256 checksum based on the checksums of each written block.\nTo generate the aggregated checksum using the linear aggregation method, arrange the checksums for each written block in ascending order of their block index, concatenate them to form a single string, and then generate the checksum on the entire string using the SHA256 algorithm.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChecksumAlgorithm": {
+            "Description": "The algorithm used to generate the checksum. Currently, the only supported algorithm is SHA256 .",
+            "Type": "string",
+            "Required": false
+        },
+        "ChecksumAggregationMethod": {
+            "Description": "The aggregation method used to generate the checksum. Currently, the only supported aggregation method is LINEAR .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_snapshot_block": {
+        "SnapshotId": {
+            "Description": "The ID of the snapshot containing the block from which to get data.",
+            "Type": "string",
+            "Required": true
+        },
+        "BlockIndex": {
+            "Description": "The block index of the block in which to read the data. A block index is a logical index in units of 512 KiB blocks. To identify the block index, divide the logical offset of the data in the logical volume by the block size (logical offset of data/524288 ). The logical offset of the data must be 512 KiB aligned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "BlockToken": {
+            "Description": "The block token of the block from which to get data. You can obtain the BlockToken by running the ListChangedBlocks or ListSnapshotBlocks operations.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_changed_blocks": {
+        "FirstSnapshotId": {
+            "Description": "The ID of the first snapshot to use for the comparison.",
+            "Type": "string",
+            "Required": false
+        },
+        "SecondSnapshotId": {
+            "Description": "The ID of the second snapshot to use for the comparison.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.\nIf you specify NextToken, then StartingBlockIndex is ignored.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of blocks to be returned by the request.\nEven if additional blocks can be retrieved from the snapshot, the request can return less blocks than MaxResults or an empty array of blocks.\nTo retrieve the next set of blocks from the snapshot, make another request with the returned NextToken value. The value of NextToken is null when there are no more blocks to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StartingBlockIndex": {
+            "Description": "The block index from which the comparison should start.\nThe list in the response will start from this block index or the next valid block index in the snapshots.\nIf you specify NextToken, then StartingBlockIndex is ignored.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_snapshot_blocks": {
+        "SnapshotId": {
+            "Description": "The ID of the snapshot from which to get block indexes and block tokens.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.\nIf you specify NextToken, then StartingBlockIndex is ignored.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of blocks to be returned by the request.\nEven if additional blocks can be retrieved from the snapshot, the request can return less blocks than MaxResults or an empty array of blocks.\nTo retrieve the next set of blocks from the snapshot, make another request with the returned NextToken value. The value of NextToken is null when there are no more blocks to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StartingBlockIndex": {
+            "Description": "The block index from which the list should start. The list in the response will start from this block index or the next valid block index in the snapshot.\nIf you specify NextToken, then StartingBlockIndex is ignored.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_snapshot_block": {
+        "SnapshotId": {
+            "Description": "The ID of the snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "BlockIndex": {
+            "Description": "The block index of the block in which to write the data. A block index is a logical index in units of 512 KiB blocks. To identify the block index, divide the logical offset of the data in the logical volume by the block size (logical offset of data/524288 ). The logical offset of the data must be 512 KiB aligned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "BlockData": {
+            "Description": "The data to write to the block.\nThe block data is not signed as part of the Signature Version 4 signing process. As a result, you must generate and provide a Base64-encoded SHA256 checksum for the block data using the x-amz-Checksum header. Also, you must specify the checksum algorithm using the x-amz-Checksum-Algorithm header. The checksum that you provide is part of the Signature Version 4 signing process. It is validated against a checksum generated by Amazon EBS to ensure the validity and authenticity of the data. If the checksums do not correspond, the request fails. For more information, see Using checksums with the EBS direct APIs in the Amazon Elastic Compute Cloud User Guide .",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        },
+        "DataLength": {
+            "Description": "The size of the data to write to the block, in bytes. Currently, the only supported size is 524288 bytes.\nValid values: 524288",
+            "Type": "integer",
+            "Required": true
+        },
+        "Progress": {
+            "Description": "The progress of the write process, as a percentage.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Checksum": {
+            "Description": "A Base64-encoded SHA256 checksum of the data. Only SHA256 checksums are supported.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChecksumAlgorithm": {
+            "Description": "The algorithm used to generate the checksum. Currently, the only supported algorithm is SHA256 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_snapshot": {
+        "VolumeSize": {
+            "Description": "The size of the volume, in GiB. The maximum size is 65536 GiB (64 TiB).",
+            "Type": "integer",
+            "Required": true
+        },
+        "ParentSnapshotId": {
+            "Description": "The ID of the parent snapshot. If there is no parent snapshot, or if you are creating the first snapshot for an on-premises volume, omit this parameter.\nYou can't specify ParentSnapshotId and Encrypted in the same request. If you specify both parameters, the request fails with ValidationException .\nThe encryption status of the snapshot depends on the values that you specify for Encrypted, KmsKeyArn, and ParentSnapshotId, and whether your Amazon Web Services account is enabled for encryption by default. For more information, see Using encryption in the Amazon Elastic Compute Cloud User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to apply to the snapshot.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Description": {
+            "Description": "A description for the snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully. The subsequent retries with the same client token return the result from the original successful request and they have no additional effect.\nIf you do not specify a client token, one is automatically generated by the Amazon Web Services SDK.\nFor more information, see Idempotency for StartSnapshot API in the Amazon Elastic Compute Cloud User Guide .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Encrypted": {
+            "Description": "Indicates whether to encrypt the snapshot.\nYou can't specify Encrypted and ParentSnapshotId in the same request. If you specify both parameters, the request fails with ValidationException .\nThe encryption status of the snapshot depends on the values that you specify for Encrypted, KmsKeyArn, and ParentSnapshotId, and whether your Amazon Web Services account is enabled for encryption by default. For more information, see Using encryption in the Amazon Elastic Compute Cloud User Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KmsKeyArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Key Management Service (KMS) key to be used to encrypt the snapshot.\nThe encryption status of the snapshot depends on the values that you specify for Encrypted, KmsKeyArn, and ParentSnapshotId, and whether your Amazon Web Services account is enabled for encryption by default. For more information, see Using encryption in the Amazon Elastic Compute Cloud User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "Timeout": {
+            "Description": "The amount of time (in minutes) after which the snapshot is automatically cancelled if:\nIf no value is specified, the timeout defaults to 60 minutes.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        }
+    }
+}

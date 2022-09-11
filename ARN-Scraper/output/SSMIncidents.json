@@ -1,0 +1,608 @@
+{
+    "create_replication_set": {
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "regions": {
+            "Description": "The Regions that Incident Manager replicates your data to. You can have up to three Regions in your replication set.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_response_plan": {
+        "actions": {
+            "Description": "The actions that the response plan starts at the beginning of an incident.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "chatChannel": {
+            "Description": "The Chatbot chat channel used for collaboration during an incident.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The long format of the response plan name. This field can contain spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "engagements": {
+            "Description": "The contacts and escalation plans that the response plan engages during an incident.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "incidentTemplate": {
+            "Description": "Details used to create an incident when using this response plan.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "The short format name of the response plan. Can't include spaces.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tags that you are adding to the response plan.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_timeline_event": {
+        "clientToken": {
+            "Description": "A token ensuring that the action is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "eventData": {
+            "Description": "A short description of the event.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTime": {
+            "Description": "The time that the event occurred.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "eventType": {
+            "Description": "The type of the event. You can create timeline events of type Custom Event .",
+            "Type": "string",
+            "Required": true
+        },
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident record to which the event will be added.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_incident_record": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident record you are deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_replication_set": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication set you're deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_policy": {
+        "policyId": {
+            "Description": "The ID of the resource policy you're deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource you're deleting the policy from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_response_plan": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_timeline_event": {
+        "eventId": {
+            "Description": "The ID of the event you are updating. You can find this by using ListTimelineEvents .",
+            "Type": "string",
+            "Required": true
+        },
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident that includes the timeline event.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_incident_record": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident record.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_replication_set": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication set you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_resource_policies": {
+        "maxResults": {
+            "Description": "The maximum number of resource policies to display per page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan with the attached resource policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_response_plan": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_timeline_event": {
+        "eventId": {
+            "Description": "The ID of the event. You can get an event's ID when you create it, or by using ListTimelineEvents .",
+            "Type": "string",
+            "Required": true
+        },
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident that includes the timeline event.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_incident_records": {
+        "filters": {
+            "Description": "Filters the list of incident records through which you are searching. You can filter on the following keys:\nNote the following when deciding how to use Filters:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "maxResults": {
+            "Description": "The maximum number of results per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_related_items": {
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident record containing the listed related items.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of related items per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_replication_sets": {
+        "maxResults": {
+            "Description": "The maximum number of results per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_response_plans": {
+        "maxResults": {
+            "Description": "The maximum number of response plans per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_timeline_events": {
+        "filters": {
+            "Description": "Filters the timeline events based on the provided conditional values. You can filter timeline events using the following keys:\nNote the following when deciding how to use Filters:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident that includes the timeline event.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortBy": {
+            "Description": "Sort by the specified key value pair.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortOrder": {
+            "Description": "Sorts the order of timeline events by the value specified in the sortBy field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_resource_policy": {
+        "policy": {
+            "Description": "Details of the resource policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan you're adding the resource policy to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_incident": {
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "impact": {
+            "Description": "Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "relatedItems": {
+            "Description": "Add related items to the incident for other responders to use. Related items are AWS resources, external links, or files uploaded to an Amazon S3 bucket.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "responsePlanArn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan that pre-defines summary, chat channels, Amazon SNS topics, runbooks, title, and impact of the incident.",
+            "Type": "string",
+            "Required": true
+        },
+        "title": {
+            "Description": "Provide a title for the incident. Providing a title overwrites the title provided by the response plan.",
+            "Type": "string",
+            "Required": false
+        },
+        "triggerDetails": {
+            "Description": "Details of what created the incident record in Incident Manager.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan you're adding the tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tags that you are adding to the response plan.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan you're removing a tag from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The name of the tag you're removing from the response plan.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_deletion_protection": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication set you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "deletionProtected": {
+            "Description": "Details if deletion protection is enabled or disabled in your account.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "update_incident_record": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident record you are updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "chatChannel": {
+            "Description": "The Chatbot chat channel where responders can collaborate.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "A token that ensures that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "impact": {
+            "Description": "Defines the impact of the incident to customers and applications. Providing an impact overwrites the impact provided by the response plan.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "notificationTargets": {
+            "Description": "The Amazon SNS targets that are notified when updates are made to an incident.\nUsing multiple SNS topics creates redundancy in the event that a Region is down during the incident.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "status": {
+            "Description": "The status of the incident. An incident can be Open or Resolved .",
+            "Type": "string",
+            "Required": false
+        },
+        "summary": {
+            "Description": "A longer description of what occurred during the incident.",
+            "Type": "string",
+            "Required": false
+        },
+        "title": {
+            "Description": "A brief description of the incident.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_related_items": {
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident record containing the related items you are updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "relatedItemsUpdate": {
+            "Description": "Details about the item you are adding or deleting.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_replication_set": {
+        "actions": {
+            "Description": "An action to add or delete a Region.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication set you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_response_plan": {
+        "actions": {
+            "Description": "The actions that this response plan takes at the beginning of an incident.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the response plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "chatChannel": {
+            "Description": "The Chatbot chat channel used for collaboration during an incident.\nUse the empty structure to remove the chat channel from the response plan.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The long format name of the response plan. The display name can't contain spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "engagements": {
+            "Description": "The contacts and escalation plans that Incident Manager engages at the start of the incident.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "incidentTemplateDedupeString": {
+            "Description": "The string Incident Manager uses to prevent duplicate incidents from being created by the same incident in the same account.",
+            "Type": "string",
+            "Required": false
+        },
+        "incidentTemplateImpact": {
+            "Description": "Defines the impact to the customers. Providing an impact overwrites the impact provided by a response plan.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "incidentTemplateNotificationTargets": {
+            "Description": "The Amazon SNS targets that are notified when updates are made to an incident.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "incidentTemplateSummary": {
+            "Description": "A brief summary of the incident. This typically contains what has happened, what's currently happening, and next steps.",
+            "Type": "string",
+            "Required": false
+        },
+        "incidentTemplateTags": {
+            "Description": "Tags to apply to an incident when calling the StartIncident API action. To call this action, you must also have permission to call the TagResource API action for the incident record resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "incidentTemplateTitle": {
+            "Description": "The short format name of the incident. The title can't contain spaces.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_timeline_event": {
+        "clientToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "eventData": {
+            "Description": "A short description of the event.",
+            "Type": "string",
+            "Required": false
+        },
+        "eventId": {
+            "Description": "The ID of the event you are updating. You can find this by using ListTimelineEvents .",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTime": {
+            "Description": "The time that the event occurred.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "eventType": {
+            "Description": "The type of the event. You can update events of type Custom Event .",
+            "Type": "string",
+            "Required": false
+        },
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident that includes the timeline event.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "filters": {
+            "Description": "Filters the timeline events based on the provided conditional values. You can filter timeline events using the following keys:\nNote the following when deciding how to use Filters:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "incidentRecordArn": {
+            "Description": "The Amazon Resource Name (ARN) of the incident that includes the timeline event.",
+            "Type": "string",
+            "Required": true
+        },
+        "sortBy": {
+            "Description": "Sort by the specified key value pair.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortOrder": {
+            "Description": "Sorts the order of timeline events by the value specified in the sortBy field.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication set you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

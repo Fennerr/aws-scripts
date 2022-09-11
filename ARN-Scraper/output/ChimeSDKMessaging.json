@@ -1,0 +1,1010 @@
+{
+    "associate_channel_flow": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelFlowArn": {
+            "Description": "The ARN of the channel flow.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user making the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_create_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel to which you're adding users.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The membership type of a user, DEFAULT or HIDDEN . Default members are always returned as part of ListChannelMemberships . Hidden members are only returned if the type filter in ListChannelMemberships equals HIDDEN . Otherwise hidden members are not returned. This is only supported by moderators.",
+            "Type": "string",
+            "Required": false
+        },
+        "MemberArns": {
+            "Description": "The AppInstanceUserArn s of the members you want to add to the channel.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "channel_flow_callback": {
+        "CallbackId": {
+            "Description": "The identifier passed to the processor by the service when invoked. Use the identifier to call back the service.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeleteResource": {
+            "Description": "When a processor determines that a message needs to be DENIED , pass this parameter with a value of true.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ChannelMessage": {
+            "Description": "Stores information about the processed message.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_channel": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the channel request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Mode": {
+            "Description": "The channel mode: UNRESTRICTED or RESTRICTED . Administrators, moderators, and channel members can add themselves and other members to unrestricted channels. Only administrators and moderators can add members to restricted channels.",
+            "Type": "string",
+            "Required": false
+        },
+        "Privacy": {
+            "Description": "The channel's privacy level: PUBLIC or PRIVATE . Private channels aren't discoverable by users outside the channel. Public channels are discoverable by anyone in the AppInstance .",
+            "Type": "string",
+            "Required": false
+        },
+        "Metadata": {
+            "Description": "The metadata of the creation request. Limited to 1KB and UTF-8.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The client token for the request. An Idempotency token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags for the creation request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelId": {
+            "Description": "The ID of the channel in the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MemberArns": {
+            "Description": "The ARNs of the channel members in the request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ModeratorArns": {
+            "Description": "The ARNs of the channel moderators in the request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ElasticChannelConfiguration": {
+            "Description": "The attributes required to configure and create an elastic channel. An elastic channel can support a maximum of 1-million users, excluding moderators.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_channel_ban": {
+        "ChannelArn": {
+            "Description": "The ARN of the ban request.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The AppInstanceUserArn of the member being banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_channel_flow": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the channel flow request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Processors": {
+            "Description": "Information about the processor Lambda functions.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Name": {
+            "Description": "The name of the channel flow.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags for the creation request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "The client token for the request. An Idempotency token.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel to which you're adding users.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The AppInstanceUserArn of the member you want to add to the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The membership type of a user, DEFAULT or HIDDEN. Default members are always returned as part of ListChannelMemberships. Hidden members are only returned if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden members are not returned. This is only supported by moderators.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_channel_moderator": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelModeratorArn": {
+            "Description": "The AppInstanceUserArn of the moderator.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_channel": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel being deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_channel_ban": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel from which the AppInstanceUser was banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The ARN of the AppInstanceUser that you want to reinstate.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_channel_flow": {
+        "ChannelFlowArn": {
+            "Description": "The ARN of the channel flow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel from which you want to remove the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The AppInstanceUserArn of the member that you're removing from the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID of the message being deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_channel_moderator": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelModeratorArn": {
+            "Description": "The AppInstanceUserArn of the moderator being deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel_ban": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel from which the user is banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The AppInstanceUserArn of the member being banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel_flow": {
+        "ChannelFlowArn": {
+            "Description": "The ARN of the channel flow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The AppInstanceUserArn of the member.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request. The response contains an ElasticChannelConfiguration object.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_channel_membership_for_app_instance_user": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel to which the user belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the user in a channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel_moderated_by_app_instance_user": {
+        "ChannelArn": {
+            "Description": "The ARN of the moderated channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the AppInstanceUser in the moderated channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel_moderator": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelModeratorArn": {
+            "Description": "The AppInstanceUserArn of the channel moderator.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_channel_flow": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelFlowArn": {
+            "Description": "The ARN of the channel flow.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user making the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_channel_membership_preferences": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The AppInstanceUserArn of the member retrieving the preferences.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserARN of the user making the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID of the message.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_channel_message_status": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID of the message.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user making the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_messaging_session_endpoint": "No parameters defined",
+    "list_channel_bans": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of bans that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested bans are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_channel_flows": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the app instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channel flows that you want to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested channel flows are returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_memberships": {
+        "ChannelArn": {
+            "Description": "The maximum number of channel memberships that you want returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The membership type of a user, DEFAULT or HIDDEN . Default members are returned as part of ListChannelMemberships if no type is specified. Hidden members are only returned if the type filter in ListChannelMemberships equals HIDDEN .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channel memberships that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested channel memberships are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_memberships_for_app_instance_user": {
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the AppInstanceUser s",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of users that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token returned from previous API requests until the number of channel memberships is reached.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_channel_messages": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "SortOrder": {
+            "Description": "The order in which you want messages sorted. Default is Descending, based on time created.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotBefore": {
+            "Description": "The initial or starting time stamp for your requested messages.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "NotAfter": {
+            "Description": "The final or ending time stamp for your requested messages.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of messages that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested messages are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_moderators": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of moderators that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested moderators are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_channels": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "Privacy": {
+            "Description": "The privacy setting. PUBLIC retrieves all the public channels. PRIVATE retrieves private channels. Only an AppInstanceAdmin can retrieve private channels.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channels that you want to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested channels are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_channels_associated_with_channel_flow": {
+        "ChannelFlowArn": {
+            "Description": "The ARN of the channel flow.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channels that you want to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested channels are returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channels_moderated_by_app_instance_user": {
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the user in the moderated channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channels in the request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token returned from previous API requests until the number of channels moderated by the user is reached.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_sub_channels": {
+        "ChannelArn": {
+            "Description": "The ARN of elastic channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user making the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of sub-channels that you want to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested sub-channels are returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_channel_membership_preferences": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The AppInstanceUserArn of the member setting the preferences.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserARN of the user making the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "Preferences": {
+            "Description": "The channel membership preferences of an AppInstanceUser .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "redact_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel containing the messages that you want to redact.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID of the message being redacted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "search_channels": {
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user making the API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Fields": {
+            "Description": "A list of the Field objects in the channel being searched.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channels that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token returned from previous API requests until the number of channels is reached.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The content of the message.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of message, STANDARD or CONTROL .",
+            "Type": "string",
+            "Required": true
+        },
+        "Persistence": {
+            "Description": "Boolean that controls whether the message is persisted on the back end. Required.",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "The optional metadata for each message.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The Idempotency token for each client request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "PushNotification": {
+            "Description": "The push notification configuration of the message.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MessageAttributes": {
+            "Description": "The attributes for the message, used for message filtering along with a FilterRule defined in the PushNotificationPreferences .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The resource ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The resource ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_channel": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "Mode": {
+            "Description": "The mode of the update request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Metadata": {
+            "Description": "The metadata for the update request.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_channel_flow": {
+        "ChannelFlowArn": {
+            "Description": "The ARN of the channel flow.",
+            "Type": "string",
+            "Required": true
+        },
+        "Processors": {
+            "Description": "Information about the processor Lambda functions",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Name": {
+            "Description": "The name of the channel flow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID string of the message being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The content of the message being updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "Metadata": {
+            "Description": "The metadata of the message being updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_channel_read_marker": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubChannelId": {
+            "Description": "The ID of the SubChannel in the request.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

@@ -1,0 +1,695 @@
+{
+    "attach_customer_managed_policy_reference_to_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the PermissionSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomerManagedPolicyReference": {
+            "Description": "Specifies the name and path of a customer managed policy. You must have an IAM policy that matches the name and path in each AWS account where you want to deploy your permission set.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "attach_managed_policy_to_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the  PermissionSet that the managed policy should be attached to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ManagedPolicyArn": {
+            "Description": "The AWS managed policy ARN to be attached to a permission set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_account_assignment": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetId": {
+            "Description": "TargetID is an AWS account identifier, typically a 10-12 digit string (For example, 123456789012).",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetType": {
+            "Description": "The entity type for which the assignment will be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set that the admin wants to grant the principal access to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PrincipalType": {
+            "Description": "The entity type for which the assignment will be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "PrincipalId": {
+            "Description": "An identifier for an object in IAM Identity Center, such as a user or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6). For more information about PrincipalIds in IAM Identity Center, see the IAM Identity Center Identity Store API Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_instance_access_control_attribute_configuration": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceAccessControlAttributeConfiguration": {
+            "Description": "Specifies the IAM Identity Center identity store attributes to add to your ABAC configuration. When using an external identity provider as an identity source, you can pass attributes through the SAML assertion. Doing so provides an alternative to configuring attributes from the IAM Identity Center identity store. If a SAML assertion passes any of these attributes, IAM Identity Center will replace the attribute value with the value from the IAM Identity Center identity store.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_permission_set": {
+        "Name": {
+            "Description": "The name of the  PermissionSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the  PermissionSet .",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "SessionDuration": {
+            "Description": "The length of time that the application user sessions are valid in the ISO-8601 standard.",
+            "Type": "string",
+            "Required": false
+        },
+        "RelayState": {
+            "Description": "Used to redirect users within the application during the federation authentication process.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to attach to the new  PermissionSet .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_account_assignment": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetId": {
+            "Description": "TargetID is an AWS account identifier, typically a 10-12 digit string (For example, 123456789012).",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetType": {
+            "Description": "The entity type for which the assignment will be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set that will be used to remove access.",
+            "Type": "string",
+            "Required": true
+        },
+        "PrincipalType": {
+            "Description": "The entity type for which the assignment will be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "PrincipalId": {
+            "Description": "An identifier for an object in IAM Identity Center, such as a user or group. PrincipalIds are GUIDs (For example, f81d4fae-7dec-11d0-a765-00a0c91e6bf6). For more information about PrincipalIds in IAM Identity Center, see the IAM Identity Center Identity Store API Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_inline_policy_from_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set that will be used to remove access.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_instance_access_control_attribute_configuration": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set that should be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_permissions_boundary_from_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the PermissionSet .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account_assignment_creation_status": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountAssignmentCreationRequestId": {
+            "Description": "The identifier that is used to track the request operation progress.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account_assignment_deletion_status": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountAssignmentDeletionRequestId": {
+            "Description": "The identifier that is used to track the request operation progress.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_instance_access_control_attribute_configuration": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_permission_set_provisioning_status": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisionPermissionSetRequestId": {
+            "Description": "The identifier that is provided by the  ProvisionPermissionSet call to retrieve the current status of the provisioning workflow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_customer_managed_policy_reference_from_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the PermissionSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomerManagedPolicyReference": {
+            "Description": "Specifies the name and path of a customer managed policy. You must have an IAM policy that matches the name and path in each AWS account where you want to deploy your permission set.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "detach_managed_policy_from_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the  PermissionSet from which the policy should be detached.",
+            "Type": "string",
+            "Required": true
+        },
+        "ManagedPolicyArn": {
+            "Description": "The AWS managed policy ARN to be detached from a permission set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_inline_policy_for_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_permissions_boundary_for_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the PermissionSet .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_account_assignment_creation_status": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the assignment.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Filters results based on the passed attribute value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_account_assignment_deletion_status": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the assignment.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Filters results based on the passed attribute value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_account_assignments": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The identifier of the AWS account from which to list the assignments.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set from which to list assignments.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the assignment.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_accounts_for_provisioned_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the  PermissionSet from which the associated AWS accounts will be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningStatus": {
+            "Description": "The permission set provisioning status for an AWS account.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the  PermissionSet .",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_customer_managed_policy_references_in_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the PermissionSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the list call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_instances": {
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the instance.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_managed_policies_in_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the  PermissionSet whose managed policies will be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the  PermissionSet .",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_permission_set_provisioning_status": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the assignment.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Filters results based on the passed attribute value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_permission_sets": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the assignment.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_permission_sets_provisioned_to_account": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The identifier of the AWS account from which to list the assignments.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningStatus": {
+            "Description": "The status object for the permission set provisioning operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display for the assignment.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN of the resource with the tags to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "provision_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetId": {
+            "Description": "TargetID is an AWS account identifier, typically a 10-12 digit string (For example, 123456789012).",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetType": {
+            "Description": "The entity type for which the assignment will be created.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_inline_policy_to_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set.",
+            "Type": "string",
+            "Required": true
+        },
+        "InlinePolicy": {
+            "Description": "The inline policy to attach to a  PermissionSet .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_permissions_boundary_to_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the PermissionSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionsBoundary": {
+            "Description": "The permissions boundary that you want to attach to a PermissionSet .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN of the resource with the tags to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A set of key-value pairs that are used to manage the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN of the resource with the tags to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of tags that are attached to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_instance_access_control_attribute_configuration": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceAccessControlAttributeConfiguration": {
+            "Description": "Updates the attributes for your ABAC configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_permission_set": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionSetArn": {
+            "Description": "The ARN of the permission set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the  PermissionSet .",
+            "Type": "string",
+            "Required": false
+        },
+        "SessionDuration": {
+            "Description": "The length of time that the application user sessions are valid for in the ISO-8601 standard.",
+            "Type": "string",
+            "Required": false
+        },
+        "RelayState": {
+            "Description": "Used to redirect users within the application during the federation authentication process.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "InstanceArn": {
+            "Description": "The ARN of the IAM Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and AWS Service Namespaces in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN of the resource with the tags to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

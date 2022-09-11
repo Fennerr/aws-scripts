@@ -1,0 +1,1175 @@
+{
+    "cancel_image_creation": {
+        "imageBuildVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image whose creation you want to cancel.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see Ensuring idempotency in the Amazon EC2 API Reference .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_component": {
+        "name": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "semanticVersion": {
+            "Description": "The semantic version of the component. This version follows the semantic version syntax.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the component. Describes the contents of the component.",
+            "Type": "string",
+            "Required": false
+        },
+        "changeDescription": {
+            "Description": "The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.",
+            "Type": "string",
+            "Required": false
+        },
+        "platform": {
+            "Description": "The platform of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "supportedOsVersions": {
+            "Description": "The operating system (OS) version supported by the component. If the OS information is available, a prefix match is performed against the base image OS version during image recipe creation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "data": {
+            "Description": "Component data contains inline YAML document content for the component. Alternatively, you can specify the uri of a YAML document file stored in Amazon S3. However, you cannot specify both properties.",
+            "Type": "string",
+            "Required": false
+        },
+        "uri": {
+            "Description": "The uri of a YAML component document file. This must be an S3 URL (s3://bucket/key ), and the requester must have permission to access the S3 bucket it points to. If you use Amazon S3, you can specify component content up to your service quota.\nAlternatively, you can specify the YAML document inline, using the component data property. You cannot specify both properties.",
+            "Type": "string",
+            "Required": false
+        },
+        "kmsKeyId": {
+            "Description": "The ID of the KMS key that should be used to encrypt this component.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags of the component.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token of the component.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_container_recipe": {
+        "containerType": {
+            "Description": "The type of container to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the container recipe.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the container recipe.",
+            "Type": "string",
+            "Required": false
+        },
+        "semanticVersion": {
+            "Description": "The semantic version of the container recipe. This version follows the semantic version syntax.",
+            "Type": "string",
+            "Required": true
+        },
+        "components": {
+            "Description": "Components for build and test that are included in the container recipe.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "instanceConfiguration": {
+            "Description": "A group of options that can be used to configure an instance for building and testing container images.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "dockerfileTemplateData": {
+            "Description": "The Dockerfile template used to build your image as an inline data blob.",
+            "Type": "string",
+            "Required": false
+        },
+        "dockerfileTemplateUri": {
+            "Description": "The Amazon S3 URI for the Dockerfile that will be used to build your container image.",
+            "Type": "string",
+            "Required": false
+        },
+        "platformOverride": {
+            "Description": "Specifies the operating system platform when you use a custom base image.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageOsVersionOverride": {
+            "Description": "Specifies the operating system version for the base image.",
+            "Type": "string",
+            "Required": false
+        },
+        "parentImage": {
+            "Description": "The base image for the container recipe.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Tags that are attached to the container recipe.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "workingDirectory": {
+            "Description": "The working directory for use during build and test workflows.",
+            "Type": "string",
+            "Required": false
+        },
+        "targetRepository": {
+            "Description": "The destination repository for the container image.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "kmsKeyId": {
+            "Description": "Identifies which KMS key is used to encrypt the container image.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "The client token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_distribution_configuration": {
+        "name": {
+            "Description": "The name of the distribution configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the distribution configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "distributions": {
+            "Description": "The distributions of the distribution configuration.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags of the distribution configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token of the distribution configuration.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_image": {
+        "imageRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image recipe that defines how images are configured, tested, and assessed.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the container recipe that defines how images are configured and tested.",
+            "Type": "string",
+            "Required": false
+        },
+        "distributionConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the distribution configuration that defines and configures the outputs of your pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "infrastructureConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the infrastructure configuration that defines the environment in which your image will be built and tested.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageTestsConfiguration": {
+            "Description": "The image tests configuration of the image.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "enhancedImageMetadataEnabled": {
+            "Description": "Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags of the image.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_image_pipeline": {
+        "name": {
+            "Description": "The name of the image pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image recipe that will be used to configure images created by this image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the container recipe that is used to configure images created by this container pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "infrastructureConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the infrastructure configuration that will be used to build images created by this image pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "distributionConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the distribution configuration that will be used to configure and distribute images created by this image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageTestsConfiguration": {
+            "Description": "The image test configuration of the image pipeline.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "enhancedImageMetadataEnabled": {
+            "Description": "Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "schedule": {
+            "Description": "The schedule of the image pipeline.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "status": {
+            "Description": "The status of the image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags of the image pipeline.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_image_recipe": {
+        "name": {
+            "Description": "The name of the image recipe.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the image recipe.",
+            "Type": "string",
+            "Required": false
+        },
+        "semanticVersion": {
+            "Description": "The semantic version of the image recipe. This version follows the semantic version syntax.",
+            "Type": "string",
+            "Required": true
+        },
+        "components": {
+            "Description": "The components of the image recipe.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "parentImage": {
+            "Description": "The base image of the image recipe. The value of the string can be the ARN of the base image or an AMI ID. The format for the ARN follows this example: arn:aws:imagebuilder:us-west-2:aws:image/windows-server-2016-english-full-base-x86/x.x.x. You can provide the specific version that you want to use, or you can use a wildcard in all of the fields. If you enter an AMI ID for the string value, you must have access to the AMI, and the AMI must be in the same Region in which you are using Image Builder.",
+            "Type": "string",
+            "Required": true
+        },
+        "blockDeviceMappings": {
+            "Description": "The block device mappings of the image recipe.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags of the image recipe.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "workingDirectory": {
+            "Description": "The working directory used during build and test workflows.",
+            "Type": "string",
+            "Required": false
+        },
+        "additionalInstanceConfiguration": {
+            "Description": "Specify additional settings and launch scripts for your build instances.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_infrastructure_configuration": {
+        "name": {
+            "Description": "The name of the infrastructure configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the infrastructure configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "instanceTypes": {
+            "Description": "The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "instanceProfileName": {
+            "Description": "The instance profile to associate with the instance used to customize your Amazon EC2 AMI.",
+            "Type": "string",
+            "Required": true
+        },
+        "securityGroupIds": {
+            "Description": "The security group IDs to associate with the instance used to customize your Amazon EC2 AMI.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "subnetId": {
+            "Description": "The subnet ID in which to place the instance used to customize your Amazon EC2 AMI.",
+            "Type": "string",
+            "Required": false
+        },
+        "logging": {
+            "Description": "The logging configuration of the infrastructure configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "keyPair": {
+            "Description": "The key pair of the infrastructure configuration. You can use this to log on to and debug the instance used to create your image.",
+            "Type": "string",
+            "Required": false
+        },
+        "terminateInstanceOnFailure": {
+            "Description": "The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "snsTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) for the SNS topic to which we send image build event notifications.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceTags": {
+            "Description": "The tags attached to the resource created by Image Builder.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "instanceMetadataOptions": {
+            "Description": "The instance metadata options that you can set for the HTTP requests that pipeline builds use to launch EC2 build and test instances.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags of the infrastructure configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_component": {
+        "componentBuildVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the component build version to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_container_recipe": {
+        "containerRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the container recipe to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_distribution_configuration": {
+        "distributionConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the distribution configuration to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_image": {
+        "imageBuildVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Image Builder image resource to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_image_pipeline": {
+        "imagePipelineArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image pipeline to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_image_recipe": {
+        "imageRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image recipe to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_infrastructure_configuration": {
+        "infrastructureConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the infrastructure configuration to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_component": {
+        "componentBuildVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the component that you want to retrieve. Regex requires \"/d+$\" suffix.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_component_policy": {
+        "componentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the component whose policy you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_container_recipe": {
+        "containerRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the container recipe to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_container_recipe_policy": {
+        "containerRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the container recipe for the policy being requested.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_distribution_configuration": {
+        "distributionConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the distribution configuration that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_image": {
+        "imageBuildVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_image_pipeline": {
+        "imagePipelineArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image pipeline that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_image_policy": {
+        "imageArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image whose policy you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_image_recipe": {
+        "imageRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image recipe that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_image_recipe_policy": {
+        "imageRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image recipe whose policy you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_infrastructure_configuration": {
+        "infrastructureConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the infrastructure configuration that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_component": {
+        "name": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "semanticVersion": {
+            "Description": "The semantic version of the component. This version follows the semantic version syntax.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the component. Describes the contents of the component.",
+            "Type": "string",
+            "Required": false
+        },
+        "changeDescription": {
+            "Description": "The change description of the component. Describes what change has been made in this version, or what makes this version different from other versions of this component.",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "The type of the component denotes whether the component is used to build the image, or only to test it.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The format of the resource that you want to import as a component.",
+            "Type": "string",
+            "Required": true
+        },
+        "platform": {
+            "Description": "The platform of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "data": {
+            "Description": "The data of the component. Used to specify the data inline. Either data or uri can be used to specify the data within the component.",
+            "Type": "string",
+            "Required": false
+        },
+        "uri": {
+            "Description": "The uri of the component. Must be an Amazon S3 URL and the requester must have permission to access the Amazon S3 bucket. If you use Amazon S3, you can specify component content up to your service quota. Either data or uri can be used to specify the data within the component.",
+            "Type": "string",
+            "Required": false
+        },
+        "kmsKeyId": {
+            "Description": "The ID of the KMS key that should be used to encrypt this component.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags of the component.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token of the component.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_vm_image": {
+        "name": {
+            "Description": "The name of the base image that is created by the import process.",
+            "Type": "string",
+            "Required": true
+        },
+        "semanticVersion": {
+            "Description": "The semantic version to attach to the base image that was created during the import process. This version follows the semantic version syntax.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description for the base image that is created by the import process.",
+            "Type": "string",
+            "Required": false
+        },
+        "platform": {
+            "Description": "The operating system platform for the imported VM.",
+            "Type": "string",
+            "Required": true
+        },
+        "osVersion": {
+            "Description": "The operating system version for the imported VM.",
+            "Type": "string",
+            "Required": false
+        },
+        "vmImportTaskId": {
+            "Description": "The importTaskId (API) or ImportTaskId (CLI) from the Amazon EC2 VM import process. Image Builder retrieves information from the import process to pull in the AMI that is created from the VM source as the base image for your recipe.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Tags that are attached to the import resources.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "Unique, case-sensitive identifier you provide to ensure idempotency of the request. For more information, see Ensuring idempotency in the Amazon EC2 API Reference .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_component_build_versions": {
+        "componentVersionArn": {
+            "Description": "The component version Amazon Resource Name (ARN) whose versions you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_components": {
+        "owner": {
+            "Description": "The owner defines which components you want to list. By default, this request will only show components owned by your account. You can use this field to specify if you want to view components owned by yourself, by Amazon, or those components that have been shared with you by other customers.",
+            "Type": "string",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Use the following filters to streamline results:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "byName": {
+            "Description": "Returns the list of component build versions for the specified name.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_container_recipes": {
+        "owner": {
+            "Description": "Returns container recipes belonging to the specified owner, that have been shared with you. You can omit this field to return container recipes belonging to your account.",
+            "Type": "string",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Use the following filters to streamline results:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Provides a token for pagination, which determines where to begin the next set of results when the current set reaches the maximum for one request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_distribution_configurations": {
+        "filters": {
+            "Description": "You can filter on name to streamline results.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_image_build_versions": {
+        "imageVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image whose build versions you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "filters": {
+            "Description": "Use the following filters to streamline results:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_image_packages": {
+        "imageBuildVersionArn": {
+            "Description": "Filter results for the ListImagePackages request by the Image Build Version ARN",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maxiumum number of results to return from the ListImagePackages request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_image_pipeline_images": {
+        "imagePipelineArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image pipeline whose images you want to view.",
+            "Type": "string",
+            "Required": true
+        },
+        "filters": {
+            "Description": "Use the following filters to streamline results:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_image_pipelines": {
+        "filters": {
+            "Description": "Use the following filters to streamline results:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_image_recipes": {
+        "owner": {
+            "Description": "The owner defines which image recipes you want to list. By default, this request will only show image recipes owned by your account. You can use this field to specify if you want to view image recipes owned by yourself, by Amazon, or those image recipes that have been shared with you by other customers.",
+            "Type": "string",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Use the following filters to streamline results:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_images": {
+        "owner": {
+            "Description": "The owner defines which images you want to list. By default, this request will only show images owned by your account. You can use this field to specify if you want to view images owned by yourself, by Amazon, or those images that have been shared with you by other customers.",
+            "Type": "string",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Use the following filters to streamline results:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "byName": {
+            "Description": "Requests a list of images with a specific recipe name.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeDeprecated": {
+            "Description": "Includes deprecated images in the response list.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_infrastructure_configurations": {
+        "filters": {
+            "Description": "You can filter on name to streamline results.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum items to return in a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to specify where to start paginating. This is the NextToken from a previously truncated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_component_policy": {
+        "componentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the component that this policy should be applied to.",
+            "Type": "string",
+            "Required": true
+        },
+        "policy": {
+            "Description": "The policy to apply.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_container_recipe_policy": {
+        "containerRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the container recipe that this policy should be applied to.",
+            "Type": "string",
+            "Required": true
+        },
+        "policy": {
+            "Description": "The policy to apply to the container recipe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_image_policy": {
+        "imageArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image that this policy should be applied to.",
+            "Type": "string",
+            "Required": true
+        },
+        "policy": {
+            "Description": "The policy to apply.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_image_recipe_policy": {
+        "imageRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image recipe that this policy should be applied to.",
+            "Type": "string",
+            "Required": true
+        },
+        "policy": {
+            "Description": "The policy to apply.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_image_pipeline_execution": {
+        "imagePipelineArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image pipeline that you want to manually invoke.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The idempotency token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to apply to the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to untag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_distribution_configuration": {
+        "distributionConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the distribution configuration that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the distribution configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "distributions": {
+            "Description": "The distributions of the distribution configuration.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token of the distribution configuration.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_image_pipeline": {
+        "imagePipelineArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image pipeline that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the image recipe that will be used to configure images updated by this image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerRecipeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the container pipeline to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "infrastructureConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the infrastructure configuration that will be used to build images updated by this image pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "distributionConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the distribution configuration that will be used to configure and distribute images updated by this image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageTestsConfiguration": {
+            "Description": "The image test configuration of the image pipeline.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "enhancedImageMetadataEnabled": {
+            "Description": "Collects additional information about the image being created, including the operating system (OS) version and package list. This information is used to enhance the overall experience of using EC2 Image Builder. Enabled by default.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "schedule": {
+            "Description": "The schedule of the image pipeline.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "status": {
+            "Description": "The status of the image pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "The idempotency token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_infrastructure_configuration": {
+        "infrastructureConfigurationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the infrastructure configuration that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the infrastructure configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "instanceTypes": {
+            "Description": "The instance types of the infrastructure configuration. You can specify one or more instance types to use for this build. The service will pick one of these instance types based on availability.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "instanceProfileName": {
+            "Description": "The instance profile to associate with the instance used to customize your Amazon EC2 AMI.",
+            "Type": "string",
+            "Required": true
+        },
+        "securityGroupIds": {
+            "Description": "The security group IDs to associate with the instance used to customize your Amazon EC2 AMI.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "subnetId": {
+            "Description": "The subnet ID to place the instance used to customize your Amazon EC2 AMI in.",
+            "Type": "string",
+            "Required": false
+        },
+        "logging": {
+            "Description": "The logging configuration of the infrastructure configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "keyPair": {
+            "Description": "The key pair of the infrastructure configuration. You can use this to log on to and debug the instance used to create your image.",
+            "Type": "string",
+            "Required": false
+        },
+        "terminateInstanceOnFailure": {
+            "Description": "The terminate instance on failure setting of the infrastructure configuration. Set to false if you want Image Builder to retain the instance used to configure your AMI if the build or test phase of your workflow fails.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "snsTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) for the SNS topic to which we send image build event notifications.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "The idempotency token used to make this request idempotent.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceTags": {
+            "Description": "The tags attached to the resource created by Image Builder.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "instanceMetadataOptions": {
+            "Description": "The instance metadata options that you can set for the HTTP requests that pipeline builds use to launch EC2 build and test instances. For more information about instance metadata options, see one of the following links:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    }
+}

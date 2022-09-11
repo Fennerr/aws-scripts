@@ -1,0 +1,1668 @@
+{
+    "add_tags_to_resource": {
+        "ResourceArn": {
+            "Description": "Identifies the DMS resource to which tags should be added. The value for this parameter is an Amazon Resource Name (ARN).\nFor DMS, you can tag a replication instance, an endpoint, or a replication task.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "One or more tags to be assigned to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "apply_pending_maintenance_action": {
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the DMS resource that the pending maintenance action applies to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplyAction": {
+            "Description": "The pending maintenance action to apply to this resource.\nValid values: os-upgrade, system-update, db-upgrade",
+            "Type": "string",
+            "Required": true
+        },
+        "OptInType": {
+            "Description": "A value that specifies the type of opt-in request, or undoes an opt-in request. You can't undo an opt-in request of type immediate .\nValid values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "cancel_replication_task_assessment_run": {
+        "ReplicationTaskAssessmentRunArn": {
+            "Description": "Amazon Resource Name (ARN) of the premigration assessment run to be canceled.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_endpoint": {
+        "EndpointIdentifier": {
+            "Description": "The database endpoint identifier. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen, or contain two consecutive hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "EndpointType": {
+            "Description": "The type of endpoint. Valid values are source and target .",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineName": {
+            "Description": "The type of engine for the endpoint. Valid values, depending on the EndpointType value, include \"mysql\", \"oracle\", \"postgres\", \"mariadb\", \"aurora\", \"aurora-postgresql\", \"opensearch\", \"redshift\", \"s3\", \"db2\", \"azuredb\", \"sybase\", \"dynamodb\", \"mongodb\", \"kinesis\", \"kafka\", \"elasticsearch\", \"docdb\", \"sqlserver\", and \"neptune\" .",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name to be used to log in to the endpoint database.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password to be used to log in to the endpoint database.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerName": {
+            "Description": "The name of the server where the endpoint database resides.",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port used by the endpoint database.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DatabaseName": {
+            "Description": "The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName. To migrate to a specific database, use this setting and targetDbType .",
+            "Type": "string",
+            "Required": false
+        },
+        "ExtraConnectionAttributes": {
+            "Description": "Additional attributes associated with the connection. Each attribute is specified as a name-value pair associated by an equal sign (=). Multiple attributes are separated by a semicolon (;) with no additional white space. For information on the attributes available for connecting your source or target endpoint, see Working with DMS Endpoints in the Database Migration Service User Guide.",
+            "Type": "string",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "An KMS key identifier that is used to encrypt the connection parameters for the endpoint.\nIf you don't specify a value for the KmsKeyId parameter, then DMS uses your default encryption key.\nKMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "One or more tags to be assigned to the endpoint.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CertificateArn": {
+            "Description": "The Amazon Resource Name (ARN) for the certificate.",
+            "Type": "string",
+            "Required": false
+        },
+        "SslMode": {
+            "Description": "The Secure Sockets Layer (SSL) mode to use for the SSL connection. The default is none",
+            "Type": "string",
+            "Required": false
+        },
+        "ServiceAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) for the service access role that you want to use to create the endpoint. The role must allow the iam:PassRole action.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExternalTableDefinition": {
+            "Description": "The external table definition.",
+            "Type": "string",
+            "Required": false
+        },
+        "DynamoDbSettings": {
+            "Description": "Settings in JSON format for the target Amazon DynamoDB endpoint. For information about other available settings, see Using Object Mapping to Migrate Data to DynamoDB in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "S3Settings": {
+            "Description": "Settings in JSON format for the target Amazon S3 endpoint. For more information about the available settings, see Extra Connection Attributes When Using Amazon S3 as a Target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DmsTransferSettings": {
+            "Description": "The settings in JSON format for the DMS transfer type of source endpoint.\nPossible settings include the following:\nShorthand syntax for these settings is as follows: ServiceAccessRoleArn=string,BucketName=string\nJSON syntax for these settings is as follows: { \"ServiceAccessRoleArn\": \"string\", \"BucketName\": \"string\", }",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "MongoDbSettings": {
+            "Description": "Settings in JSON format for the source MongoDB endpoint. For more information about the available settings, see Endpoint configuration settings when using MongoDB as a source for Database Migration Service in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KinesisSettings": {
+            "Description": "Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams. For more information about the available settings, see Using object mapping to migrate data to a Kinesis data stream in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KafkaSettings": {
+            "Description": "Settings in JSON format for the target Apache Kafka endpoint. For more information about the available settings, see Using object mapping to migrate data to a Kafka topic in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ElasticsearchSettings": {
+            "Description": "Settings in JSON format for the target OpenSearch endpoint. For more information about the available settings, see Extra Connection Attributes When Using OpenSearch as a Target for DMS in the Database Migration Service User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NeptuneSettings": {
+            "Description": "Settings in JSON format for the target Amazon Neptune endpoint. For more information about the available settings, see Specifying graph-mapping rules using Gremlin and R2RML for Amazon Neptune as a target in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RedshiftSettings": {
+            "Description": "Provides information that defines an Amazon Redshift endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PostgreSQLSettings": {
+            "Description": "Settings in JSON format for the source and target PostgreSQL endpoint. For information about other available settings, see Extra connection attributes when using PostgreSQL as a source for DMS and Extra connection attributes when using PostgreSQL as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MySQLSettings": {
+            "Description": "Settings in JSON format for the source and target MySQL endpoint. For information about other available settings, see Extra connection attributes when using MySQL as a source for DMS and Extra connection attributes when using a MySQL-compatible database as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OracleSettings": {
+            "Description": "Settings in JSON format for the source and target Oracle endpoint. For information about other available settings, see Extra connection attributes when using Oracle as a source for DMS and Extra connection attributes when using Oracle as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SybaseSettings": {
+            "Description": "Settings in JSON format for the source and target SAP ASE endpoint. For information about other available settings, see Extra connection attributes when using SAP ASE as a source for DMS and Extra connection attributes when using SAP ASE as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MicrosoftSQLServerSettings": {
+            "Description": "Settings in JSON format for the source and target Microsoft SQL Server endpoint. For information about other available settings, see Extra connection attributes when using SQL Server as a source for DMS and Extra connection attributes when using SQL Server as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IBMDb2Settings": {
+            "Description": "Settings in JSON format for the source IBM Db2 LUW endpoint. For information about other available settings, see Extra connection attributes when using Db2 LUW as a source for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResourceIdentifier": {
+            "Description": "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1 . For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1 . If you don't specify a ResourceIdentifier value, DMS generates a default identifier value for the end of EndpointArn .",
+            "Type": "string",
+            "Required": false
+        },
+        "DocDbSettings": {
+            "Description": "Provides information that defines a DocumentDB endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RedisSettings": {
+            "Description": "Settings in JSON format for the target Redis endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "GcpMySQLSettings": {
+            "Description": "Settings in JSON format for the source GCP MySQL endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_event_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the DMS event notification subscription. This name must be less than 255 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnsTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceType": {
+            "Description": "The type of DMS resource that generates the events. For example, if you want to be notified of events generated by a replication instance, you set this parameter to replication-instance. If this value isn't specified, all events are returned.\nValid values: replication-instance | replication-task",
+            "Type": "string",
+            "Required": false
+        },
+        "EventCategories": {
+            "Description": "A list of event categories for a source type that you want to subscribe to. For more information, see Working with Events and Notifications in the Database Migration Service User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceIds": {
+            "Description": "A list of identifiers for which DMS provides notification events.\nIf you don't specify a value, notifications are provided for all sources.\nIf you specify multiple values, they must be of the same type. For example, if you specify a database instance ID, then all of the other values must be database instance IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Enabled": {
+            "Description": "A Boolean value; set to true to activate the subscription, or set to false to create the subscription but not activate it.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "One or more tags to be assigned to the event subscription.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_fleet_advisor_collector": {
+        "CollectorName": {
+            "Description": "The name of your Fleet Advisor collector (for example, sample-collector ).",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A summary description of your Fleet Advisor collector.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServiceAccessRoleArn": {
+            "Description": "The IAM role that grants permissions to access the specified Amazon S3 bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "S3BucketName": {
+            "Description": "The Amazon S3 bucket that the Fleet Advisor collector uses to store inventory metadata.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_replication_instance": {
+        "ReplicationInstanceIdentifier": {
+            "Description": "The replication instance identifier. This parameter is stored as a lowercase string.\nConstraints:\nExample: myrepinstance",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "AllocatedStorage": {
+            "Description": "The amount of storage (in gigabytes) to be initially allocated for the replication instance.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ReplicationInstanceClass": {
+            "Description": "The compute and memory capacity of the replication instance as defined for the specified replication instance class. For example to specify the instance class dms.c4.large, set this parameter to \"dms.c4.large\" .\nFor more information on the settings and capacities for the available replication instance classes, see Selecting the right DMS replication instance for your migration .",
+            "Type": "string",
+            "Required": true
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "Specifies the VPC security group to be used with the replication instance. The VPC security group must work with the VPC containing the replication instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AvailabilityZone": {
+            "Description": "The Availability Zone where the replication instance will be created. The default value is a random, system-chosen Availability Zone in the endpoint's Amazon Web Services Region, for example: us-east-1d",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicationSubnetGroupIdentifier": {
+            "Description": "A subnet group to associate with the replication instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).\nFormat: ddd:hh24:mi-ddd:hh24:mi\nDefault: A 30-minute window selected at random from an 8-hour block of time per Amazon Web Services Region, occurring on a random day of the week.\nValid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun\nConstraints: Minimum 30-minute window.",
+            "Type": "string",
+            "Required": false
+        },
+        "MultiAZ": {
+            "Description": "Specifies whether the replication instance is a Multi-AZ deployment. You can't set the AvailabilityZone parameter if the Multi-AZ parameter is set to true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The engine version number of the replication instance.\nIf an engine version number is not specified when a replication instance is created, the default is the latest engine version available.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "A value that indicates whether minor engine upgrades are applied automatically to the replication instance during the maintenance window. This parameter defaults to true .\nDefault: true",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "One or more tags to be assigned to the replication instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "An KMS key identifier that is used to encrypt the data on the replication instance.\nIf you don't specify a value for the KmsKeyId parameter, then DMS uses your default encryption key.\nKMS creates the default encryption key for your Amazon Web Services account. Your Amazon Web Services account has a different default encryption key for each Amazon Web Services Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "PubliclyAccessible": {
+            "Description": "Specifies the accessibility options for the replication instance. A value of true represents an instance with a public IP address. A value of false represents an instance with a private IP address. The default value is true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DnsNameServers": {
+            "Description": "A list of custom DNS name servers supported for the replication instance to access your on-premise source or target database. This list overrides the default name servers supported by the replication instance. You can specify a comma-separated list of internet addresses for up to four on-premise DNS name servers. For example: \"1.1.1.1,2.2.2.2,3.3.3.3,4.4.4.4\"",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceIdentifier": {
+            "Description": "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1 . For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1 . If you don't specify a ResourceIdentifier value, DMS generates a default identifier value for the end of EndpointArn .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_replication_subnet_group": {
+        "ReplicationSubnetGroupIdentifier": {
+            "Description": "The name for the replication subnet group. This value is stored as a lowercase string.\nConstraints: Must contain no more than 255 alphanumeric characters, periods, spaces, underscores, or hyphens. Must not be \"default\".\nExample: mySubnetgroup",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationSubnetGroupDescription": {
+            "Description": "The description for the subnet group.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubnetIds": {
+            "Description": "One or more subnet IDs to be assigned to the subnet group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "One or more tags to be assigned to the subnet group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_replication_task": {
+        "ReplicationTaskIdentifier": {
+            "Description": "An identifier for the replication task.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "SourceEndpointArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies the source endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetEndpointArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies the target endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of a replication instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "MigrationType": {
+            "Description": "The migration type. Valid values: full-load | cdc | full-load-and-cdc",
+            "Type": "string",
+            "Required": true
+        },
+        "TableMappings": {
+            "Description": "The table mappings for the task, in JSON format. For more information, see Using Table Mapping to Specify Task Settings in the Database Migration Service User Guide.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationTaskSettings": {
+            "Description": "Overall settings for the task, in JSON format. For more information, see Specifying Task Settings for Database Migration Service Tasks in the Database Migration Service User Guide.",
+            "Type": "string",
+            "Required": false
+        },
+        "CdcStartTime": {
+            "Description": "Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error.\nTimestamp Example: --cdc-start-time \u201c2018-03-08T12:12:12\u201d",
+            "Type": "datetime",
+            "Required": false
+        },
+        "CdcStartPosition": {
+            "Description": "Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.\nThe value can be in date, checkpoint, or LSN/SCN format.\nDate Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d\nCheckpoint Example: --cdc-start-position \"checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93\"\nLSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d",
+            "Type": "string",
+            "Required": false
+        },
+        "CdcStopPosition": {
+            "Description": "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time.\nServer time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d\nCommit time example: --cdc-stop-position \u201ccommit_time: 2018-02-09T12:12:12 \u201c",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "One or more tags to be assigned to the replication task.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TaskData": {
+            "Description": "Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see Specifying Supplemental Data for Task Settings in the Database Migration Service User Guide.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceIdentifier": {
+            "Description": "A friendly name for the resource identifier at the end of the EndpointArn response parameter that is returned in the created Endpoint object. The value for this parameter can have up to 31 characters. It can contain only ASCII letters, digits, and hyphen ('-'). Also, it can't end with a hyphen or contain two consecutive hyphens, and can only begin with a letter, such as Example-App-ARN1 . For example, this value might result in the EndpointArn value arn:aws:dms:eu-west-1:012345678901:rep:Example-App-ARN1 . If you don't specify a ResourceIdentifier value, DMS generates a default identifier value for the end of EndpointArn .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_certificate": {
+        "CertificateArn": {
+            "Description": "The Amazon Resource Name (ARN) of the certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_connection": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_endpoint": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_event_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the DMS event notification subscription to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_fleet_advisor_collector": {
+        "CollectorReferencedId": {
+            "Description": "The reference ID of the Fleet Advisor collector to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_fleet_advisor_databases": {
+        "DatabaseIds": {
+            "Description": "The IDs of the Fleet Advisor collector databases to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_replication_instance": {
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_replication_subnet_group": {
+        "ReplicationSubnetGroupIdentifier": {
+            "Description": "The subnet group name of the replication instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_replication_task": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication task to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_replication_task_assessment_run": {
+        "ReplicationTaskAssessmentRunArn": {
+            "Description": "Amazon Resource Name (ARN) of the premigration assessment run to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account_attributes": "No parameters defined",
+    "describe_applicable_individual_assessments": {
+        "ReplicationTaskArn": {
+            "Description": "Amazon Resource Name (ARN) of a migration task on which you want to base the default list of individual assessments.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicationInstanceArn": {
+            "Description": "ARN of a replication instance on which you want to base the default list of individual assessments.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceEngineName": {
+            "Description": "Name of a database engine that the specified replication instance supports as a source.",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetEngineName": {
+            "Description": "Name of a database engine that the specified replication instance supports as a target.",
+            "Type": "string",
+            "Required": false
+        },
+        "MigrationType": {
+            "Description": "Name of the migration type that each provided individual assessment must support.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "Maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_certificates": {
+        "Filters": {
+            "Description": "Filters applied to the certificates described in the form of key-value pairs. Valid values are certificate-arn and certificate-id .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 10",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_connections": {
+        "Filters": {
+            "Description": "The filters applied to the connection.\nValid filter names: endpoint-arn | replication-instance-arn",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_endpoint_settings": {
+        "EngineName": {
+            "Description": "The databse engine used for your source or target endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_endpoint_types": {
+        "Filters": {
+            "Description": "Filters applied to the endpoint types.\nValid filter names: engine-name | endpoint-type",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_endpoints": {
+        "Filters": {
+            "Description": "Filters applied to the endpoints.\nValid filter names: endpoint-arn | endpoint-type | endpoint-id | engine-name",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_event_categories": {
+        "SourceType": {
+            "Description": "The type of DMS resource that generates events.\nValid values: replication-instance | replication-task",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters applied to the event categories.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_event_subscriptions": {
+        "SubscriptionName": {
+            "Description": "The name of the DMS event subscription to be described.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters applied to event subscriptions.\nValid filter names: event-subscription-arn | event-subscription-id",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_events": {
+        "SourceIdentifier": {
+            "Description": "The identifier of an event source.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceType": {
+            "Description": "The type of DMS resource that generates events.\nValid values: replication-instance | replication-task",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The start time for the events to be listed.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The end time for the events to be listed.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Duration": {
+            "Description": "The duration of the events to be listed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "EventCategories": {
+            "Description": "A list of event categories for the source type that you've chosen.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Filters applied to events. The only valid filter is replication-instance-id .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_advisor_collectors": {
+        "Filters": {
+            "Description": "If you specify any of the following filters, the output includes information for only those collectors that meet the filter criteria:\nAn example is: describe-fleet-advisor-collectors --filter Name=\"collector-referenced-id\",Values=\"d4610ac5-e323-4ad9-bc50-eaf7249dfe9d\"",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "Sets the maximum number of records returned in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_advisor_databases": {
+        "Filters": {
+            "Description": "If you specify any of the following filters, the output includes information for only those databases that meet the filter criteria:\nAn example is: describe-fleet-advisor-databases --filter Name=\"database-id\",Values=\"45\"",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "Sets the maximum number of records returned in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_advisor_lsa_analysis": {
+        "MaxRecords": {
+            "Description": "Sets the maximum number of records returned in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_advisor_schema_object_summary": {
+        "Filters": {
+            "Description": "If you specify any of the following filters, the output includes information for only those schema objects that meet the filter criteria:\nExample: describe-fleet-advisor-schema-object-summary --filter Name=\"schema-id\",Values=\"50\"",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "Sets the maximum number of records returned in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_advisor_schemas": {
+        "Filters": {
+            "Description": "If you specify any of the following filters, the output includes information for only those schemas that meet the filter criteria:\nAn example is: describe-fleet-advisor-schemas --filter Name=\"schema-id\",Values=\"50\"",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "Sets the maximum number of records returned in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If NextToken is returned by a previous response, there are more results available. The value of NextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_orderable_replication_instances": {
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_pending_maintenance_actions": {
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "\n(dict) --Identifies the name and value of a filter object. This filter is used to limit the number and type of DMS objects that are returned for a particular Describe* call or similar operation. Filters are used as an optional parameter for certain API operations.\n\nName (string)[REQUIRED]The name of the filter as specified for a Describe* or similar operation.\n\nValues (list)[REQUIRED]The filter value, which can specify one or more values used to narrow the returned results.\n\n(string) --\n\n\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_refresh_schemas_status": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_replication_instance_task_logs": {
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_replication_instances": {
+        "Filters": {
+            "Description": "Filters applied to replication instances.\nValid filter names: replication-instance-arn | replication-instance-id | replication-instance-class | engine-version",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_replication_subnet_groups": {
+        "Filters": {
+            "Description": "Filters applied to replication subnet groups.\nValid filter names: replication-subnet-group-id",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_replication_task_assessment_results": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the task. When this input parameter is specified, the API returns only one result and ignore the values of the MaxRecords and Marker parameters.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_replication_task_assessment_runs": {
+        "Filters": {
+            "Description": "Filters applied to the premigration assessment runs described in the form of key-value pairs.\nValid filter names: replication-task-assessment-run-arn, replication-task-arn, replication-instance-arn, status",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_replication_task_individual_assessments": {
+        "Filters": {
+            "Description": "Filters applied to the individual assessments described in the form of key-value pairs.\nValid filter names: replication-task-assessment-run-arn, replication-task-arn, status",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_replication_tasks": {
+        "Filters": {
+            "Description": "Filters applied to replication tasks.\nValid filter names: replication-task-arn | replication-task-id | migration-type | endpoint-arn | replication-instance-arn",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "WithoutSettings": {
+            "Description": "An option to set to avoid returning information about settings. Use this to reduce overhead when setting information is too large. To use this option, choose true ; otherwise, choose false (the default).",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_schemas": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_table_statistics": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication task.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 500.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters applied to table statistics.\nValid filter names: schema-name | table-name | table-state\nA combination of filters creates an AND condition where each record matches all specified filters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "import_certificate": {
+        "CertificateIdentifier": {
+            "Description": "A customer-assigned name for the certificate. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen or contain two consecutive hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificatePem": {
+            "Description": "The contents of a .pem file, which contains an X.509 certificate.",
+            "Type": "string",
+            "Required": false
+        },
+        "CertificateWallet": {
+            "Description": "The location of an imported Oracle Wallet certificate for use with SSL. Provide the name of a .sso file using the fileb:// prefix. You can't provide the certificate inline.\nExample: filebase64(\"${path.root}/rds-ca-2019-root.sso\")",
+            "Type": "bytes",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags associated with the certificate.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the DMS resource to list tags for. This returns a list of keys (names of tags) created for the resource and their associated tag values.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceArnList": {
+            "Description": "List of ARNs that identify multiple DMS resources that you want to list tags for. This returns a list of keys (tag names) and their associated tag values. It also returns each tag's associated ResourceArn value, which is the ARN of the resource for which each listed tag is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_endpoint": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "EndpointIdentifier": {
+            "Description": "The database endpoint identifier. Identifiers must begin with a letter and must contain only ASCII letters, digits, and hyphens. They can't end with a hyphen or contain two consecutive hyphens.",
+            "Type": "string",
+            "Required": false
+        },
+        "EndpointType": {
+            "Description": "The type of endpoint. Valid values are source and target .",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineName": {
+            "Description": "The type of engine for the endpoint. Valid values, depending on the EndpointType, include \"mysql\" , \"oracle\" , \"postgres\" , \"mariadb\" , \"aurora\" , \"aurora-postgresql\" , \"opensearch\" , \"redshift\" , \"s3\" , \"db2\" , \"azuredb\" , \"sybase\" , \"dynamodb\" , \"mongodb\" , \"kinesis\" , \"kafka\" , \"elasticsearch\" , \"documentdb\" , \"sqlserver\" , and \"neptune\" .",
+            "Type": "string",
+            "Required": false
+        },
+        "Username": {
+            "Description": "The user name to be used to login to the endpoint database.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password to be used to login to the endpoint database.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerName": {
+            "Description": "The name of the server where the endpoint database resides.",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port used by the endpoint database.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DatabaseName": {
+            "Description": "The name of the endpoint database. For a MySQL source or target endpoint, do not specify DatabaseName.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExtraConnectionAttributes": {
+            "Description": "Additional attributes associated with the connection. To reset this parameter, pass the empty string (\"\") as an argument.",
+            "Type": "string",
+            "Required": false
+        },
+        "CertificateArn": {
+            "Description": "The Amazon Resource Name (ARN) of the certificate used for SSL connection.",
+            "Type": "string",
+            "Required": false
+        },
+        "SslMode": {
+            "Description": "The SSL mode used to connect to the endpoint. The default value is none .",
+            "Type": "string",
+            "Required": false
+        },
+        "ServiceAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) for the IAM role you want to use to modify the endpoint. The role must allow the iam:PassRole action.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExternalTableDefinition": {
+            "Description": "The external table definition.",
+            "Type": "string",
+            "Required": false
+        },
+        "DynamoDbSettings": {
+            "Description": "Settings in JSON format for the target Amazon DynamoDB endpoint. For information about other available settings, see Using Object Mapping to Migrate Data to DynamoDB in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "S3Settings": {
+            "Description": "Settings in JSON format for the target Amazon S3 endpoint. For more information about the available settings, see Extra Connection Attributes When Using Amazon S3 as a Target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DmsTransferSettings": {
+            "Description": "The settings in JSON format for the DMS transfer type of source endpoint.\nAttributes include the following:\nShorthand syntax for these settings is as follows: ServiceAccessRoleArn=string ,BucketName=string\nJSON syntax for these settings is as follows: { \"ServiceAccessRoleArn\": \"string\", \"BucketName\": \"string\"}",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "MongoDbSettings": {
+            "Description": "Settings in JSON format for the source MongoDB endpoint. For more information about the available settings, see the configuration properties section in Endpoint configuration settings when using MongoDB as a source for Database Migration Service in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KinesisSettings": {
+            "Description": "Settings in JSON format for the target endpoint for Amazon Kinesis Data Streams. For more information about the available settings, see Using object mapping to migrate data to a Kinesis data stream in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KafkaSettings": {
+            "Description": "Settings in JSON format for the target Apache Kafka endpoint. For more information about the available settings, see Using object mapping to migrate data to a Kafka topic in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ElasticsearchSettings": {
+            "Description": "Settings in JSON format for the target OpenSearch endpoint. For more information about the available settings, see Extra Connection Attributes When Using OpenSearch as a Target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NeptuneSettings": {
+            "Description": "Settings in JSON format for the target Amazon Neptune endpoint. For more information about the available settings, see Specifying graph-mapping rules using Gremlin and R2RML for Amazon Neptune as a target in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RedshiftSettings": {
+            "Description": "Provides information that defines an Amazon Redshift endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PostgreSQLSettings": {
+            "Description": "Settings in JSON format for the source and target PostgreSQL endpoint. For information about other available settings, see Extra connection attributes when using PostgreSQL as a source for DMS and Extra connection attributes when using PostgreSQL as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MySQLSettings": {
+            "Description": "Settings in JSON format for the source and target MySQL endpoint. For information about other available settings, see Extra connection attributes when using MySQL as a source for DMS and Extra connection attributes when using a MySQL-compatible database as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OracleSettings": {
+            "Description": "Settings in JSON format for the source and target Oracle endpoint. For information about other available settings, see Extra connection attributes when using Oracle as a source for DMS and Extra connection attributes when using Oracle as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SybaseSettings": {
+            "Description": "Settings in JSON format for the source and target SAP ASE endpoint. For information about other available settings, see Extra connection attributes when using SAP ASE as a source for DMS and Extra connection attributes when using SAP ASE as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MicrosoftSQLServerSettings": {
+            "Description": "Settings in JSON format for the source and target Microsoft SQL Server endpoint. For information about other available settings, see Extra connection attributes when using SQL Server as a source for DMS and Extra connection attributes when using SQL Server as a target for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IBMDb2Settings": {
+            "Description": "Settings in JSON format for the source IBM Db2 LUW endpoint. For information about other available settings, see Extra connection attributes when using Db2 LUW as a source for DMS in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DocDbSettings": {
+            "Description": "Settings in JSON format for the source DocumentDB endpoint. For more information about the available settings, see the configuration properties section in Using DocumentDB as a Target for Database Migration Service in the Database Migration Service User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RedisSettings": {
+            "Description": "Settings in JSON format for the Redis target endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ExactSettings": {
+            "Description": "If this attribute is Y, the current call to ModifyEndpoint replaces all existing endpoint settings with the exact settings that you specify in this call. If this attribute is N, the current call to ModifyEndpoint does two things:\nFor example, if you call create-endpoint ... --endpoint-settings '{\"a\":1}' ..., the endpoint has the following endpoint settings: '{\"a\":1}'. If you then call modify-endpoint ... --endpoint-settings '{\"b\":2}' ... for the same endpoint, the endpoint has the following settings: '{\"a\":1,\"b\":2}' .\nHowever, suppose that you follow this with a call to modify-endpoint ... --endpoint-settings '{\"b\":2}' --exact-settings ... for that same endpoint again. Then the endpoint has the following settings: '{\"b\":2}'. All existing settings are replaced with the exact settings that you specify.",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        },
+        "GcpMySQLSettings": {
+            "Description": "Settings in JSON format for the source GCP MySQL endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "modify_event_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the DMS event notification subscription to be modified.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnsTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceType": {
+            "Description": "The type of DMS resource that generates the events you want to subscribe to.\nValid values: replication-instance | replication-task",
+            "Type": "string",
+            "Required": false
+        },
+        "EventCategories": {
+            "Description": "A list of event categories for a source type that you want to subscribe to. Use the DescribeEventCategories action to see a list of event categories.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Enabled": {
+            "Description": "A Boolean value; set to true to activate the subscription.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "modify_replication_instance": {
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "AllocatedStorage": {
+            "Description": "The amount of storage (in gigabytes) to be allocated for the replication instance.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ApplyImmediately": {
+            "Description": "Indicates whether the changes should be applied immediately or during the next maintenance window.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ReplicationInstanceClass": {
+            "Description": "The compute and memory capacity of the replication instance as defined for the specified replication instance class. For example to specify the instance class dms.c4.large, set this parameter to \"dms.c4.large\" .\nFor more information on the settings and capacities for the available replication instance classes, see Selecting the right DMS replication instance for your migration .",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "Specifies the VPC security group to be used with the replication instance. The VPC security group must work with the VPC containing the replication instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "The weekly time range (in UTC) during which system maintenance can occur, which might result in an outage. Changing this parameter does not result in an outage, except in the following situation, and the change is asynchronously applied as soon as possible. If moving this window to the current time, there must be at least 30 minutes between the current time and end of the window to ensure pending changes are applied.\nDefault: Uses existing setting\nFormat: ddd:hh24:mi-ddd:hh24:mi\nValid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun\nConstraints: Must be at least 30 minutes",
+            "Type": "string",
+            "Required": false
+        },
+        "MultiAZ": {
+            "Description": "Specifies whether the replication instance is a Multi-AZ deployment. You can't set the AvailabilityZone parameter if the Multi-AZ parameter is set to true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The engine version number of the replication instance.\nWhen modifying a major engine version of an instance, also set AllowMajorVersionUpgrade to true .",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowMajorVersionUpgrade": {
+            "Description": "Indicates that major version upgrades are allowed. Changing this parameter does not result in an outage, and the change is asynchronously applied as soon as possible.\nThis parameter must be set to true when specifying a value for the EngineVersion parameter that is a different major version than the replication instance's current version.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "A value that indicates that minor version upgrades are applied automatically to the replication instance during the maintenance window. Changing this parameter doesn't result in an outage, except in the case described following. The change is asynchronously applied as soon as possible.\nAn outage does result if these factors apply:",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        },
+        "ReplicationInstanceIdentifier": {
+            "Description": "The replication instance identifier. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "modify_replication_subnet_group": {
+        "ReplicationSubnetGroupIdentifier": {
+            "Description": "The name of the replication instance subnet group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationSubnetGroupDescription": {
+            "Description": "A description for the replication instance subnet group.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetIds": {
+            "Description": "A list of subnet IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "modify_replication_task": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication task.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationTaskIdentifier": {
+            "Description": "The replication task identifier.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "MigrationType": {
+            "Description": "The migration type. Valid values: full-load | cdc | full-load-and-cdc",
+            "Type": "string",
+            "Required": false
+        },
+        "TableMappings": {
+            "Description": "When using the CLI or boto3, provide the path of the JSON file that contains the table mappings. Precede the path with file:// . For example, --table-mappings file://mappingfile.json . When working with the DMS API, provide the JSON as the parameter value.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicationTaskSettings": {
+            "Description": "JSON file that contains settings for the task, such as task metadata settings.",
+            "Type": "string",
+            "Required": false
+        },
+        "CdcStartTime": {
+            "Description": "Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error.\nTimestamp Example: --cdc-start-time \u201c2018-03-08T12:12:12\u201d",
+            "Type": "datetime",
+            "Required": false
+        },
+        "CdcStartPosition": {
+            "Description": "Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.\nThe value can be in date, checkpoint, or LSN/SCN format.\nDate Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d\nCheckpoint Example: --cdc-start-position \"checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93\"\nLSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d",
+            "Type": "string",
+            "Required": false
+        },
+        "CdcStopPosition": {
+            "Description": "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time.\nServer time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d\nCommit time example: --cdc-stop-position \u201ccommit_time: 2018-02-09T12:12:12 \u201c",
+            "Type": "string",
+            "Required": false
+        },
+        "TaskData": {
+            "Description": "Supplemental information that the task requires to migrate the data for certain source and target endpoints. For more information, see Specifying Supplemental Data for Task Settings in the Database Migration Service User Guide.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "move_replication_task": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task that you want to move.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetReplicationInstanceArn": {
+            "Description": "The ARN of the replication instance where you want to move the task to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reboot_replication_instance": {
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceFailover": {
+            "Description": "If this parameter is true , the reboot is conducted through a Multi-AZ failover. If the instance isn't configured for Multi-AZ, then you can't specify true . ( --force-planned-failover and --force-failover can't both be set to true .)",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ForcePlannedFailover": {
+            "Description": "If this parameter is true , the reboot is conducted through a planned Multi-AZ failover where resources are released and cleaned up prior to conducting the failover. If the instance isn''t configured for Multi-AZ, then you can't specify true . ( --force-planned-failover and --force-failover can't both be set to true .)",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "refresh_schemas": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reload_tables": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication task.",
+            "Type": "string",
+            "Required": true
+        },
+        "TablesToReload": {
+            "Description": "The name and schema of the table to be reloaded.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ReloadOption": {
+            "Description": "Options for reload. Specify data-reload to reload the data and re-validate it if validation is enabled. Specify validate-only to re-validate the table. This option applies only when validation is enabled for the task.\nValid values: data-reload, validate-only\nDefault value is data-reload.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "remove_tags_from_resource": {
+        "ResourceArn": {
+            "Description": "An DMS resource from which you want to remove tag(s). The value for this parameter is an Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag key (name) of the tag to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "run_fleet_advisor_lsa_analysis": "No parameters defined",
+    "start_replication_task": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication task to be started.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartReplicationTaskType": {
+            "Description": "The type of replication task to start.\nWhen the migration type is full-load or full-load-and-cdc, the only valid value for the first run of the task is start-replication. You use reload-target to restart the task and resume-processing to resume the task.\nWhen the migration type is cdc, you use start-replication to start or restart the task, and resume-processing to resume the task. reload-target is not a valid value for a task with migration type of cdc .",
+            "Type": "string",
+            "Required": true
+        },
+        "CdcStartTime": {
+            "Description": "Indicates the start time for a change data capture (CDC) operation. Use either CdcStartTime or CdcStartPosition to specify when you want a CDC operation to start. Specifying both values results in an error.\nTimestamp Example: --cdc-start-time \u201c2018-03-08T12:12:12\u201d",
+            "Type": "datetime",
+            "Required": false
+        },
+        "CdcStartPosition": {
+            "Description": "Indicates when you want a change data capture (CDC) operation to start. Use either CdcStartPosition or CdcStartTime to specify when you want a CDC operation to start. Specifying both values results in an error.\nThe value can be in date, checkpoint, or LSN/SCN format.\nDate Example: --cdc-start-position \u201c2018-03-08T12:12:12\u201d\nCheckpoint Example: --cdc-start-position \"checkpoint:V1#27#mysql-bin-changelog.157832:1975:-1:2002:677883278264080:mysql-bin-changelog.157832:1876#0#0#*#0#93\"\nLSN Example: --cdc-start-position \u201cmysql-bin-changelog.000024:373\u201d",
+            "Type": "string",
+            "Required": false
+        },
+        "CdcStopPosition": {
+            "Description": "Indicates when you want a change data capture (CDC) operation to stop. The value can be either server time or commit time.\nServer time example: --cdc-stop-position \u201cserver_time:2018-02-09T12:12:12\u201d\nCommit time example: --cdc-stop-position \u201ccommit_time: 2018-02-09T12:12:12 \u201c",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_replication_task_assessment": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_replication_task_assessment_run": {
+        "ReplicationTaskArn": {
+            "Description": "Amazon Resource Name (ARN) of the migration task associated with the premigration assessment run that you want to start.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceAccessRoleArn": {
+            "Description": "ARN of the service role needed to start the assessment run. The role must allow the iam:PassRole action.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResultLocationBucket": {
+            "Description": "Amazon S3 bucket where you want DMS to store the results of this assessment run.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResultLocationFolder": {
+            "Description": "Folder within an Amazon S3 bucket where you want DMS to store the results of this assessment run.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResultEncryptionMode": {
+            "Description": "Encryption mode that you can specify to encrypt the results of this assessment run. If you don't specify this request parameter, DMS stores the assessment run results without encryption. You can specify one of the options following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ResultKmsKeyArn": {
+            "Description": "ARN of a custom KMS encryption key that you specify when you set ResultEncryptionMode to \"SSE_KMS \".",
+            "Type": "string",
+            "Required": false
+        },
+        "AssessmentRunName": {
+            "Description": "Unique name to identify the assessment run.",
+            "Type": "string",
+            "Required": true
+        },
+        "IncludeOnly": {
+            "Description": "Space-separated list of names for specific individual assessments that you want to include. These names come from the default list of individual assessments that DMS supports for the associated migration task. This task is specified by ReplicationTaskArn .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Exclude": {
+            "Description": "Space-separated list of names for specific individual assessments that you want to exclude. These names come from the default list of individual assessments that DMS supports for the associated migration task. This task is specified by ReplicationTaskArn .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "stop_replication_task": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name(ARN) of the replication task to be stopped.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "test_connection": {
+        "ReplicationInstanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name (ARN) string that uniquely identifies the endpoint.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_subscriptions_to_event_bridge": {
+        "ForceMove": {
+            "Description": "When set to true, this operation migrates DMS subscriptions for Amazon SNS notifications no matter what your replication instance version is. If not set or set to false, this operation runs only when all your replication instances are from DMS version 3.4.6 or higher.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "ReplicationTaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the replication task.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "Filters applied to table statistics.\nValid filter names: schema-name | table-name | table-state\nA combination of filters creates an AND condition where each record matches all specified filters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "Filters": {
+            "Description": "The filters applied to the connection.\nValid filter names: endpoint-arn | replication-instance-arn",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

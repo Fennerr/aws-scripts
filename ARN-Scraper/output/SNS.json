@@ -1,0 +1,600 @@
+{
+    "add_permission": {
+        "Label": {
+            "Description": "A unique identifier for the new policy statement.",
+            "Type": "string",
+            "Required": true
+        },
+        "AWSAccountId": {
+            "Description": "The Amazon Web Services account IDs of the users (principals) who will be given access to the specified actions. The users must have Amazon Web Services account, but do not need to be signed up for this service.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ActionName": {
+            "Description": "The action you want to allow for the specified principal(s).\nValid values: Any Amazon SNS action name, for example Publish .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "check_if_phone_number_is_opted_out": {
+        "phoneNumber": {
+            "Description": "The phone number for which you want to check the opt out status.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "confirm_subscription": {
+        "Token": {
+            "Description": "Short-lived token sent to an endpoint during the Subscribe action.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthenticateOnUnsubscribe": {
+            "Description": "Disallows unauthenticated unsubscribes of the subscription. If the value of this parameter is true and the request has an Amazon Web Services signature, then only the topic owner and the subscription owner can unsubscribe the endpoint. The unsubscribe action requires Amazon Web Services authentication.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_platform_application": {
+        "Name": {
+            "Description": "Application names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, hyphens, and periods, and must be between 1 and 256 characters long.",
+            "Type": "string",
+            "Required": true
+        },
+        "Platform": {
+            "Description": "The following platforms are supported: ADM (Amazon Device Messaging), APNS (Apple Push Notification Service), APNS_SANDBOX, and GCM (Firebase Cloud Messaging).",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "For a list of attributes, see SetPlatformApplicationAttributes .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_platform_endpoint": {
+        "Token": {
+            "Description": "Unique identifier created by the notification service for an app on a device. The specific name for Token will vary, depending on which notification service is being used. For example, when using APNS as the notification service, you need the device token. Alternatively, when using GCM (Firebase Cloud Messaging) or ADM, the device token equivalent is called the registration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomUserData": {
+            "Description": "Arbitrary user data to associate with the endpoint. Amazon SNS does not use this data. The data must be in UTF-8 format and less than 2KB.",
+            "Type": "string",
+            "Required": false
+        },
+        "Attributes": {
+            "Description": "For a list of attributes, see SetEndpointAttributes .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_sms_sandbox_phone_number": {
+        "PhoneNumber": {
+            "Description": "The destination phone number to verify. On verification, Amazon SNS adds this phone number to the list of verified phone numbers that you can send SMS messages to.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language to use for sending the OTP. The default value is en-US .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_topic": {
+        "Name": {
+            "Description": "The name of the topic you want to create.\nConstraints: Topic names must be made up of only uppercase and lowercase ASCII letters, numbers, underscores, and hyphens, and must be between 1 and 256 characters long.\nFor a FIFO (first-in-first-out) topic, the name must end with the .fifo suffix.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "A map of attributes with their corresponding values.\nThe following lists the names, descriptions, and values of the special request parameters that the CreateTopic action uses:\nThe following attribute applies only to server-side encryption :\nThe following attributes apply only to FIFO topics :",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "The list of tags to add to a new topic.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DataProtectionPolicy": {
+            "Description": "The body of the policy document you want to use for this topic.\nYou can only add one policy per topic.\nThe policy must be in JSON string format.\nLength Constraints: Maximum length of 30,720.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_endpoint": {
+        "EndpointArn": {
+            "Description": "EndpointArn of endpoint to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_platform_application": {
+        "PlatformApplicationArn": {
+            "Description": "PlatformApplicationArn of platform application object to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_sms_sandbox_phone_number": {
+        "PhoneNumber": {
+            "Description": "The destination phone number to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_topic": {
+        "TopicArn": {
+            "Description": "The ARN of the topic you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_data_protection_policy": {
+        "ResourceArn": {
+            "Description": "The ARN of the topic whose DataProtectionPolicy you want to get.\nFor more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_endpoint_attributes": {
+        "EndpointArn": {
+            "Description": "EndpointArn for GetEndpointAttributes input.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_platform_application_attributes": {
+        "PlatformApplicationArn": {
+            "Description": "PlatformApplicationArn for GetPlatformApplicationAttributesInput.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sms_attributes": {
+        "attributes": {
+            "Description": "A list of the individual attribute names, such as MonthlySpendLimit, for which you want values.\nFor all attribute names, see SetSMSAttributes .\nIf you don't use this parameter, Amazon SNS returns all SMS attributes.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_sms_sandbox_account_status": "No parameters defined",
+    "get_subscription_attributes": {
+        "SubscriptionArn": {
+            "Description": "The ARN of the subscription whose properties you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_topic_attributes": {
+        "TopicArn": {
+            "Description": "The ARN of the topic whose properties you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_endpoints_by_platform_application": {
+        "PlatformApplicationArn": {
+            "Description": "PlatformApplicationArn for ListEndpointsByPlatformApplicationInput action.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "NextToken string is used when calling ListEndpointsByPlatformApplication action to retrieve additional records that are available after the first page results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_origination_numbers": {
+        "NextToken": {
+            "Description": "Token that the previous ListOriginationNumbers request returns.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of origination numbers to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_phone_numbers_opted_out": {
+        "nextToken": {
+            "Description": "A NextToken string is used when you call the ListPhoneNumbersOptedOut action to retrieve additional records that are available after the first page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_platform_applications": {
+        "NextToken": {
+            "Description": "NextToken string is used when calling ListPlatformApplications action to retrieve additional records that are available after the first page results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_sms_sandbox_phone_numbers": {
+        "NextToken": {
+            "Description": "Token that the previous ListSMSSandboxPhoneNumbersInput request returns.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of phone numbers to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_subscriptions": {
+        "NextToken": {
+            "Description": "Token returned by the previous ListSubscriptions request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_subscriptions_by_topic": {
+        "TopicArn": {
+            "Description": "The ARN of the topic for which you wish to find subscriptions.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Token returned by the previous ListSubscriptionsByTopic request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the topic for which to list tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_topics": {
+        "NextToken": {
+            "Description": "Token returned by the previous ListTopics request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "opt_in_phone_number": {
+        "phoneNumber": {
+            "Description": "The phone number to opt in. Use E.164 format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "publish": {
+        "TargetArn": {
+            "Description": "If you don't specify a value for the TargetArn parameter, you must specify a value for the PhoneNumber or TopicArn parameters.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumber": {
+            "Description": "The phone number to which you want to deliver an SMS message. Use E.164 format.\nIf you don't specify a value for the PhoneNumber parameter, you must specify a value for the TargetArn or TopicArn parameters.",
+            "Type": "string",
+            "Required": false
+        },
+        "Message": {
+            "Description": "The message you want to send.\nIf you are publishing to a topic and you want to send the same message to all transport protocols, include the text of the message as a String value. If you want to send different messages for each transport protocol, set the value of the MessageStructure parameter to json and use a JSON object for the Message parameter.\nConstraints:\nJSON-specific constraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Subject": {
+            "Description": "Optional parameter to be used as the \"Subject\" line when the message is delivered to email endpoints. This field will also be included, if present, in the standard JSON messages delivered to other endpoints.\nConstraints: Subjects must be ASCII text that begins with a letter, number, or punctuation mark; must not include line breaks or control characters; and must be less than 100 characters long.",
+            "Type": "string",
+            "Required": false
+        },
+        "MessageStructure": {
+            "Description": "Set MessageStructure to json if you want to send a different message for each protocol. For example, using one publish action, you can send a short message to your SMS subscribers and a longer message to your email subscribers. If you set MessageStructure to json, the value of the Message parameter must:\nYou can define other top-level keys that define the message you want to send to a specific transport protocol (e.g., \"http\").\nValid value: json",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "MessageAttributes": {
+            "Description": "Message attributes for Publish action.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MessageDeduplicationId": {
+            "Description": "This parameter applies only to FIFO (first-in-first-out) topics. The MessageDeduplicationId can contain up to 128 alphanumeric characters (a-z, A-Z, 0-9) and punctuation (!\"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~) .\nEvery message must have a unique MessageDeduplicationId, which is a token used for deduplication of sent messages. If a message with a particular MessageDeduplicationId is sent successfully, any message sent with the same MessageDeduplicationId during the 5-minute deduplication interval is treated as a duplicate.\nIf the topic has ContentBasedDeduplication set, the system generates a MessageDeduplicationId based on the contents of the message. Your MessageDeduplicationId overrides the generated one.",
+            "Type": "string",
+            "Required": false
+        },
+        "MessageGroupId": {
+            "Description": "This parameter applies only to FIFO (first-in-first-out) topics. The MessageGroupId can contain up to 128 alphanumeric characters (a-z, A-Z, 0-9) and punctuation (!\"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~) .\nThe MessageGroupId is a tag that specifies that a message belongs to a specific message group. Messages that belong to the same message group are processed in a FIFO manner (however, messages in different message groups might be processed out of order). Every message must include a MessageGroupId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "publish_batch": {
+        "TopicArn": {
+            "Description": "The Amazon resource name (ARN) of the topic you want to batch publish to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PublishBatchRequestEntries": {
+            "Description": "A list of PublishBatch request entries to be sent to the SNS topic.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "put_data_protection_policy": {
+        "ResourceArn": {
+            "Description": "The ARN of the topic whose DataProtectionPolicy you want to add or update.\nFor more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataProtectionPolicy": {
+            "Description": "The JSON serialization of the topic's DataProtectionPolicy .\nThe DataProtectionPolicy must be in JSON string format.\nLength Constraints: Maximum length of 30,720.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_permission": {
+        "Label": {
+            "Description": "The unique label of the statement you want to remove.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_endpoint_attributes": {
+        "EndpointArn": {
+            "Description": "EndpointArn used for SetEndpointAttributes action.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "A map of the endpoint attributes. Attributes in this map include the following:",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "set_platform_application_attributes": {
+        "PlatformApplicationArn": {
+            "Description": "PlatformApplicationArn for SetPlatformApplicationAttributes action.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "A map of the platform application attributes. Attributes in this map include the following:\nThe following attributes only apply to APNs token-based authentication:",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {},
+                {}
+            ]
+        }
+    },
+    "set_sms_attributes": {
+        "attributes": {
+            "Description": "The default settings for sending SMS messages from your Amazon Web Services account. You can set values for the following attribute names:\nBy default, the spend limit is set to the maximum allowed by Amazon SNS. If you want to raise the limit, submit an SNS Limit Increase case. For New limit value, enter your desired monthly spend limit. In the Use Case Description field, explain that you are requesting an SMS monthly spend limit increase.\nTo receive the report, the bucket must have a policy that allows the Amazon SNS service principal to perform the s3:PutObject and s3:GetBucketLocation actions.\nFor an example bucket policy and usage report, see Monitoring SMS Activity in the Amazon SNS Developer Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {},
+                {}
+            ]
+        }
+    },
+    "set_subscription_attributes": {
+        "SubscriptionArn": {
+            "Description": "The ARN of the subscription to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeName": {
+            "Description": "A map of attributes with their corresponding values.\nThe following lists the names, descriptions, and values of the special request parameters that this action uses:\nThe following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions:\nSpecifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see Fanout to Kinesis Data Firehose delivery streams in the Amazon SNS Developer Guide .",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "AttributeValue": {
+            "Description": "The new value for the attribute in JSON format.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "set_topic_attributes": {
+        "TopicArn": {
+            "Description": "The ARN of the topic to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeName": {
+            "Description": "A map of attributes with their corresponding values.\nThe following lists the names, descriptions, and values of the special request parameters that the SetTopicAttributes action uses:\nThe following attribute applies only to server-side-encryption :\nThe following attribute applies only to FIFO topics :",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "AttributeValue": {
+            "Description": "The new value for the attribute.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "subscribe": {
+        "Protocol": {
+            "Description": "The protocol that you want to use. Supported protocols include:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Endpoint": {
+            "Description": "The endpoint that you want to receive notifications. Endpoints vary by protocol:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Attributes": {
+            "Description": "A map of attributes with their corresponding values.\nThe following lists the names, descriptions, and values of the special request parameters that the Subscribe action uses:\nThe following attribute applies only to Amazon Kinesis Data Firehose delivery stream subscriptions:\nSpecifying a valid ARN for this attribute is required for Kinesis Data Firehose delivery stream subscriptions. For more information, see Fanout to Kinesis Data Firehose delivery streams in the Amazon SNS Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "ReturnSubscriptionArn": {
+            "Description": "Sets whether the response from the Subscribe request includes the subscription ARN, even if the subscription is not yet confirmed.\nIf you set this parameter to true, the response includes the ARN in all cases, even if the subscription is not yet confirmed. In addition to the ARN for confirmed subscriptions, the response also includes the pending subscription ARN value for subscriptions that aren't yet confirmed. A subscription becomes confirmed when the subscriber calls the ConfirmSubscription action with a confirmation token.\nThe default value is false .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the topic to which to add tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be added to the specified topic. A tag consists of a required key and an optional value.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "unsubscribe": {
+        "SubscriptionArn": {
+            "Description": "The ARN of the subscription to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the topic from which to remove tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of tag keys to remove from the specified topic.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "verify_sms_sandbox_phone_number": {
+        "PhoneNumber": {
+            "Description": "The destination phone number to verify.",
+            "Type": "string",
+            "Required": true
+        },
+        "OneTimePassword": {
+            "Description": "The OTP sent to the destination number from the CreateSMSSandBoxPhoneNumber call.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_available_subresources": "No parameters defined",
+    "PlatformApplication": {
+        "arn": {
+            "Description": "The PlatformApplication's arn identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "PlatformEndpoint": {
+        "arn": {
+            "Description": "The PlatformEndpoint's arn identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "Subscription": {
+        "arn": {
+            "Description": "The Subscription's arn identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "Topic": {
+        "arn": {
+            "Description": "The Topic's arn identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "all": "No parameters defined",
+    "filter": {
+        "NextToken": {
+            "Description": "Token returned by the previous ListSubscriptionsByTopic request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "limit": {
+        "count": {
+            "Description": "The limit to the number of resources in the iterable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "page_size": {
+        "count": {
+            "Description": "The number of items returned by each service call",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete": "No parameters defined",
+    "load": "No parameters defined",
+    "reload": "No parameters defined",
+    "set_attributes": {
+        "AttributeName": {
+            "Description": "A map of attributes with their corresponding values.\nThe following lists the names, descriptions, and values of the special request parameters that the SetTopicAttributes action uses:\nThe following attribute applies only to server-side-encryption :\nThe following attribute applies only to FIFO topics :",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "AttributeValue": {
+            "Description": "The new value for the attribute.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

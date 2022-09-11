@@ -1,0 +1,2901 @@
+{
+    "associate_phone_number_with_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "E164PhoneNumber": {
+            "Description": "The phone number, in E.164 format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_phone_numbers_with_voice_connector": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "E164PhoneNumbers": {
+            "Description": "List of phone numbers, in E.164 format.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ForceAssociate": {
+            "Description": "If true, associates the provided phone numbers with the provided Amazon Chime Voice Connector and removes any previously existing associations. If false, does not associate any phone numbers that have previously existing associations.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "associate_phone_numbers_with_voice_connector_group": {
+        "VoiceConnectorGroupId": {
+            "Description": "The Amazon Chime Voice Connector group ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "E164PhoneNumbers": {
+            "Description": "List of phone numbers, in E.164 format.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ForceAssociate": {
+            "Description": "If true, associates the provided phone numbers with the provided Amazon Chime Voice Connector Group and removes any previously existing associations. If false, does not associate any phone numbers that have previously existing associations.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "associate_signin_delegate_groups_with_account": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "SigninDelegateGroups": {
+            "Description": "The sign-in delegate groups.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_create_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attendees": {
+            "Description": "The request containing the attendees to create.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_create_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel to which you're adding users.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The membership type of a user, DEFAULT or HIDDEN . Default members are always returned as part of ListChannelMemberships . Hidden members are only returned if the type filter in ListChannelMemberships equals HIDDEN . Otherwise hidden members are not returned. This is only supported by moderators.",
+            "Type": "string",
+            "Required": false
+        },
+        "MemberArns": {
+            "Description": "The ARNs of the members you want to add to the channel.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_create_room_membership": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MembershipItemList": {
+            "Description": "The list of membership items.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_delete_phone_number": {
+        "PhoneNumberIds": {
+            "Description": "List of phone number IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_suspend_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserIdList": {
+            "Description": "The request containing the user IDs to suspend.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_unsuspend_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserIdList": {
+            "Description": "The request containing the user IDs to unsuspend.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_update_phone_number": {
+        "UpdatePhoneNumberRequestItems": {
+            "Description": "The request containing the phone number IDs and product types or calling names to update.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_update_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UpdateUserRequestItems": {
+            "Description": "The request containing the user IDs and details to update.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_account": {
+        "Name": {
+            "Description": "The name of the Amazon Chime account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_app_instance": {
+        "Name": {
+            "Description": "The name of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "The metadata of the AppInstance . Limited to a 1KB string in UTF-8.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The ClientRequestToken of the AppInstance .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags assigned to the AppInstance .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_app_instance_admin": {
+        "AppInstanceAdminArn": {
+            "Description": "The ARN of the administrator of the current AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_app_instance_user": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance request.",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceUserId": {
+            "Description": "The user ID of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The user's name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "The request's metadata. Limited to a 1KB string in UTF-8.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The token assigned to the user requesting an AppInstance .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags assigned to the AppInstanceUser .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalUserId": {
+            "Description": "The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_bot": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The bot display name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Domain": {
+            "Description": "The domain of the Amazon Chime Enterprise account.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_channel": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the channel request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Mode": {
+            "Description": "The channel mode: UNRESTRICTED or RESTRICTED . Administrators, moderators, and channel members can add themselves and other members to unrestricted channels. Only administrators and moderators can add members to restricted channels.",
+            "Type": "string",
+            "Required": false
+        },
+        "Privacy": {
+            "Description": "The channel's privacy level: PUBLIC or PRIVATE . Private channels aren't discoverable by users outside the channel. Public channels are discoverable by anyone in the AppInstance .",
+            "Type": "string",
+            "Required": false
+        },
+        "Metadata": {
+            "Description": "The metadata of the creation request. Limited to 1KB and UTF-8.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The client token for the request. An Idempotency token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags for the creation request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_channel_ban": {
+        "ChannelArn": {
+            "Description": "The ARN of the ban request.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The ARN of the member being banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel to which you're adding users.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The ARN of the member you want to add to the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The membership type of a user, DEFAULT or HIDDEN. Default members are always returned as part of ListChannelMemberships. Hidden members are only returned if the type filter in ListChannelMemberships equals HIDDEN. Otherwise hidden members are not returned. This is only supported by moderators.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_channel_moderator": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelModeratorArn": {
+            "Description": "The ARN of the moderator.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_media_capture_pipeline": {
+        "SourceType": {
+            "Description": "Source type from which the media artifacts will be captured. A Chime SDK Meeting is the only supported source.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceArn": {
+            "Description": "ARN of the source from which the media artifacts are captured.",
+            "Type": "string",
+            "Required": true
+        },
+        "SinkType": {
+            "Description": "Destination type to which the media artifacts are saved. You must use an S3 bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "SinkArn": {
+            "Description": "The ARN of the sink type.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "The token assigned to the client making the pipeline request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeSdkMeetingConfiguration": {
+            "Description": "The configuration for a specified media capture pipeline. SourceType must be ChimeSdkMeeting .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_meeting": {
+        "ClientRequestToken": {
+            "Description": "The unique identifier for the client request. Use a different token for different meetings.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalMeetingId": {
+            "Description": "The external meeting ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "MeetingHostId": {
+            "Description": "Reserved.",
+            "Type": "string",
+            "Required": false
+        },
+        "MediaRegion": {
+            "Description": "The Region in which to create the meeting. Default: us-east-1 .\nAvailable values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NotificationsConfiguration": {
+            "Description": "The configuration for resource targets to receive notifications when meeting and attendee events occur.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_meeting_dial_out": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "FromPhoneNumber": {
+            "Description": "Phone number used as the caller ID when the remote party receives a call.",
+            "Type": "string",
+            "Required": true
+        },
+        "ToPhoneNumber": {
+            "Description": "Phone number called when inviting someone to a meeting.",
+            "Type": "string",
+            "Required": true
+        },
+        "JoinToken": {
+            "Description": "Token used by the Amazon Chime SDK attendee. Call the CreateAttendee action to get a join token.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_meeting_with_attendees": {
+        "ClientRequestToken": {
+            "Description": "The unique identifier for the client request. Use a different token for different meetings.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalMeetingId": {
+            "Description": "The external meeting ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "MeetingHostId": {
+            "Description": "Reserved.",
+            "Type": "string",
+            "Required": false
+        },
+        "MediaRegion": {
+            "Description": "The Region in which to create the meeting. Default: us-east-1 .\nAvailable values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NotificationsConfiguration": {
+            "Description": "The resource target configurations for receiving Amazon Chime SDK meeting and attendee event notifications. The Amazon Chime SDK supports resource targets located in the US East (N. Virginia) AWS Region (us-east-1 ).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Attendees": {
+            "Description": "The request containing the attendees to create.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_phone_number_order": {
+        "ProductType": {
+            "Description": "The phone number product type.",
+            "Type": "string",
+            "Required": true
+        },
+        "E164PhoneNumbers": {
+            "Description": "List of phone numbers, in E.164 format.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_proxy_session": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime voice connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ParticipantPhoneNumbers": {
+            "Description": "The participant phone numbers.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Name": {
+            "Description": "The name of the proxy session.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExpiryMinutes": {
+            "Description": "The number of minutes allowed for the proxy session.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Capabilities": {
+            "Description": "The proxy session capabilities.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "NumberSelectionBehavior": {
+            "Description": "The preference for proxy phone number reuse, or stickiness, between the same participants across sessions.",
+            "Type": "string",
+            "Required": false
+        },
+        "GeoMatchLevel": {
+            "Description": "The preference for matching the country or area code of the proxy phone number with that of the first participant.",
+            "Type": "string",
+            "Required": false
+        },
+        "GeoMatchParams": {
+            "Description": "The country and area code for the proxy phone number.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_room": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The room name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "The idempotency token for the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_room_membership": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The Amazon Chime member ID (user ID or bot ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "Role": {
+            "Description": "The role of the member.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_sip_media_application": {
+        "AwsRegion": {
+            "Description": "The AWS Region assigned to the SIP media application.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The SIP media application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Endpoints": {
+            "Description": "List of endpoints (Lambda Amazon Resource Names) specified for the SIP media application. Currently, only one endpoint is supported.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_sip_media_application_call": {
+        "FromPhoneNumber": {
+            "Description": "The phone number that a user calls from. This is a phone number in your Amazon Chime phone number inventory.",
+            "Type": "string",
+            "Required": true
+        },
+        "ToPhoneNumber": {
+            "Description": "The phone number that the service should call.",
+            "Type": "string",
+            "Required": true
+        },
+        "SipMediaApplicationId": {
+            "Description": "The ID of the SIP media application.",
+            "Type": "string",
+            "Required": true
+        },
+        "SipHeaders": {
+            "Description": "The SIP headers added to an outbound call leg.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_sip_rule": {
+        "Name": {
+            "Description": "The name of the SIP rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "TriggerType": {
+            "Description": "The type of trigger assigned to the SIP rule in TriggerValue, currently RequestUriHostname or ToPhoneNumber .",
+            "Type": "string",
+            "Required": true
+        },
+        "TriggerValue": {
+            "Description": "If TriggerType is RequestUriHostname, the value can be the outbound host name of an Amazon Chime Voice Connector. If TriggerType is ToPhoneNumber, the value can be a customer-owned phone number in the E164 format. The SipMediaApplication specified in the SipRule is triggered if the request URI in an incoming SIP request matches the RequestUriHostname, or if the To header in the incoming SIP request matches the ToPhoneNumber value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Disabled": {
+            "Description": "Enables or disables a rule. You must disable rules before you can delete them.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "TargetApplications": {
+            "Description": "List of SIP media applications with priority and AWS Region. Only one SIP application per AWS Region can be used.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name.",
+            "Type": "string",
+            "Required": false
+        },
+        "Email": {
+            "Description": "The user's email address.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserType": {
+            "Description": "The user type.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_voice_connector": {
+        "Name": {
+            "Description": "The name of the Amazon Chime Voice Connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsRegion": {
+            "Description": "The AWS Region in which the Amazon Chime Voice Connector is created. Default value: us-east-1 .",
+            "Type": "string",
+            "Required": false
+        },
+        "RequireEncryption": {
+            "Description": "When enabled, requires encryption for the Amazon Chime Voice Connector.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "create_voice_connector_group": {
+        "Name": {
+            "Description": "The name of the Amazon Chime Voice Connector group.",
+            "Type": "string",
+            "Required": true
+        },
+        "VoiceConnectorItems": {
+            "Description": "The Amazon Chime Voice Connectors to route inbound calls to.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_account": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_app_instance": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_app_instance_admin": {
+        "AppInstanceAdminArn": {
+            "Description": "The ARN of the AppInstance 's administrator.",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_app_instance_streaming_configurations": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the streaming configurations being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_app_instance_user": {
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the user request being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The Amazon Chime SDK attendee ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_channel": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel being deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_channel_ban": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel from which the AppInstanceUser was banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The ARN of the AppInstanceUser that you want to reinstate.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel from which you want to remove the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The ARN of the member that you're removing from the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID of the message being deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_channel_moderator": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelModeratorArn": {
+            "Description": "The ARN of the moderator being deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_events_configuration": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "BotId": {
+            "Description": "The bot ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_media_capture_pipeline": {
+        "MediaPipelineId": {
+            "Description": "The ID of the media capture pipeline being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_meeting": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_phone_number": {
+        "PhoneNumberId": {
+            "Description": "The phone number ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_proxy_session": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime voice connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProxySessionId": {
+            "Description": "The proxy session ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_room": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The chat room ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_room_membership": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The member ID (user ID or bot ID).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_sip_media_application": {
+        "SipMediaApplicationId": {
+            "Description": "The SIP media application ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_sip_rule": {
+        "SipRuleId": {
+            "Description": "The SIP rule ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector_emergency_calling_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector_group": {
+        "VoiceConnectorGroupId": {
+            "Description": "The Amazon Chime Voice Connector group ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector_origination": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector_proxy": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector_streaming_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector_termination": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_voice_connector_termination_credentials": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Usernames": {
+            "Description": "The RFC2617 compliant username associated with the SIP credentials, in US-ASCII format.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_app_instance": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_app_instance_admin": {
+        "AppInstanceAdminArn": {
+            "Description": "The ARN of the AppInstanceAdmin .",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_app_instance_user": {
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the AppInstanceUser .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_channel_ban": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel from which the user is banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The ARN of the member being banned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_channel_membership": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberArn": {
+            "Description": "The ARN of the member.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_channel_membership_for_app_instance_user": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel to which the user belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the user in a channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_channel_moderated_by_app_instance_user": {
+        "ChannelArn": {
+            "Description": "The ARN of the moderated channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the AppInstanceUser in the moderated channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_channel_moderator": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChannelModeratorArn": {
+            "Description": "The ARN of the channel moderator.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_phone_number_from_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_phone_numbers_from_voice_connector": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "E164PhoneNumbers": {
+            "Description": "List of phone numbers, in E.164 format.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "disassociate_phone_numbers_from_voice_connector_group": {
+        "VoiceConnectorGroupId": {
+            "Description": "The Amazon Chime Voice Connector group ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "E164PhoneNumbers": {
+            "Description": "List of phone numbers, in E.164 format.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "disassociate_signin_delegate_groups_from_account": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupNames": {
+            "Description": "The sign-in delegate group names.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_account": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_account_settings": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_app_instance_retention_settings": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_app_instance_streaming_configurations": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The Amazon Chime SDK attendee ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_bot": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "BotId": {
+            "Description": "The bot ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID of the message.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_events_configuration": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "BotId": {
+            "Description": "The bot ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_global_settings": "No parameters defined",
+    "get_media_capture_pipeline": {
+        "MediaPipelineId": {
+            "Description": "The ID of the pipeline that you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_meeting": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_messaging_session_endpoint": "No parameters defined",
+    "get_phone_number": {
+        "PhoneNumberId": {
+            "Description": "The phone number ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_phone_number_order": {
+        "PhoneNumberOrderId": {
+            "Description": "The ID for the phone number order.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_phone_number_settings": "No parameters defined",
+    "get_proxy_session": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime voice connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProxySessionId": {
+            "Description": "The proxy session ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_retention_settings": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_room": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sip_media_application": {
+        "SipMediaApplicationId": {
+            "Description": "The SIP media application ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sip_media_application_logging_configuration": {
+        "SipMediaApplicationId": {
+            "Description": "The SIP media application ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sip_rule": {
+        "SipRuleId": {
+            "Description": "The SIP rule ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_user_settings": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_emergency_calling_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_group": {
+        "VoiceConnectorGroupId": {
+            "Description": "The Amazon Chime Voice Connector group ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_logging_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_origination": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_proxy": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime voice connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_streaming_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_termination": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_voice_connector_termination_health": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "invite_users": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserEmailList": {
+            "Description": "The user email addresses to which to send the email invitation.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "UserType": {
+            "Description": "The user type.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_accounts": {
+        "Name": {
+            "Description": "Amazon Chime account name prefix with which to filter results.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserEmail": {
+            "Description": "User email address with which to filter results.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. Defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_app_instance_admins": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of administrators that you want to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token returned from previous API requests until the number of administrators is reached.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_app_instance_users": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of requests that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested users are returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_app_instances": {
+        "MaxResults": {
+            "Description": "The maximum number of AppInstance s that you want to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API requests until you reach the maximum number of AppInstance s.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_attendee_tags": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The Amazon Chime SDK attendee ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_attendees": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_bots": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. The default is 10.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_bans": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of bans that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested bans are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_memberships": {
+        "ChannelArn": {
+            "Description": "The maximum number of channel memberships that you want returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The membership type of a user, DEFAULT or HIDDEN . Default members are always returned as part of ListChannelMemberships . Hidden members are only returned if the type filter in ListChannelMemberships equals HIDDEN . Otherwise hidden members are not returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channel memberships that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested channel memberships are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_memberships_for_app_instance_user": {
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the AppInstanceUser s",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of users that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token returned from previous API requests until the number of channel memberships is reached.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_messages": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "SortOrder": {
+            "Description": "The order in which you want messages sorted. Default is Descending, based on time created.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotBefore": {
+            "Description": "The initial or starting time stamp for your requested messages.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "NotAfter": {
+            "Description": "The final or ending time stamp for your requested messages.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of messages that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested messages are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channel_moderators": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of moderators that you want returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested moderators are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channels": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "Privacy": {
+            "Description": "The privacy setting. PUBLIC retrieves all the public channels. PRIVATE retrieves private channels. Only an AppInstanceAdmin can retrieve private channels.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channels that you want to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token passed by previous API calls until all requested channels are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channels_moderated_by_app_instance_user": {
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the user in the moderated channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of channels in the request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token returned from previous API requests until the number of channels moderated by the user is reached.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_media_capture_pipelines": {
+        "NextToken": {
+            "Description": "The token used to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. Valid Range: 1 - 99.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_meeting_tags": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_meetings": {
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_phone_number_orders": {
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_phone_numbers": {
+        "Status": {
+            "Description": "The phone number status.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductType": {
+            "Description": "The phone number product type.",
+            "Type": "string",
+            "Required": false
+        },
+        "FilterName": {
+            "Description": "The filter to use to limit the number of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "FilterValue": {
+            "Description": "The value to use for the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_proxy_sessions": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime voice connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "The proxy session status.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_room_memberships": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_rooms": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The member ID (user ID or bot ID).",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_sip_media_applications": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. Defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_sip_rules": {
+        "SipMediaApplicationId": {
+            "Description": "The SIP media application ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. Defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_supported_phone_number_countries": {
+        "ProductType": {
+            "Description": "The phone number product type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The resource ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_users": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserEmail": {
+            "Description": "Optional. The user email address used to filter results. Maximum 1.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserType": {
+            "Description": "The user type.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. Defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_voice_connector_groups": {
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_voice_connector_termination_credentials": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_voice_connectors": {
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "logout_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_app_instance_retention_settings": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceRetentionSettings": {
+            "Description": "The time in days to retain data. Data type: number.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_app_instance_streaming_configurations": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "AppInstanceStreamingConfigurations": {
+            "Description": "The streaming configurations set for an AppInstance .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "put_events_configuration": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "BotId": {
+            "Description": "The bot ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutboundEventsHTTPSEndpoint": {
+            "Description": "HTTPS endpoint that allows the bot to receive outgoing events.",
+            "Type": "string",
+            "Required": false
+        },
+        "LambdaFunctionArn": {
+            "Description": "Lambda function ARN that allows the bot to receive outgoing events.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_retention_settings": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetentionSettings": {
+            "Description": "The retention settings.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_sip_media_application_logging_configuration": {
+        "SipMediaApplicationId": {
+            "Description": "The SIP media application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "SipMediaApplicationLoggingConfiguration": {
+            "Description": "The actual logging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_voice_connector_emergency_calling_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "EmergencyCallingConfiguration": {
+            "Description": "The emergency calling configuration details.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_voice_connector_logging_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "LoggingConfiguration": {
+            "Description": "The logging configuration details to add.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_voice_connector_origination": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Origination": {
+            "Description": "The origination setting details to add.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_voice_connector_proxy": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime voice connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultSessionExpiryMinutes": {
+            "Description": "The default number of minutes allowed for proxy sessions.",
+            "Type": "integer",
+            "Required": true
+        },
+        "PhoneNumberPoolCountries": {
+            "Description": "The countries for proxy phone numbers to be selected from.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "FallBackPhoneNumber": {
+            "Description": "The phone number to route calls to after a proxy session expires.",
+            "Type": "string",
+            "Required": false
+        },
+        "Disabled": {
+            "Description": "When true, stops proxy sessions from being created on the specified Amazon Chime Voice Connector.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_voice_connector_streaming_configuration": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "StreamingConfiguration": {
+            "Description": "The streaming configuration details to add.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_voice_connector_termination": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Termination": {
+            "Description": "The termination setting details to add.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_voice_connector_termination_credentials": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Credentials": {
+            "Description": "The termination SIP credentials.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "redact_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel containing the messages that you want to redact.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID of the message being redacted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "redact_conversation_message": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConversationId": {
+            "Description": "The conversation ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The message ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "redact_room_message": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The message ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "regenerate_security_token": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "BotId": {
+            "Description": "The bot ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reset_personal_pin": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restore_phone_number": {
+        "PhoneNumberId": {
+            "Description": "The phone number.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "search_available_phone_numbers": {
+        "AreaCode": {
+            "Description": "The area code used to filter results. Only applies to the US.",
+            "Type": "string",
+            "Required": false
+        },
+        "City": {
+            "Description": "The city used to filter results. Only applies to the US.",
+            "Type": "string",
+            "Required": false
+        },
+        "Country": {
+            "Description": "The country used to filter results. Defaults to the US Format: ISO 3166-1 alpha-2.",
+            "Type": "string",
+            "Required": false
+        },
+        "State": {
+            "Description": "The state used to filter results. Required only if you provide City . Only applies to the US.",
+            "Type": "string",
+            "Required": false
+        },
+        "TollFreePrefix": {
+            "Description": "The toll-free prefix that you use to filter results. Only applies to the US.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumberType": {
+            "Description": "The phone number type used to filter results. Required for non-US numbers.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token used to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The content of the message.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of message, STANDARD or CONTROL .",
+            "Type": "string",
+            "Required": true
+        },
+        "Persistence": {
+            "Description": "Boolean that controls whether the message is persisted on the back end. Required.",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "The optional metadata for each message.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "The Idempotency token for each client request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_meeting_transcription": {
+        "MeetingId": {
+            "Description": "The unique ID of the meeting being transcribed.",
+            "Type": "string",
+            "Required": true
+        },
+        "TranscriptionConfiguration": {
+            "Description": "The configuration for the current transcription operation. Must contain EngineTranscribeSettings or EngineTranscribeMedicalSettings .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "stop_meeting_transcription": {
+        "MeetingId": {
+            "Description": "The unique ID of the meeting for which you stop transcription.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The Amazon Chime SDK attendee ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_meeting": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The resource ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The Amazon Chime SDK attendee ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_meeting": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The resource ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_account": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The new name for the specified Amazon Chime account.",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultLicense": {
+            "Description": "The default license applied when you add users to an Amazon Chime account.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_account_settings": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountSettings": {
+            "Description": "The Amazon Chime account settings to update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_app_instance": {
+        "AppInstanceArn": {
+            "Description": "The ARN of the AppInstance .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name that you want to change.",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "The metadata that you want to change.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_app_instance_user": {
+        "AppInstanceUserArn": {
+            "Description": "The ARN of the AppInstanceUser .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the AppInstanceUser .",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "The metadata of the AppInstanceUser .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_bot": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "BotId": {
+            "Description": "The bot ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Disabled": {
+            "Description": "When true, stops the specified bot from running in your account.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_channel": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Mode": {
+            "Description": "The mode of the update request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "The metadata for the update request.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_channel_message": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageId": {
+            "Description": "The ID string of the message being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The content of the message being updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "Metadata": {
+            "Description": "The metadata of the message being updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_channel_read_marker": {
+        "ChannelArn": {
+            "Description": "The ARN of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChimeBearer": {
+            "Description": "The AppInstanceUserArn of the user that makes the API call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_global_settings": {
+        "BusinessCalling": {
+            "Description": "The Amazon Chime Business Calling settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VoiceConnector": {
+            "Description": "The Amazon Chime Voice Connector settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_phone_number": {
+        "PhoneNumberId": {
+            "Description": "The phone number ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProductType": {
+            "Description": "The product type.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallingName": {
+            "Description": "The outbound calling name associated with the phone number.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_phone_number_settings": {
+        "CallingName": {
+            "Description": "The default outbound calling name for the account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_proxy_session": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime voice connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProxySessionId": {
+            "Description": "The proxy session ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Capabilities": {
+            "Description": "The proxy session capabilities.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ExpiryMinutes": {
+            "Description": "The number of minutes allowed for the proxy session.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_room": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The room name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_room_membership": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoomId": {
+            "Description": "The room ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The member ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Role": {
+            "Description": "The role of the member.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_sip_media_application": {
+        "SipMediaApplicationId": {
+            "Description": "The SIP media application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The new name for the specified SIP media application.",
+            "Type": "string",
+            "Required": false
+        },
+        "Endpoints": {
+            "Description": "The new set of endpoints for the specified SIP media application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_sip_media_application_call": {
+        "SipMediaApplicationId": {
+            "Description": "The ID of the SIP media application handling the call.",
+            "Type": "string",
+            "Required": true
+        },
+        "TransactionId": {
+            "Description": "The ID of the call transaction.",
+            "Type": "string",
+            "Required": true
+        },
+        "Arguments": {
+            "Description": "Arguments made available to the Lambda function as part of the CALL_UPDATE_REQUESTED event. Can contain 0-20 key-value pairs.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_sip_rule": {
+        "SipRuleId": {
+            "Description": "The SIP rule ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The new name for the specified SIP rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "Disabled": {
+            "Description": "The new value specified to indicate whether the rule is disabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "TargetApplications": {
+            "Description": "The new value of the list of target applications.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_user": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "LicenseType": {
+            "Description": "The user license type to update. This must be a supported license type for the Amazon Chime account that the user belongs to.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserType": {
+            "Description": "The user type.",
+            "Type": "string",
+            "Required": false
+        },
+        "AlexaForBusinessMetadata": {
+            "Description": "The Alexa for Business metadata.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_user_settings": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The user ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserSettings": {
+            "Description": "The user settings to update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_voice_connector": {
+        "VoiceConnectorId": {
+            "Description": "The Amazon Chime Voice Connector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Amazon Chime Voice Connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "RequireEncryption": {
+            "Description": "When enabled, requires encryption for the Amazon Chime Voice Connector.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "update_voice_connector_group": {
+        "VoiceConnectorGroupId": {
+            "Description": "The Amazon Chime Voice Connector group ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Amazon Chime Voice Connector group.",
+            "Type": "string",
+            "Required": true
+        },
+        "VoiceConnectorItems": {
+            "Description": "The VoiceConnectorItems to associate with the group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "validate_e911_address": {
+        "AwsAccountId": {
+            "Description": "The AWS account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "StreetNumber": {
+            "Description": "The address street number, such as 200 or 2121 .",
+            "Type": "string",
+            "Required": true
+        },
+        "StreetInfo": {
+            "Description": "The address street information, such as 8th Avenue .",
+            "Type": "string",
+            "Required": true
+        },
+        "City": {
+            "Description": "The address city, such as Portland .",
+            "Type": "string",
+            "Required": true
+        },
+        "State": {
+            "Description": "The address state, such as ME .",
+            "Type": "string",
+            "Required": true
+        },
+        "Country": {
+            "Description": "The address country, such as US .",
+            "Type": "string",
+            "Required": true
+        },
+        "PostalCode": {
+            "Description": "The address postal code, such as 04352 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "AccountId": {
+            "Description": "The Amazon Chime account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserEmail": {
+            "Description": "Optional. The user email address used to filter results. Maximum 1.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserType": {
+            "Description": "The user type.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

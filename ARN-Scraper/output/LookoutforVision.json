@@ -1,0 +1,415 @@
+{
+    "create_dataset": {
+        "ProjectName": {
+            "Description": "The name of the project in which you want to create a dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetType": {
+            "Description": "The type of the dataset. Specify train for a training dataset. Specify test for a test dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetSource": {
+            "Description": "The location of the manifest file that Amazon Lookout for Vision uses to create the dataset.\nIf you don't specify DatasetSource, an empty dataset is created and the operation synchronously returns. Later, you can add JSON Lines by calling  UpdateDatasetEntries .\nIf you specify a value for DataSource, the manifest at the S3 location is validated and used to create the dataset. The call to CreateDataset is asynchronous and might take a while to complete. To find out the current status, Check the value of Status returned in a call to  DescribeDataset .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to CreateDataset completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from CreateDataset. In this case, safely retry your call to CreateDataset by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple dataset creation requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to CreateDataset. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_model": {
+        "ProjectName": {
+            "Description": "The name of the project in which you want to create a model version.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the version of the model.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to CreateModel completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from CreateModel. In this case, safely retry your call to CreateModel by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from starting multiple training jobs. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to CreateModel. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "OutputConfig": {
+            "Description": "The location where Amazon Lookout for Vision saves the training results.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "The identifier for your AWS KMS key. The key is used to encrypt training and test images copied into the service for model training. Your source images are unaffected. If this parameter is not specified, the copied images are encrypted by a key that AWS owns and manages.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A set of tags (key-value pairs) that you want to attach to the model.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_project": {
+        "ProjectName": {
+            "Description": "The name for the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to CreateProject completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from CreateProject. In this case, safely retry your call to CreateProject by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple project creation requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to CreateProject. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_dataset": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the dataset that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetType": {
+            "Description": "The type of the dataset to delete. Specify train to delete the training dataset. Specify test to delete the test dataset. To delete the dataset in a single dataset project, specify train .",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to DeleteDataset completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from DeleteDataset. In this case, safely retry your call to DeleteDataset by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple deletetion requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to DeleteDataset. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_model": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the model that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelVersion": {
+            "Description": "The version of the model that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to DeleteModel completes only once. You choose the value to pass. For example, an issue might prevent you from getting a response from DeleteModel. In this case, safely retry your call to DeleteModel by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple model deletion requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to DeleteModel. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_project": {
+        "ProjectName": {
+            "Description": "The name of the project to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to DeleteProject completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from DeleteProject. In this case, safely retry your call to DeleteProject by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple project deletion requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to DeleteProject. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_dataset": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the dataset that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetType": {
+            "Description": "The type of the dataset to describe. Specify train to describe the training dataset. Specify test to describe the test dataset. If you have a single dataset project, specify train",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_model": {
+        "ProjectName": {
+            "Description": "The project that contains the version of a model that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelVersion": {
+            "Description": "The version of the model that you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_model_packaging_job": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the model packaging job that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The job name for the model packaging job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_project": {
+        "ProjectName": {
+            "Description": "The name of the project that you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_anomalies": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the model version that you want to use.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelVersion": {
+            "Description": "The version of the model that you want to use.",
+            "Type": "string",
+            "Required": true
+        },
+        "Body": {
+            "Description": "The unencrypted image bytes that you want to analyze.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        },
+        "ContentType": {
+            "Description": "The type of the image passed in Body. Valid values are image/png (PNG format images) and image/jpeg (JPG format images).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_dataset_entries": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the dataset that you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetType": {
+            "Description": "The type of the dataset that you want to list. Specify train to list the training dataset. Specify test to list the test dataset. If you have a single dataset project, specify train .",
+            "Type": "string",
+            "Required": true
+        },
+        "Labeled": {
+            "Description": "Specify true to include labeled entries, otherwise specify false . If you don't specify a value, Lookout for Vision returns all entries.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AnomalyClass": {
+            "Description": "Specify normal to include only normal images. Specify anomaly to only include anomalous entries. If you don't specify a value, Amazon Lookout for Vision returns normal and anomalous images.",
+            "Type": "string",
+            "Required": false
+        },
+        "BeforeCreationDate": {
+            "Description": "Only includes entries before the specified date in the response. For example, 2020-06-23T00:00:00 .",
+            "Type": "datetime",
+            "Required": false
+        },
+        "AfterCreationDate": {
+            "Description": "Only includes entries after the specified date in the response. For example, 2020-06-23T00:00:00 .",
+            "Type": "datetime",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Lookout for Vision returns a pagination token in the response. You can use this pagination token to retrieve the next set of dataset entries.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SourceRefContains": {
+            "Description": "Perform a \"contains\" search on the values of the source-ref key within the dataset. For example a value of \"IMG_17\" returns all JSON Lines where the source-ref key value matches IMG_17 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_model_packaging_jobs": {
+        "ProjectName": {
+            "Description": "The name of the project for which you want to list the model packaging jobs.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Lookout for Vision returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_models": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the model versions that you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Lookout for Vision returns a pagination token in the response. You can use this pagination token to retrieve the next set of models.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_projects": {
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Lookout for Vision returns a pagination token in the response. You can use this pagination token to retrieve the next set of projects.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the model for which you want to list tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_model": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the model that you want to start.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelVersion": {
+            "Description": "The version of the model that you want to start.",
+            "Type": "string",
+            "Required": true
+        },
+        "MinInferenceUnits": {
+            "Description": "The minimum number of inference units to use. A single inference unit represents 1 hour of processing. Use a higher number to increase the TPS throughput of your model. You are charged for the number of inference units that you use.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to StartModel completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from StartModel. In this case, safely retry your call to StartModel by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple start requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to StartModel. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxInferenceUnits": {
+            "Description": "The maximum number of inference units to use for auto-scaling the model. If you don't specify a value, Amazon Lookout for Vision doesn't auto-scale the model.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "start_model_packaging_job": {
+        "ProjectName": {
+            "Description": "The name of the project which contains the version of the model that you want to package.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelVersion": {
+            "Description": "The version of the model within the project that you want to package.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "A name for the model packaging job. If you don't supply a value, the service creates a job name for you.",
+            "Type": "string",
+            "Required": false
+        },
+        "Configuration": {
+            "Description": "The configuration for the model packaging job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description for the model packaging job.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to StartModelPackagingJob completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from StartModelPackagingJob. In this case, safely retry your call to StartModelPackagingJob by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple dataset creation requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to StartModelPackagingJob. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "stop_model": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the model that you want to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelVersion": {
+            "Description": "The version of the model that you want to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to StopModel completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from StopModel. In this case, safely retry your call to StopModel by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple stop requests. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to StopModel. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the model to assign the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value tags to assign to the model.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the model from which you want to remove tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of the keys of the tags that you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_dataset_entries": {
+        "ProjectName": {
+            "Description": "The name of the project that contains the dataset that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetType": {
+            "Description": "The type of the dataset that you want to update. Specify train to update the training dataset. Specify test to update the test dataset. If you have a single dataset project, specify train .",
+            "Type": "string",
+            "Required": true
+        },
+        "Changes": {
+            "Description": "The entries to add to the dataset.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "ClientToken is an idempotency token that ensures a call to UpdateDatasetEntries completes only once. You choose the value to pass. For example, An issue might prevent you from getting a response from UpdateDatasetEntries. In this case, safely retry your call to UpdateDatasetEntries by using the same ClientToken parameter value.\nIf you don't supply a value for ClientToken, the AWS SDK you are using inserts a value for you. This prevents retries after a network error from making multiple updates with the same dataset entries. You'll need to provide your own value for other use cases.\nAn error occurs if the other input parameters are not the same as in the first request. Using a different value for ClientToken is considered a new call to UpdateDatasetEntries. An idempotency token is active for 8 hours.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

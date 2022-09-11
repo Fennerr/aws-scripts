@@ -1,0 +1,758 @@
+{
+    "add_listener_certificates": {
+        "ListenerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the listener.",
+            "Type": "string",
+            "Required": true
+        },
+        "Certificates": {
+            "Description": "The certificate to add. You can specify one certificate per call. Set CertificateArn to the certificate ARN but do not set IsDefault .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "add_tags": {
+        "ResourceArns": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_listener": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "Protocol": {
+            "Description": "The protocol for connections from clients to the load balancer. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, and TCP_UDP. You can\u2019t specify the UDP or TCP_UDP protocol if dual-stack mode is enabled. You cannot specify a protocol for a Gateway Load Balancer.",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port on which the load balancer is listening. You cannot specify a port for a Gateway Load Balancer.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SslPolicy": {
+            "Description": "[HTTPS and TLS listeners] The security policy that defines which protocols and ciphers are supported.\nFor more information, see Security policies in the Application Load Balancers Guide and Security policies in the Network Load Balancers Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "Certificates": {
+            "Description": "[HTTPS and TLS listeners] The default certificate for the listener. You must provide exactly one certificate. Set CertificateArn to the certificate ARN but do not set IsDefault .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DefaultActions": {
+            "Description": "The actions for the default rule.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AlpnPolicy": {
+            "Description": "[TLS listeners] The name of the Application-Layer Protocol Negotiation (ALPN) policy. You can specify one policy name. The following are the possible values:\nFor more information, see ALPN policies in the Network Load Balancers Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "The tags to assign to the listener.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_load_balancer": {
+        "Name": {
+            "Description": "The name of the load balancer.\nThis name must be unique per region per account, can have a maximum of 32 characters, must contain only alphanumeric characters or hyphens, must not begin or end with a hyphen, and must not begin with \"internal-\".",
+            "Type": "string",
+            "Required": true
+        },
+        "Subnets": {
+            "Description": "The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both. To specify an Elastic IP address, specify subnet mappings instead of subnets.\n[Application Load Balancers] You must specify subnets from at least two Availability Zones.\n[Application Load Balancers on Outposts] You must specify one Outpost subnet.\n[Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n[Network Load Balancers] You can specify subnets from one or more Availability Zones.\n[Gateway Load Balancers] You can specify subnets from one or more Availability Zones.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SubnetMappings": {
+            "Description": "The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings, but not both.\n[Application Load Balancers] You must specify subnets from at least two Availability Zones. You cannot specify Elastic IP addresses for your subnets.\n[Application Load Balancers on Outposts] You must specify one Outpost subnet.\n[Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n[Network Load Balancers] You can specify subnets from one or more Availability Zones. You can specify one Elastic IP address per subnet if you need static IP addresses for your internet-facing load balancer. For internal load balancers, you can specify one private IP address per subnet from the IPv4 range of the subnet. For internet-facing load balancer, you can specify one IPv6 address per subnet.\n[Gateway Load Balancers] You can specify subnets from one or more Availability Zones. You cannot specify Elastic IP addresses for your subnets.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SecurityGroups": {
+            "Description": "[Application Load Balancers] The IDs of the security groups for the load balancer.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Scheme": {
+            "Description": "The nodes of an Internet-facing load balancer have public IP addresses. The DNS name of an Internet-facing load balancer is publicly resolvable to the public IP addresses of the nodes. Therefore, Internet-facing load balancers can route requests from clients over the internet.\nThe nodes of an internal load balancer have only private IP addresses. The DNS name of an internal load balancer is publicly resolvable to the private IP addresses of the nodes. Therefore, internal load balancers can route requests only from clients with access to the VPC for the load balancer.\nThe default is an Internet-facing load balancer.\nYou cannot specify a scheme for a Gateway Load Balancer.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to assign to the load balancer.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Type": {
+            "Description": "The type of load balancer. The default is application .",
+            "Type": "string",
+            "Required": false
+        },
+        "IpAddressType": {
+            "Description": "The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses).",
+            "Type": "string",
+            "Required": false
+        },
+        "CustomerOwnedIpv4Pool": {
+            "Description": "[Application Load Balancers on Outposts] The ID of the customer-owned address pool (CoIP pool).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_rule": {
+        "ListenerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the listener.",
+            "Type": "string",
+            "Required": true
+        },
+        "Conditions": {
+            "Description": "The conditions.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Priority": {
+            "Description": "The rule priority. A listener can't have multiple rules with the same priority.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Actions": {
+            "Description": "The actions.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to assign to the rule.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_target_group": {
+        "Name": {
+            "Description": "The name of the target group.\nThis name must be unique per region per account, can have a maximum of 32 characters, must contain only alphanumeric characters or hyphens, and must not begin or end with a hyphen.",
+            "Type": "string",
+            "Required": true
+        },
+        "Protocol": {
+            "Description": "The protocol to use for routing traffic to the targets. For Application Load Balancers, the supported protocols are HTTP and HTTPS. For Network Load Balancers, the supported protocols are TCP, TLS, UDP, or TCP_UDP. For Gateway Load Balancers, the supported protocol is GENEVE. A TCP_UDP listener must be associated with a TCP_UDP target group. If the target is a Lambda function, this parameter does not apply.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProtocolVersion": {
+            "Description": "[HTTP/HTTPS protocol] The protocol version. Specify GRPC to send requests to targets using gRPC. Specify HTTP2 to send requests to targets using HTTP/2. The default is HTTP1 , which sends requests to targets using HTTP/1.1.",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port on which the targets receive traffic. This port is used unless you specify a port override when registering the target. If the target is a Lambda function, this parameter does not apply. If the protocol is GENEVE, the supported port is 6081.",
+            "Type": "integer",
+            "Required": false
+        },
+        "VpcId": {
+            "Description": "The identifier of the virtual private cloud (VPC). If the target is a Lambda function, this parameter does not apply. Otherwise, this parameter is required.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckProtocol": {
+            "Description": "The protocol the load balancer uses when performing health checks on targets. For Application Load Balancers, the default is HTTP. For Network Load Balancers and Gateway Load Balancers, the default is TCP. The TCP protocol is not supported for health checks if the protocol of the target group is HTTP or HTTPS. The GENEVE, TLS, UDP, and TCP_UDP protocols are not supported for health checks.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckPort": {
+            "Description": "The port the load balancer uses when performing health checks on targets. If the protocol is HTTP, HTTPS, TCP, TLS, UDP, or TCP_UDP, the default is traffic-port , which is the port on which each target receives traffic from the load balancer. If the protocol is GENEVE, the default is port 80.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckEnabled": {
+            "Description": "Indicates whether health checks are enabled. If the target type is lambda , health checks are disabled by default but can be enabled. If the target type is instance , ip , or alb , health checks are always enabled and cannot be disabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "HealthCheckPath": {
+            "Description": "[HTTP/HTTPS health checks] The destination for health checks on the targets.\n[HTTP1 or HTTP2 protocol version] The ping path. The default is /.\n[GRPC protocol version] The path of a custom health check method with the format /package.service/method. The default is /Amazon Web Services.ALB/healthcheck.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckIntervalSeconds": {
+            "Description": "The approximate amount of time, in seconds, between health checks of an individual target. If the target group protocol is HTTP or HTTPS, the default is 30 seconds. If the target group protocol is TCP, TLS, UDP, or TCP_UDP, the supported values are 10 and 30 seconds and the default is 30 seconds. If the target group protocol is GENEVE, the default is 10 seconds. If the target type is lambda , the default is 35 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "HealthCheckTimeoutSeconds": {
+            "Description": "The amount of time, in seconds, during which no response from a target means a failed health check. For target groups with a protocol of HTTP, HTTPS, or GENEVE, the default is 5 seconds. For target groups with a protocol of TCP or TLS, this value must be 6 seconds for HTTP health checks and 10 seconds for TCP and HTTPS health checks. If the target type is lambda , the default is 30 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "HealthyThresholdCount": {
+            "Description": "The number of consecutive health checks successes required before considering an unhealthy target healthy. For target groups with a protocol of HTTP or HTTPS, the default is 5. For target groups with a protocol of TCP, TLS, or GENEVE, the default is 3. If the target type is lambda , the default is 5.",
+            "Type": "integer",
+            "Required": false
+        },
+        "UnhealthyThresholdCount": {
+            "Description": "The number of consecutive health check failures required before considering a target unhealthy. If the target group protocol is HTTP or HTTPS, the default is 2. If the target group protocol is TCP or TLS, this value must be the same as the healthy threshold count. If the target group protocol is GENEVE, the default is 3. If the target type is lambda , the default is 2.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Matcher": {
+            "Description": "[HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for a successful response from a target.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TargetType": {
+            "Description": "The type of target that you must specify when registering targets with this target group. You can't specify targets for a target group using more than one target type.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to assign to the target group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IpAddressType": {
+            "Description": "The type of IP address used for this target group. The possible values are ipv4 and ipv6 . This is an optional parameter. If not specified, the IP address type defaults to ipv4 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_listener": {
+        "ListenerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the listener.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_load_balancer": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_rule": {
+        "RuleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_target_group": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_targets": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Targets": {
+            "Description": "The targets. If you specified a port override when you registered a target, you must specify both the target ID and the port when you deregister it.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_account_limits": {
+        "Marker": {
+            "Description": "The marker for the next set of results. (You received this marker from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_listener_certificates": {
+        "ListenerArn": {
+            "Description": "The Amazon Resource Names (ARN) of the listener.",
+            "Type": "string",
+            "Required": true
+        },
+        "Marker": {
+            "Description": "The marker for the next set of results. (You received this marker from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_listeners": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": false
+        },
+        "ListenerArns": {
+            "Description": "The Amazon Resource Names (ARN) of the listeners.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "The marker for the next set of results. (You received this marker from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_load_balancer_attributes": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_load_balancers": {
+        "LoadBalancerArns": {
+            "Description": "The Amazon Resource Names (ARN) of the load balancers. You can specify up to 20 load balancers in a single call.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Names": {
+            "Description": "The names of the load balancers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "The marker for the next set of results. (You received this marker from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_rules": {
+        "ListenerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the listener.",
+            "Type": "string",
+            "Required": false
+        },
+        "RuleArns": {
+            "Description": "The Amazon Resource Names (ARN) of the rules.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "The marker for the next set of results. (You received this marker from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_ssl_policies": {
+        "Names": {
+            "Description": "The names of the policies.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "The marker for the next set of results. (You received this marker from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LoadBalancerType": {
+            "Description": "The type of load balancer. The default lists the SSL policies for all load balancers.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_tags": {
+        "ResourceArns": {
+            "Description": "The Amazon Resource Names (ARN) of the resources. You can specify up to 20 resources in a single call.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_target_group_attributes": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_target_groups": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetGroupArns": {
+            "Description": "The Amazon Resource Names (ARN) of the target groups.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Names": {
+            "Description": "The names of the target groups.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "The marker for the next set of results. (You received this marker from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_target_health": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Targets": {
+            "Description": "The targets.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_listener": {
+        "ListenerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the listener.",
+            "Type": "string",
+            "Required": true
+        },
+        "Port": {
+            "Description": "The port for connections from clients to the load balancer. You cannot specify a port for a Gateway Load Balancer.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Protocol": {
+            "Description": "The protocol for connections from clients to the load balancer. Application Load Balancers support the HTTP and HTTPS protocols. Network Load Balancers support the TCP, TLS, UDP, and TCP_UDP protocols. You can\u2019t change the protocol to UDP or TCP_UDP if dual-stack mode is enabled. You cannot specify a protocol for a Gateway Load Balancer.",
+            "Type": "string",
+            "Required": false
+        },
+        "SslPolicy": {
+            "Description": "[HTTPS and TLS listeners] The security policy that defines which protocols and ciphers are supported.\nFor more information, see Security policies in the Application Load Balancers Guide or Security policies in the Network Load Balancers Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "Certificates": {
+            "Description": "[HTTPS and TLS listeners] The default certificate for the listener. You must provide exactly one certificate. Set CertificateArn to the certificate ARN but do not set IsDefault .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DefaultActions": {
+            "Description": "The actions for the default rule.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AlpnPolicy": {
+            "Description": "[TLS listeners] The name of the Application-Layer Protocol Negotiation (ALPN) policy. You can specify one policy name. The following are the possible values:\nFor more information, see ALPN policies in the Network Load Balancers Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "modify_load_balancer_attributes": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "The load balancer attributes.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "modify_rule": {
+        "RuleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "Conditions": {
+            "Description": "The conditions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Actions": {
+            "Description": "The actions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_target_group": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        },
+        "HealthCheckProtocol": {
+            "Description": "The protocol the load balancer uses when performing health checks on targets. For Application Load Balancers, the default is HTTP. For Network Load Balancers and Gateway Load Balancers, the default is TCP. The TCP protocol is not supported for health checks if the protocol of the target group is HTTP or HTTPS. It is supported for health checks only if the protocol of the target group is TCP, TLS, UDP, or TCP_UDP. The GENEVE, TLS, UDP, and TCP_UDP protocols are not supported for health checks.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckPort": {
+            "Description": "The port the load balancer uses when performing health checks on targets.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckPath": {
+            "Description": "[HTTP/HTTPS health checks] The destination for health checks on the targets.\n[HTTP1 or HTTP2 protocol version] The ping path. The default is /.\n[GRPC protocol version] The path of a custom health check method with the format /package.service/method. The default is /Amazon Web Services.ALB/healthcheck.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckEnabled": {
+            "Description": "Indicates whether health checks are enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "HealthCheckIntervalSeconds": {
+            "Description": "The approximate amount of time, in seconds, between health checks of an individual target. For TCP health checks, the supported values are 10 or 30 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "HealthCheckTimeoutSeconds": {
+            "Description": "[HTTP/HTTPS health checks] The amount of time, in seconds, during which no response means a failed health check.",
+            "Type": "integer",
+            "Required": false
+        },
+        "HealthyThresholdCount": {
+            "Description": "The number of consecutive health checks successes required before considering an unhealthy target healthy.",
+            "Type": "integer",
+            "Required": false
+        },
+        "UnhealthyThresholdCount": {
+            "Description": "The number of consecutive health check failures required before considering the target unhealthy. For target groups with a protocol of TCP or TLS, this value must be the same as the healthy threshold count.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Matcher": {
+            "Description": "[HTTP/HTTPS health checks] The HTTP or gRPC codes to use when checking for a successful response from a target.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "modify_target_group_attributes": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "The attributes.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "register_targets": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Targets": {
+            "Description": "The targets.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "remove_listener_certificates": {
+        "ListenerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the listener.",
+            "Type": "string",
+            "Required": true
+        },
+        "Certificates": {
+            "Description": "The certificate to remove. You can specify one certificate per call. Set CertificateArn to the certificate ARN but do not set IsDefault .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "remove_tags": {
+        "ResourceArns": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "TagKeys": {
+            "Description": "The tag keys for the tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "set_ip_address_type": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "IpAddressType": {
+            "Description": "The IP address type. The possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses). You can\u2019t specify dualstack for a load balancer with a UDP or TCP_UDP listener.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_rule_priorities": {
+        "RulePriorities": {
+            "Description": "The rule priorities.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "set_security_groups": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecurityGroups": {
+            "Description": "The IDs of the security groups.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "set_subnets": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "Subnets": {
+            "Description": "The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings.\n[Application Load Balancers] You must specify subnets from at least two Availability Zones.\n[Application Load Balancers on Outposts] You must specify one Outpost subnet.\n[Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n[Network Load Balancers] You can specify subnets from one or more Availability Zones.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SubnetMappings": {
+            "Description": "The IDs of the public subnets. You can specify only one subnet per Availability Zone. You must specify either subnets or subnet mappings.\n[Application Load Balancers] You must specify subnets from at least two Availability Zones. You cannot specify Elastic IP addresses for your subnets.\n[Application Load Balancers on Outposts] You must specify one Outpost subnet.\n[Application Load Balancers on Local Zones] You can specify subnets from one or more Local Zones.\n[Network Load Balancers] You can specify subnets from one or more Availability Zones. You can specify one Elastic IP address per subnet if you need static IP addresses for your internet-facing load balancer. For internal load balancers, you can specify one private IP address per subnet from the IPv4 range of the subnet. For internet-facing load balancer, you can specify one IPv6 address per subnet.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IpAddressType": {
+            "Description": "[Network Load Balancers] The type of IP addresses used by the subnets for your load balancer. The possible values are ipv4 (for IPv4 addresses) and dualstack (for IPv4 and IPv6 addresses). You can\u2019t specify dualstack for a load balancer with a UDP or TCP_UDP listener. .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "LoadBalancerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the load balancer.",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetGroupArns": {
+            "Description": "The Amazon Resource Names (ARN) of the target groups.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Names": {
+            "Description": "The names of the target groups.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "TargetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the target group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Targets": {
+            "Description": "The targets.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

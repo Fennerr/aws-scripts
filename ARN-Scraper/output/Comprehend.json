@@ -1,0 +1,1334 @@
+{
+    "batch_detect_dominant_language": {
+        "TextList": {
+            "Description": "A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document should contain at least 20 characters and must contain fewer than 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_detect_entities": {
+        "TextList": {
+            "Description": "A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer than 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_detect_key_phrases": {
+        "TextList": {
+            "Description": "A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer than 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_detect_sentiment": {
+        "TextList": {
+            "Description": "A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_detect_syntax": {
+        "TextList": {
+            "Description": "A list containing the text of the input documents. The list can contain a maximum of 25 documents. Each document must contain fewer that 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the following languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "classify_document": {
+        "Text": {
+            "Description": "The document text to be analyzed.",
+            "Type": "string",
+            "Required": true
+        },
+        "EndpointArn": {
+            "Description": "The Amazon Resource Number (ARN) of the endpoint. For information about endpoints, see Managing endpoints .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "contains_pii_entities": {
+        "Text": {
+            "Description": "Creates a new document classification request to analyze a single document in real-time, returning personally identifiable information (PII) entity labels.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. Currently, English is the only valid language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_document_classifier": {
+        "DocumentClassifierName": {
+            "Description": "The name of the document classifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionName": {
+            "Description": "The version name given to the newly created classifier. Version names can have a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The version name must be unique among all models with the same classifier name in the account/AWS Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the document classifier being created. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Enables the addition of output results configuration parameters for custom classifier jobs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the following languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\"). All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom classifier. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Mode": {
+            "Description": "Indicates the mode in which the classifier will be trained. The classifier can be trained in multi-class mode, which identifies one and only one class for each document, or multi-label mode, which identifies one or more labels for each document. In multi-label mode, multiple labels for an individual document are separated by a delimiter. The default delimiter between labels is a pipe (|).",
+            "Type": "string",
+            "Required": false
+        },
+        "ModelKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt trained custom models. The ModelKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ModelPolicy": {
+            "Description": "The resource-based policy to attach to your custom document classifier model. You can use this policy to allow another AWS account to import your custom model.\nProvide your policy as a JSON body that you enter as a UTF-8 encoded string without line breaks. To provide valid JSON, enclose the attribute names and values in double quotes. If the JSON body is also enclosed in double quotes, then you must escape the double quotes that are inside the policy:\nTo avoid escaping quotes, you can use single quotes to enclose the policy and double quotes to enclose the JSON names and values:",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_endpoint": {
+        "EndpointName": {
+            "Description": "This is the descriptive suffix that becomes part of the EndpointArn used for all subsequent requests to this resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelArn": {
+            "Description": "The Amazon Resource Number (ARN) of the model to which the endpoint will be attached.",
+            "Type": "string",
+            "Required": true
+        },
+        "DesiredInferenceUnits": {
+            "Description": "The desired number of inference units to be used by the model using this endpoint. Each inference unit represents of a throughput of 100 characters per second.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "An idempotency token provided by the customer. If this token matches a previous endpoint creation request, Amazon Comprehend will not return a ResourceInUseException .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Tags associated with the endpoint being created. A tag is a key-value pair that adds metadata to the endpoint. For example, a tag with \"Sales\" as the key might be added to an endpoint to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS identity and Access Management (IAM) role that grants Amazon Comprehend read access to trained custom models encrypted with a customer managed key (ModelKmsKeyId).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_entity_recognizer": {
+        "RecognizerName": {
+            "Description": "The name given to the newly created recognizer. Recognizer names can be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The name must be unique in the account/region.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionName": {
+            "Description": "The version name given to the newly created recognizer. Version names can be a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The version name must be unique among all models with the same recognizer name in the account/ AWS Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that grants Amazon Comprehend read access to your input data.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the entity recognizer being created. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data. The S3 bucket containing the input data must be located in the same region as the entity recognizer being created.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "You can specify any of the following languages supported by Amazon Comprehend: English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), German (\"de\"), or Portuguese (\"pt\"). All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your custom entity recognizer. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ModelKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt trained custom models. The ModelKmsKeyId can be either of the following formats",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ModelPolicy": {
+            "Description": "The JSON resource-based policy to attach to your custom entity recognizer model. You can use this policy to allow another AWS account to import your custom model.\nProvide your JSON as a UTF-8 encoded string without line breaks. To provide valid JSON for your policy, enclose the attribute names and values in double quotes. If the JSON body is also enclosed in double quotes, then you must escape the double quotes that are inside the policy:\nTo avoid escaping quotes, you can use single quotes to enclose the policy and double quotes to enclose the JSON names and values:",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_document_classifier": {
+        "DocumentClassifierArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the document classifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_endpoint": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Number (ARN) of the endpoint being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_entity_recognizer": {
+        "EntityRecognizerArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the entity recognizer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the custom model version that has the policy to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyRevisionId": {
+            "Description": "The revision ID of the policy to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_document_classification_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_document_classifier": {
+        "DocumentClassifierArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the document classifier. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dominant_language_detection_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_endpoint": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Number (ARN) of the endpoint being described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_entities_detection_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_entity_recognizer": {
+        "EntityRecognizerArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the entity recognizer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_events_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the events detection job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_key_phrases_detection_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_pii_entities_detection_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_resource_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the policy to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_sentiment_detection_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_targeted_sentiment_detection_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Comprehend generated for the job. The operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_topics_detection_job": {
+        "JobId": {
+            "Description": "The identifier assigned by the user to the detection job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_dominant_language": {
+        "Text": {
+            "Description": "A UTF-8 text string. Each string should contain at least 20 characters and must contain fewer that 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_entities": {
+        "Text": {
+            "Description": "A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.\nIf your request includes the endpoint for a custom entity recognition model, Amazon Comprehend uses the language of your custom model, and it ignores any language code that you specify here.",
+            "Type": "string",
+            "Required": false
+        },
+        "EndpointArn": {
+            "Description": "The Amazon Resource Name of an endpoint that is associated with a custom entity recognition model. Provide an endpoint if you want to detect entities by using your own custom model instead of the default model that is used by Amazon Comprehend.\nIf you specify an endpoint, Amazon Comprehend uses the language of your custom model, and it ignores any language code that you provide in your request.\nFor information about endpoints, see Managing endpoints .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "detect_key_phrases": {
+        "Text": {
+            "Description": "A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_pii_entities": {
+        "Text": {
+            "Description": "A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. Currently, English is the only valid language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_sentiment": {
+        "Text": {
+            "Description": "A UTF-8 text string. Each string must contain fewer that 5,000 bytes of UTF-8 encoded characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_syntax": {
+        "Text": {
+            "Description": "A UTF-8 string. Each string must contain fewer that 5,000 bytes of UTF encoded characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code of the input documents. You can specify any of the following languages supported by Amazon Comprehend: German (\"de\"), English (\"en\"), Spanish (\"es\"), French (\"fr\"), Italian (\"it\"), or Portuguese (\"pt\").",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_model": {
+        "SourceModelArn": {
+            "Description": "The Amazon Resource Name (ARN) of the custom model to import.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelName": {
+            "Description": "The name to assign to the custom model that is created in Amazon Comprehend by this import.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionName": {
+            "Description": "The version name given to the custom model that is created by this import. Version names can have a maximum of 256 characters. Alphanumeric characters, hyphens (-) and underscores (_) are allowed. The version name must be unique among all models with the same classifier name in the account/AWS Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "ModelKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt trained custom models. The ModelKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Management (IAM) role that allows Amazon Comprehend to use Amazon Key Management Service (KMS) to encrypt or decrypt the custom model.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the custom model that is created by this import. A tag is a key-value pair that adds as a metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_document_classification_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their names, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_document_classifier_summaries": {
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return on each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_document_classifiers": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dominant_language_detection_jobs": {
+        "Filter": {
+            "Description": "Filters that jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_endpoints": {
+        "Filter": {
+            "Description": "Filters the endpoints that are returned. You can filter endpoints on their name, model, status, or the date and time that they were created. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_entities_detection_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_entity_recognizer_summaries": {
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return on each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_entity_recognizers": {
+        "Filter": {
+            "Description": "Filters the list of entities returned. You can filter on Status, SubmitTimeBefore, or SubmitTimeAfter. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return on each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_events_detection_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_key_phrases_detection_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_pii_entities_detection_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_sentiment_detection_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the given Amazon Comprehend resource you are querying.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_targeted_sentiment_detection_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. You can filter jobs on their name, status, or the date and time that they were submitted. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_topics_detection_jobs": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. Jobs can be filtered on their name, status, or the date and time that they were submitted. You can set only one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_resource_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the custom model to attach the policy to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourcePolicy": {
+            "Description": "The JSON resource-based policy to attach to your custom model. Provide your JSON as a UTF-8 encoded string without line breaks. To provide valid JSON for your policy, enclose the attribute names and values in double quotes. If the JSON body is also enclosed in double quotes, then you must escape the double quotes that are inside the policy:\nTo avoid escaping quotes, you can use single quotes to enclose the policy and double quotes to enclose the JSON names and values:",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyRevisionId": {
+            "Description": "The revision ID that Amazon Comprehend assigned to the policy that you are updating. If you are creating a new policy that has no prior version, don't use this parameter. Amazon Comprehend creates the revision ID for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_document_classification_job": {
+        "JobName": {
+            "Description": "The identifier of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "DocumentClassifierArn": {
+            "Description": "The Amazon Resource Name (ARN) of the document classifier to use to process the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your document classification job. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the document classification job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_dominant_language_detection_job": {
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions .",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "An identifier for the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your dominant language detection job. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the dominant language detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_entities_detection_job": {
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions .",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The identifier of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "EntityRecognizerArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the specific entity recognizer to be used by the StartEntitiesDetectionJob . This ARN is optional and is only used for a custom entity recognition job.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. All documents must be in the same language. You can specify any of the languages supported by Amazon Comprehend. If custom entities recognition is used, this parameter is ignored and the language used for training the model is used instead.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your entity detection job. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the entities detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_events_detection_job": {
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The identifier of the events detection job.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language code of the input documents.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "An unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetEventTypes": {
+            "Description": "The types of events to detect in the input documents.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the events detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_key_phrases_detection_job": {
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions .",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The identifier of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your key phrases detection job. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the key phrases detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_pii_entities_detection_job": {
+        "InputDataConfig": {
+            "Description": "The input properties for a PII entities detection job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Provides con\ufb01guration parameters for the output of PII entity detection jobs.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Mode": {
+            "Description": "Specifies whether the output provides the locations (offsets) of PII entities or a file in which PII entities are redacted.",
+            "Type": "string",
+            "Required": true
+        },
+        "RedactionConfig": {
+            "Description": "Provides configuration parameters for PII entity redaction.\nThis parameter is required if you set the Mode parameter to ONLY_REDACTION. In that case, you must provide a RedactionConfig definition that includes the PiiEntityTypes parameter.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The identifier of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. Currently, English is the only valid language.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the PII entities detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_sentiment_detection_job": {
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions .",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The identifier of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. You can specify any of the primary languages supported by Amazon Comprehend. All documents must be in the same language.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your sentiment detection job. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the sentiment detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_targeted_sentiment_detection_job": {
+        "InputDataConfig": {
+            "Description": "The input properties for an inference job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see Role-based permissions .",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The identifier of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language of the input documents. Currently, English is the only valid language.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you don't set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the KMS key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for the job. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the targeted sentiment detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_topics_detection_job": {
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input data for the job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies where to send the output files. The output is a compressed archive with two files, topic-terms.csv that lists the terms associated with each topic, and doc-topics.csv that lists the documents associated with each topic",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants Amazon Comprehend read access to your input data. For more information, see https://docs.aws.amazon.com/comprehend/latest/dg/access-control-managing-permissions.html#auth-role-permissions .",
+            "Type": "string",
+            "Required": true
+        },
+        "JobName": {
+            "Description": "The identifier of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "NumberOfTopics": {
+            "Description": "The number of topics to detect.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for the request. If you do not set the client request token, Amazon Comprehend generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeKmsKeyId": {
+            "Description": "ID for the AWS Key Management Service (KMS) key that Amazon Comprehend uses to encrypt data on the storage volume attached to the ML compute instance(s) that process the analysis job. The VolumeKmsKeyId can be either of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcConfig": {
+            "Description": "Configuration parameters for an optional private Virtual Private Cloud (VPC) containing the resources you are using for your topic detection job. For more information, see Amazon VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to be associated with the topics detection job. A tag is a key-value pair that adds metadata to a resource used by Amazon Comprehend. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "stop_dominant_language_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the dominant language detection job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_entities_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the entities detection job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_events_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the events detection job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_key_phrases_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the key phrases detection job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_pii_entities_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the PII entities detection job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_sentiment_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the sentiment detection job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_targeted_sentiment_detection_job": {
+        "JobId": {
+            "Description": "The identifier of the targeted sentiment detection job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_training_document_classifier": {
+        "DocumentClassifierArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the document classifier currently being trained.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_training_entity_recognizer": {
+        "EntityRecognizerArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the entity recognizer currently being trained.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the given Amazon Comprehend resource to which you want to associate the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags being associated with a specific Amazon Comprehend resource. There can be a maximum of 50 tags (both existing and pending) associated with a specific resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the given Amazon Comprehend resource from which you want to remove the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The initial part of a key-value pair that forms a tag being removed from a given resource. For example, a tag with \"Sales\" as the key might be added to a resource to indicate its use by the sales department. Keys must be unique and cannot be duplicated for a particular resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_endpoint": {
+        "EndpointArn": {
+            "Description": "The Amazon Resource Number (ARN) of the endpoint being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "DesiredModelArn": {
+            "Description": "The ARN of the new model to use when updating an existing endpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "DesiredInferenceUnits": {
+            "Description": "The desired number of inference units to be used by the model using this endpoint. Each inference unit represents of a throughput of 100 characters per second.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DesiredDataAccessRoleArn": {
+            "Description": "Data access role ARN to use in case the new model is encrypted with a customer CMK.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "Filter": {
+            "Description": "Filters the jobs that are returned. Jobs can be filtered on their name, status, or the date and time that they were submitted. You can set only one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

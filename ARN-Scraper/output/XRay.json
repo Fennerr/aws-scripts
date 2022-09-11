@@ -1,0 +1,490 @@
+{
+    "batch_get_traces": {
+        "TraceIds": {
+            "Description": "Specify the trace IDs of requests for which to retrieve segments.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_group": {
+        "GroupName": {
+            "Description": "The case-sensitive name of the new group. Default is a reserved name and names must be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "FilterExpression": {
+            "Description": "The filter expression defining criteria by which to group traces.",
+            "Type": "string",
+            "Required": false
+        },
+        "InsightsConfiguration": {
+            "Description": "The structure containing configurations related to insights.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "A map that contains one or more tag keys and tag values to attach to an X-Ray group. For more information about ways to use tags, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference .\nThe following restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_sampling_rule": {
+        "SamplingRule": {
+            "Description": "The rule definition.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A map that contains one or more tag keys and tag values to attach to an X-Ray sampling rule. For more information about ways to use tags, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference .\nThe following restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "delete_group": {
+        "GroupName": {
+            "Description": "The case-sensitive name of the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupARN": {
+            "Description": "The ARN of the group that was generated on creation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_sampling_rule": {
+        "RuleName": {
+            "Description": "The name of the sampling rule. Specify a rule by either name or ARN, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "RuleARN": {
+            "Description": "The ARN of the sampling rule. Specify a rule by either name or ARN, but not both.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_encryption_config": "No parameters defined",
+    "get_group": {
+        "GroupName": {
+            "Description": "The case-sensitive name of the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupARN": {
+            "Description": "The ARN of the group that was generated on creation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_groups": {
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_insight": {
+        "InsightId": {
+            "Description": "The insight's unique identifier. Use the GetInsightSummaries action to retrieve an InsightId.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_insight_events": {
+        "InsightId": {
+            "Description": "The insight's unique identifier. Use the GetInsightSummaries action to retrieve an InsightId.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Used to retrieve at most the specified value of events.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token returned by a previous request to retrieve the next page of events.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_insight_impact_graph": {
+        "InsightId": {
+            "Description": "The insight's unique identifier. Use the GetInsightSummaries action to retrieve an InsightId.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartTime": {
+            "Description": "The estimated start time of the insight, in Unix time seconds. The StartTime is inclusive of the value provided and can't be more than 30 days old.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The estimated end time of the insight, in Unix time seconds. The EndTime is exclusive of the value provided. The time range between the start time and end time can't be more than six hours.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_insight_summaries": {
+        "States": {
+            "Description": "The list of insight states.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GroupARN": {
+            "Description": "The Amazon Resource Name (ARN) of the group. Required if the GroupName isn't provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupName": {
+            "Description": "The name of the group. Required if the GroupARN isn't provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The beginning of the time frame in which the insights started. The start time can't be more than 30 days old.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The end of the time frame in which the insights ended. The end time can't be more than 30 days old.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to display.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_sampling_rules": {
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_sampling_statistic_summaries": {
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_sampling_targets": {
+        "SamplingStatisticsDocuments": {
+            "Description": "Information about rules that the service is using to sample requests.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_service_graph": {
+        "StartTime": {
+            "Description": "The start of the time frame for which to generate a graph.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The end of the timeframe for which to generate a graph.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The name of a group based on which you want to generate a graph.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupARN": {
+            "Description": "The Amazon Resource Name (ARN) of a group based on which you want to generate a graph.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_time_series_service_statistics": {
+        "StartTime": {
+            "Description": "The start of the time frame for which to aggregate statistics.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The end of the time frame for which to aggregate statistics.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The case-sensitive name of the group for which to pull statistics from.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupARN": {
+            "Description": "The Amazon Resource Name (ARN) of the group for which to pull statistics from.",
+            "Type": "string",
+            "Required": false
+        },
+        "EntitySelectorExpression": {
+            "Description": "A filter expression defining entities that will be aggregated for statistics. Supports ID, service, and edge functions. If no selector expression is specified, edge statistics are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "Period": {
+            "Description": "Aggregation period in seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ForecastStatistics": {
+            "Description": "The forecasted high and low fault count values. Forecast enabled requests require the EntitySelectorExpression ID be provided.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_trace_graph": {
+        "TraceIds": {
+            "Description": "Trace IDs of requests for which to generate a service graph.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_trace_summaries": {
+        "StartTime": {
+            "Description": "The start of the time frame for which to retrieve traces.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The end of the time frame for which to retrieve traces.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "TimeRangeType": {
+            "Description": "A parameter to indicate whether to query trace summaries by TraceId or Event time.",
+            "Type": "string",
+            "Required": false
+        },
+        "Sampling": {
+            "Description": "Set to true to get summaries for only a subset of available traces.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SamplingStrategy": {
+            "Description": "A parameter to indicate whether to enable sampling on trace summaries. Input parameters are Name and Value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "FilterExpression": {
+            "Description": "Specify a filter expression to retrieve trace summaries for services or requests that meet certain requirements.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Number (ARN) of an X-Ray group or sampling rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token. If multiple pages of results are returned, use the NextToken value returned with the current page of results as the value of this parameter to get the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_encryption_config": {
+        "KeyId": {
+            "Description": "An Amazon Web Services KMS key in one of the following formats:\nOmit this key if you set Type to NONE .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Type": {
+            "Description": "The type of encryption. Set to KMS to use your own key for encryption. Set to NONE for default encryption.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_telemetry_records": {
+        "TelemetryRecords": {
+            "Description": "[REQUIRED]\n\n(dict) --\nTimestamp (datetime)[REQUIRED]\nSegmentsReceivedCount (integer) --\nSegmentsSentCount (integer) --\nSegmentsSpilloverCount (integer) --\nSegmentsRejectedCount (integer) --\nBackendConnectionErrors (dict) --\nTimeoutCount (integer) --\nConnectionRefusedCount (integer) --\nHTTPCode4XXCount (integer) --\nHTTPCode5XXCount (integer) --\nUnknownHostCount (integer) --\nOtherCount (integer) --\n\n\n\n\n\n",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "EC2InstanceId": {
+            "Description": "",
+            "Type": "string",
+            "Required": false
+        },
+        "Hostname": {
+            "Description": "",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceARN": {
+            "Description": "",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_trace_segments": {
+        "TraceSegmentDocuments": {
+            "Description": "A string containing a JSON document defining one or more segments or subsegments.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Number (ARN) of an X-Ray group or sampling rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A map that contains one or more tag keys and tag values to attach to an X-Ray group or sampling rule. For more information about ways to use tags, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference .\nThe following restrictions apply to tags:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Number (ARN) of an X-Ray group or sampling rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Keys for one or more tags that you want to remove from an X-Ray group or sampling rule.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_group": {
+        "GroupName": {
+            "Description": "The case-sensitive name of the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupARN": {
+            "Description": "The ARN that was generated upon creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "FilterExpression": {
+            "Description": "The updated filter expression defining criteria by which to group traces.",
+            "Type": "string",
+            "Required": false
+        },
+        "InsightsConfiguration": {
+            "Description": "The structure containing configurations related to insights.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_sampling_rule": {
+        "SamplingRuleUpdate": {
+            "Description": "The rule and fields to change.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "StartTime": {
+            "Description": "The start of the time frame for which to retrieve traces.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The end of the time frame for which to retrieve traces.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "TimeRangeType": {
+            "Description": "A parameter to indicate whether to query trace summaries by TraceId or Event time.",
+            "Type": "string",
+            "Required": false
+        },
+        "Sampling": {
+            "Description": "Set to true to get summaries for only a subset of available traces.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SamplingStrategy": {
+            "Description": "A parameter to indicate whether to enable sampling on trace summaries. Input parameters are Name and Value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "FilterExpression": {
+            "Description": "Specify a filter expression to retrieve trace summaries for services or requests that meet certain requirements.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

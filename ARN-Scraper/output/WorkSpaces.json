@@ -1,0 +1,958 @@
+{
+    "associate_connection_alias": {
+        "AliasId": {
+            "Description": "The identifier of the connection alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceId": {
+            "Description": "The identifier of the directory to associate the connection alias with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_ip_groups": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupIds": {
+            "Description": "The identifiers of one or more IP access control groups.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "authorize_ip_rules": {
+        "GroupId": {
+            "Description": "The identifier of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserRules": {
+            "Description": "The rules to add to the group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "copy_workspace_image": {
+        "Name": {
+            "Description": "The name of the image.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the image.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceImageId": {
+            "Description": "The identifier of the source image.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceRegion": {
+            "Description": "The identifier of the source Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags for the image.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_connect_client_add_in": {
+        "ResourceId": {
+            "Description": "The directory identifier for which to configure the client add-in.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the client add-in.",
+            "Type": "string",
+            "Required": true
+        },
+        "URL": {
+            "Description": "The endpoint URL of the Amazon Connect client add-in.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_connection_alias": {
+        "ConnectionString": {
+            "Description": "A connection string in the form of a fully qualified domain name (FQDN), such as www.example.com .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to associate with the connection alias.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_ip_group": {
+        "GroupName": {
+            "Description": "The name of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupDesc": {
+            "Description": "The description of the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserRules": {
+            "Description": "The rules to add to the group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags. Each WorkSpaces resource can have a maximum of 50 tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_tags": {
+        "ResourceId": {
+            "Description": "The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags. Each WorkSpaces resource can have a maximum of 50 tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_updated_workspace_image": {
+        "Name": {
+            "Description": "The name of the new updated WorkSpace image.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of whether updates for the WorkSpace image are available.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceImageId": {
+            "Description": "The identifier of the source WorkSpace image.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags that you want to add to the new updated WorkSpace image.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_workspace_bundle": {
+        "BundleName": {
+            "Description": "The name of the bundle.",
+            "Type": "string",
+            "Required": true
+        },
+        "BundleDescription": {
+            "Description": "The description of the bundle.",
+            "Type": "string",
+            "Required": true
+        },
+        "ImageId": {
+            "Description": "The identifier of the image that is used to create the bundle.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComputeType": {
+            "Description": "Describes the compute type of the bundle.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "UserStorage": {
+            "Description": "Describes the user volume for a WorkSpace bundle.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RootStorage": {
+            "Description": "Describes the root volume for a WorkSpace bundle.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tags associated with the bundle.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_workspace_image": {
+        "Name": {
+            "Description": "The name of the new WorkSpace image.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the new WorkSpace image.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkspaceId": {
+            "Description": "The identifier of the source WorkSpace",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags that you want to add to the new WorkSpace image. To add tags when you're creating the image, you must create an IAM policy that grants your IAM user permission to use workspaces:CreateTags .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_workspaces": {
+        "Workspaces": {
+            "Description": "The WorkSpaces to create. You can specify up to 25 WorkSpaces.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_client_branding": {
+        "ResourceId": {
+            "Description": "The directory identifier of the WorkSpace for which you want to delete client branding.",
+            "Type": "string",
+            "Required": true
+        },
+        "Platforms": {
+            "Description": "The device type for which you want to delete client branding.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_connect_client_add_in": {
+        "AddInId": {
+            "Description": "The identifier of the client add-in to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceId": {
+            "Description": "The directory identifier for which the client add-in is configured.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_connection_alias": {
+        "AliasId": {
+            "Description": "The identifier of the connection alias to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_ip_group": {
+        "GroupId": {
+            "Description": "The identifier of the IP access control group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_tags": {
+        "ResourceId": {
+            "Description": "The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_workspace_bundle": {
+        "BundleId": {
+            "Description": "The identifier of the bundle.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_workspace_image": {
+        "ImageId": {
+            "Description": "The identifier of the image.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_workspace_directory": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory. If any WorkSpaces are registered to this directory, you must remove them before you deregister the directory, or you will receive an OperationNotSupportedException error.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account": "No parameters defined",
+    "describe_account_modifications": {
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_client_branding": {
+        "ResourceId": {
+            "Description": "The directory identifier of the WorkSpace for which you want to view client branding information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_client_properties": {
+        "ResourceIds": {
+            "Description": "The resource identifier, in the form of directory IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_connect_client_add_ins": {
+        "ResourceId": {
+            "Description": "The directory identifier for which the client add-in is configured.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_connection_alias_permissions": {
+        "AliasId": {
+            "Description": "The identifier of the connection alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_connection_aliases": {
+        "AliasIds": {
+            "Description": "The identifiers of the connection aliases to describe.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ResourceId": {
+            "Description": "The identifier of the directory associated with the connection alias.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of connection aliases to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_ip_groups": {
+        "GroupIds": {
+            "Description": "The identifiers of one or more IP access control groups.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_tags": {
+        "ResourceId": {
+            "Description": "The identifier of the WorkSpaces resource. The supported resource types are WorkSpaces, registered directories, images, custom bundles, IP access control groups, and connection aliases.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_workspace_bundles": {
+        "BundleIds": {
+            "Description": "The identifiers of the bundles. You cannot combine this parameter with any other filter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Owner": {
+            "Description": "The owner of the bundles. You cannot combine this parameter with any other filter.\nTo describe the bundles provided by Amazon Web Services, specify AMAZON. To describe the bundles that belong to your account, don't specify a value.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_workspace_directories": {
+        "DirectoryIds": {
+            "Description": "The identifiers of the directories. If the value is null, all directories are retrieved.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of directories to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_workspace_image_permissions": {
+        "ImageId": {
+            "Description": "The identifier of the image.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_workspace_images": {
+        "ImageIds": {
+            "Description": "The identifier of the image.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ImageType": {
+            "Description": "The type (owned or shared) of the image.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_workspace_snapshots": {
+        "WorkspaceId": {
+            "Description": "The identifier of the WorkSpace.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_workspaces": {
+        "WorkspaceIds": {
+            "Description": "The identifiers of the WorkSpaces. You cannot combine this parameter with any other filter.\nBecause the  CreateWorkspaces operation is asynchronous, the identifier it returns is not immediately available. If you immediately call  DescribeWorkspaces with this identifier, no information is returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DirectoryId": {
+            "Description": "The identifier of the directory. In addition, you can optionally specify a specific directory user (see UserName ). You cannot combine this parameter with any other filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserName": {
+            "Description": "The name of the directory user. You must specify this parameter with DirectoryId .",
+            "Type": "string",
+            "Required": false
+        },
+        "BundleId": {
+            "Description": "The identifier of the bundle. All WorkSpaces that are created from this bundle are retrieved. You cannot combine this parameter with any other filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_workspaces_connection_status": {
+        "WorkspaceIds": {
+            "Description": "The identifiers of the WorkSpaces. You can specify up to 25 WorkSpaces.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_connection_alias": {
+        "AliasId": {
+            "Description": "The identifier of the connection alias to disassociate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_ip_groups": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupIds": {
+            "Description": "The identifiers of one or more IP access control groups.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "import_client_branding": {
+        "ResourceId": {
+            "Description": "The directory identifier of the WorkSpace for which you want to import client branding.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceTypeWindows": {
+            "Description": "The branding information to import for Windows devices.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceTypeOsx": {
+            "Description": "The branding information to import for macOS devices.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceTypeAndroid": {
+            "Description": "The branding information to import for Android devices.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceTypeIos": {
+            "Description": "The branding information to import for iOS devices.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceTypeLinux": {
+            "Description": "The branding information to import for Linux devices.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceTypeWeb": {
+            "Description": "The branding information to import for web access.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "import_workspace_image": {
+        "Ec2ImageId": {
+            "Description": "The identifier of the EC2 image.",
+            "Type": "string",
+            "Required": true
+        },
+        "IngestionProcess": {
+            "Description": "The ingestion process to be used when importing the image, depending on which protocol you want to use for your BYOL Workspace image, either PCoIP or WorkSpaces Streaming Protocol (WSP). To use WSP, specify a value that ends in _WSP. To use PCoIP, specify a value that does not end in _WSP .\nFor non-GPU-enabled bundles (bundles other than Graphics or GraphicsPro), specify BYOL_REGULAR or BYOL_REGULAR_WSP, depending on the protocol.",
+            "Type": "string",
+            "Required": true
+        },
+        "ImageName": {
+            "Description": "The name of the WorkSpace image.",
+            "Type": "string",
+            "Required": true
+        },
+        "ImageDescription": {
+            "Description": "The description of the WorkSpace image.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags. Each WorkSpaces resource can have a maximum of 50 tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Applications": {
+            "Description": "If specified, the version of Microsoft Office to subscribe to. Valid only for Windows 10 BYOL images. For more information about subscribing to Office for BYOL images, see Bring Your Own Windows Desktop Licenses .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_available_management_cidr_ranges": {
+        "ManagementCidrRangeConstraint": {
+            "Description": "The IP address range to search. Specify an IP address range that is compatible with your network and in CIDR notation (that is, specify the range as an IPv4 CIDR block).",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If you received a NextToken from a previous call that was paginated, provide this token to receive the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "migrate_workspace": {
+        "SourceWorkspaceId": {
+            "Description": "The identifier of the WorkSpace to migrate from.",
+            "Type": "string",
+            "Required": true
+        },
+        "BundleId": {
+            "Description": "The identifier of the target bundle type to migrate the WorkSpace to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "modify_account": {
+        "DedicatedTenancySupport": {
+            "Description": "The status of BYOL.",
+            "Type": "string",
+            "Required": false
+        },
+        "DedicatedTenancyManagementCidrRange": {
+            "Description": "The IP address range, specified as an IPv4 CIDR block, for the management network interface. Specify an IP address range that is compatible with your network and in CIDR notation (that is, specify the range as an IPv4 CIDR block). The CIDR block size must be /16 (for example, 203.0.113.25/16). It must also be specified as available by the ListAvailableManagementCidrRanges operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "modify_client_properties": {
+        "ResourceId": {
+            "Description": "The resource identifiers, in the form of directory IDs.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientProperties": {
+            "Description": "Information about the Amazon WorkSpaces client.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "modify_saml_properties": {
+        "ResourceId": {
+            "Description": "The directory identifier for which you want to configure SAML properties.",
+            "Type": "string",
+            "Required": true
+        },
+        "SamlProperties": {
+            "Description": "The properties for configuring SAML 2.0 authentication.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PropertiesToDelete": {
+            "Description": "The SAML properties to delete as part of your request.\nSpecify one of the following options:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "modify_selfservice_permissions": {
+        "ResourceId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "SelfservicePermissions": {
+            "Description": "The permissions to enable or disable self-service capabilities.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "modify_workspace_access_properties": {
+        "ResourceId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkspaceAccessProperties": {
+            "Description": "The device types and operating systems to enable or disable for access.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "modify_workspace_creation_properties": {
+        "ResourceId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkspaceCreationProperties": {
+            "Description": "The default properties for creating WorkSpaces.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "modify_workspace_properties": {
+        "WorkspaceId": {
+            "Description": "The identifier of the WorkSpace.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkspaceProperties": {
+            "Description": "The properties of the WorkSpace.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "modify_workspace_state": {
+        "WorkspaceId": {
+            "Description": "The identifier of the WorkSpace.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkspaceState": {
+            "Description": "The WorkSpace state.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reboot_workspaces": {
+        "RebootWorkspaceRequests": {
+            "Description": "The WorkSpaces to reboot. You can specify up to 25 WorkSpaces.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "rebuild_workspaces": {
+        "RebuildWorkspaceRequests": {
+            "Description": "The WorkSpace to rebuild. You can specify a single WorkSpace.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "register_workspace_directory": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory. You cannot register a directory if it does not have a status of Active. If the directory does not have a status of Active, you will receive an InvalidResourceStateException error. If you have already registered the maximum number of directories that you can register with Amazon WorkSpaces, you will receive a ResourceLimitExceededException error. Deregister directories that you are not using for WorkSpaces, and try again.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubnetIds": {
+            "Description": "The identifiers of the subnets for your virtual private cloud (VPC). Make sure that the subnets are in supported Availability Zones. The subnets must also be in separate Availability Zones. If these conditions are not met, you will receive an OperationNotSupportedException error.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EnableWorkDocs": {
+            "Description": "Indicates whether Amazon WorkDocs is enabled or disabled. If you have enabled this parameter and WorkDocs is not available in the Region, you will receive an OperationNotSupportedException error. Set EnableWorkDocs to disabled, and try again.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "EnableSelfService": {
+            "Description": "Indicates whether self-service capabilities are enabled or disabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tenancy": {
+            "Description": "Indicates whether your WorkSpace directory is dedicated or shared. To use Bring Your Own License (BYOL) images, this value must be set to DEDICATED and your Amazon Web Services account must be enabled for BYOL. If your account has not been enabled for BYOL, you will receive an InvalidParameterValuesException error. For more information about BYOL images, see Bring Your Own Windows Desktop Images .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags associated with the directory.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "restore_workspace": {
+        "WorkspaceId": {
+            "Description": "The identifier of the WorkSpace.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "revoke_ip_rules": {
+        "GroupId": {
+            "Description": "The identifier of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserRules": {
+            "Description": "The rules to remove from the group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "start_workspaces": {
+        "StartWorkspaceRequests": {
+            "Description": "The WorkSpaces to start. You can specify up to 25 WorkSpaces.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "stop_workspaces": {
+        "StopWorkspaceRequests": {
+            "Description": "The WorkSpaces to stop. You can specify up to 25 WorkSpaces.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "terminate_workspaces": {
+        "TerminateWorkspaceRequests": {
+            "Description": "The WorkSpaces to terminate. You can specify up to 25 WorkSpaces.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_connect_client_add_in": {
+        "AddInId": {
+            "Description": "The identifier of the client add-in to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceId": {
+            "Description": "The directory identifier for which the client add-in is configured.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the client add-in.",
+            "Type": "string",
+            "Required": false
+        },
+        "URL": {
+            "Description": "The endpoint URL of the Amazon Connect client add-in.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_connection_alias_permission": {
+        "AliasId": {
+            "Description": "The identifier of the connection alias that you want to update permissions for.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectionAliasPermission": {
+            "Description": "Indicates whether to share or unshare the connection alias with the specified Amazon Web Services account.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_rules_of_ip_group": {
+        "GroupId": {
+            "Description": "The identifier of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserRules": {
+            "Description": "One or more rules.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_workspace_bundle": {
+        "BundleId": {
+            "Description": "The identifier of the bundle.",
+            "Type": "string",
+            "Required": false
+        },
+        "ImageId": {
+            "Description": "The identifier of the image.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_workspace_image_permission": {
+        "ImageId": {
+            "Description": "The identifier of the image.",
+            "Type": "string",
+            "Required": true
+        },
+        "AllowCopyImage": {
+            "Description": "The permission to copy the image. This permission can be revoked only after an image has been shared.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "SharedAccountId": {
+            "Description": "The identifier of the Amazon Web Services account to share or unshare the image with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "ManagementCidrRangeConstraint": {
+            "Description": "The IP address range to search. Specify an IP address range that is compatible with your network and in CIDR notation (that is, specify the range as an IPv4 CIDR block).",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

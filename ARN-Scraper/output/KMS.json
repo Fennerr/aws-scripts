@@ -1,0 +1,995 @@
+{
+    "cancel_key_deletion": {
+        "KeyId": {
+            "Description": "Identifies the KMS key whose deletion is being canceled.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "connect_custom_key_store": {
+        "CustomKeyStoreId": {
+            "Description": "Enter the key store ID of the custom key store that you want to connect. To find the ID of a custom key store, use the  DescribeCustomKeyStores operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_alias": {
+        "AliasName": {
+            "Description": "Specifies the alias name. This value must begin with alias/ followed by a name, such as alias/ExampleAlias .\nThe AliasName value must be string of 1-256 characters. It can contain only alphanumeric characters, forward slashes (/), underscores (_), and dashes (-). The alias name cannot begin with alias/aws/. The alias/aws/ prefix is reserved for Amazon Web Services managed keys .",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetKeyId": {
+            "Description": "Associates the alias with the specified customer managed key. The KMS key must be in the same Amazon Web Services Region.\nA valid key ID is required. If you supply a null or empty string value, this operation returns an error.\nFor help finding the key ID and ARN, see Finding the Key ID and ARN in the * Key Management Service Developer Guide * .\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "create_custom_key_store": {
+        "CustomKeyStoreName": {
+            "Description": "Specifies a friendly name for the custom key store. The name must be unique in your Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "CloudHsmClusterId": {
+            "Description": "Identifies the CloudHSM cluster for the custom key store. Enter the cluster ID of any active CloudHSM cluster that is not already associated with a custom key store. To find the cluster ID, use the DescribeClusters operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "TrustAnchorCertificate": {
+            "Description": "Enter the content of the trust anchor certificate for the cluster. This is the content of the customerCA.crt file that you created when you initialized the cluster .",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyStorePassword": {
+            "Description": "Enter the password of the ` kmsuser crypto user (CU) account &lt;https://docs.aws.amazon.com/kms/latest/developerguide/key-store-concepts.html#concept-kmsuser&gt;`__ in the specified CloudHSM cluster. KMS logs into the cluster as this user to manage key material on your behalf.\nThe password must be a string of 7 to 32 characters. Its value is case sensitive.\nThis parameter tells KMS the kmsuser account password; it does not change the password in the CloudHSM cluster.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_grant": {
+        "KeyId": {
+            "Description": "Identifies the KMS key for the grant. The grant gives principals permission to use this KMS key.\nSpecify the key ID or key ARN of the KMS key. To specify a KMS key in a different Amazon Web Services account, you must use the key ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "GranteePrincipal": {
+            "Description": "The identity that gets the permissions specified in the grant.\nTo specify the principal, use the Amazon Resource Name (ARN) of an Amazon Web Services principal. Valid Amazon Web Services principals include Amazon Web Services accounts (root), IAM users, IAM roles, federated users, and assumed role users. For examples of the ARN syntax to use for specifying a principal, see Amazon Web Services Identity and Access Management (IAM) in the Example ARNs section of the Amazon Web Services General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "RetiringPrincipal": {
+            "Description": "The principal that has permission to use the  RetireGrant operation to retire the grant.\nTo specify the principal, use the Amazon Resource Name (ARN) of an Amazon Web Services principal. Valid Amazon Web Services principals include Amazon Web Services accounts (root), IAM users, federated users, and assumed role users. For examples of the ARN syntax to use for specifying a principal, see Amazon Web Services Identity and Access Management (IAM) in the Example ARNs section of the Amazon Web Services General Reference .\nThe grant determines the retiring principal. Other principals might have permission to retire the grant or revoke the grant. For details, see  RevokeGrant and Retiring and revoking grants in the Key Management Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "Operations": {
+            "Description": "A list of operations that the grant permits.\nThis list must include only operations that are permitted in a grant. Also, the operation must be supported on the KMS key. For example, you cannot create a grant for a symmetric encryption KMS key that allows the  Sign operation, or a grant for an asymmetric KMS key that allows the  GenerateDataKey operation. If you try, KMS returns a ValidationError exception. For details, see Grant operations in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Constraints": {
+            "Description": "Specifies a grant constraint.\nKMS supports the EncryptionContextEquals and EncryptionContextSubset grant constraints. Each constraint value can include up to 8 encryption context pairs. The encryption context value in each constraint cannot exceed 384 characters. For information about grant constraints, see Using grant constraints in the Key Management Service Developer Guide. For more information about encryption context, see Encryption context in the * Key Management Service Developer Guide * .\nThe encryption context grant constraints allow the permissions in the grant only when the encryption context in the request matches (EncryptionContextEquals ) or includes (EncryptionContextSubset ) the encryption context specified in this structure.\nThe encryption context grant constraints are supported only on grant operations that include an EncryptionContext parameter, such as cryptographic operations on symmetric encryption KMS keys. Grants with grant constraints can include the  DescribeKey and  RetireGrant operations, but the constraint doesn't apply to these operations. If a grant with a grant constraint includes the CreateGrant operation, the constraint requires that any grants created with the CreateGrant permission have an equally strict or stricter encryption context constraint.\nYou cannot use an encryption context grant constraint for cryptographic operations with asymmetric KMS keys or HMAC KMS keys. These keys don't support an encryption context.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Name": {
+            "Description": "A friendly name for the grant. Use this value to prevent the unintended creation of duplicate grants when retrying this request.\nWhen this value is absent, all CreateGrant requests result in a new grant with a unique GrantId even if all the supplied parameters are identical. This can result in unintended duplicates when you retry the CreateGrant request.\nWhen this value is present, you can retry a CreateGrant request with identical parameters; if the grant already exists, the original GrantId is returned without creating a new grant. Note that the returned grant token is unique with every CreateGrant request, even when a duplicate GrantId is returned. All grant tokens for the same grant ID can be used interchangeably.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_key": {
+        "Policy": {
+            "Description": "The key policy to attach to the KMS key. If you do not specify a key policy, KMS attaches a default key policy to the KMS key. For more information, see Default key policy in the Key Management Service Developer Guide .\nIf you provide a key policy, it must meet the following criteria:\nA key policy document can include only the following characters:\nFor information about key policies, see Key policies in KMS in the Key Management Service Developer Guide. For help writing and formatting a JSON policy document, see the IAM JSON Policy Reference in the * Identity and Access Management User Guide * .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Description": {
+            "Description": "A description of the KMS key.\nUse a description that helps you decide whether the KMS key is appropriate for a task. The default value is an empty string (no description).\nTo set or change the description after the key is created, use  UpdateKeyDescription .",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyUsage": {
+            "Description": "Determines the cryptographic operations for which you can use the KMS key. The default value is ENCRYPT_DECRYPT. This parameter is optional when you are creating a symmetric encryption KMS key; otherwise, it is required. You can't change the KeyUsage value after the KMS key is created.\nSelect only one valid value.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CustomerMasterKeySpec": {
+            "Description": "Instead, use the KeySpec parameter.\nThe KeySpec and CustomerMasterKeySpec parameters work the same way. Only the names differ. We recommend that you use KeySpec parameter in your code. However, to avoid breaking changes, KMS will support both parameters.",
+            "Type": "string",
+            "Required": false
+        },
+        "KeySpec": {
+            "Description": "Specifies the type of KMS key to create. The default value, SYMMETRIC_DEFAULT, creates a KMS key with a 256-bit AES-GCM key that is used for encryption and decryption, except in China Regions, where it creates a 128-bit symmetric key that uses SM4 encryption. For help choosing a key spec for your KMS key, see Choosing a KMS key type in the * Key Management Service Developer Guide * .\nThe KeySpec determines whether the KMS key contains a symmetric key or an asymmetric key pair. It also determines the cryptographic algorithms that the KMS key supports. You can't change the KeySpec after the KMS key is created. To further restrict the algorithms that can be used with the KMS key, use a condition key in its key policy or IAM policy. For more information, see kms:EncryptionAlgorithm, kms:MacAlgorithm or kms:Signing Algorithm in the * Key Management Service Developer Guide * .\nKMS supports the following key specs for KMS keys:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Origin": {
+            "Description": "The source of the key material for the KMS key. You cannot change the origin after you create the KMS key. The default is AWS_KMS, which means that KMS creates the key material.\nTo create a KMS key with no key material (for imported key material), set the value to EXTERNAL. For more information about importing key material into KMS, see Importing Key Material in the Key Management Service Developer Guide. This value is valid only for symmetric encryption KMS keys.\nTo create a KMS key in an KMS custom key store and create its key material in the associated CloudHSM cluster, set this value to AWS_CLOUDHSM. You must also use the CustomKeyStoreId parameter to identify the custom key store. This value is valid only for symmetric encryption KMS keys.",
+            "Type": "string",
+            "Required": false
+        },
+        "CustomKeyStoreId": {
+            "Description": "Creates the KMS key in the specified custom key store and the key material in its associated CloudHSM cluster. To create a KMS key in a custom key store, you must also specify the Origin parameter with a value of AWS_CLOUDHSM. The CloudHSM cluster that is associated with the custom key store must have at least two active HSMs, each in a different Availability Zone in the Region.\nThis parameter is valid only for symmetric encryption KMS keys in a single Region. You cannot create any other type of KMS key in a custom key store.\nTo find the ID of a custom key store, use the  DescribeCustomKeyStores operation.\nThe response includes the custom key store ID and the ID of the CloudHSM cluster.\nThis operation is part of the custom key store feature feature in KMS, which combines the convenience and extensive integration of KMS with the isolation and control of a single-tenant key store.",
+            "Type": "string",
+            "Required": false
+        },
+        "BypassPolicyLockoutSafetyCheck": {
+            "Description": "A flag to indicate whether to bypass the key policy lockout safety check.\nUse this parameter only when you include a policy in the request and you intend to prevent the principal that is making the request from making a subsequent  PutKeyPolicy request on the KMS key.\nThe default value is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Assigns one or more tags to the KMS key. Use this parameter to tag the KMS key when it is created. To tag an existing KMS key, use the  TagResource operation.\nTo use this parameter, you must have kms:TagResource permission in an IAM policy.\nEach tag consists of a tag key and a tag value. Both the tag key and the tag value are required, but the tag value can be an empty (null) string. You cannot have more than one tag on a KMS key with the same tag key. If you specify an existing tag key with a different tag value, KMS replaces the current tag value with the specified one.\nWhen you add tags to an Amazon Web Services resource, Amazon Web Services generates a cost allocation report with usage and costs aggregated by tags. Tags can also be used to control access to a KMS key. For details, see Tagging Keys .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MultiRegion": {
+            "Description": "Creates a multi-Region primary key that you can replicate into other Amazon Web Services Regions. You cannot change this value after you create the KMS key.\nFor a multi-Region key, set this parameter to True. For a single-Region KMS key, omit this parameter or set it to False. The default value is False .\nThis operation supports multi-Region keys, an KMS feature that lets you create multiple interoperable KMS keys in different Amazon Web Services Regions. Because these KMS keys have the same key ID, key material, and other metadata, you can use them interchangeably to encrypt data in one Amazon Web Services Region and decrypt it in a different Amazon Web Services Region without re-encrypting the data or making a cross-Region call. For more information about multi-Region keys, see Multi-Region keys in KMS in the Key Management Service Developer Guide .\nThis value creates a primary key, not a replica. To create a replica key, use the  ReplicateKey operation.\nYou can create a multi-Region version of a symmetric encryption KMS key, an HMAC KMS key, an asymmetric KMS key, or a KMS key with imported key material. However, you cannot create a multi-Region key in a custom key store.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "decrypt": {
+        "CiphertextBlob": {
+            "Description": "Ciphertext to be decrypted. The blob includes metadata.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "EncryptionContext": {
+            "Description": "Specifies the encryption context to use when decrypting the data. An encryption context is valid only for cryptographic operations with a symmetric encryption KMS key. The standard asymmetric encryption algorithms and HMAC algorithms that KMS uses do not support an encryption context.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "KeyId": {
+            "Description": "Specifies the KMS key that KMS uses to decrypt the ciphertext.\nEnter a key ID of the KMS key that was used to encrypt the ciphertext. If you identify a different KMS key, the Decrypt operation throws an IncorrectKeyException .\nThis parameter is required only when the ciphertext was encrypted under an asymmetric KMS key. If you used a symmetric encryption KMS key, KMS can get the KMS key from metadata that it adds to the symmetric ciphertext blob. However, it is always recommended as a best practice. This practice ensures that you use the KMS key that you intend.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EncryptionAlgorithm": {
+            "Description": "Specifies the encryption algorithm that will be used to decrypt the ciphertext. Specify the same algorithm that was used to encrypt the data. If you specify a different algorithm, the Decrypt operation fails.\nThis parameter is required only when the ciphertext was encrypted under an asymmetric KMS key. The default value, SYMMETRIC_DEFAULT, represents the only supported algorithm that is valid for symmetric encryption KMS keys.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_alias": {
+        "AliasName": {
+            "Description": "The alias to be deleted. The alias name must begin with alias/ followed by the alias name, such as alias/ExampleAlias .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_custom_key_store": {
+        "CustomKeyStoreId": {
+            "Description": "Enter the ID of the custom key store you want to delete. To find the ID of a custom key store, use the  DescribeCustomKeyStores operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_imported_key_material": {
+        "KeyId": {
+            "Description": "Identifies the KMS key from which you are deleting imported key material. The Origin of the KMS key must be EXTERNAL .\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "describe_custom_key_stores": {
+        "CustomKeyStoreId": {
+            "Description": "Gets only information about the specified custom key store. Enter the key store ID.\nBy default, this operation gets information about all custom key stores in the account and Region. To limit the output to a particular custom key store, you can use either the CustomKeyStoreId or CustomKeyStoreName parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "CustomKeyStoreName": {
+            "Description": "Gets only information about the specified custom key store. Enter the friendly name of the custom key store.\nBy default, this operation gets information about all custom key stores in the account and Region. To limit the output to a particular custom key store, you can use either the CustomKeyStoreId or CustomKeyStoreName parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Use this parameter to specify the maximum number of items to return. When this value is present, KMS does not return more than the specified number of items, but it might return fewer.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextMarker from the truncated response you just received.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_key": {
+        "KeyId": {
+            "Description": "Describes the specified KMS key.\nIf you specify a predefined Amazon Web Services alias (an Amazon Web Services alias with no key ID), KMS associates the alias with an Amazon Web Services managed key and returns its KeyId and Arn in the response.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "disable_key": {
+        "KeyId": {
+            "Description": "Identifies the KMS key to disable.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "disable_key_rotation": {
+        "KeyId": {
+            "Description": "Identifies a symmetric encryption KMS key. You cannot enable or disable automatic rotation of asymmetric KMS keys, HMAC KMS keys, KMS keys with imported key material, or KMS keys in a custom key store .\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "disconnect_custom_key_store": {
+        "CustomKeyStoreId": {
+            "Description": "Enter the ID of the custom key store you want to disconnect. To find the ID of a custom key store, use the  DescribeCustomKeyStores operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_key": {
+        "KeyId": {
+            "Description": "Identifies the KMS key to enable.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "enable_key_rotation": {
+        "KeyId": {
+            "Description": "Identifies a symmetric encryption KMS key. You cannot enable or disable automatic rotation of asymmetric KMS keys, HMAC KMS keys, KMS keys with imported key material, or KMS keys in a custom key store. The key rotation status of these KMS keys is always false. To enable or disable automatic rotation of a set of related multi-Region keys, set the property on the primary key.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "encrypt": {
+        "KeyId": {
+            "Description": "Identifies the KMS key to use in the encryption operation. The KMS key must have a KeyUsage of ENCRYPT_DECRYPT. To find the KeyUsage of a KMS key, use the  DescribeKey operation.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Plaintext": {
+            "Description": "Data to be encrypted.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "EncryptionContext": {
+            "Description": "Specifies the encryption context that will be used to encrypt the data. An encryption context is valid only for cryptographic operations with a symmetric encryption KMS key. The standard asymmetric encryption algorithms and HMAC algorithms that KMS uses do not support an encryption context.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EncryptionAlgorithm": {
+            "Description": "Specifies the encryption algorithm that KMS will use to encrypt the plaintext message. The algorithm must be compatible with the KMS key that you specify.\nThis parameter is required only for asymmetric KMS keys. The default value, SYMMETRIC_DEFAULT, is the algorithm used for symmetric encryption KMS keys. If you are using an asymmetric KMS key, we recommend RSAES_OAEP_SHA_256.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "generate_data_key": {
+        "KeyId": {
+            "Description": "Specifies the symmetric encryption KMS key that encrypts the data key. You cannot specify an asymmetric KMS key or a KMS key in a custom key store. To get the type and origin of your KMS key, use the  DescribeKey operation.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "EncryptionContext": {
+            "Description": "Specifies the encryption context that will be used when encrypting the data key.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NumberOfBytes": {
+            "Description": "Specifies the length of the data key in bytes. For example, use the value 64 to generate a 512-bit data key (64 bytes is 512 bits). For 128-bit (16-byte) and 256-bit (32-byte) data keys, use the KeySpec parameter.\nYou must specify either the KeySpec or the NumberOfBytes parameter (but not both) in every GenerateDataKey request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "KeySpec": {
+            "Description": "Specifies the length of the data key. Use AES_128 to generate a 128-bit symmetric key, or AES_256 to generate a 256-bit symmetric key.\nYou must specify either the KeySpec or the NumberOfBytes parameter (but not both) in every GenerateDataKey request.",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "generate_data_key_pair": {
+        "EncryptionContext": {
+            "Description": "Specifies the encryption context that will be used when encrypting the private key in the data key pair.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KeyId": {
+            "Description": "Specifies the symmetric encryption KMS key that encrypts the private key in the data key pair. You cannot specify an asymmetric KMS key or a KMS key in a custom key store. To get the type and origin of your KMS key, use the  DescribeKey operation.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "KeyPairSpec": {
+            "Description": "Determines the type of data key pair that is generated.\nThe KMS rule that restricts the use of asymmetric RSA and SM2 KMS keys to encrypt and decrypt or to sign and verify (but not both), and the rule that permits you to use ECC KMS keys only to sign and verify, are not effective on data key pairs, which are used outside of KMS. The SM2 key spec is only available in China Regions. RSA and ECC asymmetric key pairs are also available in China Regions.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "generate_data_key_pair_without_plaintext": {
+        "EncryptionContext": {
+            "Description": "Specifies the encryption context that will be used when encrypting the private key in the data key pair.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KeyId": {
+            "Description": "Specifies the symmetric encryption KMS key that encrypts the private key in the data key pair. You cannot specify an asymmetric KMS key or a KMS key in a custom key store. To get the type and origin of your KMS key, use the  DescribeKey operation.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "KeyPairSpec": {
+            "Description": "Determines the type of data key pair that is generated.\nThe KMS rule that restricts the use of asymmetric RSA and SM2 KMS keys to encrypt and decrypt or to sign and verify (but not both), and the rule that permits you to use ECC KMS keys only to sign and verify, are not effective on data key pairs, which are used outside of KMS. The SM2 key spec is only available in China Regions. RSA and ECC asymmetric key pairs are also available in China Regions.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "generate_data_key_without_plaintext": {
+        "KeyId": {
+            "Description": "Specifies the symmetric encryption KMS key that encrypts the data key. You cannot specify an asymmetric KMS key or a KMS key in a custom key store. To get the type and origin of your KMS key, use the  DescribeKey operation.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "EncryptionContext": {
+            "Description": "Specifies the encryption context that will be used when encrypting the data key.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KeySpec": {
+            "Description": "The length of the data key. Use AES_128 to generate a 128-bit symmetric key, or AES_256 to generate a 256-bit symmetric key.",
+            "Type": "string",
+            "Required": false
+        },
+        "NumberOfBytes": {
+            "Description": "The length of the data key in bytes. For example, use the value 64 to generate a 512-bit data key (64 bytes is 512 bits). For common key lengths (128-bit and 256-bit symmetric keys), we recommend that you use the KeySpec field instead of this one.",
+            "Type": "integer",
+            "Required": false
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "generate_mac": {
+        "Message": {
+            "Description": "The message to be hashed. Specify a message of up to 4,096 bytes.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "KeyId": {
+            "Description": "The HMAC KMS key to use in the operation. The MAC algorithm computes the HMAC for the message and the key as described in RFC 2104 .\nTo identify an HMAC KMS key, use the  DescribeKey operation and see the KeySpec field in the response.",
+            "Type": "string",
+            "Required": true
+        },
+        "MacAlgorithm": {
+            "Description": "The MAC algorithm used in the operation.\nThe algorithm must be compatible with the HMAC KMS key that you specify. To find the MAC algorithms that your HMAC KMS key supports, use the  DescribeKey operation and see the MacAlgorithms field in the DescribeKey response.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "generate_random": {
+        "NumberOfBytes": {
+            "Description": "The length of the random byte string. This parameter is required.",
+            "Type": "integer",
+            "Required": false
+        },
+        "CustomKeyStoreId": {
+            "Description": "Generates the random byte string in the CloudHSM cluster that is associated with the specified custom key store . To find the ID of a custom key store, use the  DescribeCustomKeyStores operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_key_policy": {
+        "KeyId": {
+            "Description": "Gets the key policy for the specified KMS key.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PolicyName": {
+            "Description": "Specifies the name of the key policy. The only valid name is default. To get the names of key policies, use  ListKeyPolicies .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_key_rotation_status": {
+        "KeyId": {
+            "Description": "Gets the rotation status for the specified KMS key.\nSpecify the key ID or key ARN of the KMS key. To specify a KMS key in a different Amazon Web Services account, you must use the key ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "get_parameters_for_import": {
+        "KeyId": {
+            "Description": "The identifier of the symmetric encryption KMS key into which you will import key material. The Origin of the KMS key must be EXTERNAL .\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "WrappingAlgorithm": {
+            "Description": "The algorithm you will use to encrypt the key material before importing it with  ImportKeyMaterial. For more information, see Encrypt the Key Material in the Key Management Service Developer Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "WrappingKeySpec": {
+            "Description": "The type of wrapping key (public key) to return in the response. Only 2048-bit RSA public keys are supported.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_public_key": {
+        "KeyId": {
+            "Description": "Identifies the asymmetric KMS key that includes the public key.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "import_key_material": {
+        "KeyId": {
+            "Description": "The identifier of the symmetric encryption KMS key that receives the imported key material. This must be the same KMS key specified in the KeyID parameter of the corresponding  GetParametersForImport request. The Origin of the KMS key must be EXTERNAL. You cannot perform this operation on an asymmetric KMS key, an HMAC KMS key, a KMS key in a custom key store, or on a KMS key in a different Amazon Web Services account\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ImportToken": {
+            "Description": "The import token that you received in the response to a previous  GetParametersForImport request. It must be from the same response that contained the public key that you used to encrypt the key material.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "EncryptedKeyMaterial": {
+            "Description": "The encrypted key material to import. The key material must be encrypted with the public wrapping key that  GetParametersForImport returned, using the wrapping algorithm that you specified in the same GetParametersForImport request.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "ValidTo": {
+            "Description": "The time at which the imported key material expires. When the key material expires, KMS deletes the key material and the KMS key becomes unusable. You must omit this parameter when the ExpirationModel parameter is set to KEY_MATERIAL_DOES_NOT_EXPIRE . Otherwise it is required.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ExpirationModel": {
+            "Description": "Specifies whether the key material expires. The default is KEY_MATERIAL_EXPIRES , in which case you must include the ValidTo parameter. When this parameter is set to KEY_MATERIAL_DOES_NOT_EXPIRE , you must omit the ValidTo parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_aliases": {
+        "KeyId": {
+            "Description": "Lists only aliases that are associated with the specified KMS key. Enter a KMS key in your Amazon Web Services account.\nThis parameter is optional. If you omit it, ListAliases returns all aliases in the account and Region.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Limit": {
+            "Description": "Use this parameter to specify the maximum number of items to return. When this value is present, KMS does not return more than the specified number of items, but it might return fewer.\nThis value is optional. If you include a value, it must be between 1 and 100, inclusive. If you do not include a value, it defaults to 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextMarker from the truncated response you just received.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_grants": {
+        "Limit": {
+            "Description": "Use this parameter to specify the maximum number of items to return. When this value is present, KMS does not return more than the specified number of items, but it might return fewer.\nThis value is optional. If you include a value, it must be between 1 and 100, inclusive. If you do not include a value, it defaults to 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextMarker from the truncated response you just received.",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyId": {
+            "Description": "Returns only grants for the specified KMS key. This parameter is required.\nSpecify the key ID or key ARN of the KMS key. To specify a KMS key in a different Amazon Web Services account, you must use the key ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "GrantId": {
+            "Description": "Returns only the grant with the specified grant ID. The grant ID uniquely identifies the grant.",
+            "Type": "string",
+            "Required": false
+        },
+        "GranteePrincipal": {
+            "Description": "Returns only grants where the specified principal is the grantee principal for the grant.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_key_policies": {
+        "KeyId": {
+            "Description": "Gets the names of key policies for the specified KMS key.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Limit": {
+            "Description": "Use this parameter to specify the maximum number of items to return. When this value is present, KMS does not return more than the specified number of items, but it might return fewer.\nThis value is optional. If you include a value, it must be between 1 and 1000, inclusive. If you do not include a value, it defaults to 100.\nOnly one policy can be attached to a key.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextMarker from the truncated response you just received.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_keys": {
+        "Limit": {
+            "Description": "Use this parameter to specify the maximum number of items to return. When this value is present, KMS does not return more than the specified number of items, but it might return fewer.\nThis value is optional. If you include a value, it must be between 1 and 1000, inclusive. If you do not include a value, it defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextMarker from the truncated response you just received.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_resource_tags": {
+        "KeyId": {
+            "Description": "Gets tags on the specified KMS key.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Limit": {
+            "Description": "Use this parameter to specify the maximum number of items to return. When this value is present, KMS does not return more than the specified number of items, but it might return fewer.\nThis value is optional. If you include a value, it must be between 1 and 50, inclusive. If you do not include a value, it defaults to 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextMarker from the truncated response you just received.\nDo not attempt to construct this value. Use only the value of NextMarker from the truncated response you just received.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_retirable_grants": {
+        "Limit": {
+            "Description": "Use this parameter to specify the maximum number of items to return. When this value is present, KMS does not return more than the specified number of items, but it might return fewer.\nThis value is optional. If you include a value, it must be between 1 and 100, inclusive. If you do not include a value, it defaults to 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Use this parameter in a subsequent request after you receive a response with truncated results. Set it to the value of NextMarker from the truncated response you just received.",
+            "Type": "string",
+            "Required": false
+        },
+        "RetiringPrincipal": {
+            "Description": "The retiring principal for which to list grants. Enter a principal in your Amazon Web Services account.\nTo specify the retiring principal, use the Amazon Resource Name (ARN) of an Amazon Web Services principal. Valid Amazon Web Services principals include Amazon Web Services accounts (root), IAM users, federated users, and assumed role users. For examples of the ARN syntax for specifying a principal, see Amazon Web Services Identity and Access Management (IAM) in the Example ARNs section of the Amazon Web Services General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_key_policy": {
+        "KeyId": {
+            "Description": "Sets the key policy on the specified KMS key.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PolicyName": {
+            "Description": "The name of the key policy. The only valid value is default .",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The key policy to attach to the KMS key.\nThe key policy must meet the following criteria:\nA key policy document can include only the following characters:\nFor information about key policies, see Key policies in KMS in the Key Management Service Developer Guide. For help writing and formatting a JSON policy document, see the IAM JSON Policy Reference in the * Identity and Access Management User Guide * .",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "BypassPolicyLockoutSafetyCheck": {
+            "Description": "A flag to indicate whether to bypass the key policy lockout safety check.\nUse this parameter only when you intend to prevent the principal that is making the request from making a subsequent PutKeyPolicy request on the KMS key.\nThe default value is false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "re_encrypt": {
+        "CiphertextBlob": {
+            "Description": "Ciphertext of the data to reencrypt.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "SourceEncryptionContext": {
+            "Description": "Specifies the encryption context to use to decrypt the ciphertext. Enter the same encryption context that was used to encrypt the ciphertext.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SourceKeyId": {
+            "Description": "Specifies the KMS key that KMS will use to decrypt the ciphertext before it is re-encrypted.\nEnter a key ID of the KMS key that was used to encrypt the ciphertext. If you identify a different KMS key, the ReEncrypt operation throws an IncorrectKeyException .\nThis parameter is required only when the ciphertext was encrypted under an asymmetric KMS key. If you used a symmetric encryption KMS key, KMS can get the KMS key from metadata that it adds to the symmetric ciphertext blob. However, it is always recommended as a best practice. This practice ensures that you use the KMS key that you intend.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DestinationKeyId": {
+            "Description": "A unique identifier for the KMS key that is used to reencrypt the data. Specify a symmetric encryption KMS key or an asymmetric KMS key with a KeyUsage value of ENCRYPT_DECRYPT. To find the KeyUsage value of a KMS key, use the  DescribeKey operation.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DestinationEncryptionContext": {
+            "Description": "Specifies that encryption context to use when the reencrypting the data.\nA destination encryption context is valid only when the destination KMS key is a symmetric encryption KMS key. The standard ciphertext format for asymmetric KMS keys does not include fields for metadata.\nAn encryption context is a collection of non-secret key-value pairs that represent additional authenticated data. When you use an encryption context to encrypt data, you must specify the same (an exact case-sensitive match) encryption context to decrypt the data. An encryption context is supported only on operations with symmetric encryption KMS keys. On operations with symmetric encryption KMS keys, an encryption context is optional, but it is strongly recommended.\nFor more information, see Encryption context in the Key Management Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SourceEncryptionAlgorithm": {
+            "Description": "Specifies the encryption algorithm that KMS will use to decrypt the ciphertext before it is reencrypted. The default value, SYMMETRIC_DEFAULT, represents the algorithm used for symmetric encryption KMS keys.\nSpecify the same algorithm that was used to encrypt the ciphertext. If you specify a different algorithm, the decrypt attempt fails.\nThis parameter is required only when the ciphertext was encrypted under an asymmetric KMS key.",
+            "Type": "string",
+            "Required": false
+        },
+        "DestinationEncryptionAlgorithm": {
+            "Description": "Specifies the encryption algorithm that KMS will use to reecrypt the data after it has decrypted it. The default value, SYMMETRIC_DEFAULT, represents the encryption algorithm used for symmetric encryption KMS keys.\nThis parameter is required only when the destination KMS key is an asymmetric KMS key.",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "replicate_key": {
+        "KeyId": {
+            "Description": "Identifies the multi-Region primary key that is being replicated. To determine whether a KMS key is a multi-Region primary key, use the  DescribeKey operation to check the value of the MultiRegionKeyType property.\nSpecify the key ID or key ARN of a multi-Region primary key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ReplicaRegion": {
+            "Description": "The Region ID of the Amazon Web Services Region for this replica key.\nEnter the Region ID, such as us-east-1 or ap-southeast-2. For a list of Amazon Web Services Regions in which KMS is supported, see KMS service endpoints in the Amazon Web Services General Reference .\nThe replica must be in a different Amazon Web Services Region than its primary key and other replicas of that primary key, but in the same Amazon Web Services partition. KMS must be available in the replica Region. If the Region is not enabled by default, the Amazon Web Services account must be enabled in the Region. For information about Amazon Web Services partitions, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference. For information about enabling and disabling Regions, see Enabling a Region and Disabling a Region in the Amazon Web Services General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The key policy to attach to the KMS key. This parameter is optional. If you do not provide a key policy, KMS attaches the default key policy to the KMS key.\nThe key policy is not a shared property of multi-Region keys. You can specify the same key policy or a different key policy for each key in a set of related multi-Region keys. KMS does not synchronize this property.\nIf you provide a key policy, it must meet the following criteria:\nA key policy document can include only the following characters:\nFor information about key policies, see Key policies in KMS in the Key Management Service Developer Guide. For help writing and formatting a JSON policy document, see the IAM JSON Policy Reference in the * Identity and Access Management User Guide * .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "BypassPolicyLockoutSafetyCheck": {
+            "Description": "A flag to indicate whether to bypass the key policy lockout safety check.\nUse this parameter only when you intend to prevent the principal that is making the request from making a subsequent PutKeyPolicy request on the KMS key.\nThe default value is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description of the KMS key. The default value is an empty string (no description).\nThe description is not a shared property of multi-Region keys. You can specify the same description or a different description for each key in a set of related multi-Region keys. KMS does not synchronize this property.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Assigns one or more tags to the replica key. Use this parameter to tag the KMS key when it is created. To tag an existing KMS key, use the  TagResource operation.\nTo use this parameter, you must have kms:TagResource permission in an IAM policy.\nTags are not a shared property of multi-Region keys. You can specify the same tags or different tags for each key in a set of related multi-Region keys. KMS does not synchronize this property.\nEach tag consists of a tag key and a tag value. Both the tag key and the tag value are required, but the tag value can be an empty (null) string. You cannot have more than one tag on a KMS key with the same tag key. If you specify an existing tag key with a different tag value, KMS replaces the current tag value with the specified one.\nWhen you add tags to an Amazon Web Services resource, Amazon Web Services generates a cost allocation report with usage and costs aggregated by tags. Tags can also be used to control access to a KMS key. For details, see Tagging Keys .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "retire_grant": {
+        "GrantToken": {
+            "Description": "Identifies the grant to be retired. You can use a grant token to identify a new grant even before it has achieved eventual consistency.\nOnly the  CreateGrant operation returns a grant token. For details, see Grant token and Eventual consistency in the Key Management Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyId": {
+            "Description": "The key ARN KMS key associated with the grant. To find the key ARN, use the  ListKeys operation.\nFor example: arn:aws:kms:us-east-2:444455556666:key/1234abcd-12ab-34cd-56ef-1234567890ab",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantId": {
+            "Description": "Identifies the grant to retire. To get the grant ID, use  CreateGrant,  ListGrants, or  ListRetirableGrants .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "revoke_grant": {
+        "KeyId": {
+            "Description": "A unique identifier for the KMS key associated with the grant. To get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .\nSpecify the key ID or key ARN of the KMS key. To specify a KMS key in a different Amazon Web Services account, you must use the key ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "GrantId": {
+            "Description": "Identifies the grant to revoke. To get the grant ID, use  CreateGrant,  ListGrants, or  ListRetirableGrants .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "schedule_key_deletion": {
+        "KeyId": {
+            "Description": "The unique identifier of the KMS key to delete.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PendingWindowInDays": {
+            "Description": "The waiting period, specified in number of days. After the waiting period ends, KMS deletes the KMS key.\nIf the KMS key is a multi-Region primary key with replica keys, the waiting period begins when the last of its replica keys is deleted. Otherwise, the waiting period begins immediately.\nThis value is optional. If you include a value, it must be between 7 and 30, inclusive. If you do not include a value, it defaults to 30.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "sign": {
+        "KeyId": {
+            "Description": "Identifies an asymmetric KMS key. KMS uses the private key in the asymmetric KMS key to sign the message. The KeyUsage type of the KMS key must be SIGN_VERIFY. To find the KeyUsage of a KMS key, use the  DescribeKey operation.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Message": {
+            "Description": "Specifies the message or message digest to sign. Messages can be 0-4096 bytes. To sign a larger message, provide the message digest.\nIf you provide a message, KMS generates a hash digest of the message and then signs it.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "MessageType": {
+            "Description": "Tells KMS whether the value of the Message parameter is a message or message digest. The default value, RAW, indicates a message. To indicate a message digest, enter DIGEST .",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SigningAlgorithm": {
+            "Description": "Specifies the signing algorithm to use when signing the message.\nChoose an algorithm that is compatible with the type and size of the specified asymmetric KMS key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "KeyId": {
+            "Description": "Identifies a customer managed key in the account and Region.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "One or more tags.\nEach tag consists of a tag key and a tag value. The tag value can be an empty (null) string.\nYou cannot have more than one tag on a KMS key with the same tag key. If you specify an existing tag key with a different tag value, KMS replaces the current tag value with the specified one.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "KeyId": {
+            "Description": "Identifies the KMS key from which you are removing tags.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TagKeys": {
+            "Description": "One or more tag keys. Specify only the tag keys, not the tag values.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_alias": {
+        "AliasName": {
+            "Description": "Identifies the alias that is changing its KMS key. This value must begin with alias/ followed by the alias name, such as alias/ExampleAlias. You cannot use UpdateAlias to change the alias name.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetKeyId": {
+            "Description": "Identifies the customer managed key to associate with the alias. You don't have permission to associate an alias with an Amazon Web Services managed key .\nThe KMS key must be in the same Amazon Web Services account and Region as the alias. Also, the new target KMS key must be the same type as the current target KMS key (both symmetric or both asymmetric) and they must have the same key usage.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .\nTo verify that the alias is mapped to the correct KMS key, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "update_custom_key_store": {
+        "CustomKeyStoreId": {
+            "Description": "Identifies the custom key store that you want to update. Enter the ID of the custom key store. To find the ID of a custom key store, use the  DescribeCustomKeyStores operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "NewCustomKeyStoreName": {
+            "Description": "Changes the friendly name of the custom key store to the value that you specify. The custom key store name must be unique in the Amazon Web Services account.",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyStorePassword": {
+            "Description": "Enter the current password of the kmsuser crypto user (CU) in the CloudHSM cluster that is associated with the custom key store.\nThis parameter tells KMS the current password of the kmsuser crypto user (CU). It does not set or change the password of any users in the CloudHSM cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "CloudHsmClusterId": {
+            "Description": "Associates the custom key store with a related CloudHSM cluster.\nEnter the cluster ID of the cluster that you used to create the custom key store or a cluster that shares a backup history and has the same cluster certificate as the original cluster. You cannot use this parameter to associate a custom key store with an unrelated cluster. In addition, the replacement cluster must fulfill the requirements for a cluster associated with a custom key store. To view the cluster certificate of a cluster, use the DescribeClusters operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_key_description": {
+        "KeyId": {
+            "Description": "Updates the description of the specified KMS key.\nSpecify the key ID or key ARN of the KMS key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Description": {
+            "Description": "New description for the KMS key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_primary_region": {
+        "KeyId": {
+            "Description": "Identifies the current primary key. When the operation completes, this KMS key will be a replica key.\nSpecify the key ID or key ARN of a multi-Region primary key.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PrimaryRegion": {
+            "Description": "The Amazon Web Services Region of the new primary key. Enter the Region ID, such as us-east-1 or ap-southeast-2. There must be an existing replica key in this Region.\nWhen the operation completes, the multi-Region key in this Region will be the primary key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "verify": {
+        "KeyId": {
+            "Description": "Identifies the asymmetric KMS key that will be used to verify the signature. This must be the same KMS key that was used to generate the signature. If you specify a different KMS key, the signature verification fails.\nTo specify a KMS key, use its key ID, key ARN, alias name, or alias ARN. When using an alias name, prefix it with \"alias/\". To specify a KMS key in a different Amazon Web Services account, you must use the key ARN or alias ARN.\nFor example:\nTo get the key ID and key ARN for a KMS key, use  ListKeys or  DescribeKey. To get the alias name and alias ARN, use  ListAliases .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Message": {
+            "Description": "Specifies the message that was signed. You can submit a raw message of up to 4096 bytes, or a hash digest of the message. If you submit a digest, use the MessageType parameter with a value of DIGEST .\nIf the message specified here is different from the message that was signed, the signature verification fails. A message and its hash digest are considered to be the same message.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "MessageType": {
+            "Description": "Tells KMS whether the value of the Message parameter is a message or message digest. The default value, RAW, indicates a message. To indicate a message digest, enter DIGEST .",
+            "Type": "string",
+            "Required": false
+        },
+        "Signature": {
+            "Description": "The signature that the Sign operation generated.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "SigningAlgorithm": {
+            "Description": "The signing algorithm that was used to sign the message. If you submit a different algorithm, the signature verification fails.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "verify_mac": {
+        "Message": {
+            "Description": "The message that will be used in the verification. Enter the same message that was used to generate the HMAC.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "KeyId": {
+            "Description": "The KMS key that will be used in the verification.\nEnter a key ID of the KMS key that was used to generate the HMAC. If you identify a different KMS key, the VerifyMac operation fails.",
+            "Type": "string",
+            "Required": true
+        },
+        "MacAlgorithm": {
+            "Description": "The MAC algorithm that will be used in the verification. Enter the same MAC algorithm that was used to compute the HMAC. This algorithm must be supported by the HMAC KMS key identified by the KeyId parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "Mac": {
+            "Description": "The HMAC to verify. Enter the HMAC that was generated by the  GenerateMac operation when you specified the same message, HMAC KMS key, and MAC algorithm as the values specified in this request.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "GrantTokens": {
+            "Description": "A list of grant tokens.\nUse a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the Key Management Service Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "RetiringPrincipal": {
+            "Description": "The retiring principal for which to list grants. Enter a principal in your Amazon Web Services account.\nTo specify the retiring principal, use the Amazon Resource Name (ARN) of an Amazon Web Services principal. Valid Amazon Web Services principals include Amazon Web Services accounts (root), IAM users, federated users, and assumed role users. For examples of the ARN syntax for specifying a principal, see Amazon Web Services Identity and Access Management (IAM) in the Example ARNs section of the Amazon Web Services General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

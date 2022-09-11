@@ -1,0 +1,1333 @@
+{
+    "batch_create_variable": {
+        "variableEntries": {
+            "Description": "The list of variables for the batch create variable request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "batch_get_variable": {
+        "names": {
+            "Description": "The list of variable names to get.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "cancel_batch_import_job": {
+        "jobId": {
+            "Description": "The ID of an in-progress batch import job to cancel.\nAmazon Fraud Detector will throw an error if the batch import job is in FAILED, CANCELED, or COMPLETED state.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_batch_prediction_job": {
+        "jobId": {
+            "Description": "The ID of the batch prediction job to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_batch_import_job": {
+        "jobId": {
+            "Description": "The ID of the batch import job. The ID cannot be of a past job, unless the job exists in CREATE_FAILED state.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputPath": {
+            "Description": "The URI that points to the Amazon S3 location of your data file.",
+            "Type": "string",
+            "Required": true
+        },
+        "outputPath": {
+            "Description": "The URI that points to the Amazon S3 location for storing your results.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The name of the event type.",
+            "Type": "string",
+            "Required": true
+        },
+        "iamRoleArn": {
+            "Description": "The ARN of the IAM role created for Amazon S3 bucket that holds your data file. The IAM role must have read and write permissions to both input and output S3 buckets.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A collection of key-value pairs associated with this request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_batch_prediction_job": {
+        "jobId": {
+            "Description": "The ID of the batch prediction job.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputPath": {
+            "Description": "The Amazon S3 location of your training file.",
+            "Type": "string",
+            "Required": true
+        },
+        "outputPath": {
+            "Description": "The Amazon S3 location of your output file.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The name of the event type.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorName": {
+            "Description": "The name of the detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersion": {
+            "Description": "The detector version.",
+            "Type": "string",
+            "Required": false
+        },
+        "iamRoleArn": {
+            "Description": "The ARN of the IAM role to use for this job request.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_detector_version": {
+        "detectorId": {
+            "Description": "The ID of the detector under which you want to create a new version.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the detector version.",
+            "Type": "string",
+            "Required": false
+        },
+        "externalModelEndpoints": {
+            "Description": "The Amazon Sagemaker model endpoints to include in the detector version.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "rules": {
+            "Description": "The rules to include in the detector version.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "modelVersions": {
+            "Description": "The model versions to include in the detector version.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ruleExecutionMode": {
+            "Description": "The rule execution mode for the rules included in the detector version.\nYou can define and edit the rule mode at the detector version level, when it is in draft status.\nIf you specify FIRST_MATCHED, Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.\nIf you specifiy ALL_MATCHED, Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules.\nThe default behavior is FIRST_MATCHED .",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_model": {
+        "modelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The model description.",
+            "Type": "string",
+            "Required": false
+        },
+        "eventTypeName": {
+            "Description": "The name of the event type.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_model_version": {
+        "modelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": true
+        },
+        "trainingDataSource": {
+            "Description": "The training data source location in Amazon S3.",
+            "Type": "string",
+            "Required": true
+        },
+        "trainingDataSchema": {
+            "Description": "The training data schema.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "externalEventsDetail": {
+            "Description": "Details of the external events data used for model version training. Required if trainingDataSource is EXTERNAL_EVENTS .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ingestedEventsDetail": {
+            "Description": "Details of the ingested events data used for model version training. Required if trainingDataSource is INGESTED_EVENTS .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_rule": {
+        "ruleId": {
+            "Description": "The rule ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorId": {
+            "Description": "The detector ID for the rule's parent detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The rule description.",
+            "Type": "string",
+            "Required": false
+        },
+        "expression": {
+            "Description": "The rule expression.",
+            "Type": "string",
+            "Required": true
+        },
+        "language": {
+            "Description": "The language of the rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "outcomes": {
+            "Description": "The outcome or outcomes returned when the rule expression matches.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_variable": {
+        "name": {
+            "Description": "The name of the variable.",
+            "Type": "string",
+            "Required": true
+        },
+        "dataType": {
+            "Description": "The data type.",
+            "Type": "string",
+            "Required": true
+        },
+        "dataSource": {
+            "Description": "The source of the data.",
+            "Type": "string",
+            "Required": true
+        },
+        "defaultValue": {
+            "Description": "The default value for the variable when no value is received.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description.",
+            "Type": "string",
+            "Required": false
+        },
+        "variableType": {
+            "Description": "The variable type. For more information see Variable types .\nValid Values: AUTH_CODE | AVS | BILLING_ADDRESS_L1 | BILLING_ADDRESS_L2 | BILLING_CITY | BILLING_COUNTRY | BILLING_NAME | BILLING_PHONE | BILLING_STATE | BILLING_ZIP | CARD_BIN | CATEGORICAL | CURRENCY_CODE | EMAIL_ADDRESS | FINGERPRINT | FRAUD_LABEL | FREE_FORM_TEXT | IP_ADDRESS | NUMERIC | ORDER_ID | PAYMENT_TYPE | PHONE_NUMBER | PRICE | PRODUCT_CATEGORY | SHIPPING_ADDRESS_L1 | SHIPPING_ADDRESS_L2 | SHIPPING_CITY | SHIPPING_COUNTRY | SHIPPING_NAME | SHIPPING_PHONE | SHIPPING_STATE | SHIPPING_ZIP | USERAGENT",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_batch_import_job": {
+        "jobId": {
+            "Description": "The ID of the batch import job to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_batch_prediction_job": {
+        "jobId": {
+            "Description": "The ID of the batch prediction job to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_detector": {
+        "detectorId": {
+            "Description": "The ID of the detector to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_detector_version": {
+        "detectorId": {
+            "Description": "The ID of the parent detector for the detector version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersionId": {
+            "Description": "The ID of the detector version to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_entity_type": {
+        "name": {
+            "Description": "The name of the entity type to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_event": {
+        "eventId": {
+            "Description": "The ID of the event to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The name of the event type.",
+            "Type": "string",
+            "Required": true
+        },
+        "deleteAuditHistory": {
+            "Description": "Specifies whether or not to delete any predictions associated with the event.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_event_type": {
+        "name": {
+            "Description": "The name of the event type to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_events_by_event_type": {
+        "eventTypeName": {
+            "Description": "The name of the event type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_external_model": {
+        "modelEndpoint": {
+            "Description": "The endpoint of the Amazon Sagemaker model to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_label": {
+        "name": {
+            "Description": "The name of the label to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_model": {
+        "modelId": {
+            "Description": "The model ID of the model to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type of the model to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_model_version": {
+        "modelId": {
+            "Description": "The model ID of the model version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type of the model version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelVersionNumber": {
+            "Description": "The model version number of the model version to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_outcome": {
+        "name": {
+            "Description": "The name of the outcome to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_rule": {
+        "rule": {
+            "Description": "A rule.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_variable": {
+        "name": {
+            "Description": "The name of the variable to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_detector": {
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The next token from the previous response.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_model_versions": {
+        "modelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "modelVersionNumber": {
+            "Description": "The model version number.",
+            "Type": "string",
+            "Required": false
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token from the previous results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_batch_import_jobs": {
+        "jobId": {
+            "Description": "The ID of the batch import job to get.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token from the previous request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_batch_prediction_jobs": {
+        "jobId": {
+            "Description": "The batch prediction job for which to get the details.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token from the previous request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_delete_events_by_event_type_status": {
+        "eventTypeName": {
+            "Description": "Name of event type for which to get the deletion status.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_detector_version": {
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersionId": {
+            "Description": "The detector version ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_detectors": {
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token for the subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_entity_types": {
+        "name": {
+            "Description": "The name.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token for the subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_event": {
+        "eventId": {
+            "Description": "The ID of the event to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The event type of the event to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_event_prediction": {
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersionId": {
+            "Description": "The detector version ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "eventId": {
+            "Description": "The unique ID used to identify the event.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The event type associated with the detector specified for the prediction.",
+            "Type": "string",
+            "Required": true
+        },
+        "entities": {
+            "Description": "The entity type (associated with the detector's event type) and specific entity ID representing who performed the event. If an entity id is not available, use \"UNKNOWN.\"",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "eventTimestamp": {
+            "Description": "Timestamp that defines when the event under evaluation occurred. The timestamp must be specified using ISO 8601 standard in UTC.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventVariables": {
+            "Description": "Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.\nTo ensure most accurate fraud prediction and to simplify your data preparation, Amazon Fraud Detector will replace all missing variables or values as follows:\nIf a null value is provided explicitly for a variable or if a variable is missing, model will replace the null value or the missing variable (no variable name in the eventVariables map) with calculated default mean/medians for numeric variables and with special values for categorical variables.\nIf a null value is provided explicitly for a variable, the model and rules will use \u201cnull\u201d as the value. If a variable is not provided (no variable name in the eventVariables map), model and rules will use the default value that is provided for the variable.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "externalModelEndpointDataBlobs": {
+            "Description": "The Amazon SageMaker model endpoint input data blobs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_event_prediction_metadata": {
+        "eventId": {
+            "Description": "The event ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The event type associated with the detector specified for the prediction.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersionId": {
+            "Description": "The detector version ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "predictionTimestamp": {
+            "Description": "The timestamp that defines when the prediction was generated. The timestamp must be specified using ISO 8601 standard in UTC.\nWe recommend calling ListEventPredictions first, and using the predictionTimestamp value in the response to provide an accurate prediction timestamp value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_event_types": {
+        "name": {
+            "Description": "The name.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token for the subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_external_models": {
+        "modelEndpoint": {
+            "Description": "The Amazon SageMaker model endpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next page token for the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_kms_encryption_key": "No parameters defined",
+    "get_labels": {
+        "name": {
+            "Description": "The name of the label or labels to get.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token for the subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_model_version": {
+        "modelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelVersionNumber": {
+            "Description": "The model version number.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_models": {
+        "modelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next token for the subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_outcomes": {
+        "name": {
+            "Description": "The name of the outcome or outcomes to get.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next page token for the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_rules": {
+        "ruleId": {
+            "Description": "The rule ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ruleVersion": {
+            "Description": "The rule version.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next page token.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of rules to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_variables": {
+        "name": {
+            "Description": "The name of the variable.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The next page token of the get variable request.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The max size per page determined for the get variable request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_event_predictions": {
+        "eventId": {
+            "Description": "The event ID.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "eventType": {
+            "Description": "The event type associated with the detector.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "detectorVersionId": {
+            "Description": "The detector version ID.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "predictionTimeRange": {
+            "Description": "The time period for when the predictions were generated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "nextToken": {
+            "Description": "Identifies the next page of results to return. Use the token to make the call again to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of predictions to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceARN": {
+            "Description": "The ARN that specifies the resource whose tags you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The next token from the previous results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return for the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_detector": {
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the detector.",
+            "Type": "string",
+            "Required": false
+        },
+        "eventTypeName": {
+            "Description": "The name of the event type.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_entity_type": {
+        "name": {
+            "Description": "The name of the entity type.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_event_type": {
+        "name": {
+            "Description": "The name.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the event type.",
+            "Type": "string",
+            "Required": false
+        },
+        "eventVariables": {
+            "Description": "The event type variables.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "labels": {
+            "Description": "The event type labels.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "entityTypes": {
+            "Description": "The entity type for the event type. Example entity types: customer, merchant, account.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "eventIngestion": {
+            "Description": "Specifies if ingenstion is enabled or disabled.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_external_model": {
+        "modelEndpoint": {
+            "Description": "The model endpoints name.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelSource": {
+            "Description": "The source of the model.",
+            "Type": "string",
+            "Required": true
+        },
+        "invokeModelEndpointRoleArn": {
+            "Description": "The IAM role used to invoke the model endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputConfiguration": {
+            "Description": "The model endpoint input configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "outputConfiguration": {
+            "Description": "The model endpoint output configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "modelEndpointStatus": {
+            "Description": "The model endpoint\u2019s status in Amazon Fraud Detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_kms_encryption_key": {
+        "kmsEncryptionKeyArn": {
+            "Description": "The KMS encryption key ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_label": {
+        "name": {
+            "Description": "The label name.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The label description.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "\n(dict) --A key and value pair.\n\nkey (string)[REQUIRED]A tag key.\n\nvalue (string)[REQUIRED]A value assigned to a tag key.\n\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_outcome": {
+        "name": {
+            "Description": "The name of the outcome.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The outcome description.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "send_event": {
+        "eventId": {
+            "Description": "The event ID to upload.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The event type name of the event.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTimestamp": {
+            "Description": "The timestamp that defines when the event under evaluation occurred. The timestamp must be specified using ISO 8601 standard in UTC.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventVariables": {
+            "Description": "Names of the event type's variables you defined in Amazon Fraud Detector to represent data elements and their corresponding values for the event you are sending for evaluation.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "assignedLabel": {
+            "Description": "The label to associate with the event. Required if specifying labelTimestamp .",
+            "Type": "string",
+            "Required": false
+        },
+        "labelTimestamp": {
+            "Description": "The timestamp associated with the label. Required if specifying assignedLabel .",
+            "Type": "string",
+            "Required": false
+        },
+        "entities": {
+            "Description": "An array of entities.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceARN": {
+            "Description": "The resource ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to assign to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceARN": {
+            "Description": "The ARN of the resource from which to remove the tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The resource ARN.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_detector_version": {
+        "detectorId": {
+            "Description": "The parent detector ID for the detector version you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersionId": {
+            "Description": "The detector version ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "externalModelEndpoints": {
+            "Description": "The Amazon SageMaker model endpoints to include in the detector version.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "rules": {
+            "Description": "The rules to include in the detector version.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "description": {
+            "Description": "The detector version description.",
+            "Type": "string",
+            "Required": false
+        },
+        "modelVersions": {
+            "Description": "The model versions to include in the detector version.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ruleExecutionMode": {
+            "Description": "The rule execution mode to add to the detector.\nIf you specify FIRST_MATCHED, Amazon Fraud Detector evaluates rules sequentially, first to last, stopping at the first matched rule. Amazon Fraud dectector then provides the outcomes for that single rule.\nIf you specifiy ALL_MATCHED, Amazon Fraud Detector evaluates all rules and returns the outcomes for all matched rules. You can define and edit the rule mode at the detector version level, when it is in draft status.\nThe default behavior is FIRST_MATCHED .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_detector_version_metadata": {
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersionId": {
+            "Description": "The detector version ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_detector_version_status": {
+        "detectorId": {
+            "Description": "The detector ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorVersionId": {
+            "Description": "The detector version ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The new status.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_event_label": {
+        "eventId": {
+            "Description": "The ID of the event associated with the label to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "eventTypeName": {
+            "Description": "The event type of the event associated with the label to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "assignedLabel": {
+            "Description": "The new label to assign to the event.",
+            "Type": "string",
+            "Required": true
+        },
+        "labelTimestamp": {
+            "Description": "The timestamp associated with the label. The timestamp must be specified using ISO 8601 standard in UTC.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_model": {
+        "modelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The new model description.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_model_version": {
+        "modelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": true
+        },
+        "majorVersionNumber": {
+            "Description": "The major version number.",
+            "Type": "string",
+            "Required": true
+        },
+        "externalEventsDetail": {
+            "Description": "The details of the external events data used for training the model version. Required if trainingDataSource is EXTERNAL_EVENTS .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ingestedEventsDetail": {
+            "Description": "The details of the ingested event used for training the model version. Required if your trainingDataSource is INGESTED_EVENTS .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A collection of key and value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_model_version_status": {
+        "modelId": {
+            "Description": "The model ID of the model version to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelType": {
+            "Description": "The model type.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelVersionNumber": {
+            "Description": "The model version number.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The model version status.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_rule_metadata": {
+        "rule": {
+            "Description": "The rule to update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "description": {
+            "Description": "The rule description.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_rule_version": {
+        "rule": {
+            "Description": "The rule to update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "description": {
+            "Description": "The description.",
+            "Type": "string",
+            "Required": false
+        },
+        "expression": {
+            "Description": "The rule expression.",
+            "Type": "string",
+            "Required": true
+        },
+        "language": {
+            "Description": "The language.",
+            "Type": "string",
+            "Required": true
+        },
+        "outcomes": {
+            "Description": "The outcomes.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags to assign to the rule version.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_variable": {
+        "name": {
+            "Description": "The name of the variable.",
+            "Type": "string",
+            "Required": true
+        },
+        "defaultValue": {
+            "Description": "The new default value of the variable.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The new description.",
+            "Type": "string",
+            "Required": false
+        },
+        "variableType": {
+            "Description": "The variable type. For more information see Variable types .",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

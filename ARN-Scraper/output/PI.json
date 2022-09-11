@@ -1,0 +1,223 @@
+{
+    "describe_dimension_keys": {
+        "ServiceType": {
+            "Description": "The Amazon Web Services service for which Performance Insights will return metrics. Valid values are as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Identifier": {
+            "Description": "An immutable, Amazon Web Services Region-unique identifier for a data source. Performance Insights gathers metrics from this data source.\nTo use an Amazon RDS instance as a data source, you specify its DbiResourceId value. For example, specify db-FAIHNTYBKTGAUSUZQYPDS2GW4A .",
+            "Type": "string",
+            "Required": true
+        },
+        "StartTime": {
+            "Description": "The date and time specifying the beginning of the requested time series data. You must specify a StartTime within the past 7 days. The value specified is inclusive, which means that data points equal to or greater than StartTime are returned.\nThe value for StartTime must be earlier than the value for EndTime .",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The date and time specifying the end of the requested time series data. The value specified is exclusive, which means that data points less than (but not equal to) EndTime are returned.\nThe value for EndTime must be later than the value for StartTime .",
+            "Type": "datetime",
+            "Required": true
+        },
+        "Metric": {
+            "Description": "The name of a Performance Insights metric to be measured.\nValid values for Metric are:\nIf the number of active sessions is less than an internal Performance Insights threshold, db.load.avg and db.sampledload.avg are the same value. If the number of active sessions is greater than the internal threshold, Performance Insights samples the active sessions, with db.load.avg showing the scaled values, db.sampledload.avg showing the raw values, and db.sampledload.avg less than db.load.avg. For most use cases, you can query db.load.avg only.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PeriodInSeconds": {
+            "Description": "The granularity, in seconds, of the data points returned from Performance Insights. A period can be as short as one second, or as long as one day (86400 seconds). Valid values are:\nIf you don't specify PeriodInSeconds, then Performance Insights chooses a value for you, with a goal of returning roughly 100-200 data points in the response.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "GroupBy": {
+            "Description": "A specification for how to aggregate the data points from a query result. You must specify a valid dimension group. Performance Insights returns all dimensions within this group, unless you provide the names of specific dimensions within this group. You can also request that Performance Insights return a limited number of values for a dimension.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AdditionalMetrics": {
+            "Description": "Additional metrics for the top N dimension keys. If the specified dimension group in the GroupBy parameter is db.sql_tokenized, you can specify per-SQL metrics to get the values for the top N SQL digests. The response syntax is as follows: \"AdditionalMetrics\" : { \"*string* \" : \"*string* \" } .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PartitionBy": {
+            "Description": "For each dimension specified in GroupBy, specify a secondary dimension to further subdivide the partition keys in the response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Filter": {
+            "Description": "One or more filters to apply in the request. Restrictions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return in the response. If more items exist than the specified MaxRecords value, a pagination token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the token, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_dimension_key_details": {
+        "ServiceType": {
+            "Description": "The Amazon Web Services service for which Performance Insights returns data. The only valid value is RDS .",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "The ID for a data source from which to gather dimension data. This ID must be immutable and unique within an Amazon Web Services Region. When a DB instance is the data source, specify its DbiResourceId value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VW2X .",
+            "Type": "string",
+            "Required": true
+        },
+        "Group": {
+            "Description": "The name of the dimension group. Performance Insights searches the specified group for the dimension group ID. The following group name values are valid:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "GroupIdentifier": {
+            "Description": "The ID of the dimension group from which to retrieve dimension details. For dimension group db.sql, the group ID is db.sql.id. The following group ID values are valid:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "RequestedDimensions": {
+            "Description": "A list of dimensions to retrieve the detail data for within the given dimension group. If you don't specify this parameter, Performance Insights returns all dimension data within the specified dimension group. Specify dimension names for the following dimension groups:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_resource_metadata": {
+        "ServiceType": {
+            "Description": "The Amazon Web Services service for which Performance Insights returns metrics.",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "An immutable identifier for a data source that is unique for an Amazon Web Services Region. Performance Insights gathers metrics from this data source. To use a DB instance as a data source, specify its DbiResourceId value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VW2X .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_resource_metrics": {
+        "ServiceType": {
+            "Description": "The Amazon Web Services service for which Performance Insights returns metrics. Valid values are as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Identifier": {
+            "Description": "An immutable identifier for a data source that is unique for an Amazon Web Services Region. Performance Insights gathers metrics from this data source. In the console, the identifier is shown as ResourceID. When you call DescribeDBInstances, the identifier is returned as DbiResourceId .\nTo use a DB instance as a data source, specify its DbiResourceId value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VW2X .",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricQueries": {
+            "Description": "An array of one or more queries to perform. Each query must specify a Performance Insights metric, and can optionally specify aggregation and filtering criteria.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "StartTime": {
+            "Description": "The date and time specifying the beginning of the requested time series query range. You can't specify a StartTime that is earlier than 7 days ago. By default, Performance Insights has 7 days of retention, but you can extend this range up to 2 years. The value specified is inclusive. Thus, the command returns data points equal to or greater than StartTime .\nThe value for StartTime must be earlier than the value for EndTime .",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The date and time specifying the end of the requested time series query range. The value specified is exclusive. Thus, the command returns data points less than (but not equal to) EndTime .\nThe value for EndTime must be later than the value for StartTime .",
+            "Type": "datetime",
+            "Required": true
+        },
+        "PeriodInSeconds": {
+            "Description": "The granularity, in seconds, of the data points returned from Performance Insights. A period can be as short as one second, or as long as one day (86400 seconds). Valid values are:\nIf you don't specify PeriodInSeconds, then Performance Insights will choose a value for you, with a goal of returning roughly 100-200 data points in the response.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return in the response. If more items exist than the specified MaxRecords value, a pagination token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the token, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_available_resource_dimensions": {
+        "ServiceType": {
+            "Description": "The Amazon Web Services service for which Performance Insights returns metrics.",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "An immutable identifier for a data source that is unique within an Amazon Web Services Region. Performance Insights gathers metrics from this data source. To use an Amazon RDS DB instance as a data source, specify its DbiResourceId value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VWZ .",
+            "Type": "string",
+            "Required": true
+        },
+        "Metrics": {
+            "Description": "The types of metrics for which to retrieve dimensions. Valid values include db.load .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return in the response. If more items exist than the specified MaxRecords value, a pagination token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the token, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_available_resource_metrics": {
+        "ServiceType": {
+            "Description": "The Amazon Web Services service for which Performance Insights returns metrics.",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "An immutable identifier for a data source that is unique within an Amazon Web Services Region. Performance Insights gathers metrics from this data source. To use an Amazon RDS DB instance as a data source, specify its DbiResourceId value. For example, specify db-ABCDEFGHIJKLMNOPQRSTU1VWZ .",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricTypes": {
+            "Description": "The types of metrics to return in the response. Valid values in the array include the following:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the token, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return. If the MaxRecords value is less than the number of existing items, the response includes a pagination token.",
+            "Type": "integer",
+            "Required": false
+        }
+    }
+}

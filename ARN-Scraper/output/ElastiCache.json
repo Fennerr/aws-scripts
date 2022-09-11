@@ -1,0 +1,1909 @@
+{
+    "add_tags_to_resource": {
+        "ResourceName": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which the tags are to be added, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster or arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot. ElastiCache resources are cluster and snapshot .\nFor more information about ARNs, see Amazon Resource Names (ARNs) and Amazon Service Namespaces .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "authorize_cache_security_group_ingress": {
+        "CacheSecurityGroupName": {
+            "Description": "The cache security group that allows network ingress.",
+            "Type": "string",
+            "Required": true
+        },
+        "EC2SecurityGroupName": {
+            "Description": "The Amazon EC2 security group to be authorized for ingress to the cache security group.",
+            "Type": "string",
+            "Required": true
+        },
+        "EC2SecurityGroupOwnerId": {
+            "Description": "The Amazon account number of the Amazon EC2 security group owner. Note that this is not the same thing as an Amazon access key ID - you must provide a valid Amazon account number for this parameter.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_apply_update_action": {
+        "ReplicationGroupIds": {
+            "Description": "The replication group IDs",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CacheClusterIds": {
+            "Description": "The cache cluster IDs",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ServiceUpdateName": {
+            "Description": "The unique ID of the service update",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_stop_update_action": {
+        "ReplicationGroupIds": {
+            "Description": "The replication group IDs",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CacheClusterIds": {
+            "Description": "The cache cluster IDs",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ServiceUpdateName": {
+            "Description": "The unique ID of the service update",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "complete_migration": {
+        "ReplicationGroupId": {
+            "Description": "The ID of the replication group to which data is being migrated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Force": {
+            "Description": "Forces the migration to stop without ensuring that data is in sync. It is recommended to use this option only to abort the migration and not recommended when application wants to continue migration to ElastiCache.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "copy_snapshot": {
+        "SourceSnapshotName": {
+            "Description": "The name of an existing snapshot from which to make a copy.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetSnapshotName": {
+            "Description": "A name for the snapshot copy. ElastiCache does not permit overwriting a snapshot, therefore this name must be unique within its context - ElastiCache or an Amazon S3 bucket if exporting.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetBucket": {
+            "Description": "The Amazon S3 bucket to which the snapshot is exported. This parameter is used only when exporting a snapshot for external access.\nWhen using this parameter to export a snapshot, be sure Amazon ElastiCache has the needed permissions to this S3 bucket. For more information, see Step 2: Grant ElastiCache Access to Your Amazon S3 Bucket in the Amazon ElastiCache User Guide .\nFor more information, see Exporting a Snapshot in the Amazon ElastiCache User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "The ID of the KMS key used to encrypt the target snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_cache_cluster": {
+        "CacheClusterId": {
+            "Description": "The node group (shard) identifier. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ReplicationGroupId": {
+            "Description": "The ID of the replication group to which this cluster should belong. If this parameter is specified, the cluster is added to the specified replication group as a read replica; otherwise, the cluster is a standalone primary that is not part of any replication group.\nIf the specified replication group is Multi-AZ enabled and the Availability Zone is not specified, the cluster is created in Availability Zones that provide the best spread of read replicas across Availability Zones.",
+            "Type": "string",
+            "Required": false
+        },
+        "AZMode": {
+            "Description": "Specifies whether the nodes in this Memcached cluster are created in a single Availability Zone or created across multiple Availability Zones in the cluster's region.\nThis parameter is only supported for Memcached clusters.\nIf the AZMode and PreferredAvailabilityZones are not specified, ElastiCache assumes single-az mode.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredAvailabilityZone": {
+            "Description": "The EC2 Availability Zone in which the cluster is created.\nAll nodes belonging to this cluster are placed in the preferred Availability Zone. If you want to create your nodes across multiple Availability Zones, use PreferredAvailabilityZones .\nDefault: System chosen Availability Zone.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredAvailabilityZones": {
+            "Description": "A list of the Availability Zones in which cache nodes are created. The order of the zones in the list is not important.\nThis option is only supported on Memcached.\nIf you want all the nodes in the same Availability Zone, use PreferredAvailabilityZone instead, or repeat the Availability Zone multiple times in the list.\nDefault: System chosen Availability Zones.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NumCacheNodes": {
+            "Description": "The initial number of cache nodes that the cluster has.\nFor clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.\nIf you need more than 40 nodes for your Memcached cluster, please fill out the ElastiCache Limit Increase Request form at http://aws.amazon.com/contact-us/elasticache-node-limit-request/ .",
+            "Type": "integer",
+            "Required": false
+        },
+        "CacheNodeType": {
+            "Description": "The compute and memory capacity of the nodes in the node group (shard).\nThe following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Engine": {
+            "Description": "The name of the cache engine to be used for this cluster.\nValid values for this parameter are: memcached | redis",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The version number of the cache engine to be used for this cluster. To view the supported cache engine versions, use the DescribeCacheEngineVersions operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheParameterGroupName": {
+            "Description": "The name of the parameter group to associate with this cluster. If this argument is omitted, the default parameter group for the specified engine is used. You cannot use any parameter group which has cluster-enabled='yes' when creating a cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheSubnetGroupName": {
+            "Description": "The name of the subnet group to be used for the cluster.\nUse this parameter only when you are creating a cluster in an Amazon Virtual Private Cloud (Amazon VPC).",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheSecurityGroupNames": {
+            "Description": "A list of security group names to associate with this cluster.\nUse this parameter only when you are creating a cluster outside of an Amazon Virtual Private Cloud (Amazon VPC).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "One or more VPC security groups associated with the cluster.\nUse this parameter only when you are creating a cluster in an Amazon Virtual Private Cloud (Amazon VPC).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SnapshotArns": {
+            "Description": "A single-element string list containing an Amazon Resource Name (ARN) that uniquely identifies a Redis RDB snapshot file stored in Amazon S3. The snapshot file is used to populate the node group (shard). The Amazon S3 object name in the ARN cannot contain any commas.\nExample of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SnapshotName": {
+            "Description": "The name of a Redis snapshot from which to restore data into the new node group (shard). The snapshot status changes to restoring while the new node group (shard) is being created.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port number on which each of the cache nodes accepts connections.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NotificationTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "If you are running Redis engine version 6.0 or later, set this parameter to yes if you want to opt-in to the next auto minor version upgrade campaign. This parameter is disabled for previous versions.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SnapshotRetentionLimit": {
+            "Description": "The number of days for which ElastiCache retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot taken today is retained for 5 days before being deleted.\nDefault: 0 (i.e., automatic backups are disabled for this cache cluster).",
+            "Type": "integer",
+            "Required": false
+        },
+        "SnapshotWindow": {
+            "Description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your node group (shard).\nExample: 05:00-09:00\nIf you do not specify this parameter, ElastiCache automatically chooses an appropriate time range.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthToken": {
+            "Description": "Password constraints:\nFor more information, see AUTH password at http://redis.io/commands/AUTH.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "OutpostMode": {
+            "Description": "Specifies whether the nodes in the cluster are created in a single outpost or across multiple outposts.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredOutpostArn": {
+            "Description": "The outpost ARN in which the cache cluster is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredOutpostArns": {
+            "Description": "The outpost ARNs in which the cache cluster is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "LogDeliveryConfigurations": {
+            "Description": "Specifies the destination, format and type of the logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TransitEncryptionEnabled": {
+            "Description": "A flag that enables in-transit encryption when set to true. You cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_cache_parameter_group": {
+        "CacheParameterGroupName": {
+            "Description": "A user-specified name for the cache parameter group.",
+            "Type": "string",
+            "Required": true
+        },
+        "CacheParameterGroupFamily": {
+            "Description": "The name of the cache parameter group family that the cache parameter group can be used with.\nValid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A user-specified description for the cache parameter group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_cache_security_group": {
+        "CacheSecurityGroupName": {
+            "Description": "A name for the cache security group. This value is stored as a lowercase string.\nConstraints: Must contain no more than 255 alphanumeric characters. Cannot be the word \"Default\".\nExample: mysecuritygroup",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the cache security group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_cache_subnet_group": {
+        "CacheSubnetGroupName": {
+            "Description": "A name for the cache subnet group. This value is stored as a lowercase string.\nConstraints: Must contain no more than 255 alphanumeric characters or hyphens.\nExample: mysubnetgroup",
+            "Type": "string",
+            "Required": true
+        },
+        "CacheSubnetGroupDescription": {
+            "Description": "A description for the cache subnet group.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubnetIds": {
+            "Description": "A list of VPC subnet IDs for the cache subnet group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_global_replication_group": {
+        "GlobalReplicationGroupIdSuffix": {
+            "Description": "The suffix name of a Global datastore. Amazon ElastiCache automatically applies a prefix to the Global datastore ID when it is created. Each Amazon Region has its own prefix. For instance, a Global datastore ID created in the US-West-1 region will begin with \"dsdfu\" along with the suffix name you provide. The suffix, combined with the auto-generated prefix, guarantees uniqueness of the Global datastore name across multiple regions.\nFor a full list of Amazon Regions and their respective Global datastore iD prefixes, see Using the Amazon CLI with Global datastores .",
+            "Type": "string",
+            "Required": true
+        },
+        "GlobalReplicationGroupDescription": {
+            "Description": "Provides details of the Global datastore",
+            "Type": "string",
+            "Required": false
+        },
+        "PrimaryReplicationGroupId": {
+            "Description": "The name of the primary cluster that accepts writes and will replicate updates to the secondary cluster.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_replication_group": {
+        "ReplicationGroupId": {
+            "Description": "The replication group identifier. This parameter is stored as a lowercase string.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ReplicationGroupDescription": {
+            "Description": "A user-created description for the replication group.",
+            "Type": "string",
+            "Required": true
+        },
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": false
+        },
+        "PrimaryClusterId": {
+            "Description": "The identifier of the cluster that serves as the primary for this replication group. This cluster must already exist and have a status of available .\nThis parameter is not required if NumCacheClusters, NumNodeGroups, or ReplicasPerNodeGroup is specified.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutomaticFailoverEnabled": {
+            "Description": "Specifies whether a read-only replica is automatically promoted to read/write primary if the existing primary fails.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MultiAZEnabled": {
+            "Description": "A flag indicating if you have Multi-AZ enabled to enhance fault tolerance. For more information, see Minimizing Downtime: Multi-AZ .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "NumCacheClusters": {
+            "Description": "The number of clusters this replication group initially has.\nThis parameter is not used if there is more than one node group (shard). You should use ReplicasPerNodeGroup instead.\nIf AutomaticFailoverEnabled is true, the value of this parameter must be at least 2. If AutomaticFailoverEnabled is false you can omit this parameter (it will default to 1), or you can explicitly set it to a value between 2 and 6.\nThe maximum permitted value for NumCacheClusters is 6 (1 primary plus 5 replicas).",
+            "Type": "integer",
+            "Required": false
+        },
+        "PreferredCacheClusterAZs": {
+            "Description": "A list of EC2 Availability Zones in which the replication group's clusters are created. The order of the Availability Zones in the list is the order in which clusters are allocated. The primary cluster is created in the first AZ in the list.\nThis parameter is not used if there is more than one node group (shard). You should use NodeGroupConfiguration instead.\nDefault: system chosen Availability Zones.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NumNodeGroups": {
+            "Description": "An optional parameter that specifies the number of node groups (shards) for this Redis (cluster mode enabled) replication group. For Redis (cluster mode disabled) either omit this parameter or set it to 1.\nDefault: 1",
+            "Type": "integer",
+            "Required": false
+        },
+        "ReplicasPerNodeGroup": {
+            "Description": "An optional parameter that specifies the number of replica nodes in each node group (shard). Valid values are 0 to 5.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NodeGroupConfiguration": {
+            "Description": "A list of node group (shard) configuration options. Each node group (shard) configuration has the following members: PrimaryAvailabilityZone, ReplicaAvailabilityZones, ReplicaCount, and Slots .\nIf you're creating a Redis (cluster mode disabled) or a Redis (cluster mode enabled) replication group, you can use this parameter to individually configure each node group (shard), or you can omit this parameter. However, it is required when seeding a Redis (cluster mode enabled) cluster from a S3 rdb file. You must configure each node group (shard) using this parameter because you must specify the slots for each node group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CacheNodeType": {
+            "Description": "The compute and memory capacity of the nodes in the node group (shard).\nThe following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Engine": {
+            "Description": "The name of the cache engine to be used for the clusters in this replication group. Must be Redis.",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The version number of the cache engine to be used for the clusters in this replication group. To view the supported cache engine versions, use the DescribeCacheEngineVersions operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheParameterGroupName": {
+            "Description": "The name of the parameter group to associate with this replication group. If this argument is omitted, the default cache parameter group for the specified engine is used.\nIf you are running Redis version 3.2.4 or later, only one node group (shard), and want to use a default parameter group, we recommend that you specify the parameter group by name.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CacheSubnetGroupName": {
+            "Description": "The name of the cache subnet group to be used for the replication group.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheSecurityGroupNames": {
+            "Description": "A list of cache security group names to associate with this replication group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "One or more Amazon VPC security groups associated with this replication group.\nUse this parameter only when you are creating a replication group in an Amazon Virtual Private Cloud (Amazon VPC).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. Tags are comma-separated key,value pairs (e.g. Key=``myKey``, Value=``myKeyValue``. You can include multiple tags as shown following: Key=``myKey``, Value=``myKeyValue`` Key=``mySecondKey``, Value=``mySecondKeyValue``. Tags on replication groups will be replicated to all nodes.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SnapshotArns": {
+            "Description": "A list of Amazon Resource Names (ARN) that uniquely identify the Redis RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new replication group. The Amazon S3 object name in the ARN cannot contain any commas. The new replication group will have the number of node groups (console: shards) specified by the parameter NumNodeGroups or the number of node groups configured by NodeGroupConfiguration regardless of the number of ARNs specified here.\nExample of an Amazon S3 ARN: arn:aws:s3:::my_bucket/snapshot1.rdb",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SnapshotName": {
+            "Description": "The name of a snapshot from which to restore data into the new replication group. The snapshot status changes to restoring while the new replication group is being created.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period. Valid values for ddd are:\nSpecifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.\nValid values for ddd are:\nExample: sun:23:00-mon:01:30",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Port": {
+            "Description": "The port number on which each member of the replication group accepts connections.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NotificationTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "If you are running Redis engine version 6.0 or later, set this parameter to yes if you want to opt-in to the next auto minor version upgrade campaign. This parameter is disabled for previous versions.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SnapshotRetentionLimit": {
+            "Description": "The number of days for which ElastiCache retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.\nDefault: 0 (i.e., automatic backups are disabled for this cluster).",
+            "Type": "integer",
+            "Required": false
+        },
+        "SnapshotWindow": {
+            "Description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your node group (shard).\nExample: 05:00-09:00\nIf you do not specify this parameter, ElastiCache automatically chooses an appropriate time range.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthToken": {
+            "Description": "Password constraints:\nFor more information, see AUTH password at http://redis.io/commands/AUTH.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "TransitEncryptionEnabled": {
+            "Description": "A flag that enables in-transit encryption when set to true .\nYou cannot modify the value of TransitEncryptionEnabled after the cluster is created. To enable in-transit encryption on a cluster you must set TransitEncryptionEnabled to true when you create a cluster.\nThis parameter is valid only if the Engine parameter is redis, the EngineVersion parameter is 3.2.6, 4.x or later, and the cluster is being created in an Amazon VPC.\nIf you enable in-transit encryption, you must also specify a value for CacheSubnetGroup .\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AtRestEncryptionEnabled": {
+            "Description": "A flag that enables encryption at rest when set to true .\nYou cannot modify the value of AtRestEncryptionEnabled after the replication group is created. To enable encryption at rest on a replication group you must set AtRestEncryptionEnabled to true when you create the replication group.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "The ID of the KMS key used to encrypt the disk in the cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserGroupIds": {
+            "Description": "The user group to associate with the replication group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "LogDeliveryConfigurations": {
+            "Description": "Specifies the destination, format and type of the logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DataTieringEnabled": {
+            "Description": "Enables data tiering. Data tiering is only supported for replication groups using the r6gd node type. This parameter must be set to true when using r6gd nodes. For more information, see Data tiering .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_snapshot": {
+        "ReplicationGroupId": {
+            "Description": "The identifier of an existing replication group. The snapshot is created from this replication group.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheClusterId": {
+            "Description": "The identifier of an existing cluster. The snapshot is created from this cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotName": {
+            "Description": "A name for the snapshot being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKeyId": {
+            "Description": "The ID of the KMS key used to encrypt the snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_user": {
+        "UserId": {
+            "Description": "The ID of the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The username of the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "Engine": {
+            "Description": "The current supported value is Redis.",
+            "Type": "string",
+            "Required": true
+        },
+        "Passwords": {
+            "Description": "Passwords used for this user. You can create up to two passwords for each user.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AccessString": {
+            "Description": "Access permissions string used for this user.",
+            "Type": "string",
+            "Required": true
+        },
+        "NoPasswordRequired": {
+            "Description": "Indicates a password is not required for this user.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_user_group": {
+        "UserGroupId": {
+            "Description": "The ID of the user group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Engine": {
+            "Description": "The current supported value is Redis.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserIds": {
+            "Description": "The list of user IDs that belong to the user group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "decrease_node_groups_in_global_replication_group": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeGroupCount": {
+            "Description": "The number of node groups (shards) that results from the modification of the shard configuration",
+            "Type": "integer",
+            "Required": true
+        },
+        "GlobalNodeGroupsToRemove": {
+            "Description": "If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. GlobalNodeGroupsToRemove is a list of NodeGroupIds to remove from the cluster. ElastiCache for Redis will attempt to remove all node groups listed by GlobalNodeGroupsToRemove from the cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GlobalNodeGroupsToRetain": {
+            "Description": "If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. GlobalNodeGroupsToRetain is a list of NodeGroupIds to retain from the cluster. ElastiCache for Redis will attempt to retain all node groups listed by GlobalNodeGroupsToRetain from the cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ApplyImmediately": {
+            "Description": "Indicates that the shard reconfiguration process begins immediately. At present, the only permitted value for this parameter is true.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "decrease_replica_count": {
+        "ReplicationGroupId": {
+            "Description": "The id of the replication group from which you want to remove replica nodes.",
+            "Type": "string",
+            "Required": true
+        },
+        "NewReplicaCount": {
+            "Description": "The number of read replica nodes you want at the completion of this operation. For Redis (cluster mode disabled) replication groups, this is the number of replica nodes in the replication group. For Redis (cluster mode enabled) replication groups, this is the number of replica nodes in each of the replication group's node groups.\nThe minimum number of replicas in a shard or replication group is:",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "ReplicaConfiguration": {
+            "Description": "A list of ConfigureShard objects that can be used to configure each shard in a Redis (cluster mode enabled) replication group. The ConfigureShard has three members: NewReplicaCount, NodeGroupId, and PreferredAvailabilityZones .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ReplicasToRemove": {
+            "Description": "A list of the node ids to remove from the replication group or node group (shard).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ApplyImmediately": {
+            "Description": "If True, the number of replica nodes is decreased immediately. ApplyImmediately=False is not currently supported.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "delete_cache_cluster": {
+        "CacheClusterId": {
+            "Description": "The cluster identifier for the cluster to be deleted. This parameter is not case sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "FinalSnapshotIdentifier": {
+            "Description": "The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. ElastiCache creates the snapshot, and then deletes the cluster immediately afterward.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_cache_parameter_group": {
+        "CacheParameterGroupName": {
+            "Description": "The name of the cache parameter group to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_cache_security_group": {
+        "CacheSecurityGroupName": {
+            "Description": "The name of the cache security group to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_cache_subnet_group": {
+        "CacheSubnetGroupName": {
+            "Description": "The name of the cache subnet group to delete.\nConstraints: Must contain no more than 255 alphanumeric characters or hyphens.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_global_replication_group": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "RetainPrimaryReplicationGroup": {
+            "Description": "The primary replication group is retained as a standalone replication group.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "delete_replication_group": {
+        "ReplicationGroupId": {
+            "Description": "The identifier for the cluster to be deleted. This parameter is not case sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetainPrimaryCluster": {
+            "Description": "If set to true , all of the read replicas are deleted, but the primary node is retained.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "FinalSnapshotIdentifier": {
+            "Description": "The name of a final node group (shard) snapshot. ElastiCache creates the snapshot from the primary node in the cluster, rather than one of the replicas; this is to ensure that it captures the freshest data. After the final snapshot is taken, the replication group is immediately deleted.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_snapshot": {
+        "SnapshotName": {
+            "Description": "The name of the snapshot to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user": {
+        "UserId": {
+            "Description": "The ID of the user.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user_group": {
+        "UserGroupId": {
+            "Description": "The ID of the user group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_cache_clusters": {
+        "CacheClusterId": {
+            "Description": "The user-supplied cluster identifier. If this parameter is specified, only information about that specific cluster is returned. This parameter isn't case sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "ShowCacheNodeInfo": {
+            "Description": "An optional flag that can be included in the DescribeCacheCluster request to retrieve information about the individual cache nodes.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ShowCacheClustersNotInReplicationGroups": {
+            "Description": "An optional flag that can be included in the DescribeCacheCluster request to show only nodes (API/CLI: clusters) that are not members of a replication group. In practice, this mean Memcached and single node Redis clusters.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_cache_engine_versions": {
+        "Engine": {
+            "Description": "The cache engine to return. Valid values: memcached | redis",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The cache engine version to return.\nExample: 1.4.14",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheParameterGroupFamily": {
+            "Description": "The name of a specific cache parameter group family to return details for.\nValid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultOnly": {
+            "Description": "If true , specifies that only the default version of the specified engine or engine and major version combination is to be returned.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_cache_parameter_groups": {
+        "CacheParameterGroupName": {
+            "Description": "The name of a specific cache parameter group to return details for.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_cache_parameters": {
+        "CacheParameterGroupName": {
+            "Description": "The name of a specific cache parameter group to return details for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Source": {
+            "Description": "The parameter types to return.\nValid values: user | system | engine-default",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_cache_security_groups": {
+        "CacheSecurityGroupName": {
+            "Description": "The name of the cache security group to return details for.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_cache_subnet_groups": {
+        "CacheSubnetGroupName": {
+            "Description": "The name of the cache subnet group to return details for.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_engine_default_parameters": {
+        "CacheParameterGroupFamily": {
+            "Description": "The name of the cache parameter group family.\nValid values are: memcached1.4 | memcached1.5 | memcached1.6 | redis2.6 | redis2.8 | redis3.2 | redis4.0 | redis5.0 | redis6.x | redis6.2",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_events": {
+        "SourceIdentifier": {
+            "Description": "The identifier of the event source for which events are returned. If not specified, all sources are included in the response.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceType": {
+            "Description": "The event source to retrieve events for. If no value is specified, all events are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The beginning of the time interval to retrieve events for, specified in ISO 8601 format.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The end of the time interval for which to retrieve events, specified in ISO 8601 format.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Duration": {
+            "Description": "The number of minutes worth of events to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_global_replication_groups": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "ShowMemberInfo": {
+            "Description": "Returns the list of members that comprise the Global datastore.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_replication_groups": {
+        "ReplicationGroupId": {
+            "Description": "The identifier for the replication group to be described. This parameter is not case sensitive.\nIf you do not specify this parameter, information about all replication groups is returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_reserved_cache_nodes": {
+        "ReservedCacheNodeId": {
+            "Description": "The reserved cache node identifier filter value. Use this parameter to show only the reservation that matches the specified reservation ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReservedCacheNodesOfferingId": {
+            "Description": "The offering identifier filter value. Use this parameter to show only purchased reservations matching the specified offering identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheNodeType": {
+            "Description": "The cache node type filter value. Use this parameter to show only those reservations matching the specified cache node type.\nThe following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Duration": {
+            "Description": "The duration filter value, specified in years or seconds. Use this parameter to show only reservations for this duration.\nValid Values: 1 | 3 | 31536000 | 94608000",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductDescription": {
+            "Description": "The product description filter value. Use this parameter to show only those reservations matching the specified product description.",
+            "Type": "string",
+            "Required": false
+        },
+        "OfferingType": {
+            "Description": "The offering type filter value. Use this parameter to show only the available offerings matching the specified offering type.\nValid values: \"Light Utilization\"|\"Medium Utilization\"|\"Heavy Utilization\"|\"All Upfront\"|\"Partial Upfront\"| \"No Upfront\"",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_reserved_cache_nodes_offerings": {
+        "ReservedCacheNodesOfferingId": {
+            "Description": "The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier.\nExample: 438012d3-4052-4cc7-b2e3-8d3372e0e706",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheNodeType": {
+            "Description": "The cache node type filter value. Use this parameter to show only the available offerings matching the specified cache node type.\nThe following node types are supported by ElastiCache. Generally speaking, the current generation types provide more memory and computational power at lower cost when compared to their equivalent previous generation counterparts.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Duration": {
+            "Description": "Duration filter value, specified in years or seconds. Use this parameter to show only reservations for a given duration.\nValid Values: 1 | 3 | 31536000 | 94608000",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductDescription": {
+            "Description": "The product description filter value. Use this parameter to show only the available offerings matching the specified product description.",
+            "Type": "string",
+            "Required": false
+        },
+        "OfferingType": {
+            "Description": "The offering type filter value. Use this parameter to show only the available offerings matching the specified offering type.\nValid Values: \"Light Utilization\"|\"Medium Utilization\"|\"Heavy Utilization\" |\"All Upfront\"|\"Partial Upfront\"| \"No Upfront\"",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_service_updates": {
+        "ServiceUpdateName": {
+            "Description": "The unique ID of the service update",
+            "Type": "string",
+            "Required": false
+        },
+        "ServiceUpdateStatus": {
+            "Description": "The status of the service update",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_snapshots": {
+        "ReplicationGroupId": {
+            "Description": "A user-supplied replication group identifier. If this parameter is specified, only snapshots associated with that specific replication group are described.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheClusterId": {
+            "Description": "A user-supplied cluster identifier. If this parameter is specified, only snapshots associated with that specific cluster are described.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotName": {
+            "Description": "A user-supplied name of the snapshot. If this parameter is specified, only this snapshot are described.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotSource": {
+            "Description": "If set to system , the output shows snapshots that were automatically created by ElastiCache. If set to user the output shows snapshots that were manually created. If omitted, the output shows both automatically and manually created snapshots.",
+            "Type": "string",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 50\nConstraints: minimum 20; maximum 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ShowNodeGroupConfig": {
+            "Description": "A Boolean value which if true, the node group (shard) configuration is included in the snapshot description.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_update_actions": {
+        "ServiceUpdateName": {
+            "Description": "The unique ID of the service update",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicationGroupIds": {
+            "Description": "The replication group IDs",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CacheClusterIds": {
+            "Description": "The cache cluster IDs",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Engine": {
+            "Description": "The Elasticache engine to which the update applies. Either Redis or Memcached",
+            "Type": "string",
+            "Required": false
+        },
+        "ServiceUpdateStatus": {
+            "Description": "The status of the service update",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ServiceUpdateTimeRange": {
+            "Description": "The range of time specified to search for service updates that are in available status",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UpdateActionStatus": {
+            "Description": "The status of the update action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ShowNodeLevelUpdateStatus": {
+            "Description": "Dictates whether to include node level update status in the response",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_user_groups": {
+        "UserGroupId": {
+            "Description": "The ID of the user group.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. >",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_users": {
+        "Engine": {
+            "Description": "The Redis engine.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserId": {
+            "Description": "The ID of the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filter to determine the list of User IDs to return.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords. >",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_global_replication_group": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationGroupId": {
+            "Description": "The name of the secondary cluster you wish to remove from the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationGroupRegion": {
+            "Description": "The Amazon region of secondary cluster you wish to remove from the Global datastore",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "failover_global_replication_group": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "PrimaryRegion": {
+            "Description": "The Amazon region of the primary cluster of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "PrimaryReplicationGroupId": {
+            "Description": "The name of the primary replication group",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "increase_node_groups_in_global_replication_group": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeGroupCount": {
+            "Description": "The number of node groups you wish to add",
+            "Type": "integer",
+            "Required": true
+        },
+        "RegionalConfigurations": {
+            "Description": "Describes the replication group IDs, the Amazon regions where they are stored and the shard configuration for each that comprise the Global datastore",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ApplyImmediately": {
+            "Description": "Indicates that the process begins immediately. At present, the only permitted value for this parameter is true.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "increase_replica_count": {
+        "ReplicationGroupId": {
+            "Description": "The id of the replication group to which you want to add replica nodes.",
+            "Type": "string",
+            "Required": true
+        },
+        "NewReplicaCount": {
+            "Description": "The number of read replica nodes you want at the completion of this operation. For Redis (cluster mode disabled) replication groups, this is the number of replica nodes in the replication group. For Redis (cluster mode enabled) replication groups, this is the number of replica nodes in each of the replication group's node groups.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ReplicaConfiguration": {
+            "Description": "A list of ConfigureShard objects that can be used to configure each shard in a Redis (cluster mode enabled) replication group. The ConfigureShard has three members: NewReplicaCount, NodeGroupId, and PreferredAvailabilityZones .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ApplyImmediately": {
+            "Description": "If True, the number of replica nodes is increased immediately. ApplyImmediately=False is not currently supported.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "list_allowed_node_type_modifications": {
+        "CacheClusterId": {
+            "Description": "The name of the cluster you want to scale up to a larger node instanced type. ElastiCache uses the cluster id to identify the current node type of this cluster and from that to create a list of node types you can scale up to.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicationGroupId": {
+            "Description": "The name of the replication group want to scale up to a larger node type. ElastiCache uses the replication group id to identify the current node type being used by this replication group, and from that to create a list of node types you can scale up to.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceName": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for which you want the list of tags, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster or arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot .\nFor more information about ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "modify_cache_cluster": {
+        "CacheClusterId": {
+            "Description": "The cluster identifier. This value is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        },
+        "NumCacheNodes": {
+            "Description": "The number of cache nodes that the cluster should have. If the value for NumCacheNodes is greater than the sum of the number of current cache nodes and the number of cache nodes pending creation (which may be zero), more nodes are added. If the value is less than the number of existing cache nodes, nodes are removed. If the value is equal to the number of current cache nodes, any pending add or remove requests are canceled.\nIf you are removing cache nodes, you must use the CacheNodeIdsToRemove parameter to provide the IDs of the specific cache nodes to remove.\nFor clusters running Redis, this value must be 1. For clusters running Memcached, this value must be between 1 and 40.",
+            "Type": "integer",
+            "Required": false
+        },
+        "CacheNodeIdsToRemove": {
+            "Description": "A list of cache node IDs to be removed. A node ID is a numeric identifier (0001, 0002, etc.). This parameter is only valid when NumCacheNodes is less than the existing number of cache nodes. The number of cache node IDs supplied in this parameter must match the difference between the existing number of cache nodes in the cluster or pending cache nodes, whichever is greater, and the value of NumCacheNodes in the request.\nFor example: If you have 3 active cache nodes, 7 pending cache nodes, and the number of cache nodes in this ModifyCacheCluster call is 5, you must list 2 (7 - 5) cache node IDs to remove.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AZMode": {
+            "Description": "Specifies whether the new nodes in this Memcached cluster are all created in a single Availability Zone or created across multiple Availability Zones.\nValid values: single-az | cross-az .\nThis option is only supported for Memcached clusters.",
+            "Type": "string",
+            "Required": false
+        },
+        "NewAvailabilityZones": {
+            "Description": "The list of Availability Zones where the new Memcached cache nodes are created.\nThis parameter is only valid when NumCacheNodes in the request is greater than the sum of the number of active cache nodes and the number of cache nodes pending creation (which may be zero). The number of Availability Zones supplied in this list must match the cache nodes being added in this request.\nScenarios:\nThe Availability Zone placement of nodes pending creation cannot be modified. If you wish to cancel any nodes pending creation, add 0 nodes by setting NumCacheNodes to the number of current nodes.\nIf cross-az is specified, existing Memcached nodes remain in their current Availability Zone. Only newly created nodes can be located in different Availability Zones. For guidance on how to move existing Memcached nodes to different Availability Zones, see the Availability Zone Considerations section of Cache Node Considerations for Memcached .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "CacheSecurityGroupNames": {
+            "Description": "A list of cache security group names to authorize on this cluster. This change is asynchronously applied as soon as possible.\nYou can use this parameter only with clusters that are created outside of an Amazon Virtual Private Cloud (Amazon VPC).\nConstraints: Must contain no more than 255 alphanumeric characters. Must not be \"Default\".",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "Specifies the VPC Security Groups associated with the cluster.\nThis parameter can be used only with clusters that are created in an Amazon Virtual Private Cloud (Amazon VPC).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.\nValid values for ddd are:\nExample: sun:23:00-mon:01:30",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NotificationTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications are sent.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheParameterGroupName": {
+            "Description": "The name of the cache parameter group to apply to this cluster. This change is asynchronously applied as soon as possible for parameters when the ApplyImmediately parameter is specified as true for this request.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationTopicStatus": {
+            "Description": "The status of the Amazon SNS notification topic. Notifications are sent only if the status is active .\nValid values: active | inactive",
+            "Type": "string",
+            "Required": false
+        },
+        "ApplyImmediately": {
+            "Description": "If true, this parameter causes the modifications in this request and any pending modifications to be applied, asynchronously and as soon as possible, regardless of the PreferredMaintenanceWindow setting for the cluster.\nIf false, changes to the cluster are applied on the next maintenance reboot, or the next failure reboot, whichever occurs first.\nValid values: true | false\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The upgraded version of the cache engine to be run on the cache nodes.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "If you are running Redis engine version 6.0 or later, set this parameter to yes if you want to opt-in to the next auto minor version upgrade campaign. This parameter is disabled for previous versions.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SnapshotRetentionLimit": {
+            "Description": "The number of days for which ElastiCache retains automatic cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SnapshotWindow": {
+            "Description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of your cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheNodeType": {
+            "Description": "A valid cache node type that you want to scale this cluster up to.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthToken": {
+            "Description": "Reserved parameter. The password used to access a password protected server. This parameter must be specified with the auth-token-update parameter. Password constraints:\nFor more information, see AUTH password at AUTH .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AuthTokenUpdateStrategy": {
+            "Description": "Specifies the strategy to use to update the AUTH token. This parameter must be specified with the auth-token parameter. Possible values:\nFor more information, see Authenticating Users with Redis AUTH",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "LogDeliveryConfigurations": {
+            "Description": "Specifies the destination, format and type of the logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_cache_parameter_group": {
+        "CacheParameterGroupName": {
+            "Description": "The name of the cache parameter group to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "ParameterNameValues": {
+            "Description": "An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be modified per request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "modify_cache_subnet_group": {
+        "CacheSubnetGroupName": {
+            "Description": "The name for the cache subnet group. This value is stored as a lowercase string.\nConstraints: Must contain no more than 255 alphanumeric characters or hyphens.\nExample: mysubnetgroup",
+            "Type": "string",
+            "Required": true
+        },
+        "CacheSubnetGroupDescription": {
+            "Description": "A description of the cache subnet group.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetIds": {
+            "Description": "The EC2 subnet IDs for the cache subnet group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_global_replication_group": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplyImmediately": {
+            "Description": "This parameter causes the modifications in this request and any pending modifications to be applied, asynchronously and as soon as possible. Modifications to Global Replication Groups cannot be requested to be applied in PreferredMaintenceWindow.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "CacheNodeType": {
+            "Description": "A valid cache node type that you want to scale this Global datastore to.",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The upgraded version of the cache engine to be run on the clusters in the Global datastore.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheParameterGroupName": {
+            "Description": "The name of the cache parameter group to use with the Global datastore. It must be compatible with the major engine version used by the Global datastore.",
+            "Type": "string",
+            "Required": false
+        },
+        "GlobalReplicationGroupDescription": {
+            "Description": "A description of the Global datastore",
+            "Type": "string",
+            "Required": false
+        },
+        "AutomaticFailoverEnabled": {
+            "Description": "Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "modify_replication_group": {
+        "ReplicationGroupId": {
+            "Description": "The identifier of the replication group to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplicationGroupDescription": {
+            "Description": "A description for the replication group. Maximum length is 255 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "PrimaryClusterId": {
+            "Description": "For replication groups with a single primary, if this parameter is specified, ElastiCache promotes the specified cluster in the specified replication group to the primary role. The nodes of all other clusters in the replication group are read replicas.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshottingClusterId": {
+            "Description": "The cluster ID that is used as the daily snapshot source for the replication group. This parameter cannot be set for Redis (cluster mode enabled) replication groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutomaticFailoverEnabled": {
+            "Description": "Determines whether a read replica is automatically promoted to read/write primary if the existing primary encounters a failure.\nValid values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MultiAZEnabled": {
+            "Description": "A flag to indicate MultiAZ is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "NodeGroupId": {
+            "Description": "Deprecated. This parameter is not used.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheSecurityGroupNames": {
+            "Description": "A list of cache security group names to authorize for the clusters in this replication group. This change is asynchronously applied as soon as possible.\nThis parameter can be used only with replication group containing clusters running outside of an Amazon Virtual Private Cloud (Amazon VPC).\nConstraints: Must contain no more than 255 alphanumeric characters. Must not be Default .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "Specifies the VPC Security Groups associated with the clusters in the replication group.\nThis parameter can be used only with replication group containing clusters running in an Amazon Virtual Private Cloud (Amazon VPC).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.\nValid values for ddd are:\nExample: sun:23:00-mon:01:30",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NotificationTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon SNS topic to which notifications are sent.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheParameterGroupName": {
+            "Description": "The name of the cache parameter group to apply to all of the clusters in this replication group. This change is asynchronously applied as soon as possible for parameters when the ApplyImmediately parameter is specified as true for this request.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationTopicStatus": {
+            "Description": "The status of the Amazon SNS notification topic for the replication group. Notifications are sent only if the status is active .\nValid values: active | inactive",
+            "Type": "string",
+            "Required": false
+        },
+        "ApplyImmediately": {
+            "Description": "If true, this parameter causes the modifications in this request and any pending modifications to be applied, asynchronously and as soon as possible, regardless of the PreferredMaintenanceWindow setting for the replication group.\nIf false, changes to the nodes in the replication group are applied on the next maintenance reboot, or the next failure reboot, whichever occurs first.\nValid values: true | false\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The upgraded version of the cache engine to be run on the clusters in the replication group.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "If you are running Redis engine version 6.0 or later, set this parameter to yes if you want to opt-in to the next auto minor version upgrade campaign. This parameter is disabled for previous versions.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SnapshotRetentionLimit": {
+            "Description": "The number of days for which ElastiCache retains automatic node group (shard) snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SnapshotWindow": {
+            "Description": "The daily time range (in UTC) during which ElastiCache begins taking a daily snapshot of the node group (shard) specified by SnapshottingClusterId .\nExample: 05:00-09:00\nIf you do not specify this parameter, ElastiCache automatically chooses an appropriate time range.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheNodeType": {
+            "Description": "A valid cache node type that you want to scale this replication group to.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthToken": {
+            "Description": "Reserved parameter. The password used to access a password protected server. This parameter must be specified with the auth-token-update-strategy parameter. Password constraints:\nFor more information, see AUTH password at AUTH .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AuthTokenUpdateStrategy": {
+            "Description": "Specifies the strategy to use to update the AUTH token. This parameter must be specified with the auth-token parameter. Possible values:\nFor more information, see Authenticating Users with Redis AUTH",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "UserGroupIdsToAdd": {
+            "Description": "The ID of the user group you are associating with the replication group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserGroupIdsToRemove": {
+            "Description": "The ID of the user group to disassociate from the replication group, meaning the users in the group no longer can access the replication group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RemoveUserGroups": {
+            "Description": "Removes the user group associated with this replication group.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "LogDeliveryConfigurations": {
+            "Description": "Specifies the destination, format and type of the logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_replication_group_shard_configuration": {
+        "ReplicationGroupId": {
+            "Description": "The name of the Redis (cluster mode enabled) cluster (replication group) on which the shards are to be configured.",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeGroupCount": {
+            "Description": "The number of node groups (shards) that results from the modification of the shard configuration.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ApplyImmediately": {
+            "Description": "Indicates that the shard reconfiguration process begins immediately. At present, the only permitted value for this parameter is true .\nValue: true",
+            "Type": "boolean",
+            "Required": true
+        },
+        "ReshardingConfiguration": {
+            "Description": "Specifies the preferred availability zones for each node group in the cluster. If the value of NodeGroupCount is greater than the current number of node groups (shards), you can use this parameter to specify the preferred availability zones of the cluster's shards. If you omit this parameter ElastiCache selects availability zones for you.\nYou can specify this parameter only if the value of NodeGroupCount is greater than the current number of node groups (shards).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NodeGroupsToRemove": {
+            "Description": "If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. NodeGroupsToRemove is a list of NodeGroupId s to remove from the cluster.\nElastiCache for Redis will attempt to remove all node groups listed by NodeGroupsToRemove from the cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NodeGroupsToRetain": {
+            "Description": "If the value of NodeGroupCount is less than the current number of node groups (shards), then either NodeGroupsToRemove or NodeGroupsToRetain is required. NodeGroupsToRetain is a list of NodeGroupId s to retain in the cluster.\nElastiCache for Redis will attempt to remove all node groups except those listed by NodeGroupsToRetain from the cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_user": {
+        "UserId": {
+            "Description": "The ID of the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccessString": {
+            "Description": "Access permissions string used for this user.",
+            "Type": "string",
+            "Required": false
+        },
+        "AppendAccessString": {
+            "Description": "Adds additional user permissions to the access string.",
+            "Type": "string",
+            "Required": false
+        },
+        "Passwords": {
+            "Description": "The passwords belonging to the user. You are allowed up to two.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NoPasswordRequired": {
+            "Description": "Indicates no password is required for the user.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "modify_user_group": {
+        "UserGroupId": {
+            "Description": "The ID of the user group.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserIdsToAdd": {
+            "Description": "The list of user IDs to add to the user group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserIdsToRemove": {
+            "Description": "The list of user IDs to remove from the user group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "purchase_reserved_cache_nodes_offering": {
+        "ReservedCacheNodesOfferingId": {
+            "Description": "The ID of the reserved cache node offering to purchase.\nExample: 438012d3-4052-4cc7-b2e3-8d3372e0e706",
+            "Type": "string",
+            "Required": true
+        },
+        "ReservedCacheNodeId": {
+            "Description": "A customer-specified identifier to track this reservation.\nExample: myreservationID",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheNodeCount": {
+            "Description": "The number of cache node instances to reserve.\nDefault: 1",
+            "Type": "integer",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "rebalance_slots_in_global_replication_group": {
+        "GlobalReplicationGroupId": {
+            "Description": "The name of the Global datastore",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplyImmediately": {
+            "Description": "If True, redistribution is applied immediately.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "reboot_cache_cluster": {
+        "CacheClusterId": {
+            "Description": "The cluster identifier. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        },
+        "CacheNodeIdsToReboot": {
+            "Description": "A list of cache node IDs to reboot. A node ID is a numeric identifier (0001, 0002, etc.). To reboot an entire cluster, specify all of the cache node IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "remove_tags_from_resource": {
+        "ResourceName": {
+            "Description": "The Amazon Resource Name (ARN) of the resource from which you want the tags removed, for example arn:aws:elasticache:us-west-2:0123456789:cluster:myCluster or arn:aws:elasticache:us-west-2:0123456789:snapshot:mySnapshot .\nFor more information about ARNs, see Amazon Resource Names (ARNs) and Amazon Service Namespaces .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of TagKeys identifying the tags you want removed from the named resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "reset_cache_parameter_group": {
+        "CacheParameterGroupName": {
+            "Description": "The name of the cache parameter group to reset.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResetAllParameters": {
+            "Description": "If true, all parameters in the cache parameter group are reset to their default values. If false, only the parameters listed by ParameterNameValues are reset to their default values.\nValid values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ParameterNameValues": {
+            "Description": "An array of parameter names to reset to their default values. If ResetAllParameters is true, do not use ParameterNameValues. If ResetAllParameters is false, you must specify the name of at least one parameter to reset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "revoke_cache_security_group_ingress": {
+        "CacheSecurityGroupName": {
+            "Description": "The name of the cache security group to revoke ingress from.",
+            "Type": "string",
+            "Required": true
+        },
+        "EC2SecurityGroupName": {
+            "Description": "The name of the Amazon EC2 security group to revoke access from.",
+            "Type": "string",
+            "Required": true
+        },
+        "EC2SecurityGroupOwnerId": {
+            "Description": "The Amazon account number of the Amazon EC2 security group owner. Note that this is not the same thing as an Amazon access key ID - you must provide a valid Amazon account number for this parameter.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_migration": {
+        "ReplicationGroupId": {
+            "Description": "The ID of the replication group to which data should be migrated.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomerNodeEndpointList": {
+            "Description": "List of endpoints from which data should be migrated. For Redis (cluster mode disabled), list should have only one element.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "test_failover": {
+        "ReplicationGroupId": {
+            "Description": "The name of the replication group (console: cluster) whose automatic failover is being tested by this operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeGroupId": {
+            "Description": "The name of the node group (called shard in the console) in this replication group on which automatic failover is to be tested. You may test automatic failover on up to 5 node groups in any rolling 24-hour period.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "Engine": {
+            "Description": "The Redis engine.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserId": {
+            "Description": "The ID of the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filter to determine the list of User IDs to return.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "ReplicationGroupId": {
+            "Description": "The identifier for the replication group to be described. This parameter is not case sensitive.\nIf you do not specify this parameter, information about all replication groups is returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: minimum 20; maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional marker returned from a prior request. Use this marker for pagination of results from this operation. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

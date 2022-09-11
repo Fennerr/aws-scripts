@@ -1,0 +1,940 @@
+{
+    "create_access_point": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the bucket for which you want to create an access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name you want to assign to this access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "The name of the bucket that you want to associate this access point with.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        },
+        "VpcConfiguration": {
+            "Description": "If you include this field, Amazon S3 restricts access to this access point to requests from the specified virtual private cloud (VPC).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PublicAccessBlockConfiguration": {
+            "Description": "The PublicAccessBlock configuration that you want to apply to the access point.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_access_point_for_object_lambda": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for owner of the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name you want to assign to this Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Configuration": {
+            "Description": "Object Lambda Access Point configuration as a JSON document.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_bucket": {
+        "ACL": {
+            "Description": "The canned ACL to apply to the bucket.",
+            "Type": "string",
+            "Required": false
+        },
+        "Bucket": {
+            "Description": "The name of the bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "CreateBucketConfiguration": {
+            "Description": "The configuration information for the bucket.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "GrantFullControl": {
+            "Description": "Allows grantee the read, write, read ACP, and write ACP permissions on the bucket.",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantRead": {
+            "Description": "Allows grantee to list the objects in the bucket.",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantReadACP": {
+            "Description": "Allows grantee to read the bucket ACL.",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantWrite": {
+            "Description": "Allows grantee to create, overwrite, and delete any object in the bucket.",
+            "Type": "string",
+            "Required": false
+        },
+        "GrantWriteACP": {
+            "Description": "Allows grantee to write the ACL for the applicable bucket.",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectLockEnabledForBucket": {
+            "Description": "Specifies whether you want S3 Object Lock to be enabled for the new bucket.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "OutpostId": {
+            "Description": "The ID of the Outposts where the bucket is being created.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_job": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID that creates the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfirmationRequired": {
+            "Description": "Indicates whether confirmation is required before Amazon S3 runs the job. Confirmation is only required for jobs created through the Amazon S3 console.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Operation": {
+            "Description": "The action that you want this job to perform on every object listed in the manifest. For more information about the available actions, see Operations in the Amazon S3 User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Report": {
+            "Description": "Configuration parameters for the optional job-completion report.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "An idempotency token to ensure that you don't accidentally submit the same request twice. You can use any string up to the maximum length.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Manifest": {
+            "Description": "Configuration parameters for the manifest.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description for this job. You can use any string within the permitted length. Descriptions don't need to be unique and can be used for multiple jobs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Priority": {
+            "Description": "The numerical priority for this job. Higher numbers indicate higher priority.",
+            "Type": "integer",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) for the Identity and Access Management (IAM) role that Batch Operations will use to run this job's action on every object in the manifest.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A set of tags to associate with the S3 Batch Operations job. This is an optional parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ManifestGenerator": {
+            "Description": "The attribute container for the ManifestGenerator details. Jobs must be created with either a manifest file or a ManifestGenerator, but not both.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_multi_region_access_point": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point. The owner of the Multi-Region Access Point also must own the underlying buckets.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "An idempotency token used to identify the request and guarantee that requests are unique.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Details": {
+            "Description": "A container element containing details about the Multi-Region Access Point.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_access_point": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the access point you want to delete.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/accesspoint/&lt;my-accesspoint-name&gt;. For example, to access the access point reports-ap through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_access_point_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the access point you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_access_point_policy": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the access point whose policy you want to delete.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/accesspoint/&lt;my-accesspoint-name&gt;. For example, to access the access point reports-ap through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_access_point_policy_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Object Lambda Access Point you want to delete the policy for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_bucket": {
+        "AccountId": {
+            "Description": "The account ID that owns the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "Specifies the bucket being deleted.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_bucket_lifecycle_configuration": {
+        "AccountId": {
+            "Description": "The account ID of the lifecycle configuration to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "Specifies the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_bucket_policy": {
+        "AccountId": {
+            "Description": "The account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "Specifies the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_bucket_tagging": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket tag set to be removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "The bucket ARN that has the tag set to be removed.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_job_tagging": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID associated with the S3 Batch Operations job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The ID for the S3 Batch Operations job whose tags you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_multi_region_access_point": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "An idempotency token used to identify the request and guarantee that requests are unique.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Details": {
+            "Description": "A container element containing details about the Multi-Region Access Point.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_public_access_block": {
+        "AccountId": {
+            "Description": "The account ID for the Amazon Web Services account whose PublicAccessBlock configuration you want to remove.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_storage_lens_configuration": {
+        "ConfigId": {
+            "Description": "The ID of the S3 Storage Lens configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The account ID of the requester.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_storage_lens_configuration_tagging": {
+        "ConfigId": {
+            "Description": "The ID of the S3 Storage Lens configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The account ID of the requester.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_job": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID associated with the S3 Batch Operations job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The ID for the job whose information you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_multi_region_access_point_operation": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "RequestTokenARN": {
+            "Description": "The request token associated with the request you want to know about. This request token is returned as part of the response when you make an asynchronous request. You provide this token to query about the status of the asynchronous action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_point": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the access point whose configuration information you want to retrieve.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/accesspoint/&lt;my-accesspoint-name&gt;. For example, to access the access point reports-ap through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_point_configuration_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Object Lambda Access Point you want to return the configuration for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_point_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_point_policy": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the access point whose policy you want to retrieve.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/accesspoint/&lt;my-accesspoint-name&gt;. For example, to access the access point reports-ap through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_point_policy_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_point_policy_status": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the access point whose policy status you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_access_point_policy_status_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_bucket": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "Specifies the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_bucket_lifecycle_configuration": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "The Amazon Resource Name (ARN) of the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_bucket_policy": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "Specifies the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_bucket_tagging": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "Specifies the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_job_tagging": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID associated with the S3 Batch Operations job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The ID for the S3 Batch Operations job whose tags you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_multi_region_access_point": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Multi-Region Access Point whose configuration information you want to receive. The name of the Multi-Region Access Point is different from the alias. For more information about the distinction between the name and the alias of an Multi-Region Access Point, see Managing Multi-Region Access Points in the Amazon S3 User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_multi_region_access_point_policy": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "Specifies the Multi-Region Access Point. The name of the Multi-Region Access Point is different from the alias. For more information about the distinction between the name and the alias of an Multi-Region Access Point, see Managing Multi-Region Access Points in the Amazon S3 User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_multi_region_access_point_policy_status": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "Specifies the Multi-Region Access Point. The name of the Multi-Region Access Point is different from the alias. For more information about the distinction between the name and the alias of an Multi-Region Access Point, see Managing Multi-Region Access Points in the Amazon S3 User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_public_access_block": {
+        "AccountId": {
+            "Description": "The account ID for the Amazon Web Services account whose PublicAccessBlock configuration you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_storage_lens_configuration": {
+        "ConfigId": {
+            "Description": "The ID of the Amazon S3 Storage Lens configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The account ID of the requester.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_storage_lens_configuration_tagging": {
+        "ConfigId": {
+            "Description": "The ID of the Amazon S3 Storage Lens configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The account ID of the requester.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_access_points": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for owner of the bucket whose access points you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "The name of the bucket whose associated access points you want to list.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A continuation token. If a previous call to ListAccessPoints returned a continuation token in the NextToken field, then providing that value here causes Amazon S3 to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of access points that you want to include in the list. If the specified bucket has more than this number of access points, then the response will include a continuation token in the NextToken field that you can use to retrieve the next page of access points.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_access_points_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the list has more access points than can be returned in one call to this API, this field contains a continuation token that you can provide in subsequent calls to this API to retrieve additional access points.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of access points that you want to include in the list. The response may contain fewer access points but will never contain more. If there are more than this number of access points, then the response will include a continuation token in the NextToken field that you can use to retrieve the next page of access points.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_jobs": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID associated with the S3 Batch Operations job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobStatuses": {
+            "Description": "The List Jobs request returns jobs that match the statuses listed in this element.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "A pagination token to request the next page of results. Use the token that Amazon S3 returned in the NextToken element of the ListJobsResult from the previous List Jobs request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of jobs that Amazon S3 will include in the List Jobs response. If there are more jobs than this number, the response will include a pagination token in the NextToken field to enable you to retrieve the next page of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_multi_region_access_points": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Not currently used. Do not use this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Not currently used. Do not use this parameter.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_regional_buckets": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "OutpostId": {
+            "Description": "The ID of the Outposts.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_storage_lens_configurations": {
+        "AccountId": {
+            "Description": "The account ID of the requester.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_access_point_configuration_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Configuration": {
+            "Description": "Object Lambda Access Point configuration document.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_access_point_policy": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for owner of the bucket associated with the specified access point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the access point that you want to associate with the specified policy.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the access point accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/accesspoint/&lt;my-accesspoint-name&gt;. For example, to access the access point reports-ap through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/accesspoint/reports-ap. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The policy that you want to apply to the specified access point. For more information about access point policies, see Managing data access with Amazon S3 access points in the Amazon S3 User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_access_point_policy_for_object_lambda": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "Object Lambda Access Point resource policy document.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_bucket_lifecycle_configuration": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "The name of the bucket for which to set the configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "LifecycleConfiguration": {
+            "Description": "Container for lifecycle rules. You can add as many as 1,000 rules.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_bucket_policy": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "Specifies the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfirmRemoveSelfBucketAccess": {
+            "Description": "Set this parameter to true to confirm that you want to remove your permissions to change this bucket policy in the future.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Policy": {
+            "Description": "The bucket policy as a JSON document.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_bucket_tagging": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID of the Outposts bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Bucket": {
+            "Description": "The Amazon Resource Name (ARN) of the bucket.\nFor using this parameter with Amazon S3 on Outposts with the REST API, you must specify the name and the x-amz-outpost-id as well.\nFor using this parameter with S3 on Outposts with the Amazon Web Services SDK and CLI, you must specify the ARN of the bucket accessed in the format arn:aws:s3-outposts:&lt;Region&gt;:&lt;account-id&gt;:outpost/&lt;outpost-id&gt;/bucket/&lt;my-bucket-name&gt;. For example, to access the bucket reports through outpost my-outpost owned by account 123456789012 in Region us-west-2, use the URL encoding of arn:aws:s3-outposts:us-west-2:123456789012:outpost/my-outpost/bucket/reports. The value must be URL encoded.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tagging": {
+            "Description": "[REQUIRED]\n\nTagSet (list)[REQUIRED]A collection for a set of tags.\n\n(dict) --\nKey (string)[REQUIRED]\nValue (string)[REQUIRED]\n\n\n\n\n\n",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_job_tagging": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID associated with the S3 Batch Operations job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The ID for the S3 Batch Operations job whose tags you want to replace.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The set of tags to associate with the S3 Batch Operations job.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "put_multi_region_access_point_policy": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID for the owner of the Multi-Region Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "An idempotency token used to identify the request and guarantee that requests are unique.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Details": {
+            "Description": "A container element containing the details of the policy for the Multi-Region Access Point.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_public_access_block": {
+        "PublicAccessBlockConfiguration": {
+            "Description": "The PublicAccessBlock configuration that you want to apply to the specified Amazon Web Services account.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AccountId": {
+            "Description": "The account ID for the Amazon Web Services account whose PublicAccessBlock configuration you want to set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_storage_lens_configuration": {
+        "ConfigId": {
+            "Description": "The ID of the S3 Storage Lens configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The account ID of the requester.",
+            "Type": "string",
+            "Required": true
+        },
+        "StorageLensConfiguration": {
+            "Description": "The S3 Storage Lens configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tag set of the S3 Storage Lens configuration.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_storage_lens_configuration_tagging": {
+        "ConfigId": {
+            "Description": "The ID of the S3 Storage Lens configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The account ID of the requester.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tag set of the S3 Storage Lens configuration.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_job_priority": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID associated with the S3 Batch Operations job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The ID for the job whose priority you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Priority": {
+            "Description": "The priority you want to assign to this job.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "update_job_status": {
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID associated with the S3 Batch Operations job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The ID of the job whose status you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "RequestedJobStatus": {
+            "Description": "The status that you want to move the specified job to.",
+            "Type": "string",
+            "Required": true
+        },
+        "StatusUpdateReason": {
+            "Description": "A description of the reason why you want to change the specified job's status. This field can be any string up to the maximum length.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "AccountId": {
+            "Description": "The account ID for the account that owns the specified Object Lambda Access Point.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

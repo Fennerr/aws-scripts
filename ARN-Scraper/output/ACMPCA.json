@@ -4,45 +4,13 @@
             "Description": "Name and bit size of the private key algorithm, the name of the signing algorithm, and X.500 certificate subject information.",
             "Type": "dict",
             "Required": true,
-            "Dict Variable": {
-                "KeyAlgorithm": {
-                    "Description": "Type of the public key algorithm and size, in bits, of the key pair that your CA creates when it issues a certificate. When you create a subordinate CA, you must use a key algorithm supported by the parent CA.",
-                    "Type": "string",
-                    "Required": true
-                },
-                "SigningAlgorithm": {
-                    "Description": "Name of the algorithm your private CA uses to sign certificate requests.\nThis parameter should not be confused with the SigningAlgorithm parameter used to sign certificates when they are issued.",
-                    "Type": "string",
-                    "Required": true
-                },
-                "Subject": {
-                    "Description": "Structure that contains X.500 distinguished name information for your private CA.",
-                    "Type": "dict",
-                    "Required": true
-                },
-                "CsrExtensions": {
-                    "Description": "Specifies information to be added to the extension section of the certificate signing request (CSR).",
-                    "Type": "dict",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "RevocationConfiguration": {
             "Description": "Contains information to enable Online Certificate Status Protocol (OCSP) support, to enable a certificate revocation list (CRL), to enable both, or to enable neither. The default is for both certificate validation mechanisms to be disabled. For more information, see the OcspConfiguration and CrlConfiguration types.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "CrlConfiguration": {
-                    "Description": "Configuration of the certificate revocation list (CRL), if any, maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, ACM Private CA makes further attempts every 15 minutes.",
-                    "Type": "dict",
-                    "Required": false
-                },
-                "OcspConfiguration": {
-                    "Description": "Configuration of Online Certificate Status Protocol (OCSP) support, if any, maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.",
-                    "Type": "dict",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "CertificateAuthorityType": {
             "Description": "The type of the certificate authority.",
@@ -57,32 +25,14 @@
         "KeyStorageSecurityStandard": {
             "Description": "Specifies a cryptographic key management compliance standard used for handling CA keys.\nDefault: FIPS_140_2_LEVEL_3_OR_HIGHER\nWhen creating a CA in these Regions, you must provide FIPS_140_2_LEVEL_2_OR_HIGHER as the argument for KeyStorageSecurityStandard. Failure to do this results in an InvalidArgsException with the message, \"A certificate authority cannot be created in this region with the specified security standard.\"",
             "Type": "string",
-            "Required": false
+            "Required": false,
+            "string variables": {}
         },
         "Tags": {
             "Description": "Key-value pairs that will be attached to the new private CA. You can associate up to 50 tags with a private CA. For information using tags with IAM to manage permissions, see Controlling Access Using IAM Tags .",
             "Type": "list",
             "Required": false,
-            "List Variables": [
-                {
-                    "Name": "Key",
-                    "Description": "Tags are labels that you can use to identify and organize your private CAs. Each tag consists of a key and an optional value. You can associate up to 50 tags with a private CA. To add one or more tags to a private CA, call the TagCertificateAuthority action. To remove a tag, call the UntagCertificateAuthority action.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "Key": {
-                            "Description": "Key (name) of the tag.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "Value": {
-                            "Description": "Value of the tag.",
-                            "Type": "string",
-                            "Required": false
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         }
     },
     "create_certificate_authority_audit_report": {
@@ -122,14 +72,7 @@
             "Description": "The actions that the specified Amazon Web Services service principal can use. These include IssueCertificate, GetCertificate, and ListPermissions .",
             "Type": "list",
             "Required": true,
-            "List Variables": [
-                {
-                    "Name": null,
-                    "Description": null,
-                    "Type": "string",
-                    "Required": false
-                }
-            ]
+            "list variables": {}
         }
     },
     "delete_certificate_authority": {
@@ -242,18 +185,7 @@
             "Description": "Specifies X.509 certificate information to be included in the issued certificate. An APIPassthrough or APICSRPassthrough template variant must be selected, or else this parameter is ignored. For more information about using these templates, see Understanding Certificate Templates .\nIf conflicting or duplicate certificate information is supplied during certificate issuance, ACM Private CA applies order of operation rules to determine what information is used.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "Extensions": {
-                    "Description": "Specifies X.509 extension information for a certificate.",
-                    "Type": "dict",
-                    "Required": false
-                },
-                "Subject": {
-                    "Description": "Contains information about the certificate subject. The Subject field in the certificate identifies the entity that owns or controls the public key in the certificate. The entity can be a user, computer, device, or service. The Subject must contain an X.500 distinguished name (DN). A DN is a sequence of relative distinguished names (RDNs). The RDNs are separated by commas in the certificate.",
-                    "Type": "dict",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "CertificateAuthorityArn": {
             "Description": "The Amazon Resource Name (ARN) that was returned when you called CreateCertificateAuthority. This must be of the form:",
@@ -279,35 +211,13 @@
             "Description": "Information describing the end of the validity period of the certificate. This parameter sets the \u201cNot After\u201d date for the certificate.\nCertificate validity is the period of time during which a certificate is valid. Validity can be expressed as an explicit date and time when the certificate expires, or as a span of time after issuance, stated in days, months, or years. For more information, see Validity in RFC 5280.\nThis value is unaffected when ValidityNotBefore is also specified. For example, if Validity is set to 20 days in the future, the certificate will expire 20 days from issuance time regardless of the ValidityNotBefore value.\nThe end of the validity period configured on a certificate must not exceed the limit set on its parents in the CA hierarchy.",
             "Type": "dict",
             "Required": true,
-            "Dict Variable": {
-                "Value": {
-                    "Description": "A long integer interpreted according to the value of Type, below.",
-                    "Type": "integer",
-                    "Required": true
-                },
-                "Type": {
-                    "Description": "Determines how ACM Private CA interprets the Value parameter, an integer. Supported validity types include those listed below. Type definitions with values include a sample input value and the resulting output.\nExample if DAYS, issued on 10/12/2020 at 12:34:54 UTC:\nThe minimum validity duration for a certificate using relative time (DAYS ) is one day. The minimum validity for a certificate using absolute time (ABSOLUTE or END_DATE ) is one second.",
-                    "Type": "string",
-                    "Required": true
-                }
-            }
+            "dict variables": {}
         },
         "ValidityNotBefore": {
             "Description": "Information describing the start of the validity period of the certificate. This parameter sets the \u201cNot Before\" date for the certificate.\nBy default, when issuing a certificate, ACM Private CA sets the \"Not Before\" date to the issuance time minus 60 minutes. This compensates for clock inconsistencies across computer systems. The ValidityNotBefore parameter can be used to customize the \u201cNot Before\u201d value.\nUnlike the Validity parameter, the ValidityNotBefore parameter is optional.\nThe ValidityNotBefore value is expressed as an explicit date and time, using the Validity type value ABSOLUTE. For more information, see Validity in this API reference and Validity in RFC 5280.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "Value": {
-                    "Description": "A long integer interpreted according to the value of Type, below.",
-                    "Type": "integer",
-                    "Required": true
-                },
-                "Type": {
-                    "Description": "Determines how ACM Private CA interprets the Value parameter, an integer. Supported validity types include those listed below. Type definitions with values include a sample input value and the resulting output.\nExample if DAYS, issued on 10/12/2020 at 12:34:54 UTC:\nThe minimum validity duration for a certificate using relative time (DAYS ) is one day. The minimum validity for a certificate using absolute time (ABSOLUTE or END_DATE ) is one second.",
-                    "Type": "string",
-                    "Required": true
-                }
-            }
+            "dict variables": {}
         },
         "IdempotencyToken": {
             "Description": "Alphanumeric string that can be used to distinguish between calls to the IssueCertificate action. Idempotency tokens for IssueCertificate time out after one minute. Therefore, if you call IssueCertificate multiple times with the same idempotency token within one minute, ACM Private CA recognizes that you are requesting only one certificate and will issue only one. If you change the idempotency token for each call, PCA recognizes that you are requesting multiple certificates.",
@@ -412,26 +322,7 @@
             "Description": "List of tags to be associated with the CA.",
             "Type": "list",
             "Required": true,
-            "List Variables": [
-                {
-                    "Name": "Key",
-                    "Description": "Tags are labels that you can use to identify and organize your private CAs. Each tag consists of a key and an optional value. You can associate up to 50 tags with a private CA. To add one or more tags to a private CA, call the TagCertificateAuthority action. To remove a tag, call the UntagCertificateAuthority action.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "Key": {
-                            "Description": "Key (name) of the tag.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "Value": {
-                            "Description": "Value of the tag.",
-                            "Type": "string",
-                            "Required": false
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         }
     },
     "untag_certificate_authority": {
@@ -444,26 +335,7 @@
             "Description": "List of tags to be removed from the CA.",
             "Type": "list",
             "Required": true,
-            "List Variables": [
-                {
-                    "Name": "Key",
-                    "Description": "Tags are labels that you can use to identify and organize your private CAs. Each tag consists of a key and an optional value. You can associate up to 50 tags with a private CA. To add one or more tags to a private CA, call the TagCertificateAuthority action. To remove a tag, call the UntagCertificateAuthority action.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "Key": {
-                            "Description": "Key (name) of the tag.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "Value": {
-                            "Description": "Value of the tag.",
-                            "Type": "string",
-                            "Required": false
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         }
     },
     "update_certificate_authority": {
@@ -476,18 +348,7 @@
             "Description": "Contains information to enable Online Certificate Status Protocol (OCSP) support, to enable a certificate revocation list (CRL), to enable both, or to enable neither. If this parameter is not supplied, existing capibilites remain unchanged. For more information, see the OcspConfiguration and CrlConfiguration types.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "CrlConfiguration": {
-                    "Description": "Configuration of the certificate revocation list (CRL), if any, maintained by your private CA. A CRL is typically updated approximately 30 minutes after a certificate is revoked. If for any reason a CRL update fails, ACM Private CA makes further attempts every 15 minutes.",
-                    "Type": "dict",
-                    "Required": false
-                },
-                "OcspConfiguration": {
-                    "Description": "Configuration of Online Certificate Status Protocol (OCSP) support, if any, maintained by your private CA. When you revoke a certificate, OCSP responses may take up to 60 minutes to reflect the new status.",
-                    "Type": "dict",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "Status": {
             "Description": "Status of your private CA.",
@@ -505,23 +366,7 @@
             "Description": "A dictionary that provides parameters to control pagination.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "MaxItems": {
-                    "Description": "The total number of items to return. If the total number of items available is more than the value specified in max-items then a NextToken will be provided in the output that you can use to resume pagination.",
-                    "Type": "integer",
-                    "Required": false
-                },
-                "PageSize": {
-                    "Description": "The size of each page.",
-                    "Type": "integer",
-                    "Required": false
-                },
-                "StartingToken": {
-                    "Description": "A token to specify where to start paginating. This is the NextToken from a previous response.",
-                    "Type": "string",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         }
     },
     "wait": {
@@ -539,18 +384,7 @@
             "Description": "A dictionary that provides parameters to control waiting behavior.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "Delay": {
-                    "Description": "The amount of time in seconds to wait between attempts. Default: 3",
-                    "Type": "integer",
-                    "Required": false
-                },
-                "MaxAttempts": {
-                    "Description": "The maximum number of attempts to be made. Default: 60",
-                    "Type": "integer",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         }
     }
 }

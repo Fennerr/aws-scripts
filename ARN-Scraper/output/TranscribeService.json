@@ -1,0 +1,740 @@
+{
+    "create_call_analytics_category": {
+        "CategoryName": {
+            "Description": "A unique name, chosen by you, for your Call Analytics category. It's helpful to use a detailed naming system that will make sense to you in the future. For example, it's better to use sentiment-positive-last30seconds for a category over a generic name like test-category .\nCategory names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "Rules": {
+            "Description": "Rules define a Call Analytics category. When creating a new Call Analytics category, you must create between 1 and 20 rules for that category. For each rule, you specify a filter you want applied to the attributes of a call. For example, you can choose a sentiment filter that detects if a customer's sentiment was positive during the last 30 seconds of the call.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_language_model": {
+        "LanguageCode": {
+            "Description": "The language code that represents the language of your model. Each language model must contain terms in only one language, and the language you select for your model must match the language of your training and tuning data.\nFor a list of supported languages and their associated language codes, refer to the Supported languages table. Note that U.S. English (en-US ) is the only language supported with Amazon Transcribe Medical.\nA custom language model can only be used to transcribe files in the same language as the model. For example, if you create a language model using US English (en-US ), you can only apply this model to files that contain English audio.",
+            "Type": "string",
+            "Required": true
+        },
+        "BaseModelName": {
+            "Description": "The Amazon Transcribe standard language model, or base model, used to create your custom language model. Amazon Transcribe offers two options for base models: Wideband and Narrowband.\nIf the audio you want to transcribe has a sample rate of 16,000 Hz or greater, choose WideBand. To transcribe audio with a sample rate less than 16,000 Hz, choose NarrowBand .",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelName": {
+            "Description": "A unique name, chosen by you, for your custom language model.\nThis name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new language model with the same name as an existing language model, you get a ConflictException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputDataConfig": {
+            "Description": "Contains the Amazon S3 location of the training data you want to use to create a new custom language model, and permissions to access this location.\nWhen using InputDataConfig, you must include these sub-parameters: S3Uri, which is the Amazon S3 location of your training data, and DataAccessRoleArn, which is the Amazon Resource Name (ARN) of the role that has permission to access your specified Amazon S3 location. You can optionally include TuningDataS3Uri, which is the Amazon S3 location of your tuning data. If you specify different Amazon S3 locations for training and tuning data, the ARN you use must have permissions to access both locations.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Adds one or more custom tags, each in the form of a key:value pair, to a new custom language model at the time you create this new model.\nTo learn more about using tags with Amazon Transcribe, refer to Tagging resources .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_medical_vocabulary": {
+        "VocabularyName": {
+            "Description": "A unique name, chosen by you, for your new custom medical vocabulary.\nThis name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new medical vocabulary with the same name as an existing medical vocabulary, you get a ConflictException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code that represents the language of the entries in your custom vocabulary. US English (en-US ) is the only language supported with Amazon Transcribe Medical.",
+            "Type": "string",
+            "Required": true
+        },
+        "VocabularyFileUri": {
+            "Description": "The Amazon S3 location (URI) of the text file that contains your custom medical vocabulary. The URI must be in the same Amazon Web Services Region as the resource you're calling.\nHere's an example URI path: s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Adds one or more custom tags, each in the form of a key:value pair, to a new medical vocabulary at the time you create this new vocabulary.\nTo learn more about using tags with Amazon Transcribe, refer to Tagging resources .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_vocabulary": {
+        "VocabularyName": {
+            "Description": "A unique name, chosen by you, for your new custom vocabulary.\nThis name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new vocabulary with the same name as an existing vocabulary, you get a ConflictException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code that represents the language of the entries in your custom vocabulary. Each vocabulary must contain terms in only one language.\nA custom vocabulary can only be used to transcribe files in the same language as the vocabulary. For example, if you create a vocabulary using US English (en-US ), you can only apply this vocabulary to files that contain English audio.\nFor a list of supported languages and their associated language codes, refer to the Supported languages table.",
+            "Type": "string",
+            "Required": true
+        },
+        "Phrases": {
+            "Description": "Use this parameter if you want to create your vocabulary by including all desired terms, as comma-separated values, within your request. The other option for creating your vocabulary is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the VocabularyFileUri parameter.\nNote that if you include Phrases in your request, you cannot use VocabularyFileUri ; you must choose one or the other.\nEach language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your vocabulary filter request fails. Refer to Character Sets for Custom Vocabularies to get the character set for your language.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VocabularyFileUri": {
+            "Description": "The Amazon S3 location of the text file that contains your custom vocabulary. The URI must be located in the same Amazon Web Services Region as the resource you're calling.\nHere's an example URI path: s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt\nNote that if you include VocabularyFileUri in your request, you cannot use the Phrases flag; you must choose one or the other.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Adds one or more custom tags, each in the form of a key:value pair, to a new custom vocabulary at the time you create this new vocabulary.\nTo learn more about using tags with Amazon Transcribe, refer to Tagging resources .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_vocabulary_filter": {
+        "VocabularyFilterName": {
+            "Description": "A unique name, chosen by you, for your new custom vocabulary filter.\nThis name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new vocabulary filter with the same name as an existing vocabulary filter, you get a ConflictException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code that represents the language of the entries in your vocabulary filter. Each vocabulary filter must contain terms in only one language.\nA vocabulary filter can only be used to transcribe files in the same language as the filter. For example, if you create a vocabulary filter using US English (en-US ), you can only apply this filter to files that contain English audio.\nFor a list of supported languages and their associated language codes, refer to the Supported languages table.",
+            "Type": "string",
+            "Required": true
+        },
+        "Words": {
+            "Description": "Use this parameter if you want to create your vocabulary filter by including all desired terms, as comma-separated values, within your request. The other option for creating your vocabulary filter is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the VocabularyFilterFileUri parameter.\nNote that if you include Words in your request, you cannot use VocabularyFilterFileUri ; you must choose one or the other.\nEach language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your vocabulary filter request fails. Refer to Character Sets for Custom Vocabularies to get the character set for your language.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VocabularyFilterFileUri": {
+            "Description": "The Amazon S3 location of the text file that contains your custom vocabulary filter terms. The URI must be located in the same Amazon Web Services Region as the resource you're calling.\nHere's an example URI path: s3://DOC-EXAMPLE-BUCKET/my-vocab-filter-file.txt\nNote that if you include VocabularyFilterFileUri in your request, you cannot use Words ; you must choose one or the other.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Adds one or more custom tags, each in the form of a key:value pair, to a new custom vocabulary filter at the time you create this new filter.\nTo learn more about using tags with Amazon Transcribe, refer to Tagging resources .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_call_analytics_category": {
+        "CategoryName": {
+            "Description": "The name of the Call Analytics category you want to delete. Category names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_call_analytics_job": {
+        "CallAnalyticsJobName": {
+            "Description": "The name of the Call Analytics job you want to delete. Job names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_language_model": {
+        "ModelName": {
+            "Description": "The name of the custom language model you want to delete. Model names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_medical_transcription_job": {
+        "MedicalTranscriptionJobName": {
+            "Description": "The name of the medical transcription job you want to delete. Job names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_medical_vocabulary": {
+        "VocabularyName": {
+            "Description": "The name of the custom medical vocabulary you want to delete. Vocabulary names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_transcription_job": {
+        "TranscriptionJobName": {
+            "Description": "The name of the transcription job you want to delete. Job names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_vocabulary": {
+        "VocabularyName": {
+            "Description": "The name of the custom vocabulary you want to delete. Vocabulary names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_vocabulary_filter": {
+        "VocabularyFilterName": {
+            "Description": "The name of the custom vocabulary filter you want to delete. Vocabulary filter names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_language_model": {
+        "ModelName": {
+            "Description": "The name of the custom language model you want information about. Model names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_call_analytics_category": {
+        "CategoryName": {
+            "Description": "The name of the Call Analytics category you want information about. Category names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_call_analytics_job": {
+        "CallAnalyticsJobName": {
+            "Description": "The name of the Call Analytics job you want information about. Job names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_medical_transcription_job": {
+        "MedicalTranscriptionJobName": {
+            "Description": "The name of the medical transcription job you want information about. Job names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_medical_vocabulary": {
+        "VocabularyName": {
+            "Description": "The name of the custom medical vocabulary you want information about. Vocabulary names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_transcription_job": {
+        "TranscriptionJobName": {
+            "Description": "The name of the transcription job you want information about. Job names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_vocabulary": {
+        "VocabularyName": {
+            "Description": "The name of the custom vocabulary you want information about. Vocabulary names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_vocabulary_filter": {
+        "VocabularyFilterName": {
+            "Description": "The name of the custom vocabulary filter you want information about. Vocabulary filter names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_call_analytics_categories": {
+        "NextToken": {
+            "Description": "If your ListCallAnalyticsCategories request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of Call Analytics categories to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_call_analytics_jobs": {
+        "Status": {
+            "Description": "Returns only Call Analytics jobs with the specified status. Jobs are ordered by creation date, with the newest job first. If you don't include Status , all Call Analytics jobs are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "JobNameContains": {
+            "Description": "Returns only the Call Analytics jobs that contain the specified string. The search is not case sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If your ListCallAnalyticsJobs request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of Call Analytics jobs to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_language_models": {
+        "StatusEquals": {
+            "Description": "Returns only custom language models with the specified status. Language models are ordered by creation date, with the newest model first. If you don't include StatusEquals , all custom language models are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "NameContains": {
+            "Description": "Returns only the custom language models that contain the specified string. The search is not case sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If your ListLanguageModels request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of custom language models to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_medical_transcription_jobs": {
+        "Status": {
+            "Description": "Returns only medical transcription jobs with the specified status. Jobs are ordered by creation date, with the newest job first. If you don't include Status , all medical transcription jobs are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "JobNameContains": {
+            "Description": "Returns only the medical transcription jobs that contain the specified string. The search is not case sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If your ListMedicalTranscriptionJobs request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of medical transcription jobs to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_medical_vocabularies": {
+        "NextToken": {
+            "Description": "If your ListMedicalVocabularies request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of custom medical vocabularies to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StateEquals": {
+            "Description": "Returns only custom medical vocabularies with the specified state. Vocabularies are ordered by creation date, with the newest vocabulary first. If you don't include StateEquals , all custom medical vocabularies are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "NameContains": {
+            "Description": "Returns only the custom medical vocabularies that contain the specified string. The search is not case sensitive.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "Returns a list of all tags associated with the specified Amazon Resource Name (ARN). ARNs have the format arn:partition:service:region:account-id:resource-type/resource-id .\nFor example, arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name .\nValid values for resource-type are: transcription-job, medical-transcription-job, vocabulary, medical-vocabulary, vocabulary-filter, and language-model .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_transcription_jobs": {
+        "Status": {
+            "Description": "Returns only transcription jobs with the specified status. Jobs are ordered by creation date, with the newest job first. If you don't include Status , all transcription jobs are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "JobNameContains": {
+            "Description": "Returns only the transcription jobs that contain the specified string. The search is not case sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If your ListTranscriptionJobs request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of transcription jobs to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_vocabularies": {
+        "NextToken": {
+            "Description": "If your ListVocabularies request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of custom vocabularies to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StateEquals": {
+            "Description": "Returns only custom vocabularies with the specified state. Vocabularies are ordered by creation date, with the newest vocabulary first. If you don't include StateEquals , all custom medical vocabularies are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "NameContains": {
+            "Description": "Returns only the custom vocabularies that contain the specified string. The search is not case sensitive.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_vocabulary_filters": {
+        "NextToken": {
+            "Description": "If your ListVocabularyFilters request returns more results than can be displayed, NextToken is displayed in the response with an associated string. To get the next page of results, copy this string and repeat your request, including NextToken with the value of the copied string. Repeat as needed to view all your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of custom vocabulary filters to return in each page of results. If there are fewer results than the value you specify, only the actual results are returned. If you don't specify a value, a default of 5 is used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NameContains": {
+            "Description": "Returns only the custom vocabulary filters that contain the specified string. The search is not case sensitive.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_call_analytics_job": {
+        "CallAnalyticsJobName": {
+            "Description": "A unique name, chosen by you, for your Call Analytics job.\nThis name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new job with the same name as an existing job, you get a ConflictException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "Media": {
+            "Description": "Describes the Amazon S3 location of the media file you want to use in your request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputLocation": {
+            "Description": "The Amazon S3 location where you want your Call Analytics transcription output stored. You can use any of the following formats to specify the output location:\nUnless you specify a file name (option 3), the name of your output file has a default value that matches the name you specified for your transcription job using the CallAnalyticsJobName parameter.\nYou can specify a KMS key to encrypt your output using the OutputEncryptionKMSKeyId parameter. If you don't specify a KMS key, Amazon Transcribe uses the default Amazon S3 key for server-side encryption.\nIf you don't specify OutputLocation, your transcript is placed in a service-managed Amazon S3 bucket and you are provided with a URI to access your transcript.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "OutputEncryptionKMSKeyId": {
+            "Description": "The KMS key you want to use to encrypt your Call Analytics output.\nIf using a key located in the current Amazon Web Services account, you can specify your KMS key in one of four ways:\nIf using a key located in a different Amazon Web Services account than the current Amazon Web Services account, you can specify your KMS key in one of two ways:\nIf you don't specify an encryption key, your output is encrypted with the default Amazon S3 key (SSE-S3).\nIf you specify a KMS key to encrypt your output, you must also specify an output location using the OutputLocation parameter.\nNote that the user making the request must have permission to use the specified KMS key.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of an IAM role that has permissions to access the Amazon S3 bucket that contains your input files. If the role you specify doesn\u2019t have the appropriate permissions to access the specified Amazon S3 location, your request fails.\nIAM role ARNs have the format arn:partition:iam::account:role/role-name-with-path. For example: arn:aws:iam::111122223333:role/Admin .\nFor more information, see IAM ARNs .",
+            "Type": "string",
+            "Required": false
+        },
+        "Settings": {
+            "Description": "Specify additional optional settings in your request, including content redaction; allows you to apply custom language models, vocabulary filters, and custom vocabularies to your Call Analytics job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ChannelDefinitions": {
+            "Description": "Allows you to specify which speaker is on which channel. For example, if your agent is the first participant to speak, you would set ChannelId to 0 (to indicate the first channel) and ParticipantRole to AGENT (to indicate that it's the agent speaking).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_medical_transcription_job": {
+        "MedicalTranscriptionJobName": {
+            "Description": "A unique name, chosen by you, for your medical transcription job. The name you specify is also used as the default name of your transcription output file. If you want to specify a different name for your transcription output, use the OutputKey parameter.\nThis name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new job with the same name as an existing job, you get a ConflictException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code that represents the language spoken in the input media file. US English (en-US ) is the only valid value for medical transcription jobs. Any other value you enter for language code results in a BadRequestException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "MediaSampleRateHertz": {
+            "Description": "The sample rate, in Hertz, of the audio track in your input media file.\nIf you don't specify the media sample rate, Amazon Transcribe Medical determines it for you. If you specify the sample rate, it must match the rate detected by Amazon Transcribe Medical; if there's a mismatch between the value you specify and the value detected, your job fails. Therefore, in most cases, it's advised to omit MediaSampleRateHertz and let Amazon Transcribe Medical determine the sample rate.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MediaFormat": {
+            "Description": "Specify the format of your input media file.",
+            "Type": "string",
+            "Required": false
+        },
+        "Media": {
+            "Description": "Describes the Amazon S3 location of the media file you want to use in your request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputBucketName": {
+            "Description": "The name of the Amazon S3 bucket where you want your medical transcription output stored. Do not include the S3:// prefix of the specified bucket.\nIf you want your output to go to a sub-folder of this bucket, specify it using the OutputKey parameter; OutputBucketName only accepts the name of a bucket.\nFor example, if you want your output stored in S3://DOC-EXAMPLE-BUCKET, set OutputBucketName to DOC-EXAMPLE-BUCKET. However, if you want your output stored in S3://DOC-EXAMPLE-BUCKET/test-files/, set OutputBucketName to DOC-EXAMPLE-BUCKET and OutputKey to test-files/ .\nNote that Amazon Transcribe must have permission to use the specified location. You can change Amazon S3 permissions using the Amazon Web Services Management Console. See also Permissions Required for IAM User Roles .\nIf you don't specify OutputBucketName, your transcript is placed in a service-managed Amazon S3 bucket and you are provided with a URI to access your transcript.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputKey": {
+            "Description": "Use in combination with OutputBucketName to specify the output location of your transcript and, optionally, a unique name for your output file. The default name for your transcription output is the same as the name you specified for your medical transcription job (MedicalTranscriptionJobName ).\nHere are some examples of how you can use OutputKey :\nIf you specify the name of an Amazon S3 bucket sub-folder that doesn't exist, one is created for you.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "OutputEncryptionKMSKeyId": {
+            "Description": "The KMS key you want to use to encrypt your medical transcription output.\nIf using a key located in the current Amazon Web Services account, you can specify your KMS key in one of four ways:\nIf using a key located in a different Amazon Web Services account than the current Amazon Web Services account, you can specify your KMS key in one of two ways:\nIf you don't specify an encryption key, your output is encrypted with the default Amazon S3 key (SSE-S3).\nIf you specify a KMS key to encrypt your output, you must also specify an output location using the OutputLocation parameter.\nNote that the user making the request must have permission to use the specified KMS key.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "KMSEncryptionContext": {
+            "Description": "A map of plain text, non-secret key:value pairs, known as encryption context pairs, that provide an added layer of security for your data. For more information, see KMS encryption context and Asymmetric keys in KMS .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Settings": {
+            "Description": "Specify additional optional settings in your request, including channel identification, alternative transcriptions, and speaker labeling; allows you to apply custom vocabularies to your transcription job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ContentIdentificationType": {
+            "Description": "Labels all personal health information (PHI) identified in your transcript. For more information, see Identifying personal health information (PHI) in a transcription .",
+            "Type": "string",
+            "Required": false
+        },
+        "Specialty": {
+            "Description": "Specify the predominant medical specialty represented in your media. For batch transcriptions, PRIMARYCARE is the only valid value. If you require additional specialties, refer to .",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "Specify whether your input media contains only one person (DICTATION ) or contains a conversation between two people (CONVERSATION ).\nFor example, DICTATION could be used for a medical professional wanting to transcribe voice memos; CONVERSATION could be used for transcribing the doctor-patient dialogue during the patient's office visit.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Adds one or more custom tags, each in the form of a key:value pair, to a new medical transcription job at the time you start this new job.\nTo learn more about using tags with Amazon Transcribe, refer to Tagging resources .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_transcription_job": {
+        "TranscriptionJobName": {
+            "Description": "A unique name, chosen by you, for your transcription job. The name you specify is also used as the default name of your transcription output file. If you want to specify a different name for your transcription output, use the OutputKey parameter.\nThis name is case sensitive, cannot contain spaces, and must be unique within an Amazon Web Services account. If you try to create a new job with the same name as an existing job, you get a ConflictException error.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code that represents the language spoken in the input media file.\nIf you're unsure of the language spoken in your media file, consider using IdentifyLanguage or IdentifyMultipleLanguages to enable automatic language identification.\nNote that you must include one of LanguageCode, IdentifyLanguage, or IdentifyMultipleLanguages in your request. If you include more than one of these parameters, your transcription job fails.\nFor a list of supported languages and their associated language codes, refer to the Supported languages table.",
+            "Type": "string",
+            "Required": false
+        },
+        "MediaSampleRateHertz": {
+            "Description": "The sample rate, in Hertz, of the audio track in your input media file.\nIf you don't specify the media sample rate, Amazon Transcribe determines it for you. If you specify the sample rate, it must match the rate detected by Amazon Transcribe; if there's a mismatch between the value you specify and the value detected, your job fails. Therefore, in most cases, it's advised to omit MediaSampleRateHertz and let Amazon Transcribe determine the sample rate.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MediaFormat": {
+            "Description": "Specify the format of your input media file.",
+            "Type": "string",
+            "Required": false
+        },
+        "Media": {
+            "Description": "Describes the Amazon S3 location of the media file you want to use in your request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputBucketName": {
+            "Description": "The name of the Amazon S3 bucket where you want your transcription output stored. Do not include the S3:// prefix of the specified bucket.\nIf you want your output to go to a sub-folder of this bucket, specify it using the OutputKey parameter; OutputBucketName only accepts the name of a bucket.\nFor example, if you want your output stored in S3://DOC-EXAMPLE-BUCKET, set OutputBucketName to DOC-EXAMPLE-BUCKET. However, if you want your output stored in S3://DOC-EXAMPLE-BUCKET/test-files/, set OutputBucketName to DOC-EXAMPLE-BUCKET and OutputKey to test-files/ .\nNote that Amazon Transcribe must have permission to use the specified location. You can change Amazon S3 permissions using the Amazon Web Services Management Console. See also Permissions Required for IAM User Roles .\nIf you don't specify OutputBucketName, your transcript is placed in a service-managed Amazon S3 bucket and you are provided with a URI to access your transcript.",
+            "Type": "string",
+            "Required": false
+        },
+        "OutputKey": {
+            "Description": "Use in combination with OutputBucketName to specify the output location of your transcript and, optionally, a unique name for your output file. The default name for your transcription output is the same as the name you specified for your transcription job (TranscriptionJobName ).\nHere are some examples of how you can use OutputKey :\nIf you specify the name of an Amazon S3 bucket sub-folder that doesn't exist, one is created for you.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "OutputEncryptionKMSKeyId": {
+            "Description": "The KMS key you want to use to encrypt your transcription output.\nIf using a key located in the current Amazon Web Services account, you can specify your KMS key in one of four ways:\nIf using a key located in a different Amazon Web Services account than the current Amazon Web Services account, you can specify your KMS key in one of two ways:\nIf you don't specify an encryption key, your output is encrypted with the default Amazon S3 key (SSE-S3).\nIf you specify a KMS key to encrypt your output, you must also specify an output location using the OutputLocation parameter.\nNote that the user making the request must have permission to use the specified KMS key.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "KMSEncryptionContext": {
+            "Description": "A map of plain text, non-secret key:value pairs, known as encryption context pairs, that provide an added layer of security for your data. For more information, see KMS encryption context and Asymmetric keys in KMS .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Settings": {
+            "Description": "Specify additional optional settings in your request, including channel identification, alternative transcriptions, speaker labeling; allows you to apply custom vocabularies and vocabulary filters.\nIf you want to include a custom vocabulary or a custom vocabulary filter (or both) with your request but do not want to use automatic language identification, use Settings with the VocabularyName or VocabularyFilterName (or both) sub-parameter.\nIf you're using automatic language identification with your request and want to include a custom language model, a custom vocabulary, or a custom vocabulary filter, use instead the parameter with the LanguageModelName, VocabularyName or VocabularyFilterName sub-parameters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ModelSettings": {
+            "Description": "Specify the custom language model you want to include with your transcription job. If you include ModelSettings in your request, you must include the LanguageModelName sub-parameter.\nFor more information, see Custom language models .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobExecutionSettings": {
+            "Description": "Allows you to control how your transcription job is processed. Currently, the only JobExecutionSettings modification you can choose is enabling job queueing using the AllowDeferredExecution sub-parameter.\nIf you include JobExecutionSettings in your request, you must also include the sub-parameters: AllowDeferredExecution and DataAccessRoleArn .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ContentRedaction": {
+            "Description": "Allows you to redact or flag specified personally identifiable information (PII) in your transcript. If you use ContentRedaction, you must also include the sub-parameters: PiiEntityTypes, RedactionOutput, and RedactionType .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IdentifyLanguage": {
+            "Description": "Enables automatic language identification in your transcription job request.\nIf you include IdentifyLanguage, you can optionally include a list of language codes, using LanguageOptions, that you think may be present in your media file. Including language options can improve transcription accuracy.\nIf you want to apply a custom language model, a custom vocabulary, or a custom vocabulary filter to your automatic language identification request, include LanguageIdSettings with the relevant sub-parameters (VocabularyName, LanguageModelName, and VocabularyFilterName ).\nNote that you must include one of LanguageCode, IdentifyLanguage, or IdentifyMultipleLanguages in your request. If you include more than one of these parameters, your transcription job fails.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IdentifyMultipleLanguages": {
+            "Description": "Enables automatic multi-language identification in your transcription job request. Use this parameter if your media file contains more than one language.\nIf you include IdentifyMultipleLanguages, you can optionally include a list of language codes, using LanguageOptions, that you think may be present in your media file. Including language options can improve transcription accuracy.\nIf you want to apply a custom vocabulary or a custom vocabulary filter to your automatic language identification request, include LanguageIdSettings with the relevant sub-parameters (VocabularyName and VocabularyFilterName ).\nNote that you must include one of LanguageCode, IdentifyLanguage, or IdentifyMultipleLanguages in your request. If you include more than one of these parameters, your transcription job fails.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "LanguageOptions": {
+            "Description": "You can specify two or more language codes that represent the languages you think may be present in your media; including more than five is not recommended. If you're unsure what languages are present, do not include this parameter.\nIf you include LanguageOptions in your request, you must also include IdentifyLanguage .\nFor more information, refer to Supported languages .\nTo transcribe speech in Modern Standard Arabic (ar-SA ), your media file must be encoded at a sample rate of 16,000 Hz or higher.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Subtitles": {
+            "Description": "Produces subtitle files for your input media. You can specify WebVTT (.vtt) and SubRip (.srt) formats.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Adds one or more custom tags, each in the form of a key:value pair, to a new transcription job at the time you start this new job.\nTo learn more about using tags with Amazon Transcribe, refer to Tagging resources .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "LanguageIdSettings": {
+            "Description": "If using automatic language identification (IdentifyLanguage ) in your request and you want to apply a custom language model, a custom vocabulary, or a custom vocabulary filter, include LanguageIdSettings with the relevant sub-parameters (VocabularyName, LanguageModelName, and VocabularyFilterName ).\nYou can specify two or more language codes that represent the languages you think may be present in your media; including more than five is not recommended. Each language code you include can have an associated custom language model, custom vocabulary, and custom vocabulary filter. The languages you specify must match the languages of the specified custom language models, custom vocabularies, and custom vocabulary filters.\nTo include language options using IdentifyLanguage without including a custom language model, a custom vocabulary, or a custom vocabulary filter, use LanguageOptions instead of LanguageIdSettings. Including language options can improve the accuracy of automatic language identification.\nIf you want to include a custom language model with your request but do not want to use automatic language identification, use instead the parameter with the LanguageModelName sub-parameter.\nIf you want to include a custom vocabulary or a custom vocabulary filter (or both) with your request but do not want to use automatic language identification, use instead the parameter with the VocabularyName or VocabularyFilterName (or both) sub-parameter.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource you want to tag. ARNs have the format arn:partition:service:region:account-id:resource-type/resource-id .\nFor example, arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name .\nValid values for resource-type are: transcription-job, medical-transcription-job, vocabulary, medical-vocabulary, vocabulary-filter, and language-model .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Adds one or more custom tags, each in the form of a key:value pair, to the specified resource.\nTo learn more about using tags with Amazon Transcribe, refer to Tagging resources .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Transcribe resource you want to remove tags from. ARNs have the format arn:partition:service:region:account-id:resource-type/resource-id .\nFor example, arn:aws:transcribe:us-west-2:account-id:transcription-job/transcription-job-name .\nValid values for resource-type are: transcription-job, medical-transcription-job, vocabulary, medical-vocabulary, vocabulary-filter, and language-model .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Removes the specified tag keys from the specified Amazon Transcribe resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_call_analytics_category": {
+        "CategoryName": {
+            "Description": "The name of the Call Analytics category you want to update. Category names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "Rules": {
+            "Description": "The rules used for the updated Call Analytics category. The rules you provide in this field replace the ones that are currently being used in the specified category.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_medical_vocabulary": {
+        "VocabularyName": {
+            "Description": "The name of the custom medical vocabulary you want to update. Vocabulary names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code that represents the language of the entries in the custom vocabulary you want to update. US English (en-US ) is the only language supported with Amazon Transcribe Medical.",
+            "Type": "string",
+            "Required": true
+        },
+        "VocabularyFileUri": {
+            "Description": "The Amazon S3 location of the text file that contains your custom medical vocabulary. The URI must be located in the same Amazon Web Services Region as the resource you're calling.\nHere's an example URI path: s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_vocabulary": {
+        "VocabularyName": {
+            "Description": "The name of the custom vocabulary you want to update. Vocabulary names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "LanguageCode": {
+            "Description": "The language code that represents the language of the entries in the custom vocabulary you want to update. Each vocabulary must contain terms in only one language.\nA custom vocabulary can only be used to transcribe files in the same language as the vocabulary. For example, if you create a vocabulary using US English (en-US ), you can only apply this vocabulary to files that contain English audio.\nFor a list of supported languages and their associated language codes, refer to the Supported languages table.",
+            "Type": "string",
+            "Required": true
+        },
+        "Phrases": {
+            "Description": "Use this parameter if you want to update your vocabulary by including all desired terms, as comma-separated values, within your request. The other option for updating your vocabulary is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the VocabularyFileUri parameter.\nNote that if you include Phrases in your request, you cannot use VocabularyFileUri ; you must choose one or the other.\nEach language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your vocabulary filter request fails. Refer to Character Sets for Custom Vocabularies to get the character set for your language.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VocabularyFileUri": {
+            "Description": "The Amazon S3 location of the text file that contains your custom vocabulary. The URI must be located in the same Amazon Web Services Region as the resource you're calling.\nHere's an example URI path: s3://DOC-EXAMPLE-BUCKET/my-vocab-file.txt\nNote that if you include VocabularyFileUri in your request, you cannot use the Phrases flag; you must choose one or the other.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_vocabulary_filter": {
+        "VocabularyFilterName": {
+            "Description": "The name of the custom vocabulary filter you want to update. Vocabulary filter names are case sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "Words": {
+            "Description": "Use this parameter if you want to update your vocabulary filter by including all desired terms, as comma-separated values, within your request. The other option for updating your vocabulary filter is to save your entries in a text file and upload them to an Amazon S3 bucket, then specify the location of your file using the VocabularyFilterFileUri parameter.\nNote that if you include Words in your request, you cannot use VocabularyFilterFileUri ; you must choose one or the other.\nEach language has a character set that contains all allowed characters for that specific language. If you use unsupported characters, your vocabulary filter request fails. Refer to Character Sets for Custom Vocabularies to get the character set for your language.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VocabularyFilterFileUri": {
+            "Description": "The Amazon S3 location of the text file that contains your custom vocabulary filter terms. The URI must be located in the same Amazon Web Services Region as the resource you're calling.\nHere's an example URI path: s3://DOC-EXAMPLE-BUCKET/my-vocab-filter-file.txt\nNote that if you include VocabularyFilterFileUri in your request, you cannot use Words ; you must choose one or the other.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

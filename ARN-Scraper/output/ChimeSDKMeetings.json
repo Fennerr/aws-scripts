@@ -1,0 +1,292 @@
+{
+    "batch_create_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK ID of the meeting to which you're adding attendees.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attendees": {
+            "Description": "The attendee information, including attendees' IDs and join tokens.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_update_attendee_capabilities_except": {
+        "MeetingId": {
+            "Description": "The ID of the meeting associated with the update request.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExcludedAttendeeIds": {
+            "Description": "The AttendeeIDs that you want to exclude from one or more capabilities.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Capabilities": {
+            "Description": "The capabilities (audio, video, or content ) that you want to update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_attendee": {
+        "MeetingId": {
+            "Description": "The unique ID of the meeting.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalUserId": {
+            "Description": "The Amazon Chime SDK external user ID. An idempotency token. Links the attendee to an identity managed by a builder application.",
+            "Type": "string",
+            "Required": true
+        },
+        "Capabilities": {
+            "Description": "The capabilities (audio, video, or content ) that you want to grant an attendee. If you don't specify capabilities, all users have send and receive capabilities on all media channels by default.\nWhen using capabilities, be aware of these corner cases:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_meeting": {
+        "ClientRequestToken": {
+            "Description": "The unique identifier for the client request. Use a different token for different meetings.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "MediaRegion": {
+            "Description": "The Region in which to create the meeting.\nAvailable values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2 .\nAvailable values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1 .",
+            "Type": "string",
+            "Required": true
+        },
+        "MeetingHostId": {
+            "Description": "Reserved.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExternalMeetingId": {
+            "Description": "The external meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "NotificationsConfiguration": {
+            "Description": "The configuration for resource targets to receive notifications when meeting and attendee events occur.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MeetingFeatures": {
+            "Description": "Lists the audio and video features enabled for a meeting, such as echo reduction.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PrimaryMeetingId": {
+            "Description": "When specified, replicates the media from the primary meeting to the new meeting.",
+            "Type": "string",
+            "Required": false
+        },
+        "TenantIds": {
+            "Description": "A consistent and opaque identifier, created and maintained by the builder to represent a segment of their users.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Applies one or more tags to an Amazon Chime SDK meeting. Note the following:\nIn addition to the tag:TagResources permission required by this operation, you must also have the tagging permission defined by the service that created the resource. For example, to tag a ChimeSDKMeetings instance using the TagResources operation, you must have both of the following permissions:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_meeting_with_attendees": {
+        "ClientRequestToken": {
+            "Description": "The unique identifier for the client request. Use a different token for different meetings.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "MediaRegion": {
+            "Description": "The Region in which to create the meeting.\nAvailable values: af-south-1, ap-northeast-1, ap-northeast-2, ap-south-1, ap-southeast-1, ap-southeast-2, ca-central-1, eu-central-1, eu-north-1, eu-south-1, eu-west-1, eu-west-2, eu-west-3, sa-east-1, us-east-1, us-east-2, us-west-1, us-west-2 .\nAvailable values in AWS GovCloud (US) Regions: us-gov-east-1, us-gov-west-1 .",
+            "Type": "string",
+            "Required": true
+        },
+        "MeetingHostId": {
+            "Description": "Reserved.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExternalMeetingId": {
+            "Description": "The external meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MeetingFeatures": {
+            "Description": "Lists the audio and video features enabled for a meeting, such as echo reduction.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NotificationsConfiguration": {
+            "Description": "The configuration for resource targets to receive notifications when meeting and attendee events occur.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Attendees": {
+            "Description": "The attendee information, including attendees' IDs and join tokens.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "PrimaryMeetingId": {
+            "Description": "When specified, replicates the media from the primary meeting to the new meeting.",
+            "Type": "string",
+            "Required": false
+        },
+        "TenantIds": {
+            "Description": "A consistent and opaque identifier, created and maintained by the builder to represent a segment of their users.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags in the request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The Amazon Chime SDK attendee ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_meeting": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_attendee": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The Amazon Chime SDK attendee ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_meeting": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_attendees": {
+        "MeetingId": {
+            "Description": "The Amazon Chime SDK meeting ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_meeting_transcription": {
+        "MeetingId": {
+            "Description": "The unique ID of the meeting being transcribed.",
+            "Type": "string",
+            "Required": true
+        },
+        "TranscriptionConfiguration": {
+            "Description": "The configuration for the current transcription operation. Must contain EngineTranscribeSettings or EngineTranscribeMedicalSettings .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "stop_meeting_transcription": {
+        "MeetingId": {
+            "Description": "The unique ID of the meeting for which you stop transcription.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Lists the requested tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the resource that you're removing tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys being removed from the resources.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_attendee_capabilities": {
+        "MeetingId": {
+            "Description": "The ID of the meeting associated with the update request.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttendeeId": {
+            "Description": "The ID of the attendee associated with the update request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Capabilities": {
+            "Description": "The capabilties that you want to update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    }
+}

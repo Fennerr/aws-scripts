@@ -1,0 +1,692 @@
+{
+    "accept_inbound_cross_cluster_search_connection": {
+        "CrossClusterSearchConnectionId": {
+            "Description": "The id of the inbound connection that you want to accept.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "add_tags": {
+        "ARN": {
+            "Description": "Specify the ARN for which you want to add the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagList": {
+            "Description": "List of Tag that need to be added for the Elasticsearch domain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "associate_package": {
+        "PackageID": {
+            "Description": "Internal ID of the package that you want to associate with a domain. Use DescribePackages to find this value.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "Name of the domain that you want to associate the package with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_elasticsearch_service_software_update": {
+        "DomainName": {
+            "Description": "The name of the domain that you want to stop the latest service software update on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_elasticsearch_domain": {
+        "DomainName": {
+            "Description": "The name of the Elasticsearch domain that you are creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        },
+        "ElasticsearchVersion": {
+            "Description": "String of format X.Y to specify version for the Elasticsearch domain eg. \"1.5\" or \"2.3\". For more information, see Creating Elasticsearch Domains in the Amazon Elasticsearch Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ElasticsearchClusterConfig": {
+            "Description": "Configuration options for an Elasticsearch domain. Specifies the instance type and number of instances in the domain cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EBSOptions": {
+            "Description": "Options to enable, disable and specify the type and size of EBS storage volumes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccessPolicies": {
+            "Description": "IAM access policy as a JSON-formatted string.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotOptions": {
+            "Description": "Option to set time, in UTC format, of the daily automated snapshot. Default value is 0 hours.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VPCOptions": {
+            "Description": "Options to specify the subnets and security groups for VPC endpoint. For more information, see Creating a VPC in VPC Endpoints for Amazon Elasticsearch Service Domains",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CognitoOptions": {
+            "Description": "Options to specify the Cognito user and identity pools for Kibana authentication. For more information, see Amazon Cognito Authentication for Kibana .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EncryptionAtRestOptions": {
+            "Description": "Specifies the Encryption At Rest Options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NodeToNodeEncryptionOptions": {
+            "Description": "Specifies the NodeToNodeEncryptionOptions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedOptions": {
+            "Description": "Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See Configuration Advanced Options for more information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LogPublishingOptions": {
+            "Description": "Map of LogType and LogPublishingOption, each containing options to publish a given type of Elasticsearch log.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DomainEndpointOptions": {
+            "Description": "Options to specify configuration that will be applied to the domain endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedSecurityOptions": {
+            "Description": "Specifies advanced security options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AutoTuneOptions": {
+            "Description": "Specifies Auto-Tune options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TagList": {
+            "Description": "A list of Tag added during domain creation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_outbound_cross_cluster_search_connection": {
+        "SourceDomainInfo": {
+            "Description": "Specifies the `` DomainInformation`` for the source Elasticsearch domain.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DestinationDomainInfo": {
+            "Description": "Specifies the `` DomainInformation`` for the destination Elasticsearch domain.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ConnectionAlias": {
+            "Description": "Specifies the connection alias that will be used by the customer for this connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_package": {
+        "PackageName": {
+            "Description": "Unique identifier for the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "PackageType": {
+            "Description": "Type of package. Currently supports only TXT-DICTIONARY.",
+            "Type": "string",
+            "Required": true
+        },
+        "PackageDescription": {
+            "Description": "Description of the package.",
+            "Type": "string",
+            "Required": false
+        },
+        "PackageSource": {
+            "Description": "The customer S3 location PackageSource for importing the package.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_elasticsearch_domain": {
+        "DomainName": {
+            "Description": "The name of the Elasticsearch domain that you want to permanently delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_elasticsearch_service_role": "No parameters defined",
+    "delete_inbound_cross_cluster_search_connection": {
+        "CrossClusterSearchConnectionId": {
+            "Description": "The id of the inbound connection that you want to permanently delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_outbound_cross_cluster_search_connection": {
+        "CrossClusterSearchConnectionId": {
+            "Description": "The id of the outbound connection that you want to permanently delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_package": {
+        "PackageID": {
+            "Description": "Internal ID of the package that you want to delete. Use DescribePackages to find this value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_domain_auto_tunes": {
+        "DomainName": {
+            "Description": "Specifies the domain name for which you want Auto-Tune action details.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_domain_change_progress": {
+        "DomainName": {
+            "Description": "The domain you want to get the progress information about.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeId": {
+            "Description": "The specific change ID for which you want to get progress information. This is an optional parameter. If omitted, the service returns information about the most recent configuration change.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_elasticsearch_domain": {
+        "DomainName": {
+            "Description": "The name of the Elasticsearch domain for which you want information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_elasticsearch_domain_config": {
+        "DomainName": {
+            "Description": "The Elasticsearch domain that you want to get information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_elasticsearch_domains": {
+        "DomainNames": {
+            "Description": "The Elasticsearch domains for which you want information.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_elasticsearch_instance_type_limits": {
+        "DomainName": {
+            "Description": "DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for Elasticsearch ``  Limits `` for existing domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceType": {
+            "Description": "The instance type for an Elasticsearch cluster for which Elasticsearch ``  Limits `` are needed.",
+            "Type": "string",
+            "Required": true
+        },
+        "ElasticsearchVersion": {
+            "Description": "Version of Elasticsearch for which ``  Limits `` are needed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_inbound_cross_cluster_search_connections": {
+        "Filters": {
+            "Description": "A list of filters used to match properties for inbound cross-cluster search connection. Available `` Filter`` names for this operation are:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_outbound_cross_cluster_search_connections": {
+        "Filters": {
+            "Description": "A list of filters used to match properties for outbound cross-cluster search connection. Available `` Filter`` names for this operation are:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken is sent in case the earlier API call results contain the NextToken. It is used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_packages": {
+        "Filters": {
+            "Description": "Only returns packages that match the DescribePackagesFilterList values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "Limits results to a maximum number of packages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_reserved_elasticsearch_instance_offerings": {
+        "ReservedElasticsearchInstanceOfferingId": {
+            "Description": "The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_reserved_elasticsearch_instances": {
+        "ReservedElasticsearchInstanceId": {
+            "Description": "The reserved instance identifier filter value. Use this parameter to show only the reservation that matches the specified reserved Elasticsearch instance ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "dissociate_package": {
+        "PackageID": {
+            "Description": "Internal ID of the package that you want to associate with a domain. Use DescribePackages to find this value.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "Name of the domain that you want to associate the package with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_compatible_elasticsearch_versions": {
+        "DomainName": {
+            "Description": "The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_package_version_history": {
+        "PackageID": {
+            "Description": "Returns an audit history of versions of the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Limits results to a maximum number of versions.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_upgrade_history": {
+        "DomainName": {
+            "Description": "The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_upgrade_status": {
+        "DomainName": {
+            "Description": "The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_domain_names": {
+        "EngineType": {
+            "Description": "Optional parameter to filter the output by domain engine type. Acceptable values are 'Elasticsearch' and 'OpenSearch'.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_domains_for_package": {
+        "PackageID": {
+            "Description": "The package for which to list domains.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Limits results to a maximum number of domains.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_elasticsearch_instance_types": {
+        "ElasticsearchVersion": {
+            "Description": "Version of Elasticsearch for which list of supported elasticsearch instance types are needed.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "DomainName represents the name of the Domain that we are trying to modify. This should be present only if we are querying for list of available Elasticsearch instance types when modifying existing domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. Value provided must be greater than 30 else it wont be honored.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken should be sent in case if earlier API call produced result containing NextToken. It is used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_elasticsearch_versions": {
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. Value provided must be greater than 10 else it wont be honored.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Paginated APIs accepts NextToken input to returns next page results and provides a NextToken output in the response which can be used by the client to retrieve more results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_packages_for_domain": {
+        "DomainName": {
+            "Description": "The name of the domain for which you want to list associated packages.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Limits results to a maximum number of packages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags": {
+        "ARN": {
+            "Description": "Specify the ARN for the Elasticsearch domain to which the tags are attached that you want to view.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "purchase_reserved_elasticsearch_instance_offering": {
+        "ReservedElasticsearchInstanceOfferingId": {
+            "Description": "The ID of the reserved Elasticsearch instance offering to purchase.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReservationName": {
+            "Description": "A customer-specified identifier to track this reservation.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceCount": {
+            "Description": "The number of Elasticsearch instances to reserve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "reject_inbound_cross_cluster_search_connection": {
+        "CrossClusterSearchConnectionId": {
+            "Description": "The id of the inbound connection that you want to reject.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_tags": {
+        "ARN": {
+            "Description": "Specifies the ARN for the Elasticsearch domain from which you want to delete the specified tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Specifies the TagKey list which you want to remove from the Elasticsearch domain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "start_elasticsearch_service_software_update": {
+        "DomainName": {
+            "Description": "The name of the domain that you want to update to the latest service software.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_elasticsearch_domain_config": {
+        "DomainName": {
+            "Description": "The name of the Elasticsearch domain that you are updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ElasticsearchClusterConfig": {
+            "Description": "The type and number of instances to instantiate for the domain cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EBSOptions": {
+            "Description": "Specify the type and size of the EBS volume that you want to use.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SnapshotOptions": {
+            "Description": "Option to set the time, in UTC format, for the daily automated snapshot. Default value is 0 hours.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VPCOptions": {
+            "Description": "Options to specify the subnets and security groups for VPC endpoint. For more information, see Creating a VPC in VPC Endpoints for Amazon Elasticsearch Service Domains",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CognitoOptions": {
+            "Description": "Options to specify the Cognito user and identity pools for Kibana authentication. For more information, see Amazon Cognito Authentication for Kibana .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedOptions": {
+            "Description": "Modifies the advanced option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See Configuration Advanced Options for more information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccessPolicies": {
+            "Description": "IAM access policy as a JSON-formatted string.",
+            "Type": "string",
+            "Required": false
+        },
+        "LogPublishingOptions": {
+            "Description": "Map of LogType and LogPublishingOption, each containing options to publish a given type of Elasticsearch log.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DomainEndpointOptions": {
+            "Description": "Options to specify configuration that will be applied to the domain endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedSecurityOptions": {
+            "Description": "Specifies advanced security options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NodeToNodeEncryptionOptions": {
+            "Description": "Specifies the NodeToNodeEncryptionOptions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EncryptionAtRestOptions": {
+            "Description": "Specifies the Encryption At Rest Options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AutoTuneOptions": {
+            "Description": "Specifies Auto-Tune options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DryRun": {
+            "Description": "This flag, when set to True, specifies whether the UpdateElasticsearchDomain request should return the results of validation checks without actually applying the change. This flag, when set to True, specifies the deployment mechanism through which the update shall be applied on the domain. This will not actually perform the Update.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_package": {
+        "PackageID": {
+            "Description": "Unique identifier for the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "PackageSource": {
+            "Description": "The S3 location for importing the package specified as S3BucketName and S3Key",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PackageDescription": {
+            "Description": "New description of the package.",
+            "Type": "string",
+            "Required": false
+        },
+        "CommitMessage": {
+            "Description": "An info message for the new version which will be shown as part of GetPackageVersionHistoryResponse .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "upgrade_elasticsearch_domain": {
+        "DomainName": {
+            "Description": "The name of an Elasticsearch domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetVersion": {
+            "Description": "The version of Elasticsearch that you intend to upgrade the domain to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PerformCheckOnly": {
+            "Description": "This flag, when set to True, indicates that an Upgrade Eligibility Check needs to be performed. This will not actually perform the Upgrade.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,270 @@
+{
+    "associate_gateway_to_server": {
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the server that hosts your virtual machines.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_gateway": {
+        "ActivationKey": {
+            "Description": "The activation key of the created gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayDisplayName": {
+            "Description": "The display name of the created gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayType": {
+            "Description": "The type of created gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags to assign to the gateway. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_gateway": {
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_hypervisor": {
+        "HypervisorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the hypervisor to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_gateway_from_server": {
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway to disassociate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_gateway": {
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_hypervisor_configuration": {
+        "Host": {
+            "Description": "The server host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKeyArn": {
+            "Description": "The Key Management Service for the hypervisor.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the hypervisor.",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "The password for the hypervisor.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags of the hypervisor configuration to import.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Username": {
+            "Description": "The username for the hypervisor.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_gateways": {
+        "MaxResults": {
+            "Description": "The maximum number of gateways to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned resources. For example, if a request is made to return MaxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_hypervisors": {
+        "MaxResults": {
+            "Description": "The maximum number of hypervisors to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned resources. For example, if a request is made to return maxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource's tags to list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_virtual_machines": {
+        "MaxResults": {
+            "Description": "The maximum number of virtual machines to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned resources. For example, if a request is made to return maxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_maintenance_start_time": {
+        "DayOfMonth": {
+            "Description": "The day of the month start maintenance on a gateway.\nValid values range from Sunday to Saturday .",
+            "Type": "integer",
+            "Required": false
+        },
+        "DayOfWeek": {
+            "Description": "The day of the week to start maintenance on a gateway.",
+            "Type": "integer",
+            "Required": false
+        },
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) for the gateway, used to specify its maintenance start time.",
+            "Type": "string",
+            "Required": true
+        },
+        "HourOfDay": {
+            "Description": "The hour of the day to start maintenance on a gateway.",
+            "Type": "integer",
+            "Required": true
+        },
+        "MinuteOfHour": {
+            "Description": "The minute of the hour to start maintenance on a gateway.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to assign to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "test_hypervisor_configuration": {
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway to the hypervisor to test.",
+            "Type": "string",
+            "Required": true
+        },
+        "Host": {
+            "Description": "The server host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "The password for the hypervisor.",
+            "Type": "string",
+            "Required": false
+        },
+        "Username": {
+            "Description": "The username for the hypervisor.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource from which to remove tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of tag keys specifying which tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_gateway_information": {
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayDisplayName": {
+            "Description": "The updated display name of the gateway.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_gateway_software_now": {
+        "GatewayArn": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway to be updated.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_hypervisor": {
+        "Host": {
+            "Description": "The updated host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).",
+            "Type": "string",
+            "Required": false
+        },
+        "HypervisorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the hypervisor to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The updated name for the hypervisor",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The updated password for the hypervisor.",
+            "Type": "string",
+            "Required": false
+        },
+        "Username": {
+            "Description": "The updated username for the hypervisor.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

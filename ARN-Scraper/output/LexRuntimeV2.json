@@ -1,0 +1,180 @@
+{
+    "delete_session": {
+        "botId": {
+            "Description": "The identifier of the bot that contains the session data.",
+            "Type": "string",
+            "Required": true
+        },
+        "botAliasId": {
+            "Description": "The alias identifier in use for the bot that contains the session data.",
+            "Type": "string",
+            "Required": true
+        },
+        "localeId": {
+            "Description": "The locale where the session is in use.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionId": {
+            "Description": "The identifier of the session to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_session": {
+        "botId": {
+            "Description": "The identifier of the bot that contains the session data.",
+            "Type": "string",
+            "Required": true
+        },
+        "botAliasId": {
+            "Description": "The alias identifier in use for the bot that contains the session data.",
+            "Type": "string",
+            "Required": true
+        },
+        "localeId": {
+            "Description": "The locale where the session is in use.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionId": {
+            "Description": "The identifier of the session to return.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_session": {
+        "botId": {
+            "Description": "The identifier of the bot that receives the session data.",
+            "Type": "string",
+            "Required": true
+        },
+        "botAliasId": {
+            "Description": "The alias identifier of the bot that receives the session data.",
+            "Type": "string",
+            "Required": true
+        },
+        "localeId": {
+            "Description": "The locale where the session is in use.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionId": {
+            "Description": "The identifier of the session that receives the session data.",
+            "Type": "string",
+            "Required": true
+        },
+        "messages": {
+            "Description": "A list of messages to send to the user. Messages are sent in the order that they are defined in the list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "sessionState": {
+            "Description": "Sets the state of the session with the user. You can use this to set the current intent, attributes, context, and dialog action. Use the dialog action to determine the next step that Amazon Lex V2 should use in the conversation with the user.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "requestAttributes": {
+            "Description": "Request-specific information passed between Amazon Lex V2 and the client application.\nThe namespace x-amz-lex: is reserved for special attributes. Don't create any request attributes with the prefix x-amz-lex: .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "responseContentType": {
+            "Description": "The message that Amazon Lex V2 returns in the response can be either text or speech depending on the value of this parameter.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "recognize_text": {
+        "botId": {
+            "Description": "The identifier of the bot that processes the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "botAliasId": {
+            "Description": "The alias identifier in use for the bot that processes the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "localeId": {
+            "Description": "The locale where the session is in use.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionId": {
+            "Description": "The identifier of the user session that is having the conversation.",
+            "Type": "string",
+            "Required": true
+        },
+        "text": {
+            "Description": "The text that the user entered. Amazon Lex V2 interprets this text.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionState": {
+            "Description": "The current state of the dialog between the user and the bot.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "requestAttributes": {
+            "Description": "Request-specific information passed between the client application and Amazon Lex V2\nThe namespace x-amz-lex: is reserved for special attributes. Don't create any request attributes with the prefix x-amz-lex: .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "recognize_utterance": {
+        "botId": {
+            "Description": "The identifier of the bot that should receive the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "botAliasId": {
+            "Description": "The alias identifier in use for the bot that should receive the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "localeId": {
+            "Description": "The locale where the session is in use.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionId": {
+            "Description": "The identifier of the session in use.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionState": {
+            "Description": "Sets the state of the session with the user. You can use this to set the current intent, attributes, context, and dialog action. Use the dialog action to determine the next step that Amazon Lex V2 should use in the conversation with the user.\nThe sessionState field must be compressed using gzip and then base64 encoded before sending to Amazon Lex V2.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestAttributes": {
+            "Description": "Request-specific information passed between the client application and Amazon Lex V2\nThe namespace x-amz-lex: is reserved for special attributes. Don't create any request attributes for prefix x-amz-lex: .\nThe requestAttributes field must be compressed using gzip and then base64 encoded before sending to Amazon Lex V2.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestContentType": {
+            "Description": "Indicates the format for audio input or that the content is text. The header must start with one of the following prefixes:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "responseContentType": {
+            "Description": "The message that Amazon Lex V2 returns in the response can be either text or speech based on the responseContentType value.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "inputStream": {
+            "Description": "User input in PCM or Opus audio format or text format as described in the requestContentType parameter.",
+            "Type": "bytes or seekable file-like object",
+            "Required": false
+        }
+    }
+}

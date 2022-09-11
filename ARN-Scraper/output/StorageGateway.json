@@ -1,0 +1,1776 @@
+{
+    "activate_gateway": {
+        "ActivationKey": {
+            "Description": "Your gateway activation key. You can obtain the activation key by sending an HTTP GET request with redirects enabled to the gateway IP address (port 80). The redirect URL returned in the response provides you the activation key for your gateway in the query string parameter activationKey. It may also include other activation-related parameters, however, these are merely defaults -- the arguments you pass to the ActivateGateway API call determine the actual configuration of your gateway.\nFor more information, see Getting activation key in the Storage Gateway User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayName": {
+            "Description": "The name you configured for your gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayTimezone": {
+            "Description": "A value that indicates the time zone you want to set for the gateway. The time zone is of the format \"GMT-hr:mm\" or \"GMT+hr:mm\". For example, GMT-4:00 indicates the time is 4 hours behind GMT. GMT+2:00 indicates the time is 2 hours ahead of GMT. The time zone is used, for example, for scheduling snapshots and your gateway's maintenance schedule.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayRegion": {
+            "Description": "A value that indicates the Amazon Web Services Region where you want to store your data. The gateway Amazon Web Services Region specified must be the same Amazon Web Services Region as the Amazon Web Services Region in your Host header in the request. For more information about available Amazon Web Services Regions and endpoints for Storage Gateway, see Storage Gateway endpoints and quotas in the Amazon Web Services General Reference .\nValid Values: See Storage Gateway endpoints and quotas in the Amazon Web Services General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayType": {
+            "Description": "A value that defines the type of gateway to activate. The type specified is critical to all later functions of the gateway and cannot be changed after activation. The default value is CACHED .\nValid Values: STORED | CACHED | VTL | VTL_SNOW | FILE_S3 | FILE_FSX_SMB",
+            "Type": "string",
+            "Required": false
+        },
+        "TapeDriveType": {
+            "Description": "The value that indicates the type of tape drive to use for tape gateway. This field is optional.\nValid Values: IBM-ULT3580-TD5",
+            "Type": "string",
+            "Required": false
+        },
+        "MediumChangerType": {
+            "Description": "The value that indicates the type of medium changer to use for tape gateway. This field is optional.\nValid Values: STK-L700 | AWS-Gateway-VTL | IBM-03584L32-0402",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that you can assign to the gateway. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "add_cache": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "DiskIds": {
+            "Description": "An array of strings that identify disks that are to be configured as working storage. Each string has a minimum length of 1 and maximum length of 300. You can get the disk IDs from the  ListLocalDisks API.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "add_tags_to_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource you want to add tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents the tag you want to add to the resource. The value can be an empty string.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "add_upload_buffer": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "DiskIds": {
+            "Description": "An array of strings that identify disks that are to be configured as working storage. Each string has a minimum length of 1 and maximum length of 300. You can get the disk IDs from the  ListLocalDisks API.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "add_working_storage": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "DiskIds": {
+            "Description": "An array of strings that identify disks that are to be configured as working storage. Each string has a minimum length of 1 and maximum length of 300. You can get the disk IDs from the  ListLocalDisks API.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "assign_tape_pool": {
+        "TapeARN": {
+            "Description": "The unique Amazon Resource Name (ARN) of the virtual tape that you want to add to the tape pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "PoolId": {
+            "Description": "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "BypassGovernanceRetention": {
+            "Description": "Set permissions to bypass governance retention. If the lock type of the archived tape is Governance, the tape's archived age is not older than RetentionLockInDays, and the user does not already have BypassGovernanceRetention, setting this to TRUE enables the user to bypass the retention lock. This parameter is set to true by default for calls from the console.\nValid values: TRUE | FALSE",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "associate_file_system": {
+        "UserName": {
+            "Description": "The user name of the user credential that has permission to access the root share D$ of the Amazon FSx file system. The user account must belong to the Amazon FSx delegated admin user group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "The password of the user credential.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique string value that you supply that is used by the FSx File Gateway to ensure idempotent file system association creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LocationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon FSx file system to associate with the FSx File Gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to the file system association. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AuditDestinationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the storage used for the audit logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheAttributes": {
+            "Description": "The refresh cache information for the file share or FSx file systems.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EndpointNetworkConfiguration": {
+            "Description": "Specifies the network configuration information for the gateway associated with the Amazon FSx file system.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "attach_volume": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway that you want to attach the volume to.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetName": {
+            "Description": "The name of the iSCSI target used by an initiator to connect to a volume and used as a suffix for the target ARN. For example, specifying TargetName as myvolume results in the target ARN of arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume. The target name must be unique across all volumes on a gateway.\nIf you don't specify a value, Storage Gateway uses the value that was previously used for this volume as the new target name.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the volume to attach to the specified gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkInterfaceId": {
+            "Description": "The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted. Use  DescribeGatewayInformation to get a list of the network interfaces available on a gateway.\nValid Values: A valid IP address.",
+            "Type": "string",
+            "Required": true
+        },
+        "DiskId": {
+            "Description": "The unique device ID or other distinguishing data that identifies the local disk used to create the volume. This value is only required when you are attaching a stored volume.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "cancel_archival": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TapeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the virtual tape you want to cancel archiving for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_retrieval": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TapeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the virtual tape you want to cancel retrieval for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_cached_iscsi_volume": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "VolumeSizeInBytes": {
+            "Description": "The size of the volume in bytes.",
+            "Type": "integer",
+            "Required": true
+        },
+        "SnapshotId": {
+            "Description": "The snapshot ID (e.g. \"snap-1122aabb\") of the snapshot to restore as the new cached volume. Specify this field if you want to create the iSCSI storage volume from a snapshot; otherwise, do not include this field. To list snapshots for your account use DescribeSnapshots in the Amazon Elastic Compute Cloud API Reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetName": {
+            "Description": "The name of the iSCSI target used by an initiator to connect to a volume and used as a suffix for the target ARN. For example, specifying TargetName as myvolume results in the target ARN of arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume. The target name must be unique across all volumes on a gateway.\nIf you don't specify a value, Storage Gateway uses the value that was previously used for this volume as the new target name.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceVolumeARN": {
+            "Description": "The ARN for an existing volume. Specifying this ARN makes the new volume into an exact copy of the specified existing volume's latest recovery point. The VolumeSizeInBytes value for this new volume must be equal to or larger than the size of the existing volume, in bytes.",
+            "Type": "string",
+            "Required": false
+        },
+        "NetworkInterfaceId": {
+            "Description": "The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted. Use  DescribeGatewayInformation to get a list of the network interfaces available on a gateway.\nValid Values: A valid IP address.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique identifier that you use to retry a request. If you retry a request, use the same ClientToken you specified in the initial request.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that you can assign to a cached volume. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_nfs_file_share": {
+        "ClientToken": {
+            "Description": "A unique string value that you supply that is used by S3 File Gateway to ensure idempotent file share creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "NFSFileShareDefaults": {
+            "Description": "File share default values. Optional.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the S3 File Gateway on which you want to create a file share.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "Role": {
+            "Description": "The ARN of the Identity and Access Management (IAM) role that an S3 File Gateway assumes when it accesses the underlying storage.",
+            "Type": "string",
+            "Required": true
+        },
+        "LocationARN": {
+            "Description": "A custom ARN for the backend storage used for storing data for file shares. It includes a resource ARN with an optional prefix concatenation. The prefix must end with a forward slash (/).",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultStorageClass": {
+            "Description": "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional.\nValid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectACL": {
+            "Description": "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientList": {
+            "Description": "The list of clients that are allowed to access the S3 File Gateway. The list must contain either valid IP addresses or valid CIDR blocks.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Squash": {
+            "Description": "A value that maps a user to anonymous user.\nValid values are the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ReadOnly": {
+            "Description": "A value that sets the write status of a file share. Set this value to true to set the write status to read-only, otherwise set to false .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "GuessMIMETypeEnabled": {
+            "Description": "A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to true to enable MIME type guessing, otherwise set to false. The default value is true .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RequesterPays": {
+            "Description": "A value that sets who pays the cost of the request and the cost associated with data download from the S3 bucket. If this value is set to true, the requester pays the costs; otherwise, the S3 bucket owner pays. However, the S3 bucket owner always pays the cost of storing data.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to the NFS file share. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FileShareName": {
+            "Description": "The name of the file share. Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheAttributes": {
+            "Description": "Specifies refresh cache information for the file share.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NotificationPolicy": {
+            "Description": "The notification policy of the file share. SettlingTimeInSeconds controls the number of seconds to wait after the last point in time a client wrote to a file before generating an ObjectUploaded notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.\nThe following example sets NotificationPolicy on with SettlingTimeInSeconds set to 60.\nThe following example sets NotificationPolicy off.",
+            "Type": "string",
+            "Required": false
+        },
+        "VPCEndpointDNSName": {
+            "Description": "Specifies the DNS name for the VPC endpoint that the NFS file share uses to connect to Amazon S3.",
+            "Type": "string",
+            "Required": false
+        },
+        "BucketRegion": {
+            "Description": "Specifies the Region of the S3 bucket where the NFS file share stores files.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuditDestinationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the storage used for audit logs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_smb_file_share": {
+        "ClientToken": {
+            "Description": "A unique string value that you supply that is used by S3 File Gateway to ensure idempotent file share creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayARN": {
+            "Description": "The ARN of the S3 File Gateway on which you want to create a file share.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "Role": {
+            "Description": "The ARN of the Identity and Access Management (IAM) role that an S3 File Gateway assumes when it accesses the underlying storage.",
+            "Type": "string",
+            "Required": true
+        },
+        "LocationARN": {
+            "Description": "A custom ARN for the backend storage used for storing data for file shares. It includes a resource ARN with an optional prefix concatenation. The prefix must end with a forward slash (/).",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultStorageClass": {
+            "Description": "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional.\nValid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectACL": {
+            "Description": "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private .",
+            "Type": "string",
+            "Required": false
+        },
+        "ReadOnly": {
+            "Description": "A value that sets the write status of a file share. Set this value to true to set the write status to read-only, otherwise set to false .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "GuessMIMETypeEnabled": {
+            "Description": "A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to true to enable MIME type guessing, otherwise set to false. The default value is true .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RequesterPays": {
+            "Description": "A value that sets who pays the cost of the request and the cost associated with data download from the S3 bucket. If this value is set to true, the requester pays the costs; otherwise, the S3 bucket owner pays. However, the S3 bucket owner always pays the cost of storing data.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SMBACLEnabled": {
+            "Description": "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions.\nFor more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the Storage Gateway User Guide .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AccessBasedEnumeration": {
+            "Description": "The files and folders on this share will only be visible to users with read access.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AdminUserList": {
+            "Description": "A list of users or groups in the Active Directory that will be granted administrator privileges on the file share. These users can do all file operations as the super-user. Acceptable formats include: DOMAIN\\User1, user1, @group1, and @DOMAIN\\group1 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ValidUserList": {
+            "Description": "A list of users or groups in the Active Directory that are allowed to access the file ` share. A group must be prefixed with the @ character. Acceptable formats include: DOMAIN\\User1, user1, @group1, and @DOMAIN\\group1. Can only be set if Authentication is set to ActiveDirectory .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "InvalidUserList": {
+            "Description": "A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: DOMAIN\\User1, user1, @group1, and @DOMAIN\\group1. Can only be set if Authentication is set to ActiveDirectory .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AuditDestinationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the storage used for audit logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Authentication": {
+            "Description": "The authentication method that users use to access the file share. The default is ActiveDirectory .\nValid Values: ActiveDirectory | GuestAccess",
+            "Type": "string",
+            "Required": false
+        },
+        "CaseSensitivity": {
+            "Description": "The case of an object name in an Amazon S3 bucket. For ClientSpecified , the client determines the case sensitivity. For CaseSensitive , the gateway determines the case sensitivity. The default value is ClientSpecified .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to the NFS file share. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FileShareName": {
+            "Description": "The name of the file share. Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheAttributes": {
+            "Description": "Specifies refresh cache information for the file share.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NotificationPolicy": {
+            "Description": "The notification policy of the file share. SettlingTimeInSeconds controls the number of seconds to wait after the last point in time a client wrote to a file before generating an ObjectUploaded notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.\nThe following example sets NotificationPolicy on with SettlingTimeInSeconds set to 60.\nThe following example sets NotificationPolicy off.",
+            "Type": "string",
+            "Required": false
+        },
+        "VPCEndpointDNSName": {
+            "Description": "Specifies the DNS name for the VPC endpoint that the SMB file share uses to connect to Amazon S3.",
+            "Type": "string",
+            "Required": false
+        },
+        "BucketRegion": {
+            "Description": "Specifies the Region of the S3 bucket where the SMB file share stores files.",
+            "Type": "string",
+            "Required": false
+        },
+        "OplocksEnabled": {
+            "Description": "Specifies whether opportunistic locking is enabled for the SMB file share.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_snapshot": {
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the volume. Use the  ListVolumes operation to return a list of gateway volumes.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotDescription": {
+            "Description": "Textual description of the snapshot that appears in the Amazon EC2 console, Elastic Block Store snapshots panel in the Description field, and in the Storage Gateway snapshot Details pane, Description field.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to a snapshot. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_snapshot_from_volume_recovery_point": {
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the iSCSI volume target. Use the  DescribeStorediSCSIVolumes operation to return to retrieve the TargetARN for specified VolumeARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotDescription": {
+            "Description": "Textual description of the snapshot that appears in the Amazon EC2 console, Elastic Block Store snapshots panel in the Description field, and in the Storage Gateway snapshot Details pane, Description field.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to a snapshot. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_stored_iscsi_volume": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "DiskId": {
+            "Description": "The unique identifier for the gateway local disk that is configured as a stored volume. Use ListLocalDisks to list disk IDs for a gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotId": {
+            "Description": "The snapshot ID (e.g., \"snap-1122aabb\") of the snapshot to restore as the new stored volume. Specify this field if you want to create the iSCSI storage volume from a snapshot; otherwise, do not include this field. To list snapshots for your account use DescribeSnapshots in the Amazon Elastic Compute Cloud API Reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "PreserveExistingData": {
+            "Description": "Set to true if you want to preserve the data on the local disk. Otherwise, set to false to create an empty volume.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": true
+        },
+        "TargetName": {
+            "Description": "The name of the iSCSI target used by an initiator to connect to a volume and used as a suffix for the target ARN. For example, specifying TargetName as myvolume results in the target ARN of arn:aws:storagegateway:us-east-2:111122223333:gateway/sgw-12A3456B/target/iqn.1997-05.com.amazon:myvolume. The target name must be unique across all volumes on a gateway.\nIf you don't specify a value, Storage Gateway uses the value that was previously used for this volume as the new target name.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkInterfaceId": {
+            "Description": "The network interface of the gateway on which to expose the iSCSI target. Only IPv4 addresses are accepted. Use  DescribeGatewayInformation to get a list of the network interfaces available on a gateway.\nValid Values: A valid IP address.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to a stored volume. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_tape_pool": {
+        "PoolName": {
+            "Description": "The name of the new custom tape pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "StorageClass": {
+            "Description": "The storage class that is associated with the new custom pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetentionLockType": {
+            "Description": "Tape retention lock can be configured in two modes. When configured in governance mode, Amazon Web Services accounts with specific IAM permissions are authorized to remove the tape retention lock from archived virtual tapes. When configured in compliance mode, the tape retention lock cannot be removed by any user, including the root Amazon Web Services account.",
+            "Type": "string",
+            "Required": false
+        },
+        "RetentionLockTimeInDays": {
+            "Description": "Tape retention lock time is set in days. Tape retention lock can be enabled for up to 100 years (36,500 days).",
+            "Type": "integer",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to tape pool. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_tape_with_barcode": {
+        "GatewayARN": {
+            "Description": "The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tape with. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TapeSizeInBytes": {
+            "Description": "The size, in bytes, of the virtual tape that you want to create.",
+            "Type": "integer",
+            "Required": true
+        },
+        "TapeBarcode": {
+            "Description": "The barcode that you want to assign to the tape.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "PoolId": {
+            "Description": "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Deep Archive) that corresponds to the pool.",
+            "Type": "string",
+            "Required": false
+        },
+        "Worm": {
+            "Description": "Set to TRUE if the tape you are creating is to be configured as a write-once-read-many (WORM) tape.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to a virtual tape that has a barcode. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_tapes": {
+        "GatewayARN": {
+            "Description": "The unique Amazon Resource Name (ARN) that represents the gateway to associate the virtual tapes with. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TapeSizeInBytes": {
+            "Description": "The size, in bytes, of the virtual tapes that you want to create.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique identifier that you use to retry a request. If you retry a request, use the same ClientToken you specified in the initial request.",
+            "Type": "string",
+            "Required": true
+        },
+        "NumTapesToCreate": {
+            "Description": "The number of virtual tapes that you want to create.",
+            "Type": "integer",
+            "Required": true
+        },
+        "TapeBarcodePrefix": {
+            "Description": "A prefix that you append to the barcode of the virtual tape you are creating. This prefix makes the barcode unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "PoolId": {
+            "Description": "The ID of the pool that you want to add your tape to for archiving. The tape in this pool is archived in the S3 storage class that is associated with the pool. When you use your backup application to eject the tape, the tape is archived directly into the storage class (S3 Glacier or S3 Glacier Deep Archive) that corresponds to the pool.",
+            "Type": "string",
+            "Required": false
+        },
+        "Worm": {
+            "Description": "Set to TRUE if the tape you are creating is to be configured as a write-once-read-many (WORM) tape.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to a virtual tape. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_automatic_tape_creation_policy": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_bandwidth_rate_limit": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "BandwidthType": {
+            "Description": "One of the BandwidthType values that indicates the gateway bandwidth rate limit to delete.\nValid Values: UPLOAD | DOWNLOAD | ALL",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_chap_credentials": {
+        "TargetARN": {
+            "Description": "The Amazon Resource Name (ARN) of the iSCSI volume target. Use the  DescribeStorediSCSIVolumes operation to return to retrieve the TargetARN for specified VolumeARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "InitiatorName": {
+            "Description": "The iSCSI initiator that connects to the target.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_file_share": {
+        "FileShareARN": {
+            "Description": "The Amazon Resource Name (ARN) of the file share to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceDelete": {
+            "Description": "If this value is set to true, the operation deletes a file share immediately and aborts all data uploads to Amazon Web Services. Otherwise, the file share is not deleted until all data is uploaded to Amazon Web Services. This process aborts the data upload process, and the file share enters the FORCE_DELETING status.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_gateway": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_snapshot_schedule": {
+        "VolumeARN": {
+            "Description": "The volume which snapshot schedule to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_tape": {
+        "GatewayARN": {
+            "Description": "The unique Amazon Resource Name (ARN) of the gateway that the virtual tape to delete is associated with. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TapeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the virtual tape to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "BypassGovernanceRetention": {
+            "Description": "Set to TRUE to delete an archived tape that belongs to a custom pool with tape retention lock. Only archived tapes with tape retention lock set to governance can be deleted. Archived tapes with tape retention lock set to compliance can't be deleted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_tape_archive": {
+        "TapeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the virtual tape to delete from the virtual tape shelf (VTS).",
+            "Type": "string",
+            "Required": true
+        },
+        "BypassGovernanceRetention": {
+            "Description": "Set to TRUE to delete an archived tape that belongs to a custom pool with tape retention lock. Only archived tapes with tape retention lock set to governance can be deleted. Archived tapes with tape retention lock set to compliance can't be deleted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_tape_pool": {
+        "PoolARN": {
+            "Description": "The Amazon Resource Name (ARN) of the custom tape pool to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_volume": {
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the volume. Use the  ListVolumes operation to return a list of gateway volumes.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_availability_monitor_test": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_bandwidth_rate_limit": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_bandwidth_rate_limit_schedule": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_cache": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_cached_iscsi_volumes": {
+        "VolumeARNs": {
+            "Description": "An array of strings where each string represents the Amazon Resource Name (ARN) of a cached volume. All of the specified cached volumes must be from the same gateway. Use  ListVolumes to get volume ARNs for a gateway.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_chap_credentials": {
+        "TargetARN": {
+            "Description": "The Amazon Resource Name (ARN) of the iSCSI volume target. Use the  DescribeStorediSCSIVolumes operation to return to retrieve the TargetARN for specified VolumeARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_file_system_associations": {
+        "FileSystemAssociationARNList": {
+            "Description": "An array containing the Amazon Resource Name (ARN) of each file system association to be described.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_gateway_information": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_maintenance_start_time": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_nfs_file_shares": {
+        "FileShareARNList": {
+            "Description": "An array containing the Amazon Resource Name (ARN) of each file share to be described.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_smb_file_shares": {
+        "FileShareARNList": {
+            "Description": "An array containing the Amazon Resource Name (ARN) of each file share to be described.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_smb_settings": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_snapshot_schedule": {
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the volume. Use the  ListVolumes operation to return a list of gateway volumes.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_stored_iscsi_volumes": {
+        "VolumeARNs": {
+            "Description": "An array of strings where each string represents the Amazon Resource Name (ARN) of a stored volume. All of the specified stored volumes must be from the same gateway. Use  ListVolumes to get volume ARNs for a gateway.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_tape_archives": {
+        "TapeARNs": {
+            "Description": "Specifies one or more unique Amazon Resource Names (ARNs) that represent the virtual tapes you want to describe.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "An opaque string that indicates the position at which to begin describing virtual tapes.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies that the number of virtual tapes described be limited to the specified number.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_tape_recovery_points": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "Marker": {
+            "Description": "An opaque string that indicates the position at which to begin describing the virtual tape recovery points.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies that the number of virtual tape recovery points that are described be limited to the specified number.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_tapes": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TapeARNs": {
+            "Description": "Specifies one or more unique Amazon Resource Names (ARNs) that represent the virtual tapes you want to describe. If this parameter is not specified, Tape gateway returns a description of all virtual tapes associated with the specified gateway.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "A marker value, obtained in a previous call to DescribeTapes. This marker indicates which page of results to retrieve.\nIf not specified, the first page of results is retrieved.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies that the number of virtual tapes described be limited to the specified number.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_upload_buffer": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_vtl_devices": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "VTLDeviceARNs": {
+            "Description": "An array of strings, where each string represents the Amazon Resource Name (ARN) of a VTL device.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "An opaque string that indicates the position at which to begin describing the VTL devices.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies that the number of VTL devices described be limited to the specified number.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_working_storage": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_volume": {
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the volume to detach from the gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceDetach": {
+            "Description": "Set to true to forcibly remove the iSCSI connection of the target volume and detach the volume. The default is false. If this value is set to false, you must manually disconnect the iSCSI connection from the target volume.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "disable_gateway": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_file_system": {
+        "FileSystemAssociationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the file system association to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceDelete": {
+            "Description": "If this value is set to true, the operation disassociates an Amazon FSx file system immediately. It ends all data uploads to the file system, and the file system association enters the FORCE_DELETING status. If this value is set to false, the Amazon FSx file system does not disassociate until all data is uploaded.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "join_domain": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain that you want the gateway to join.",
+            "Type": "string",
+            "Required": true
+        },
+        "OrganizationalUnit": {
+            "Description": "The organizational unit (OU) is a container in an Active Directory that can hold users, groups, computers, and other OUs and this parameter specifies the OU that the gateway will join within the AD domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "DomainControllers": {
+            "Description": "List of IPv4 addresses, NetBIOS names, or host names of your domain server. If you need to specify the port number include it after the colon (\u201c:\u201d). For example, mydc.mydomain.com:389 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TimeoutInSeconds": {
+            "Description": "Specifies the time in seconds, in which the JoinDomain operation must complete. The default is 20 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "UserName": {
+            "Description": "Sets the user name of user who has permission to add the gateway to the Active Directory domain. The domain user account should be enabled to join computers to the domain. For example, you can use the domain administrator account or an account with delegated permissions to join computers to the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "Sets the password of the user who has permission to add the gateway to the Active Directory domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_automatic_tape_creation_policies": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_file_shares": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway whose file shares you want to list. If this field is not present, all file shares under your account are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of file shares to return in the response. The value must be an integer with a value greater than zero. Optional.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Opaque pagination token returned from a previous ListFileShares operation. If present, Marker specifies where to continue the list from after a previous call to ListFileShares. Optional.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_file_system_associations": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of file system associations to return in the response. If present, Limit must be an integer with a value greater than zero. Optional.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Opaque pagination token returned from a previous ListFileSystemAssociations operation. If present, Marker specifies where to continue the list from after a previous call to ListFileSystemAssociations . Optional.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_gateways": {
+        "Marker": {
+            "Description": "An opaque string that indicates the position at which to begin the returned list of gateways.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies that the list of gateways returned be limited to the specified number of items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_local_disks": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for which you want to list tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Marker": {
+            "Description": "An opaque string that indicates the position at which to begin returning the list of tags.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies that the list of tags returned be limited to the specified number of items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tape_pools": {
+        "PoolARNs": {
+            "Description": "The Amazon Resource Name (ARN) of each of the custom tape pools you want to list. If you don't specify a custom tape pool ARN, the response lists all custom tape pools.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "A string that indicates the position at which to begin the returned list of tape pools.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "An optional number limit for the tape pools in the list returned by this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tapes": {
+        "TapeARNs": {
+            "Description": "The Amazon Resource Name (ARN) of each of the tapes you want to list. If you don't specify a tape ARN, the response lists all tapes in both your VTL and VTS.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Marker": {
+            "Description": "A string that indicates the position at which to begin the returned list of tapes.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "An optional number limit for the tapes in the list returned by this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_volume_initiators": {
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the volume. Use the  ListVolumes operation to return a list of gateway volumes for the gateway.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_volume_recovery_points": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_volumes": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "A string that indicates the position at which to begin the returned list of volumes. Obtain the marker from the response of a previous List iSCSI Volumes request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies that the list of volumes returned be limited to the specified number of items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "notify_when_uploaded": {
+        "FileShareARN": {
+            "Description": "The Amazon Resource Name (ARN) of the file share.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "refresh_cache": {
+        "FileShareARN": {
+            "Description": "The Amazon Resource Name (ARN) of the file share you want to refresh.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderList": {
+            "Description": "A comma-separated list of the paths of folders to refresh in the cache. The default is [\"/\" ]. The default refreshes objects and folders at the root of the Amazon S3 bucket. If Recursive is set to true, the entire S3 bucket that the file share has access to is refreshed.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Recursive": {
+            "Description": "A value that specifies whether to recursively refresh folders in the cache. The refresh includes folders that were in the cache the last time the gateway listed the folder's contents. If this value set to true, each folder that is listed in FolderList is recursively updated. Otherwise, subfolders listed in FolderList are not refreshed. Only objects that are in folders listed directly under FolderList are found and used for the update. The default is true .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "remove_tags_from_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource you want to remove the tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of the tags you want to remove from the specified resource. A tag is composed of a key-value pair.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "reset_cache": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "retrieve_tape_archive": {
+        "TapeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the virtual tape you want to retrieve from the virtual tape shelf (VTS).",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway you want to retrieve the virtual tape to. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.\nYou retrieve archived virtual tapes to only one gateway and the gateway must be a tape gateway.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "retrieve_tape_recovery_point": {
+        "TapeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the virtual tape for which you want to retrieve the recovery point.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_local_console_password": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LocalConsolePassword": {
+            "Description": "The password you want to set for your VM local console.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_smb_guest_password": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the S3 File Gateway the SMB file share is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "The password that you want to set for your SMB server.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "shutdown_gateway": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_availability_monitor_test": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_gateway": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_automatic_tape_creation_policy": {
+        "AutomaticTapeCreationRules": {
+            "Description": "An automatic tape creation policy consists of a list of automatic tape creation rules. The rules determine when and how to automatically create new tapes.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_bandwidth_rate_limit": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "AverageUploadRateLimitInBitsPerSec": {
+            "Description": "The average upload bandwidth rate limit in bits per second.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AverageDownloadRateLimitInBitsPerSec": {
+            "Description": "The average download bandwidth rate limit in bits per second.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_bandwidth_rate_limit_schedule": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "BandwidthRateLimitIntervals": {
+            "Description": "An array containing bandwidth rate limit schedule intervals for a gateway. When no bandwidth rate limit intervals have been scheduled, the array is empty.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_chap_credentials": {
+        "TargetARN": {
+            "Description": "The Amazon Resource Name (ARN) of the iSCSI volume target. Use the  DescribeStorediSCSIVolumes operation to return the TargetARN for specified VolumeARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecretToAuthenticateInitiator": {
+            "Description": "The secret key that the initiator (for example, the Windows client) must provide to participate in mutual CHAP with the target.",
+            "Type": "string",
+            "Required": true
+        },
+        "InitiatorName": {
+            "Description": "The iSCSI initiator that connects to the target.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecretToAuthenticateTarget": {
+            "Description": "The secret key that the target must provide to participate in mutual CHAP with the initiator (e.g. Windows client).\nByte constraints: Minimum bytes of 12. Maximum bytes of 16.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_file_system_association": {
+        "FileSystemAssociationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the file system association that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The user name of the user credential that has permission to access the root share D$ of the Amazon FSx file system. The user account must belong to the Amazon FSx delegated admin user group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password of the user credential.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuditDestinationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the storage used for the audit logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheAttributes": {
+            "Description": "The refresh cache information for the file share or FSx file systems.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_gateway_information": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "GatewayName": {
+            "Description": "The name you configured for your gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "GatewayTimezone": {
+            "Description": "A value that indicates the time zone of the gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "CloudWatchLogGroupARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that you want to use to monitor and log events in the gateway.\nFor more information, see What is Amazon CloudWatch Logs?",
+            "Type": "string",
+            "Required": false
+        },
+        "GatewayCapacity": {
+            "Description": "Specifies the size of the gateway's metadata cache.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_gateway_software_now": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_maintenance_start_time": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "HourOfDay": {
+            "Description": "The hour component of the maintenance start time represented as hh, where hh is the hour (00 to 23). The hour of the day is in the time zone of the gateway.",
+            "Type": "integer",
+            "Required": true
+        },
+        "MinuteOfHour": {
+            "Description": "The minute component of the maintenance start time represented as mm, where mm is the minute (00 to 59). The minute of the hour is in the time zone of the gateway.",
+            "Type": "integer",
+            "Required": true
+        },
+        "DayOfWeek": {
+            "Description": "The day of the week component of the maintenance start time week represented as an ordinal number from 0 to 6, where 0 represents Sunday and 6 Saturday.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DayOfMonth": {
+            "Description": "The day of the month component of the maintenance start time represented as an ordinal number from 1 to 28, where 1 represents the first day of the month and 28 represents the last day of the month.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_nfs_file_share": {
+        "FileShareARN": {
+            "Description": "The Amazon Resource Name (ARN) of the file share to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "NFSFileShareDefaults": {
+            "Description": "The default values for the file share. Optional.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DefaultStorageClass": {
+            "Description": "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional.\nValid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectACL": {
+            "Description": "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientList": {
+            "Description": "The list of clients that are allowed to access the S3 File Gateway. The list must contain either valid IP addresses or valid CIDR blocks.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Squash": {
+            "Description": "The user mapped to anonymous user.\nValid values are the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ReadOnly": {
+            "Description": "A value that sets the write status of a file share. Set this value to true to set the write status to read-only, otherwise set to false .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "GuessMIMETypeEnabled": {
+            "Description": "A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to true to enable MIME type guessing, otherwise set to false. The default value is true .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RequesterPays": {
+            "Description": "A value that sets who pays the cost of the request and the cost associated with data download from the S3 bucket. If this value is set to true, the requester pays the costs; otherwise, the S3 bucket owner pays. However, the S3 bucket owner always pays the cost of storing data.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "FileShareName": {
+            "Description": "The name of the file share. Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheAttributes": {
+            "Description": "Specifies refresh cache information for the file share.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NotificationPolicy": {
+            "Description": "The notification policy of the file share. SettlingTimeInSeconds controls the number of seconds to wait after the last point in time a client wrote to a file before generating an ObjectUploaded notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.\nThe following example sets NotificationPolicy on with SettlingTimeInSeconds set to 60.\nThe following example sets NotificationPolicy off.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuditDestinationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the storage used for audit logs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_smb_file_share": {
+        "FileShareARN": {
+            "Description": "The Amazon Resource Name (ARN) of the SMB file share that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "KMSEncrypted": {
+            "Description": "Set to true to use Amazon S3 server-side encryption with your own KMS key, or false to use a key managed by Amazon S3. Optional.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KMSKey": {
+            "Description": "The Amazon Resource Name (ARN) of a symmetric customer master key (CMK) used for Amazon S3 server-side encryption. Storage Gateway does not support asymmetric CMKs. This value can only be set when KMSEncrypted is true . Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultStorageClass": {
+            "Description": "The default storage class for objects put into an Amazon S3 bucket by the S3 File Gateway. The default value is S3_STANDARD. Optional.\nValid Values: S3_STANDARD | S3_INTELLIGENT_TIERING | S3_STANDARD_IA | S3_ONEZONE_IA",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectACL": {
+            "Description": "A value that sets the access control list (ACL) permission for objects in the S3 bucket that a S3 File Gateway puts objects into. The default value is private .",
+            "Type": "string",
+            "Required": false
+        },
+        "ReadOnly": {
+            "Description": "A value that sets the write status of a file share. Set this value to true to set write status to read-only, otherwise set to false .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "GuessMIMETypeEnabled": {
+            "Description": "A value that enables guessing of the MIME type for uploaded objects based on file extensions. Set this value to true to enable MIME type guessing, otherwise set to false. The default value is true .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RequesterPays": {
+            "Description": "A value that sets who pays the cost of the request and the cost associated with data download from the S3 bucket. If this value is set to true, the requester pays the costs; otherwise, the S3 bucket owner pays. However, the S3 bucket owner always pays the cost of storing data.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SMBACLEnabled": {
+            "Description": "Set this value to true to enable access control list (ACL) on the SMB file share. Set it to false to map file and directory permissions to the POSIX permissions.\nFor more information, see Using Microsoft Windows ACLs to control access to an SMB file share in the Storage Gateway User Guide .\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AccessBasedEnumeration": {
+            "Description": "The files and folders on this share will only be visible to users with read access.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AdminUserList": {
+            "Description": "A list of users or groups in the Active Directory that have administrator rights to the file share. A group must be prefixed with the @ character. Acceptable formats include: DOMAIN\\User1, user1, @group1, and @DOMAIN\\group1. Can only be set if Authentication is set to ActiveDirectory .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ValidUserList": {
+            "Description": "A list of users or groups in the Active Directory that are allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: DOMAIN\\User1, user1, @group1, and @DOMAIN\\group1. Can only be set if Authentication is set to ActiveDirectory .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "InvalidUserList": {
+            "Description": "A list of users or groups in the Active Directory that are not allowed to access the file share. A group must be prefixed with the @ character. Acceptable formats include: DOMAIN\\User1, user1, @group1, and @DOMAIN\\group1. Can only be set if Authentication is set to ActiveDirectory .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AuditDestinationARN": {
+            "Description": "The Amazon Resource Name (ARN) of the storage used for audit logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "CaseSensitivity": {
+            "Description": "The case of an object name in an Amazon S3 bucket. For ClientSpecified , the client determines the case sensitivity. For CaseSensitive , the gateway determines the case sensitivity. The default value is ClientSpecified .",
+            "Type": "string",
+            "Required": false
+        },
+        "FileShareName": {
+            "Description": "The name of the file share. Optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "CacheAttributes": {
+            "Description": "Specifies refresh cache information for the file share.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NotificationPolicy": {
+            "Description": "The notification policy of the file share. SettlingTimeInSeconds controls the number of seconds to wait after the last point in time a client wrote to a file before generating an ObjectUploaded notification. Because clients can make many small writes to files, it's best to set this parameter for as long as possible to avoid generating multiple notifications for the same file in a small time period.\nThe following example sets NotificationPolicy on with SettlingTimeInSeconds set to 60.\nThe following example sets NotificationPolicy off.",
+            "Type": "string",
+            "Required": false
+        },
+        "OplocksEnabled": {
+            "Description": "Specifies whether opportunistic locking is enabled for the SMB file share.\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_smb_file_share_visibility": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "FileSharesVisible": {
+            "Description": "The shares on this gateway appear when listing shares.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "update_smb_local_groups": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "SMBLocalGroups": {
+            "Description": "A list of Active Directory users and groups that you want to grant special permissions for SMB file shares on the gateway.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_smb_security_strategy": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "SMBSecurityStrategy": {
+            "Description": "Specifies the type of security strategy.\nClientSpecified: if you use this option, requests are established based on what is negotiated by the client. This option is recommended when you want to maximize compatibility across different clients in your environment. Supported only in S3 File Gateway.\nMandatorySigning: if you use this option, file gateway only allows connections from SMBv2 or SMBv3 clients that have signing enabled. This option works with SMB clients on Microsoft Windows Vista, Windows Server 2008 or newer.\nMandatoryEncryption: if you use this option, file gateway only allows connections from SMBv3 clients that have encryption enabled. This option is highly recommended for environments that handle sensitive data. This option works with SMB clients on Microsoft Windows 8, Windows Server 2012 or newer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_snapshot_schedule": {
+        "VolumeARN": {
+            "Description": "The Amazon Resource Name (ARN) of the volume. Use the  ListVolumes operation to return a list of gateway volumes.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartAt": {
+            "Description": "The hour of the day at which the snapshot schedule begins represented as hh, where hh is the hour (0 to 23). The hour of the day is in the time zone of the gateway.",
+            "Type": "integer",
+            "Required": true
+        },
+        "RecurrenceInHours": {
+            "Description": "Frequency of snapshots. Specify the number of hours between snapshots.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Optional description of the snapshot that overwrites the existing description.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of up to 50 tags that can be assigned to a snapshot. Each tag is a key-value pair.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_vtl_device_type": {
+        "VTLDeviceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the medium changer you want to select.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceType": {
+            "Description": "The type of medium changer you want to select.\nValid Values: STK-L700 | AWS-Gateway-VTL | IBM-03584L32-0402",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "GatewayARN": {
+            "Description": "The Amazon Resource Name (ARN) of the gateway. Use the  ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,447 @@
+{
+    "create_identity_pool": {
+        "IdentityPoolName": {
+            "Description": "A string that you provide.",
+            "Type": "string",
+            "Required": true
+        },
+        "AllowUnauthenticatedIdentities": {
+            "Description": "TRUE if the identity pool supports unauthenticated logins.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "AllowClassicFlow": {
+            "Description": "Enables or disables the Basic (Classic) authentication flow. For more information, see Identity Pools (Federated Identities) Authentication Flow in the Amazon Cognito Developer Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SupportedLoginProviders": {
+            "Description": "Optional key:value pairs mapping provider names to provider app IDs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeveloperProviderName": {
+            "Description": "The \"domain\" by which Cognito will refer to your users. This name acts as a placeholder that allows your backend and the Cognito service to communicate about the developer provider. For the DeveloperProviderName, you can use letters as well as period (. ), underscore (_ ), and dash (- ).\nOnce you have set a developer provider name, you cannot change it. Please take care in setting this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "OpenIdConnectProviderARNs": {
+            "Description": "The Amazon Resource Names (ARN) of the OpenID Connect providers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CognitoIdentityProviders": {
+            "Description": "An array of Amazon Cognito user pools and their client IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SamlProviderARNs": {
+            "Description": "An array of Amazon Resource Names (ARNs) of the SAML provider for your identity pool.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdentityPoolTags": {
+            "Description": "Tags to assign to the identity pool. A tag is a label that you can apply to identity pools to categorize and manage them in different ways, such as by purpose, owner, environment, or other criteria.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_identities": {
+        "IdentityIdsToDelete": {
+            "Description": "A list of 1-60 identities that you want to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_identity_pool": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_identity": {
+        "IdentityId": {
+            "Description": "A unique identifier in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_identity_pool": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_credentials_for_identity": {
+        "IdentityId": {
+            "Description": "A unique identifier in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Logins": {
+            "Description": "A set of optional name-value pairs that map provider names to provider tokens. The name-value pair will follow the syntax \"provider_name\": \"provider_user_identifier\".\nLogins should not be specified when trying to get credentials for an unauthenticated identity.\nThe Logins parameter is required when using identities associated with external identity providers such as Facebook. For examples of Logins maps, see the code examples in the External Identity Providers section of the Amazon Cognito Developer Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CustomRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the role to be assumed when multiple roles were received in the token from the identity provider. For example, a SAML-based identity provider. This parameter is optional for identity providers that do not support role customization.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_id": {
+        "AccountId": {
+            "Description": "A standard AWS account ID (9+ digits).",
+            "Type": "string",
+            "Required": false
+        },
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Logins": {
+            "Description": "A set of optional name-value pairs that map provider names to provider tokens. The available provider names for Logins are as follows:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_identity_pool_roles": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_open_id_token": {
+        "IdentityId": {
+            "Description": "A unique identifier in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Logins": {
+            "Description": "A set of optional name-value pairs that map provider names to provider tokens. When using graph.facebook.com and www.amazon.com, supply the access_token returned from the provider's authflow. For accounts.google.com, an Amazon Cognito user pool provider, or any other OpenID Connect provider, always include the id_token .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_open_id_token_for_developer_identity": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityId": {
+            "Description": "A unique identifier in the format REGION:GUID.",
+            "Type": "string",
+            "Required": false
+        },
+        "Logins": {
+            "Description": "A set of optional name-value pairs that map provider names to provider tokens. Each name-value pair represents a user from a public provider or developer provider. If the user is from a developer provider, the name-value pair will follow the syntax \"developer_provider_name\": \"developer_user_identifier\". The developer provider is the \"domain\" by which Cognito will refer to your users; you provided this domain while creating/updating the identity pool. The developer user identifier is an identifier from your backend that uniquely identifies a user. When you create an identity pool, you can specify the supported logins.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PrincipalTags": {
+            "Description": "Use this operation to configure attribute mappings for custom providers.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TokenDuration": {
+            "Description": "The expiration time of the token, in seconds. You can specify a custom expiration time for the token so that you can cache it. If you don't provide an expiration time, the token is valid for 15 minutes. You can exchange the token with Amazon STS for temporary AWS credentials, which are valid for a maximum of one hour. The maximum token duration you can set is 24 hours. You should take care in setting the expiration time for a token, as there are significant security implications: an attacker could use a leaked token to access your AWS resources for the token's duration.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_principal_tag_attribute_map": {
+        "IdentityPoolId": {
+            "Description": "You can use this operation to get the ID of the Identity Pool you setup attribute mappings for.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityProviderName": {
+            "Description": "You can use this operation to get the provider name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_identities": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of identities to return.",
+            "Type": "integer",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "HideDisabled": {
+            "Description": "An optional boolean parameter that allows you to hide disabled identities. If omitted, the ListIdentities API will include disabled identities in the response.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_identity_pools": {
+        "MaxResults": {
+            "Description": "The maximum number of identities to return.",
+            "Type": "integer",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the identity pool that the tags are assigned to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "lookup_developer_identity": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityId": {
+            "Description": "A unique identifier in the format REGION:GUID.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeveloperUserIdentifier": {
+            "Description": "A unique ID used by your backend authentication process to identify a user. Typically, a developer identity provider would issue many developer user identifiers, in keeping with the number of users.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of identities to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A pagination token. The first call you make will have NextToken set to null. After that the service will return NextToken values as needed. For example, let's say you make a request with MaxResults set to 10, and there are 20 matches in the database. The service will return a pagination token as a part of the response. This token can be used to call the API again and get results starting from the 11th match.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "merge_developer_identities": {
+        "SourceUserIdentifier": {
+            "Description": "User identifier for the source user. The value should be a DeveloperUserIdentifier .",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationUserIdentifier": {
+            "Description": "User identifier for the destination user. The value should be a DeveloperUserIdentifier .",
+            "Type": "string",
+            "Required": true
+        },
+        "DeveloperProviderName": {
+            "Description": "The \"domain\" by which Cognito will refer to your users. This is a (pseudo) domain name that you provide while creating an identity pool. This name acts as a placeholder that allows your backend and the Cognito service to communicate about the developer provider. For the DeveloperProviderName, you can use letters as well as period (.), underscore (_), and dash (-).",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_identity_pool_roles": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Roles": {
+            "Description": "The map of roles associated with this pool. For a given role, the key will be either \"authenticated\" or \"unauthenticated\" and the value will be the Role ARN.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RoleMappings": {
+            "Description": "How users for a specific identity provider are to mapped to roles. This is a string to  RoleMapping object map. The string identifies the identity provider, for example, \"graph.facebook.com\" or \"cognito-idp.us-east-1.amazonaws.com/us-east-1_abcdefghi:app_client_id\".\nUp to 25 rules can be specified per identity provider.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "set_principal_tag_attribute_map": {
+        "IdentityPoolId": {
+            "Description": "The ID of the Identity Pool you want to set attribute mappings for.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityProviderName": {
+            "Description": "The provider name you want to use for attribute mappings.",
+            "Type": "string",
+            "Required": true
+        },
+        "UseDefaults": {
+            "Description": "You can use this operation to use default (username and clientID) attribute mappings.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PrincipalTags": {
+            "Description": "You can use this operation to add principal tags.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the identity pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to assign to the identity pool.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "unlink_developer_identity": {
+        "IdentityId": {
+            "Description": "A unique identifier in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeveloperProviderName": {
+            "Description": "The \"domain\" by which Cognito will refer to your users.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeveloperUserIdentifier": {
+            "Description": "A unique ID used by your backend authentication process to identify a user.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "unlink_identity": {
+        "IdentityId": {
+            "Description": "A unique identifier in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Logins": {
+            "Description": "A set of optional name-value pairs that map provider names to provider tokens.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LoginsToRemove": {
+            "Description": "Provider names to unlink from this identity.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the identity pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of the tags to remove from the user pool.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_identity_pool": {
+        "IdentityPoolId": {
+            "Description": "An identity pool ID in the format REGION:GUID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityPoolName": {
+            "Description": "A string that you provide.",
+            "Type": "string",
+            "Required": true
+        },
+        "AllowUnauthenticatedIdentities": {
+            "Description": "TRUE if the identity pool supports unauthenticated logins.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "AllowClassicFlow": {
+            "Description": "Enables or disables the Basic (Classic) authentication flow. For more information, see Identity Pools (Federated Identities) Authentication Flow in the Amazon Cognito Developer Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SupportedLoginProviders": {
+            "Description": "Optional key:value pairs mapping provider names to provider app IDs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeveloperProviderName": {
+            "Description": "The \"domain\" by which Cognito will refer to your users.",
+            "Type": "string",
+            "Required": false
+        },
+        "OpenIdConnectProviderARNs": {
+            "Description": "The ARNs of the OpenID Connect providers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CognitoIdentityProviders": {
+            "Description": "A list representing an Amazon Cognito user pool and its client ID.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SamlProviderARNs": {
+            "Description": "An array of Amazon Resource Names (ARNs) of the SAML provider for your identity pool.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdentityPoolTags": {
+            "Description": "The tags that are assigned to the identity pool. A tag is a label that you can apply to identity pools to categorize and manage them in different ways, such as by purpose, owner, environment, or other criteria.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

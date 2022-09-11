@@ -1,0 +1,212 @@
+{
+    "create_database": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database.",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKeyId": {
+            "Description": "The KMS key for the database. If the KMS key is not specified, the database will be encrypted with a Timestream managed KMS key located in your account. Refer to Amazon Web Services managed KMS keys for more info.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs to label the table.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_table": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database.",
+            "Type": "string",
+            "Required": true
+        },
+        "TableName": {
+            "Description": "The name of the Timestream table.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetentionProperties": {
+            "Description": "The duration for which your time series data must be stored in the memory store and the magnetic store.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs to label the table.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MagneticStoreWriteProperties": {
+            "Description": "Contains properties to set on the table when enabling magnetic store writes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_database": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_table": {
+        "DatabaseName": {
+            "Description": "The name of the database where the Timestream database is to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "TableName": {
+            "Description": "The name of the Timestream table to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_database": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_endpoints": "No parameters defined",
+    "describe_table": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database.",
+            "Type": "string",
+            "Required": true
+        },
+        "TableName": {
+            "Description": "The name of the Timestream table.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_databases": {
+        "NextToken": {
+            "Description": "The pagination token. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of items to return in the output. If the total number of items available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tables": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of items to return in the output. If the total number of items available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Timestream resource with tags to be listed. This value is an Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "Identifies the Timestream resource to which tags should be added. This value is an Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the Timestream resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Timestream resource that the tags will be removed from. This value is an Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of tags keys. Existing tags of the resource whose keys are members of this list will be removed from the Timestream resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_database": {
+        "DatabaseName": {
+            "Description": "The name of the database.",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKeyId": {
+            "Description": "The identifier of the new KMS key (KmsKeyId ) to be used to encrypt the data stored in the database. If the KmsKeyId currently registered with the database is the same as the KmsKeyId in the request, there will not be any update.\nYou can specify the KmsKeyId using any of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "update_table": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database.",
+            "Type": "string",
+            "Required": true
+        },
+        "TableName": {
+            "Description": "The name of the Timestream table.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetentionProperties": {
+            "Description": "The retention duration of the memory store and the magnetic store.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MagneticStoreWriteProperties": {
+            "Description": "Contains properties to set on the table when enabling magnetic store writes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "write_records": {
+        "DatabaseName": {
+            "Description": "The name of the Timestream database.",
+            "Type": "string",
+            "Required": true
+        },
+        "TableName": {
+            "Description": "The name of the Timestream table.",
+            "Type": "string",
+            "Required": true
+        },
+        "CommonAttributes": {
+            "Description": "A record containing the common measure, dimension, time, and version attributes shared across all the records in the request. The measure and dimension attributes specified will be merged with the measure and dimension attributes in the records object when the data is written into Timestream. Dimensions may not overlap, or a ValidationException will be thrown. In other words, a record must contain dimensions with unique names.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Records": {
+            "Description": "An array of records containing the unique measure, dimension, time, and version attributes for each time series data point.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    }
+}

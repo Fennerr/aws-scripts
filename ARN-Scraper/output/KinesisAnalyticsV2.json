@@ -1,0 +1,566 @@
+{
+    "add_application_cloud_watch_logging_option": {
+        "ApplicationName": {
+            "Description": "The Kinesis Data Analytics application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version ID of the Kinesis Data Analytics application. You must provide the CurrentApplicationVersionId or the ConditionalToken .You can retrieve the application version ID using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "integer",
+            "Required": false
+        },
+        "CloudWatchLoggingOption": {
+            "Description": "Provides the Amazon CloudWatch log stream Amazon Resource Name (ARN).",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ConditionalToken": {
+            "Description": "A value you use to implement strong concurrency for application updates. You must provide the CurrentApplicationVersionId or the ConditionalToken . You get the application's current ConditionalToken using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "add_application_input": {
+        "ApplicationName": {
+            "Description": "The name of your existing application to which you want to add the streaming source.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The current version of your application. You must provide the ApplicationVersionID or the ConditionalToken .You can use the  DescribeApplication operation to find the current application version.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Input": {
+            "Description": "The  Input to add.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_input_processing_configuration": {
+        "ApplicationName": {
+            "Description": "The name of the application to which you want to add the input processing configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version of the application to which you want to add the input processing configuration. You can use the  DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "InputId": {
+            "Description": "The ID of the input configuration to add the input processing configuration to. You can get a list of the input IDs for an application using the  DescribeApplication operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputProcessingConfiguration": {
+            "Description": "The  InputProcessingConfiguration to add to the application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_output": {
+        "ApplicationName": {
+            "Description": "The name of the application to which you want to add the output configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version of the application to which you want to add the output configuration. You can use the  DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Output": {
+            "Description": "An array of objects, each describing one output configuration. In the output configuration, you specify the name of an in-application stream, a destination (that is, a Kinesis data stream, a Kinesis Data Firehose delivery stream, or an Amazon Lambda function), and record the formation to use when writing to the destination.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_reference_data_source": {
+        "ApplicationName": {
+            "Description": "The name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version of the application for which you are adding the reference data source. You can use the  DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ReferenceDataSource": {
+            "Description": "The reference data source can be an object in your Amazon S3 bucket. Kinesis Data Analytics reads the object and copies the data into the in-application table that is created. You provide an S3 bucket, object key name, and the resulting in-application table that is created.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_vpc_configuration": {
+        "ApplicationName": {
+            "Description": "The name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version of the application to which you want to add the VPC configuration. You must provide the CurrentApplicationVersionId or the ConditionalToken . You can use the  DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned. For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "integer",
+            "Required": false
+        },
+        "VpcConfiguration": {
+            "Description": "Description of the VPC to add to the application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ConditionalToken": {
+            "Description": "A value you use to implement strong concurrency for application updates. You must provide the ApplicationVersionID or the ConditionalToken . You get the application's current ConditionalToken using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_application": {
+        "ApplicationName": {
+            "Description": "The name of your application (for example, sample-app ).",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplicationDescription": {
+            "Description": "A summary description of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "RuntimeEnvironment": {
+            "Description": "The runtime environment for the application (SQL-1_0, FLINK-1_6, FLINK-1_8, or FLINK-1_11 ).",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceExecutionRole": {
+            "Description": "The IAM role used by the application to access Kinesis data streams, Kinesis Data Firehose delivery streams, Amazon S3 objects, and other external resources.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplicationConfiguration": {
+            "Description": "Use this parameter to configure the application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CloudWatchLoggingOptions": {
+            "Description": "Use this parameter to configure an Amazon CloudWatch log stream to monitor application configuration errors.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of one or more tags to assign to the application. A tag is a key-value pair that identifies an application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see Using Tagging .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ApplicationMode": {
+            "Description": "Use the STREAMING mode to create a Kinesis Data Analytics Studio notebook. To create a Kinesis Data Analytics Studio notebook, use the INTERACTIVE mode.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_application_presigned_url": {
+        "ApplicationName": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "UrlType": {
+            "Description": "The type of the extension for which to create and return a URL. Currently, the only valid extension URL type is FLINK_DASHBOARD_URL .",
+            "Type": "string",
+            "Required": true
+        },
+        "SessionExpirationDurationInSeconds": {
+            "Description": "The duration in seconds for which the returned URL will be valid.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_application_snapshot": {
+        "ApplicationName": {
+            "Description": "The name of an existing application",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotName": {
+            "Description": "An identifier for the application snapshot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application": {
+        "ApplicationName": {
+            "Description": "The name of the application to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "CreateTimestamp": {
+            "Description": "Use the DescribeApplication operation to get this value.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "delete_application_cloud_watch_logging_option": {
+        "ApplicationName": {
+            "Description": "The application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version ID of the application. You must provide the CurrentApplicationVersionId or the ConditionalToken . You can retrieve the application version ID using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "integer",
+            "Required": false
+        },
+        "CloudWatchLoggingOptionId": {
+            "Description": "The CloudWatchLoggingOptionId of the Amazon CloudWatch logging option to delete. You can get the CloudWatchLoggingOptionId by using the  DescribeApplication operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConditionalToken": {
+            "Description": "A value you use to implement strong concurrency for application updates. You must provide the CurrentApplicationVersionId or the ConditionalToken . You get the application's current ConditionalToken using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_application_input_processing_configuration": {
+        "ApplicationName": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The application version. You can use the  DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "InputId": {
+            "Description": "The ID of the input configuration from which to delete the input processing configuration. You can get a list of the input IDs for an application by using the  DescribeApplication operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application_output": {
+        "ApplicationName": {
+            "Description": "The application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The application version. You can use the  DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "OutputId": {
+            "Description": "The ID of the configuration to delete. Each output configuration that is added to the application (either when the application is created or later) using the  AddApplicationOutput operation has a unique ID. You need to provide the ID to uniquely identify the output configuration that you want to delete from the application configuration. You can use the  DescribeApplication operation to get the specific OutputId .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application_reference_data_source": {
+        "ApplicationName": {
+            "Description": "The name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The current application version. You can use the  DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ReferenceId": {
+            "Description": "The ID of the reference data source. When you add a reference data source to your application using the  AddApplicationReferenceDataSource, Kinesis Data Analytics assigns an ID. You can use the  DescribeApplication operation to get the reference ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application_snapshot": {
+        "ApplicationName": {
+            "Description": "The name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotName": {
+            "Description": "The identifier for the snapshot delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotCreationTimestamp": {
+            "Description": "The creation timestamp of the application snapshot to delete. You can retrieve this value using or .",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "delete_application_vpc_configuration": {
+        "ApplicationName": {
+            "Description": "The name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The current application version ID. You must provide the CurrentApplicationVersionId or the ConditionalToken . You can retrieve the application version ID using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "integer",
+            "Required": false
+        },
+        "VpcConfigurationId": {
+            "Description": "The ID of the VPC configuration to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConditionalToken": {
+            "Description": "A value you use to implement strong concurrency for application updates. You must provide the CurrentApplicationVersionId or the ConditionalToken . You get the application's current ConditionalToken using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_application": {
+        "ApplicationName": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "IncludeAdditionalDetails": {
+            "Description": "Displays verbose information about a Kinesis Data Analytics application, including the application's job plan.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_application_snapshot": {
+        "ApplicationName": {
+            "Description": "The name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotName": {
+            "Description": "The identifier of an application snapshot. You can retrieve this value using .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_application_version": {
+        "ApplicationName": {
+            "Description": "The name of the application for which you want to get the version description.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplicationVersionId": {
+            "Description": "The ID of the application version for which you want to get the description.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "discover_input_schema": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the streaming source.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServiceExecutionRole": {
+            "Description": "The ARN of the role that is used to access the streaming source.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputStartingPositionConfiguration": {
+            "Description": "The point at which you want Kinesis Data Analytics to start reading records from the specified streaming source discovery purposes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "S3Configuration": {
+            "Description": "Specify this parameter to discover a schema from data in an Amazon S3 object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "InputProcessingConfiguration": {
+            "Description": "The  InputProcessingConfiguration to use to preprocess the records before discovering the schema of the records.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_application_snapshots": {
+        "ApplicationName": {
+            "Description": "The name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The maximum number of application snapshots to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Use this parameter if you receive a NextToken response in a previous request that indicates that there is more output available. Set it to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_application_versions": {
+        "ApplicationName": {
+            "Description": "The name of the application for which you want to list all versions.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The maximum number of versions to list in this invocation of the operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If a previous invocation of this operation returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see Using the Amazon Command Line Interface's Pagination Options .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_applications": {
+        "Limit": {
+            "Description": "The maximum number of applications to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If a previous command returned a pagination token, pass it into this value to retrieve the next set of results. For more information about pagination, see Using the Amazon Command Line Interface's Pagination Options .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the application for which to retrieve tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "rollback_application": {
+        "ApplicationName": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The current application version ID. You can retrieve the application version ID using  DescribeApplication .",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "start_application": {
+        "ApplicationName": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "RunConfiguration": {
+            "Description": "Identifies the run configuration (start parameters) of a Kinesis Data Analytics application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "stop_application": {
+        "ApplicationName": {
+            "Description": "The name of the running application to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "Force": {
+            "Description": "Set to true to force the application to stop. If you set Force to true, Kinesis Data Analytics stops the application without taking a snapshot.\nYou can only force stop a Flink-based Kinesis Data Analytics application. You can't force stop a SQL-based Kinesis Data Analytics application.\nThe application must be in the STARTING, UPDATING, STOPPING, AUTOSCALING, or RUNNING status.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the application to assign the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value tags to assign to the application.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the Kinesis Data Analytics application from which to remove the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of keys of tags to remove from the specified application.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_application": {
+        "ApplicationName": {
+            "Description": "The name of the application to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The current application version ID. You must provide the CurrentApplicationVersionId or the ConditionalToken .You can retrieve the application version ID using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "integer",
+            "Required": false
+        },
+        "ApplicationConfigurationUpdate": {
+            "Description": "Describes application configuration updates.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ServiceExecutionRoleUpdate": {
+            "Description": "Describes updates to the service execution role.",
+            "Type": "string",
+            "Required": false
+        },
+        "RunConfigurationUpdate": {
+            "Description": "Describes updates to the application's starting parameters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CloudWatchLoggingOptionUpdates": {
+            "Description": "Describes application Amazon CloudWatch logging option updates. You can only update existing CloudWatch logging options with this action. To add a new CloudWatch logging option, use  AddApplicationCloudWatchLoggingOption .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ConditionalToken": {
+            "Description": "A value you use to implement strong concurrency for application updates. You must provide the CurrentApplicationVersionId or the ConditionalToken . You get the application's current ConditionalToken using  DescribeApplication . For better concurrency support, use the ConditionalToken parameter instead of CurrentApplicationVersionId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_application_maintenance_configuration": {
+        "ApplicationName": {
+            "Description": "The name of the application for which you want to update the maintenance configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplicationMaintenanceConfigurationUpdate": {
+            "Description": "Describes the application maintenance configuration update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

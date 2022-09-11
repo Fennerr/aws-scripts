@@ -1,0 +1,547 @@
+{
+    "create_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrackingOptions": {
+            "Description": "An object that defines the open and click tracking options for emails that you send using the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeliveryOptions": {
+            "Description": "An object that defines the dedicated IP pool that is used to send emails that you send using the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ReputationOptions": {
+            "Description": "An object that defines whether or not Amazon Pinpoint collects reputation metrics for the emails that you send that use the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SendingOptions": {
+            "Description": "An object that defines whether or not Amazon Pinpoint can send email that you send using the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "An array of objects that define the tags (keys and values) that you want to associate with the configuration set.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_configuration_set_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to add an event destination to.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "A name that identifies the event destination within the configuration set.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestination": {
+            "Description": "An object that defines the event destination.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_dedicated_ip_pool": {
+        "PoolName": {
+            "Description": "The name of the dedicated IP pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An object that defines the tags (keys and values) that you want to associate with the pool.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_deliverability_test_report": {
+        "ReportName": {
+            "Description": "A unique name that helps you to identify the predictive inbox placement test when you retrieve the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "FromEmailAddress": {
+            "Description": "The email address that the predictive inbox placement test email was sent from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The HTML body of the message that you sent when you performed the predictive inbox placement test.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "An array of objects that define the tags (keys and values) that you want to associate with the predictive inbox placement test.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_email_identity": {
+        "EmailIdentity": {
+            "Description": "The email address or domain that you want to verify.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An array of objects that define the tags (keys and values) that you want to associate with the email identity.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_configuration_set_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that contains the event destination that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "The name of the event destination that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dedicated_ip_pool": {
+        "PoolName": {
+            "Description": "The name of the dedicated IP pool that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_email_identity": {
+        "EmailIdentity": {
+            "Description": "The identity (that is, the email address or domain) that you want to delete from your Amazon Pinpoint account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_account": "No parameters defined",
+    "get_blacklist_reports": {
+        "BlacklistItemNames": {
+            "Description": "A list of IP addresses that you want to retrieve blacklist information about. You can only specify the dedicated IP addresses that you use to send email using Amazon Pinpoint or Amazon SES.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to obtain more information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_configuration_set_event_destinations": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that contains the event destination.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_dedicated_ip": {
+        "Ip": {
+            "Description": "The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's assocaited with your Amazon Pinpoint account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_dedicated_ips": {
+        "PoolName": {
+            "Description": "The name of the IP pool that the dedicated IP address is associated with.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token returned from a previous call to GetDedicatedIps to indicate the position of the dedicated IP pool in the list of IP pools.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to GetDedicatedIpsRequest . If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_deliverability_dashboard_options": "No parameters defined",
+    "get_deliverability_test_report": {
+        "ReportId": {
+            "Description": "A unique string that identifies the predictive inbox placement test.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_deliverability_campaign": {
+        "CampaignId": {
+            "Description": "The unique identifier for the campaign. Amazon Pinpoint automatically generates and assigns this identifier to a campaign. This value is not the same as the campaign identifier that Amazon Pinpoint assigns to campaigns that you create and manage by using the Amazon Pinpoint API or the Amazon Pinpoint console.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_statistics_report": {
+        "Domain": {
+            "Description": "The domain that you want to obtain deliverability metrics for.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartDate": {
+            "Description": "The first day (in Unix time) that you want to obtain domain deliverability metrics for.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndDate": {
+            "Description": "The last day (in Unix time) that you want to obtain domain deliverability metrics for. The EndDate that you specify has to be less than or equal to 30 days after the StartDate .",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "get_email_identity": {
+        "EmailIdentity": {
+            "Description": "The email identity that you want to retrieve details for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_configuration_sets": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListConfigurationSets to indicate the position in the list of configuration sets.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListConfigurationSets . If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dedicated_ip_pools": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListDedicatedIpPools to indicate the position in the list of dedicated IP pools.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListDedicatedIpPools . If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_deliverability_test_reports": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListDeliverabilityTestReports to indicate the position in the list of predictive inbox placement tests.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListDeliverabilityTestReports. If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.\nThe value you specify has to be at least 0, and can be no more than 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_domain_deliverability_campaigns": {
+        "StartDate": {
+            "Description": "The first day, in Unix time format, that you want to obtain deliverability data for.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndDate": {
+            "Description": "The last day, in Unix time format, that you want to obtain deliverability data for. This value has to be less than or equal to 30 days after the value of the StartDate parameter.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "SubscribedDomain": {
+            "Description": "The domain to obtain deliverability data for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A token that\u2019s returned from a previous call to the ListDomainDeliverabilityCampaigns operation. This token indicates the position of a campaign in the list of campaigns.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to include in response to a single call to the ListDomainDeliverabilityCampaigns operation. If the number of results is larger than the number that you specify in this parameter, the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_email_identities": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListEmailIdentities to indicate the position in the list of identities.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListEmailIdentities. If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.\nThe value you specify has to be at least 0, and can be no more than 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to retrieve tag information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_account_dedicated_ip_warmup_attributes": {
+        "AutoWarmupEnabled": {
+            "Description": "Enables or disables the automatic warm-up feature for dedicated IP addresses that are associated with your Amazon Pinpoint account in the current AWS Region. Set to true to enable the automatic warm-up feature, or set to false to disable it.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_account_sending_attributes": {
+        "SendingEnabled": {
+            "Description": "Enables or disables your account's ability to send email. Set to true to enable email sending, or set to false to disable email sending.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_configuration_set_delivery_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to associate with a dedicated IP pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "TlsPolicy": {
+            "Description": "Specifies whether messages that use the configuration set are required to use Transport Layer Security (TLS). If the value is Require , messages are only delivered if a TLS connection can be established. If the value is Optional , messages can be delivered in plain text if a TLS connection can't be established.",
+            "Type": "string",
+            "Required": false
+        },
+        "SendingPoolName": {
+            "Description": "The name of the dedicated IP pool that you want to associate with the configuration set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_configuration_set_reputation_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to enable or disable reputation metric tracking for.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReputationMetricsEnabled": {
+            "Description": "If true , tracking of reputation metrics is enabled for the configuration set. If false , tracking of reputation metrics is disabled for the configuration set.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_configuration_set_sending_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to enable or disable email sending for.",
+            "Type": "string",
+            "Required": true
+        },
+        "SendingEnabled": {
+            "Description": "If true , email sending is enabled for the configuration set. If false , email sending is disabled for the configuration set.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_configuration_set_tracking_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to add a custom tracking domain to.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomRedirectDomain": {
+            "Description": "The domain that you want to use to track open and click events.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_dedicated_ip_in_pool": {
+        "Ip": {
+            "Description": "The IP address that you want to move to the dedicated IP pool. The value you specify has to be a dedicated IP address that's associated with your Amazon Pinpoint account.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationPoolName": {
+            "Description": "The name of the IP pool that you want to add the dedicated IP address to. You have to specify an IP pool that already exists.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_dedicated_ip_warmup_attributes": {
+        "Ip": {
+            "Description": "The dedicated IP address that you want to update the warm-up attributes for.",
+            "Type": "string",
+            "Required": true
+        },
+        "WarmupPercentage": {
+            "Description": "The warm-up percentage that you want to associate with the dedicated IP address.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "put_deliverability_dashboard_option": {
+        "DashboardEnabled": {
+            "Description": "Specifies whether to enable the Deliverability dashboard for your Amazon Pinpoint account. To enable the dashboard, set this value to true .",
+            "Type": "boolean",
+            "Required": true
+        },
+        "SubscribedDomains": {
+            "Description": "An array of objects, one for each verified domain that you use to send email and enabled the Deliverability dashboard for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_email_identity_dkim_attributes": {
+        "EmailIdentity": {
+            "Description": "The email identity that you want to change the DKIM settings for.",
+            "Type": "string",
+            "Required": true
+        },
+        "SigningEnabled": {
+            "Description": "Sets the DKIM signing configuration for the identity.\nWhen you set this value true, then the messages that Amazon Pinpoint sends from the identity are DKIM-signed. When you set this value to false, then the messages that Amazon Pinpoint sends from the identity aren't DKIM-signed.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_email_identity_feedback_attributes": {
+        "EmailIdentity": {
+            "Description": "The email identity that you want to configure bounce and complaint feedback forwarding for.",
+            "Type": "string",
+            "Required": true
+        },
+        "EmailForwardingEnabled": {
+            "Description": "Sets the feedback forwarding configuration for the identity.\nIf the value is true, Amazon Pinpoint sends you email notifications when bounce or complaint events occur. Amazon Pinpoint sends this notification to the address that you specified in the Return-Path header of the original email.\nWhen you set this value to false, Amazon Pinpoint sends notifications through other mechanisms, such as by notifying an Amazon SNS topic or another event destination. You're required to have a method of tracking bounces and complaints. If you haven't set up another mechanism for receiving bounce or complaint notifications, Amazon Pinpoint sends an email notification when these events occur (even if this setting is disabled).",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_email_identity_mail_from_attributes": {
+        "EmailIdentity": {
+            "Description": "The verified email identity that you want to set up the custom MAIL FROM domain for.",
+            "Type": "string",
+            "Required": true
+        },
+        "MailFromDomain": {
+            "Description": "The custom MAIL FROM domain that you want the verified identity to use. The MAIL FROM domain must meet the following criteria:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "BehaviorOnMxFailure": {
+            "Description": "The action that you want Amazon Pinpoint to take if it can't read the required MX record when you send an email. When you set this value to UseDefaultValue, Amazon Pinpoint uses amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage, Amazon Pinpoint returns a MailFromDomainNotVerified error, and doesn't attempt to deliver the email.\nThese behaviors are taken when the custom MAIL FROM domain configuration is in the Pending, Failed, and TemporaryFailure states.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_email": {
+        "FromEmailAddress": {
+            "Description": "The email address that you want to use as the \"From\" address for the email. The address that you specify has to be verified.",
+            "Type": "string",
+            "Required": false
+        },
+        "Destination": {
+            "Description": "An object that contains the recipients of the email message.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ReplyToAddresses": {
+            "Description": "The \"Reply-to\" email addresses for the message. When the recipient replies to the message, each Reply-to address receives the reply.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FeedbackForwardingEmailAddress": {
+            "Description": "The address that Amazon Pinpoint should send bounce and complaint notifications to.",
+            "Type": "string",
+            "Required": false
+        },
+        "Content": {
+            "Description": "An object that contains the body of the message. You can send either a Simple message or a Raw message.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "EmailTags": {
+            "Description": "A list of tags, in the form of name/value pairs, to apply to an email that you send using the SendEmail operation. Tags correspond to characteristics of the email that you define, so that you can publish email sending events.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that you want to use when sending the email.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to add one or more tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of the tags that you want to add to the resource. A tag consists of a required tag key (Key ) and an associated tag value (Value ). The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to remove one or more tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tags (tag keys) that you want to remove from the resource. When you specify a tag key, the action removes both that key and its associated tag value.\nTo remove more than one tag from the resource, append the TagKeys parameter and argument for each additional tag to remove, separated by an ampersand. For example: /v1/email/tags?ResourceArn=ResourceArn&amp;TagKeys=Key1&amp;TagKeys=Key2",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_configuration_set_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that contains the event destination that you want to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "The name of the event destination that you want to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestination": {
+            "Description": "An object that defines the event destination.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

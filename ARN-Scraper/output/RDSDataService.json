@@ -1,0 +1,185 @@
+{
+    "batch_execute_statement": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "secretArn": {
+            "Description": "The ARN of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in the secret.\nFor information about creating the secret, see Create a database secret .",
+            "Type": "string",
+            "Required": true
+        },
+        "sql": {
+            "Description": "The SQL statement to run. Don't include a semicolon (;) at the end of the SQL statement.",
+            "Type": "string",
+            "Required": true
+        },
+        "database": {
+            "Description": "The name of the database.",
+            "Type": "string",
+            "Required": false
+        },
+        "schema": {
+            "Description": "The name of the database schema.",
+            "Type": "string",
+            "Required": false
+        },
+        "parameterSets": {
+            "Description": "The parameter set for the batch operation.\nThe SQL statement is executed as many times as the number of parameter sets provided. To execute a SQL statement with no parameters, use one of the following options:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "transactionId": {
+            "Description": "The identifier of a transaction that was started by using the BeginTransaction operation. Specify the transaction ID of the transaction that you want to include the SQL statement in.\nIf the SQL statement is not part of a transaction, don't set this parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "begin_transaction": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "secretArn": {
+            "Description": "The name or ARN of the secret that enables access to the DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "database": {
+            "Description": "The name of the database.",
+            "Type": "string",
+            "Required": false
+        },
+        "schema": {
+            "Description": "The name of the database schema.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "commit_transaction": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "secretArn": {
+            "Description": "The name or ARN of the secret that enables access to the DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "transactionId": {
+            "Description": "The identifier of the transaction to end and commit.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "execute_sql": {
+        "dbClusterOrInstanceArn": {
+            "Description": "The ARN of the Aurora Serverless DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "awsSecretStoreArn": {
+            "Description": "The Amazon Resource Name (ARN) of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in the secret.\nFor information about creating the secret, see Create a database secret .",
+            "Type": "string",
+            "Required": true
+        },
+        "sqlStatements": {
+            "Description": "One or more SQL statements to run on the DB cluster.\nYou can separate SQL statements from each other with a semicolon (;). Any valid SQL statement is permitted, including data definition, data manipulation, and commit statements.",
+            "Type": "string",
+            "Required": true
+        },
+        "database": {
+            "Description": "The name of the database.",
+            "Type": "string",
+            "Required": false
+        },
+        "schema": {
+            "Description": "The name of the database schema.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "execute_statement": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "secretArn": {
+            "Description": "The ARN of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in the secret.\nFor information about creating the secret, see Create a database secret .",
+            "Type": "string",
+            "Required": true
+        },
+        "sql": {
+            "Description": "The SQL statement to run.",
+            "Type": "string",
+            "Required": true
+        },
+        "database": {
+            "Description": "The name of the database.",
+            "Type": "string",
+            "Required": false
+        },
+        "schema": {
+            "Description": "The name of the database schema.",
+            "Type": "string",
+            "Required": false
+        },
+        "parameters": {
+            "Description": "The parameters for the SQL statement.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "transactionId": {
+            "Description": "The identifier of a transaction that was started by using the BeginTransaction operation. Specify the transaction ID of the transaction that you want to include the SQL statement in.\nIf the SQL statement is not part of a transaction, don't set this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeResultMetadata": {
+            "Description": "A value that indicates whether to include metadata in the results.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "continueAfterTimeout": {
+            "Description": "A value that indicates whether to continue running the statement after the call times out. By default, the statement stops running when the call times out.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "resultSetOptions": {
+            "Description": "Options that control how the result set is returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "formatRecordsAs": {
+            "Description": "A value that indicates whether to format the result set as a single JSON string. This parameter only applies to SELECT statements and is ignored for other types of statements. Allowed values are NONE and JSON. The default value is NONE. The result is returned in the formattedRecords field.\nFor usage information about the JSON format for result sets, see Using the Data API in the Amazon Aurora User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "rollback_transaction": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "secretArn": {
+            "Description": "The name or ARN of the secret that enables access to the DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "transactionId": {
+            "Description": "The identifier of the transaction to roll back.",
+            "Type": "string",
+            "Required": true
+        }
+    }
+}

@@ -1,0 +1,394 @@
+{
+    "create_group": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "A string containing the name of the group. This value is commonly displayed when the group is referenced.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A string containing the description of the group.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_group_membership": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupId": {
+            "Description": "The identifier for a group in the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "An object that contains the identifier of a group member. Setting the UserID field to the specific identifier for a user indicates that the user is a member of the group.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_user": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "A unique string used to identify the user. The length limit is 128 characters. This value can consist of letters, accented characters, symbols, numbers, and punctuation. This value is specified at the time the user is created and stored as an attribute of the user object in the identity store.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "An object containing the user's name.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DisplayName": {
+            "Description": "A string containing the user's name. This value is typically formatted for display when the user is referenced. For example, \"John Doe.\"",
+            "Type": "string",
+            "Required": false
+        },
+        "NickName": {
+            "Description": "A string containing an alternate name for the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProfileUrl": {
+            "Description": "A string containing a URL that may be associated with the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "Emails": {
+            "Description": "A list of Email objects containing email addresses associated with the user.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Addresses": {
+            "Description": "A list of Address objects containing addresses associated with the user.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PhoneNumbers": {
+            "Description": "A list of PhoneNumber objects containing phone numbers associated with the user.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserType": {
+            "Description": "A string indicating the user's type. Possible values depend on each customer's specific needs, so they are left unspecified.",
+            "Type": "string",
+            "Required": false
+        },
+        "Title": {
+            "Description": "A string containing the user's title. Possible values are left unspecified given that they depend on each customer's specific needs.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredLanguage": {
+            "Description": "A string containing the preferred language of the user. For example, \"American English\" or \"en-us.\"",
+            "Type": "string",
+            "Required": false
+        },
+        "Locale": {
+            "Description": "A string containing the user's geographical region or location.",
+            "Type": "string",
+            "Required": false
+        },
+        "Timezone": {
+            "Description": "A string containing the user's time zone.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_group": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupId": {
+            "Description": "The identifier for a group in the identity store.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_group_membership": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "MembershipId": {
+            "Description": "The identifier for a GroupMembership in an identity store.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The identifier for a user in the identity store.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_group": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string that contains numbers and lower case letters. This value is generated at the time that a new identity store is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupId": {
+            "Description": "The identifier for a group in the identity store.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_group_membership": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "MembershipId": {
+            "Description": "The identifier for a GroupMembership in an identity store.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_user": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string that contains numbers and lower case letters. This value is generated at the time that a new identity store is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The identifier for a user in the identity store.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_group_id": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "AlternateIdentifier": {
+            "Description": "A unique identifier for an identity resource that is not the primary identifier. This value can be an identifier from an external identity provider (IdP) that is associated with the group or a unique attribute. For example, a unique GroupDisplayName .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "get_group_membership_id": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupId": {
+            "Description": "The identifier for a group in the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "An object that contains the identifier of a group member. Setting the UserID field to the specific identifier for a user indicates that the user is a member of the group.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "get_user_id": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "AlternateIdentifier": {
+            "Description": "A unique identifier for an identity resource that is not the primary identifier.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "is_member_in_groups": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "An object containing the identifier of a group member.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "GroupIds": {
+            "Description": "A list of identifiers for groups in the identity store.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "list_group_memberships": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupId": {
+            "Description": "The identifier for a group in the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request. This parameter is used in all List requests to specify how many results to return in one page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used for the ListUsers , ListGroups and ListGroupMemberships API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_group_memberships_for_member": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "An object that contains the identifier of a group member. Setting the UserID field to the specific identifier for a user indicates that the user is a member of the group.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request. This parameter is used in the ListUsers and ListGroups requests to specify how many results to return in one page. The length limit is 50 characters.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used for the ListUsers , ListGroups , and ListGroupMemberships API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_groups": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string that contains numbers and lower case letters. This value is generated at the time that a new identity store is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request. This parameter is used in the ListUsers and ListGroups requests to specify how many results to return in one page. The length limit is 50 characters.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used for the ListUsers and ListGroups API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A list of Filter objects, which is used in the ListUsers and ListGroups requests.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_users": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string that contains numbers and lower case letters. This value is generated at the time that a new identity store is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request. This parameter is used in the ListUsers and ListGroups requests to specify how many results to return in one page. The length limit is 50 characters.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used for the ListUsers and ListGroups API operations. This value is generated by the identity store service. It is returned in the API response if the total results are more than the size of one page. This token is also returned when it is used in the API request to search for the next page.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A list of Filter objects, which is used in the ListUsers and ListGroups requests.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_group": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupId": {
+            "Description": "The identifier for a group in the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "Operations": {
+            "Description": "A list of AttributeOperation objects to apply to the requested group. These operations might add, replace, or remove an attribute.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_user": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserId": {
+            "Description": "The identifier for a user in the identity store.",
+            "Type": "string",
+            "Required": true
+        },
+        "Operations": {
+            "Description": "A list of AttributeOperation objects to apply to the requested user. These operations might add, replace, or remove an attribute.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "IdentityStoreId": {
+            "Description": "The globally unique identifier for the identity store, such as d-1234567890. In this example, d- is a fixed prefix, and 1234567890 is a randomly generated string that contains numbers and lower case letters. This value is generated at the time that a new identity store is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "A list of Filter objects, which is used in the ListUsers and ListGroups requests.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,363 @@
+{
+    "batch_create_table_rows": {
+        "workbookId": {
+            "Description": "The ID of the workbook where the new rows are being added.\nIf a workbook with the specified ID could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table where the new rows are being added.\nIf a table with the specified ID could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "rowsToCreate": {
+            "Description": "The list of rows to create at the end of the table. Each item in this list needs to have a batch item id to uniquely identify the element in the request and the cells to create for that row. You need to specify at least one item in this list.\nNote that if one of the column ids in any of the rows in the request does not exist in the table, then the request fails and no updates are made to the table.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "The request token for performing the batch create operation. Request tokens help to identify duplicate requests. If a call times out or fails due to a transient error like a failed network connection, you can retry the call with the same request token. The service ensures that if the first call using that request token is successfully performed, the second call will not perform the operation again.\nNote that request tokens are valid only for a few minutes. You cannot use request tokens to dedupe requests spanning hours or days.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_delete_table_rows": {
+        "workbookId": {
+            "Description": "The ID of the workbook where the rows are being deleted.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table where the rows are being deleted.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "rowIds": {
+            "Description": "The list of row ids to delete from the table. You need to specify at least one row id in this list.\nNote that if one of the row ids provided in the request does not exist in the table, then the request fails and no rows are deleted from the table.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "The request token for performing the delete action. Request tokens help to identify duplicate requests. If a call times out or fails due to a transient error like a failed network connection, you can retry the call with the same request token. The service ensures that if the first call using that request token is successfully performed, the second call will not perform the action again.\nNote that request tokens are valid only for a few minutes. You cannot use request tokens to dedupe requests spanning hours or days.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_update_table_rows": {
+        "workbookId": {
+            "Description": "The ID of the workbook where the rows are being updated.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table where the rows are being updated.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "rowsToUpdate": {
+            "Description": "The list of rows to update in the table. Each item in this list needs to contain the row id to update along with the map of column id to cell values for each column in that row that needs to be updated. You need to specify at least one row in this list, and for each row, you need to specify at least one column to update.\nNote that if one of the row or column ids in the request does not exist in the table, then the request fails and no updates are made to the table.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "The request token for performing the update action. Request tokens help to identify duplicate requests. If a call times out or fails due to a transient error like a failed network connection, you can retry the call with the same request token. The service ensures that if the first call using that request token is successfully performed, the second call will not perform the action again.\nNote that request tokens are valid only for a few minutes. You cannot use request tokens to dedupe requests spanning hours or days.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_upsert_table_rows": {
+        "workbookId": {
+            "Description": "The ID of the workbook where the rows are being upserted.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table where the rows are being upserted.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "rowsToUpsert": {
+            "Description": "The list of rows to upsert in the table. Each item in this list needs to have a batch item id to uniquely identify the element in the request, a filter expression to find the rows to update for that element and the cell values to set for each column in the upserted rows. You need to specify at least one item in this list.\nNote that if one of the filter formulas in the request fails to evaluate because of an error or one of the column ids in any of the rows does not exist in the table, then the request fails and no updates are made to the table.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "The request token for performing the update action. Request tokens help to identify duplicate requests. If a call times out or fails due to a transient error like a failed network connection, you can retry the call with the same request token. The service ensures that if the first call using that request token is successfully performed, the second call will not perform the action again.\nNote that request tokens are valid only for a few minutes. You cannot use request tokens to dedupe requests spanning hours or days.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_table_data_import_job": {
+        "workbookId": {
+            "Description": "The ID of the workbook into which data was imported.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table into which data was imported.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobId": {
+            "Description": "The ID of the job that was returned by the StartTableDataImportJob request.\nIf a job with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_screen_data": {
+        "workbookId": {
+            "Description": "The ID of the workbook that contains the screen.",
+            "Type": "string",
+            "Required": true
+        },
+        "appId": {
+            "Description": "The ID of the app that contains the screen.",
+            "Type": "string",
+            "Required": true
+        },
+        "screenId": {
+            "Description": "The ID of the screen.",
+            "Type": "string",
+            "Required": true
+        },
+        "variables": {
+            "Description": "Variables are optional and are needed only if the screen requires them to render correctly. Variables are specified as a map where the key is the name of the variable as defined on the screen. The value is an object which currently has only one property, rawValue, which holds the value of the variable to be passed to the screen.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The number of results to be returned on a single page. Specify a number between 1 and 100. The maximum value is 100.\nThis parameter is optional. If you don't specify this parameter, the default page size is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "This parameter is optional. If a nextToken is not specified, the API returns the first page of data.\nPagination tokens expire after 1 hour. If you use a token that was returned more than an hour back, the API will throw ValidationException.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "invoke_screen_automation": {
+        "workbookId": {
+            "Description": "The ID of the workbook that contains the screen automation.",
+            "Type": "string",
+            "Required": true
+        },
+        "appId": {
+            "Description": "The ID of the app that contains the screen automation.",
+            "Type": "string",
+            "Required": true
+        },
+        "screenId": {
+            "Description": "The ID of the screen that contains the screen automation.",
+            "Type": "string",
+            "Required": true
+        },
+        "screenAutomationId": {
+            "Description": "The ID of the automation action to be performed.",
+            "Type": "string",
+            "Required": true
+        },
+        "variables": {
+            "Description": "Variables are specified as a map where the key is the name of the variable as defined on the screen. The value is an object which currently has only one property, rawValue, which holds the value of the variable to be passed to the screen. Any variables defined in a screen are required to be passed in the call.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "rowId": {
+            "Description": "The row ID for the automation if the automation is defined inside a block with source or list.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientRequestToken": {
+            "Description": "The request token for performing the automation action. Request tokens help to identify duplicate requests. If a call times out or fails due to a transient error like a failed network connection, you can retry the call with the same request token. The service ensures that if the first call using that request token is successfully performed, the second call will return the response of the previous call rather than performing the action again.\nNote that request tokens are valid only for a few minutes. You cannot use request tokens to dedupe requests spanning hours or days.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_table_columns": {
+        "workbookId": {
+            "Description": "The ID of the workbook that contains the table whose columns are being retrieved.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table whose columns are being retrieved.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "This parameter is optional. If a nextToken is not specified, the API returns the first page of data.\nPagination tokens expire after 1 hour. If you use a token that was returned more than an hour back, the API will throw ValidationException.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_table_rows": {
+        "workbookId": {
+            "Description": "The ID of the workbook that contains the table whose rows are being retrieved.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table whose rows are being retrieved.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "rowIds": {
+            "Description": "This parameter is optional. If one or more row ids are specified in this list, then only the specified row ids are returned in the result. If no row ids are specified here, then all the rows in the table are returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of rows to return in each page of the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "This parameter is optional. If a nextToken is not specified, the API returns the first page of data.\nPagination tokens expire after 1 hour. If you use a token that was returned more than an hour back, the API will throw ValidationException.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tables": {
+        "workbookId": {
+            "Description": "The ID of the workbook whose tables are being retrieved.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of tables to return in each page of the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "This parameter is optional. If a nextToken is not specified, the API returns the first page of data.\nPagination tokens expire after 1 hour. If you use a token that was returned more than an hour back, the API will throw ValidationException.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The resource's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "query_table_rows": {
+        "workbookId": {
+            "Description": "The ID of the workbook whose table rows are being queried.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table whose rows are being queried.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterFormula": {
+            "Description": "An object that represents a filter formula along with the id of the context row under which the filter function needs to evaluate.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of rows to return in each page of the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "This parameter is optional. If a nextToken is not specified, the API returns the first page of data.\nPagination tokens expire after 1 hour. If you use a token that was returned more than an hour back, the API will throw ValidationException.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_table_data_import_job": {
+        "workbookId": {
+            "Description": "The ID of the workbook where the rows are being imported.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "dataSource": {
+            "Description": "The source of the data that is being imported. The size of source must be no larger than 100 MB. Source must have no more than 100,000 cells and no more than 1,000 rows.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "dataFormat": {
+            "Description": "The format of the data that is being imported. Currently the only option supported is \"DELIMITED_TEXT\".",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationTableId": {
+            "Description": "The ID of the table where the rows are being imported.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "importOptions": {
+            "Description": "The options for customizing this import request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "The request token for performing the update action. Request tokens help to identify duplicate requests. If a call times out or fails due to a transient error like a failed network connection, you can retry the call with the same request token. The service ensures that if the first call using that request token is successfully performed, the second call will not perform the action again.\nNote that request tokens are valid only for a few minutes. You cannot use request tokens to dedupe requests spanning hours or days.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The resource's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tags to apply to the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The resource's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "workbookId": {
+            "Description": "The ID of the workbook whose table rows are being queried.\nIf a workbook with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableId": {
+            "Description": "The ID of the table whose rows are being queried.\nIf a table with the specified id could not be found, this API throws ResourceNotFoundException.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterFormula": {
+            "Description": "An object that represents a filter formula along with the id of the context row under which the filter function needs to evaluate.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

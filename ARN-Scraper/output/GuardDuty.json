@@ -1,0 +1,1070 @@
+{
+    "accept_administrator_invitation": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty member account.",
+            "Type": "string",
+            "Required": true
+        },
+        "AdministratorId": {
+            "Description": "The account ID of the GuardDuty administrator account whose invitation you're accepting.",
+            "Type": "string",
+            "Required": true
+        },
+        "InvitationId": {
+            "Description": "The value that is used to validate the administrator account to the member account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "accept_invitation": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty member account.",
+            "Type": "string",
+            "Required": true
+        },
+        "MasterId": {
+            "Description": "The account ID of the GuardDuty administrator account whose invitation you're accepting.",
+            "Type": "string",
+            "Required": true
+        },
+        "InvitationId": {
+            "Description": "The value that is used to validate the administrator account to the member account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "archive_findings": {
+        "DetectorId": {
+            "Description": "The ID of the detector that specifies the GuardDuty service whose findings you want to archive.",
+            "Type": "string",
+            "Required": true
+        },
+        "FindingIds": {
+            "Description": "The IDs of the findings that you want to archive.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_detector": {
+        "Enable": {
+            "Description": "A Boolean value that specifies whether the detector is to be enabled.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "The idempotency token for the create request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "FindingPublishingFrequency": {
+            "Description": "A value that specifies how frequently updated findings are exported.",
+            "Type": "string",
+            "Required": false
+        },
+        "DataSources": {
+            "Description": "Describes which data sources will be enabled for the detector.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be added to a new detector resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_filter": {
+        "DetectorId": {
+            "Description": "The ID of the detector belonging to the GuardDuty account that you want to create a filter for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the filter. Minimum length of 3. Maximum length of 64. Valid characters include alphanumeric characters, dot (.), underscore (_), and dash (-). Spaces are not allowed.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "Action": {
+            "Description": "Specifies the action that is to be applied to the findings that match the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "Rank": {
+            "Description": "Specifies the position of the filter in the list of current filters. Also specifies the order in which this filter is applied to the findings.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FindingCriteria": {
+            "Description": "Represents the criteria to be used in the filter for querying findings.\nYou can only use the following attributes to query findings:",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ClientToken": {
+            "Description": "The idempotency token for the create request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be added to a new filter resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_ip_set": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty account that you want to create an IPSet for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The user-friendly name to identify the IPSet.\nAllowed characters are alphanumerics, spaces, hyphens (-), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "Format": {
+            "Description": "The format of the file that contains the IPSet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Location": {
+            "Description": "The URI of the file that contains the IPSet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Activate": {
+            "Description": "A Boolean value that indicates whether GuardDuty is to start using the uploaded IPSet.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "The idempotency token for the create request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be added to a new IP set resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty account that you want to associate member accounts with.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountDetails": {
+            "Description": "A list of account ID and email address pairs of the accounts that you want to associate with the GuardDuty administrator account.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_publishing_destination": {
+        "DetectorId": {
+            "Description": "The ID of the GuardDuty detector associated with the publishing destination.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationType": {
+            "Description": "The type of resource for the publishing destination. Currently only Amazon S3 buckets are supported.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationProperties": {
+            "Description": "The properties of the publishing destination, including the ARNs for the destination and the KMS key used for encryption.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "The idempotency token for the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_sample_findings": {
+        "DetectorId": {
+            "Description": "The ID of the detector to create sample findings for.",
+            "Type": "string",
+            "Required": true
+        },
+        "FindingTypes": {
+            "Description": "The types of sample findings to generate.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_threat_intel_set": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty account that you want to create a threatIntelSet for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A user-friendly ThreatIntelSet name displayed in all findings that are generated by activity that involves IP addresses included in this ThreatIntelSet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Format": {
+            "Description": "The format of the file that contains the ThreatIntelSet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Location": {
+            "Description": "The URI of the file that contains the ThreatIntelSet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Activate": {
+            "Description": "A Boolean value that indicates whether GuardDuty is to start using the uploaded ThreatIntelSet.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "The idempotency token for the create request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be added to a new threat list resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "decline_invitations": {
+        "AccountIds": {
+            "Description": "A list of account IDs of the Amazon Web Services accounts that sent invitations to the current member account that you want to decline invitations from.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_detector": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_filter": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the filter is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "FilterName": {
+            "Description": "The name of the filter that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_invitations": {
+        "AccountIds": {
+            "Description": "A list of account IDs of the Amazon Web Services accounts that sent invitations to the current member account that you want to delete invitations from.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_ip_set": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector associated with the IPSet.",
+            "Type": "string",
+            "Required": true
+        },
+        "IpSetId": {
+            "Description": "The unique ID of the IPSet to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty account whose members you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of account IDs of the GuardDuty member accounts that you want to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_publishing_destination": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector associated with the publishing destination to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationId": {
+            "Description": "The ID of the publishing destination to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_threat_intel_set": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the threatIntelSet is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThreatIntelSetId": {
+            "Description": "The unique ID of the threatIntelSet that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_malware_scans": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the request is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FilterCriteria": {
+            "Description": "Represents the criteria to be used in the filter for describing scan entries.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SortCriteria": {
+            "Description": "Represents the criteria used for sorting scan entries.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "describe_organization_configuration": {
+        "DetectorId": {
+            "Description": "The ID of the detector to retrieve information about the delegated administrator from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_publishing_destination": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector associated with the publishing destination to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationId": {
+            "Description": "The ID of the publishing destination to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_organization_admin_account": {
+        "AdminAccountId": {
+            "Description": "The Amazon Web Services Account ID for the organizations account to be disabled as a GuardDuty delegated administrator.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_from_administrator_account": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty member account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_from_master_account": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty member account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty account whose members you want to disassociate from the administrator account.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of account IDs of the GuardDuty member accounts that you want to disassociate from the administrator account.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "enable_organization_admin_account": {
+        "AdminAccountId": {
+            "Description": "The Amazon Web Services Account ID for the organization account to be enabled as a GuardDuty delegated administrator.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_administrator_account": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty member account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_detector": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_filter": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the filter is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "FilterName": {
+            "Description": "The name of the filter you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_findings": {
+        "DetectorId": {
+            "Description": "The ID of the detector that specifies the GuardDuty service whose findings you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "FindingIds": {
+            "Description": "The IDs of the findings that you want to retrieve.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "SortCriteria": {
+            "Description": "Represents the criteria used for sorting findings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_findings_statistics": {
+        "DetectorId": {
+            "Description": "The ID of the detector that specifies the GuardDuty service whose findings' statistics you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "FindingStatisticTypes": {
+            "Description": "The types of finding statistics to retrieve.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "FindingCriteria": {
+            "Description": "Represents the criteria that is used for querying findings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_invitations_count": "No parameters defined",
+    "get_ip_set": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the IPSet is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "IpSetId": {
+            "Description": "The unique ID of the IPSet to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_malware_scan_settings": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the scan setting is associated with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_master_account": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty member account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_member_detectors": {
+        "DetectorId": {
+            "Description": "The detector ID for the administrator account.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "The account ID of the member account.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty account whose members you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of account IDs of the GuardDuty member accounts that you want to describe.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_remaining_free_trial_days": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty member account.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of account identifiers of the GuardDuty member account.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_threat_intel_set": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the threatIntelSet is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThreatIntelSetId": {
+            "Description": "The unique ID of the threatIntelSet that you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_usage_statistics": {
+        "DetectorId": {
+            "Description": "The ID of the detector that specifies the GuardDuty service whose usage statistics you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "UsageStatisticType": {
+            "Description": "The type of usage statistics to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "UsageCriteria": {
+            "Description": "Represents the criteria used for querying usage.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Unit": {
+            "Description": "The currency unit you would like to view your usage statistics in. Current valid values are USD.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "invite_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty account that you want to invite members with.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of account IDs of the accounts that you want to invite to GuardDuty as members.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DisableEmailNotification": {
+            "Description": "A Boolean value that specifies whether you want to disable email notification to the accounts that you are inviting to GuardDuty as members.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Message": {
+            "Description": "The invitation message that you want to send to the accounts that you're inviting to GuardDuty as members.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_detectors": {
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_filters": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the filter is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_findings": {
+        "DetectorId": {
+            "Description": "The ID of the detector that specifies the GuardDuty service whose findings you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "FindingCriteria": {
+            "Description": "Represents the criteria used for querying findings. Valid values include:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "SortCriteria": {
+            "Description": "Represents the criteria used for sorting findings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_invitations": {
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_ip_sets": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the IPSet is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector the member is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        },
+        "OnlyAssociated": {
+            "Description": "Specifies whether to only return associated members or to return all members (including members who haven't been invited yet or have been disassociated).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_organization_admin_accounts": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_publishing_destinations": {
+        "DetectorId": {
+            "Description": "The ID of the detector to retrieve publishing destinations for.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the given GuardDuty resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_threat_intel_sets": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the threatIntelSet is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "You can use this parameter to indicate the maximum number of items that you want in the response. The default value is 50. The maximum value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "You can use this parameter to paginate results in the response. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_monitoring_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector of the GuardDuty administrator account associated with the member accounts to monitor.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of account IDs of the GuardDuty member accounts to start monitoring.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "stop_monitoring_members": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector associated with the GuardDuty administrator account that is monitoring member accounts.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of account IDs for the member accounts to stop monitoring.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the GuardDuty resource to apply a tag to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be added to a resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "unarchive_findings": {
+        "DetectorId": {
+            "Description": "The ID of the detector associated with the findings to unarchive.",
+            "Type": "string",
+            "Required": true
+        },
+        "FindingIds": {
+            "Description": "The IDs of the findings to unarchive.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the resource to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_detector": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Enable": {
+            "Description": "Specifies whether the detector is enabled or not enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "FindingPublishingFrequency": {
+            "Description": "An enum value that specifies how frequently findings are exported, such as to CloudWatch Events.",
+            "Type": "string",
+            "Required": false
+        },
+        "DataSources": {
+            "Description": "Describes which data sources will be updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_filter": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that specifies the GuardDuty service where you want to update a filter.",
+            "Type": "string",
+            "Required": true
+        },
+        "FilterName": {
+            "Description": "The name of the filter.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "Action": {
+            "Description": "Specifies the action that is to be applied to the findings that match the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "Rank": {
+            "Description": "Specifies the position of the filter in the list of current filters. Also specifies the order in which this filter is applied to the findings.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FindingCriteria": {
+            "Description": "Represents the criteria to be used in the filter for querying findings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_findings_feedback": {
+        "DetectorId": {
+            "Description": "The ID of the detector associated with the findings to update feedback for.",
+            "Type": "string",
+            "Required": true
+        },
+        "FindingIds": {
+            "Description": "The IDs of the findings that you want to mark as useful or not useful.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Feedback": {
+            "Description": "The feedback for the finding.",
+            "Type": "string",
+            "Required": true
+        },
+        "Comments": {
+            "Description": "Additional feedback about the GuardDuty findings.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_ip_set": {
+        "DetectorId": {
+            "Description": "The detectorID that specifies the GuardDuty service whose IPSet you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "IpSetId": {
+            "Description": "The unique ID that specifies the IPSet that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The unique ID that specifies the IPSet that you want to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "The updated URI of the file that contains the IPSet.",
+            "Type": "string",
+            "Required": false
+        },
+        "Activate": {
+            "Description": "The updated Boolean value that specifies whether the IPSet is active or not.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_malware_scan_settings": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that specifies the GuardDuty service where you want to update scan settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScanResourceCriteria": {
+            "Description": "Represents the criteria to be used in the filter for selecting resources to scan.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EbsSnapshotPreservation": {
+            "Description": "An enum value representing possible snapshot preservations.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_member_detectors": {
+        "DetectorId": {
+            "Description": "The detector ID of the administrator account.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "A list of member account IDs to be updated.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DataSources": {
+            "Description": "Describes which data sources will be updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_organization_configuration": {
+        "DetectorId": {
+            "Description": "The ID of the detector to update the delegated administrator for.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoEnable": {
+            "Description": "Indicates whether to automatically enable member accounts in the organization.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "DataSources": {
+            "Description": "Describes which data sources will be updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_publishing_destination": {
+        "DetectorId": {
+            "Description": "The ID of the detector associated with the publishing destinations to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationId": {
+            "Description": "The ID of the publishing destination to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationProperties": {
+            "Description": "A DestinationProperties object that includes the DestinationArn and KmsKeyArn of the publishing destination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_threat_intel_set": {
+        "DetectorId": {
+            "Description": "The detectorID that specifies the GuardDuty service whose ThreatIntelSet you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThreatIntelSetId": {
+            "Description": "The unique ID that specifies the ThreatIntelSet that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The unique ID that specifies the ThreatIntelSet that you want to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "The updated URI of the file that contains the ThreateIntelSet.",
+            "Type": "string",
+            "Required": false
+        },
+        "Activate": {
+            "Description": "The updated Boolean value that specifies whether the ThreateIntelSet is active or not.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "DetectorId": {
+            "Description": "The unique ID of the detector that the threatIntelSet is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

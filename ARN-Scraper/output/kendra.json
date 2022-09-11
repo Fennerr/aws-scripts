@@ -1,0 +1,1377 @@
+{
+    "associate_entities_to_experience": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "EntityList": {
+            "Description": "Lists users or groups in your Amazon Web Services SSO identity source.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "associate_personas_to_entities": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "Personas": {
+            "Description": "The personas that define the specific permissions of users or groups in your Amazon Web Services SSO identity source. The available personas or access roles are Owner and Viewer. For more information on these personas, see Providing access to your search page .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_delete_document": {
+        "IndexId": {
+            "Description": "The identifier of the index that contains the documents to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "DocumentIdList": {
+            "Description": "One or more identifiers for documents to delete from the index.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DataSourceSyncJobMetricTarget": {
+            "Description": "Maps a particular data source sync job to a particular data source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "batch_get_document_status": {
+        "IndexId": {
+            "Description": "The identifier of the index to add documents to. The index ID is returned by the CreateIndex API.",
+            "Type": "string",
+            "Required": true
+        },
+        "DocumentInfoList": {
+            "Description": "A list of DocumentInfo objects that identify the documents for which to get the status. You identify the documents by their document ID and optional attributes.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_put_document": {
+        "IndexId": {
+            "Description": "The identifier of the index to add the documents to. You need to create the index first using the CreateIndex API.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role that is allowed to run the BatchPutDocument API. For more information, see IAM Roles for Amazon Kendra .",
+            "Type": "string",
+            "Required": false
+        },
+        "Documents": {
+            "Description": "One or more documents to add to the index.\nDocuments have the following file size limits.\nFor more information about file size and transaction per second quotas, see Quotas .",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "CustomDocumentEnrichmentConfiguration": {
+            "Description": "Configuration information for altering your document metadata and content during the document ingestion process when you use the BatchPutDocument API.\nFor more information on how to create, modify and delete document metadata, or make other content alterations when you ingest documents into Amazon Kendra, see Customizing document metadata during the ingestion process .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "clear_query_suggestions": {
+        "IndexId": {
+            "Description": "The identifier of the index you want to clear query suggestions from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_access_control_configuration": {
+        "IndexId": {
+            "Description": "The identifier of the index to create an access control configuration for your documents.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A name for the access control configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the access control configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccessControlList": {
+            "Description": "Information on principals (users and/or groups) and which documents they should have access to. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "HierarchicalAccessControlList": {
+            "Description": "The list of principal lists that define the hierarchy for which documents users should have access to.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "A token that you provide to identify the request to create an access control configuration. Multiple calls to the CreateAccessControlConfiguration API with the same client token will create only one access control configuration.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_data_source": {
+        "Name": {
+            "Description": "A name for the data source connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index you want to use with the data source connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of data source repository. For example, SHAREPOINT .",
+            "Type": "string",
+            "Required": true
+        },
+        "Configuration": {
+            "Description": "Configuration information to connect to your data source repository.\nYou can't specify the Configuration parameter when the Type parameter is set to CUSTOM. If you do, you receive a ValidationException exception.\nThe Configuration parameter is required for all other data sources.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VpcConfiguration": {
+            "Description": "Configuration information for an Amazon Virtual Private Cloud to connect to your data source. For more information, see Configuring a VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description for the data source connector.",
+            "Type": "string",
+            "Required": false
+        },
+        "Schedule": {
+            "Description": "Sets the frequency for Amazon Kendra to check the documents in your data source repository and update the index. If you don't set a schedule Amazon Kendra will not periodically update the index. You can call the StartDataSourceSyncJob API to update the index.\nYou can't specify the Schedule parameter when the Type parameter is set to CUSTOM. If you do, you receive a ValidationException exception.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access the data source and required resources. For more information, see IAM roles for Amazon Kendra .\nYou can't specify the RoleArn parameter when the Type parameter is set to CUSTOM. If you do, you receive a ValidationException exception.\nThe RoleArn parameter is required for all other data sources.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs that identify the data source connector. You can use the tags to identify and organize your resources and to control access to resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "A token that you provide to identify the request to create a data source connector. Multiple calls to the CreateDataSource API with the same client token will create only one data source connector.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The code for a language. This allows you to support a language for all documents when creating the data source connector. English is supported by default. For more information on supported languages, including their codes, see Adding documents in languages other than English .",
+            "Type": "string",
+            "Required": false
+        },
+        "CustomDocumentEnrichmentConfiguration": {
+            "Description": "Configuration information for altering document metadata and content during the document ingestion process.\nFor more information on how to create, modify and delete document metadata, or make other content alterations when you ingest documents into Amazon Kendra, see Customizing document metadata during the ingestion process .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_experience": {
+        "Name": {
+            "Description": "A name for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access Query API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services SSO that stores your user and group information. For more information, see IAM roles for Amazon Kendra .",
+            "Type": "string",
+            "Required": false
+        },
+        "Configuration": {
+            "Description": "Configuration information for your Amazon Kendra experience. This includes ContentSourceConfiguration, which specifies the data source IDs and/or FAQ IDs, and UserIdentityConfiguration, which specifies the user or group information to grant access to your Amazon Kendra experience.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A token that you provide to identify the request to create your Amazon Kendra experience. Multiple calls to the CreateExperience API with the same client token creates only one Amazon Kendra experience.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_faq": {
+        "IndexId": {
+            "Description": "The identifier of the index for the FAQ.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A name for the FAQ.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the FAQ.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3Path": {
+            "Description": "The path to the FAQ file in S3.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access the S3 bucket that contains the FAQs. For more information, see IAM Roles for Amazon Kendra .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs that identify the FAQ. You can use the tags to identify and organize your resources and to control access to resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FileFormat": {
+            "Description": "The format of the FAQ input file. You can choose between a basic CSV format, a CSV format that includes customs attributes in a header, and a JSON format that includes custom attributes.\nThe format must match the format of the file stored in the S3 bucket identified in the S3Path parameter.\nFor more information, see Adding questions and answers .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A token that you provide to identify the request to create a FAQ. Multiple calls to the CreateFaqRequest API with the same client token will create only one FAQ.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The code for a language. This allows you to support a language for the FAQ document. English is supported by default. For more information on supported languages, including their codes, see Adding documents in languages other than English .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_index": {
+        "Name": {
+            "Description": "A name for the index.",
+            "Type": "string",
+            "Required": true
+        },
+        "Edition": {
+            "Description": "The Amazon Kendra edition to use for the index. Choose DEVELOPER_EDITION for indexes intended for development, testing, or proof of concept. Use ENTERPRISE_EDITION for your production databases. Once you set the edition for an index, it can't be changed.\nThe Edition parameter is optional. If you don't supply a value, the default is ENTERPRISE_EDITION .\nFor more information on quota limits for enterprise and developer editions, see Quotas .",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "An Identity and Access Management (IAM) role that gives Amazon Kendra permissions to access your Amazon CloudWatch logs and metrics. This is also the role you use when you call the BatchPutDocument API to index documents from an Amazon S3 bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerSideEncryptionConfiguration": {
+            "Description": "The identifier of the KMS customer managed key (CMK) that's used to encrypt data indexed by Amazon Kendra. Amazon Kendra doesn't support asymmetric CMKs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description for the index.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A token that you provide to identify the request to create an index. Multiple calls to the CreateIndex API with the same client token will create only one index.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs that identify the index. You can use the tags to identify and organize your resources and to control access to resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserTokenConfigurations": {
+            "Description": "The user token configuration.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserContextPolicy": {
+            "Description": "The user context policy.\nAll indexed content is searchable and displayable for all users. If you want to filter search results on user context, you can use the attribute filters of _user_id and _group_ids or you can provide user and group information in UserContext .\nEnables token-based user access control to filter search results on user context. All documents with no access control and all documents accessible to the user will be searchable and displayable.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserGroupResolutionConfiguration": {
+            "Description": "Enables fetching access levels of groups and users from an Amazon Web Services Single Sign On identity source. To configure this, see UserGroupResolutionConfiguration .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_query_suggestions_block_list": {
+        "IndexId": {
+            "Description": "The identifier of the index you want to create a query suggestions block list for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A user friendly name for the block list.\nFor example, the block list named 'offensive-words' includes all offensive words that could appear in user queries and need to be blocked from suggestions.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A user-friendly description for the block list.\nFor example, the description \"List of all offensive words that can appear in user queries and need to be blocked from suggestions.\"",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceS3Path": {
+            "Description": "The S3 path to your block list text file in your S3 bucket.\nEach block word or phrase should be on a separate line in a text file.\nFor information on the current quota limits for block lists, see Quotas for Amazon Kendra .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "A token that you provide to identify the request to create a query suggestions block list.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The IAM (Identity and Access Management) role used by Amazon Kendra to access the block list text file in your S3 bucket.\nYou need permissions to the role ARN (Amazon Web Services Resource Name). The role needs S3 read permissions to your file in S3 and needs to give STS (Security Token Service) assume role permissions to Amazon Kendra.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A tag that you can assign to a block list that categorizes the block list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_thesaurus": {
+        "IndexId": {
+            "Description": "The identifier of the index for the thesaurus.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A name for the thesaurus.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the thesaurus.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "An IAM role that gives Amazon Kendra permissions to access thesaurus file specified in SourceS3Path .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs that identify the thesaurus. You can use the tags to identify and organize your resources and to control access to resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceS3Path": {
+            "Description": "The path to the thesaurus file in S3.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "A token that you provide to identify the request to create a thesaurus. Multiple calls to the CreateThesaurus API with the same client token will create only one thesaurus.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_access_control_configuration": {
+        "IndexId": {
+            "Description": "The identifier of the index for an access control configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Id": {
+            "Description": "The identifier of the access control configuration you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_data_source": {
+        "Id": {
+            "Description": "The identifier of the data source connector you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index used with the data source connector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_experience": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_faq": {
+        "Id": {
+            "Description": "The identifier of the FAQ you want to remove.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for the FAQ.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_index": {
+        "Id": {
+            "Description": "The identifier of the index you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_principal_mapping": {
+        "IndexId": {
+            "Description": "The identifier of the index you want to delete a group from.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The identifier of the data source you want to delete a group from.\nA group can be tied to multiple data sources. You can delete a group from accessing documents in a certain data source. For example, the groups \"Research\", \"Engineering\", and \"Sales and Marketing\" are all tied to the company's documents stored in the data sources Confluence and Salesforce. You want to delete \"Research\" and \"Engineering\" groups from Salesforce, so that these groups cannot access customer-related documents stored in Salesforce. Only \"Sales and Marketing\" should access documents in the Salesforce data source.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupId": {
+            "Description": "The identifier of the group you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "OrderingId": {
+            "Description": "The timestamp identifier you specify to ensure Amazon Kendra does not override the latest DELETE action with previous actions. The highest number ID, which is the ordering ID, is the latest action you want to process and apply on top of other actions with lower number IDs. This prevents previous actions with lower number IDs from possibly overriding the latest action.\nThe ordering ID can be the UNIX time of the last update you made to a group members list. You would then provide this list when calling PutPrincipalMapping. This ensures your DELETE action for that updated group with the latest members list doesn't get overwritten by earlier DELETE actions for the same group which are yet to be processed.\nThe default ordering ID is the current UNIX time in milliseconds that the action was received by Amazon Kendra.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_query_suggestions_block_list": {
+        "IndexId": {
+            "Description": "The identifier of the index for the block list.",
+            "Type": "string",
+            "Required": true
+        },
+        "Id": {
+            "Description": "The identifier of the block list you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_thesaurus": {
+        "Id": {
+            "Description": "The identifier of the thesaurus you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for the thesaurus.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_access_control_configuration": {
+        "IndexId": {
+            "Description": "The identifier of the index for an access control configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Id": {
+            "Description": "The identifier of the access control configuration you want to get information on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_data_source": {
+        "Id": {
+            "Description": "The identifier of the data source connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index used with the data source connector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_experience": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience you want to get information on.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_faq": {
+        "Id": {
+            "Description": "The identifier of the FAQ you want to get information on.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for the FAQ.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_index": {
+        "Id": {
+            "Description": "The identifier of the index you want to get information on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_principal_mapping": {
+        "IndexId": {
+            "Description": "The identifier of the index required to check the processing of PUT and DELETE actions for mapping users to their groups.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The identifier of the data source to check the processing of PUT and DELETE actions for mapping users to their groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupId": {
+            "Description": "The identifier of the group required to check the processing of PUT and DELETE actions for mapping users to their groups.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_query_suggestions_block_list": {
+        "IndexId": {
+            "Description": "The identifier of the index for the block list.",
+            "Type": "string",
+            "Required": true
+        },
+        "Id": {
+            "Description": "The identifier of the block list you want to get information on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_query_suggestions_config": {
+        "IndexId": {
+            "Description": "The identifier of the index with query suggestions that you want to get information on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_thesaurus": {
+        "Id": {
+            "Description": "The identifier of the thesaurus you want to get information on.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for the thesaurus.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_entities_from_experience": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "EntityList": {
+            "Description": "Lists users or groups in your Amazon Web Services SSO identity source.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "disassociate_personas_from_entities": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "EntityIds": {
+            "Description": "The identifiers of users or groups in your Amazon Web Services SSO identity source. For example, user IDs could be user emails.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_query_suggestions": {
+        "IndexId": {
+            "Description": "The identifier of the index you want to get query suggestions from.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueryText": {
+            "Description": "The text of a user's query to generate query suggestions.\nA query is suggested if the query prefix matches what a user starts to type as their query.\nAmazon Kendra does not show any suggestions if a user types fewer than two characters or more than 60 characters. A query must also have at least one search result and contain at least one word of more than four characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxSuggestionsCount": {
+            "Description": "The maximum number of query suggestions you want to show to your users.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_snapshots": {
+        "IndexId": {
+            "Description": "The identifier of the index to get search metrics data.",
+            "Type": "string",
+            "Required": true
+        },
+        "Interval": {
+            "Description": "The time interval or time window to get search metrics data. The time interval uses the time zone of your index. You can view data in the following time windows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "MetricType": {
+            "Description": "The metric you want to retrieve. You can specify only one metric per call.\nFor more information about the metrics you can view, see Gaining insights with search analytics .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of search metrics data.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of returned data for the metric.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_access_control_configurations": {
+        "IndexId": {
+            "Description": "The identifier of the index for the access control configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there's more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of access control configurations.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of access control configurations to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_data_source_sync_jobs": {
+        "Id": {
+            "Description": "The identifier of the data source connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index used with the data source connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of jobs.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of synchronization jobs to return in the response. If there are fewer results in the list, this response contains only the actual results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StartTimeFilter": {
+            "Description": "When specified, the synchronization jobs returned in the list are limited to jobs between the specified dates.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StatusFilter": {
+            "Description": "Only returns synchronization jobs with the Status field equal to the specified status.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_data_sources": {
+        "IndexId": {
+            "Description": "The identifier of the index used with one or more data source connectors.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of data source connectors (DataSourceSummaryItems ).",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of data source connectors to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_entity_personas": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of users or groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of returned users or groups.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_experience_entities": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of users or groups.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_experiences": {
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of Amazon Kendra experiences.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of returned Amazon Kendra experiences.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_faqs": {
+        "IndexId": {
+            "Description": "The index that contains the FAQ lists.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of FAQs.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of FAQs to return in the response. If there are fewer results in the list, this response contains only the actual results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_groups_older_than_ordering_id": {
+        "IndexId": {
+            "Description": "The identifier of the index for getting a list of groups mapped to users before a given ordering or timestamp identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The identifier of the data source for getting a list of groups mapped to users before a given ordering timestamp identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "OrderingId": {
+            "Description": "The timestamp identifier used for the latest PUT or DELETE action for mapping users to their groups.",
+            "Type": "integer",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of groups that are mapped to users before a given ordering or timestamp identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of returned groups that are mapped to users before a given ordering or timestamp identifier.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_indices": {
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of indexes (DataSourceSummaryItems ).",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of data sources to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_query_suggestions_block_lists": {
+        "IndexId": {
+            "Description": "The identifier of the index for a list of all block lists that exist for that index.\nFor information on the current quota limits for block lists, see Quotas for Amazon Kendra .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of block lists (BlockListSummaryItems ).",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of block lists to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the index, FAQ, or data source to get a list of tags for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_thesauri": {
+        "IndexId": {
+            "Description": "The identifier of the index with one or more thesauri.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Kendra returns a pagination token in the response. You can use this pagination token to retrieve the next set of thesauri (ThesaurusSummaryItems ).",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of thesauri to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_principal_mapping": {
+        "IndexId": {
+            "Description": "The identifier of the index you want to map users to their groups.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The identifier of the data source you want to map users to their groups.\nThis is useful if a group is tied to multiple data sources, but you only want the group to access documents of a certain data source. For example, the groups \"Research\", \"Engineering\", and \"Sales and Marketing\" are all tied to the company's documents stored in the data sources Confluence and Salesforce. However, \"Sales and Marketing\" team only needs access to customer-related documents stored in Salesforce.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupId": {
+            "Description": "The identifier of the group you want to map its users to.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupMembers": {
+            "Description": "The list that contains your users or sub groups that belong the same group.\nFor example, the group \"Company\" includes the user \"CEO\" and the sub groups \"Research\", \"Engineering\", and \"Sales and Marketing\".\nIf you have more than 1000 users and/or sub groups for a single group, you need to provide the path to the S3 file that lists your users and sub groups for a group. Your sub groups can contain more than 1000 users, but the list of sub groups that belong to a group (and/or users) must be no more than 1000.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OrderingId": {
+            "Description": "The timestamp identifier you specify to ensure Amazon Kendra does not override the latest PUT action with previous actions. The highest number ID, which is the ordering ID, is the latest action you want to process and apply on top of other actions with lower number IDs. This prevents previous actions with lower number IDs from possibly overriding the latest action.\nThe ordering ID can be the UNIX time of the last update you made to a group members list. You would then provide this list when calling PutPrincipalMapping. This ensures your PUT action for that updated group with the latest members list doesn't get overwritten by earlier PUT actions for the same group which are yet to be processed.\nThe default ordering ID is the current UNIX time in milliseconds that the action was received by Amazon Kendra.",
+            "Type": "integer",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role that has access to the S3 file that contains your list of users or sub groups that belong to a group.\nFor more information, see IAM roles for Amazon Kendra .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "query": {
+        "IndexId": {
+            "Description": "The unique identifier of the index to search. The identifier is returned in the response from the CreateIndex API.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueryText": {
+            "Description": "The text to search for.",
+            "Type": "string",
+            "Required": false
+        },
+        "AttributeFilter": {
+            "Description": "Enables filtered searches based on document attributes. You can only provide one attribute filter; however, the AndAllFilters, NotFilter, and OrAllFilters parameters contain a list of other filters.\nThe AttributeFilter parameter enables you to create a set of filtering rules that a document must satisfy to be included in the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Facets": {
+            "Description": "An array of documents attributes. Amazon Kendra returns a count for each attribute key specified. This helps your users narrow their search.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RequestedDocumentAttributes": {
+            "Description": "An array of document attributes to include in the response. You can limit the response to include certain document attributes. By default all document attributes are included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "QueryResultTypeFilter": {
+            "Description": "Sets the type of query. Only results for the specified query type are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "DocumentRelevanceOverrideConfigurations": {
+            "Description": "Overrides relevance tuning configurations of fields or attributes set at the index level.\nIf you use this API to override the relevance tuning configured at the index level, but there is no relevance tuning configured at the index level, then Amazon Kendra does not apply any relevance tuning.\nIf there is relevance tuning configured at the index level, but you do not use this API to override any relevance tuning in the index, then Amazon Kendra uses the relevance tuning that is configured at the index level.\nIf there is relevance tuning configured for fields at the index level, but you use this API to override only some of these fields, then for the fields you did not override, the importance is set to 1.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PageNumber": {
+            "Description": "Query results are returned in pages the size of the PageSize parameter. By default, Amazon Kendra returns the first page of results. Use this parameter to get result pages after the first one.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "Sets the number of results that are returned in each page of results. The default page size is 10. The maximum number of results returned is 100. If you ask for more than 100 results, only 100 are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SortingConfiguration": {
+            "Description": "Provides information that determines how the results of the query are sorted. You can set the field that Amazon Kendra should sort the results on, and specify whether the results should be sorted in ascending or descending order. In the case of ties in sorting the results, the results are sorted by relevance.\nIf you don't provide sorting configuration, the results are sorted by the relevance that Amazon Kendra determines for the result.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserContext": {
+            "Description": "The user context token or user and group information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VisitorId": {
+            "Description": "Provides an identifier for a specific user. The VisitorId should be a unique identifier, such as a GUID. Don't use personally identifiable information, such as the user's email address, as the VisitorId .",
+            "Type": "string",
+            "Required": false
+        },
+        "SpellCorrectionConfiguration": {
+            "Description": "Enables suggested spell corrections for queries.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_data_source_sync_job": {
+        "Id": {
+            "Description": "The identifier of the data source connector to synchronize.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index used with the data source connector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_data_source_sync_job": {
+        "Id": {
+            "Description": "The identifier of the data source connector for which to stop the synchronization jobs.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexId": {
+            "Description": "The identifier of the index used with the data source connector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "submit_feedback": {
+        "IndexId": {
+            "Description": "The identifier of the index that was queried.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueryId": {
+            "Description": "The identifier of the specific query for which you are submitting feedback. The query ID is returned in the response to the Query API.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClickFeedbackItems": {
+            "Description": "Tells Amazon Kendra that a particular search result link was chosen by the user.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RelevanceFeedbackItems": {
+            "Description": "Provides Amazon Kendra with relevant or not relevant feedback for whether a particular item was relevant to the search.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the index, FAQ, or data source to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tag keys to add to the index, FAQ, or data source. If a tag already exists, the existing value is replaced with the new value.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the index, FAQ, or data source to remove the tag from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of tag keys to remove from the index, FAQ, or data source. If a tag key does not exist on the resource, it is ignored.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_access_control_configuration": {
+        "IndexId": {
+            "Description": "The identifier of the index for an access control configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Id": {
+            "Description": "The identifier of the access control configuration you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A new name for the access control configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A new description for the access control configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccessControlList": {
+            "Description": "Information you want to update on principals (users and/or groups) and which documents they should have access to. This is useful for user context filtering, where search results are filtered based on the user or their group access to documents.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "HierarchicalAccessControlList": {
+            "Description": "The updated list of principal lists that define the hierarchy for which documents users should have access to.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_data_source": {
+        "Id": {
+            "Description": "The identifier of the data source connector you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A new name for the data source connector.",
+            "Type": "string",
+            "Required": false
+        },
+        "IndexId": {
+            "Description": "The identifier of the index used with the data source connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "Configuration": {
+            "Description": "Configuration information you want to update for the data source connector.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VpcConfiguration": {
+            "Description": "Configuration information for an Amazon Virtual Private Cloud to connect to your data source. For more information, see Configuring a VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A new description for the data source connector.",
+            "Type": "string",
+            "Required": false
+        },
+        "Schedule": {
+            "Description": "The sync schedule you want to update for the data source connector.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access the data source and required resources. For more information, see IAM roles for Amazon Kendra .",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The code for a language you want to update for the data source connector. This allows you to support a language for all documents when updating the data source. English is supported by default. For more information on supported languages, including their codes, see Adding documents in languages other than English .",
+            "Type": "string",
+            "Required": false
+        },
+        "CustomDocumentEnrichmentConfiguration": {
+            "Description": "Configuration information you want to update for altering document metadata and content during the document ingestion process.\nFor more information on how to create, modify and delete document metadata, or make other content alterations when you ingest documents into Amazon Kendra, see Customizing document metadata during the ingestion process .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_experience": {
+        "Id": {
+            "Description": "The identifier of your Amazon Kendra experience you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A new name for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": false
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access Query API, QuerySuggestions API, SubmitFeedback API, and Amazon Web Services SSO that stores your user and group information. For more information, see IAM roles for Amazon Kendra .",
+            "Type": "string",
+            "Required": false
+        },
+        "Configuration": {
+            "Description": "Configuration information you want to update for your Amazon Kendra experience.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A new description for your Amazon Kendra experience.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_index": {
+        "Id": {
+            "Description": "The identifier of the index you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the index you want to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "An Identity and Access Management (IAM) role that gives Amazon Kendra permission to access Amazon CloudWatch logs and metrics.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A new description for the index.",
+            "Type": "string",
+            "Required": false
+        },
+        "DocumentMetadataConfigurationUpdates": {
+            "Description": "The document metadata configuration you want to update for the index. Document metadata are fields or attributes associated with your documents. For example, the company department name associated with each document.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CapacityUnits": {
+            "Description": "Sets the number of additional document storage and query capacity units that should be used by the index. You can change the capacity of the index up to 5 times per day, or make 5 API calls.\nIf you are using extra storage units, you can't reduce the storage capacity below what is required to meet the storage needs for your index.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserTokenConfigurations": {
+            "Description": "The user token configuration.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserContextPolicy": {
+            "Description": "The user context policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserGroupResolutionConfiguration": {
+            "Description": "Enables fetching access levels of groups and users from an Amazon Web Services Single Sign On identity source. To configure this, see UserGroupResolutionConfiguration .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_query_suggestions_block_list": {
+        "IndexId": {
+            "Description": "The identifier of the index for the block list.",
+            "Type": "string",
+            "Required": true
+        },
+        "Id": {
+            "Description": "The identifier of the block list you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A new name for the block list.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A new description for the block list.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceS3Path": {
+            "Description": "The S3 path where your block list text file sits in S3.\nIf you update your block list and provide the same path to the block list text file in S3, then Amazon Kendra reloads the file to refresh the block list. Amazon Kendra does not automatically refresh your block list. You need to call the UpdateQuerySuggestionsBlockList API to refresh you block list.\nIf you update your block list, then Amazon Kendra asynchronously refreshes all query suggestions with the latest content in the S3 file. This means changes might not take effect immediately.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RoleArn": {
+            "Description": "The IAM (Identity and Access Management) role used to access the block list text file in S3.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_query_suggestions_config": {
+        "IndexId": {
+            "Description": "The identifier of the index with query suggestions you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Mode": {
+            "Description": "Set the mode to ENABLED or LEARN_ONLY .\nBy default, Amazon Kendra enables query suggestions. LEARN_ONLY mode allows you to turn off query suggestions. You can to update this at any time.\nIn LEARN_ONLY mode, Amazon Kendra continues to learn from new queries to keep suggestions up to date for when you are ready to switch to ENABLED mode again.",
+            "Type": "string",
+            "Required": false
+        },
+        "QueryLogLookBackWindowInDays": {
+            "Description": "How recent your queries are in your query log time window.\nThe time window is the number of days from current day to past days.\nBy default, Amazon Kendra sets this to 180.",
+            "Type": "integer",
+            "Required": false
+        },
+        "IncludeQueriesWithoutUserInformation": {
+            "Description": "If you pass user information to Amazon Kendra along with the queries, you can set this flag to FALSE and instruct Amazon Kendra to only consider queries with user information.\nIf you set to FALSE, Amazon Kendra only considers queries searched at least MinimumQueryCount times across MinimumNumberOfQueryingUsers unique users for suggestions.\nIf you set to TRUE, Amazon Kendra ignores all user information and learns from all queries.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MinimumNumberOfQueryingUsers": {
+            "Description": "The minimum number of unique users who must search a query in order for the query to be eligible to suggest to your users.\nIncreasing this number might decrease the number of suggestions. However, this ensures a query is searched by many users and is truly popular to suggest to users.\nHow you tune this setting depends on your specific needs.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinimumQueryCount": {
+            "Description": "The the minimum number of times a query must be searched in order to be eligible to suggest to your users.\nDecreasing this number increases the number of suggestions. However, this affects the quality of suggestions as it sets a low bar for a query to be considered popular to suggest to users.\nHow you tune this setting depends on your specific needs.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_thesaurus": {
+        "Id": {
+            "Description": "The identifier of the thesaurus you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A new name for the thesaurus.",
+            "Type": "string",
+            "Required": false
+        },
+        "IndexId": {
+            "Description": "The identifier of the index for the thesaurus.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A new description for the thesaurus.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "An IAM role that gives Amazon Kendra permissions to access thesaurus file specified in SourceS3Path .",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceS3Path": {
+            "Description": "Information required to find a specific file in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

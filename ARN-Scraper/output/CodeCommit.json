@@ -1,0 +1,1620 @@
+{
+    "associate_approval_rule_template_with_repository": {
+        "approvalRuleTemplateName": {
+            "Description": "The name for the approval rule template.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository that you want to associate with the template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_associate_approval_rule_template_with_repositories": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the template you want to associate with one or more repositories.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryNames": {
+            "Description": "The names of the repositories you want to associate with the template.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_describe_merge_conflicts": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the merge conflicts you want to review.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "mergeOption": {
+            "Description": "The merge option or strategy you want to use to merge the code.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxMergeHunks": {
+            "Description": "The maximum number of merge hunks to include in the output.",
+            "Type": "integer",
+            "Required": false
+        },
+        "maxConflictFiles": {
+            "Description": "The maximum number of files to include in the output.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filePaths": {
+            "Description": "The path of the target files used to describe the conflicts. If not specified, the default is all conflict files.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_disassociate_approval_rule_template_from_repositories": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the template that you want to disassociate from one or more repositories.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryNames": {
+            "Description": "The repository names that you want to disassociate from the approval rule template.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_get_commits": {
+        "commitIds": {
+            "Description": "The full commit IDs of the commits to get information about.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "repositoryName": {
+            "Description": "The name of the repository that contains the commits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_get_repositories": {
+        "repositoryNames": {
+            "Description": "The names of the repositories to get information about.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_approval_rule_template": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the approval rule template. Provide descriptive names, because this name is applied to the approval rules created automatically in associated repositories.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalRuleTemplateContent": {
+            "Description": "The content of the approval rule that is created on pull requests in associated repositories. If you specify one or more destination references (branches), approval rules are created in an associated repository only if their destination references (branches) match those specified in the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalRuleTemplateDescription": {
+            "Description": "The description of the approval rule template. Consider providing a description that explains what this template does and when it might be appropriate to associate it with repositories.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_branch": {
+        "repositoryName": {
+            "Description": "The name of the repository in which you want to create the new branch.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name of the new branch to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "commitId": {
+            "Description": "The ID of the commit to point the new branch to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_commit": {
+        "repositoryName": {
+            "Description": "The name of the repository where you create the commit.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name of the branch where you create the commit.",
+            "Type": "string",
+            "Required": true
+        },
+        "parentCommitId": {
+            "Description": "The ID of the commit that is the parent of the commit you create. Not required if this is an empty repository.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorName": {
+            "Description": "The name of the author who created the commit. This information is used as both the author and committer for the commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "The email address of the person who created the commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message you want to include in the commit. Commit messages are limited to 256 KB. If no message is specified, a default message is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "keepEmptyFolders": {
+            "Description": "If the commit contains deletions, whether to keep a folder or folder structure if the changes leave the folders empty. If true, a ..gitkeep file is created for empty folders. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "putFiles": {
+            "Description": "The files to add or update in this commit.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "deleteFiles": {
+            "Description": "The files to delete in this commit. These files still exist in earlier commits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "setFileModes": {
+            "Description": "The file modes to update for files in this commit.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_pull_request": {
+        "title": {
+            "Description": "The title of the pull request. This title is used to identify the pull request to other users in the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the pull request.",
+            "Type": "string",
+            "Required": false
+        },
+        "targets": {
+            "Description": "The targets for the pull request, including the source of the code to be reviewed (the source branch) and the destination where the creator of the pull request intends the code to be merged after the pull request is closed (the destination branch).",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request is received with the same parameters and a token is included, the request returns information about the initial request that used that token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_pull_request_approval_rule": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request for which you want to create the approval rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalRuleName": {
+            "Description": "The name for the approval rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalRuleContent": {
+            "Description": "The content of the approval rule, including the number of approvals needed and the structure of an approval pool defined for approvals, if any. For more information about approval pools, see the AWS CodeCommit User Guide.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_repository": {
+        "repositoryName": {
+            "Description": "The name of the new repository to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryDescription": {
+            "Description": "A comment or description about the new repository.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "One or more tag key-value pairs to use when tagging this repository.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_unreferenced_merge_commit": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to create the unreferenced merge commit.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "mergeOption": {
+            "Description": "The merge option or strategy you want to use to merge the code.",
+            "Type": "string",
+            "Required": true
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorName": {
+            "Description": "The name of the author who created the unreferenced commit. This information is used as both the author and committer for the commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "The email address for the person who created the unreferenced commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message for the unreferenced commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "keepEmptyFolders": {
+            "Description": "If the commit contains deletions, whether to keep a folder or folder structure if the changes leave the folders empty. If this is specified as true, a .gitkeep file is created for empty folders. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "conflictResolution": {
+            "Description": "If AUTOMERGE is the conflict resolution strategy, a list of inputs to use when resolving conflicts during a merge.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_approval_rule_template": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the approval rule template to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_branch": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the branch to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name of the branch to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_comment_content": {
+        "commentId": {
+            "Description": "The unique, system-generated ID of the comment. To get this ID, use  GetCommentsForComparedCommit or  GetCommentsForPullRequest .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_file": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the file to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name of the branch where the commit that deletes the file is made.",
+            "Type": "string",
+            "Required": true
+        },
+        "filePath": {
+            "Description": "The fully qualified path to the file that to be deleted, including the full name and extension of that file. For example, /examples/file.md is a fully qualified path to a file named file.md in a folder named examples.",
+            "Type": "string",
+            "Required": true
+        },
+        "parentCommitId": {
+            "Description": "The ID of the commit that is the tip of the branch where you want to create the commit that deletes the file. This must be the HEAD commit for the branch. The commit that deletes the file is created from this commit ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "keepEmptyFolders": {
+            "Description": "If a file is the only object in the folder or directory, specifies whether to delete the folder or directory that contains the file. By default, empty folders are deleted. This includes empty folders that are part of the directory structure. For example, if the path to a file is dir1/dir2/dir3/dir4, and dir2 and dir3 are empty, deleting the last file in dir4 also deletes the empty folders dir4, dir3, and dir2.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message you want to include as part of deleting the file. Commit messages are limited to 256 KB. If no message is specified, a default message is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the author of the commit that deletes the file. If no name is specified, the user's ARN is used as the author name and committer name.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "The email address for the commit that deletes the file. If no email address is specified, the email address is left blank.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_pull_request_approval_rule": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request that contains the approval rule you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalRuleName": {
+            "Description": "The name of the approval rule you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_repository": {
+        "repositoryName": {
+            "Description": "The name of the repository to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_merge_conflicts": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to get information about a merge conflict.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "mergeOption": {
+            "Description": "The merge option or strategy you want to use to merge the code.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxMergeHunks": {
+            "Description": "The maximum number of merge hunks to include in the output.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filePath": {
+            "Description": "The path of the target files used to describe the conflicts.",
+            "Type": "string",
+            "Required": true
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_pull_request_events": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "pullRequestEventType": {
+            "Description": "Optional. The pull request event type about which you want to return information.",
+            "Type": "string",
+            "Required": false
+        },
+        "actorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user whose actions resulted in the event. Examples include updating the pull request with more commits or changing the status of a pull request.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results. The default is 100 events, which is also the maximum number of events that can be returned in a result.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "disassociate_approval_rule_template_from_repository": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the approval rule template to disassociate from a specified repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository you want to disassociate from the template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "evaluate_pull_request_approval_rules": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request you want to evaluate.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "The system-generated ID for the pull request revision. To retrieve the most recent revision ID for a pull request, use  GetPullRequest .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_approval_rule_template": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the approval rule template for which you want to get information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_blob": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the blob.",
+            "Type": "string",
+            "Required": true
+        },
+        "blobId": {
+            "Description": "The ID of the blob, which is its SHA-1 pointer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_branch": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the branch for which you want to retrieve information.",
+            "Type": "string",
+            "Required": false
+        },
+        "branchName": {
+            "Description": "The name of the branch for which you want to retrieve information.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_comment": {
+        "commentId": {
+            "Description": "The unique, system-generated ID of the comment. To get this ID, use  GetCommentsForComparedCommit or  GetCommentsForPullRequest .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_comment_reactions": {
+        "commentId": {
+            "Description": "The ID of the comment for which you want to get reactions information.",
+            "Type": "string",
+            "Required": true
+        },
+        "reactionUserArn": {
+            "Description": "Optional. The Amazon Resource Name (ARN) of the user or identity for which you want to get reaction information.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results. The default is the same as the allowed maximum, 1,000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_comments_for_compared_commit": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to compare commits.",
+            "Type": "string",
+            "Required": true
+        },
+        "beforeCommitId": {
+            "Description": "To establish the directionality of the comparison, the full commit ID of the before commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "afterCommitId": {
+            "Description": "To establish the directionality of the comparison, the full commit ID of the after commit.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An enumeration token that when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results. The default is 100 comments, but you can configure up to 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_comments_for_pull_request": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository that contains the pull request.",
+            "Type": "string",
+            "Required": false
+        },
+        "beforeCommitId": {
+            "Description": "The full commit ID of the commit in the destination branch that was the tip of the branch at the time the pull request was created.",
+            "Type": "string",
+            "Required": false
+        },
+        "afterCommitId": {
+            "Description": "The full commit ID of the commit in the source branch that was the tip of the branch at the time the comment was made.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results. The default is 100 comments. You can return up to 500 comments with a single request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_commit": {
+        "repositoryName": {
+            "Description": "The name of the repository to which the commit was made.",
+            "Type": "string",
+            "Required": true
+        },
+        "commitId": {
+            "Description": "The commit ID. Commit IDs are the full SHA ID of the commit.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_differences": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to get differences.",
+            "Type": "string",
+            "Required": true
+        },
+        "beforeCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, the full commit ID). Optional. If not specified, all changes before the afterCommitSpecifier value are shown. If you do not use beforeCommitSpecifier in your request, consider limiting the results with maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "afterCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit.",
+            "Type": "string",
+            "Required": true
+        },
+        "beforePath": {
+            "Description": "The file path in which to check for differences. Limits the results to this path. Can also be used to specify the previous name of a directory or folder. If beforePath and afterPath are not specified, differences are shown for all paths.",
+            "Type": "string",
+            "Required": false
+        },
+        "afterPath": {
+            "Description": "The file path in which to check differences. Limits the results to this path. Can also be used to specify the changed name of a directory or folder, if it has changed. If not specified, differences are shown for all paths.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_file": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the file.",
+            "Type": "string",
+            "Required": true
+        },
+        "commitSpecifier": {
+            "Description": "The fully quaified reference that identifies the commit that contains the file. For example, you can specify a full commit ID, a tag, a branch name, or a reference such as refs/heads/master. If none is provided, the head commit is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "filePath": {
+            "Description": "The fully qualified path to the file, including the full name and extension of the file. For example, /examples/file.md is the fully qualified path to a file named file.md in a folder named examples.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_folder": {
+        "repositoryName": {
+            "Description": "The name of the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "commitSpecifier": {
+            "Description": "A fully qualified reference used to identify a commit that contains the version of the folder's content to return. A fully qualified reference can be a commit ID, branch name, tag, or reference such as HEAD. If no specifier is provided, the folder content is returned as it exists in the HEAD commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "folderPath": {
+            "Description": "The fully qualified path to the folder whose contents are returned, including the folder name. For example, /examples is a fully-qualified path to a folder named examples that was created off of the root directory (/) of a repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_merge_commit": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the merge commit about which you want to get information.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_merge_conflicts": {
+        "repositoryName": {
+            "Description": "The name of the repository where the pull request was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "mergeOption": {
+            "Description": "The merge option or strategy you want to use to merge the code.",
+            "Type": "string",
+            "Required": true
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxConflictFiles": {
+            "Description": "The maximum number of files to include in the output.",
+            "Type": "integer",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_merge_options": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the commits about which you want to get merge options.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_pull_request": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_pull_request_approval_states": {
+        "pullRequestId": {
+            "Description": "The system-generated ID for the pull request.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "The system-generated ID for the pull request revision.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_pull_request_override_state": {
+        "pullRequestId": {
+            "Description": "The ID of the pull request for which you want to get information about whether approval rules have been set aside (overridden).",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "The system-generated ID of the revision for the pull request. To retrieve the most recent revision ID, use  GetPullRequest .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_repository": {
+        "repositoryName": {
+            "Description": "The name of the repository to get information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_repository_triggers": {
+        "repositoryName": {
+            "Description": "The name of the repository for which the trigger is configured.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_approval_rule_templates": {
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_associated_approval_rule_templates_for_repository": {
+        "repositoryName": {
+            "Description": "The name of the repository for which you want to list all associated approval rule templates.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_branches": {
+        "repositoryName": {
+            "Description": "The name of the repository that contains the branches.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An enumeration token that allows the operation to batch the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pull_requests": {
+        "repositoryName": {
+            "Description": "The name of the repository for which you want to list pull requests.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorArn": {
+            "Description": "Optional. The Amazon Resource Name (ARN) of the user who created the pull request. If used, this filters the results to pull requests created by that user.",
+            "Type": "string",
+            "Required": false
+        },
+        "pullRequestStatus": {
+            "Description": "Optional. The status of the pull request. If used, this refines the results to the pull requests that match the specified status.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_repositories": {
+        "nextToken": {
+            "Description": "An enumeration token that allows the operation to batch the results of the operation. Batch sizes are 1,000 for list repository operations. When the client sends the token back to AWS CodeCommit, another page of 1,000 records is retrieved.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortBy": {
+            "Description": "The criteria used to sort the results of a list repositories operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "order": {
+            "Description": "The order in which to sort the results of a list repositories operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_repositories_for_approval_rule_template": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the approval rule template for which you want to list repositories that are associated with that template.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "A non-zero, non-negative integer used to limit the number of returned results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for which you want to get information about tags, if any.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "merge_branches_by_fast_forward": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to merge two branches.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "targetBranch": {
+            "Description": "The branch where the merge is applied.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "merge_branches_by_squash": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to merge two branches.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "targetBranch": {
+            "Description": "The branch where the merge is applied.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorName": {
+            "Description": "The name of the author who created the commit. This information is used as both the author and committer for the commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "The email address of the person merging the branches. This information is used in the commit information for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "keepEmptyFolders": {
+            "Description": "If the commit contains deletions, whether to keep a folder or folder structure if the changes leave the folders empty. If this is specified as true, a .gitkeep file is created for empty folders. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "conflictResolution": {
+            "Description": "If AUTOMERGE is the conflict resolution strategy, a list of inputs to use when resolving conflicts during a merge.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "merge_branches_by_three_way": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to merge two branches.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationCommitSpecifier": {
+            "Description": "The branch, tag, HEAD, or other fully qualified reference used to identify a commit (for example, a branch name or a full commit ID).",
+            "Type": "string",
+            "Required": true
+        },
+        "targetBranch": {
+            "Description": "The branch where the merge is applied.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorName": {
+            "Description": "The name of the author who created the commit. This information is used as both the author and committer for the commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "The email address of the person merging the branches. This information is used in the commit information for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message to include in the commit information for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "keepEmptyFolders": {
+            "Description": "If the commit contains deletions, whether to keep a folder or folder structure if the changes leave the folders empty. If true, a .gitkeep file is created for empty folders. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "conflictResolution": {
+            "Description": "If AUTOMERGE is the conflict resolution strategy, a list of inputs to use when resolving conflicts during a merge.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "merge_pull_request_by_fast_forward": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository where the pull request was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitId": {
+            "Description": "The full commit ID of the original or updated commit in the pull request source branch. Pass this value if you want an exception thrown if the current commit ID of the tip of the source branch does not match this commit ID.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "merge_pull_request_by_squash": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository where the pull request was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitId": {
+            "Description": "The full commit ID of the original or updated commit in the pull request source branch. Pass this value if you want an exception thrown if the current commit ID of the tip of the source branch does not match this commit ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message to include in the commit information for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorName": {
+            "Description": "The name of the author who created the commit. This information is used as both the author and committer for the commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "The email address of the person merging the branches. This information is used in the commit information for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "keepEmptyFolders": {
+            "Description": "If the commit contains deletions, whether to keep a folder or folder structure if the changes leave the folders empty. If true, a .gitkeep file is created for empty folders. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "conflictResolution": {
+            "Description": "If AUTOMERGE is the conflict resolution strategy, a list of inputs to use when resolving conflicts during a merge.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "merge_pull_request_by_three_way": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository where the pull request was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceCommitId": {
+            "Description": "The full commit ID of the original or updated commit in the pull request source branch. Pass this value if you want an exception thrown if the current commit ID of the tip of the source branch does not match this commit ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictDetailLevel": {
+            "Description": "The level of conflict detail to use. If unspecified, the default FILE_LEVEL is used, which returns a not-mergeable result if the same file has differences in both branches. If LINE_LEVEL is specified, a conflict is considered not mergeable if the same file in both branches has differences on the same line.",
+            "Type": "string",
+            "Required": false
+        },
+        "conflictResolutionStrategy": {
+            "Description": "Specifies which branch to use when resolving conflicts, or whether to attempt automatically merging two versions of a file. The default is NONE, which requires any conflicts to be resolved manually before the merge operation is successful.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message to include in the commit information for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorName": {
+            "Description": "The name of the author who created the commit. This information is used as both the author and committer for the commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "The email address of the person merging the branches. This information is used in the commit information for the merge.",
+            "Type": "string",
+            "Required": false
+        },
+        "keepEmptyFolders": {
+            "Description": "If the commit contains deletions, whether to keep a folder or folder structure if the changes leave the folders empty. If true, a .gitkeep file is created for empty folders. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "conflictResolution": {
+            "Description": "If AUTOMERGE is the conflict resolution strategy, a list of inputs to use when resolving conflicts during a merge.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "override_pull_request_approval_rules": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request for which you want to override all approval rule requirements. To get this information, use  GetPullRequest .",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "The system-generated ID of the most recent revision of the pull request. You cannot override approval rules for anything but the most recent revision of a pull request. To get the revision ID, use GetPullRequest.",
+            "Type": "string",
+            "Required": true
+        },
+        "overrideStatus": {
+            "Description": "Whether you want to set aside approval rule requirements for the pull request (OVERRIDE) or revoke a previous override and apply approval rule requirements (REVOKE). REVOKE status is not stored.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "post_comment_for_compared_commit": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to post a comment on the comparison between commits.",
+            "Type": "string",
+            "Required": true
+        },
+        "beforeCommitId": {
+            "Description": "To establish the directionality of the comparison, the full commit ID of the before commit. Required for commenting on any commit unless that commit is the initial commit.",
+            "Type": "string",
+            "Required": false
+        },
+        "afterCommitId": {
+            "Description": "To establish the directionality of the comparison, the full commit ID of the after commit.",
+            "Type": "string",
+            "Required": true
+        },
+        "location": {
+            "Description": "The location of the comparison where you want to comment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "content": {
+            "Description": "The content of the comment you want to make.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientRequestToken": {
+            "Description": "A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request is received with the same parameters and a token is included, the request returns information about the initial request that used that token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "post_comment_for_pull_request": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository where you want to post a comment on a pull request.",
+            "Type": "string",
+            "Required": true
+        },
+        "beforeCommitId": {
+            "Description": "The full commit ID of the commit in the destination branch that was the tip of the branch at the time the pull request was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "afterCommitId": {
+            "Description": "The full commit ID of the commit in the source branch that is the current tip of the branch for the pull request when you post the comment.",
+            "Type": "string",
+            "Required": true
+        },
+        "location": {
+            "Description": "The location of the change where you want to post your comment. If no location is provided, the comment is posted as a general comment on the pull request difference between the before commit ID and the after commit ID.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "content": {
+            "Description": "The content of your comment on the change.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientRequestToken": {
+            "Description": "A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request is received with the same parameters and a token is included, the request returns information about the initial request that used that token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "post_comment_reply": {
+        "inReplyTo": {
+            "Description": "The system-generated ID of the comment to which you want to reply. To get this ID, use  GetCommentsForComparedCommit or  GetCommentsForPullRequest .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientRequestToken": {
+            "Description": "A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request is received with the same parameters and a token is included, the request returns information about the initial request that used that token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "content": {
+            "Description": "The contents of your reply to a comment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_comment_reaction": {
+        "commentId": {
+            "Description": "The ID of the comment to which you want to add or update a reaction.",
+            "Type": "string",
+            "Required": true
+        },
+        "reactionValue": {
+            "Description": "The emoji reaction you want to add or update. To remove a reaction, provide a value of blank or null. You can also provide the value of none. For information about emoji reaction values supported in AWS CodeCommit, see the AWS CodeCommit User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_file": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to add or update the file.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name of the branch where you want to add or update the file. If this is an empty repository, this branch is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "fileContent": {
+            "Description": "The content of the file, in binary object format.",
+            "Type": "bytes",
+            "Required": true
+        },
+        "filePath": {
+            "Description": "The name of the file you want to add or update, including the relative path to the file in the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "fileMode": {
+            "Description": "The file mode permissions of the blob. Valid file mode permissions are listed here.",
+            "Type": "string",
+            "Required": false
+        },
+        "parentCommitId": {
+            "Description": "The full commit ID of the head commit in the branch where you want to add or update the file. If this is an empty repository, no commit ID is required. If this is not an empty repository, a commit ID is required.\nThe commit ID must match the ID of the head commit at the time of the operation. Otherwise, an error occurs, and the file is not added or updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "A message about why this file was added or updated. Although it is optional, a message makes the commit history for your repository more useful.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the person adding or updating the file. Although it is optional, a name makes the commit history for your repository more useful.",
+            "Type": "string",
+            "Required": false
+        },
+        "email": {
+            "Description": "An email address for the person adding or updating the file.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_repository_triggers": {
+        "repositoryName": {
+            "Description": "The name of the repository where you want to create or update the trigger.",
+            "Type": "string",
+            "Required": true
+        },
+        "triggers": {
+            "Description": "The JSON block of configuration information for each trigger.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which you want to add or update tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The key-value pair to use when tagging this repository.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "test_repository_triggers": {
+        "repositoryName": {
+            "Description": "The name of the repository in which to test the triggers.",
+            "Type": "string",
+            "Required": true
+        },
+        "triggers": {
+            "Description": "The list of triggers to test.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which you want to remove tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag key for each tag that you want to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_approval_rule_template_content": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the approval rule template where you want to update the content of the rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "newRuleContent": {
+            "Description": "The content that replaces the existing content of the rule. Content statements must be complete. You cannot provide only the changes.",
+            "Type": "string",
+            "Required": true
+        },
+        "existingRuleContentSha256": {
+            "Description": "The SHA-256 hash signature for the content of the approval rule. You can retrieve this information by using  GetPullRequest .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_approval_rule_template_description": {
+        "approvalRuleTemplateName": {
+            "Description": "The name of the template for which you want to update the description.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalRuleTemplateDescription": {
+            "Description": "The updated description of the approval rule template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_approval_rule_template_name": {
+        "oldApprovalRuleTemplateName": {
+            "Description": "The current name of the approval rule template.",
+            "Type": "string",
+            "Required": true
+        },
+        "newApprovalRuleTemplateName": {
+            "Description": "The new name you want to apply to the approval rule template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_comment": {
+        "commentId": {
+            "Description": "The system-generated ID of the comment you want to update. To get this ID, use  GetCommentsForComparedCommit or  GetCommentsForPullRequest .",
+            "Type": "string",
+            "Required": true
+        },
+        "content": {
+            "Description": "The updated content to replace the existing content of the comment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_default_branch": {
+        "repositoryName": {
+            "Description": "The name of the repository to set or change the default branch for.",
+            "Type": "string",
+            "Required": true
+        },
+        "defaultBranchName": {
+            "Description": "The name of the branch to set as the default.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_pull_request_approval_rule_content": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalRuleName": {
+            "Description": "The name of the approval rule you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "existingRuleContentSha256": {
+            "Description": "The SHA-256 hash signature for the content of the approval rule. You can retrieve this information by using  GetPullRequest .",
+            "Type": "string",
+            "Required": false
+        },
+        "newRuleContent": {
+            "Description": "The updated content for the approval rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_pull_request_approval_state": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "The system-generated ID of the revision.",
+            "Type": "string",
+            "Required": true
+        },
+        "approvalState": {
+            "Description": "The approval state to associate with the user on the pull request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_pull_request_description": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The updated content of the description for the pull request. This content replaces the existing description.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_pull_request_status": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "pullRequestStatus": {
+            "Description": "The status of the pull request. The only valid operations are to update the status from OPEN to OPEN, OPEN to CLOSED or from CLOSED to CLOSED .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_pull_request_title": {
+        "pullRequestId": {
+            "Description": "The system-generated ID of the pull request. To get this ID, use  ListPullRequests .",
+            "Type": "string",
+            "Required": true
+        },
+        "title": {
+            "Description": "The updated title of the pull request. This replaces the existing title.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_repository_description": {
+        "repositoryName": {
+            "Description": "The name of the repository to set or change the comment or description for.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryDescription": {
+            "Description": "The new comment or description for the specified repository. Repository descriptions are limited to 1,000 characters.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_repository_name": {
+        "oldName": {
+            "Description": "The current name of the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "newName": {
+            "Description": "The new name for the repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "sortBy": {
+            "Description": "The criteria used to sort the results of a list repositories operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "order": {
+            "Description": "The order in which to sort the results of a list repositories operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

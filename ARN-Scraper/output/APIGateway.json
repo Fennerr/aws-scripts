@@ -1,0 +1,2402 @@
+{
+    "create_api_key": {
+        "name": {
+            "Description": "The name of the ApiKey.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the ApiKey.",
+            "Type": "string",
+            "Required": false
+        },
+        "enabled": {
+            "Description": "Specifies whether the ApiKey can be used by callers.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "generateDistinctId": {
+            "Description": "Specifies whether (true ) or not (false ) the key identifier is distinct from the created API key value. This parameter is deprecated and should not be used.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "value": {
+            "Description": "Specifies a value of the API key.",
+            "Type": "string",
+            "Required": false
+        },
+        "stageKeys": {
+            "Description": "DEPRECATED FOR USAGE PLANS - Specifies stages associated with the API key.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "customerId": {
+            "Description": "An AWS Marketplace customer identifier , when integrating with the AWS SaaS Marketplace.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_authorizer": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the authorizer.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The authorizer type. Valid values are TOKEN for a Lambda function using a single authorization token submitted in a custom header, REQUEST for a Lambda function using incoming request parameters, and COGNITO_USER_POOLS for using an Amazon Cognito user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "providerARNs": {
+            "Description": "A list of the Amazon Cognito user pool ARNs for the COGNITO_USER_POOLS authorizer. Each element is of this format: arn:aws:cognito-idp:{region}:{account_id}:userpool/{user_pool_id}. For a TOKEN or REQUEST authorizer, this is not defined.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "authType": {
+            "Description": "Optional customer-defined field, used in OpenAPI imports and exports without functional impact.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorizerUri": {
+            "Description": "Specifies the authorizer's Uniform Resource Identifier (URI). For TOKEN or REQUEST authorizers, this must be a well-formed Lambda function URI, for example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations . In general, the URI has this form arn:aws:apigateway:{region}:lambda:path/{service_api} , where {region} is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial / . For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations .",
+            "Type": "string",
+            "Required": false
+        },
+        "authorizerCredentials": {
+            "Description": "Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, specify null.",
+            "Type": "string",
+            "Required": false
+        },
+        "identitySource": {
+            "Description": "The identity source for which authorization is requested. For a TOKEN or COGNITO_USER_POOLS authorizer, this is required and specifies the request header mapping expression for the custom header holding the authorization token submitted by the client. For example, if the token header name is Auth , the header mapping expression is method.request.header.Auth . For the REQUEST authorizer, this is required when authorization caching is enabled. The value is a comma-separated string of one or more mapping expressions of the specified request parameters. For example, if an Auth header, a Name query string parameter are defined as identity sources, this value is method.request.header.Auth, method.request.querystring.Name . These parameters will be used to derive the authorization caching key and to perform runtime validation of the REQUEST authorizer by verifying all of the identity-related request parameters are present, not null and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function, otherwise, it returns a 401 Unauthorized response without calling the Lambda function. The valid value is a string of comma-separated mapping expressions of the specified request parameters. When the authorization caching is not enabled, this property is optional.",
+            "Type": "string",
+            "Required": false
+        },
+        "identityValidationExpression": {
+            "Description": "A validation expression for the incoming identity token. For TOKEN authorizers, this value is a regular expression. For COGNITO_USER_POOLS authorizers, API Gateway will match the aud field of the incoming token from the client against the specified regular expression. It will invoke the authorizer's Lambda function when there is a match. Otherwise, it will return a 401 Unauthorized response without calling the Lambda function. The validation expression does not apply to the REQUEST authorizer.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorizerResultTtlInSeconds": {
+            "Description": "The TTL in seconds of cached authorizer results. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway will cache authorizer responses. If this field is not set, the default value is 300. The maximum value is 3600, or 1 hour.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_base_path_mapping": {
+        "domainName": {
+            "Description": "The domain name of the BasePathMapping resource to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "basePath": {
+            "Description": "The base path name that callers of the API must provide as part of the URL after the domain name. This value must be unique for all of the mappings across a single API. Specify '(none)' if you do not want callers to specify a base path name after the domain name.",
+            "Type": "string",
+            "Required": false
+        },
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stage": {
+            "Description": "The name of the API's stage that you want to use for this mapping. Specify '(none)' if you want callers to explicitly specify the stage name after any base path name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_deployment": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the Stage resource for the Deployment resource to create.",
+            "Type": "string",
+            "Required": false
+        },
+        "stageDescription": {
+            "Description": "The description of the Stage resource for the Deployment resource to create.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description for the Deployment resource to create.",
+            "Type": "string",
+            "Required": false
+        },
+        "cacheClusterEnabled": {
+            "Description": "Enables a cache cluster for the Stage resource specified in the input.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "cacheClusterSize": {
+            "Description": "Specifies the cache cluster size for the Stage resource specified in the input, if a cache cluster is enabled.",
+            "Type": "string",
+            "Required": false
+        },
+        "variables": {
+            "Description": "A map that defines the stage variables for the Stage resource that is associated with the new deployment. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&amp;=,]+ .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "canarySettings": {
+            "Description": "The input configuration for the canary deployment when the deployment is a canary release deployment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tracingEnabled": {
+            "Description": "Specifies whether active tracing with X-ray is enabled for the Stage.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_documentation_part": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "location": {
+            "Description": "The location of the targeted API entity of the to-be-created documentation part.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "properties": {
+            "Description": "The new documentation content map of the targeted API entity. Enclosed key-value pairs are API-specific, but only OpenAPI-compliant key-value pairs can be exported and, hence, published.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_documentation_version": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "documentationVersion": {
+            "Description": "The version identifier of the new snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The stage name to be associated with the new documentation snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description about the new documentation snapshot.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_domain_name": {
+        "domainName": {
+            "Description": "The name of the DomainName resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateName": {
+            "Description": "The user-friendly name of the certificate that will be used by edge-optimized endpoint for this domain name.",
+            "Type": "string",
+            "Required": false
+        },
+        "certificateBody": {
+            "Description": "[Deprecated] The body of the server certificate that will be used by edge-optimized endpoint for this domain name provided by your certificate authority.",
+            "Type": "string",
+            "Required": false
+        },
+        "certificatePrivateKey": {
+            "Description": "[Deprecated] Your edge-optimized endpoint's domain name certificate's private key.",
+            "Type": "string",
+            "Required": false
+        },
+        "certificateChain": {
+            "Description": "[Deprecated] The intermediate certificates and optionally the root certificate, one after the other without any blank lines, used by an edge-optimized endpoint for this domain name. If you include the root certificate, your certificate chain must start with intermediate certificates and end with the root certificate. Use the intermediate certificates that were provided by your certificate authority. Do not include any intermediaries that are not in the chain of trust path.",
+            "Type": "string",
+            "Required": false
+        },
+        "certificateArn": {
+            "Description": "The reference to an AWS-managed certificate that will be used by edge-optimized endpoint for this domain name. AWS Certificate Manager is the only supported source.",
+            "Type": "string",
+            "Required": false
+        },
+        "regionalCertificateName": {
+            "Description": "The user-friendly name of the certificate that will be used by regional endpoint for this domain name.",
+            "Type": "string",
+            "Required": false
+        },
+        "regionalCertificateArn": {
+            "Description": "The reference to an AWS-managed certificate that will be used by regional endpoint for this domain name. AWS Certificate Manager is the only supported source.",
+            "Type": "string",
+            "Required": false
+        },
+        "endpointConfiguration": {
+            "Description": "The endpoint configuration of this DomainName showing the endpoint types of the domain name.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "securityPolicy": {
+            "Description": "The Transport Layer Security (TLS) version + cipher suite for this DomainName. The valid values are TLS_1_0 and TLS_1_2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "mutualTlsAuthentication": {
+            "Description": "The mutual TLS authentication configuration for a custom domain name. If specified, API Gateway performs two-way authentication between the client and the server. Clients must present a trusted certificate to access your API.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ownershipVerificationCertificateArn": {
+            "Description": "The ARN of the public certificate issued by ACM to validate ownership of your custom domain. Only required when configuring mutual TLS and using an ACM imported or private CA certificate ARN as the regionalCertificateArn.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_model": {
+        "restApiId": {
+            "Description": "The RestApi identifier under which the Model will be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the model. Must be alphanumeric.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the model.",
+            "Type": "string",
+            "Required": false
+        },
+        "schema": {
+            "Description": "The schema for the model. For application/json models, this should be JSON schema draft 4 model.",
+            "Type": "string",
+            "Required": false
+        },
+        "contentType": {
+            "Description": "The content-type for the model.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_request_validator": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the to-be-created RequestValidator.",
+            "Type": "string",
+            "Required": false
+        },
+        "validateRequestBody": {
+            "Description": "A Boolean flag to indicate whether to validate request body according to the configured model schema for the method (true ) or not (false ).",
+            "Type": "boolean",
+            "Required": false
+        },
+        "validateRequestParameters": {
+            "Description": "A Boolean flag to indicate whether to validate request parameters, true , or not false .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_resource": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "parentId": {
+            "Description": "The parent resource's identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "pathPart": {
+            "Description": "The last path segment for this resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_rest_api": {
+        "name": {
+            "Description": "The name of the RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the RestApi.",
+            "Type": "string",
+            "Required": false
+        },
+        "version": {
+            "Description": "A version identifier for the API.",
+            "Type": "string",
+            "Required": false
+        },
+        "cloneFrom": {
+            "Description": "The ID of the RestApi that you want to clone from.",
+            "Type": "string",
+            "Required": false
+        },
+        "binaryMediaTypes": {
+            "Description": "The list of binary media types supported by the RestApi. By default, the RestApi supports only UTF-8-encoded text payloads.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "minimumCompressionSize": {
+            "Description": "A nullable integer that is used to enable compression (with non-negative between 0 and 10485760 (10M) bytes, inclusive) or disable compression (with a null value) on an API. When compression is enabled, compression or decompression is not applied on the payload if the payload size is smaller than this value. Setting it to zero allows compression for any payload size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "apiKeySource": {
+            "Description": "The source of the API key for metering requests according to a usage plan. Valid values are: >``HEADER`` to read the API key from the X-API-Key header of a request. AUTHORIZER to read the API key from the UsageIdentifierKey from a custom authorizer.",
+            "Type": "string",
+            "Required": false
+        },
+        "endpointConfiguration": {
+            "Description": "The endpoint configuration of this RestApi showing the endpoint types of the API.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "policy": {
+            "Description": "A stringified JSON policy document that applies to this RestApi regardless of the caller and Method configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "disableExecuteApiEndpoint": {
+            "Description": "Specifies whether clients can invoke your API by using the default execute-api endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_stage": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name for the Stage resource. Stage names can only contain alphanumeric characters, hyphens, and underscores. Maximum length is 128 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "deploymentId": {
+            "Description": "The identifier of the Deployment resource for the Stage resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the Stage resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "cacheClusterEnabled": {
+            "Description": "Whether cache clustering is enabled for the stage.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "cacheClusterSize": {
+            "Description": "The stage's cache cluster size.",
+            "Type": "string",
+            "Required": false
+        },
+        "variables": {
+            "Description": "A map that defines the stage variables for the new Stage resource. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&amp;=,]+ .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "documentationVersion": {
+            "Description": "The version of the associated API documentation.",
+            "Type": "string",
+            "Required": false
+        },
+        "canarySettings": {
+            "Description": "The canary deployment settings of this stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tracingEnabled": {
+            "Description": "Specifies whether active tracing with X-ray is enabled for the Stage.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_usage_plan": {
+        "name": {
+            "Description": "The name of the usage plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the usage plan.",
+            "Type": "string",
+            "Required": false
+        },
+        "apiStages": {
+            "Description": "The associated API stages of the usage plan.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "throttle": {
+            "Description": "The throttling limits of the usage plan.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "quota": {
+            "Description": "The quota of the usage plan.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_usage_plan_key": {
+        "usagePlanId": {
+            "Description": "The Id of the UsagePlan resource representing the usage plan containing the to-be-created UsagePlanKey resource representing a plan customer.",
+            "Type": "string",
+            "Required": true
+        },
+        "keyId": {
+            "Description": "The identifier of a UsagePlanKey resource for a plan customer.",
+            "Type": "string",
+            "Required": true
+        },
+        "keyType": {
+            "Description": "The type of a UsagePlanKey resource for a plan customer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_vpc_link": {
+        "name": {
+            "Description": "The name used to label and identify the VPC link.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the VPC link.",
+            "Type": "string",
+            "Required": false
+        },
+        "targetArns": {
+            "Description": "The ARN of the network load balancer of the VPC targeted by the VPC link. The network load balancer must be owned by the same AWS account of the API owner.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_api_key": {
+        "apiKey": {
+            "Description": "The identifier of the ApiKey resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_authorizer": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerId": {
+            "Description": "The identifier of the Authorizer resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_base_path_mapping": {
+        "domainName": {
+            "Description": "The domain name of the BasePathMapping resource to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "basePath": {
+            "Description": "The base path name of the BasePathMapping resource to delete.\nTo specify an empty base path, set this parameter to '(none)' .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_client_certificate": {
+        "clientCertificateId": {
+            "Description": "The identifier of the ClientCertificate resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_deployment": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "deploymentId": {
+            "Description": "The identifier of the Deployment resource to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_documentation_part": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "documentationPartId": {
+            "Description": "The identifier of the to-be-deleted documentation part.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_documentation_version": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "documentationVersion": {
+            "Description": "The version identifier of a to-be-deleted documentation snapshot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_domain_name": {
+        "domainName": {
+            "Description": "The name of the DomainName resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_gateway_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "responseType": {
+            "Description": "The response type of the associated GatewayResponse.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_integration": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies a delete integration request's resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies a delete integration request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_integration_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies a delete integration response request's resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies a delete integration response request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "Specifies a delete integration response request's status code.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_method": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "The HTTP verb of the Method resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_method_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the MethodResponse resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "The HTTP verb of the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "The status code identifier for the MethodResponse resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_model": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelName": {
+            "Description": "The name of the model to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_request_validator": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "requestValidatorId": {
+            "Description": "The identifier of the RequestValidator to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The identifier of the Resource resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_rest_api": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_stage": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the Stage resource to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_usage_plan": {
+        "usagePlanId": {
+            "Description": "The Id of the to-be-deleted usage plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_usage_plan_key": {
+        "usagePlanId": {
+            "Description": "The Id of the UsagePlan resource representing the usage plan containing the to-be-deleted UsagePlanKey resource representing a plan customer.",
+            "Type": "string",
+            "Required": true
+        },
+        "keyId": {
+            "Description": "The Id of the UsagePlanKey resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_vpc_link": {
+        "vpcLinkId": {
+            "Description": "The identifier of the VpcLink. It is used in an Integration to reference this VpcLink.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "flush_stage_authorizers_cache": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the stage to flush.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "flush_stage_cache": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the stage to flush its cache.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "generate_client_certificate": {
+        "description": {
+            "Description": "The description of the ClientCertificate.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_account": "No parameters defined",
+    "get_api_key": {
+        "apiKey": {
+            "Description": "The identifier of the ApiKey resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "includeValue": {
+            "Description": "A boolean flag to specify whether (true ) or not (false ) the result contains the key value.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_api_keys": {
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nameQuery": {
+            "Description": "The name of queried API keys.",
+            "Type": "string",
+            "Required": false
+        },
+        "customerId": {
+            "Description": "The identifier of a customer in AWS Marketplace or an external system, such as a developer portal.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeValues": {
+            "Description": "A boolean flag to specify whether (true ) or not (false ) the result contains key values.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_authorizer": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerId": {
+            "Description": "The identifier of the Authorizer resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_authorizers": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_base_path_mapping": {
+        "domainName": {
+            "Description": "The domain name of the BasePathMapping resource to be described.",
+            "Type": "string",
+            "Required": true
+        },
+        "basePath": {
+            "Description": "The base path name that callers of the API must provide as part of the URL after the domain name. This value must be unique for all of the mappings across a single API. Specify '(none)' if you do not want callers to specify any base path name after the domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_base_path_mappings": {
+        "domainName": {
+            "Description": "The domain name of a BasePathMapping resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_client_certificate": {
+        "clientCertificateId": {
+            "Description": "The identifier of the ClientCertificate resource to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_client_certificates": {
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_deployment": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "deploymentId": {
+            "Description": "The identifier of the Deployment resource to get information about.",
+            "Type": "string",
+            "Required": true
+        },
+        "embed": {
+            "Description": "A query parameter to retrieve the specified embedded resources of the returned Deployment resource in the response. In a REST API call, this embed parameter value is a list of comma-separated strings, as in GET /restapis/{restapi_id}/deployments/{deployment_id}?embed=var1,var2. The SDK and other platform-dependent libraries might use a different format for the list. Currently, this request supports only retrieval of the embedded API summary this way. Hence, the parameter value must be a single-valued list containing only the \"apisummary\" string. For example, GET /restapis/{restapi_id}/deployments/{deployment_id}?embed=apisummary .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_deployments": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_documentation_part": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "documentationPartId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_documentation_parts": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The type of API entities of the to-be-retrieved documentation parts.",
+            "Type": "string",
+            "Required": false
+        },
+        "nameQuery": {
+            "Description": "The name of API entities of the to-be-retrieved documentation parts.",
+            "Type": "string",
+            "Required": false
+        },
+        "path": {
+            "Description": "The path of API entities of the to-be-retrieved documentation parts.",
+            "Type": "string",
+            "Required": false
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        },
+        "locationStatus": {
+            "Description": "The status of the API documentation parts to retrieve. Valid values are DOCUMENTED for retrieving DocumentationPart resources with content and UNDOCUMENTED for DocumentationPart resources without content.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_documentation_version": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "documentationVersion": {
+            "Description": "The version identifier of the to-be-retrieved documentation snapshot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_documentation_versions": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_domain_name": {
+        "domainName": {
+            "Description": "The name of the DomainName resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_names": {
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_export": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the Stage that will be exported.",
+            "Type": "string",
+            "Required": true
+        },
+        "exportType": {
+            "Description": "The type of export. Acceptable values are 'oas30' for OpenAPI 3.0.x and 'swagger' for Swagger/OpenAPI 2.0.",
+            "Type": "string",
+            "Required": true
+        },
+        "parameters": {
+            "Description": "A key-value map of query string parameters that specify properties of the export, depending on the requested exportType. For exportType oas30 and swagger, any combination of the following parameters are supported: extensions='integrations' or extensions='apigateway' will export the API with x-amazon-apigateway-integration extensions. extensions='authorizers' will export the API with x-amazon-apigateway-authorizer extensions. postman will export the API with Postman extensions, allowing for import to the Postman tool",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "accepts": {
+            "Description": "The content-type of the export, for example application/json . Currently application/json and application/yaml are supported for exportType of``oas30`` and swagger . This should be specified in the Accept header for direct API requests.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_gateway_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "responseType": {
+            "Description": "The response type of the associated GatewayResponse.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_gateway_responses": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set. The GatewayResponse collection does not support pagination and the position does not apply here.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500. The GatewayResponses collection does not support pagination and the limit does not apply here.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_integration": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies a get integration request's resource identifier",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies a get integration request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_integration_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies a get integration response request's resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies a get integration response request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "Specifies a get integration response request's status code.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_method": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies the method request's HTTP method type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_method_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the MethodResponse resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "The HTTP verb of the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "The status code for the MethodResponse resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_model": {
+        "restApiId": {
+            "Description": "The RestApi identifier under which the Model exists.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelName": {
+            "Description": "The name of the model as an identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "flatten": {
+            "Description": "A query parameter of a Boolean value to resolve (true ) all external model references and returns a flattened model schema or not (false ) The default is false .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_model_template": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelName": {
+            "Description": "The name of the model for which to generate a template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_models": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_request_validator": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "requestValidatorId": {
+            "Description": "The identifier of the RequestValidator to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_request_validators": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_resource": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The identifier for the Resource resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "embed": {
+            "Description": "A query parameter to retrieve the specified resources embedded in the returned Resource representation in the response. This embed parameter value is a list of comma-separated strings. Currently, the request supports only retrieval of the embedded Method resources this way. The query parameter value must be a single-valued list and contain the \"methods\" string. For example, GET /restapis/{restapi_id}/resources/{resource_id}?embed=methods .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_resources": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        },
+        "embed": {
+            "Description": "A query parameter used to retrieve the specified resources embedded in the returned Resources resource in the response. This embed parameter value is a list of comma-separated strings. Currently, the request supports only retrieval of the embedded Method resources this way. The query parameter value must be a single-valued list and contain the \"methods\" string. For example, GET /restapis/{restapi_id}/resources?embed=methods .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_rest_api": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rest_apis": {
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_sdk": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the Stage that the SDK will use.",
+            "Type": "string",
+            "Required": true
+        },
+        "sdkType": {
+            "Description": "The language for the generated SDK. Currently java, javascript, android, objectivec (for iOS), swift (for iOS), and ruby are supported.",
+            "Type": "string",
+            "Required": true
+        },
+        "parameters": {
+            "Description": "A string-to-string key-value map of query parameters sdkType -dependent properties of the SDK. For sdkType of objectivec or swift, a parameter named classPrefix is required. For sdkType of android, parameters named groupId, artifactId, artifactVersion, and invokerPackage are required. For sdkType of java, parameters named serviceName and javaPackageName are required.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_sdk_type": {
+        "id": {
+            "Description": "The identifier of the queried SdkType instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sdk_types": {
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_stage": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the Stage resource to get information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_stages": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "deploymentId": {
+            "Description": "The stages' deployment identifiers.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_tags": {
+        "resourceArn": {
+            "Description": "The ARN of a resource that can be tagged.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "(Not currently supported) The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "(Not currently supported) The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_usage": {
+        "usagePlanId": {
+            "Description": "The Id of the usage plan associated with the usage data.",
+            "Type": "string",
+            "Required": true
+        },
+        "keyId": {
+            "Description": "The Id of the API key associated with the resultant usage data.",
+            "Type": "string",
+            "Required": false
+        },
+        "startDate": {
+            "Description": "The starting date (e.g., 2016-01-01) of the usage data.",
+            "Type": "string",
+            "Required": true
+        },
+        "endDate": {
+            "Description": "The ending date (e.g., 2016-12-31) of the usage data.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_usage_plan": {
+        "usagePlanId": {
+            "Description": "The identifier of the UsagePlan resource to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_usage_plan_key": {
+        "usagePlanId": {
+            "Description": "The Id of the UsagePlan resource representing the usage plan containing the to-be-retrieved UsagePlanKey resource representing a plan customer.",
+            "Type": "string",
+            "Required": true
+        },
+        "keyId": {
+            "Description": "The key Id of the to-be-retrieved UsagePlanKey resource representing a plan customer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_usage_plan_keys": {
+        "usagePlanId": {
+            "Description": "The Id of the UsagePlan resource representing the usage plan containing the to-be-retrieved UsagePlanKey resource representing a plan customer.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nameQuery": {
+            "Description": "A query parameter specifying the name of the to-be-returned usage plan keys.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_usage_plans": {
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "keyId": {
+            "Description": "The identifier of the API key associated with the usage plans.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_vpc_link": {
+        "vpcLinkId": {
+            "Description": "The identifier of the VpcLink. It is used in an Integration to reference this VpcLink.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_vpc_links": {
+        "position": {
+            "Description": "The current pagination position in the paged result set.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of returned results per page. The default value is 25 and the maximum value is 500.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "import_api_keys": {
+        "body": {
+            "Description": "The payload of the POST request to import API keys. For the payload format, see API Key File Format.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        },
+        "format": {
+            "Description": "A query parameter to specify the input format to imported API keys. Currently, only the csv format is supported.",
+            "Type": "string",
+            "Required": true
+        },
+        "failOnWarnings": {
+            "Description": "A query parameter to indicate whether to rollback ApiKey importation (true ) or not (false ) when error is encountered.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "import_documentation_parts": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "mode": {
+            "Description": "A query parameter to indicate whether to overwrite (OVERWRITE ) any existing DocumentationParts definition or to merge (MERGE ) the new definition into the existing one. The default value is MERGE .",
+            "Type": "string",
+            "Required": false
+        },
+        "failOnWarnings": {
+            "Description": "A query parameter to specify whether to rollback the documentation importation (true ) or not (false ) when a warning is encountered. The default value is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "body": {
+            "Description": "Raw byte array representing the to-be-imported documentation parts. To import from an OpenAPI file, this is a JSON object.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        }
+    },
+    "import_rest_api": {
+        "failOnWarnings": {
+            "Description": "A query parameter to indicate whether to rollback the API creation (true ) or not (false ) when a warning is encountered. The default value is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "parameters": {
+            "Description": "A key-value map of context-specific query string parameters specifying the behavior of different API importing operations. The following shows operation-specific parameters and their supported values.\nTo exclude DocumentationParts from the import, set parameters as ignore=documentation .\nTo configure the endpoint type, set parameters as endpointConfigurationTypes=EDGE, endpointConfigurationTypes=REGIONAL, or endpointConfigurationTypes=PRIVATE. The default endpoint type is EDGE .\nTo handle imported basepath, set parameters as basepath=ignore, basepath=prepend or basepath=split .\nFor example, the AWS CLI command to exclude documentation from the imported API is:\nThe AWS CLI command to set the regional endpoint on the imported API is:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "body": {
+            "Description": "The POST request body containing external API definitions. Currently, only OpenAPI definition JSON/YAML files are supported. The maximum size of the API definition file is 6MB.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        }
+    },
+    "put_gateway_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "responseType": {
+            "Description": "The response type of the associated GatewayResponse",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "The HTTP status code of the GatewayResponse.",
+            "Type": "string",
+            "Required": false
+        },
+        "responseParameters": {
+            "Description": "Response parameters (paths, query strings and headers) of the GatewayResponse as a string-to-string map of key-value pairs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "responseTemplates": {
+            "Description": "Response templates of the GatewayResponse as a string-to-string map of key-value pairs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_integration": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies a put integration request's resource ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies the HTTP method for the integration.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "Specifies a put integration input's type.",
+            "Type": "string",
+            "Required": true
+        },
+        "integrationHttpMethod": {
+            "Description": "The HTTP method for the integration.",
+            "Type": "string",
+            "Required": false
+        },
+        "uri": {
+            "Description": "Specifies Uniform Resource Identifier (URI) of the integration endpoint. For HTTP or HTTP_PROXY integrations, the URI must be a fully formed, encoded HTTP(S) URL according to the RFC-3986 specification, for either standard integration, where connectionType is not VPC_LINK , or private integration, where connectionType is VPC_LINK . For a private HTTP integration, the URI is not used for routing. For AWS or AWS_PROXY integrations, the URI is of the form arn:aws:apigateway:{region}:{subdomain.service|service}:path|action/{service_api }. Here, {Region} is the API Gateway region (e.g., us-east-1); {service} is the name of the integrated Amazon Web Services service (e.g., s3); and {subdomain} is a designated subdomain supported by certain Amazon Web Services service for fast host-name lookup. action can be used for an Amazon Web Services service action-based API, using an Action={name}&{p1}={v1}&p2={v2}... query string. The ensuing {service_api} refers to a supported action {name} plus any required input parameters. Alternatively, path can be used for an Amazon Web Services service path-based API. The ensuing service_api refers to the path to an Amazon Web Services service resource, including the region of the integrated Amazon Web Services service, if applicable. For example, for integration with the S3 API of GetObject , the uri can be either arn:aws:apigateway:us-west-2:s3:action/GetObject&Bucket={bucket}&Key={key} or arn:aws:apigateway:us-west-2:s3:path/{bucket}/{key} .",
+            "Type": "string",
+            "Required": false
+        },
+        "connectionType": {
+            "Description": "The type of the network connection to the integration endpoint. The valid value is INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and a network load balancer in a VPC. The default value is INTERNET .",
+            "Type": "string",
+            "Required": false
+        },
+        "connectionId": {
+            "Description": "The ID of the VpcLink used for the integration. Specify this value only if you specify VPC_LINK as the connection type.",
+            "Type": "string",
+            "Required": false
+        },
+        "credentials": {
+            "Description": "Specifies whether credentials are required for a put integration.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestParameters": {
+            "Description": "A key-value map specifying request parameters that are passed from the method request to the back end. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the back end. The method request parameter value must match the pattern of method.request.{location}.{name}, where location is querystring, path, or header and name must be a valid and unique method request parameter name.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "requestTemplates": {
+            "Description": "Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "passthroughBehavior": {
+            "Description": "Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH , WHEN_NO_TEMPLATES , and NEVER .",
+            "Type": "string",
+            "Required": false
+        },
+        "cacheNamespace": {
+            "Description": "Specifies a group of related cached parameters. By default, API Gateway uses the resource ID as the cacheNamespace . You can specify the same cacheNamespace across resources to return the same cached data for requests to different resources.",
+            "Type": "string",
+            "Required": false
+        },
+        "cacheKeyParameters": {
+            "Description": "A list of request parameters whose values API Gateway caches. To be valid values for cacheKeyParameters, these parameters must also be specified for Method requestParameters .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "contentHandling": {
+            "Description": "Specifies how to handle request payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:\nIf this property is not defined, the request payload will be passed through from the method request to integration request without modification, provided that the passthroughBehavior is configured to support payload pass-through.",
+            "Type": "string",
+            "Required": false
+        },
+        "timeoutInMillis": {
+            "Description": "Custom timeout between 50 and 29,000 milliseconds. The default value is 29,000 milliseconds or 29 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "tlsConfig": {
+            "Description": "Specifies the TLS configuration for an integration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_integration_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies a put integration response request's resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies a put integration response request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "Specifies the status code that is used to map the integration response to an existing MethodResponse.",
+            "Type": "string",
+            "Required": true
+        },
+        "selectionPattern": {
+            "Description": "Specifies the selection pattern of a put integration response.",
+            "Type": "string",
+            "Required": false
+        },
+        "responseParameters": {
+            "Description": "A key-value map specifying response parameters that are passed to the method response from the back end. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of method.response.header.{name}, where name is a valid and unique header name. The mapped non-static value must match the pattern of integration.response.header.{name} or integration.response.body.{JSON-expression}, where name must be a valid and unique response header name and JSON-expression a valid JSON expression without the $ prefix.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "responseTemplates": {
+            "Description": "Specifies a put integration response's templates.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "contentHandling": {
+            "Description": "Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:\nIf this property is not defined, the response payload will be passed through from the integration response to the method response without modification.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_method": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the new Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies the method request's HTTP method type.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizationType": {
+            "Description": "The method's authorization type. Valid values are NONE for open access, AWS_IAM for using AWS IAM permissions, CUSTOM for using a custom authorizer, or COGNITO_USER_POOLS for using a Cognito user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerId": {
+            "Description": "Specifies the identifier of an Authorizer to use on this Method, if the type is CUSTOM or COGNITO_USER_POOLS. The authorizer identifier is generated by API Gateway when you created the authorizer.",
+            "Type": "string",
+            "Required": false
+        },
+        "apiKeyRequired": {
+            "Description": "Specifies whether the method required a valid ApiKey.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "operationName": {
+            "Description": "A human-friendly operation identifier for the method. For example, you can assign the operationName of ListPets for the GET /pets method in the PetStore example.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestParameters": {
+            "Description": "A key-value map defining required or optional method request parameters that can be accepted by API Gateway. A key defines a method request parameter name matching the pattern of method.request.{location}.{name}, where location is querystring, path, or header and name is a valid and unique parameter name. The value associated with the key is a Boolean flag indicating whether the parameter is required (true ) or optional (false ). The method request parameter names defined here are available in Integration to be mapped to integration request parameters or body-mapping templates.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "requestModels": {
+            "Description": "Specifies the Model resources used for the request's content type. Request models are represented as a key/value map, with a content type as the key and a Model name as the value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "requestValidatorId": {
+            "Description": "The identifier of a RequestValidator for validating the method request.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorizationScopes": {
+            "Description": "A list of authorization scopes configured on the method. The scopes are used with a COGNITO_USER_POOLS authorizer to authorize the method invocation. The authorization works by matching the method scopes against the scopes parsed from the access token in the incoming request. The method invocation is authorized if any method scopes matches a claimed scope in the access token. Otherwise, the invocation is not authorized. When the method scope is configured, the client must provide an access token instead of an identity token for authorization purposes.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_method_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "The HTTP verb of the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "The method response's status code.",
+            "Type": "string",
+            "Required": true
+        },
+        "responseParameters": {
+            "Description": "A key-value map specifying required or optional response parameters that API Gateway can send back to the caller. A key defines a method response header name and the associated value is a Boolean flag indicating whether the method response parameter is required or not. The method response header names must match the pattern of method.response.header.{name}, where name is a valid and unique header name. The response parameter names defined here are available in the integration response to be mapped from an integration response header expressed in integration.response.header.{name}, a static value enclosed within a pair of single quotes (e.g., 'application/json' ), or a JSON expression from the back-end response payload in the form of integration.response.body.{JSON-expression}, where JSON-expression is a valid JSON expression without the $ prefix.)",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "responseModels": {
+            "Description": "Specifies the Model resources used for the response's content type. Response models are represented as a key/value map, with a content type as the key and a Model name as the value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_rest_api": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "mode": {
+            "Description": "The mode query parameter to specify the update mode. Valid values are \"merge\" and \"overwrite\". By default, the update mode is \"merge\".",
+            "Type": "string",
+            "Required": false
+        },
+        "failOnWarnings": {
+            "Description": "A query parameter to indicate whether to rollback the API update (true ) or not (false ) when a warning is encountered. The default value is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "parameters": {
+            "Description": "Custom header parameters as part of the request. For example, to exclude DocumentationParts from an imported API, set ignore=documentation as a parameters value, as in the AWS CLI command of aws apigateway import-rest-api --parameters ignore=documentation --body 'file:///path/to/imported-api-body.json' .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "body": {
+            "Description": "The PUT request body containing external API definitions. Currently, only OpenAPI definition JSON/YAML files are supported. The maximum size of the API definition file is 6MB.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of a resource that can be tagged.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The key-value map of strings. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "test_invoke_authorizer": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerId": {
+            "Description": "Specifies a test invoke authorizer request's Authorizer ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "headers": {
+            "Description": "A key-value map of headers to simulate an incoming invocation request. This is where the incoming authorization token, or identity source, should be specified.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "multiValueHeaders": {
+            "Description": "The headers as a map from string to list of values to simulate an incoming invocation request. This is where the incoming authorization token, or identity source, may be specified.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "pathWithQueryString": {
+            "Description": "The URI path, including query string, of the simulated invocation request. Use this to specify path parameters and query string parameters.",
+            "Type": "string",
+            "Required": false
+        },
+        "body": {
+            "Description": "The simulated request body of an incoming invocation request.",
+            "Type": "string",
+            "Required": false
+        },
+        "stageVariables": {
+            "Description": "A key-value map of stage variables to simulate an invocation on a deployed Stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "additionalContext": {
+            "Description": "A key-value map of additional context variables.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "test_invoke_method": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies a test invoke method request's resource ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies a test invoke method request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        },
+        "pathWithQueryString": {
+            "Description": "The URI path, including query string, of the simulated invocation request. Use this to specify path parameters and query string parameters.",
+            "Type": "string",
+            "Required": false
+        },
+        "body": {
+            "Description": "The simulated request body of an incoming invocation request.",
+            "Type": "string",
+            "Required": false
+        },
+        "headers": {
+            "Description": "A key-value map of headers to simulate an incoming invocation request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "multiValueHeaders": {
+            "Description": "The headers as a map from string to list of values to simulate an incoming invocation request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientCertificateId": {
+            "Description": "A ClientCertificate identifier to use in the test invocation. API Gateway will use the certificate when making the HTTPS request to the defined back-end endpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "stageVariables": {
+            "Description": "A key-value map of stage variables to simulate an invocation on a deployed Stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of a resource that can be tagged.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The Tag keys to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_account": {
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_api_key": {
+        "apiKey": {
+            "Description": "The identifier of the ApiKey resource to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_authorizer": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerId": {
+            "Description": "The identifier of the Authorizer resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_base_path_mapping": {
+        "domainName": {
+            "Description": "The domain name of the BasePathMapping resource to change.",
+            "Type": "string",
+            "Required": true
+        },
+        "basePath": {
+            "Description": "The base path of the BasePathMapping resource to change.\nTo specify an empty base path, set this parameter to '(none)' .",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_client_certificate": {
+        "clientCertificateId": {
+            "Description": "The identifier of the ClientCertificate resource to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_deployment": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "deploymentId": {
+            "Description": "The replacement identifier for the Deployment resource to change information about.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_documentation_part": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "documentationPartId": {
+            "Description": "The identifier of the to-be-updated documentation part.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_documentation_version": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi..",
+            "Type": "string",
+            "Required": true
+        },
+        "documentationVersion": {
+            "Description": "The version identifier of the to-be-updated documentation version.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_domain_name": {
+        "domainName": {
+            "Description": "The name of the DomainName resource to be changed.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_gateway_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "responseType": {
+            "Description": "The response type of the associated GatewayResponse.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_integration": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Represents an update integration request's resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Represents an update integration request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_integration_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "Specifies an update integration response request's resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "Specifies an update integration response request's HTTP method.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "Specifies an update integration response request's status code.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_method": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "The HTTP verb of the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_method_response": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The Resource identifier for the MethodResponse resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "httpMethod": {
+            "Description": "The HTTP verb of the Method resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusCode": {
+            "Description": "The status code for the MethodResponse resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_model": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "modelName": {
+            "Description": "The name of the model to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_request_validator": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "requestValidatorId": {
+            "Description": "The identifier of RequestValidator to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_resource": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceId": {
+            "Description": "The identifier of the Resource resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_rest_api": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_stage": {
+        "restApiId": {
+            "Description": "The string identifier of the associated RestApi.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the Stage resource to change information about.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_usage": {
+        "usagePlanId": {
+            "Description": "The Id of the usage plan associated with the usage data.",
+            "Type": "string",
+            "Required": true
+        },
+        "keyId": {
+            "Description": "The identifier of the API key associated with the usage plan in which a temporary extension is granted to the remaining quota.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_usage_plan": {
+        "usagePlanId": {
+            "Description": "The Id of the to-be-updated usage plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_vpc_link": {
+        "vpcLinkId": {
+            "Description": "The identifier of the VpcLink. It is used in an Integration to reference this VpcLink.",
+            "Type": "string",
+            "Required": true
+        },
+        "patchOperations": {
+            "Description": "For more information about supported patch operations, see Patch Operations .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

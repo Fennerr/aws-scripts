@@ -1,0 +1,252 @@
+{
+    "copy_backup_to_region": {
+        "DestinationRegion": {
+            "Description": "The AWS region that will contain your copied CloudHSM cluster backup.",
+            "Type": "string",
+            "Required": true
+        },
+        "BackupId": {
+            "Description": "The ID of the backup that will be copied to the destination region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagList": {
+            "Description": "Tags to apply to the destination backup during creation. If you specify tags, only these tags will be applied to the destination backup. If you do not specify tags, the service copies tags from the source backup to the destination backup.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_cluster": {
+        "BackupRetentionPolicy": {
+            "Description": "A policy that defines how the service retains backups.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "HsmType": {
+            "Description": "The type of HSM to use in the cluster. Currently the only allowed value is hsm1.medium .",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceBackupId": {
+            "Description": "The identifier (ID) of the cluster backup to restore. Use this value to restore the cluster from a backup instead of creating a new cluster. To find the backup ID, use  DescribeBackups .",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetIds": {
+            "Description": "The identifiers (IDs) of the subnets where you are creating the cluster. You must specify at least one subnet. If you specify multiple subnets, they must meet the following criteria:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "TagList": {
+            "Description": "Tags to apply to the CloudHSM cluster during creation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_hsm": {
+        "ClusterId": {
+            "Description": "The identifier (ID) of the HSM's cluster. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        },
+        "AvailabilityZone": {
+            "Description": "The Availability Zone where you are creating the HSM. To find the cluster's Availability Zones, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        },
+        "IpAddress": {
+            "Description": "The HSM's IP address. If you specify an IP address, use an available address from the subnet that maps to the Availability Zone where you are creating the HSM. If you don't specify an IP address, one is chosen for you from that subnet.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_backup": {
+        "BackupId": {
+            "Description": "The ID of the backup to be deleted. To find the ID of a backup, use the  DescribeBackups operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_cluster": {
+        "ClusterId": {
+            "Description": "The identifier (ID) of the cluster that you are deleting. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_hsm": {
+        "ClusterId": {
+            "Description": "The identifier (ID) of the cluster that contains the HSM that you are deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "HsmId": {
+            "Description": "The identifier (ID) of the HSM that you are deleting.",
+            "Type": "string",
+            "Required": false
+        },
+        "EniId": {
+            "Description": "The identifier (ID) of the elastic network interface (ENI) of the HSM that you are deleting.",
+            "Type": "string",
+            "Required": false
+        },
+        "EniIp": {
+            "Description": "The IP address of the elastic network interface (ENI) of the HSM that you are deleting.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_backups": {
+        "NextToken": {
+            "Description": "The NextToken value that you received in the previous response. Use this value to get more backups.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of backups to return in the response. When there are more backups than the number you specify, the response contains a NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "One or more filters to limit the items returned in the response.\nUse the backupIds filter to return only the specified backups. Specify backups by their backup identifier (ID).\nUse the sourceBackupIds filter to return only the backups created from a source backup. The sourceBackupID of a source backup is returned by the  CopyBackupToRegion operation.\nUse the clusterIds filter to return only the backups for the specified clusters. Specify clusters by their cluster identifier (ID).\nUse the states filter to return only backups that match the specified state.\nUse the neverExpires filter to return backups filtered by the value in the neverExpires parameter. True returns all backups exempt from the backup retention policy. False returns all backups with a backup retention policy defined at the cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SortAscending": {
+            "Description": "Designates whether or not to sort the return backups by ascending chronological order of generation.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_clusters": {
+        "Filters": {
+            "Description": "One or more filters to limit the items returned in the response.\nUse the clusterIds filter to return only the specified clusters. Specify clusters by their cluster identifier (ID).\nUse the vpcIds filter to return only the clusters in the specified virtual private clouds (VPCs). Specify VPCs by their VPC identifier (ID).\nUse the states filter to return only clusters that match the specified state.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The NextToken value that you received in the previous response. Use this value to get more clusters.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of clusters to return in the response. When there are more clusters than the number you specify, the response contains a NextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "initialize_cluster": {
+        "ClusterId": {
+            "Description": "The identifier (ID) of the cluster that you are claiming. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        },
+        "SignedCert": {
+            "Description": "The cluster certificate issued (signed) by your issuing certificate authority (CA). The certificate must be in PEM format and can contain a maximum of 5000 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrustAnchor": {
+            "Description": "The issuing certificate of the issuing certificate authority (CA) that issued (signed) the cluster certificate. You must use a self-signed certificate. The certificate used to sign the HSM CSR must be directly available, and thus must be the root certificate. The certificate must be in PEM format and can contain a maximum of 5000 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags": {
+        "ResourceId": {
+            "Description": "The cluster identifier (ID) for the cluster whose tags you are getting. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The NextToken value that you received in the previous response. Use this value to get more tags.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of tags to return in the response. When there are more tags than the number you specify, the response contains a NextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "modify_backup_attributes": {
+        "BackupId": {
+            "Description": "The identifier (ID) of the backup to modify. To find the ID of a backup, use the  DescribeBackups operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "NeverExpires": {
+            "Description": "Specifies whether the service should exempt a backup from the retention policy for the cluster. True exempts a backup from the retention policy. False means the service applies the backup retention policy defined at the cluster.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "modify_cluster": {
+        "BackupRetentionPolicy": {
+            "Description": "A policy that defines how the service retains backups.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClusterId": {
+            "Description": "The identifier (ID) of the cluster that you want to modify. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restore_backup": {
+        "BackupId": {
+            "Description": "The ID of the backup to be restored. To find the ID of a backup, use the  DescribeBackups operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceId": {
+            "Description": "The cluster identifier (ID) for the cluster that you are tagging. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagList": {
+            "Description": "A list of one or more tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceId": {
+            "Description": "The cluster identifier (ID) for the cluster whose tags you are removing. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeyList": {
+            "Description": "A list of one or more tag keys for the tags that you are removing. Specify only the tag keys, not the tag values.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "ResourceId": {
+            "Description": "The cluster identifier (ID) for the cluster whose tags you are getting. To find the cluster ID, use  DescribeClusters .",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

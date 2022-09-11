@@ -1,0 +1,250 @@
+{
+    "delete_object": {
+        "BackupJobId": {
+            "Description": "[REQUIRED] Backup job Id for the in-progress backup.",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectName": {
+            "Description": "[REQUIRED] The name of the Object.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_chunk": {
+        "StorageJobId": {
+            "Description": "[REQUIRED] Storage job id",
+            "Type": "string",
+            "Required": false
+        },
+        "ChunkToken": {
+            "Description": "[REQUIRED] Chunk token",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_object_metadata": {
+        "StorageJobId": {
+            "Description": "[REQUIRED] Backup job id for the in-progress backup.",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectToken": {
+            "Description": "[REQUIRED] Object token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_chunks": {
+        "StorageJobId": {
+            "Description": "[REQUIRED] Storage job id",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectToken": {
+            "Description": "[REQUIRED] Object token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of chunks",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_objects": {
+        "StorageJobId": {
+            "Description": "[REQUIRED] Storage job id",
+            "Type": "string",
+            "Required": false
+        },
+        "StartingObjectName": {
+            "Description": "Optional, specifies the starting Object name to list from. Ignored if NextToken is not NULL",
+            "Type": "string",
+            "Required": false
+        },
+        "StartingObjectPrefix": {
+            "Description": "Optional, specifies the starting Object prefix to list from. Ignored if NextToken is not NULL",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum objects count",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token",
+            "Type": "string",
+            "Required": false
+        },
+        "CreatedBefore": {
+            "Description": "(Optional) Created before filter",
+            "Type": "datetime",
+            "Required": false
+        },
+        "CreatedAfter": {
+            "Description": "(Optional) Created after filter",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "notify_object_complete": {
+        "BackupJobId": {
+            "Description": "[REQUIRED] Backup job Id for the in-progress backup",
+            "Type": "string",
+            "Required": false
+        },
+        "UploadId": {
+            "Description": "[REQUIRED] Upload Id for the in-progress upload",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectChecksum": {
+            "Description": "[REQUIRED] Object checksum",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectChecksumAlgorithm": {
+            "Description": "[REQUIRED] Checksum algorithm",
+            "Type": "string",
+            "Required": false
+        },
+        "MetadataString": {
+            "Description": "Optional metadata associated with an Object. Maximum string length is 256 bytes.",
+            "Type": "string",
+            "Required": false
+        },
+        "MetadataBlob": {
+            "Description": "Optional metadata associated with an Object. Maximum length is 4MB.",
+            "Type": "bytes or seekable file-like object",
+            "Required": false
+        },
+        "MetadataBlobLength": {
+            "Description": "The size of MetadataBlob.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MetadataBlobChecksum": {
+            "Description": "Checksum of MetadataBlob.",
+            "Type": "string",
+            "Required": false
+        },
+        "MetadataBlobChecksumAlgorithm": {
+            "Description": "Checksum algorithm.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_chunk": {
+        "BackupJobId": {
+            "Description": "[REQUIRED] Backup job Id for the in-progress backup.",
+            "Type": "string",
+            "Required": false
+        },
+        "UploadId": {
+            "Description": "[REQUIRED] Upload Id for the in-progress upload.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChunkIndex": {
+            "Description": "[REQUIRED] Describes this chunk's position relative to the other chunks",
+            "Type": "integer",
+            "Required": false
+        },
+        "Data": {
+            "Description": "[REQUIRED] Data to be uploaded",
+            "Type": "bytes or seekable file-like object",
+            "Required": false
+        },
+        "Length": {
+            "Description": "[REQUIRED] Data length",
+            "Type": "integer",
+            "Required": false
+        },
+        "Checksum": {
+            "Description": "[REQUIRED] Data checksum",
+            "Type": "string",
+            "Required": false
+        },
+        "ChecksumAlgorithm": {
+            "Description": "[REQUIRED] Checksum algorithm",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_object": {
+        "BackupJobId": {
+            "Description": "[REQUIRED] Backup job Id for the in-progress backup.",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectName": {
+            "Description": "[REQUIRED] The name of the Object to be uploaded.",
+            "Type": "string",
+            "Required": false
+        },
+        "MetadataString": {
+            "Description": "Store user defined metadata like backup checksum, disk ids, restore metadata etc.",
+            "Type": "string",
+            "Required": false
+        },
+        "InlineChunk": {
+            "Description": "Inline chunk data to be uploaded.",
+            "Type": "bytes or seekable file-like object",
+            "Required": false
+        },
+        "InlineChunkLength": {
+            "Description": "Length of the inline chunk data.",
+            "Type": "integer",
+            "Required": false
+        },
+        "InlineChunkChecksum": {
+            "Description": "Inline chunk checksum",
+            "Type": "string",
+            "Required": false
+        },
+        "InlineChunkChecksumAlgorithm": {
+            "Description": "Inline chunk checksum algorithm",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectChecksum": {
+            "Description": "object checksum",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectChecksumAlgorithm": {
+            "Description": "object checksum algorithm",
+            "Type": "string",
+            "Required": false
+        },
+        "ThrowOnDuplicate": {
+            "Description": "Throw an exception if Object name is already exist.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "start_object": {
+        "BackupJobId": {
+            "Description": "[REQUIRED] Backup job Id for the in-progress backup",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectName": {
+            "Description": "[REQUIRED] Name for the object.",
+            "Type": "string",
+            "Required": false
+        },
+        "ThrowOnDuplicate": {
+            "Description": "Throw an exception if Object name is already exist.",
+            "Type": "boolean",
+            "Required": false
+        }
+    }
+}

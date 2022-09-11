@@ -1,0 +1,557 @@
+{
+    "activate_anomaly_detector": {
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "back_test_anomaly_detector": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_alert": {
+        "AlertName": {
+            "Description": "The name of the alert.",
+            "Type": "string",
+            "Required": true
+        },
+        "AlertSensitivityThreshold": {
+            "Description": "An integer from 0 to 100 specifying the alert sensitivity threshold.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AlertDescription": {
+            "Description": "A description of the alert.",
+            "Type": "string",
+            "Required": false
+        },
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the detector to which the alert is attached.",
+            "Type": "string",
+            "Required": true
+        },
+        "Action": {
+            "Description": "Action that will be triggered when there is an alert.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the alert.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AlertFilters": {
+            "Description": "The configuration of the alert filters, containing MetricList and DimensionFilterList.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_anomaly_detector": {
+        "AnomalyDetectorName": {
+            "Description": "The name of the detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnomalyDetectorDescription": {
+            "Description": "A description of the detector.",
+            "Type": "string",
+            "Required": false
+        },
+        "AnomalyDetectorConfig": {
+            "Description": "Contains information about the configuration of the anomaly detector.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "KmsKeyArn": {
+            "Description": "The ARN of the KMS key to use to encrypt your data.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the anomaly detector.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_metric_set": {
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the anomaly detector that will use the dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricSetName": {
+            "Description": "The name of the dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricSetDescription": {
+            "Description": "A description of the dataset you are creating.",
+            "Type": "string",
+            "Required": false
+        },
+        "MetricList": {
+            "Description": "A list of metrics that the dataset will contain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Offset": {
+            "Description": "After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3, Redshift, Athena and datasources.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TimestampColumn": {
+            "Description": "Contains information about the column used for tracking time in your source data.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DimensionList": {
+            "Description": "A list of the fields you want to treat as dimensions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MetricSetFrequency": {
+            "Description": "The frequency with which the source data will be analyzed for anomalies.",
+            "Type": "string",
+            "Required": false
+        },
+        "MetricSource": {
+            "Description": "Contains information about how the source data should be interpreted.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Timezone": {
+            "Description": "The time zone in which your source data was recorded.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the dataset.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DimensionFilterList": {
+            "Description": "A list of filters that specify which data is kept for anomaly detection.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "deactivate_anomaly_detector": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_alert": {
+        "AlertArn": {
+            "Description": "The ARN of the alert to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_anomaly_detector": {
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the detector to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_alert": {
+        "AlertArn": {
+            "Description": "The ARN of the alert to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_anomaly_detection_executions": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "Timestamp": {
+            "Description": "The timestamp of the anomaly detection job.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_anomaly_detector": {
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the detector to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_metric_set": {
+        "MetricSetArn": {
+            "Description": "The ARN of the dataset.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_metric_set_config": {
+        "AnomalyDetectorArn": {
+            "Description": "An anomaly detector ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoDetectionMetricSource": {
+            "Description": "A data source.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "get_anomaly_group": {
+        "AnomalyGroupId": {
+            "Description": "The ID of the anomaly group.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_data_quality_metrics": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector that you want to investigate.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricSetArn": {
+            "Description": "The Amazon Resource Name (ARN) of a specific data quality metric set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_feedback": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnomalyGroupTimeSeriesFeedback": {
+            "Description": "The anomalous metric and group ID.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_sample_data": {
+        "S3SourceConfig": {
+            "Description": "A datasource bucket in Amazon S3.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_alerts": {
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the alert's detector.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the result of the previous request is truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results that will be displayed by the request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_anomaly_detectors": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_anomaly_group_related_metrics": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnomalyGroupId": {
+            "Description": "The ID of the anomaly group.",
+            "Type": "string",
+            "Required": true
+        },
+        "RelationshipTypeFilter": {
+            "Description": "Filter for potential causes (CAUSE_OF_INPUT_ANOMALY_GROUP ) or downstream effects (EFFECT_OF_INPUT_ANOMALY_GROUP ) of the anomaly group.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_anomaly_group_summaries": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "SensitivityThreshold": {
+            "Description": "The minimum severity score for inclusion in the output.",
+            "Type": "integer",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_anomaly_group_time_series": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnomalyGroupId": {
+            "Description": "The ID of the anomaly group.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricName": {
+            "Description": "The name of the measure field.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_metric_sets": {
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the anomaly detector containing the metrics sets to list.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The resource's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_feedback": {
+        "AnomalyDetectorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the anomaly detector.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnomalyGroupTimeSeriesFeedback": {
+            "Description": "Feedback for an anomalous metric.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The resource's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags to apply to the resource. Tag keys and values can contain letters, numbers, spaces, and the following symbols: _.:/=+@-",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The resource's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Keys to remove from the resource's tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_alert": {
+        "AlertArn": {
+            "Description": "The ARN of the alert to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "AlertDescription": {
+            "Description": "A description of the alert.",
+            "Type": "string",
+            "Required": false
+        },
+        "AlertSensitivityThreshold": {
+            "Description": "An integer from 0 to 100 specifying the alert sensitivity threshold.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Action": {
+            "Description": "Action that will be triggered when there is an alert.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AlertFilters": {
+            "Description": "The configuration of the alert filters, containing MetricList and DimensionFilterList.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_anomaly_detector": {
+        "AnomalyDetectorArn": {
+            "Description": "The ARN of the detector to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKeyArn": {
+            "Description": "The Amazon Resource Name (ARN) of an AWS KMS encryption key.",
+            "Type": "string",
+            "Required": false
+        },
+        "AnomalyDetectorDescription": {
+            "Description": "The updated detector description.",
+            "Type": "string",
+            "Required": false
+        },
+        "AnomalyDetectorConfig": {
+            "Description": "Contains information about the configuration to which the detector will be updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_metric_set": {
+        "MetricSetArn": {
+            "Description": "The ARN of the dataset to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricSetDescription": {
+            "Description": "The dataset's description.",
+            "Type": "string",
+            "Required": false
+        },
+        "MetricList": {
+            "Description": "The metric list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Offset": {
+            "Description": "After an interval ends, the amount of seconds that the detector waits before importing data. Offset is only supported for S3, Redshift, Athena and datasources.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TimestampColumn": {
+            "Description": "The timestamp column.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DimensionList": {
+            "Description": "The dimension list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MetricSetFrequency": {
+            "Description": "The dataset's interval.",
+            "Type": "string",
+            "Required": false
+        },
+        "MetricSource": {
+            "Description": "Contains information about source data used to generate metrics.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DimensionFilterList": {
+            "Description": "Describes a list of filters for choosing specific dimensions and specific values. Each filter consists of the dimension and one of its values that you want to include. When multiple dimensions or values are specified, the dimensions are joined with an AND operation and the values are joined with an OR operation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    }
+}

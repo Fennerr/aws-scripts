@@ -1,0 +1,462 @@
+{
+    "add_notification_channels": {
+        "channels": {
+            "Description": "One or 2 channels to report to when anomalies are detected.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group that we are setting up notifications for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_get_frame_metric_data": {
+        "endTime": {
+            "Description": "The end time of the time period for the returned time series values. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "frameMetrics": {
+            "Description": "The details of the metrics that are used to request a time series of values. The metric includes the name of the frame, the aggregation type to calculate the metric value for the frame, and the thread states to use to get the count for the metric value of the frame.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "period": {
+            "Description": "The duration of the frame metrics used to return the time series values. Specify using the ISO 8601 format. The maximum period duration is one day (PT24H or P1D ).",
+            "Type": "string",
+            "Required": false
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group associated with the the frame metrics used to return the time series values.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time of the time period for the frame metrics used to return the time series values. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "targetResolution": {
+            "Description": "The requested resolution of time steps for the returned time series of values. If the requested target resolution is not available due to data not being retained we provide a best effort result by falling back to the most granular available resolution after the target resolution. There are 3 valid values.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "configure_agent": {
+        "fleetInstanceId": {
+            "Description": "A universally unique identifier (UUID) for a profiling instance. For example, if the profiling instance is an Amazon EC2 instance, it is the instance ID. If it is an AWS Fargate container, it is the container's task ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "metadata": {
+            "Description": "Metadata captured about the compute platform the agent is running on. It includes information about sampling and reporting. The valid fields are:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group for which the configured agent is collecting profiling data.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_profiling_group": {
+        "agentOrchestrationConfig": {
+            "Description": "Specifies whether profiling is enabled or disabled for the created profiling group.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "Amazon CodeGuru Profiler uses this universally unique identifier (UUID) to prevent the accidental creation of duplicate profiling groups if there are failures and retries.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "computePlatform": {
+            "Description": "The compute platform of the profiling group. Use AWSLambda if your application runs on AWS Lambda. Use Default if your application runs on a compute platform that is not AWS Lambda, such an Amazon EC2 instance, an on-premises server, or a different platform. If not specified, Default is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tags to add to the created profiling group.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_profiling_group": {
+        "profilingGroupName": {
+            "Description": "The name of the profiling group to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_profiling_group": {
+        "profilingGroupName": {
+            "Description": "The name of the profiling group to get information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_findings_report_account_summary": {
+        "dailyReportsOnly": {
+            "Description": "A Boolean value indicating whether to only return reports from daily profiles. If set to True , only analysis data from daily profiles is returned. If set to False , analysis data is returned from smaller time windows (for example, one hour).",
+            "Type": "boolean",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results returned by GetFindingsReportAccountSummary in paginated output. When this parameter is used, GetFindingsReportAccountSummary only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another GetFindingsReportAccountSummary request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated GetFindingsReportAccountSummary request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_notification_configuration": {
+        "profilingGroupName": {
+            "Description": "The name of the profiling group we want to get the notification configuration for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_policy": {
+        "profilingGroupName": {
+            "Description": "The name of the profiling group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_profile": {
+        "accept": {
+            "Description": "The format of the returned profiling data. The format maps to the Accept and Content-Type headers of the HTTP request. You can specify one of the following: or the default .",
+            "Type": "string",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end time of the requested profile. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.\nIf you specify endTime, then you must also specify period or startTime, but not both.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "maxDepth": {
+            "Description": "The maximum depth of the stacks in the code that is represented in the aggregated profile. For example, if CodeGuru Profiler finds a method A , which calls method B , which calls method C , which calls method D , then the depth is 4. If the maxDepth is set to 2, then the aggregated profile contains representations of methods A and B .",
+            "Type": "integer",
+            "Required": false
+        },
+        "period": {
+            "Description": "Used with startTime or endTime to specify the time range for the returned aggregated profile. Specify using the ISO 8601 format. For example, P1DT1H1M1S .",
+            "Type": "string",
+            "Required": false
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group to get.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time of the profile to get. Specify using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "get_recommendations": {
+        "endTime": {
+            "Description": "The start time of the profile to get analysis data about. You must specify startTime and endTime. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "locale": {
+            "Description": "The language used to provide analysis. Specify using a string that is one of the following BCP 47 language codes.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group to get analysis data about.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The end time of the profile to get analysis data about. You must specify startTime and endTime. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "list_findings_reports": {
+        "dailyReportsOnly": {
+            "Description": "A Boolean value indicating whether to only return reports from daily profiles. If set to True , only analysis data from daily profiles is returned. If set to False , analysis data is returned from smaller time windows (for example, one hour).",
+            "Type": "boolean",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end time of the profile to get analysis data about. You must specify startTime and endTime. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of report results returned by ListFindingsReports in paginated output. When this parameter is used, ListFindingsReports only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListFindingsReports request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated ListFindingsReportsRequest request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value.",
+            "Type": "string",
+            "Required": false
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group from which to search for analysis data.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time of the profile to get analysis data about. You must specify startTime and endTime. This is specified using the ISO 8601 format. For example, 2020-06-01T13:15:02.001Z represents 1 millisecond past June 1, 2020 1:15:02 PM UTC.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "list_profile_times": {
+        "endTime": {
+            "Description": "The end time of the time range from which to list the profiles.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of profile time results returned by ListProfileTimes in paginated output. When this parameter is used, ListProfileTimes only returns maxResults results in a single page with a nextToken response element. The remaining results of the initial request can be seen by sending another ListProfileTimes request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated ListProfileTimes request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value.",
+            "Type": "string",
+            "Required": false
+        },
+        "orderBy": {
+            "Description": "The order (ascending or descending by start time of the profile) to use when listing profiles. Defaults to TIMESTAMP_DESCENDING .",
+            "Type": "string",
+            "Required": false
+        },
+        "period": {
+            "Description": "The aggregation period. This specifies the period during which an aggregation profile collects posted agent profiles for a profiling group. There are 3 valid values.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time of the time range from which to list the profiles.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "list_profiling_groups": {
+        "includeDescription": {
+            "Description": "A Boolean value indicating whether to include a description. If true , then a list of ` ProfilingGroupDescription https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_ProfilingGroupDescription.html`__ objects that contain detailed information about profiling groups is returned. If false , then a list of profiling group names is returned.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of profiling groups results returned by ListProfilingGroups in paginated output. When this parameter is used, ListProfilingGroups only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListProfilingGroups request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated ListProfilingGroups request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that contains the tags to return.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "post_agent_profile": {
+        "agentProfile": {
+            "Description": "The submitted profiling data.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        },
+        "contentType": {
+            "Description": "The format of the submitted profiling data. The format maps to the Accept and Content-Type headers of the HTTP request. You can specify one of the following: or the default .",
+            "Type": "string",
+            "Required": true
+        },
+        "profileToken": {
+            "Description": "Amazon CodeGuru Profiler uses this universally unique identifier (UUID) to prevent the accidental submission of duplicate profiling data if there are failures and retries.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group with the aggregated profile that receives the submitted profiling data.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_permission": {
+        "actionGroup": {
+            "Description": "Specifies an action group that contains permissions to add to a profiling group resource. One action group is supported, agentPermissions, which grants permission to perform actions required by the profiling agent, ConfigureAgent and PostAgentProfile permissions.",
+            "Type": "string",
+            "Required": true
+        },
+        "principals": {
+            "Description": "A list ARNs for the roles and users you want to grant access to the profiling group. Wildcards are not are supported in the ARNs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group to grant access to.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "A universally unique identifier (UUID) for the revision of the policy you are adding to the profiling group. Do not specify this when you add permissions to a profiling group for the first time. If a policy already exists on the profiling group, you must specify the revisionId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "remove_notification_channel": {
+        "channelId": {
+            "Description": "The id of the channel that we want to stop receiving notifications.",
+            "Type": "string",
+            "Required": true
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group we want to change notification configuration for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_permission": {
+        "actionGroup": {
+            "Description": "Specifies an action group that contains the permissions to remove from a profiling group's resource-based policy. One action group is supported, agentPermissions, which grants ConfigureAgent and PostAgentProfile permissions.",
+            "Type": "string",
+            "Required": true
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "A universally unique identifier (UUID) for the revision of the resource-based policy from which you want to remove permissions.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "submit_feedback": {
+        "anomalyInstanceId": {
+            "Description": "The universally unique identifier (UUID) of the ` AnomalyInstance https://docs.aws.amazon.com/codeguru/latest/profiler-api/API_AnomalyInstance.html`__ object that is included in the analysis data.",
+            "Type": "string",
+            "Required": true
+        },
+        "comment": {
+            "Description": "Optional feedback about this anomaly.",
+            "Type": "string",
+            "Required": false
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group that is associated with the analysis data.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The feedback tpye. Thee are two valid values, Positive and Negative .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that the tags are added to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The list of tags that are added to the specified resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that contains the tags to remove.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of tag keys. Existing tags of resources with keys in this list are removed from the specified resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_profiling_group": {
+        "agentOrchestrationConfig": {
+            "Description": "Specifies whether profiling is enabled or disabled for a profiling group.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "endTime": {
+            "Description": "The end time of the time range from which to list the profiles.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "orderBy": {
+            "Description": "The order (ascending or descending by start time of the profile) to use when listing profiles. Defaults to TIMESTAMP_DESCENDING .",
+            "Type": "string",
+            "Required": false
+        },
+        "period": {
+            "Description": "The aggregation period. This specifies the period during which an aggregation profile collects posted agent profiles for a profiling group. There are 3 valid values.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "profilingGroupName": {
+            "Description": "The name of the profiling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time of the time range from which to list the profiles.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

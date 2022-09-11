@@ -1,0 +1,215 @@
+{
+    "cancel_resource_request": {
+        "RequestToken": {
+            "Description": "The RequestToken of the ProgressEvent object returned by the resource operation request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_resource": {
+        "TypeName": {
+            "Description": "The name of the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TypeVersionId": {
+            "Description": "For private resource types, the type version to use in this resource operation. If you do not specify a resource version, CloudFormation uses the default version.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role for Cloud Control API to use when performing this resource operation. The role specified must have the permissions required for this operation. The necessary permissions for each event handler are defined in the `` handlers `` section of the resource type definition schema .\nIf you do not specify a role, Cloud Control API uses a temporary session created using your Amazon Web Services user credentials.\nFor more information, see Specifying credentials in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique identifier to ensure the idempotency of the resource request. As a best practice, specify this token to ensure idempotency, so that Amazon Web Services Cloud Control API can accurately distinguish between request retries and new resource requests. You might retry a resource request to ensure that it was successfully received.\nA client token is valid for 36 hours once used. After that, a resource request with the same client token is treated as a new request.\nIf you do not specify a client token, one is generated for inclusion in the request.\nFor more information, see Ensuring resource operation requests are unique in the Amazon Web Services Cloud Control API User Guide .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "DesiredState": {
+            "Description": "Structured data format representing the desired state of the resource, consisting of that resource's properties and their desired values.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource": {
+        "TypeName": {
+            "Description": "The name of the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TypeVersionId": {
+            "Description": "For private resource types, the type version to use in this resource operation. If you do not specify a resource version, CloudFormation uses the default version.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role for Cloud Control API to use when performing this resource operation. The role specified must have the permissions required for this operation. The necessary permissions for each event handler are defined in the `` handlers `` section of the resource type definition schema .\nIf you do not specify a role, Cloud Control API uses a temporary session created using your Amazon Web Services user credentials.\nFor more information, see Specifying credentials in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique identifier to ensure the idempotency of the resource request. As a best practice, specify this token to ensure idempotency, so that Amazon Web Services Cloud Control API can accurately distinguish between request retries and new resource requests. You might retry a resource request to ensure that it was successfully received.\nA client token is valid for 36 hours once used. After that, a resource request with the same client token is treated as a new request.\nIf you do not specify a client token, one is generated for inclusion in the request.\nFor more information, see Ensuring resource operation requests are unique in the Amazon Web Services Cloud Control API User Guide .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Identifier": {
+            "Description": "The identifier for the resource.\nYou can specify the primary identifier, or any secondary identifier defined for the resource type in its resource schema. You can only specify one identifier. Primary identifiers can be specified as a string or JSON; secondary identifiers must be specified as JSON.\nFor compound primary identifiers (that is, one that consists of multiple resource properties strung together), to specify the primary identifier as a string, list the property values in the order they are specified in the primary identifier definition, separated by | .\nFor more information, see Identifying resources in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_resource": {
+        "TypeName": {
+            "Description": "The name of the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TypeVersionId": {
+            "Description": "For private resource types, the type version to use in this resource operation. If you do not specify a resource version, CloudFormation uses the default version.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role for Cloud Control API to use when performing this resource operation. The role specified must have the permissions required for this operation. The necessary permissions for each event handler are defined in the `` handlers `` section of the resource type definition schema .\nIf you do not specify a role, Cloud Control API uses a temporary session created using your Amazon Web Services user credentials.\nFor more information, see Specifying credentials in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "Identifier": {
+            "Description": "The identifier for the resource.\nYou can specify the primary identifier, or any secondary identifier defined for the resource type in its resource schema. You can only specify one identifier. Primary identifiers can be specified as a string or JSON; secondary identifiers must be specified as JSON.\nFor compound primary identifiers (that is, one that consists of multiple resource properties strung together), to specify the primary identifier as a string, list the property values in the order they are specified in the primary identifier definition, separated by | .\nFor more information, see Identifying resources in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_resource_request_status": {
+        "RequestToken": {
+            "Description": "A unique token used to track the progress of the resource operation request.\nRequest tokens are included in the ProgressEvent type returned by a resource operation request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_resource_requests": {
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.\nThe default is 20 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous paginated request didn't return all of the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceRequestStatusFilter": {
+            "Description": "The filter criteria to apply to the requests returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_resources": {
+        "TypeName": {
+            "Description": "The name of the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TypeVersionId": {
+            "Description": "For private resource types, the type version to use in this resource operation. If you do not specify a resource version, CloudFormation uses the default version.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role for Cloud Control API to use when performing this resource operation. The role specified must have the permissions required for this operation. The necessary permissions for each event handler are defined in the `` handlers `` section of the resource type definition schema .\nIf you do not specify a role, Cloud Control API uses a temporary session created using your Amazon Web Services user credentials.\nFor more information, see Specifying credentials in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous paginated request didn't return all of the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Reserved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ResourceModel": {
+            "Description": "The resource model to use to select the resources to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_resource": {
+        "TypeName": {
+            "Description": "The name of the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TypeVersionId": {
+            "Description": "For private resource types, the type version to use in this resource operation. If you do not specify a resource version, CloudFormation uses the default version.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role for Cloud Control API to use when performing this resource operation. The role specified must have the permissions required for this operation. The necessary permissions for each event handler are defined in the `` handlers `` section of the resource type definition schema .\nIf you do not specify a role, Cloud Control API uses a temporary session created using your Amazon Web Services user credentials.\nFor more information, see Specifying credentials in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique identifier to ensure the idempotency of the resource request. As a best practice, specify this token to ensure idempotency, so that Amazon Web Services Cloud Control API can accurately distinguish between request retries and new resource requests. You might retry a resource request to ensure that it was successfully received.\nA client token is valid for 36 hours once used. After that, a resource request with the same client token is treated as a new request.\nIf you do not specify a client token, one is generated for inclusion in the request.\nFor more information, see Ensuring resource operation requests are unique in the Amazon Web Services Cloud Control API User Guide .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Identifier": {
+            "Description": "The identifier for the resource.\nYou can specify the primary identifier, or any secondary identifier defined for the resource type in its resource schema. You can only specify one identifier. Primary identifiers can be specified as a string or JSON; secondary identifiers must be specified as JSON.\nFor compound primary identifiers (that is, one that consists of multiple resource properties strung together), to specify the primary identifier as a string, list the property values in the order they are specified in the primary identifier definition, separated by | .\nFor more information, see Identifying resources in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "PatchDocument": {
+            "Description": "A JavaScript Object Notation (JSON) document listing the patch operations that represent the updates to apply to the current resource properties. For details, see Composing the patch document in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "TypeName": {
+            "Description": "The name of the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TypeVersionId": {
+            "Description": "For private resource types, the type version to use in this resource operation. If you do not specify a resource version, CloudFormation uses the default version.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role for Cloud Control API to use when performing this resource operation. The role specified must have the permissions required for this operation. The necessary permissions for each event handler are defined in the `` handlers `` section of the resource type definition schema .\nIf you do not specify a role, Cloud Control API uses a temporary session created using your Amazon Web Services user credentials.\nFor more information, see Specifying credentials in the Amazon Web Services Cloud Control API User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceModel": {
+            "Description": "The resource model to use to select the resources to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "RequestToken": {
+            "Description": "A unique token used to track the progress of the resource operation request.\nRequest tokens are included in the ProgressEvent type returned by a resource operation request.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

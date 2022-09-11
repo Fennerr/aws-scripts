@@ -1,0 +1,1148 @@
+{
+    "create_auto_predictor": {
+        "PredictorName": {
+            "Description": "A unique name for the predictor",
+            "Type": "string",
+            "Required": true
+        },
+        "ForecastHorizon": {
+            "Description": "The number of time-steps that the model predicts. The forecast horizon is also called the prediction length.\nThe maximum forecast horizon is the lesser of 500 time-steps or 1/4 of the TARGET_TIME_SERIES dataset length. If you are retraining an existing AutoPredictor, then the maximum forecast horizon is the lesser of 500 time-steps or 1/3 of the TARGET_TIME_SERIES dataset length.\nIf you are upgrading to an AutoPredictor or retraining an existing AutoPredictor, you cannot update the forecast horizon parameter. You can meet this requirement by providing longer time-series in the dataset.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ForecastTypes": {
+            "Description": "The forecast types used to train a predictor. You can specify up to five forecast types. Forecast types can be quantiles from 0.01 to 0.99, by increments of 0.01 or higher. You can also specify the mean forecast with mean .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ForecastDimensions": {
+            "Description": "An array of dimension (field) names that specify how to group the generated forecast.\nFor example, if you are generating forecasts for item sales across all your stores, and your dataset contains a store_id field, you would specify store_id as a dimension to group sales forecasts for each store.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ForecastFrequency": {
+            "Description": "The frequency of predictions in a forecast.\nValid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and 1min (1 minute). For example, \"Y\" indicates every year and \"5min\" indicates every five minutes.\nThe frequency must be greater than or equal to the TARGET_TIME_SERIES dataset frequency.\nWhen a RELATED_TIME_SERIES dataset is provided, the frequency must be equal to the RELATED_TIME_SERIES dataset frequency.",
+            "Type": "string",
+            "Required": false
+        },
+        "DataConfig": {
+            "Description": "The data configuration for your dataset group and any additional datasets.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EncryptionConfig": {
+            "Description": "An AWS Key Management Service (KMS) key and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key. You can specify this optional object in the  CreateDataset and  CreatePredictor requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ReferencePredictorArn": {
+            "Description": "The ARN of the predictor to retrain or upgrade. This parameter is only used when retraining or upgrading a predictor. When creating a new predictor, do not specify a value for this parameter.\nWhen upgrading or retraining a predictor, only specify values for the ReferencePredictorArn and PredictorName. The value for PredictorName must be a unique predictor name.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptimizationMetric": {
+            "Description": "The accuracy metric used to optimize the predictor.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExplainPredictor": {
+            "Description": "Create an Explainability resource for the predictor.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Optional metadata to help you categorize and organize your predictors. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.\nThe following restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MonitorConfig": {
+            "Description": "The configuration details for predictor monitoring. Provide a name for the monitor resource to enable predictor monitoring.\nPredictor monitoring allows you to see how your predictor's performance changes over time. For more information, see Predictor Monitoring .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TimeAlignmentBoundary": {
+            "Description": "The time boundary Forecast uses to align and aggregate any data that doesn't align with your forecast frequency. Provide the unit of time and the time boundary as a key value pair. For more information on specifying a time boundary, see Specifying a Time Boundary. If you don't provide a time boundary, Forecast uses a set of Default Time Boundaries .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_dataset": {
+        "DatasetName": {
+            "Description": "A name for the dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "Domain": {
+            "Description": "The domain associated with the dataset. When you add a dataset to a dataset group, this value and the value specified for the Domain parameter of the CreateDatasetGroup operation must match.\nThe Domain and DatasetType that you choose determine the fields that must be present in the training data that you import to the dataset. For example, if you choose the RETAIL domain and TARGET_TIME_SERIES as the DatasetType, Amazon Forecast requires item_id, timestamp, and demand fields to be present in your data. For more information, see Importing datasets .",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetType": {
+            "Description": "The dataset type. Valid values depend on the chosen Domain .",
+            "Type": "string",
+            "Required": true
+        },
+        "DataFrequency": {
+            "Description": "The frequency of data collection. This parameter is required for RELATED_TIME_SERIES datasets.\nValid intervals are Y (Year), M (Month), W (Week), D (Day), H (Hour), 30min (30 minutes), 15min (15 minutes), 10min (10 minutes), 5min (5 minutes), and 1min (1 minute). For example, \"D\" indicates every day and \"15min\" indicates every 15 minutes.",
+            "Type": "string",
+            "Required": false
+        },
+        "Schema": {
+            "Description": "The schema for the dataset. The schema attributes and their order must match the fields in your data. The dataset Domain and DatasetType that you choose determine the minimum required fields in your training data. For information about the required fields for a specific dataset domain and type, see Dataset Domains and Dataset Types .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "EncryptionConfig": {
+            "Description": "An AWS Key Management Service (KMS) key and the AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The optional metadata that you apply to the dataset to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_dataset_group": {
+        "DatasetGroupName": {
+            "Description": "A name for the dataset group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Domain": {
+            "Description": "The domain associated with the dataset group. When you add a dataset to a dataset group, this value and the value specified for the Domain parameter of the CreateDataset operation must match.\nThe Domain and DatasetType that you choose determine the fields that must be present in training data that you import to a dataset. For example, if you choose the RETAIL domain and TARGET_TIME_SERIES as the DatasetType, Amazon Forecast requires that item_id, timestamp, and demand fields are present in your data. For more information, see Dataset groups .",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetArns": {
+            "Description": "An array of Amazon Resource Names (ARNs) of the datasets that you want to include in the dataset group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The optional metadata that you apply to the dataset group to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_dataset_import_job": {
+        "DatasetImportJobName": {
+            "Description": "The name for the dataset import job. We recommend including the current timestamp in the name, for example, 20190721DatasetImport. This can help you avoid getting a ResourceAlreadyExistsException exception.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Forecast dataset that you want to import data to.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSource": {
+            "Description": "The location of the training data to import and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the data. The training data must be stored in an Amazon S3 bucket.\nIf encryption is used, DataSource must include an AWS Key Management Service (KMS) key and the IAM role must allow Amazon Forecast permission to access the key. The KMS key and IAM role must match those specified in the EncryptionConfig parameter of the CreateDataset operation.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TimestampFormat": {
+            "Description": "The format of timestamps in the dataset. The format that you specify depends on the DataFrequency specified when the dataset was created. The following formats are supported\nIf the format isn't specified, Amazon Forecast expects the format to be \"yyyy-MM-dd HH:mm:ss\".",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "TimeZone": {
+            "Description": "A single time zone for every item in your dataset. This option is ideal for datasets with all timestamps within a single time zone, or if all timestamps are normalized to a single time zone.\nRefer to the Joda-Time API for a complete list of valid time zone names.",
+            "Type": "string",
+            "Required": false
+        },
+        "UseGeolocationForTimeZone": {
+            "Description": "Automatically derive time zone information from the geolocation attribute. This option is ideal for datasets that contain timestamps in multiple time zones and those timestamps are expressed in local time.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "GeolocationFormat": {
+            "Description": "The format of the geolocation attribute. The geolocation attribute can be formatted in one of two ways:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "The optional metadata that you apply to the dataset import job to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Format": {
+            "Description": "The format of the imported data, CSV or PARQUET. The default value is CSV.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_explainability": {
+        "ExplainabilityName": {
+            "Description": "A unique name for the Explainability.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Predictor or Forecast used to create the Explainability.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExplainabilityConfig": {
+            "Description": "The configuration settings that define the granularity of time series and time points for the Explainability.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataSource": {
+            "Description": "The source of your data, an AWS Identity and Access Management (IAM) role that allows Amazon Forecast to access the data and, optionally, an AWS Key Management Service (KMS) key.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Schema": {
+            "Description": "Defines the fields of a dataset.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EnableVisualization": {
+            "Description": "Create an Explainability visualization that is viewable within the AWS console.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "StartDateTime": {
+            "Description": "If TimePointGranularity is set to SPECIFIC, define the first point for the Explainability.\nUse the following timestamp format: yyyy-MM-ddTHH:mm:ss (example: 2015-01-01T20:00:00)",
+            "Type": "string",
+            "Required": false
+        },
+        "EndDateTime": {
+            "Description": "If TimePointGranularity is set to SPECIFIC, define the last time point for the Explainability.\nUse the following timestamp format: yyyy-MM-ddTHH:mm:ss (example: 2015-01-01T20:00:00)",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Optional metadata to help you categorize and organize your resources. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.\nThe following restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_explainability_export": {
+        "ExplainabilityExportName": {
+            "Description": "A unique name for the Explainability export.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExplainabilityArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Explainability to export.",
+            "Type": "string",
+            "Required": true
+        },
+        "Destination": {
+            "Description": "The destination for an export job. Provide an S3 path, an AWS Identity and Access Management (IAM) role that allows Amazon Forecast to access the location, and an AWS Key Management Service (KMS) key (optional).",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Optional metadata to help you categorize and organize your resources. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.\nThe following restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Format": {
+            "Description": "The format of the exported data, CSV or PARQUET.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_forecast": {
+        "ForecastName": {
+            "Description": "A name for the forecast.",
+            "Type": "string",
+            "Required": true
+        },
+        "PredictorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor to use to generate the forecast.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForecastTypes": {
+            "Description": "The quantiles at which probabilistic forecasts are generated. You can currently specify up to 5 quantiles per forecast. Accepted values include 0.01 to 0.99 (increments of .01 only) and mean. The mean forecast is different from the median (0.50) when the distribution is not symmetric (for example, Beta and Negative Binomial).\nThe default quantiles are the quantiles you specified during predictor creation. If you didn't specify quantiles, the default values are [\"0.1\", \"0.5\", \"0.9\"] .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The optional metadata that you apply to the forecast to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "TimeSeriesSelector": {
+            "Description": "Defines the set of time series that are used to create the forecasts in a TimeSeriesIdentifiers object.\nThe TimeSeriesIdentifiers object needs the following information:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_forecast_export_job": {
+        "ForecastExportJobName": {
+            "Description": "The name for the forecast export job.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForecastArn": {
+            "Description": "The Amazon Resource Name (ARN) of the forecast that you want to export.",
+            "Type": "string",
+            "Required": true
+        },
+        "Destination": {
+            "Description": "The location where you want to save the forecast and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the location. The forecast must be exported to an Amazon S3 bucket.\nIf encryption is used, Destination must include an AWS Key Management Service (KMS) key. The IAM role must allow Amazon Forecast permission to access the key.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The optional metadata that you apply to the forecast export job to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Format": {
+            "Description": "The format of the exported data, CSV or PARQUET. The default value is CSV.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_monitor": {
+        "MonitorName": {
+            "Description": "The name of the monitor resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor to monitor.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the monitor resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_predictor": {
+        "PredictorName": {
+            "Description": "A name for the predictor.",
+            "Type": "string",
+            "Required": true
+        },
+        "AlgorithmArn": {
+            "Description": "The Amazon Resource Name (ARN) of the algorithm to use for model training. Required if PerformAutoML is not set to true .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ForecastHorizon": {
+            "Description": "Specifies the number of time-steps that the model is trained to predict. The forecast horizon is also called the prediction length.\nFor example, if you configure a dataset for daily data collection (using the DataFrequency parameter of the  CreateDataset operation) and set the forecast horizon to 10, the model returns predictions for 10 days.\nThe maximum forecast horizon is the lesser of 500 time-steps or 1/3 of the TARGET_TIME_SERIES dataset length.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ForecastTypes": {
+            "Description": "Specifies the forecast types used to train a predictor. You can specify up to five forecast types. Forecast types can be quantiles from 0.01 to 0.99, by increments of 0.01 or higher. You can also specify the mean forecast with mean .\nThe default value is [\"0.10\", \"0.50\", \"0.9\"] .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PerformAutoML": {
+            "Description": "Whether to perform AutoML. When Amazon Forecast performs AutoML, it evaluates the algorithms it provides and chooses the best algorithm and configuration for your training dataset.\nThe default value is false. In this case, you are required to specify an algorithm.\nSet PerformAutoML to true to have Amazon Forecast perform AutoML. This is a good option if you aren't sure which algorithm is suitable for your training data. In this case, PerformHPO must be false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AutoMLOverrideStrategy": {
+            "Description": "Used to overide the default AutoML strategy, which is to optimize predictor accuracy. To apply an AutoML strategy that minimizes training time, use LatencyOptimized .\nThis parameter is only valid for predictors trained using AutoML.",
+            "Type": "string",
+            "Required": false
+        },
+        "PerformHPO": {
+            "Description": "Whether to perform hyperparameter optimization (HPO). HPO finds optimal hyperparameter values for your training data. The process of performing HPO is known as running a hyperparameter tuning job.\nThe default value is false. In this case, Amazon Forecast uses default hyperparameter values from the chosen algorithm.\nTo override the default values, set PerformHPO to true and, optionally, supply the  HyperParameterTuningJobConfig object. The tuning job specifies a metric to optimize, which hyperparameters participate in tuning, and the valid range for each tunable hyperparameter. In this case, you are required to specify an algorithm and PerformAutoML must be false.\nThe following algorithms support HPO:",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        },
+        "TrainingParameters": {
+            "Description": "The hyperparameters to override for model training. The hyperparameters that you can override are listed in the individual algorithms. For the list of supported algorithms, see  aws-forecast-choosing-recipes .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EvaluationParameters": {
+            "Description": "Used to override the default evaluation parameters of the specified algorithm. Amazon Forecast evaluates a predictor by splitting a dataset into training data and testing data. The evaluation parameters define how to perform the split and the number of iterations.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "HPOConfig": {
+            "Description": "Provides hyperparameter override values for the algorithm. If you don't provide this parameter, Amazon Forecast uses default values. The individual algorithms specify which hyperparameters support hyperparameter optimization (HPO). For more information, see  aws-forecast-choosing-recipes .\nIf you included the HPOConfig object, you must set PerformHPO to true.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "InputDataConfig": {
+            "Description": "Describes the dataset group that contains the data to use to train the predictor.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "FeaturizationConfig": {
+            "Description": "The featurization configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "EncryptionConfig": {
+            "Description": "An AWS Key Management Service (KMS) key and the AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the key.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The optional metadata that you apply to the predictor to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "OptimizationMetric": {
+            "Description": "The accuracy metric used to optimize the predictor.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_predictor_backtest_export_job": {
+        "PredictorBacktestExportJobName": {
+            "Description": "The name for the backtest export job.",
+            "Type": "string",
+            "Required": true
+        },
+        "PredictorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor that you want to export.",
+            "Type": "string",
+            "Required": true
+        },
+        "Destination": {
+            "Description": "The destination for an export job. Provide an S3 path, an AWS Identity and Access Management (IAM) role that allows Amazon Forecast to access the location, and an AWS Key Management Service (KMS) key (optional).",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Optional metadata to help you categorize and organize your backtests. Each tag consists of a key and an optional value, both of which you define. Tag keys and values are case sensitive.\nThe following restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Format": {
+            "Description": "The format of the exported data, CSV or PARQUET. The default value is CSV.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_what_if_analysis": {
+        "WhatIfAnalysisName": {
+            "Description": "The name of the what-if analysis. Each name must be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForecastArn": {
+            "Description": "The Amazon Resource Name (ARN) of the baseline forecast.",
+            "Type": "string",
+            "Required": true
+        },
+        "TimeSeriesSelector": {
+            "Description": "Defines the set of time series that are used in the what-if analysis with a TimeSeriesIdentifiers object. What-if analyses are performed only for the time series in this object.\nThe TimeSeriesIdentifiers object needs the following information:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the what if forecast.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_what_if_forecast": {
+        "WhatIfForecastName": {
+            "Description": "The name of the what-if forecast. Names must be unique within each what-if analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "WhatIfAnalysisArn": {
+            "Description": "The Amazon Resource Name (ARN) of the what-if analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "TimeSeriesTransformations": {
+            "Description": "The transformations that are applied to the baseline time series. Each transformation contains an action and a set of conditions. An action is applied only when all conditions are met. If no conditions are provided, the action is applied to all items.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TimeSeriesReplacementsDataSource": {
+            "Description": "The replacement time series dataset, which contains the rows that you want to change in the related time series dataset. A replacement time series does not need to contain all rows that are in the baseline related time series. Include only the rows (measure-dimension combinations) that you want to include in the what-if forecast. This dataset is merged with the original time series to create a transformed dataset that is used for the what-if analysis.\nThis dataset should contain the items to modify (such as item_id or workforce_type), any relevant dimensions, the timestamp column, and at least one of the related time series columns. This file should not contain duplicate timestamps for the same time series.\nTimestamps and item_ids not included in this dataset are not included in the what-if analysis.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the what if forecast.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_what_if_forecast_export": {
+        "WhatIfForecastExportName": {
+            "Description": "The name of the what-if forecast to export.",
+            "Type": "string",
+            "Required": true
+        },
+        "WhatIfForecastArns": {
+            "Description": "The list of what-if forecast Amazon Resource Names (ARNs) to export.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Destination": {
+            "Description": "The location where you want to save the forecast and an AWS Identity and Access Management (IAM) role that Amazon Forecast can assume to access the location. The forecast must be exported to an Amazon S3 bucket.\nIf encryption is used, Destination must include an AWS Key Management Service (KMS) key. The IAM role must allow Amazon Forecast permission to access the key.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the what if forecast.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Format": {
+            "Description": "The format of the exported data, CSV or PARQUET.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_dataset": {
+        "DatasetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dataset_group": {
+        "DatasetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset group to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dataset_import_job": {
+        "DatasetImportJobArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset import job to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_explainability": {
+        "ExplainabilityArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Explainability resource to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_explainability_export": {
+        "ExplainabilityExportArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Explainability export to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_forecast": {
+        "ForecastArn": {
+            "Description": "The Amazon Resource Name (ARN) of the forecast to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_forecast_export_job": {
+        "ForecastExportJobArn": {
+            "Description": "The Amazon Resource Name (ARN) of the forecast export job to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_monitor": {
+        "MonitorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the monitor resource to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_predictor": {
+        "PredictorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_predictor_backtest_export_job": {
+        "PredictorBacktestExportJobArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor backtest export job to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_tree": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the parent resource to delete. All child resources of the parent resource will also be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_what_if_analysis": {
+        "WhatIfAnalysisArn": {
+            "Description": "The Amazon Resource Name (ARN) of the what-if analysis that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_what_if_forecast": {
+        "WhatIfForecastArn": {
+            "Description": "The Amazon Resource Name (ARN) of the what-if forecast that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_what_if_forecast_export": {
+        "WhatIfForecastExportArn": {
+            "Description": "The Amazon Resource Name (ARN) of the what-if forecast export that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_auto_predictor": {
+        "PredictorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dataset": {
+        "DatasetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dataset_group": {
+        "DatasetGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dataset_import_job": {
+        "DatasetImportJobArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset import job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_explainability": {
+        "ExplainabilityArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Explaianability to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_explainability_export": {
+        "ExplainabilityExportArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Explainability export.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_forecast": {
+        "ForecastArn": {
+            "Description": "The Amazon Resource Name (ARN) of the forecast.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_forecast_export_job": {
+        "ForecastExportJobArn": {
+            "Description": "The Amazon Resource Name (ARN) of the forecast export job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_monitor": {
+        "MonitorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the monitor resource to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_predictor": {
+        "PredictorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor that you want information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_predictor_backtest_export_job": {
+        "PredictorBacktestExportJobArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor backtest export job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_what_if_analysis": {
+        "WhatIfAnalysisArn": {
+            "Description": "The Amazon Resource Name (ARN) of the what-if analysis that you are interested in.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_what_if_forecast": {
+        "WhatIfForecastArn": {
+            "Description": "The Amazon Resource Name (ARN) of the what-if forecast that you are interested in.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_what_if_forecast_export": {
+        "WhatIfForecastExportArn": {
+            "Description": "The Amazon Resource Name (ARN) of the what-if forecast export that you are interested in.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_accuracy_metrics": {
+        "PredictorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the predictor to get metrics for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_dataset_groups": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dataset_import_jobs": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the datasets that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all dataset import jobs whose status is ACTIVE, you specify the following filter:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_datasets": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_explainabilities": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items returned in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the resources that match the statement from the list. The match statement consists of a key and a value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_explainability_exports": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude resources that match the statement from the list. The match statement consists of a key and a value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_forecast_export_jobs": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the forecast export jobs that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all jobs that export a forecast named electricityforecast, specify the following filter:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_forecasts": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the forecasts that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all forecasts whose status is not ACTIVE, you would specify:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_monitor_evaluations": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of monitoring results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MonitorArn": {
+            "Description": "The Amazon Resource Name (ARN) of the monitor resource to get results from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the resources that match the statement from the list. The match statement consists of a key and a value.\nFor example, to list only successful monitor evaluations, you would specify:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_monitors": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of monitors to include in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the resources that match the statement from the list. The match statement consists of a key and a value.\nFor example, to list all monitors who's status is ACTIVE, you would specify:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_predictor_backtest_export_jobs": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken. To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the predictor backtest export jobs that match the statement from the list. The match statement consists of a key and a value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_predictors": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the predictors that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all predictors whose status is ACTIVE, you would specify:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_what_if_analyses": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the what-if analysis jobs that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all jobs that export a forecast named electricityWhatIf, specify the following filter:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_what_if_forecast_exports": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the what-if forecast export jobs that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all jobs that export a forecast named electricityWIFExport, specify the following filter:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_what_if_forecasts": {
+        "NextToken": {
+            "Description": "If the result of the previous request was truncated, the response includes a NextToken . To retrieve the next set of results, use the token in the next request. Tokens expire after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the what-if forecast export jobs that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all jobs that export a forecast named electricityWhatIfForecast, specify the following filter:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "resume_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the monitor resource to resume.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource to stop. The supported ARNs are DatasetImportJobArn, PredictorArn, PredictorBacktestExportJobArn, ForecastArn, ForecastExportJobArn, ExplainabilityArn, and ExplainabilityExportArn .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to add to the resource. A tag is an array of key-value pairs.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of the tags to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_dataset_group": {
+        "DatasetGroupArn": {
+            "Description": "The ARN of the dataset group.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetArns": {
+            "Description": "An array of the Amazon Resource Names (ARNs) of the datasets to add to the dataset group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "Filters": {
+            "Description": "An array of filters. For each filter, you provide a condition and a match statement. The condition is either IS or IS_NOT, which specifies whether to include or exclude the what-if forecast export jobs that match the statement from the list, respectively. The match statement consists of a key and a value.\nFor example, to list all jobs that export a forecast named electricityWhatIfForecast, specify the following filter:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

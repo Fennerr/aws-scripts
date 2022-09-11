@@ -1,0 +1,458 @@
+{
+    "create_member": {
+        "ClientRequestToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "InvitationId": {
+            "Description": "The unique identifier of the invitation that is sent to the member to join the network.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkId": {
+            "Description": "The unique identifier of the network in which the member is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberConfiguration": {
+            "Description": "Member configuration parameters.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_network": {
+        "ClientRequestToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the network.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "An optional description for the network.",
+            "Type": "string",
+            "Required": false
+        },
+        "Framework": {
+            "Description": "The blockchain framework that the network uses.",
+            "Type": "string",
+            "Required": true
+        },
+        "FrameworkVersion": {
+            "Description": "The version of the blockchain framework that the network uses.",
+            "Type": "string",
+            "Required": true
+        },
+        "FrameworkConfiguration": {
+            "Description": "Configuration properties of the blockchain framework relevant to the network configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VotingPolicy": {
+            "Description": "The voting rules used by the network to determine if a proposal is approved.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MemberConfiguration": {
+            "Description": "Configuration properties for the first member within the network.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to assign to the network. Each tag consists of a key and optional value.\nWhen specifying tags during creation, you can specify multiple key-value pairs in a single request, with an overall maximum of 50 tags added to each resource.\nFor more information about tags, see Tagging Resources in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_node": {
+        "ClientRequestToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkId": {
+            "Description": "The unique identifier of the network for the node.\nEthereum public networks have the following NetworkId s:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member that owns this node.\nApplies only to Hyperledger Fabric.",
+            "Type": "string",
+            "Required": false
+        },
+        "NodeConfiguration": {
+            "Description": "The properties of a node configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Tags to assign to the node. Each tag consists of a key and optional value.\nWhen specifying tags during creation, you can specify multiple key-value pairs in a single request, with an overall maximum of 50 tags added to each resource.\nFor more information about tags, see Tagging Resources in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_proposal": {
+        "ClientRequestToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the operation. An idempotent operation completes no more than one time. This identifier is required only if you make a service request directly using an HTTP client. It is generated automatically if you use an AWS SDK or the AWS CLI.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkId": {
+            "Description": "The unique identifier of the network for which the proposal is made.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member that is creating the proposal. This identifier is especially useful for identifying the member making the proposal when multiple members exist in a single AWS account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Actions": {
+            "Description": "The type of actions proposed, such as inviting a member or removing a member. The types of Actions in a proposal are mutually exclusive. For example, a proposal with Invitations actions cannot also contain Removals actions.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description for the proposal that is visible to voting members, for example, \"Proposal to add Example Corp. as member.\"",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Tags to assign to the proposal. Each tag consists of a key and optional value.\nWhen specifying tags during creation, you can specify multiple key-value pairs in a single request, with an overall maximum of 50 tags added to each resource. If the proposal is for a network invitation, the invitation inherits the tags added to the proposal.\nFor more information about tags, see Tagging Resources in the Amazon Managed Blockchain Ethereum Developer Guide, or Tagging Resources in the Amazon Managed Blockchain Hyperledger Fabric Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_member": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network from which the member is removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member to remove.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_node": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network that the node is on.\nEthereum public networks have the following NetworkId s:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member that owns this node.\nApplies only to Hyperledger Fabric and is required for Hyperledger Fabric.",
+            "Type": "string",
+            "Required": false
+        },
+        "NodeId": {
+            "Description": "The unique identifier of the node.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_member": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network to which the member belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_network": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network to get information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_node": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network that the node is on.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member that owns the node.\nApplies only to Hyperledger Fabric and is required for Hyperledger Fabric.",
+            "Type": "string",
+            "Required": false
+        },
+        "NodeId": {
+            "Description": "The unique identifier of the node.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_proposal": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network for which the proposal is made.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProposalId": {
+            "Description": "The unique identifier of the proposal.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_invitations": {
+        "MaxResults": {
+            "Description": "The maximum number of invitations to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token that indicates the next set of results to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_members": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network for which to list members.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The optional name of the member to list.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "An optional status specifier. If provided, only members currently in this status are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "IsOwned": {
+            "Description": "An optional Boolean value. If provided, the request is limited either to members that the current AWS account owns (true ) or that other AWS accounts own (false ). If omitted, all members are listed.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of members to return in the request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token that indicates the next set of results to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_networks": {
+        "Name": {
+            "Description": "The name of the network.",
+            "Type": "string",
+            "Required": false
+        },
+        "Framework": {
+            "Description": "An optional framework specifier. If provided, only networks of this framework type are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "An optional status specifier. If provided, only networks currently in this status are listed.\nApplies only to Hyperledger Fabric.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of networks to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token that indicates the next set of results to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_nodes": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network for which to list nodes.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member who owns the nodes to list.\nApplies only to Hyperledger Fabric and is required for Hyperledger Fabric.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "An optional status specifier. If provided, only nodes currently in this status are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of nodes to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token that indicates the next set of results to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_proposal_votes": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProposalId": {
+            "Description": "The unique identifier of the proposal.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of votes to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token that indicates the next set of results to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_proposals": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of proposals to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token that indicates the next set of results to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. For more information about ARNs and their format, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reject_invitation": {
+        "InvitationId": {
+            "Description": "The unique identifier of the invitation to reject.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. For more information about ARNs and their format, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to assign to the specified resource. Tag values can be empty, for example, \"MyTagKey\" : \"\". You can specify multiple key-value pairs in a single request, with an overall maximum of 50 tags added to each resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. For more information about ARNs and their format, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_member": {
+        "NetworkId": {
+            "Description": "The unique identifier of the Managed Blockchain network to which the member belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member.",
+            "Type": "string",
+            "Required": true
+        },
+        "LogPublishingConfiguration": {
+            "Description": "Configuration properties for publishing to Amazon CloudWatch Logs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_node": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network that the node is on.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The unique identifier of the member that owns the node.\nApplies only to Hyperledger Fabric.",
+            "Type": "string",
+            "Required": false
+        },
+        "NodeId": {
+            "Description": "The unique identifier of the node.",
+            "Type": "string",
+            "Required": true
+        },
+        "LogPublishingConfiguration": {
+            "Description": "Configuration properties for publishing to Amazon CloudWatch Logs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "vote_on_proposal": {
+        "NetworkId": {
+            "Description": "The unique identifier of the network.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProposalId": {
+            "Description": "The unique identifier of the proposal.",
+            "Type": "string",
+            "Required": true
+        },
+        "VoterMemberId": {
+            "Description": "The unique identifier of the member casting the vote.",
+            "Type": "string",
+            "Required": true
+        },
+        "Vote": {
+            "Description": "The value of the vote.",
+            "Type": "string",
+            "Required": true
+        }
+    }
+}

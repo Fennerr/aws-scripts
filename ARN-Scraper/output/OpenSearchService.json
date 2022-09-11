@@ -1,0 +1,692 @@
+{
+    "accept_inbound_connection": {
+        "ConnectionId": {
+            "Description": "The ID of the inbound connection you want to accept.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "add_tags": {
+        "ARN": {
+            "Description": "Specify the ARN of the domain you want to add tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagList": {
+            "Description": "List of Tag to add to the domain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "associate_package": {
+        "PackageID": {
+            "Description": "Internal ID of the package to associate with a domain. Use DescribePackages to find this value.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain to associate the package with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_service_software_update": {
+        "DomainName": {
+            "Description": "The name of the domain that you want to stop the latest service software update on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_domain": {
+        "DomainName": {
+            "Description": "The name of the Amazon OpenSearch Service domain you're creating. Domain names are unique across the domains owned by an account within an AWS region. Domain names must start with a lowercase letter and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineVersion": {
+            "Description": "String of format Elasticsearch_X.Y or OpenSearch_X.Y to specify the engine version for the Amazon OpenSearch Service domain. For example, \"OpenSearch_1.0\" or \"Elasticsearch_7.9\". For more information, see Creating and managing Amazon OpenSearch Service domains .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClusterConfig": {
+            "Description": "Configuration options for a domain. Specifies the instance type and number of instances in the domain.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EBSOptions": {
+            "Description": "Options to enable, disable, and specify the type and size of EBS storage volumes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccessPolicies": {
+            "Description": "IAM access policy as a JSON-formatted string.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotOptions": {
+            "Description": "Option to set time, in UTC format, of the daily automated snapshot. Default value is 0 hours.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VPCOptions": {
+            "Description": "Options to specify the subnets and security groups for a VPC endpoint. For more information, see Launching your Amazon OpenSearch Service domains using a VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CognitoOptions": {
+            "Description": "Options to specify the Cognito user and identity pools for OpenSearch Dashboards authentication. For more information, see Configuring Amazon Cognito authentication for OpenSearch Dashboards .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EncryptionAtRestOptions": {
+            "Description": "Options for encryption of data at rest.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NodeToNodeEncryptionOptions": {
+            "Description": "Node-to-node encryption options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedOptions": {
+            "Description": "Option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See Advanced cluster parameters for more information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LogPublishingOptions": {
+            "Description": "Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DomainEndpointOptions": {
+            "Description": "Options to specify configurations that will be applied to the domain endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedSecurityOptions": {
+            "Description": "Specifies advanced security options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TagList": {
+            "Description": "A list of Tag added during domain creation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AutoTuneOptions": {
+            "Description": "Specifies Auto-Tune options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_outbound_connection": {
+        "LocalDomainInfo": {
+            "Description": "The ``  AWSDomainInformation `` for the local OpenSearch domain.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RemoteDomainInfo": {
+            "Description": "The ``  AWSDomainInformation `` for the remote OpenSearch domain.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ConnectionAlias": {
+            "Description": "The connection alias used used by the customer for this cross-cluster connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_package": {
+        "PackageName": {
+            "Description": "Unique identifier for the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "PackageType": {
+            "Description": "Type of package. Currently supports only TXT-DICTIONARY.",
+            "Type": "string",
+            "Required": true
+        },
+        "PackageDescription": {
+            "Description": "Description of the package.",
+            "Type": "string",
+            "Required": false
+        },
+        "PackageSource": {
+            "Description": "The Amazon S3 location from which to import the package.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_domain": {
+        "DomainName": {
+            "Description": "The name of the domain you want to permanently delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_inbound_connection": {
+        "ConnectionId": {
+            "Description": "The ID of the inbound connection to permanently delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_outbound_connection": {
+        "ConnectionId": {
+            "Description": "The ID of the outbound connection you want to permanently delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_package": {
+        "PackageID": {
+            "Description": "The internal ID of the package you want to delete. Use DescribePackages to find this value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_domain": {
+        "DomainName": {
+            "Description": "The name of the domain for which you want information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_domain_auto_tunes": {
+        "DomainName": {
+            "Description": "The domain name for which you want Auto-Tune action details.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken is sent in case the earlier API call results contain the NextToken. Used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_domain_change_progress": {
+        "DomainName": {
+            "Description": "The domain you want to get the progress information about.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeId": {
+            "Description": "The specific change ID for which you want to get progress information. This is an optional parameter. If omitted, the service returns information about the most recent configuration change.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_domain_config": {
+        "DomainName": {
+            "Description": "The domain you want to get information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_domains": {
+        "DomainNames": {
+            "Description": "The domains for which you want information.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_inbound_connections": {
+        "Filters": {
+            "Description": "A list of filters used to match properties for inbound cross-cluster connections. Available ``  Filter `` values are:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If more results are available and NextToken is present, make the next request to the same API with the received NextToken to paginate the remaining results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_instance_type_limits": {
+        "DomainName": {
+            "Description": "The name of the domain you want to modify. Only include this value if you're querying OpenSearch ``  Limits `` for an existing domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceType": {
+            "Description": "The instance type for an OpenSearch cluster for which OpenSearch ``  Limits `` are needed.",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineVersion": {
+            "Description": "Version of OpenSearch for which ``  Limits `` are needed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_outbound_connections": {
+        "Filters": {
+            "Description": "A list of filters used to match properties for outbound cross-cluster connections. Available ``  Filter `` names for this operation are:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "NextToken is sent in case the earlier API call results contain the NextToken parameter. Used for pagination.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_packages": {
+        "Filters": {
+            "Description": "Only returns packages that match the DescribePackagesFilterList values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "Limits results to a maximum number of packages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_reserved_instance_offerings": {
+        "ReservedInstanceOfferingId": {
+            "Description": "The offering identifier filter value. Use this parameter to show only the available offering that matches the specified reservation identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Provides an identifier to allow retrieval of paginated results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_reserved_instances": {
+        "ReservedInstanceId": {
+            "Description": "The reserved instance identifier filter value. Use this parameter to show only the reservation that matches the specified reserved OpenSearch instance ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. If not specified, defaults to 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Provides an identifier to allow retrieval of paginated results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "dissociate_package": {
+        "PackageID": {
+            "Description": "The internal ID of the package to associate with a domain. Use DescribePackages to find this value.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain to associate the package with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_compatible_versions": {
+        "DomainName": {
+            "Description": "The name of an domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_package_version_history": {
+        "PackageID": {
+            "Description": "Returns an audit history of package versions.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Limits results to a maximum number of package versions.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_upgrade_history": {
+        "DomainName": {
+            "Description": "The name of an domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Paginated APIs accept the NextToken input to return the next page of results and provide a NextToken output in the response, which you can use to retrieve more results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_upgrade_status": {
+        "DomainName": {
+            "Description": "The name of an domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_domain_names": {
+        "EngineType": {
+            "Description": "Optional parameter to filter the output by domain engine type. Acceptable values are 'Elasticsearch' and 'OpenSearch'.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_domains_for_package": {
+        "PackageID": {
+            "Description": "The package for which to list associated domains.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Limits the results to a maximum number of domains.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_instance_type_details": {
+        "EngineVersion": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        },
+        "DomainName": {
+            "Description": "The name of an domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Paginated APIs accept the NextToken input to return the next page of results and provide a NextToken output in the response, which you can use to retrieve more results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_packages_for_domain": {
+        "DomainName": {
+            "Description": "The name of the domain for which you want to list associated packages.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Limits results to a maximum number of packages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Used for pagination. Only necessary if a previous API call includes a non-null NextToken value. If provided, returns results for the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags": {
+        "ARN": {
+            "Description": "Specify the ARN of the domain that the tags you want to view are attached to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_versions": {
+        "MaxResults": {
+            "Description": "Set this value to limit the number of results returned. Value must be greater than 10 or it won't be honored.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Paginated APIs accept the NextToken input to return the next page of results and provide a NextToken output in the response, which you can use to retrieve more results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "purchase_reserved_instance_offering": {
+        "ReservedInstanceOfferingId": {
+            "Description": "The ID of the reserved OpenSearch instance offering to purchase.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReservationName": {
+            "Description": "A customer-specified identifier to track this reservation.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceCount": {
+            "Description": "The number of OpenSearch instances to reserve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "reject_inbound_connection": {
+        "ConnectionId": {
+            "Description": "The ID of the inbound connection to reject.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_tags": {
+        "ARN": {
+            "Description": "The ARN of the domain from which you want to delete the specified tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The TagKey list you want to remove from the domain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "start_service_software_update": {
+        "DomainName": {
+            "Description": "The name of the domain that you want to update to the latest service software.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_domain_config": {
+        "DomainName": {
+            "Description": "The name of the domain you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClusterConfig": {
+            "Description": "The type and number of instances to instantiate for the domain cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EBSOptions": {
+            "Description": "Specify the type and size of the EBS volume to use.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SnapshotOptions": {
+            "Description": "Option to set the time, in UTC format, for the daily automated snapshot. Default value is 0 hours.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VPCOptions": {
+            "Description": "Options to specify the subnets and security groups for the VPC endpoint. For more information, see Launching your Amazon OpenSearch Service domains using a VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CognitoOptions": {
+            "Description": "Options to specify the Cognito user and identity pools for OpenSearch Dashboards authentication. For more information, see Configuring Amazon Cognito authentication for OpenSearch Dashboards .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedOptions": {
+            "Description": "Modifies the advanced option to allow references to indices in an HTTP request body. Must be false when configuring access to individual sub-resources. By default, the value is true. See Advanced options for more information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccessPolicies": {
+            "Description": "IAM access policy as a JSON-formatted string.",
+            "Type": "string",
+            "Required": false
+        },
+        "LogPublishingOptions": {
+            "Description": "Map of LogType and LogPublishingOption, each containing options to publish a given type of OpenSearch log.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EncryptionAtRestOptions": {
+            "Description": "Specifies encryption of data at rest options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DomainEndpointOptions": {
+            "Description": "Options to specify configuration that will be applied to the domain endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NodeToNodeEncryptionOptions": {
+            "Description": "Specifies node-to-node encryption options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdvancedSecurityOptions": {
+            "Description": "Specifies advanced security options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AutoTuneOptions": {
+            "Description": "Specifies Auto-Tune options.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DryRun": {
+            "Description": "This flag, when set to True, specifies whether the UpdateDomain request should return the results of validation checks (DryRunResults) without actually applying the change.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_package": {
+        "PackageID": {
+            "Description": "The unique identifier for the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "PackageSource": {
+            "Description": "The Amazon S3 location for importing the package specified as S3BucketName and S3Key",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PackageDescription": {
+            "Description": "A new description of the package.",
+            "Type": "string",
+            "Required": false
+        },
+        "CommitMessage": {
+            "Description": "A commit message for the new version which is shown as part of GetPackageVersionHistoryResponse .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "upgrade_domain": {
+        "DomainName": {
+            "Description": "The name of an domain. Domain names are unique across the domains owned by an account within an AWS region. Domain names start with a letter or number and can contain the following characters: a-z (lowercase), 0-9, and - (hyphen).",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetVersion": {
+            "Description": "The version of OpenSearch you intend to upgrade the domain to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PerformCheckOnly": {
+            "Description": "When true, indicates that an upgrade eligibility check needs to be performed. Does not actually perform the upgrade.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AdvancedOptions": {
+            "Description": "Exposes select native OpenSearch configuration values from opensearch.yml. Currently, the following advanced options are available:\nFor more information, see Advanced cluster parameters .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    }
+}

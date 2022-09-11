@@ -1,0 +1,1458 @@
+{
+    "associate_assets": {
+        "assetId": {
+            "Description": "The ID of the parent asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "hierarchyId": {
+            "Description": "The ID of a hierarchy in the parent asset's model. Hierarchies allow different groupings of assets to be formed that all come from the same asset model. For more information, see Asset hierarchies in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "childAssetId": {
+            "Description": "The ID of the child asset to be associated.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_time_series_to_asset_property": {
+        "alias": {
+            "Description": "The alias that identifies the time series.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetId": {
+            "Description": "The ID of the asset in which the asset property was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_associate_project_assets": {
+        "projectId": {
+            "Description": "The ID of the project to which to associate the assets.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetIds": {
+            "Description": "The IDs of the assets to be associated to the project.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_disassociate_project_assets": {
+        "projectId": {
+            "Description": "The ID of the project from which to disassociate the assets.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetIds": {
+            "Description": "The IDs of the assets to be disassociated from the project.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_get_asset_property_aggregates": {
+        "entries": {
+            "Description": "The list of asset property aggregate entries for the batch get request. You can specify up to 16 entries per request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request. A result set is returned in the two cases, whichever occurs first.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        }
+    },
+    "batch_get_asset_property_value": {
+        "entries": {
+            "Description": "The list of asset property value entries for the batch get request. You can specify up to 16 entries per request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_get_asset_property_value_history": {
+        "entries": {
+            "Description": "The list of asset property historical value entries for the batch get request. You can specify up to 16 entries per request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request. A result set is returned in the two cases, whichever occurs first.",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        }
+    },
+    "batch_put_asset_property_value": {
+        "entries": {
+            "Description": "The list of asset property value entries for the batch put request. You can specify up to 10 entries per request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_access_policy": {
+        "accessPolicyIdentity": {
+            "Description": "The identity for this access policy. Choose an Amazon Web Services SSO user, an Amazon Web Services SSO group, or an IAM user.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "accessPolicyResource": {
+            "Description": "The IoT SiteWise Monitor resource for this access policy. Choose either a portal or a project.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "accessPolicyPermission": {
+            "Description": "The permission level for this access policy. Note that a project ADMINISTRATOR is also known as a project owner.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the access policy. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_asset": {
+        "assetName": {
+            "Description": "A friendly name for the asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetModelId": {
+            "Description": "The ID of the asset model from which to create the asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the asset. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "assetDescription": {
+            "Description": "A description for the asset.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_asset_model": {
+        "assetModelName": {
+            "Description": "A unique, friendly name for the asset model.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetModelDescription": {
+            "Description": "A description for the asset model.",
+            "Type": "string",
+            "Required": false
+        },
+        "assetModelProperties": {
+            "Description": "The property definitions of the asset model. For more information, see Asset properties in the IoT SiteWise User Guide .\nYou can specify up to 200 properties per asset model. For more information, see Quotas in the IoT SiteWise User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "assetModelHierarchies": {
+            "Description": "The hierarchy definitions of the asset model. Each hierarchy specifies an asset model whose assets can be children of any other assets created from this asset model. For more information, see Asset hierarchies in the IoT SiteWise User Guide .\nYou can specify up to 10 hierarchies per asset model. For more information, see Quotas in the IoT SiteWise User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "assetModelCompositeModels": {
+            "Description": "The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties. Each composite model has a type that defines the properties that the composite model supports. Use composite asset models to define alarms on this asset model.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the asset model. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_bulk_import_job": {
+        "jobName": {
+            "Description": "The unique name that helps identify the job request.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobRoleArn": {
+            "Description": "The ARN of the IAM role that allows IoT SiteWise to read Amazon S3 data.",
+            "Type": "string",
+            "Required": true
+        },
+        "files": {
+            "Description": "The files in the specified Amazon S3 bucket that contain your data.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "errorReportLocation": {
+            "Description": "The Amazon S3 destination where errors associated with the job creation request are saved.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "jobConfiguration": {
+            "Description": "Contains the configuration information of a job, such as the file format used to save data in Amazon S3.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_dashboard": {
+        "projectId": {
+            "Description": "The ID of the project in which to create the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "dashboardName": {
+            "Description": "A friendly name for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "dashboardDescription": {
+            "Description": "A description for the dashboard.",
+            "Type": "string",
+            "Required": false
+        },
+        "dashboardDefinition": {
+            "Description": "The dashboard definition specified in a JSON literal. For detailed information, see Creating dashboards (CLI) in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the dashboard. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_gateway": {
+        "gatewayName": {
+            "Description": "A unique, friendly name for the gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "gatewayPlatform": {
+            "Description": "The gateway's platform. You can only specify one platform in a gateway.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the gateway. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_portal": {
+        "portalName": {
+            "Description": "A friendly name for the portal.",
+            "Type": "string",
+            "Required": true
+        },
+        "portalDescription": {
+            "Description": "A description for the portal.",
+            "Type": "string",
+            "Required": false
+        },
+        "portalContactEmail": {
+            "Description": "The Amazon Web Services administrator's contact email address.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "portalLogoImageFile": {
+            "Description": "A logo image to display in the portal. Upload a square, high-resolution image. The image is displayed on a dark background.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "roleArn": {
+            "Description": "The ARN of a service role that allows the portal's users to access your IoT SiteWise resources on your behalf. For more information, see Using service roles for IoT SiteWise Monitor in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the portal. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "portalAuthMode": {
+            "Description": "The service to use to authenticate users to the portal. Choose from the following options:\nYou can't change this value after you create a portal.\nDefault: SSO",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "notificationSenderEmail": {
+            "Description": "The email address that sends alarm notifications.",
+            "Type": "string",
+            "Required": false
+        },
+        "alarms": {
+            "Description": "Contains the configuration information of an alarm created in an IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range. For more information, see Monitoring with alarms in the IoT SiteWise Application Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_project": {
+        "portalId": {
+            "Description": "The ID of the portal in which to create the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectName": {
+            "Description": "A friendly name for the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectDescription": {
+            "Description": "A description for the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the project. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_access_policy": {
+        "accessPolicyId": {
+            "Description": "The ID of the access policy to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_asset": {
+        "assetId": {
+            "Description": "The ID of the asset to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_asset_model": {
+        "assetModelId": {
+            "Description": "The ID of the asset model to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_dashboard": {
+        "dashboardId": {
+            "Description": "The ID of the dashboard to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_gateway": {
+        "gatewayId": {
+            "Description": "The ID of the gateway to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_portal": {
+        "portalId": {
+            "Description": "The ID of the portal to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_project": {
+        "projectId": {
+            "Description": "The ID of the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_time_series": {
+        "alias": {
+            "Description": "The alias that identifies the time series.",
+            "Type": "string",
+            "Required": false
+        },
+        "assetId": {
+            "Description": "The ID of the asset in which the asset property was created.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_access_policy": {
+        "accessPolicyId": {
+            "Description": "The ID of the access policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_asset": {
+        "assetId": {
+            "Description": "The ID of the asset.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_asset_model": {
+        "assetModelId": {
+            "Description": "The ID of the asset model.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_asset_property": {
+        "assetId": {
+            "Description": "The ID of the asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_bulk_import_job": {
+        "jobId": {
+            "Description": "The ID of the job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dashboard": {
+        "dashboardId": {
+            "Description": "The ID of the dashboard.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_default_encryption_configuration": "No parameters defined",
+    "describe_gateway": {
+        "gatewayId": {
+            "Description": "The ID of the gateway device.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_gateway_capability_configuration": {
+        "gatewayId": {
+            "Description": "The ID of the gateway that defines the capability configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "capabilityNamespace": {
+            "Description": "The namespace of the capability configuration. For example, if you configure OPC-UA sources from the IoT SiteWise console, your OPC-UA capability configuration has the namespace iotsitewise:opcuacollector:version, where version is a number such as 1 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_logging_options": "No parameters defined",
+    "describe_portal": {
+        "portalId": {
+            "Description": "The ID of the portal.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_project": {
+        "projectId": {
+            "Description": "The ID of the project.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_storage_configuration": "No parameters defined",
+    "describe_time_series": {
+        "alias": {
+            "Description": "The alias that identifies the time series.",
+            "Type": "string",
+            "Required": false
+        },
+        "assetId": {
+            "Description": "The ID of the asset in which the asset property was created.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_assets": {
+        "assetId": {
+            "Description": "The ID of the parent asset from which to disassociate the child asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "hierarchyId": {
+            "Description": "The ID of a hierarchy in the parent asset's model. Hierarchies allow different groupings of assets to be formed that all come from the same asset model. You can use the hierarchy ID to identify the correct asset to disassociate. For more information, see Asset hierarchies in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "childAssetId": {
+            "Description": "The ID of the child asset to disassociate.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_time_series_from_asset_property": {
+        "alias": {
+            "Description": "The alias that identifies the time series.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetId": {
+            "Description": "The ID of the asset in which the asset property was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_asset_property_aggregates": {
+        "assetId": {
+            "Description": "The ID of the asset.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyAlias": {
+            "Description": "The alias that identifies the property, such as an OPC-UA server data stream path (for example, /company/windfarm/3/turbine/7/temperature ). For more information, see Mapping industrial data streams to asset properties in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "aggregateTypes": {
+            "Description": "The data aggregating function.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "resolution": {
+            "Description": "The time interval over which to aggregate data.",
+            "Type": "string",
+            "Required": true
+        },
+        "qualities": {
+            "Description": "The quality by which to filter asset data.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "startDate": {
+            "Description": "The exclusive start of the range from which to query historical data, expressed in seconds in Unix epoch time.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endDate": {
+            "Description": "The inclusive end of the range from which to query historical data, expressed in seconds in Unix epoch time.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "timeOrdering": {
+            "Description": "The chronological sorting order of the requested information.\nDefault: ASCENDING",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 100",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_asset_property_value": {
+        "assetId": {
+            "Description": "The ID of the asset.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyAlias": {
+            "Description": "The alias that identifies the property, such as an OPC-UA server data stream path (for example, /company/windfarm/3/turbine/7/temperature ). For more information, see Mapping industrial data streams to asset properties in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_asset_property_value_history": {
+        "assetId": {
+            "Description": "The ID of the asset.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyAlias": {
+            "Description": "The alias that identifies the property, such as an OPC-UA server data stream path (for example, /company/windfarm/3/turbine/7/temperature ). For more information, see Mapping industrial data streams to asset properties in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "startDate": {
+            "Description": "The exclusive start of the range from which to query historical data, expressed in seconds in Unix epoch time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endDate": {
+            "Description": "The inclusive end of the range from which to query historical data, expressed in seconds in Unix epoch time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "qualities": {
+            "Description": "The quality by which to filter asset data.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "timeOrdering": {
+            "Description": "The chronological sorting order of the requested information.\nDefault: ASCENDING",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 100",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_interpolated_asset_property_values": {
+        "assetId": {
+            "Description": "The ID of the asset.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyAlias": {
+            "Description": "The alias that identifies the property, such as an OPC-UA server data stream path (for example, /company/windfarm/3/turbine/7/temperature ). For more information, see Mapping industrial data streams to asset properties in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "startTimeInSeconds": {
+            "Description": "The exclusive start of the range from which to interpolate data, expressed in seconds in Unix epoch time.",
+            "Type": "integer",
+            "Required": true
+        },
+        "startTimeOffsetInNanos": {
+            "Description": "The nanosecond offset converted from startTimeInSeconds .",
+            "Type": "integer",
+            "Required": false
+        },
+        "endTimeInSeconds": {
+            "Description": "The inclusive end of the range from which to interpolate data, expressed in seconds in Unix epoch time.",
+            "Type": "integer",
+            "Required": true
+        },
+        "endTimeOffsetInNanos": {
+            "Description": "The nanosecond offset converted from endTimeInSeconds .",
+            "Type": "integer",
+            "Required": false
+        },
+        "quality": {
+            "Description": "The quality of the asset property value. You can use this parameter as a filter to choose only the asset property values that have a specific quality.",
+            "Type": "string",
+            "Required": true
+        },
+        "intervalInSeconds": {
+            "Description": "The time interval in seconds over which to interpolate data. Each interval starts when the previous one ends.",
+            "Type": "integer",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request. If not specified, the default value is 10.",
+            "Type": "integer",
+            "Required": false
+        },
+        "type": {
+            "Description": "The interpolation type.\nValid values: LINEAR_INTERPOLATION | LOCF_INTERPOLATION",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "intervalWindowInSeconds": {
+            "Description": "The query interval for the window, in seconds. IoT SiteWise computes each interpolated value by using data points from the timestamp of each interval, minus the window to the timestamp of each interval plus the window. If not specified, the window ranges between the start time minus the interval and the end time plus the interval.\nFor example, you can get the interpolated temperature values for a wind turbine every 24 hours over a duration of 7 days. If the interpolation starts on July 1, 2021, at 9 AM with a window of 2 hours, IoT SiteWise uses the data points from 7 AM (9 AM minus 2 hours) to 11 AM (9 AM plus 2 hours) on July 2, 2021 to compute the first interpolated value. Next, IoT SiteWise uses the data points from 7 AM (9 AM minus 2 hours) to 11 AM (9 AM plus 2 hours) on July 3, 2021 to compute the second interpolated value, and so on.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_access_policies": {
+        "identityType": {
+            "Description": "The type of identity (Amazon Web Services SSO user, Amazon Web Services SSO group, or IAM user). This parameter is required if you specify identityId .",
+            "Type": "string",
+            "Required": false
+        },
+        "identityId": {
+            "Description": "The ID of the identity. This parameter is required if you specify USER or GROUP for identityType .",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceType": {
+            "Description": "The type of resource (portal or project). This parameter is required if you specify resourceId .",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceId": {
+            "Description": "The ID of the resource. This parameter is required if you specify resourceType .",
+            "Type": "string",
+            "Required": false
+        },
+        "iamArn": {
+            "Description": "The ARN of the IAM user. For more information, see IAM ARNs in the IAM User Guide . This parameter is required if you specify IAM for identityType .",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_asset_models": {
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_asset_relationships": {
+        "assetId": {
+            "Description": "The ID of the asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "traversalType": {
+            "Description": "The type of traversal to use to identify asset relationships. Choose the following option:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_assets": {
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        },
+        "assetModelId": {
+            "Description": "The ID of the asset model by which to filter the list of assets. This parameter is required if you choose ALL for filter .",
+            "Type": "string",
+            "Required": false
+        },
+        "filter": {
+            "Description": "The filter for the requested list of assets. Choose one of the following options:\nDefault: ALL",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_associated_assets": {
+        "assetId": {
+            "Description": "The ID of the asset to query.",
+            "Type": "string",
+            "Required": true
+        },
+        "hierarchyId": {
+            "Description": "The ID of the hierarchy by which child assets are associated to the asset. To find a hierarchy ID, use the DescribeAsset or DescribeAssetModel operations. This parameter is required if you choose CHILD for traversalDirection .\nFor more information, see Asset hierarchies in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "traversalDirection": {
+            "Description": "The direction to list associated assets. Choose one of the following options:\nDefault: CHILD",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_bulk_import_jobs": {
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filter": {
+            "Description": "You can use a filter to select the bulk import jobs that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_dashboards": {
+        "projectId": {
+            "Description": "The ID of the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_gateways": {
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_portals": {
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_project_assets": {
+        "projectId": {
+            "Description": "The ID of the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_projects": {
+        "portalId": {
+            "Description": "The ID of the portal.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.\nDefault: 50",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_time_series": {
+        "nextToken": {
+            "Description": "The token to be used for the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return for each paginated request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "assetId": {
+            "Description": "The ID of the asset in which the asset property was created.",
+            "Type": "string",
+            "Required": false
+        },
+        "aliasPrefix": {
+            "Description": "The alias prefix of the time series.",
+            "Type": "string",
+            "Required": false
+        },
+        "timeSeriesType": {
+            "Description": "The type of the time series. The time series type can be one of the following values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "put_default_encryption_configuration": {
+        "encryptionType": {
+            "Description": "The type of encryption used for the encryption configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "kmsKeyId": {
+            "Description": "The Key ID of the customer managed key used for KMS encryption. This is required if you use KMS_BASED_ENCRYPTION .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_logging_options": {
+        "loggingOptions": {
+            "Description": "The logging options to set.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_storage_configuration": {
+        "storageType": {
+            "Description": "The storage tier that you specified for your data. The storageType parameter can be one of the following values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "multiLayerStorage": {
+            "Description": "Identifies a storage destination. If you specified MULTI_LAYER_STORAGE for the storage type, you must specify a MultiLayerStorage object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "disassociatedDataStorage": {
+            "Description": "Contains the storage configuration for time series (data streams) that aren't associated with asset properties. The disassociatedDataStorage can be one of the following values:\nFor more information, see Data streams in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "retentionPeriod": {
+            "Description": "How many days your data is kept in the hot tier. By default, your data is kept indefinitely in the hot tier.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the resource. For more information, see Tagging your IoT SiteWise resources in the IoT SiteWise User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource to untag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of keys for tags to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_access_policy": {
+        "accessPolicyId": {
+            "Description": "The ID of the access policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "accessPolicyIdentity": {
+            "Description": "The identity for this access policy. Choose an Amazon Web Services SSO user, an Amazon Web Services SSO group, or an IAM user.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "accessPolicyResource": {
+            "Description": "The IoT SiteWise Monitor resource for this access policy. Choose either a portal or a project.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "accessPolicyPermission": {
+            "Description": "The permission level for this access policy. Note that a project ADMINISTRATOR is also known as a project owner.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_asset": {
+        "assetId": {
+            "Description": "The ID of the asset to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetName": {
+            "Description": "A friendly name for the asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "assetDescription": {
+            "Description": "A description for the asset.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_asset_model": {
+        "assetModelId": {
+            "Description": "The ID of the asset model to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetModelName": {
+            "Description": "A unique, friendly name for the asset model.",
+            "Type": "string",
+            "Required": true
+        },
+        "assetModelDescription": {
+            "Description": "A description for the asset model.",
+            "Type": "string",
+            "Required": false
+        },
+        "assetModelProperties": {
+            "Description": "The updated property definitions of the asset model. For more information, see Asset properties in the IoT SiteWise User Guide .\nYou can specify up to 200 properties per asset model. For more information, see Quotas in the IoT SiteWise User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "assetModelHierarchies": {
+            "Description": "The updated hierarchy definitions of the asset model. Each hierarchy specifies an asset model whose assets can be children of any other assets created from this asset model. For more information, see Asset hierarchies in the IoT SiteWise User Guide .\nYou can specify up to 10 hierarchies per asset model. For more information, see Quotas in the IoT SiteWise User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "assetModelCompositeModels": {
+            "Description": "The composite asset models that are part of this asset model. Composite asset models are asset models that contain specific properties. Each composite model has a type that defines the properties that the composite model supports. Use composite asset models to define alarms on this asset model.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_asset_property": {
+        "assetId": {
+            "Description": "The ID of the asset to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "propertyId": {
+            "Description": "The ID of the asset property to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "propertyAlias": {
+            "Description": "The alias that identifies the property, such as an OPC-UA server data stream path (for example, /company/windfarm/3/turbine/7/temperature ). For more information, see Mapping industrial data streams to asset properties in the IoT SiteWise User Guide .\nIf you omit this parameter, the alias is removed from the property.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyNotificationState": {
+            "Description": "The MQTT notification state (enabled or disabled) for this asset property. When the notification state is enabled, IoT SiteWise publishes property value updates to a unique MQTT topic. For more information, see Interacting with other services in the IoT SiteWise User Guide .\nIf you omit this parameter, the notification state is set to DISABLED .",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "propertyUnit": {
+            "Description": "The unit of measure (such as Newtons or RPM) of the asset property. If you don't specify a value for this parameter, the service uses the value of the assetModelProperty in the asset model.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_dashboard": {
+        "dashboardId": {
+            "Description": "The ID of the dashboard to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "dashboardName": {
+            "Description": "A new friendly name for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "dashboardDescription": {
+            "Description": "A new description for the dashboard.",
+            "Type": "string",
+            "Required": false
+        },
+        "dashboardDefinition": {
+            "Description": "The new dashboard definition, as specified in a JSON literal. For detailed information, see Creating dashboards (CLI) in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_gateway": {
+        "gatewayId": {
+            "Description": "The ID of the gateway to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "gatewayName": {
+            "Description": "A unique, friendly name for the gateway.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_gateway_capability_configuration": {
+        "gatewayId": {
+            "Description": "The ID of the gateway to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "capabilityNamespace": {
+            "Description": "The namespace of the gateway capability configuration to be updated. For example, if you configure OPC-UA sources from the IoT SiteWise console, your OPC-UA capability configuration has the namespace iotsitewise:opcuacollector:version, where version is a number such as 1 .",
+            "Type": "string",
+            "Required": true
+        },
+        "capabilityConfiguration": {
+            "Description": "The JSON document that defines the configuration for the gateway capability. For more information, see Configuring data sources (CLI) in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_portal": {
+        "portalId": {
+            "Description": "The ID of the portal to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "portalName": {
+            "Description": "A new friendly name for the portal.",
+            "Type": "string",
+            "Required": true
+        },
+        "portalDescription": {
+            "Description": "A new description for the portal.",
+            "Type": "string",
+            "Required": false
+        },
+        "portalContactEmail": {
+            "Description": "The Amazon Web Services administrator's contact email address.",
+            "Type": "string",
+            "Required": true
+        },
+        "portalLogoImage": {
+            "Description": "Contains an image that is one of the following:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "roleArn": {
+            "Description": "The ARN of a service role that allows the portal's users to access your IoT SiteWise resources on your behalf. For more information, see Using service roles for IoT SiteWise Monitor in the IoT SiteWise User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "notificationSenderEmail": {
+            "Description": "The email address that sends alarm notifications.",
+            "Type": "string",
+            "Required": false
+        },
+        "alarms": {
+            "Description": "Contains the configuration information of an alarm created in an IoT SiteWise Monitor portal. You can use the alarm to monitor an asset property and get notified when the asset property value is outside a specified range. For more information, see Monitoring with alarms in the IoT SiteWise Application Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_project": {
+        "projectId": {
+            "Description": "The ID of the project to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectName": {
+            "Description": "A new friendly name for the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectDescription": {
+            "Description": "A new description for the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "assetId": {
+            "Description": "The ID of the asset in which the asset property was created.",
+            "Type": "string",
+            "Required": false
+        },
+        "aliasPrefix": {
+            "Description": "The alias prefix of the time series.",
+            "Type": "string",
+            "Required": false
+        },
+        "timeSeriesType": {
+            "Description": "The type of the time series. The time series type can be one of the following values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "portalId": {
+            "Description": "The ID of the portal.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

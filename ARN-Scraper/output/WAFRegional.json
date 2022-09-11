@@ -1,0 +1,1064 @@
+{
+    "associate_web_acl": {
+        "WebACLId": {
+            "Description": "A unique identifier (ID) for the web ACL.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the resource to be protected, either an application load balancer or Amazon API Gateway stage.\nThe ARN should be in one of the following formats:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "create_byte_match_set": {
+        "Name": {
+            "Description": "A friendly name or description of the  ByteMatchSet. You can't change Name after you create a ByteMatchSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_geo_match_set": {
+        "Name": {
+            "Description": "A friendly name or description of the  GeoMatchSet. You can't change Name after you create the GeoMatchSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_ip_set": {
+        "Name": {
+            "Description": "A friendly name or description of the  IPSet. You can't change Name after you create the IPSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_rate_based_rule": {
+        "Name": {
+            "Description": "A friendly name or description of the  RateBasedRule. You can't change the name of a RateBasedRule after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricName": {
+            "Description": "A friendly name or description for the metrics for this RateBasedRule. The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including \"All\" and \"Default_Action.\" You can't change the name of the metric after you create the RateBasedRule .",
+            "Type": "string",
+            "Required": true
+        },
+        "RateKey": {
+            "Description": "The field that AWS WAF uses to determine if requests are likely arriving from a single source and thus subject to rate monitoring. The only valid value for RateKey is IP. IP indicates that requests that arrive from the same IP address are subject to the RateLimit that is specified in the RateBasedRule .",
+            "Type": "string",
+            "Required": true
+        },
+        "RateLimit": {
+            "Description": "The maximum number of requests, which have an identical value in the field that is specified by RateKey, allowed in a five-minute period. If the number of requests exceeds the RateLimit and the other predicates specified in the rule are also met, AWS WAF triggers the action that is specified for this rule.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The ChangeToken that you used to submit the CreateRateBasedRule request. You can also use this value to query the status of the request. For more information, see  GetChangeTokenStatus .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "\n(dict) --\nNote\nThis is AWS WAF Classic documentation. For more information, see AWS WAF Classic in the developer guide.\n\nFor the latest version of AWS WAF , use the AWS WAFV2 API and see the AWS WAF Developer Guide . With the latest version, AWS WAF has a single set of endpoints for regional and global use.\n\nA tag associated with an AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.\nTagging is only available through the API, SDKs, and CLI. You can't manage or view tags through the AWS WAF Classic console. You can tag the AWS resources that you manage through AWS WAF Classic: web ACLs, rule groups, and rules.\n\nKey (string)[REQUIRED]\nValue (string)[REQUIRED]\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_regex_match_set": {
+        "Name": {
+            "Description": "A friendly name or description of the  RegexMatchSet. You can't change Name after you create a RegexMatchSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_regex_pattern_set": {
+        "Name": {
+            "Description": "A friendly name or description of the  RegexPatternSet. You can't change Name after you create a RegexPatternSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_rule": {
+        "Name": {
+            "Description": "A friendly name or description of the  Rule. You can't change the name of a Rule after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricName": {
+            "Description": "A friendly name or description for the metrics for this Rule. The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including \"All\" and \"Default_Action.\" You can't change the name of the metric after you create the Rule .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "\n(dict) --\nNote\nThis is AWS WAF Classic documentation. For more information, see AWS WAF Classic in the developer guide.\n\nFor the latest version of AWS WAF , use the AWS WAFV2 API and see the AWS WAF Developer Guide . With the latest version, AWS WAF has a single set of endpoints for regional and global use.\n\nA tag associated with an AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.\nTagging is only available through the API, SDKs, and CLI. You can't manage or view tags through the AWS WAF Classic console. You can tag the AWS resources that you manage through AWS WAF Classic: web ACLs, rule groups, and rules.\n\nKey (string)[REQUIRED]\nValue (string)[REQUIRED]\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_rule_group": {
+        "Name": {
+            "Description": "A friendly name or description of the  RuleGroup. You can't change Name after you create a RuleGroup .",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricName": {
+            "Description": "A friendly name or description for the metrics for this RuleGroup. The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including \"All\" and \"Default_Action.\" You can't change the name of the metric after you create the RuleGroup .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "\n(dict) --\nNote\nThis is AWS WAF Classic documentation. For more information, see AWS WAF Classic in the developer guide.\n\nFor the latest version of AWS WAF , use the AWS WAFV2 API and see the AWS WAF Developer Guide . With the latest version, AWS WAF has a single set of endpoints for regional and global use.\n\nA tag associated with an AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.\nTagging is only available through the API, SDKs, and CLI. You can't manage or view tags through the AWS WAF Classic console. You can tag the AWS resources that you manage through AWS WAF Classic: web ACLs, rule groups, and rules.\n\nKey (string)[REQUIRED]\nValue (string)[REQUIRED]\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_size_constraint_set": {
+        "Name": {
+            "Description": "A friendly name or description of the  SizeConstraintSet. You can't change Name after you create a SizeConstraintSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_sql_injection_match_set": {
+        "Name": {
+            "Description": "A friendly name or description for the  SqlInjectionMatchSet that you're creating. You can't change Name after you create the SqlInjectionMatchSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_web_acl": {
+        "Name": {
+            "Description": "A friendly name or description of the  WebACL. You can't change Name after you create the WebACL .",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricName": {
+            "Description": "A friendly name or description for the metrics for this WebACL .The name can contain only alphanumeric characters (A-Z, a-z, 0-9), with maximum length 128 and minimum length one. It can't contain whitespace or metric names reserved for AWS WAF, including \"All\" and \"Default_Action.\" You can't change MetricName after you create the WebACL .",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultAction": {
+            "Description": "The action that you want AWS WAF to take when a request doesn't match the criteria specified in any of the Rule objects that are associated with the WebACL .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "\n(dict) --\nNote\nThis is AWS WAF Classic documentation. For more information, see AWS WAF Classic in the developer guide.\n\nFor the latest version of AWS WAF , use the AWS WAFV2 API and see the AWS WAF Developer Guide . With the latest version, AWS WAF has a single set of endpoints for regional and global use.\n\nA tag associated with an AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.\nTagging is only available through the API, SDKs, and CLI. You can't manage or view tags through the AWS WAF Classic console. You can tag the AWS resources that you manage through AWS WAF Classic: web ACLs, rule groups, and rules.\n\nKey (string)[REQUIRED]\nValue (string)[REQUIRED]\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_web_acl_migration_stack": {
+        "WebACLId": {
+            "Description": "The UUID of the WAF Classic web ACL that you want to migrate to WAF v2.",
+            "Type": "string",
+            "Required": true
+        },
+        "S3BucketName": {
+            "Description": "The name of the Amazon S3 bucket to store the CloudFormation template in. The S3 bucket must be configured as follows for the migration:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "IgnoreUnsupportedType": {
+            "Description": "Indicates whether to exclude entities that can't be migrated or to stop the migration. Set this to true to ignore unsupported entities in the web ACL during the migration. Otherwise, if AWS WAF encounters unsupported entities, it stops the process and throws an exception.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "create_xss_match_set": {
+        "Name": {
+            "Description": "A friendly name or description for the  XssMatchSet that you're creating. You can't change Name after you create the XssMatchSet .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_byte_match_set": {
+        "ByteMatchSetId": {
+            "Description": "The ByteMatchSetId of the  ByteMatchSet that you want to delete. ByteMatchSetId is returned by  CreateByteMatchSet and by  ListByteMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_geo_match_set": {
+        "GeoMatchSetId": {
+            "Description": "The GeoMatchSetID of the  GeoMatchSet that you want to delete. GeoMatchSetId is returned by  CreateGeoMatchSet and by  ListGeoMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_ip_set": {
+        "IPSetId": {
+            "Description": "The IPSetId of the  IPSet that you want to delete. IPSetId is returned by  CreateIPSet and by  ListIPSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_logging_configuration": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the web ACL from which you want to delete the  LoggingConfiguration .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_permission_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the RuleGroup from which you want to delete the policy.\nThe user making the request must be the owner of the RuleGroup.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_rate_based_rule": {
+        "RuleId": {
+            "Description": "The RuleId of the  RateBasedRule that you want to delete. RuleId is returned by  CreateRateBasedRule and by  ListRateBasedRules .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_regex_match_set": {
+        "RegexMatchSetId": {
+            "Description": "The RegexMatchSetId of the  RegexMatchSet that you want to delete. RegexMatchSetId is returned by  CreateRegexMatchSet and by  ListRegexMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_regex_pattern_set": {
+        "RegexPatternSetId": {
+            "Description": "The RegexPatternSetId of the  RegexPatternSet that you want to delete. RegexPatternSetId is returned by  CreateRegexPatternSet and by  ListRegexPatternSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_rule": {
+        "RuleId": {
+            "Description": "The RuleId of the  Rule that you want to delete. RuleId is returned by  CreateRule and by  ListRules .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_rule_group": {
+        "RuleGroupId": {
+            "Description": "The RuleGroupId of the  RuleGroup that you want to delete. RuleGroupId is returned by  CreateRuleGroup and by  ListRuleGroups .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_size_constraint_set": {
+        "SizeConstraintSetId": {
+            "Description": "The SizeConstraintSetId of the  SizeConstraintSet that you want to delete. SizeConstraintSetId is returned by  CreateSizeConstraintSet and by  ListSizeConstraintSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_sql_injection_match_set": {
+        "SqlInjectionMatchSetId": {
+            "Description": "The SqlInjectionMatchSetId of the  SqlInjectionMatchSet that you want to delete. SqlInjectionMatchSetId is returned by  CreateSqlInjectionMatchSet and by  ListSqlInjectionMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_web_acl": {
+        "WebACLId": {
+            "Description": "The WebACLId of the  WebACL that you want to delete. WebACLId is returned by  CreateWebACL and by  ListWebACLs .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_xss_match_set": {
+        "XssMatchSetId": {
+            "Description": "The XssMatchSetId of the  XssMatchSet that you want to delete. XssMatchSetId is returned by  CreateXssMatchSet and by  ListXssMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_web_acl": {
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the resource from which the web ACL is being removed, either an application load balancer or Amazon API Gateway stage.\nThe ARN should be in one of the following formats:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "get_byte_match_set": {
+        "ByteMatchSetId": {
+            "Description": "The ByteMatchSetId of the  ByteMatchSet that you want to get. ByteMatchSetId is returned by  CreateByteMatchSet and by  ListByteMatchSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_change_token": "No parameters defined",
+    "get_change_token_status": {
+        "ChangeToken": {
+            "Description": "The change token for which you want to get the status. This change token was previously returned in the GetChangeToken response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_geo_match_set": {
+        "GeoMatchSetId": {
+            "Description": "The GeoMatchSetId of the  GeoMatchSet that you want to get. GeoMatchSetId is returned by  CreateGeoMatchSet and by  ListGeoMatchSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_ip_set": {
+        "IPSetId": {
+            "Description": "The IPSetId of the  IPSet that you want to get. IPSetId is returned by  CreateIPSet and by  ListIPSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_logging_configuration": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the web ACL for which you want to get the  LoggingConfiguration .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_permission_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the RuleGroup for which you want to get the policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rate_based_rule": {
+        "RuleId": {
+            "Description": "The RuleId of the  RateBasedRule that you want to get. RuleId is returned by  CreateRateBasedRule and by  ListRateBasedRules .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rate_based_rule_managed_keys": {
+        "RuleId": {
+            "Description": "The RuleId of the  RateBasedRule for which you want to get a list of ManagedKeys. RuleId is returned by  CreateRateBasedRule and by  ListRateBasedRules .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextMarker": {
+            "Description": "A null value and not currently used. Do not include this in your request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_regex_match_set": {
+        "RegexMatchSetId": {
+            "Description": "The RegexMatchSetId of the  RegexMatchSet that you want to get. RegexMatchSetId is returned by  CreateRegexMatchSet and by  ListRegexMatchSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_regex_pattern_set": {
+        "RegexPatternSetId": {
+            "Description": "The RegexPatternSetId of the  RegexPatternSet that you want to get. RegexPatternSetId is returned by  CreateRegexPatternSet and by  ListRegexPatternSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rule": {
+        "RuleId": {
+            "Description": "The RuleId of the  Rule that you want to get. RuleId is returned by  CreateRule and by  ListRules .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rule_group": {
+        "RuleGroupId": {
+            "Description": "The RuleGroupId of the  RuleGroup that you want to get. RuleGroupId is returned by  CreateRuleGroup and by  ListRuleGroups .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sampled_requests": {
+        "WebAclId": {
+            "Description": "The WebACLId of the WebACL for which you want GetSampledRequests to return a sample of requests.",
+            "Type": "string",
+            "Required": true
+        },
+        "RuleId": {
+            "Description": "[REQUIRED]\n\nRuleId is one of three values:\n\nThe RuleId of the Rule or the RuleGroupId of the RuleGroup for which you want GetSampledRequests to return a sample of requests.\nDefault_Action , which causes GetSampledRequests to return a sample of the requests that didn't match any of the rules in the specified WebACL .\n\n",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TimeWindow": {
+            "Description": "The start date and time and the end date and time of the range for which you want GetSampledRequests to return a sample of requests. You must specify the times in Coordinated Universal Time (UTC) format. UTC format includes the special designator, Z. For example, \"2016-09-27T14:50Z\". You can specify any time range in the previous three hours.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxItems": {
+            "Description": "The number of requests that you want AWS WAF to return from among the first 5,000 requests that your AWS resource received during the time range. If your resource received fewer requests than the value of MaxItems, GetSampledRequests returns information about all of them.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_size_constraint_set": {
+        "SizeConstraintSetId": {
+            "Description": "The SizeConstraintSetId of the  SizeConstraintSet that you want to get. SizeConstraintSetId is returned by  CreateSizeConstraintSet and by  ListSizeConstraintSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sql_injection_match_set": {
+        "SqlInjectionMatchSetId": {
+            "Description": "The SqlInjectionMatchSetId of the  SqlInjectionMatchSet that you want to get. SqlInjectionMatchSetId is returned by  CreateSqlInjectionMatchSet and by  ListSqlInjectionMatchSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_web_acl": {
+        "WebACLId": {
+            "Description": "The WebACLId of the  WebACL that you want to get. WebACLId is returned by  CreateWebACL and by  ListWebACLs .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_web_acl_for_resource": {
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the resource for which to get the web ACL, either an application load balancer or Amazon API Gateway stage.\nThe ARN should be in one of the following formats:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "get_xss_match_set": {
+        "XssMatchSetId": {
+            "Description": "The XssMatchSetId of the  XssMatchSet that you want to get. XssMatchSetId is returned by  CreateXssMatchSet and by  ListXssMatchSets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_activated_rules_in_rule_group": {
+        "RuleGroupId": {
+            "Description": "The RuleGroupId of the  RuleGroup for which you want to get a list of  ActivatedRule objects.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more ActivatedRules than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of ActivatedRules . For the second and subsequent ListActivatedRulesInRuleGroup requests, specify the value of NextMarker from the previous response to get information about another batch of ActivatedRules .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of ActivatedRules that you want AWS WAF to return for this request. If you have more ActivatedRules than the number that you specify for Limit , the response includes a NextMarker value that you can use to get another batch of ActivatedRules .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_byte_match_sets": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more ByteMatchSets than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of ByteMatchSets . For the second and subsequent ListByteMatchSets requests, specify the value of NextMarker from the previous response to get information about another batch of ByteMatchSets .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of ByteMatchSet objects that you want AWS WAF to return for this request. If you have more ByteMatchSets objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of ByteMatchSet objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_geo_match_sets": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more GeoMatchSet s than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of GeoMatchSet objects. For the second and subsequent ListGeoMatchSets requests, specify the value of NextMarker from the previous response to get information about another batch of GeoMatchSet objects.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of GeoMatchSet objects that you want AWS WAF to return for this request. If you have more GeoMatchSet objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of GeoMatchSet objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_ip_sets": {
+        "NextMarker": {
+            "Description": "AWS WAF returns a NextMarker value in the response that allows you to list another group of IPSets . For the second and subsequent ListIPSets requests, specify the value of NextMarker from the previous response to get information about another batch of IPSets .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of IPSet objects that you want AWS WAF to return for this request. If you have more IPSet objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of IPSet objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_logging_configurations": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more LoggingConfigurations than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of LoggingConfigurations . For the second and subsequent ListLoggingConfigurations requests, specify the value of NextMarker from the previous response to get information about another batch of ListLoggingConfigurations .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of LoggingConfigurations that you want AWS WAF to return for this request. If you have more LoggingConfigurations than the number that you specify for Limit , the response includes a NextMarker value that you can use to get another batch of LoggingConfigurations .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_rate_based_rules": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more Rules than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of Rules . For the second and subsequent ListRateBasedRules requests, specify the value of NextMarker from the previous response to get information about another batch of Rules .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of Rules that you want AWS WAF to return for this request. If you have more Rules than the number that you specify for Limit , the response includes a NextMarker value that you can use to get another batch of Rules .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_regex_match_sets": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more RegexMatchSet objects than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of ByteMatchSets . For the second and subsequent ListRegexMatchSets requests, specify the value of NextMarker from the previous response to get information about another batch of RegexMatchSet objects.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of RegexMatchSet objects that you want AWS WAF to return for this request. If you have more RegexMatchSet objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of RegexMatchSet objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_regex_pattern_sets": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more RegexPatternSet objects than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of RegexPatternSet objects. For the second and subsequent ListRegexPatternSets requests, specify the value of NextMarker from the previous response to get information about another batch of RegexPatternSet objects.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of RegexPatternSet objects that you want AWS WAF to return for this request. If you have more RegexPatternSet objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of RegexPatternSet objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resources_for_web_acl": {
+        "WebACLId": {
+            "Description": "The unique identifier (ID) of the web ACL for which to list the associated resources.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "The type of resource to list, either an application load balancer or Amazon API Gateway.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_rule_groups": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more RuleGroups than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of RuleGroups . For the second and subsequent ListRuleGroups requests, specify the value of NextMarker from the previous response to get information about another batch of RuleGroups .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of RuleGroups that you want AWS WAF to return for this request. If you have more RuleGroups than the number that you specify for Limit , the response includes a NextMarker value that you can use to get another batch of RuleGroups .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_rules": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more Rules than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of Rules . For the second and subsequent ListRules requests, specify the value of NextMarker from the previous response to get information about another batch of Rules .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of Rules that you want AWS WAF to return for this request. If you have more Rules than the number that you specify for Limit , the response includes a NextMarker value that you can use to get another batch of Rules .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_size_constraint_sets": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more SizeConstraintSets than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of SizeConstraintSets . For the second and subsequent ListSizeConstraintSets requests, specify the value of NextMarker from the previous response to get information about another batch of SizeConstraintSets .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of SizeConstraintSet objects that you want AWS WAF to return for this request. If you have more SizeConstraintSets objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of SizeConstraintSet objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_sql_injection_match_sets": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more  SqlInjectionMatchSet objects than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of SqlInjectionMatchSets . For the second and subsequent ListSqlInjectionMatchSets requests, specify the value of NextMarker from the previous response to get information about another batch of SqlInjectionMatchSets .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of  SqlInjectionMatchSet objects that you want AWS WAF to return for this request. If you have more SqlInjectionMatchSet objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of Rules .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_subscribed_rule_groups": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more ByteMatchSets subscribed rule groups than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of subscribed rule groups. For the second and subsequent ListSubscribedRuleGroupsRequest requests, specify the value of NextMarker from the previous response to get information about another batch of subscribed rule groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of subscribed rule groups that you want AWS WAF to return for this request. If you have more objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "NextMarker": {
+            "Description": "",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "ResourceARN": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_web_acls": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more WebACL objects than the number that you specify for Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of WebACL objects. For the second and subsequent ListWebACLs requests, specify the value of NextMarker from the previous response to get information about another batch of WebACL objects.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of WebACL objects that you want AWS WAF to return for this request. If you have more WebACL objects than the number that you specify for Limit , the response includes a NextMarker value that you can use to get another batch of WebACL objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_xss_match_sets": {
+        "NextMarker": {
+            "Description": "If you specify a value for Limit and you have more  XssMatchSet objects than the value of Limit , AWS WAF returns a NextMarker value in the response that allows you to list another group of XssMatchSets . For the second and subsequent ListXssMatchSets requests, specify the value of NextMarker from the previous response to get information about another batch of XssMatchSets .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of  XssMatchSet objects that you want AWS WAF to return for this request. If you have more XssMatchSet objects than the number you specify for Limit , the response includes a NextMarker value that you can use to get another batch of Rules .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_logging_configuration": {
+        "LoggingConfiguration": {
+            "Description": "The Amazon Kinesis Data Firehose that contains the inspected traffic information, the redacted fields details, and the Amazon Resource Name (ARN) of the web ACL to monitor.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_permission_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the RuleGroup to which you want to attach the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The policy to attach to the specified RuleGroup.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "[REQUIRED]\n\n(dict) --\nNote\nThis is AWS WAF Classic documentation. For more information, see AWS WAF Classic in the developer guide.\n\nFor the latest version of AWS WAF , use the AWS WAFV2 API and see the AWS WAF Developer Guide . With the latest version, AWS WAF has a single set of endpoints for regional and global use.\n\nA tag associated with an AWS resource. Tags are key:value pairs that you can use to categorize and manage your resources, for purposes like billing. For example, you might set the tag key to \"customer\" and the value to the customer name or ID. You can specify one or more tags to add to each AWS resource, up to 50 tags for a resource.\nTagging is only available through the API, SDKs, and CLI. You can't manage or view tags through the AWS WAF Classic console. You can tag the AWS resources that you manage through AWS WAF Classic: web ACLs, rule groups, and rules.\n\nKey (string)[REQUIRED]\nValue (string)[REQUIRED]\n\n\n\n",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        },
+        "TagKeys": {
+            "Description": "[REQUIRED]\n\n(string) --\n\n",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_byte_match_set": {
+        "ByteMatchSetId": {
+            "Description": "The ByteMatchSetId of the  ByteMatchSet that you want to update. ByteMatchSetId is returned by  CreateByteMatchSet and by  ListByteMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of ByteMatchSetUpdate objects that you want to insert into or delete from a  ByteMatchSet. For more information, see the applicable data types:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_geo_match_set": {
+        "GeoMatchSetId": {
+            "Description": "The GeoMatchSetId of the  GeoMatchSet that you want to update. GeoMatchSetId is returned by  CreateGeoMatchSet and by  ListGeoMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of GeoMatchSetUpdate objects that you want to insert into or delete from an  GeoMatchSet. For more information, see the applicable data types:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_ip_set": {
+        "IPSetId": {
+            "Description": "The IPSetId of the  IPSet that you want to update. IPSetId is returned by  CreateIPSet and by  ListIPSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of IPSetUpdate objects that you want to insert into or delete from an  IPSet. For more information, see the applicable data types:\nYou can insert a maximum of 1000 addresses in a single request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_rate_based_rule": {
+        "RuleId": {
+            "Description": "The RuleId of the RateBasedRule that you want to update. RuleId is returned by CreateRateBasedRule and by  ListRateBasedRules .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of RuleUpdate objects that you want to insert into or delete from a  RateBasedRule .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "RateLimit": {
+            "Description": "The maximum number of requests, which have an identical value in the field specified by the RateKey, allowed in a five-minute period. If the number of requests exceeds the RateLimit and the other predicates specified in the rule are also met, AWS WAF triggers the action that is specified for this rule.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "update_regex_match_set": {
+        "RegexMatchSetId": {
+            "Description": "The RegexMatchSetId of the  RegexMatchSet that you want to update. RegexMatchSetId is returned by  CreateRegexMatchSet and by  ListRegexMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of RegexMatchSetUpdate objects that you want to insert into or delete from a  RegexMatchSet. For more information, see  RegexMatchTuple .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_regex_pattern_set": {
+        "RegexPatternSetId": {
+            "Description": "The RegexPatternSetId of the  RegexPatternSet that you want to update. RegexPatternSetId is returned by  CreateRegexPatternSet and by  ListRegexPatternSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of RegexPatternSetUpdate objects that you want to insert into or delete from a  RegexPatternSet .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_rule": {
+        "RuleId": {
+            "Description": "The RuleId of the Rule that you want to update. RuleId is returned by CreateRule and by  ListRules .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of RuleUpdate objects that you want to insert into or delete from a  Rule. For more information, see the applicable data types:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_rule_group": {
+        "RuleGroupId": {
+            "Description": "The RuleGroupId of the  RuleGroup that you want to update. RuleGroupId is returned by  CreateRuleGroup and by  ListRuleGroups .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of RuleGroupUpdate objects that you want to insert into or delete from a  RuleGroup .\nYou can only insert REGULAR rules into a rule group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_size_constraint_set": {
+        "SizeConstraintSetId": {
+            "Description": "The SizeConstraintSetId of the  SizeConstraintSet that you want to update. SizeConstraintSetId is returned by  CreateSizeConstraintSet and by  ListSizeConstraintSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of SizeConstraintSetUpdate objects that you want to insert into or delete from a  SizeConstraintSet. For more information, see the applicable data types:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_sql_injection_match_set": {
+        "SqlInjectionMatchSetId": {
+            "Description": "The SqlInjectionMatchSetId of the SqlInjectionMatchSet that you want to update. SqlInjectionMatchSetId is returned by  CreateSqlInjectionMatchSet and by  ListSqlInjectionMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of SqlInjectionMatchSetUpdate objects that you want to insert into or delete from a  SqlInjectionMatchSet. For more information, see the applicable data types:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_web_acl": {
+        "WebACLId": {
+            "Description": "The WebACLId of the  WebACL that you want to update. WebACLId is returned by  CreateWebACL and by  ListWebACLs .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of updates to make to the  WebACL .\nAn array of WebACLUpdate objects that you want to insert into or delete from a  WebACL. For more information, see the applicable data types:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "DefaultAction": {
+            "Description": "A default action for the web ACL, either ALLOW or BLOCK. AWS WAF performs the default action if a request doesn't match the criteria in any of the rules in a web ACL.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_xss_match_set": {
+        "XssMatchSetId": {
+            "Description": "The XssMatchSetId of the XssMatchSet that you want to update. XssMatchSetId is returned by  CreateXssMatchSet and by  ListXssMatchSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChangeToken": {
+            "Description": "The value returned by the most recent call to  GetChangeToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "An array of XssMatchSetUpdate objects that you want to insert into or delete from an  XssMatchSet. For more information, see the applicable data types:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    }
+}

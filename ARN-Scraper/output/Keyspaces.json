@@ -1,0 +1,336 @@
+{
+    "create_keyspace": {
+        "keyspaceName": {
+            "Description": "The name of the keyspace to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of key-value pair tags to be attached to the keyspace.\nFor more information, see Adding tags and labels to Amazon Keyspaces resources in the Amazon Keyspaces Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_table": {
+        "keyspaceName": {
+            "Description": "The name of the keyspace that the table is going to be created in.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableName": {
+            "Description": "The name of the table.",
+            "Type": "string",
+            "Required": true
+        },
+        "schemaDefinition": {
+            "Description": "The schemaDefinition consists of the following parameters.\nFor each column to be created:\nThe primary key of the table consists of the following columns:\nTo define a column as static use staticColumns - Static columns store values that are shared by all rows in the same partition:",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "comment": {
+            "Description": "This parameter allows to enter a description of the table.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "capacitySpecification": {
+            "Description": "Specifies the read/write throughput capacity mode for the table. The options are:\nThe default is throughput_mode:PAY_PER_REQUEST .\nFor more information, see Read/write capacity modes in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "encryptionSpecification": {
+            "Description": "Specifies how the encryption key for encryption at rest is managed for the table. You can choose one of the following KMS key (KMS key):\nThe default is type:AWS_OWNED_KMS_KEY .\nFor more information, see Encryption at rest in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "pointInTimeRecovery": {
+            "Description": "Specifies if pointInTimeRecovery is enabled or disabled for the table. The options are:\nIf it's not specified, the default is DISABLED .\nFor more information, see Point-in-time recovery in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ttl": {
+            "Description": "Enables Time to Live custom settings for the table. The options are:\nThe default is status:disabled. After ttl is enabled, you can't disable it for the table.\nFor more information, see Expiring data by using Amazon Keyspaces Time to Live (TTL) in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "defaultTimeToLive": {
+            "Description": "The default Time to Live setting in seconds for the table.\nFor more information, see Setting the default TTL value for a table in the Amazon Keyspaces Developer Guide .",
+            "Type": "integer",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of key-value pair tags to be attached to the resource.\nFor more information, see Adding tags and labels to Amazon Keyspaces resources in the Amazon Keyspaces Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_keyspace": {
+        "keyspaceName": {
+            "Description": "The name of the keyspace to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_table": {
+        "keyspaceName": {
+            "Description": "The name of the keyspace of the to be deleted table.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableName": {
+            "Description": "The name of the table to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_keyspace": {
+        "keyspaceName": {
+            "Description": "The name of the keyspace.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_table": {
+        "keyspaceName": {
+            "Description": "The name of the keyspace that the table is stored in.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableName": {
+            "Description": "The name of the table.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_keyspaces": {
+        "nextToken": {
+            "Description": "The pagination token. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The total number of keyspaces to return in the output. If the total number of keyspaces available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as an argument of a subsequent API invocation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tables": {
+        "nextToken": {
+            "Description": "The pagination token. To resume pagination, provide the NextToken value as an argument of a subsequent API invocation.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The total number of tables to return in the output. If the total number of tables available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as an argument of a subsequent API invocation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "keyspaceName": {
+            "Description": "The name of the keyspace.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Keyspaces resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token. To resume pagination, provide the NextToken value as argument of a subsequent API invocation.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The total number of tags to return in the output. If the total number of tags available is more than the value specified, a NextToken is provided in the output. To resume pagination, provide the NextToken value as an argument of a subsequent API invocation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "restore_table": {
+        "sourceKeyspaceName": {
+            "Description": "The keyspace name of the source table.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceTableName": {
+            "Description": "The name of the source table.",
+            "Type": "string",
+            "Required": true
+        },
+        "targetKeyspaceName": {
+            "Description": "The name of the target keyspace.",
+            "Type": "string",
+            "Required": true
+        },
+        "targetTableName": {
+            "Description": "The name of the target table.",
+            "Type": "string",
+            "Required": true
+        },
+        "restoreTimestamp": {
+            "Description": "The restore timestamp in ISO 8601 format.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "capacitySpecificationOverride": {
+            "Description": "Specifies the read/write throughput capacity mode for the target table. The options are:\nThe default is throughput_mode:PAY_PER_REQUEST .\nFor more information, see Read/write capacity modes in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "encryptionSpecificationOverride": {
+            "Description": "Specifies the encryption settings for the target table. You can choose one of the following KMS key (KMS key):\nThe default is type:AWS_OWNED_KMS_KEY .\nFor more information, see Encryption at rest in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "pointInTimeRecoveryOverride": {
+            "Description": "Specifies the pointInTimeRecovery settings for the target table. The options are:\nIf it's not specified, the default is DISABLED .\nFor more information, see Point-in-time recovery in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "tagsOverride": {
+            "Description": "A list of key-value pair tags to be attached to the restored table.\nFor more information, see Adding tags and labels to Amazon Keyspaces resources in the Amazon Keyspaces Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Keyspaces resource to which to add tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to be assigned to the Amazon Keyspaces resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Keyspaces resource that the tags will be removed from. This value is an Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of existing tags to be removed from the Amazon Keyspaces resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_table": {
+        "keyspaceName": {
+            "Description": "The name of the keyspace the specified table is stored in.",
+            "Type": "string",
+            "Required": true
+        },
+        "tableName": {
+            "Description": "The name of the table.",
+            "Type": "string",
+            "Required": true
+        },
+        "addColumns": {
+            "Description": "For each column to be added to the specified table:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "capacitySpecification": {
+            "Description": "Modifies the read/write throughput capacity mode for the table. The options are:\nThe default is throughput_mode:PAY_PER_REQUEST .\nFor more information, see Read/write capacity modes in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "encryptionSpecification": {
+            "Description": "Modifies the encryption settings of the table. You can choose one of the following KMS key (KMS key):\nThe default is AWS_OWNED_KMS_KEY .\nFor more information, see Encryption at rest in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "pointInTimeRecovery": {
+            "Description": "Modifies the pointInTimeRecovery settings of the table. The options are:\nIf it's not specified, the default is DISABLED .\nFor more information, see Point-in-time recovery in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ttl": {
+            "Description": "Modifies Time to Live custom settings for the table. The options are:\nThe default is status:disabled. After ttl is enabled, you can't disable it for the table.\nFor more information, see Expiring data by using Amazon Keyspaces Time to Live (TTL) in the Amazon Keyspaces Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "defaultTimeToLive": {
+            "Description": "The default Time to Live setting in seconds for the table.\nFor more information, see Setting the default TTL value for a table in the Amazon Keyspaces Developer Guide .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Keyspaces resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

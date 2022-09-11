@@ -1,0 +1,1757 @@
+{
+    "create_api": {
+        "ApiKeySelectionExpression": {
+            "Description": "An API key selection expression. Supported only for WebSocket APIs. See API Key Selection Expressions .",
+            "Type": "string",
+            "Required": false
+        },
+        "CorsConfiguration": {
+            "Description": "A CORS configuration. Supported only for HTTP APIs. See Configuring CORS for more information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CredentialsArn": {
+            "Description": "This property is part of quick create. It specifies the credentials required for the integration, if any. For a Lambda integration, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify arn:aws:iam:::user/. To use resource-based permissions on supported AWS services, specify null. Currently, this property is not used for HTTP integrations. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the API.",
+            "Type": "string",
+            "Required": false
+        },
+        "DisableSchemaValidation": {
+            "Description": "Avoid validating models when creating a deployment. Supported only for WebSocket APIs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DisableExecuteApiEndpoint": {
+            "Description": "Specifies whether clients can invoke your API by using the default execute-api endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the API.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProtocolType": {
+            "Description": "The API protocol.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteKey": {
+            "Description": "This property is part of quick create. If you don't specify a routeKey, a default route of $default is created. The $default route acts as a catch-all for any request made to your API, for a particular stage. The $default route key can't be modified. You can add routes after creating the API, and you can update the route keys of additional routes. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "RouteSelectionExpression": {
+            "Description": "The route selection expression for the API. For HTTP APIs, the routeSelectionExpression must be ${request.method} ${request.path}. If not provided, this will be the default for HTTP APIs. This property is required for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The collection of tags. Each tag element is associated with a given resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Target": {
+            "Description": "This property is part of quick create. Quick create produces an API with an integration, a default catch-all route, and a default stage which is configured to automatically deploy changes. For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN. The type of the integration will be HTTP_PROXY or AWS_PROXY, respectively. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Version": {
+            "Description": "A version identifier for the API.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_api_mapping": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApiMappingKey": {
+            "Description": "The API mapping key.",
+            "Type": "string",
+            "Required": false
+        },
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Stage": {
+            "Description": "The API stage.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_authorizer": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizerCredentialsArn": {
+            "Description": "Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, don't specify this parameter. Supported only for REQUEST authorizers.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthorizerPayloadFormatVersion": {
+            "Description": "Specifies the format of the payload sent to an HTTP API Lambda authorizer. Required for HTTP API Lambda authorizers. Supported values are 1.0 and 2.0. To learn more, see Working with AWS Lambda authorizers for HTTP APIs .",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthorizerResultTtlInSeconds": {
+            "Description": "The time to live (TTL) for cached authorizer results, in seconds. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway caches authorizer responses. The maximum value is 3600, or 1 hour. Supported only for HTTP API Lambda authorizers.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AuthorizerType": {
+            "Description": "The authorizer type. Specify REQUEST for a Lambda function using incoming request parameters. Specify JWT to use JSON Web Tokens (supported only for HTTP APIs).",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizerUri": {
+            "Description": "The authorizer's Uniform Resource Identifier (URI). For REQUEST authorizers, this must be a well-formed Lambda function URI, for example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations. In general, the URI has this form: arn:aws:apigateway:{region}:lambda:path/{service_api}, where {region} is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial /. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations. Supported only for REQUEST authorizers.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnableSimpleResponses": {
+            "Description": "Specifies whether a Lambda authorizer returns a response in a simple format. By default, a Lambda authorizer must return an IAM policy. If enabled, the Lambda authorizer can return a boolean value instead of an IAM policy. Supported only for HTTP APIs. To learn more, see Working with AWS Lambda authorizers for HTTP APIs",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IdentitySource": {
+            "Description": "The identity source for which authorization is requested.\nFor a REQUEST authorizer, this is optional. The value is a set of one or more mapping expressions of the specified request parameters. The identity source can be headers, query string parameters, stage variables, and context parameters. For example, if an Auth header and a Name query string parameter are defined as identity sources, this value is route.request.header.Auth, route.request.querystring.Name for WebSocket APIs. For HTTP APIs, use selection expressions prefixed with $, for example, $request.header.Auth, $request.querystring.Name. These parameters are used to perform runtime validation for Lambda-based authorizers by verifying all of the identity-related request parameters are present in the request, not null, and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function. Otherwise, it returns a 401 Unauthorized response without calling the Lambda function. For HTTP APIs, identity sources are also used as the cache key when caching is enabled. To learn more, see Working with AWS Lambda authorizers for HTTP APIs .\nFor JWT, a single entry that specifies where to extract the JSON Web Token (JWT) from inbound requests. Currently only header-based and query parameter-based selections are supported, for example $request.header.Authorization.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "IdentityValidationExpression": {
+            "Description": "This parameter is not used.",
+            "Type": "string",
+            "Required": false
+        },
+        "JwtConfiguration": {
+            "Description": "Represents the configuration of a JWT authorizer. Required for the JWT authorizer type. Supported only for HTTP APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Name": {
+            "Description": "The name of the authorizer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_deployment": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the deployment resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "StageName": {
+            "Description": "The name of the Stage resource for the Deployment resource to create.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_domain_name": {
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainNameConfigurations": {
+            "Description": "The domain name configurations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MutualTlsAuthentication": {
+            "Description": "The mutual TLS authentication configuration for a custom domain name.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The collection of tags associated with a domain name.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_integration": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectionId": {
+            "Description": "The ID of the VPC link for a private integration. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConnectionType": {
+            "Description": "The type of the network connection to the integration endpoint. Specify INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and resources in a VPC. The default value is INTERNET.",
+            "Type": "string",
+            "Required": false
+        },
+        "ContentHandlingStrategy": {
+            "Description": "Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:\nCONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.\nCONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.\nIf this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.",
+            "Type": "string",
+            "Required": false
+        },
+        "CredentialsArn": {
+            "Description": "Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string arn:aws:iam:::user/. To use resource-based permissions on supported AWS services, specify null.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the integration.",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationMethod": {
+            "Description": "Specifies the integration's HTTP method type.",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationSubtype": {
+            "Description": "Supported only for HTTP API AWS_PROXY integrations. Specifies the AWS service action to invoke. To learn more, see Integration subtype reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationType": {
+            "Description": "The integration type of an integration. One of the following:\nAWS: for integrating the route or method request with an AWS service action, including the Lambda function-invoking action. With the Lambda function-invoking action, this is referred to as the Lambda custom integration. With any other AWS service action, this is known as AWS integration. Supported only for WebSocket APIs.\nAWS_PROXY: for integrating the route or method request with a Lambda function or other AWS service action. This integration is also referred to as a Lambda proxy integration.\nHTTP: for integrating the route or method request with an HTTP endpoint. This integration is also referred to as the HTTP custom integration. Supported only for WebSocket APIs.\nHTTP_PROXY: for integrating the route or method request with an HTTP endpoint, with the client request passed through as-is. This is also referred to as HTTP proxy integration. For HTTP API private integrations, use an HTTP_PROXY integration.\nMOCK: for integrating the route or method request with API Gateway as a \"loopback\" endpoint without invoking any backend. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationUri": {
+            "Description": "For a Lambda integration, specify the URI of a Lambda function.\nFor an HTTP integration, specify a fully-qualified URL.\nFor an HTTP API private integration, specify the ARN of an Application Load Balancer listener, Network Load Balancer listener, or AWS Cloud Map service. If you specify the ARN of an AWS Cloud Map service, API Gateway uses DiscoverInstances to identify resources. You can use query parameters to target specific resources. To learn more, see DiscoverInstances. For private integrations, all resources must be owned by the same AWS account.",
+            "Type": "string",
+            "Required": false
+        },
+        "PassthroughBehavior": {
+            "Description": "Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER. Supported only for WebSocket APIs.\nWHEN_NO_MATCH passes the request body for unmapped content types through to the integration backend without transformation.\nNEVER rejects unmapped content types with an HTTP 415 Unsupported Media Type response.\nWHEN_NO_TEMPLATES allows pass-through when the integration has no content types mapped to templates. However, if there is at least one content type defined, unmapped content types will be rejected with the same HTTP 415 Unsupported Media Type response.",
+            "Type": "string",
+            "Required": false
+        },
+        "PayloadFormatVersion": {
+            "Description": "Specifies the format of the payload sent to an integration. Required for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "RequestParameters": {
+            "Description": "For WebSocket APIs, a key-value map specifying request parameters that are passed from the method request to the backend. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the backend. The method request parameter value must match the pattern of method.request.{location}.{name}, where {location}is querystring, path, or header; and {name}must be a valid and unique method request parameter name.\nFor HTTP API integrations with a specified integrationSubtype, request parameters are a key-value map specifying parameters that are passed to AWS_PROXY integrations. You can provide static values, or map request data, stage variables, or context variables that are evaluated at runtime. To learn more, see Working with AWS service integrations for HTTP APIs .\nFor HTTP API integrations without a specified integrationSubtype request parameters are a key-value map specifying how to transform HTTP requests before sending them to the backend. The key should follow the pattern &lt;action&gt;:&lt;header|querystring|path&gt;.&lt;location&gt; where action can be append, overwrite or remove. For values, you can provide static values, or map request data, stage variables, or context variables that are evaluated at runtime. To learn more, see Transforming API requests and responses .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RequestTemplates": {
+            "Description": "Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value. Supported only for WebSocket APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResponseParameters": {
+            "Description": "Supported only for HTTP APIs. You use response parameters to transform the HTTP response from a backend integration before returning the response to clients. Specify a key-value map from a selection key to response parameters. The selection key must be a valid HTTP status code within the range of 200-599. Response parameters are a key-value map. The key must match pattern &lt;action&gt;:&lt;header&gt;.&lt;location&gt; or overwrite.statuscode. The action can be append, overwrite or remove. The value can be a static value, or map to response data, stage variables, or context variables that are evaluated at runtime. To learn more, see Transforming API requests and responses .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TemplateSelectionExpression": {
+            "Description": "The template selection expression for the integration.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimeoutInMillis": {
+            "Description": "Custom timeout between 50 and 29,000 milliseconds for WebSocket APIs and between 50 and 30,000 milliseconds for HTTP APIs. The default timeout is 29 seconds for WebSocket APIs and 30 seconds for HTTP APIs.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TlsConfig": {
+            "Description": "The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_integration_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContentHandlingStrategy": {
+            "Description": "Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:\nCONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.\nCONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.\nIf this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationResponseKey": {
+            "Description": "The integration response key.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResponseParameters": {
+            "Description": "A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of method.response.header.{name}, where {name} is a valid and unique header name. The mapped non-static value must match the pattern of integration.response.header.{name} or integration.response.body.{JSON-expression}, where {name} is a valid and unique response header name and {JSON-expression} is a valid JSON expression without the $ prefix.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResponseTemplates": {
+            "Description": "The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TemplateSelectionExpression": {
+            "Description": "The template selection expression for the integration response. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_model": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContentType": {
+            "Description": "The content-type for the model, for example, \"application/json\".",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the model.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the model. Must be alphanumeric.",
+            "Type": "string",
+            "Required": true
+        },
+        "Schema": {
+            "Description": "The schema for the model. For application/json models, this should be JSON schema draft 4 model.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_route": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApiKeyRequired": {
+            "Description": "Specifies whether an API key is required for the route. Supported only for WebSocket APIs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AuthorizationScopes": {
+            "Description": "The authorization scopes supported by this route.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AuthorizationType": {
+            "Description": "The authorization type for the route. For WebSocket APIs, valid values are NONE for open access, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer For HTTP APIs, valid values are NONE for open access, JWT for using JSON Web Tokens, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthorizerId": {
+            "Description": "The identifier of the Authorizer resource to be associated with this route. The authorizer identifier is generated by API Gateway when you created the authorizer.",
+            "Type": "string",
+            "Required": false
+        },
+        "ModelSelectionExpression": {
+            "Description": "The model selection expression for the route. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "OperationName": {
+            "Description": "The operation name for the route.",
+            "Type": "string",
+            "Required": false
+        },
+        "RequestModels": {
+            "Description": "The request models for the route. Supported only for WebSocket APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RequestParameters": {
+            "Description": "The request parameters for the route. Supported only for WebSocket APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RouteKey": {
+            "Description": "The route key for the route.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteResponseSelectionExpression": {
+            "Description": "The route response selection expression for the route. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Target": {
+            "Description": "The target for the route.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_route_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelSelectionExpression": {
+            "Description": "The model selection expression for the route response. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResponseModels": {
+            "Description": "The response models for the route response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResponseParameters": {
+            "Description": "The route response parameters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteResponseKey": {
+            "Description": "The route response key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_stage": {
+        "AccessLogSettings": {
+            "Description": "Settings for logging access in this stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoDeploy": {
+            "Description": "Specifies whether updates to an API automatically trigger a new deployment. The default value is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ClientCertificateId": {
+            "Description": "The identifier of a client certificate for a Stage. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultRouteSettings": {
+            "Description": "The default route settings for the stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeploymentId": {
+            "Description": "The deployment identifier of the API stage.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description for the API stage.",
+            "Type": "string",
+            "Required": false
+        },
+        "RouteSettings": {
+            "Description": "Route settings for the stage, by routeKey.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StageName": {
+            "Description": "The name of the stage.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageVariables": {
+            "Description": "A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&amp;=,]+.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The collection of tags. Each tag element is associated with a given resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_vpc_link": {
+        "Name": {
+            "Description": "The name of the VPC link.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecurityGroupIds": {
+            "Description": "A list of security group IDs for the VPC link.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SubnetIds": {
+            "Description": "A list of subnet IDs to include in the VPC link.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_access_log_settings": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageName": {
+            "Description": "The stage name. Stage names can only contain alphanumeric characters, hyphens, and underscores. Maximum length is 128 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_api": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_api_mapping": {
+        "ApiMappingId": {
+            "Description": "The API mapping identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_authorizer": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizerId": {
+            "Description": "The authorizer identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_cors_configuration": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_deployment": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeploymentId": {
+            "Description": "The deployment ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_domain_name": {
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_integration": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_integration_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationResponseId": {
+            "Description": "The integration response ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_model": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_route": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_route_request_parameter": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "RequestParameterKey": {
+            "Description": "The route request parameter key.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_route_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteResponseId": {
+            "Description": "The route response ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_route_settings": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteKey": {
+            "Description": "The route key.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageName": {
+            "Description": "The stage name. Stage names can only contain alphanumeric characters, hyphens, and underscores. Maximum length is 128 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_stage": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageName": {
+            "Description": "The stage name. Stage names can only contain alphanumeric characters, hyphens, and underscores. Maximum length is 128 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_vpc_link": {
+        "VpcLinkId": {
+            "Description": "The ID of the VPC link.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "export_api": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExportVersion": {
+            "Description": "The version of the API Gateway export algorithm. API Gateway uses the latest version by default. Currently, the only supported version is 1.0.",
+            "Type": "string",
+            "Required": false
+        },
+        "IncludeExtensions": {
+            "Description": "Specifies whether to include API Gateway extensions in the exported API definition. API Gateway extensions are included by default.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "OutputType": {
+            "Description": "The output type of the exported definition file. Valid values are JSON and YAML.",
+            "Type": "string",
+            "Required": true
+        },
+        "Specification": {
+            "Description": "The version of the API specification to use. OAS30, for OpenAPI 3.0, is the only supported value.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageName": {
+            "Description": "The name of the API stage to export. If you don't specify this property, a representation of the latest API configuration is exported.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_api": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_api_mapping": {
+        "ApiMappingId": {
+            "Description": "The API mapping identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_api_mappings": {
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_apis": {
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_authorizer": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizerId": {
+            "Description": "The authorizer identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_authorizers": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_deployment": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeploymentId": {
+            "Description": "The deployment ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_deployments": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_domain_name": {
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_names": {
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_integration": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_integration_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationResponseId": {
+            "Description": "The integration response ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_integration_responses": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_integrations": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_model": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_model_template": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_models": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_route": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_route_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteResponseId": {
+            "Description": "The route response ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_route_responses": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_routes": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_stage": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageName": {
+            "Description": "The stage name. Stage names can only contain alphanumeric characters, hyphens, and underscores. Maximum length is 128 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_stages": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_tags": {
+        "ResourceArn": {
+            "Description": "The resource ARN for the tag.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_vpc_link": {
+        "VpcLinkId": {
+            "Description": "The ID of the VPC link.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_vpc_links": {
+        "MaxResults": {
+            "Description": "The maximum number of elements to be returned for this resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The next page of elements from this collection. Not valid for the last element of the collection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "import_api": {
+        "Basepath": {
+            "Description": "Specifies how to interpret the base path of the API during import. Valid values are ignore, prepend, and split. The default value is ignore. To learn more, see Set the OpenAPI basePath Property . Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Body": {
+            "Description": "The OpenAPI definition. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": true
+        },
+        "FailOnWarnings": {
+            "Description": "Specifies whether to rollback the API creation when a warning is encountered. By default, API creation continues if a warning is encountered.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "reimport_api": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "Basepath": {
+            "Description": "Specifies how to interpret the base path of the API during import. Valid values are ignore, prepend, and split. The default value is ignore. To learn more, see Set the OpenAPI basePath Property . Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Body": {
+            "Description": "The OpenAPI definition. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": true
+        },
+        "FailOnWarnings": {
+            "Description": "Specifies whether to rollback the API creation when a warning is encountered. By default, API creation continues if a warning is encountered.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "reset_authorizers_cache": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageName": {
+            "Description": "The stage name. Stage names can contain only alphanumeric characters, hyphens, and underscores, or be $default. Maximum length is 128 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The resource ARN for the tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The collection of tags. Each tag element is associated with a given resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The resource ARN for the tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The Tag keys to delete",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_api": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApiKeySelectionExpression": {
+            "Description": "An API key selection expression. Supported only for WebSocket APIs. See API Key Selection Expressions .",
+            "Type": "string",
+            "Required": false
+        },
+        "CorsConfiguration": {
+            "Description": "A CORS configuration. Supported only for HTTP APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CredentialsArn": {
+            "Description": "This property is part of quick create. It specifies the credentials required for the integration, if any. For a Lambda integration, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify arn:aws:iam:::user/. To use resource-based permissions on supported AWS services, don't specify this parameter. Currently, this property is not used for HTTP integrations. If provided, this value replaces the credentials associated with the quick create integration. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the API.",
+            "Type": "string",
+            "Required": false
+        },
+        "DisableSchemaValidation": {
+            "Description": "Avoid validating models when creating a deployment. Supported only for WebSocket APIs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DisableExecuteApiEndpoint": {
+            "Description": "Specifies whether clients can invoke your API by using the default execute-api endpoint. By default, clients can invoke your API with the default https://{api_id}.execute-api.{region}.amazonaws.com endpoint. To require that clients use a custom domain name to invoke your API, disable the default endpoint.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the API.",
+            "Type": "string",
+            "Required": false
+        },
+        "RouteKey": {
+            "Description": "This property is part of quick create. If not specified, the route created using quick create is kept. Otherwise, this value replaces the route key of the quick create route. Additional routes may still be added after the API is updated. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "RouteSelectionExpression": {
+            "Description": "The route selection expression for the API. For HTTP APIs, the routeSelectionExpression must be ${request.method} ${request.path}. If not provided, this will be the default for HTTP APIs. This property is required for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Target": {
+            "Description": "This property is part of quick create. For HTTP integrations, specify a fully qualified URL. For Lambda integrations, specify a function ARN. The type of the integration will be HTTP_PROXY or AWS_PROXY, respectively. The value provided updates the integration URI and integration type. You can update a quick-created target, but you can't remove it from an API. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Version": {
+            "Description": "A version identifier for the API.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_api_mapping": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApiMappingId": {
+            "Description": "The API mapping identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApiMappingKey": {
+            "Description": "The API mapping key.",
+            "Type": "string",
+            "Required": false
+        },
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Stage": {
+            "Description": "The API stage.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_authorizer": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizerCredentialsArn": {
+            "Description": "Specifies the required credentials as an IAM role for API Gateway to invoke the authorizer. To specify an IAM role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To use resource-based permissions on the Lambda function, don't specify this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthorizerId": {
+            "Description": "The authorizer identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizerPayloadFormatVersion": {
+            "Description": "Specifies the format of the payload sent to an HTTP API Lambda authorizer. Required for HTTP API Lambda authorizers. Supported values are 1.0 and 2.0. To learn more, see Working with AWS Lambda authorizers for HTTP APIs .",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthorizerResultTtlInSeconds": {
+            "Description": "The time to live (TTL) for cached authorizer results, in seconds. If it equals 0, authorization caching is disabled. If it is greater than 0, API Gateway caches authorizer responses. The maximum value is 3600, or 1 hour. Supported only for HTTP API Lambda authorizers.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AuthorizerType": {
+            "Description": "The authorizer type. Specify REQUEST for a Lambda function using incoming request parameters. Specify JWT to use JSON Web Tokens (supported only for HTTP APIs).",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthorizerUri": {
+            "Description": "The authorizer's Uniform Resource Identifier (URI). For REQUEST authorizers, this must be a well-formed Lambda function URI, for example, arn:aws:apigateway:us-west-2:lambda:path/2015-03-31/functions/arn:aws:lambda:us-west-2:{account_id}:function:{lambda_function_name}/invocations. In general, the URI has this form: arn:aws:apigateway:{region}:lambda:path/{service_api}, where {region} is the same as the region hosting the Lambda function, path indicates that the remaining substring in the URI should be treated as the path to the resource, including the initial /. For Lambda functions, this is usually of the form /2015-03-31/functions/[FunctionARN]/invocations. Supported only for REQUEST authorizers.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnableSimpleResponses": {
+            "Description": "Specifies whether a Lambda authorizer returns a response in a simple format. By default, a Lambda authorizer must return an IAM policy. If enabled, the Lambda authorizer can return a boolean value instead of an IAM policy. Supported only for HTTP APIs. To learn more, see Working with AWS Lambda authorizers for HTTP APIs",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IdentitySource": {
+            "Description": "The identity source for which authorization is requested.\nFor a REQUEST authorizer, this is optional. The value is a set of one or more mapping expressions of the specified request parameters. The identity source can be headers, query string parameters, stage variables, and context parameters. For example, if an Auth header and a Name query string parameter are defined as identity sources, this value is route.request.header.Auth, route.request.querystring.Name for WebSocket APIs. For HTTP APIs, use selection expressions prefixed with $, for example, $request.header.Auth, $request.querystring.Name. These parameters are used to perform runtime validation for Lambda-based authorizers by verifying all of the identity-related request parameters are present in the request, not null, and non-empty. Only when this is true does the authorizer invoke the authorizer Lambda function. Otherwise, it returns a 401 Unauthorized response without calling the Lambda function. For HTTP APIs, identity sources are also used as the cache key when caching is enabled. To learn more, see Working with AWS Lambda authorizers for HTTP APIs .\nFor JWT, a single entry that specifies where to extract the JSON Web Token (JWT) from inbound requests. Currently only header-based and query parameter-based selections are supported, for example $request.header.Authorization.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdentityValidationExpression": {
+            "Description": "This parameter is not used.",
+            "Type": "string",
+            "Required": false
+        },
+        "JwtConfiguration": {
+            "Description": "Represents the configuration of a JWT authorizer. Required for the JWT authorizer type. Supported only for HTTP APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Name": {
+            "Description": "The name of the authorizer.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_deployment": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeploymentId": {
+            "Description": "The deployment ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the deployment resource.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_domain_name": {
+        "DomainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainNameConfigurations": {
+            "Description": "The domain name configurations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MutualTlsAuthentication": {
+            "Description": "The mutual TLS authentication configuration for a custom domain name.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_integration": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectionId": {
+            "Description": "The ID of the VPC link for a private integration. Supported only for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConnectionType": {
+            "Description": "The type of the network connection to the integration endpoint. Specify INTERNET for connections through the public routable internet or VPC_LINK for private connections between API Gateway and resources in a VPC. The default value is INTERNET.",
+            "Type": "string",
+            "Required": false
+        },
+        "ContentHandlingStrategy": {
+            "Description": "Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:\nCONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.\nCONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.\nIf this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.",
+            "Type": "string",
+            "Required": false
+        },
+        "CredentialsArn": {
+            "Description": "Specifies the credentials required for the integration, if any. For AWS integrations, three options are available. To specify an IAM Role for API Gateway to assume, use the role's Amazon Resource Name (ARN). To require that the caller's identity be passed through from the request, specify the string arn:aws:iam:::user/. To use resource-based permissions on supported AWS services, specify null.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the integration",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationMethod": {
+            "Description": "Specifies the integration's HTTP method type.",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationSubtype": {
+            "Description": "Supported only for HTTP API AWS_PROXY integrations. Specifies the AWS service action to invoke. To learn more, see Integration subtype reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationType": {
+            "Description": "The integration type of an integration. One of the following:\nAWS: for integrating the route or method request with an AWS service action, including the Lambda function-invoking action. With the Lambda function-invoking action, this is referred to as the Lambda custom integration. With any other AWS service action, this is known as AWS integration. Supported only for WebSocket APIs.\nAWS_PROXY: for integrating the route or method request with a Lambda function or other AWS service action. This integration is also referred to as a Lambda proxy integration.\nHTTP: for integrating the route or method request with an HTTP endpoint. This integration is also referred to as the HTTP custom integration. Supported only for WebSocket APIs.\nHTTP_PROXY: for integrating the route or method request with an HTTP endpoint, with the client request passed through as-is. This is also referred to as HTTP proxy integration. For HTTP API private integrations, use an HTTP_PROXY integration.\nMOCK: for integrating the route or method request with API Gateway as a \"loopback\" endpoint without invoking any backend. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationUri": {
+            "Description": "For a Lambda integration, specify the URI of a Lambda function.\nFor an HTTP integration, specify a fully-qualified URL.\nFor an HTTP API private integration, specify the ARN of an Application Load Balancer listener, Network Load Balancer listener, or AWS Cloud Map service. If you specify the ARN of an AWS Cloud Map service, API Gateway uses DiscoverInstances to identify resources. You can use query parameters to target specific resources. To learn more, see DiscoverInstances. For private integrations, all resources must be owned by the same AWS account.",
+            "Type": "string",
+            "Required": false
+        },
+        "PassthroughBehavior": {
+            "Description": "Specifies the pass-through behavior for incoming requests based on the Content-Type header in the request, and the available mapping templates specified as the requestTemplates property on the Integration resource. There are three valid values: WHEN_NO_MATCH, WHEN_NO_TEMPLATES, and NEVER. Supported only for WebSocket APIs.\nWHEN_NO_MATCH passes the request body for unmapped content types through to the integration backend without transformation.\nNEVER rejects unmapped content types with an HTTP 415 Unsupported Media Type response.\nWHEN_NO_TEMPLATES allows pass-through when the integration has no content types mapped to templates. However, if there is at least one content type defined, unmapped content types will be rejected with the same HTTP 415 Unsupported Media Type response.",
+            "Type": "string",
+            "Required": false
+        },
+        "PayloadFormatVersion": {
+            "Description": "Specifies the format of the payload sent to an integration. Required for HTTP APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "RequestParameters": {
+            "Description": "For WebSocket APIs, a key-value map specifying request parameters that are passed from the method request to the backend. The key is an integration request parameter name and the associated value is a method request parameter value or static value that must be enclosed within single quotes and pre-encoded as required by the backend. The method request parameter value must match the pattern of method.request.{location}.{name}, where {location}is querystring, path, or header; and {name}must be a valid and unique method request parameter name.\nFor HTTP API integrations with a specified integrationSubtype, request parameters are a key-value map specifying parameters that are passed to AWS_PROXY integrations. You can provide static values, or map request data, stage variables, or context variables that are evaluated at runtime. To learn more, see Working with AWS service integrations for HTTP APIs .\nFor HTTP API integrations, without a specified integrationSubtype request parameters are a key-value map specifying how to transform HTTP requests before sending them to the backend. The key should follow the pattern &lt;action&gt;:&lt;header|querystring|path&gt;.&lt;location&gt; where action can be append, overwrite or remove. For values, you can provide static values, or map request data, stage variables, or context variables that are evaluated at runtime. To learn more, see Transforming API requests and responses .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RequestTemplates": {
+            "Description": "Represents a map of Velocity templates that are applied on the request payload based on the value of the Content-Type header sent by the client. The content type value is the key in this map, and the template (as a String) is the value. Supported only for WebSocket APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResponseParameters": {
+            "Description": "Supported only for HTTP APIs. You use response parameters to transform the HTTP response from a backend integration before returning the response to clients. Specify a key-value map from a selection key to response parameters. The selection key must be a valid HTTP status code within the range of 200-599. Response parameters are a key-value map. The key must match pattern &lt;action&gt;:&lt;header&gt;.&lt;location&gt; or overwrite.statuscode. The action can be append, overwrite or remove. The value can be a static value, or map to response data, stage variables, or context variables that are evaluated at runtime. To learn more, see Transforming API requests and responses .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TemplateSelectionExpression": {
+            "Description": "The template selection expression for the integration.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimeoutInMillis": {
+            "Description": "Custom timeout between 50 and 29,000 milliseconds for WebSocket APIs and between 50 and 30,000 milliseconds for HTTP APIs. The default timeout is 29 seconds for WebSocket APIs and 30 seconds for HTTP APIs.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TlsConfig": {
+            "Description": "The TLS configuration for a private integration. If you specify a TLS configuration, private integration traffic uses the HTTPS protocol. Supported only for HTTP APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_integration_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContentHandlingStrategy": {
+            "Description": "Supported only for WebSocket APIs. Specifies how to handle response payload content type conversions. Supported values are CONVERT_TO_BINARY and CONVERT_TO_TEXT, with the following behaviors:\nCONVERT_TO_BINARY: Converts a response payload from a Base64-encoded string to the corresponding binary blob.\nCONVERT_TO_TEXT: Converts a response payload from a binary blob to a Base64-encoded string.\nIf this property is not defined, the response payload will be passed through from the integration response to the route response or method response without modification.",
+            "Type": "string",
+            "Required": false
+        },
+        "IntegrationId": {
+            "Description": "The integration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationResponseId": {
+            "Description": "The integration response ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationResponseKey": {
+            "Description": "The integration response key.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResponseParameters": {
+            "Description": "A key-value map specifying response parameters that are passed to the method response from the backend. The key is a method response header parameter name and the mapped value is an integration response header value, a static value enclosed within a pair of single quotes, or a JSON expression from the integration response body. The mapping key must match the pattern of method.response.header.{name}, where name is a valid and unique header name. The mapped non-static value must match the pattern of integration.response.header.{name}or integration.response.body.{JSON-expression}, where {name}is a valid and unique response header name and {JSON-expression}is a valid JSON expression without the $ prefix.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResponseTemplates": {
+            "Description": "The collection of response templates for the integration response as a string-to-string map of key-value pairs. Response templates are represented as a key/value map, with a content-type as the key and a template as the value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TemplateSelectionExpression": {
+            "Description": "The template selection expression for the integration response. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_model": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContentType": {
+            "Description": "The content-type for the model, for example, \"application/json\".",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the model.",
+            "Type": "string",
+            "Required": false
+        },
+        "ModelId": {
+            "Description": "The model ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the model.",
+            "Type": "string",
+            "Required": false
+        },
+        "Schema": {
+            "Description": "The schema for the model. For application/json models, this should be JSON schema draft 4 model.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_route": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ApiKeyRequired": {
+            "Description": "Specifies whether an API key is required for the route. Supported only for WebSocket APIs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AuthorizationScopes": {
+            "Description": "The authorization scopes supported by this route.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AuthorizationType": {
+            "Description": "The authorization type for the route. For WebSocket APIs, valid values are NONE for open access, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer For HTTP APIs, valid values are NONE for open access, JWT for using JSON Web Tokens, AWS_IAM for using AWS IAM permissions, and CUSTOM for using a Lambda authorizer.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthorizerId": {
+            "Description": "The identifier of the Authorizer resource to be associated with this route. The authorizer identifier is generated by API Gateway when you created the authorizer.",
+            "Type": "string",
+            "Required": false
+        },
+        "ModelSelectionExpression": {
+            "Description": "The model selection expression for the route. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "OperationName": {
+            "Description": "The operation name for the route.",
+            "Type": "string",
+            "Required": false
+        },
+        "RequestModels": {
+            "Description": "The request models for the route. Supported only for WebSocket APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RequestParameters": {
+            "Description": "The request parameters for the route. Supported only for WebSocket APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteKey": {
+            "Description": "The route key for the route.",
+            "Type": "string",
+            "Required": false
+        },
+        "RouteResponseSelectionExpression": {
+            "Description": "The route response selection expression for the route. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Target": {
+            "Description": "The target for the route.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_route_response": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModelSelectionExpression": {
+            "Description": "The model selection expression for the route response. Supported only for WebSocket APIs.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResponseModels": {
+            "Description": "The response models for the route response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResponseParameters": {
+            "Description": "The route response parameters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RouteId": {
+            "Description": "The route ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteResponseId": {
+            "Description": "The route response ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "RouteResponseKey": {
+            "Description": "The route response key.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_stage": {
+        "AccessLogSettings": {
+            "Description": "Settings for logging access in this stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoDeploy": {
+            "Description": "Specifies whether updates to an API automatically trigger a new deployment. The default value is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ClientCertificateId": {
+            "Description": "The identifier of a client certificate for a Stage.",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultRouteSettings": {
+            "Description": "The default route settings for the stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeploymentId": {
+            "Description": "The deployment identifier for the API stage. Can't be updated if autoDeploy is enabled.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description for the API stage.",
+            "Type": "string",
+            "Required": false
+        },
+        "RouteSettings": {
+            "Description": "Route settings for the stage.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StageName": {
+            "Description": "The stage name. Stage names can contain only alphanumeric characters, hyphens, and underscores, or be $default. Maximum length is 128 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "StageVariables": {
+            "Description": "A map that defines the stage variables for a Stage. Variable names can have alphanumeric and underscore characters, and the values must match [A-Za-z0-9-._~:/?#&amp;=,]+.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_vpc_link": {
+        "Name": {
+            "Description": "The name of the VPC link.",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcLinkId": {
+            "Description": "The ID of the VPC link.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "ApiId": {
+            "Description": "The API identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

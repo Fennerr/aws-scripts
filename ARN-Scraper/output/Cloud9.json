@@ -1,0 +1,241 @@
+{
+    "create_environment_ec2": {
+        "name": {
+            "Description": "The name of the environment to create.\nThis name is visible to other IAM users in the same Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the environment to create.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientRequestToken": {
+            "Description": "A unique, case-sensitive string that helps Cloud9 to ensure this operation completes no more than one time.\nFor more information, see Client Tokens in the Amazon EC2 API Reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "instanceType": {
+            "Description": "The type of instance to connect to the environment (for example, t2.micro ).",
+            "Type": "string",
+            "Required": true
+        },
+        "subnetId": {
+            "Description": "The ID of the subnet in Amazon VPC that Cloud9 will use to communicate with the Amazon EC2 instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageId": {
+            "Description": "The identifier for the Amazon Machine Image (AMI) that's used to create the EC2 instance. To choose an AMI for the instance, you must specify a valid AMI alias or a valid Amazon EC2 Systems Manager (SSM) path.\nThe default AMI is used if the parameter isn't explicitly assigned a value in the request. Because Amazon Linux AMI has ended standard support as of December 31, 2020, we recommend you choose Amazon Linux 2, which includes long term support through 2023.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "automaticStopTimeMinutes": {
+            "Description": "The number of minutes until the running instance is shut down after the environment has last been used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ownerArn": {
+            "Description": "The Amazon Resource Name (ARN) of the environment owner. This ARN can be the ARN of any IAM principal. If this value is not specified, the ARN defaults to this environment's creator.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "An array of key-value pairs that will be associated with the new Cloud9 development environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "connectionType": {
+            "Description": "The connection type used for connecting to an Amazon EC2 environment. Valid values are CONNECT_SSH (default) and CONNECT_SSM (connected through Amazon EC2 Systems Manager).\nFor more information, see Accessing no-ingress EC2 instances with Amazon EC2 Systems Manager in the Cloud9 User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "dryRun": {
+            "Description": "Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation . Otherwise, it is UnauthorizedOperation .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_environment_membership": {
+        "environmentId": {
+            "Description": "The ID of the environment that contains the environment member you want to add.",
+            "Type": "string",
+            "Required": true
+        },
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the environment member you want to add.",
+            "Type": "string",
+            "Required": true
+        },
+        "permissions": {
+            "Description": "The type of environment member permissions you want to associate with this environment member. Available values include:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "delete_environment": {
+        "environmentId": {
+            "Description": "The ID of the environment to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment_membership": {
+        "environmentId": {
+            "Description": "The ID of the environment to delete the environment member from.",
+            "Type": "string",
+            "Required": true
+        },
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the environment member to delete from the environment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_environment_memberships": {
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of an individual environment member to get information about. If no value is specified, information about all environment members are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentId": {
+            "Description": "The ID of the environment to get environment member information about.",
+            "Type": "string",
+            "Required": false
+        },
+        "permissions": {
+            "Description": "The type of environment member permissions to get information about. Available values include:\nIf no value is specified, information about all environment members are returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "nextToken": {
+            "Description": "During a previous call, if there are more than 25 items in the list, only the first 25 items are returned, along with a unique string called a next token . To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of environment members to get information about.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_environment_status": {
+        "environmentId": {
+            "Description": "The ID of the environment to get status information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_environments": {
+        "environmentIds": {
+            "Description": "The IDs of individual environments to get information about.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "list_environments": {
+        "nextToken": {
+            "Description": "During a previous call, if there are more than 25 items in the list, only the first 25 items are returned, along with a unique string called a next token . To get the next batch of items in the list, call this operation again, adding the next token to the call. To get all of the items in the list, keep calling this operation with each subsequent next token that is returned, until no more next tokens are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of environments to get identifiers for.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Cloud9 development environment to get the tags for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Cloud9 development environment to add tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The list of tags to add to the given Cloud9 development environment.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Cloud9 development environment to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag names of the tags to remove from the given Cloud9 development environment.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_environment": {
+        "environmentId": {
+            "Description": "The ID of the environment to change settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "A replacement name for the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "Any new or replacement description for the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "managedCredentialsAction": {
+            "Description": "Allows the environment owner to turn on or turn off the Amazon Web Services managed temporary credentials for an Cloud9 environment by using one of the following values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "update_environment_membership": {
+        "environmentId": {
+            "Description": "The ID of the environment for the environment member whose settings you want to change.",
+            "Type": "string",
+            "Required": true
+        },
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the environment member whose settings you want to change.",
+            "Type": "string",
+            "Required": true
+        },
+        "permissions": {
+            "Description": "The replacement type of environment member permissions you want to associate with this environment member. Available values include:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

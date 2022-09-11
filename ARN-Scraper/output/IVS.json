@@ -1,0 +1,385 @@
+{
+    "batch_get_channel": {
+        "arns": {
+            "Description": "Array of ARNs, one per channel.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_get_stream_key": {
+        "arns": {
+            "Description": "Array of ARNs, one per channel.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_channel": {
+        "authorized": {
+            "Description": "Whether the channel is private (enabled for playback authorization). Default: false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "latencyMode": {
+            "Description": "Channel latency mode. Use NORMAL to broadcast and deliver live video up to Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard, respectively.) Default: LOW .",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "Channel name.",
+            "Type": "string",
+            "Required": false
+        },
+        "recordingConfigurationArn": {
+            "Description": "Recording-configuration ARN. Default: \"\" (empty string, recording is disabled).",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Array of 1-50 maps, each of the form string:string (key:value). See Tagging Amazon Web Services Resources for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "type": {
+            "Description": "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately. Default: STANDARD. Valid values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "create_recording_configuration": {
+        "destinationConfiguration": {
+            "Description": "A complex type that contains a destination configuration for where recorded video will be stored.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "Recording-configuration name. The value does not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "recordingReconnectWindowSeconds": {
+            "Description": "If a broadcast disconnects and then reconnects within the specified interval, the multiple streams will be considered a single broadcast and merged together. Default: 0.",
+            "Type": "integer",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Array of 1-50 maps, each of the form string:string (key:value). See Tagging Amazon Web Services Resources for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "thumbnailConfiguration": {
+            "Description": "A complex type that allows you to enable/disable the recording of thumbnails for a live session and modify the interval at which thumbnails are generated for the live session.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_stream_key": {
+        "channelArn": {
+            "Description": "ARN of the channel for which to create the stream key.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Array of 1-50 maps, each of the form string:string (key:value). See Tagging Amazon Web Services Resources for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_channel": {
+        "arn": {
+            "Description": "ARN of the channel to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_playback_key_pair": {
+        "arn": {
+            "Description": "ARN of the key pair to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_recording_configuration": {
+        "arn": {
+            "Description": "ARN of the recording configuration to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_stream_key": {
+        "arn": {
+            "Description": "ARN of the stream key to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_channel": {
+        "arn": {
+            "Description": "ARN of the channel for which the configuration is to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_playback_key_pair": {
+        "arn": {
+            "Description": "ARN of the key pair to be returned.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_recording_configuration": {
+        "arn": {
+            "Description": "ARN of the recording configuration to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_stream": {
+        "channelArn": {
+            "Description": "Channel ARN for stream to be accessed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_stream_key": {
+        "arn": {
+            "Description": "ARN for the stream key to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_stream_session": {
+        "channelArn": {
+            "Description": "ARN of the channel resource",
+            "Type": "string",
+            "Required": true
+        },
+        "streamId": {
+            "Description": "Unique identifier for a live or previously live stream in the specified channel. If no streamId is provided, this returns the most recent stream session for the channel, if it exists.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "import_playback_key_pair": {
+        "name": {
+            "Description": "Playback-key-pair name. The value does not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "publicKeyMaterial": {
+            "Description": "The public portion of a customer-generated key pair.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Any tags provided with the request are added to the playback key pair tags. See Tagging Amazon Web Services Resources for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_channels": {
+        "filterByName": {
+            "Description": "Filters the channel list to match the specified name.",
+            "Type": "string",
+            "Required": false
+        },
+        "filterByRecordingConfigurationArn": {
+            "Description": "Filters the channel list to match the specified recording-configuration ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Maximum number of channels to return. Default: 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The first channel to retrieve. This is used for pagination; see the nextToken response field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_playback_key_pairs": {
+        "maxResults": {
+            "Description": "Maximum number of key pairs to return. Default: your service quota or 100, whichever is smaller.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The first key pair to retrieve. This is used for pagination; see the nextToken response field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_recording_configurations": {
+        "maxResults": {
+            "Description": "Maximum number of recording configurations to return. Default: your service quota or 100, whichever is smaller.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The first recording configuration to retrieve. This is used for pagination; see the nextToken response field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_stream_keys": {
+        "channelArn": {
+            "Description": "Channel ARN used to filter the list.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "Maximum number of streamKeys to return. Default: 1.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The first stream key to retrieve. This is used for pagination; see the nextToken response field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_stream_sessions": {
+        "channelArn": {
+            "Description": "Channel ARN used to filter the list.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "Maximum number of streams to return. Default: 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The first stream to retrieve. This is used for pagination; see the nextToken response field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_streams": {
+        "filterBy": {
+            "Description": "Filters the stream list to match the specified criterion.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "Maximum number of streams to return. Default: 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The first stream to retrieve. This is used for pagination; see the nextToken response field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource to be retrieved. The ARN must be URL-encoded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_metadata": {
+        "channelArn": {
+            "Description": "ARN of the channel into which metadata is inserted. This channel must have an active stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "metadata": {
+            "Description": "Metadata to insert into the stream. Maximum: 1 KB per request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_stream": {
+        "channelArn": {
+            "Description": "ARN of the channel for which the stream is to be stopped.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "ARN of the resource for which tags are to be added or updated. The ARN must be URL-encoded.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Array of tags to be added or updated. See Tagging Amazon Web Services Resources for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "ARN of the resource for which tags are to be removed. The ARN must be URL-encoded.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "Array of tags to be removed. See Tagging Amazon Web Services Resources for more information, including restrictions that apply to tags and \"Tag naming limits and requirements\"; Amazon IVS has no service-specific constraints beyond what is documented there.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_channel": {
+        "arn": {
+            "Description": "ARN of the channel to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorized": {
+            "Description": "Whether the channel is private (enabled for playback authorization).",
+            "Type": "boolean",
+            "Required": false
+        },
+        "latencyMode": {
+            "Description": "Channel latency mode. Use NORMAL to broadcast and deliver live video up to Full HD. Use LOW for near-real-time interaction with viewers. (Note: In the Amazon IVS console, LOW and NORMAL correspond to Ultra-low and Standard, respectively.)",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "Channel name.",
+            "Type": "string",
+            "Required": false
+        },
+        "recordingConfigurationArn": {
+            "Description": "Recording-configuration ARN. If this is set to an empty string, recording is disabled. A value other than an empty string indicates that recording is enabled",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "Channel type, which determines the allowable resolution and bitrate. If you exceed the allowable resolution or bitrate, the stream probably will disconnect immediately. Valid values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "paginate": {
+        "filterBy": {
+            "Description": "Filters the stream list to match the specified criterion.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

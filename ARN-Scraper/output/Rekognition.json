@@ -1,0 +1,1236 @@
+{
+    "compare_faces": {
+        "SourceImage": {
+            "Description": "The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes is not supported.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TargetImage": {
+            "Description": "The target image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes is not supported.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "SimilarityThreshold": {
+            "Description": "The minimum level of confidence in the face matches that a match must meet to be included in the FaceMatches array.",
+            "Type": "float",
+            "Required": false
+        },
+        "QualityFilter": {
+            "Description": "A filter that specifies a quality bar for how much filtering is done to identify faces. Filtered faces aren't compared. If you specify AUTO, Amazon Rekognition chooses the quality bar. If you specify LOW, MEDIUM, or HIGH, filtering removes all faces that don\u2019t meet the chosen quality bar. The quality bar is based on a variety of common use cases. Low-quality detections can occur for a number of reasons. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use. If you specify NONE, no filtering is performed. The default value is NONE .\nTo use quality filtering, the collection you are using must be associated with version 3 of the face model or higher.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "copy_project_version": {
+        "SourceProjectArn": {
+            "Description": "The ARN of the source project in the trusting AWS account.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceProjectVersionArn": {
+            "Description": "The ARN of the model version in the source project that you want to copy to a destination project.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationProjectArn": {
+            "Description": "The ARN of the project in the trusted AWS account that you want to copy the model version to.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionName": {
+            "Description": "A name for the version of the model that's copied to the destination project.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputConfig": {
+            "Description": "The S3 bucket and folder location where the training output for the source model version is placed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The key-value tags to assign to the model version.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "The identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN. The key is used to encrypt training results and manifest files written to the output Amazon S3 bucket (OutputConfig ).\nIf you choose to use your own KMS key, you need the following permissions on the KMS key.\nIf you don't specify a value for KmsKeyId, images copied into the service are encrypted using a key that AWS owns and manages.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "create_collection": {
+        "CollectionId": {
+            "Description": "ID for the collection that you are creating.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A set of tags (key-value pairs) that you want to attach to the collection.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_dataset": {
+        "DatasetSource": {
+            "Description": "The source files for the dataset. You can specify the ARN of an existing dataset or specify the Amazon S3 bucket location of an Amazon Sagemaker format manifest file. If you don't specify datasetSource, an empty dataset is created. To add labeled images to the dataset, You can use the console or call  UpdateDatasetEntries .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DatasetType": {
+            "Description": "The type of the dataset. Specify train to create a training dataset. Specify test to create a test dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProjectArn": {
+            "Description": "The ARN of the Amazon Rekognition Custom Labels project to which you want to asssign the dataset.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_project": {
+        "ProjectName": {
+            "Description": "The name of the project to create.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_project_version": {
+        "ProjectArn": {
+            "Description": "The ARN of the Amazon Rekognition Custom Labels project that manages the model that you want to train.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionName": {
+            "Description": "A name for the version of the model. This value must be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputConfig": {
+            "Description": "The Amazon S3 bucket location to store the results of training. The S3 bucket can be in any AWS account as long as the caller has s3:PutObject permissions on the S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TrainingData": {
+            "Description": "Specifies an external manifest that the services uses to train the model. If you specify TrainingData you must also specify TestingData. The project must not have any associated datasets.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TestingData": {
+            "Description": "Specifies an external manifest that the service uses to test the model. If you specify TestingData you must also specify TrainingData. The project must not have any associated datasets.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A set of tags (key-value pairs) that you want to attach to the model.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "The identifier for your AWS Key Management Service key (AWS KMS key). You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN. The key is used to encrypt training and test images copied into the service for model training. Your source images are unaffected. The key is also used to encrypt training results and manifest files written to the output Amazon S3 bucket (OutputConfig ).\nIf you choose to use your own KMS key, you need the following permissions on the KMS key.\nIf you don't specify a value for KmsKeyId, images copied into the service are encrypted using a key that AWS owns and manages.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "create_stream_processor": {
+        "Input": {
+            "Description": "Kinesis video stream stream that provides the source streaming video. If you are using the AWS CLI, the parameter name is StreamProcessorInput. This is required for both face search and label detection stream processors.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Output": {
+            "Description": "Kinesis data stream stream or Amazon S3 bucket location to which Amazon Rekognition Video puts the analysis results. If you are using the AWS CLI, the parameter name is StreamProcessorOutput. This must be a  S3Destination of an Amazon S3 bucket that you own for a label detection stream processor or a Kinesis data stream ARN for a face search stream processor.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Name": {
+            "Description": "An identifier you assign to the stream processor. You can use Name to manage the stream processor. For example, you can get the current status of the stream processor by calling  DescribeStreamProcessor. Name is idempotent. This is required for both face search and label detection stream processors.",
+            "Type": "string",
+            "Required": true
+        },
+        "Settings": {
+            "Description": "Input parameters used in a streaming video analyzed by a stream processor. You can use FaceSearch to recognize faces in a streaming video, or you can use ConnectedHome to detect labels.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Number (ARN) of the IAM role that allows access to the stream processor. The IAM role provides Rekognition read permissions for a Kinesis stream. It also provides write permissions to an Amazon S3 bucket and Amazon Simple Notification Service topic for a label detection stream processor. This is required for both face search and label detection stream processors.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A set of tags (key-value pairs) that you want to attach to the stream processor.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon Simple Notification Service topic to which Amazon Rekognition publishes the object detection results and completion status of a video analysis operation.\nAmazon Rekognition publishes a notification the first time an object of interest or a person is detected in the video stream. For example, if Amazon Rekognition detects a person at second 2, a pet at second 4, and a person again at second 5, Amazon Rekognition sends 2 object class detected notifications, one for a person at second 2 and one for a pet at second 4.\nAmazon Rekognition also publishes an an end-of-session notification with a summary when the stream processing session is complete.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "The identifier for your AWS Key Management Service key (AWS KMS key). This is an optional parameter for label detection stream processors and should not be used to create a face search stream processor. You can supply the Amazon Resource Name (ARN) of your KMS key, the ID of your KMS key, an alias for your KMS key, or an alias ARN. The key is used to encrypt results and data published to your Amazon S3 bucket, which includes image frames and hero images. Your source images are unaffected.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegionsOfInterest": {
+            "Description": "Specifies locations in the frames where Amazon Rekognition checks for objects or people. You can specify up to 10 regions of interest, and each region has either a polygon or a bounding box. This is an optional parameter for label detection stream processors and should not be used to create a face search stream processor.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DataSharingPreference": {
+            "Description": "Shows whether you are sharing data with Rekognition to improve model performance. You can choose this option at the account level or on a per-stream basis. Note that if you opt out at the account level this setting is ignored on individual streams.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_collection": {
+        "CollectionId": {
+            "Description": "ID of the collection to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dataset": {
+        "DatasetArn": {
+            "Description": "The ARN of the Amazon Rekognition Custom Labels dataset that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_faces": {
+        "CollectionId": {
+            "Description": "Collection from which to remove the specific faces.",
+            "Type": "string",
+            "Required": true
+        },
+        "FaceIds": {
+            "Description": "An array of face IDs to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_project": {
+        "ProjectArn": {
+            "Description": "The Amazon Resource Name (ARN) of the project that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_project_policy": {
+        "ProjectArn": {
+            "Description": "The Amazon Resource Name (ARN) of the project that the project policy you want to delete is attached to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyName": {
+            "Description": "The name of the policy that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyRevisionId": {
+            "Description": "The ID of the project policy revision that you want to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_project_version": {
+        "ProjectVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the model version that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_stream_processor": {
+        "Name": {
+            "Description": "The name of the stream processor you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_collection": {
+        "CollectionId": {
+            "Description": "The ID of the collection to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dataset": {
+        "DatasetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset that you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_project_versions": {
+        "ProjectArn": {
+            "Description": "The Amazon Resource Name (ARN) of the project that contains the models you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNames": {
+            "Description": "A list of model version names that you want to describe. You can add up to 10 model version names to the list. If you don't specify a value, all model descriptions are returned. A version name is part of a model (ProjectVersion) ARN. For example, my-model.2020-01-21T09.10.15 is the version name in the following ARN. arn:aws:rekognition:us-east-1:123456789012:project/getting-started/version/*my-model.2020-01-21T09.10.15* /1234567890123 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_projects": {
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ProjectNames": {
+            "Description": "A list of the projects that you want Amazon Rekognition Custom Labels to describe. If you don't specify a value, the response includes descriptions for all the projects in your AWS account.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_stream_processor": {
+        "Name": {
+            "Description": "Name of the stream processor for which you want information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_custom_labels": {
+        "ProjectVersionArn": {
+            "Description": "The ARN of the model version that you want to use.",
+            "Type": "string",
+            "Required": true
+        },
+        "Image": {
+            "Description": "Provides the input image either as bytes or an S3 object.\nYou pass image bytes to an Amazon Rekognition API operation by using the Bytes property. For example, you would use the Bytes property to pass an image loaded from a local file system. Image bytes passed by using the Bytes property must be base64-encoded. Your code may not need to encode image bytes if you are using an AWS SDK to call Amazon Rekognition API operations.\nFor more information, see Analyzing an Image Loaded from a Local File System in the Amazon Rekognition Developer Guide.\nYou pass images stored in an S3 bucket to an Amazon Rekognition API operation by using the S3Object property. Images stored in an S3 bucket do not need to be base64-encoded.\nThe region for the S3 bucket containing the S3 object must match the region you use for Amazon Rekognition operations.\nIf you use the AWS CLI to call Amazon Rekognition operations, passing image bytes using the Bytes property is not supported. You must first upload the image to an Amazon S3 bucket and then call the operation using the S3Object property.\nFor Amazon Rekognition to process an S3 object, the user must have permission to access the S3 object. For more information, see How Amazon Rekognition works with IAM in the Amazon Rekognition Developer Guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results you want the service to return in the response. The service returns the specified number of highest confidence labels ranked from highest confidence to lowest.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinConfidence": {
+            "Description": "Specifies the minimum confidence level for the labels to return. DetectCustomLabels doesn't return any labels with a confidence value that's lower than this specified value. If you specify a value of 0, DetectCustomLabels returns all labels, regardless of the assumed threshold applied to each label. If you don't specify a value for MinConfidence , DetectCustomLabels returns labels based on the assumed threshold of each label.",
+            "Type": "float",
+            "Required": false
+        }
+    },
+    "detect_faces": {
+        "Image": {
+            "Description": "The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes is not supported.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Attributes": {
+            "Description": "An array of facial attributes you want to be returned. This can be the default list of attributes or all attributes. If you don't specify a value for Attributes or if you specify [\"DEFAULT\"], the API returns the following subset of facial attributes: BoundingBox, Confidence, Pose, Quality, and Landmarks. If you provide [\"ALL\"], all facial attributes are returned, but the operation takes longer to complete.\nIf you provide both, [\"ALL\", \"DEFAULT\"], the service uses a logical AND operator to determine which attributes to return (in this case, all attributes).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "detect_labels": {
+        "Image": {
+            "Description": "The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing image bytes is not supported. Images stored in an S3 Bucket do not need to be base64-encoded.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxLabels": {
+            "Description": "Maximum number of labels you want the service to return in the response. The service returns the specified number of highest confidence labels.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinConfidence": {
+            "Description": "Specifies the minimum confidence level for the labels to return. Amazon Rekognition doesn't return any labels with confidence lower than this specified value.\nIf MinConfidence is not specified, the operation returns labels with a confidence values greater than or equal to 55 percent.",
+            "Type": "float",
+            "Required": false
+        }
+    },
+    "detect_moderation_labels": {
+        "Image": {
+            "Description": "The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes is not supported.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MinConfidence": {
+            "Description": "Specifies the minimum confidence level for the labels to return. Amazon Rekognition doesn't return any labels with a confidence level lower than this specified value.\nIf you don't specify MinConfidence, the operation returns labels with confidence values greater than or equal to 50 percent.",
+            "Type": "float",
+            "Required": false
+        },
+        "HumanLoopConfig": {
+            "Description": "Sets up the configuration for human evaluation, including the FlowDefinition the image will be sent to.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "detect_protective_equipment": {
+        "Image": {
+            "Description": "The image in which you want to detect PPE on detected persons. The image can be passed as image bytes or you can reference an image stored in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "SummarizationAttributes": {
+            "Description": "An array of PPE types that you want to summarize.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "detect_text": {
+        "Image": {
+            "Description": "The input image as base64-encoded bytes or an Amazon S3 object. If you use the AWS CLI to call Amazon Rekognition operations, you can't pass image bytes.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Filters": {
+            "Description": "Optional parameters that let you set the criteria that the text must meet to be included in your response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "distribute_dataset_entries": {
+        "Datasets": {
+            "Description": "The ARNS for the training dataset and test dataset that you want to use. The datasets must belong to the same project. The test dataset must be empty.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_celebrity_info": {
+        "Id": {
+            "Description": "The ID for the celebrity. You get the celebrity ID from a call to the  RecognizeCelebrities operation, which recognizes celebrities in an image.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_celebrity_recognition": {
+        "JobId": {
+            "Description": "Job identifier for the required celebrity recognition analysis. You can get the job identifer from a call to StartCelebrityRecognition .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more recognized celebrities to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of celebrities.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "Sort to use for celebrities returned in Celebrities field. Specify ID to sort by the celebrity identifier, specify TIMESTAMP to sort by the time the celebrity was recognized.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_content_moderation": {
+        "JobId": {
+            "Description": "The identifier for the inappropriate, unwanted, or offensive content moderation job. Use JobId to identify the job in a subsequent call to GetContentModeration .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Rekognition returns a pagination token in the response. You can use this pagination token to retrieve the next set of content moderation labels.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "Sort to use for elements in the ModerationLabelDetections array. Use TIMESTAMP to sort array elements by the time labels are detected. Use NAME to alphabetically group elements for a label together. Within each label group, the array element are sorted by detection confidence. The default sort is by TIMESTAMP .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_face_detection": {
+        "JobId": {
+            "Description": "Unique identifier for the face detection job. The JobId is returned from StartFaceDetection .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more faces to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of faces.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_face_search": {
+        "JobId": {
+            "Description": "The job identifer for the search request. You get the job identifier from an initial call to StartFaceSearch .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more search results to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of search results.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "Sort to use for grouping faces in the response. Use TIMESTAMP to group faces by the time that they are recognized. Use INDEX to sort by recognized faces.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_label_detection": {
+        "JobId": {
+            "Description": "Job identifier for the label detection operation for which you want results returned. You get the job identifer from an initial call to StartlabelDetection .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more labels to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of labels.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "Sort to use for elements in the Labels array. Use TIMESTAMP to sort array elements by the time labels are detected. Use NAME to alphabetically group elements for a label together. Within each label group, the array element are sorted by detection confidence. The default sort is by TIMESTAMP .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_person_tracking": {
+        "JobId": {
+            "Description": "The identifier for a job that tracks persons in a video. You get the JobId from a call to StartPersonTracking .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000. If you specify a value greater than 1000, a maximum of 1000 results is returned. The default value is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more persons to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of persons.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "Sort to use for elements in the Persons array. Use TIMESTAMP to sort array elements by the time persons are detected. Use INDEX to sort by the tracked persons. If you sort by INDEX , the array elements for each person are sorted by detection confidence. The default sort is by TIMESTAMP .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_segment_detection": {
+        "JobId": {
+            "Description": "Job identifier for the text detection operation for which you want results returned. You get the job identifer from an initial call to StartSegmentDetection .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the response is truncated, Amazon Rekognition Video returns this token that you can use in the subsequent request to retrieve the next set of text.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_text_detection": {
+        "JobId": {
+            "Description": "Job identifier for the text detection operation for which you want results returned. You get the job identifer from an initial call to StartTextDetection .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return per paginated call. The largest value you can specify is 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more labels to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of text.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "index_faces": {
+        "CollectionId": {
+            "Description": "The ID of an existing collection to which you want to add the faces that are detected in the input images.",
+            "Type": "string",
+            "Required": true
+        },
+        "Image": {
+            "Description": "The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes isn't supported.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ExternalImageId": {
+            "Description": "The ID you want to assign to all the faces detected in the image.",
+            "Type": "string",
+            "Required": false
+        },
+        "DetectionAttributes": {
+            "Description": "An array of facial attributes that you want to be returned. This can be the default list of attributes or all attributes. If you don't specify a value for Attributes or if you specify [\"DEFAULT\"], the API returns the following subset of facial attributes: BoundingBox, Confidence, Pose, Quality, and Landmarks. If you provide [\"ALL\"], all facial attributes are returned, but the operation takes longer to complete.\nIf you provide both, [\"ALL\", \"DEFAULT\"], the service uses a logical AND operator to determine which attributes to return (in this case, all attributes).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxFaces": {
+            "Description": "The maximum number of faces to index. The value of MaxFaces must be greater than or equal to 1. IndexFaces returns no more than 100 detected faces in an image, even if you specify a larger value for MaxFaces .\nIf IndexFaces detects more faces than the value of MaxFaces, the faces with the lowest quality are filtered out first. If there are still more faces than the value of MaxFaces, the faces with the smallest bounding boxes are filtered out (up to the number that's needed to satisfy the value of MaxFaces ). Information about the unindexed faces is available in the UnindexedFaces array.\nThe faces that are returned by IndexFaces are sorted by the largest face bounding box size to the smallest size, in descending order.",
+            "Type": "integer",
+            "Required": false
+        },
+        "QualityFilter": {
+            "Description": "A filter that specifies a quality bar for how much filtering is done to identify faces. Filtered faces aren't indexed. If you specify AUTO, Amazon Rekognition chooses the quality bar. If you specify LOW, MEDIUM, or HIGH, filtering removes all faces that don\u2019t meet the chosen quality bar. The default value is AUTO. The quality bar is based on a variety of common use cases. Low-quality detections can occur for a number of reasons. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use. If you specify NONE, no filtering is performed.\nTo use quality filtering, the collection you are using must be associated with version 3 of the face model or higher.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_collections": {
+        "NextToken": {
+            "Description": "Pagination token from the previous response.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of collection IDs to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dataset_entries": {
+        "DatasetArn": {
+            "Description": "The Amazon Resource Name (ARN) for the dataset that you want to use.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContainsLabels": {
+            "Description": "Specifies a label filter for the response. The response includes an entry only if one or more of the labels in ContainsLabels exist in the entry.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Labeled": {
+            "Description": "Specify true to get only the JSON Lines where the image is labeled. Specify false to get only the JSON Lines where the image isn't labeled. If you don't specify Labeled , ListDatasetEntries returns JSON Lines for labeled and unlabeled images.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SourceRefContains": {
+            "Description": "If specified, ListDatasetEntries only returns JSON Lines where the value of SourceRefContains is part of the source-ref field. The source-ref field contains the Amazon S3 location of the image. You can use SouceRefContains for tasks such as getting the JSON Line for a single image, or gettting JSON Lines for all images within a specific folder.",
+            "Type": "string",
+            "Required": false
+        },
+        "HasErrors": {
+            "Description": "Specifies an error filter for the response. Specify True to only include entries that have errors.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dataset_labels": {
+        "DatasetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset that you want to use.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_faces": {
+        "CollectionId": {
+            "Description": "ID of the collection from which to list the faces.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Rekognition returns a pagination token in the response. You can use this pagination token to retrieve the next set of faces.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of faces to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_project_policies": {
+        "ProjectArn": {
+            "Description": "The ARN of the project for which you want to list the project policies.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 5. If you specify a value greater than 5, a ValidationException error occurs. The default value is 5.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_stream_processors": {
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more stream processors to retrieve), Amazon Rekognition Video returns a pagination token in the response. You can use this pagination token to retrieve the next set of stream processors.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of stream processors you want Amazon Rekognition Video to return in the response. The default is 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the model, collection, or stream processor that contains the tags that you want a list of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_project_policy": {
+        "ProjectArn": {
+            "Description": "The Amazon Resource Name (ARN) of the project that the project policy is attached to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyName": {
+            "Description": "A name for the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyRevisionId": {
+            "Description": "The revision ID for the Project Policy. Each time you modify a policy, Amazon Rekognition Custom Labels generates and assigns a new PolicyRevisionId and then deletes the previous version of the policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "PolicyDocument": {
+            "Description": "A resource policy to add to the model. The policy is a JSON structure that contains one or more statements that define the policy. The policy must follow the IAM syntax. For more information about the contents of a JSON policy document, see IAM JSON policy reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "recognize_celebrities": {
+        "Image": {
+            "Description": "The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes is not supported.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "search_faces": {
+        "CollectionId": {
+            "Description": "ID of the collection the face belongs to.",
+            "Type": "string",
+            "Required": true
+        },
+        "FaceId": {
+            "Description": "ID of a face to find matches for in the collection.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxFaces": {
+            "Description": "Maximum number of faces to return. The operation returns the maximum number of faces with the highest confidence in the match.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FaceMatchThreshold": {
+            "Description": "Optional value specifying the minimum confidence in the face match to return. For example, don't return any matches where confidence in matches is less than 70%. The default value is 80%.",
+            "Type": "float",
+            "Required": false
+        }
+    },
+    "search_faces_by_image": {
+        "CollectionId": {
+            "Description": "ID of the collection to search.",
+            "Type": "string",
+            "Required": true
+        },
+        "Image": {
+            "Description": "The input image as base64-encoded bytes or an S3 object. If you use the AWS CLI to call Amazon Rekognition operations, passing base64-encoded image bytes is not supported.\nIf you are using an AWS SDK to call Amazon Rekognition, you might not need to base64-encode image bytes passed using the Bytes field. For more information, see Images in the Amazon Rekognition developer guide.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxFaces": {
+            "Description": "Maximum number of faces to return. The operation returns the maximum number of faces with the highest confidence in the match.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FaceMatchThreshold": {
+            "Description": "(Optional) Specifies the minimum confidence in the face match to return. For example, don't return any matches where confidence in matches is less than 70%. The default value is 80%.",
+            "Type": "float",
+            "Required": false
+        },
+        "QualityFilter": {
+            "Description": "A filter that specifies a quality bar for how much filtering is done to identify faces. Filtered faces aren't searched for in the collection. If you specify AUTO, Amazon Rekognition chooses the quality bar. If you specify LOW, MEDIUM, or HIGH, filtering removes all faces that don\u2019t meet the chosen quality bar. The quality bar is based on a variety of common use cases. Low-quality detections can occur for a number of reasons. Some examples are an object that's misidentified as a face, a face that's too blurry, or a face with a pose that's too extreme to use. If you specify NONE, no filtering is performed. The default value is NONE .\nTo use quality filtering, the collection you are using must be associated with version 3 of the face model or higher.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_celebrity_recognition": {
+        "Video": {
+            "Description": "The video in which you want to recognize celebrities. The video must be stored in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartCelebrityRecognition requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidently started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish the completion status of the celebrity recognition analysis to. The Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_content_moderation": {
+        "Video": {
+            "Description": "The video in which you want to detect inappropriate, unwanted, or offensive content. The video must be stored in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MinConfidence": {
+            "Description": "Specifies the minimum confidence that Amazon Rekognition must have in order to return a moderated content label. Confidence represents how certain Amazon Rekognition is that the moderated content is correctly identified. 0 is the lowest confidence. 100 is the highest confidence. Amazon Rekognition doesn't return any moderated content labels with a confidence level lower than this specified value. If you don't specify MinConfidence , GetContentModeration returns labels with confidence values greater than or equal to 50 percent.",
+            "Type": "float",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartContentModeration requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidently started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon SNS topic ARN that you want Amazon Rekognition Video to publish the completion status of the content analysis to. The Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy to access the topic.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_face_detection": {
+        "Video": {
+            "Description": "The video in which you want to detect faces. The video must be stored in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartFaceDetection requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidently started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the face detection operation. The Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "FaceAttributes": {
+            "Description": "The face attributes you want returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_face_search": {
+        "Video": {
+            "Description": "The video you want to search. The video must be stored in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartFaceSearch requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidently started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "FaceMatchThreshold": {
+            "Description": "The minimum confidence in the person match to return. For example, don't return any matches where confidence in matches is less than 70%. The default value is 80%.",
+            "Type": "float",
+            "Required": false
+        },
+        "CollectionId": {
+            "Description": "ID of the collection that contains the faces you want to search for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NotificationChannel": {
+            "Description": "The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the search. The Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy to access the topic.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_label_detection": {
+        "Video": {
+            "Description": "The video in which you want to detect labels. The video must be stored in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartLabelDetection requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidently started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "MinConfidence": {
+            "Description": "Specifies the minimum confidence that Amazon Rekognition Video must have in order to return a detected label. Confidence represents how certain Amazon Rekognition is that a label is correctly identified.0 is the lowest confidence. 100 is the highest confidence. Amazon Rekognition Video doesn't return any labels with a confidence level lower than this specified value.\nIf you don't specify MinConfidence, the operation returns labels with confidence values greater than or equal to 50 percent.",
+            "Type": "float",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the label detection operation to. The Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_person_tracking": {
+        "Video": {
+            "Description": "The video in which you want to detect people. The video must be stored in an Amazon S3 bucket.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartPersonTracking requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidently started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon SNS topic ARN you want Amazon Rekognition Video to publish the completion status of the people detection operation to. The Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_project_version": {
+        "ProjectVersionArn": {
+            "Description": "The Amazon Resource Name(ARN) of the model version that you want to start.",
+            "Type": "string",
+            "Required": true
+        },
+        "MinInferenceUnits": {
+            "Description": "The minimum number of inference units to use. A single inference unit represents 1 hour of processing.\nFor information about the number of transactions per second (TPS) that an inference unit can support, see Running a trained Amazon Rekognition Custom Labels model in the Amazon Rekognition Custom Labels Guide.\nUse a higher number to increase the TPS throughput of your model. You are charged for the number of inference units that you use.",
+            "Type": "integer",
+            "Required": true
+        },
+        "MaxInferenceUnits": {
+            "Description": "The maximum number of inference units to use for auto-scaling the model. If you don't specify a value, Amazon Rekognition Custom Labels doesn't auto-scale the model.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "start_segment_detection": {
+        "Video": {
+            "Description": "Video file stored in an Amazon S3 bucket. Amazon Rekognition video start operations such as  StartLabelDetection use Video to specify a video for analysis. The supported file formats are .mp4, .mov and .avi.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartSegmentDetection requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidently started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The ARN of the Amazon SNS topic to which you want Amazon Rekognition Video to publish the completion status of the segment detection operation. Note that the Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy to access the topic.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's returned in the completion notification that's published to your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters for technical cue or shot detection.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SegmentTypes": {
+            "Description": "An array of segment types to detect in the video. Valid values are TECHNICAL_CUE and SHOT.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "start_stream_processor": {
+        "Name": {
+            "Description": "The name of the stream processor to start processing.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartSelector": {
+            "Description": "Specifies the starting point in the Kinesis stream to start processing. You can use the producer timestamp or the fragment number. For more information, see Fragment .\nThis is a required parameter for label detection stream processors and should not be used to start a face search stream processor.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StopSelector": {
+            "Description": "Specifies when to stop processing the stream. You can specify a maximum amount of time to process the video.\nThis is a required parameter for label detection stream processors and should not be used to start a face search stream processor.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_text_detection": {
+        "Video": {
+            "Description": "Video file stored in an Amazon S3 bucket. Amazon Rekognition video start operations such as  StartLabelDetection use Video to specify a video for analysis. The supported file formats are .mp4, .mov and .avi.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "Idempotent token used to identify the start request. If you use the same token with multiple StartTextDetection requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidentaly started more than once.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon Simple Notification Service topic to which Amazon Rekognition publishes the completion status of a video analysis operation. For more information, see Calling Amazon Rekognition Video operations. Note that the Amazon SNS topic must have a topic name that begins with AmazonRekognition if you are using the AmazonRekognitionServiceRole permissions policy to access the topic. For more information, see Giving access to multiple Amazon SNS topics .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "JobTag": {
+            "Description": "An identifier returned in the completion status published by your Amazon Simple Notification Service topic. For example, you can use JobTag to group related jobs and identify them in the completion notification.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Optional parameters that let you set criteria the text must meet to be included in your response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "stop_project_version": {
+        "ProjectVersionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the model version that you want to delete.\nThis operation requires permissions to perform the rekognition:StopProjectVersion action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_stream_processor": {
+        "Name": {
+            "Description": "The name of a stream processor created by  CreateStreamProcessor .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the model, collection, or stream processor that you want to assign the tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value tags to assign to the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the model, collection, or stream processor that you want to remove the tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of the tags that you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_dataset_entries": {
+        "DatasetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the dataset that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Changes": {
+            "Description": "The changes that you want to make to the dataset.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_stream_processor": {
+        "Name": {
+            "Description": "Name of the stream processor that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "SettingsForUpdate": {
+            "Description": "The stream processor settings that you want to update. Label detection settings can be updated to detect different labels with a different minimum confidence.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RegionsOfInterestForUpdate": {
+            "Description": "Specifies locations in the frames where Amazon Rekognition checks for objects or people. This is an optional parameter for label detection stream processors.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DataSharingPreferenceForUpdate": {
+            "Description": "Shows whether you are sharing data with Rekognition to improve model performance. You can choose this option at the account level or on a per-stream basis. Note that if you opt out at the account level this setting is ignored on individual streams.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ParametersToDelete": {
+            "Description": "A list of parameters you want to delete from the stream processor.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "ProjectArn": {
+            "Description": "The Amazon Resource Name (ARN) of the project that contains the models you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNames": {
+            "Description": "A list of model version names that you want to describe. You can add up to 10 model version names to the list. If you don't specify a value, all model descriptions are returned. A version name is part of a model (ProjectVersion) ARN. For example, my-model.2020-01-21T09.10.15 is the version name in the following ARN. arn:aws:rekognition:us-east-1:123456789012:project/getting-started/version/*my-model.2020-01-21T09.10.15* /1234567890123 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more results to retrieve), Amazon Rekognition Custom Labels returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 100. If you specify a value greater than 100, a ValidationException error occurs. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

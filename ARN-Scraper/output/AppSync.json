@@ -1,0 +1,1065 @@
+{
+    "associate_api": {
+        "domainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_api_cache": {
+        "apiId": {
+            "Description": "The GraphQL API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ttl": {
+            "Description": "TTL in seconds for cache entries.\nValid values are 1\u20133,600 seconds.",
+            "Type": "integer",
+            "Required": true
+        },
+        "transitEncryptionEnabled": {
+            "Description": "Transit encryption flag when connecting to cache. You cannot update this setting after creation.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "atRestEncryptionEnabled": {
+            "Description": "At-rest encryption flag for cache. You cannot update this setting after creation.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "apiCachingBehavior": {
+            "Description": "Caching behavior.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "type": {
+            "Description": "The cache instance type. Valid values are\nHistorically, instance types were identified by an EC2-style value. As of July 2020, this is deprecated, and the generic identifiers above should be used.\nThe following legacy instance types are available, but their use is discouraged:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_api_key": {
+        "apiId": {
+            "Description": "The ID for your GraphQL API.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the purpose of the API key.",
+            "Type": "string",
+            "Required": false
+        },
+        "expires": {
+            "Description": "From the creation time, the time after which the API key expires. The date is represented as seconds since the epoch, rounded down to the nearest hour. The default value for this parameter is 7 days from creation time. For more information, see .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_data_source": {
+        "apiId": {
+            "Description": "The API ID for the GraphQL API for the DataSource .",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "A user-supplied name for the DataSource .",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the DataSource .",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "The type of the DataSource .",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceRoleArn": {
+            "Description": "The Identity and Access Management (IAM) service role Amazon Resource Name (ARN) for the data source. The system assumes this role when accessing the data source.",
+            "Type": "string",
+            "Required": false
+        },
+        "dynamodbConfig": {
+            "Description": "Amazon DynamoDB settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "lambdaConfig": {
+            "Description": "Lambda settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "elasticsearchConfig": {
+            "Description": "Amazon OpenSearch Service settings.\nAs of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service. This configuration is deprecated. For new data sources, use  CreateDataSourceRequest$openSearchServiceConfig to create an OpenSearch data source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "openSearchServiceConfig": {
+            "Description": "Amazon OpenSearch Service settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "httpConfig": {
+            "Description": "HTTP endpoint settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "relationalDatabaseConfig": {
+            "Description": "Relational database settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_domain_name": {
+        "domainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateArn": {
+            "Description": "The Amazon Resource Name (ARN) of the certificate. This can be an Certificate Manager (ACM) certificate or an Identity and Access Management (IAM) server certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the DomainName .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_function": {
+        "apiId": {
+            "Description": "The GraphQL API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The Function name. The function name does not have to be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The Function description.",
+            "Type": "string",
+            "Required": false
+        },
+        "dataSourceName": {
+            "Description": "The Function DataSource name.",
+            "Type": "string",
+            "Required": true
+        },
+        "requestMappingTemplate": {
+            "Description": "The Function request mapping template. Functions support only the 2018-05-29 version of the request mapping template.",
+            "Type": "string",
+            "Required": false
+        },
+        "responseMappingTemplate": {
+            "Description": "The Function response mapping template.",
+            "Type": "string",
+            "Required": false
+        },
+        "functionVersion": {
+            "Description": "The version of the request mapping template. Currently, the supported value is 2018-05-29.",
+            "Type": "string",
+            "Required": true
+        },
+        "syncConfig": {
+            "Description": "Describes a Sync configuration for a resolver.\nSpecifies which Conflict Detection strategy and Resolution strategy to use when the resolver is invoked.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxBatchSize": {
+            "Description": "The maximum batching size for a resolver.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_graphql_api": {
+        "name": {
+            "Description": "A user-supplied name for the GraphqlApi .",
+            "Type": "string",
+            "Required": true
+        },
+        "logConfig": {
+            "Description": "The Amazon CloudWatch Logs configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "authenticationType": {
+            "Description": "The authentication type: API key, Identity and Access Management (IAM), OpenID Connect (OIDC), Amazon Cognito user pools, or Lambda.",
+            "Type": "string",
+            "Required": true
+        },
+        "userPoolConfig": {
+            "Description": "The Amazon Cognito user pool configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "openIDConnectConfig": {
+            "Description": "The OIDC configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A TagMap object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "additionalAuthenticationProviders": {
+            "Description": "A list of additional authentication providers for the GraphqlApi API.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "xrayEnabled": {
+            "Description": "A flag indicating whether to use X-Ray tracing for the GraphqlApi .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "lambdaAuthorizerConfig": {
+            "Description": "Configuration for Lambda function authorization.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_resolver": {
+        "apiId": {
+            "Description": "The ID for the GraphQL API for which the resolver is being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The name of the Type .",
+            "Type": "string",
+            "Required": true
+        },
+        "fieldName": {
+            "Description": "The name of the field to attach the resolver to.",
+            "Type": "string",
+            "Required": true
+        },
+        "dataSourceName": {
+            "Description": "The name of the data source for which the resolver is being created.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestMappingTemplate": {
+            "Description": "The mapping template to use for requests.\nA resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL).\nVTL request mapping templates are optional when using an Lambda data source. For all other data sources, VTL request and response mapping templates are required.",
+            "Type": "string",
+            "Required": false
+        },
+        "responseMappingTemplate": {
+            "Description": "The mapping template to use for responses from the data source.",
+            "Type": "string",
+            "Required": false
+        },
+        "kind": {
+            "Description": "The resolver type.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "pipelineConfig": {
+            "Description": "The PipelineConfig .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "syncConfig": {
+            "Description": "The SyncConfig for a resolver attached to a versioned data source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "cachingConfig": {
+            "Description": "The caching configuration for the resolver.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxBatchSize": {
+            "Description": "The maximum batching size for a resolver.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_type": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "definition": {
+            "Description": "The type definition, in GraphQL Schema Definition Language (SDL) format.\nFor more information, see the GraphQL SDL documentation .",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The type format: SDL or JSON.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_api_cache": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_api_key": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "id": {
+            "Description": "The ID for the API key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_data_source": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the data source.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_domain_name": {
+        "domainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_function": {
+        "apiId": {
+            "Description": "The GraphQL API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "functionId": {
+            "Description": "The Function ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_graphql_api": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resolver": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The name of the resolver type.",
+            "Type": "string",
+            "Required": true
+        },
+        "fieldName": {
+            "Description": "The resolver field name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_type": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The type name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_api": {
+        "domainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "evaluate_mapping_template": {
+        "template": {
+            "Description": "The mapping template; this can be a request or response template. A template is required for this action.",
+            "Type": "string",
+            "Required": true
+        },
+        "context": {
+            "Description": "The map that holds all of the contextual information for your resolver invocation. A context is required for this action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "flush_api_cache": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_api_association": {
+        "domainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_api_cache": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_data_source": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the data source.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_name": {
+        "domainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_function": {
+        "apiId": {
+            "Description": "The GraphQL API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "functionId": {
+            "Description": "The Function ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_graphql_api": {
+        "apiId": {
+            "Description": "The API ID for the GraphQL API.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_introspection_schema": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The schema format: SDL or JSON.",
+            "Type": "string",
+            "Required": true
+        },
+        "includeDirectives": {
+            "Description": "A flag that specifies whether the schema introspection should contain directives.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_resolver": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The resolver type name.",
+            "Type": "string",
+            "Required": true
+        },
+        "fieldName": {
+            "Description": "The resolver field name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_schema_creation_status": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_type": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The type name.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The type format: SDL or JSON.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_api_keys": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_data_sources": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_domain_names": {
+        "nextToken": {
+            "Description": "The API token.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_functions": {
+        "apiId": {
+            "Description": "The GraphQL API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_graphql_apis": {
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resolvers": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The type name.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resolvers_by_function": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "functionId": {
+            "Description": "The function ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The GraphqlApi Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_types": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The type format: SDL or JSON.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which you can use to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results that you want the request to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "start_schema_creation": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "definition": {
+            "Description": "The schema definition, in GraphQL schema language format.",
+            "Type": "bytes",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The GraphqlApi Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A TagMap object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The GraphqlApi Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of TagKey objects.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_api_cache": {
+        "apiId": {
+            "Description": "The GraphQL API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ttl": {
+            "Description": "TTL in seconds for cache entries.\nValid values are 1\u20133,600 seconds.",
+            "Type": "integer",
+            "Required": true
+        },
+        "apiCachingBehavior": {
+            "Description": "Caching behavior.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "type": {
+            "Description": "The cache instance type. Valid values are\nHistorically, instance types were identified by an EC2-style value. As of July 2020, this is deprecated, and the generic identifiers above should be used.\nThe following legacy instance types are available, but their use is discouraged:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_api_key": {
+        "apiId": {
+            "Description": "The ID for the GraphQL API.",
+            "Type": "string",
+            "Required": true
+        },
+        "id": {
+            "Description": "The API key ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the purpose of the API key.",
+            "Type": "string",
+            "Required": false
+        },
+        "expires": {
+            "Description": "From the update time, the time after which the API key expires. The date is represented as seconds since the epoch. For more information, see .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_data_source": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The new name for the data source.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The new description for the data source.",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "The new data source type.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceRoleArn": {
+            "Description": "The new service role Amazon Resource Name (ARN) for the data source.",
+            "Type": "string",
+            "Required": false
+        },
+        "dynamodbConfig": {
+            "Description": "The new Amazon DynamoDB configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "lambdaConfig": {
+            "Description": "The new Lambda configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "elasticsearchConfig": {
+            "Description": "The new OpenSearch configuration.\nAs of September 2021, Amazon Elasticsearch service is Amazon OpenSearch Service. This configuration is deprecated. Instead, use  UpdateDataSourceRequest$openSearchServiceConfig to update an OpenSearch data source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "openSearchServiceConfig": {
+            "Description": "The new OpenSearch configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "httpConfig": {
+            "Description": "The new HTTP endpoint configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "relationalDatabaseConfig": {
+            "Description": "The new relational database configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_domain_name": {
+        "domainName": {
+            "Description": "The domain name.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the DomainName .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_function": {
+        "apiId": {
+            "Description": "The GraphQL API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The Function name.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The Function description.",
+            "Type": "string",
+            "Required": false
+        },
+        "functionId": {
+            "Description": "The function ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "dataSourceName": {
+            "Description": "The Function DataSource name.",
+            "Type": "string",
+            "Required": true
+        },
+        "requestMappingTemplate": {
+            "Description": "The Function request mapping template. Functions support only the 2018-05-29 version of the request mapping template.",
+            "Type": "string",
+            "Required": false
+        },
+        "responseMappingTemplate": {
+            "Description": "The Function request mapping template.",
+            "Type": "string",
+            "Required": false
+        },
+        "functionVersion": {
+            "Description": "The version of the request mapping template. Currently, the supported value is 2018-05-29.",
+            "Type": "string",
+            "Required": true
+        },
+        "syncConfig": {
+            "Description": "Describes a Sync configuration for a resolver.\nSpecifies which Conflict Detection strategy and Resolution strategy to use when the resolver is invoked.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxBatchSize": {
+            "Description": "The maximum batching size for a resolver.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_graphql_api": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The new name for the GraphqlApi object.",
+            "Type": "string",
+            "Required": true
+        },
+        "logConfig": {
+            "Description": "The Amazon CloudWatch Logs configuration for the GraphqlApi object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "authenticationType": {
+            "Description": "The new authentication type for the GraphqlApi object.",
+            "Type": "string",
+            "Required": false
+        },
+        "userPoolConfig": {
+            "Description": "The new Amazon Cognito user pool configuration for the ~GraphqlApi object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "openIDConnectConfig": {
+            "Description": "The OpenID Connect configuration for the GraphqlApi object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "additionalAuthenticationProviders": {
+            "Description": "A list of additional authentication providers for the GraphqlApi API.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "xrayEnabled": {
+            "Description": "A flag indicating whether to use X-Ray tracing for the GraphqlApi .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "lambdaAuthorizerConfig": {
+            "Description": "Configuration for Lambda function authorization.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_resolver": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The new type name.",
+            "Type": "string",
+            "Required": true
+        },
+        "fieldName": {
+            "Description": "The new field name.",
+            "Type": "string",
+            "Required": true
+        },
+        "dataSourceName": {
+            "Description": "The new data source name.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestMappingTemplate": {
+            "Description": "The new request mapping template.\nA resolver uses a request mapping template to convert a GraphQL expression into a format that a data source can understand. Mapping templates are written in Apache Velocity Template Language (VTL).\nVTL request mapping templates are optional when using an Lambda data source. For all other data sources, VTL request and response mapping templates are required.",
+            "Type": "string",
+            "Required": false
+        },
+        "responseMappingTemplate": {
+            "Description": "The new response mapping template.",
+            "Type": "string",
+            "Required": false
+        },
+        "kind": {
+            "Description": "The resolver type.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "pipelineConfig": {
+            "Description": "The PipelineConfig .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "syncConfig": {
+            "Description": "The SyncConfig for a resolver attached to a versioned data source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "cachingConfig": {
+            "Description": "The caching configuration for the resolver.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxBatchSize": {
+            "Description": "The maximum batching size for a resolver.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_type": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "typeName": {
+            "Description": "The new type name.",
+            "Type": "string",
+            "Required": true
+        },
+        "definition": {
+            "Description": "The new definition.",
+            "Type": "string",
+            "Required": false
+        },
+        "format": {
+            "Description": "The new type format: SDL or JSON.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "apiId": {
+            "Description": "The API ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The type format: SDL or JSON.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

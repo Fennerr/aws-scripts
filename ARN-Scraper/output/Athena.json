@@ -1,0 +1,594 @@
+{
+    "batch_get_named_query": {
+        "NamedQueryIds": {
+            "Description": "An array of query IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_get_prepared_statement": {
+        "PreparedStatementNames": {
+            "Description": "A list of prepared statement names to return.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "WorkGroup": {
+            "Description": "The name of the workgroup to which the prepared statements belong.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_get_query_execution": {
+        "QueryExecutionIds": {
+            "Description": "An array of query execution IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_data_catalog": {
+        "Name": {
+            "Description": "The name of the data catalog to create. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 127 alphanumeric, underscore, at sign, or hyphen characters. The remainder of the length constraint of 256 is reserved for use by Athena.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of data catalog to create: LAMBDA for a federated catalog, HIVE for an external hive metastore, or GLUE for an Glue Data Catalog.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the data catalog to be created.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "Specifies the Lambda function or functions to use for creating the data catalog. This is a mapping whose values depend on the catalog type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "A list of comma separated tags to add to the data catalog that is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_named_query": {
+        "Name": {
+            "Description": "The query name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The query description.",
+            "Type": "string",
+            "Required": false
+        },
+        "Database": {
+            "Description": "The database to which the query belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueryString": {
+            "Description": "The contents of the query with all query statements.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure the request to create the query is idempotent (executes only once). If another CreateNamedQuery request is received, the same response is returned and another query is not created. If a parameter has changed, for example, the QueryString, an error is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "WorkGroup": {
+            "Description": "The name of the workgroup in which the named query is being created.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_prepared_statement": {
+        "StatementName": {
+            "Description": "The name of the prepared statement.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkGroup": {
+            "Description": "The name of the workgroup to which the prepared statement belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueryStatement": {
+            "Description": "The query string for the prepared statement.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the prepared statement.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_work_group": {
+        "Name": {
+            "Description": "The workgroup name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Configuration": {
+            "Description": "The configuration for the workgroup, which includes the location in Amazon S3 where query results are stored, the encryption configuration, if any, used for encrypting query results, whether the Amazon CloudWatch Metrics are enabled for the workgroup, the limit for the amount of bytes scanned (cutoff) per query, if it is specified, and whether workgroup's settings (specified with EnforceWorkGroupConfiguration ) in the WorkGroupConfiguration override client-side settings. See  WorkGroupConfiguration$EnforceWorkGroupConfiguration .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "The workgroup description.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of comma separated tags to add to the workgroup that is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_data_catalog": {
+        "Name": {
+            "Description": "The name of the data catalog to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_named_query": {
+        "NamedQueryId": {
+            "Description": "The unique ID of the query to delete.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_prepared_statement": {
+        "StatementName": {
+            "Description": "The name of the prepared statement to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkGroup": {
+            "Description": "The workgroup to which the statement to be deleted belongs.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_work_group": {
+        "WorkGroup": {
+            "Description": "The unique name of the workgroup to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecursiveDeleteOption": {
+            "Description": "The option to delete the workgroup and its contents even if the workgroup contains any named queries or query executions.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_data_catalog": {
+        "Name": {
+            "Description": "The name of the data catalog to return.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_database": {
+        "CatalogName": {
+            "Description": "The name of the data catalog that contains the database to return.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatabaseName": {
+            "Description": "The name of the database to return.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_named_query": {
+        "NamedQueryId": {
+            "Description": "The unique ID of the query. Use  ListNamedQueries to get query IDs.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_prepared_statement": {
+        "StatementName": {
+            "Description": "The name of the prepared statement to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkGroup": {
+            "Description": "The workgroup to which the statement to be retrieved belongs.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_query_execution": {
+        "QueryExecutionId": {
+            "Description": "The unique ID of the query execution.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_query_results": {
+        "QueryExecutionId": {
+            "Description": "The unique ID of the query execution.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results (rows) to return in this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_query_runtime_statistics": {
+        "QueryExecutionId": {
+            "Description": "The unique ID of the query execution.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_table_metadata": {
+        "CatalogName": {
+            "Description": "The name of the data catalog that contains the database and table metadata to return.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatabaseName": {
+            "Description": "The name of the database that contains the table metadata to return.",
+            "Type": "string",
+            "Required": true
+        },
+        "TableName": {
+            "Description": "The name of the table for which metadata is returned.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_work_group": {
+        "WorkGroup": {
+            "Description": "The name of the workgroup.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_data_catalogs": {
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of data catalogs to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_databases": {
+        "CatalogName": {
+            "Description": "The name of the data catalog that contains the databases to return.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_engine_versions": {
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of engine versions to return in this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_named_queries": {
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of queries to return in this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "WorkGroup": {
+            "Description": "The name of the workgroup from which the named queries are being returned. If a workgroup is not specified, the saved queries for the primary workgroup are returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_prepared_statements": {
+        "WorkGroup": {
+            "Description": "The workgroup to list the prepared statements for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_query_executions": {
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of query executions to return in this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "WorkGroup": {
+            "Description": "The name of the workgroup from which queries are being returned. If a workgroup is not specified, a list of available query execution IDs for the queries in the primary workgroup is returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_table_metadata": {
+        "CatalogName": {
+            "Description": "The name of the data catalog for which table metadata should be returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatabaseName": {
+            "Description": "The name of the database for which table metadata should be returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "Expression": {
+            "Description": "A regex filter that pattern-matches table names. If no expression is supplied, metadata for all tables are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "Lists the tags for the resource with the specified ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no additional results for this request, where the request lists the tags for the resource with the specified ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request that lists the tags for the resource.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_work_groups": {
+        "NextToken": {
+            "Description": "A token generated by the Athena service that specifies where to continue pagination if a previous request was truncated. To obtain the next set of pages, pass in the NextToken from the response object of the previous page call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of workgroups to return in this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "start_query_execution": {
+        "QueryString": {
+            "Description": "The SQL query statements to be executed.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure the request to create the query is idempotent (executes only once). If another StartQueryExecution request is received, the same response is returned and another query is not created. If a parameter has changed, for example, the QueryString, an error is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "QueryExecutionContext": {
+            "Description": "The database within which the query executes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResultConfiguration": {
+            "Description": "Specifies information about where and how to save the results of the query execution. If the query runs in a workgroup, then workgroup's settings may override query settings. This affects the query results location. The workgroup settings override is specified in EnforceWorkGroupConfiguration (true/false) in the WorkGroupConfiguration. See  WorkGroupConfiguration$EnforceWorkGroupConfiguration .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "WorkGroup": {
+            "Description": "The name of the workgroup in which the query is being started.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExecutionParameters": {
+            "Description": "A list of values for the parameters in a query. The values are applied sequentially to the parameters in the query in the order in which the parameters occur.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "stop_query_execution": {
+        "QueryExecutionId": {
+            "Description": "The unique ID of the query execution to stop.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "Specifies the ARN of the Athena resource (workgroup or data catalog) to which tags are to be added.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A collection of one or more tags, separated by commas, to be added to an Athena workgroup or data catalog resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "Specifies the ARN of the resource from which tags are to be removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A comma-separated list of one or more tag keys whose tags are to be removed from the specified resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_data_catalog": {
+        "Name": {
+            "Description": "The name of the data catalog to update. The catalog name must be unique for the Amazon Web Services account and can use a maximum of 127 alphanumeric, underscore, at sign, or hyphen characters. The remainder of the length constraint of 256 is reserved for use by Athena.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "Specifies the type of data catalog to update. Specify LAMBDA for a federated catalog, HIVE for an external hive metastore, or GLUE for an Glue Data Catalog.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "New or modified text that describes the data catalog.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "Specifies the Lambda function or functions to use for updating the data catalog. This is a mapping whose values depend on the catalog type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_named_query": {
+        "NamedQueryId": {
+            "Description": "The unique identifier (UUID) of the query.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the query.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The query description.",
+            "Type": "string",
+            "Required": false
+        },
+        "QueryString": {
+            "Description": "The contents of the query with all query statements.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_prepared_statement": {
+        "StatementName": {
+            "Description": "The name of the prepared statement.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkGroup": {
+            "Description": "The workgroup for the prepared statement.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueryStatement": {
+            "Description": "The query string for the prepared statement.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the prepared statement.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_work_group": {
+        "WorkGroup": {
+            "Description": "The specified workgroup that will be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The workgroup description.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConfigurationUpdates": {
+            "Description": "The workgroup configuration that will be updated for the given workgroup.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "State": {
+            "Description": "The workgroup state that will be updated for the given workgroup.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "ResourceARN": {
+            "Description": "Lists the tags for the resource with the specified ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

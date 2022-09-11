@@ -1,0 +1,743 @@
+{
+    "add_tags": {
+        "Tags": {
+            "Description": "The key-value pairs to use to create tags. If you specify a key without specifying a value, Amazon ML creates a tag with the specified key and a value of null.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ResourceId": {
+            "Description": "The ID of the ML object to tag. For example, exampleModelId .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "The type of the ML object to tag.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_batch_prediction": {
+        "BatchPredictionId": {
+            "Description": "A user-supplied ID that uniquely identifies the BatchPrediction .",
+            "Type": "string",
+            "Required": true
+        },
+        "BatchPredictionName": {
+            "Description": "A user-supplied name or description of the BatchPrediction . BatchPredictionName can only use the UTF-8 character set.",
+            "Type": "string",
+            "Required": false
+        },
+        "MLModelId": {
+            "Description": "The ID of the MLModel that will generate predictions for the group of observations.",
+            "Type": "string",
+            "Required": true
+        },
+        "BatchPredictionDataSourceId": {
+            "Description": "The ID of the DataSource that points to the group of observations to predict.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputUri": {
+            "Description": "The location of an Amazon Simple Storage Service (Amazon S3) bucket or directory to store the batch prediction results. The following substrings are not allowed in the s3 key portion of the outputURI field: ':', '//', '/./', '/../'.\nAmazon ML needs permissions to store and retrieve the logs on your behalf. For information about how to set permissions, see the Amazon Machine Learning Developer Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_data_source_from_rds": {
+        "DataSourceId": {
+            "Description": "A user-supplied ID that uniquely identifies the DataSource. Typically, an Amazon Resource Number (ARN) becomes the ID for a DataSource .",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceName": {
+            "Description": "A user-supplied name or description of the DataSource .",
+            "Type": "string",
+            "Required": false
+        },
+        "RDSData": {
+            "Description": "The data specification of an Amazon RDS DataSource :",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "RoleARN": {
+            "Description": "The role that Amazon ML assumes on behalf of the user to create and activate a data pipeline in the user's account and copy data using the SelectSqlQuery query from Amazon RDS to Amazon S3.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComputeStatistics": {
+            "Description": "The compute statistics for a DataSource . The statistics are generated from the observation data referenced by a DataSource . Amazon ML uses the statistics internally during MLModel training. This parameter must be set to true if the DataSourceneeds to be used for MLModel training.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_data_source_from_redshift": {
+        "DataSourceId": {
+            "Description": "A user-supplied ID that uniquely identifies the DataSource .",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceName": {
+            "Description": "A user-supplied name or description of the DataSource .",
+            "Type": "string",
+            "Required": false
+        },
+        "DataSpec": {
+            "Description": "The data specification of an Amazon Redshift DataSource :",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "RoleARN": {
+            "Description": "A fully specified role Amazon Resource Name (ARN). Amazon ML assumes the role on behalf of the user to create the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ComputeStatistics": {
+            "Description": "The compute statistics for a DataSource . The statistics are generated from the observation data referenced by a DataSource . Amazon ML uses the statistics internally during MLModel training. This parameter must be set to true if the DataSource needs to be used for MLModel training.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_data_source_from_s3": {
+        "DataSourceId": {
+            "Description": "A user-supplied identifier that uniquely identifies the DataSource .",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceName": {
+            "Description": "A user-supplied name or description of the DataSource .",
+            "Type": "string",
+            "Required": false
+        },
+        "DataSpec": {
+            "Description": "The data specification of a DataSource :",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ComputeStatistics": {
+            "Description": "The compute statistics for a DataSource . The statistics are generated from the observation data referenced by a DataSource . Amazon ML uses the statistics internally during MLModel training. This parameter must be set to true if the DataSourceneeds to be used for MLModel training.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_evaluation": {
+        "EvaluationId": {
+            "Description": "A user-supplied ID that uniquely identifies the Evaluation .",
+            "Type": "string",
+            "Required": true
+        },
+        "EvaluationName": {
+            "Description": "A user-supplied name or description of the Evaluation .",
+            "Type": "string",
+            "Required": false
+        },
+        "MLModelId": {
+            "Description": "The ID of the MLModel to evaluate.\nThe schema used in creating the MLModel must match the schema of the DataSource used in the Evaluation .",
+            "Type": "string",
+            "Required": true
+        },
+        "EvaluationDataSourceId": {
+            "Description": "The ID of the DataSource for the evaluation. The schema of the DataSource must match the schema used to create the MLModel .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_ml_model": {
+        "MLModelId": {
+            "Description": "A user-supplied ID that uniquely identifies the MLModel .",
+            "Type": "string",
+            "Required": true
+        },
+        "MLModelName": {
+            "Description": "A user-supplied name or description of the MLModel .",
+            "Type": "string",
+            "Required": false
+        },
+        "MLModelType": {
+            "Description": "The category of supervised learning that this MLModel will address. Choose from the following types:\nFor more information, see the Amazon Machine Learning Developer Guide .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Parameters": {
+            "Description": "A list of the training parameters in the MLModel. The list is implemented as a map of key-value pairs.\nThe following is the current set of training parameters:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "TrainingDataSourceId": {
+            "Description": "The DataSource that points to the training data.",
+            "Type": "string",
+            "Required": true
+        },
+        "Recipe": {
+            "Description": "The data recipe for creating the MLModel . You must specify either the recipe or its URI. If you don't specify a recipe or its URI, Amazon ML creates a default.",
+            "Type": "string",
+            "Required": false
+        },
+        "RecipeUri": {
+            "Description": "The Amazon Simple Storage Service (Amazon S3) location and file name that contains the MLModel recipe. You must specify either the recipe or its URI. If you don't specify a recipe or its URI, Amazon ML creates a default.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_realtime_endpoint": {
+        "MLModelId": {
+            "Description": "The ID assigned to the MLModel during creation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_batch_prediction": {
+        "BatchPredictionId": {
+            "Description": "A user-supplied ID that uniquely identifies the BatchPrediction .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_data_source": {
+        "DataSourceId": {
+            "Description": "A user-supplied ID that uniquely identifies the DataSource .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_evaluation": {
+        "EvaluationId": {
+            "Description": "A user-supplied ID that uniquely identifies the Evaluation to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_ml_model": {
+        "MLModelId": {
+            "Description": "A user-supplied ID that uniquely identifies the MLModel .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_realtime_endpoint": {
+        "MLModelId": {
+            "Description": "The ID assigned to the MLModel during creation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_tags": {
+        "TagKeys": {
+            "Description": "One or more tags to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ResourceId": {
+            "Description": "The ID of the tagged ML object. For example, exampleModelId .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "The type of the tagged ML object.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_batch_predictions": {
+        "FilterVariable": {
+            "Description": "Use one of the following variables to filter a list of BatchPrediction :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EQ": {
+            "Description": "The equal to operator. The BatchPrediction results will have FilterVariable values that exactly match the value specified with EQ .",
+            "Type": "string",
+            "Required": false
+        },
+        "GT": {
+            "Description": "The greater than operator. The BatchPrediction results will have FilterVariable values that are greater than the value specified with GT .",
+            "Type": "string",
+            "Required": false
+        },
+        "LT": {
+            "Description": "The less than operator. The BatchPrediction results will have FilterVariable values that are less than the value specified with LT .",
+            "Type": "string",
+            "Required": false
+        },
+        "GE": {
+            "Description": "The greater than or equal to operator. The BatchPrediction results will have FilterVariable values that are greater than or equal to the value specified with GE .",
+            "Type": "string",
+            "Required": false
+        },
+        "LE": {
+            "Description": "The less than or equal to operator. The BatchPrediction results will have FilterVariable values that are less than or equal to the value specified with LE .",
+            "Type": "string",
+            "Required": false
+        },
+        "NE": {
+            "Description": "The not equal to operator. The BatchPrediction results will have FilterVariable values not equal to the value specified with NE .",
+            "Type": "string",
+            "Required": false
+        },
+        "Prefix": {
+            "Description": "A string that is found at the beginning of a variable, such as Name or Id .\nFor example, a Batch Prediction operation could have the Name 2014-09-09-HolidayGiftMailer. To search for this BatchPrediction, select Name for the FilterVariable and any of the following strings for the Prefix :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SortOrder": {
+            "Description": "A two-value parameter that determines the sequence of the resulting list of MLModel s.\nResults are sorted by FilterVariable .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "An ID of the page in the paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The number of pages of information to include in the result. The range of acceptable values is 1 through 100 . The default value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_data_sources": {
+        "FilterVariable": {
+            "Description": "Use one of the following variables to filter a list of DataSource :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EQ": {
+            "Description": "The equal to operator. The DataSource results will have FilterVariable values that exactly match the value specified with EQ .",
+            "Type": "string",
+            "Required": false
+        },
+        "GT": {
+            "Description": "The greater than operator. The DataSource results will have FilterVariable values that are greater than the value specified with GT .",
+            "Type": "string",
+            "Required": false
+        },
+        "LT": {
+            "Description": "The less than operator. The DataSource results will have FilterVariable values that are less than the value specified with LT .",
+            "Type": "string",
+            "Required": false
+        },
+        "GE": {
+            "Description": "The greater than or equal to operator. The DataSource results will have FilterVariable values that are greater than or equal to the value specified with GE .",
+            "Type": "string",
+            "Required": false
+        },
+        "LE": {
+            "Description": "The less than or equal to operator. The DataSource results will have FilterVariable values that are less than or equal to the value specified with LE .",
+            "Type": "string",
+            "Required": false
+        },
+        "NE": {
+            "Description": "The not equal to operator. The DataSource results will have FilterVariable values not equal to the value specified with NE .",
+            "Type": "string",
+            "Required": false
+        },
+        "Prefix": {
+            "Description": "A string that is found at the beginning of a variable, such as Name or Id .\nFor example, a DataSource could have the Name 2014-09-09-HolidayGiftMailer. To search for this DataSource, select Name for the FilterVariable and any of the following strings for the Prefix :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SortOrder": {
+            "Description": "A two-value parameter that determines the sequence of the resulting list of DataSource .\nResults are sorted by FilterVariable .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The ID of the page in the paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of DataSource to include in the result.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_evaluations": {
+        "FilterVariable": {
+            "Description": "Use one of the following variable to filter a list of Evaluation objects:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EQ": {
+            "Description": "The equal to operator. The Evaluation results will have FilterVariable values that exactly match the value specified with EQ .",
+            "Type": "string",
+            "Required": false
+        },
+        "GT": {
+            "Description": "The greater than operator. The Evaluation results will have FilterVariable values that are greater than the value specified with GT .",
+            "Type": "string",
+            "Required": false
+        },
+        "LT": {
+            "Description": "The less than operator. The Evaluation results will have FilterVariable values that are less than the value specified with LT .",
+            "Type": "string",
+            "Required": false
+        },
+        "GE": {
+            "Description": "The greater than or equal to operator. The Evaluation results will have FilterVariable values that are greater than or equal to the value specified with GE .",
+            "Type": "string",
+            "Required": false
+        },
+        "LE": {
+            "Description": "The less than or equal to operator. The Evaluation results will have FilterVariable values that are less than or equal to the value specified with LE .",
+            "Type": "string",
+            "Required": false
+        },
+        "NE": {
+            "Description": "The not equal to operator. The Evaluation results will have FilterVariable values not equal to the value specified with NE .",
+            "Type": "string",
+            "Required": false
+        },
+        "Prefix": {
+            "Description": "A string that is found at the beginning of a variable, such as Name or Id .\nFor example, an Evaluation could have the Name 2014-09-09-HolidayGiftMailer. To search for this Evaluation, select Name for the FilterVariable and any of the following strings for the Prefix :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SortOrder": {
+            "Description": "A two-value parameter that determines the sequence of the resulting list of Evaluation .\nResults are sorted by FilterVariable .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The ID of the page in the paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of Evaluation to include in the result.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_ml_models": {
+        "FilterVariable": {
+            "Description": "Use one of the following variables to filter a list of MLModel :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EQ": {
+            "Description": "The equal to operator. The MLModel results will have FilterVariable values that exactly match the value specified with EQ .",
+            "Type": "string",
+            "Required": false
+        },
+        "GT": {
+            "Description": "The greater than operator. The MLModel results will have FilterVariable values that are greater than the value specified with GT .",
+            "Type": "string",
+            "Required": false
+        },
+        "LT": {
+            "Description": "The less than operator. The MLModel results will have FilterVariable values that are less than the value specified with LT .",
+            "Type": "string",
+            "Required": false
+        },
+        "GE": {
+            "Description": "The greater than or equal to operator. The MLModel results will have FilterVariable values that are greater than or equal to the value specified with GE .",
+            "Type": "string",
+            "Required": false
+        },
+        "LE": {
+            "Description": "The less than or equal to operator. The MLModel results will have FilterVariable values that are less than or equal to the value specified with LE .",
+            "Type": "string",
+            "Required": false
+        },
+        "NE": {
+            "Description": "The not equal to operator. The MLModel results will have FilterVariable values not equal to the value specified with NE .",
+            "Type": "string",
+            "Required": false
+        },
+        "Prefix": {
+            "Description": "A string that is found at the beginning of a variable, such as Name or Id .\nFor example, an MLModel could have the Name 2014-09-09-HolidayGiftMailer. To search for this MLModel, select Name for the FilterVariable and any of the following strings for the Prefix :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SortOrder": {
+            "Description": "A two-value parameter that determines the sequence of the resulting list of MLModel .\nResults are sorted by FilterVariable .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The ID of the page in the paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The number of pages of information to include in the result. The range of acceptable values is 1 through 100 . The default value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_tags": {
+        "ResourceId": {
+            "Description": "The ID of the ML object. For example, exampleModelId .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "The type of the ML object.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_batch_prediction": {
+        "BatchPredictionId": {
+            "Description": "An ID assigned to the BatchPrediction at creation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_data_source": {
+        "DataSourceId": {
+            "Description": "The ID assigned to the DataSource at creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "Verbose": {
+            "Description": "Specifies whether the GetDataSource operation should return DataSourceSchema .\nIf true, DataSourceSchema is returned.\nIf false, DataSourceSchema is not returned.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_evaluation": {
+        "EvaluationId": {
+            "Description": "The ID of the Evaluation to retrieve. The evaluation of each MLModel is recorded and cataloged. The ID provides the means to access the information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_ml_model": {
+        "MLModelId": {
+            "Description": "The ID assigned to the MLModel at creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "Verbose": {
+            "Description": "Specifies whether the GetMLModel operation should return Recipe .\nIf true, Recipe is returned.\nIf false, Recipe is not returned.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "predict": {
+        "MLModelId": {
+            "Description": "A unique identifier of the MLModel .",
+            "Type": "string",
+            "Required": true
+        },
+        "Record": {
+            "Description": "A map of variable name-value pairs that represent an observation.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PredictEndpoint": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_batch_prediction": {
+        "BatchPredictionId": {
+            "Description": "The ID assigned to the BatchPrediction during creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "BatchPredictionName": {
+            "Description": "A new user-supplied name or description of the BatchPrediction .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_data_source": {
+        "DataSourceId": {
+            "Description": "The ID assigned to the DataSource during creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceName": {
+            "Description": "A new user-supplied name or description of the DataSource that will replace the current description.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_evaluation": {
+        "EvaluationId": {
+            "Description": "The ID assigned to the Evaluation during creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "EvaluationName": {
+            "Description": "A new user-supplied name or description of the Evaluation that will replace the current content.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_ml_model": {
+        "MLModelId": {
+            "Description": "The ID assigned to the MLModel during creation.",
+            "Type": "string",
+            "Required": true
+        },
+        "MLModelName": {
+            "Description": "A user-supplied name or description of the MLModel .",
+            "Type": "string",
+            "Required": false
+        },
+        "ScoreThreshold": {
+            "Description": "The ScoreThreshold used in binary classification MLModel that marks the boundary between a positive prediction and a negative prediction.\nOutput values greater than or equal to the ScoreThreshold receive a positive result from the MLModel, such as true. Output values less than the ScoreThreshold receive a negative response from the MLModel, such as false .",
+            "Type": "float",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "FilterVariable": {
+            "Description": "Use one of the following variables to filter a list of MLModel :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EQ": {
+            "Description": "The equal to operator. The MLModel results will have FilterVariable values that exactly match the value specified with EQ .",
+            "Type": "string",
+            "Required": false
+        },
+        "GT": {
+            "Description": "The greater than operator. The MLModel results will have FilterVariable values that are greater than the value specified with GT .",
+            "Type": "string",
+            "Required": false
+        },
+        "LT": {
+            "Description": "The less than operator. The MLModel results will have FilterVariable values that are less than the value specified with LT .",
+            "Type": "string",
+            "Required": false
+        },
+        "GE": {
+            "Description": "The greater than or equal to operator. The MLModel results will have FilterVariable values that are greater than or equal to the value specified with GE .",
+            "Type": "string",
+            "Required": false
+        },
+        "LE": {
+            "Description": "The less than or equal to operator. The MLModel results will have FilterVariable values that are less than or equal to the value specified with LE .",
+            "Type": "string",
+            "Required": false
+        },
+        "NE": {
+            "Description": "The not equal to operator. The MLModel results will have FilterVariable values not equal to the value specified with NE .",
+            "Type": "string",
+            "Required": false
+        },
+        "Prefix": {
+            "Description": "A string that is found at the beginning of a variable, such as Name or Id .\nFor example, an MLModel could have the Name 2014-09-09-HolidayGiftMailer. To search for this MLModel, select Name for the FilterVariable and any of the following strings for the Prefix :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SortOrder": {
+            "Description": "A two-value parameter that determines the sequence of the resulting list of MLModel .\nResults are sorted by FilterVariable .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "FilterVariable": {
+            "Description": "Use one of the following variables to filter a list of MLModel :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EQ": {
+            "Description": "The equal to operator. The MLModel results will have FilterVariable values that exactly match the value specified with EQ .",
+            "Type": "string",
+            "Required": false
+        },
+        "GT": {
+            "Description": "The greater than operator. The MLModel results will have FilterVariable values that are greater than the value specified with GT .",
+            "Type": "string",
+            "Required": false
+        },
+        "LT": {
+            "Description": "The less than operator. The MLModel results will have FilterVariable values that are less than the value specified with LT .",
+            "Type": "string",
+            "Required": false
+        },
+        "GE": {
+            "Description": "The greater than or equal to operator. The MLModel results will have FilterVariable values that are greater than or equal to the value specified with GE .",
+            "Type": "string",
+            "Required": false
+        },
+        "LE": {
+            "Description": "The less than or equal to operator. The MLModel results will have FilterVariable values that are less than or equal to the value specified with LE .",
+            "Type": "string",
+            "Required": false
+        },
+        "NE": {
+            "Description": "The not equal to operator. The MLModel results will have FilterVariable values not equal to the value specified with NE .",
+            "Type": "string",
+            "Required": false
+        },
+        "Prefix": {
+            "Description": "A string that is found at the beginning of a variable, such as Name or Id .\nFor example, an MLModel could have the Name 2014-09-09-HolidayGiftMailer. To search for this MLModel, select Name for the FilterVariable and any of the following strings for the Prefix :",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SortOrder": {
+            "Description": "A two-value parameter that determines the sequence of the resulting list of MLModel .\nResults are sorted by FilterVariable .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The ID of the page in the paginated results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The number of pages of information to include in the result. The range of acceptable values is 1 through 100 . The default value is 100 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

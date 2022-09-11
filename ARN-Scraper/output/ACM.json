@@ -9,26 +9,7 @@
             "Description": "The key-value pair that defines the tag. The tag value is optional.",
             "Type": "list",
             "Required": true,
-            "List Variables": [
-                {
-                    "Name": "Key",
-                    "Description": "A key-value pair that identifies or specifies metadata about an ACM resource.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "Key": {
-                            "Description": "The key of the tag.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "Value": {
-                            "Description": "The value of the tag.",
-                            "Type": "string",
-                            "Required": false
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         }
     },
     "delete_certificate": {
@@ -90,26 +71,7 @@
             "Description": "One or more resource tags to associate with the imported certificate.\nNote: You cannot apply tags when reimporting a certificate.",
             "Type": "list",
             "Required": false,
-            "List Variables": [
-                {
-                    "Name": "Key",
-                    "Description": "A key-value pair that identifies or specifies metadata about an ACM resource.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "Key": {
-                            "Description": "The key of the tag.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "Value": {
-                            "Description": "The value of the tag.",
-                            "Type": "string",
-                            "Required": false
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         }
     },
     "list_certificates": {
@@ -117,36 +79,13 @@
             "Description": "Filter the certificate list by status value.",
             "Type": "list",
             "Required": false,
-            "List Variables": [
-                {
-                    "Name": null,
-                    "Description": null,
-                    "Type": "string",
-                    "Required": false
-                }
-            ]
+            "list variables": {}
         },
         "Includes": {
             "Description": "Filter the certificate list. For more information, see the  Filters structure.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "extendedKeyUsage": {
-                    "Description": "Specify one or more  ExtendedKeyUsage extension values.",
-                    "Type": "list",
-                    "Required": false
-                },
-                "keyUsage": {
-                    "Description": "Specify one or more  KeyUsage extension values.",
-                    "Type": "list",
-                    "Required": false
-                },
-                "keyTypes": {
-                    "Description": "Specify one or more algorithms that can be used to generate key pairs.\nDefault filtering returns only RSA_1024 and RSA_2048 certificates that have at least one domain. To return other certificate types, provide the desired type signatures in a comma-separated list. For example, \"keyTypes\": [\"RSA_2048,RSA_4096\"] returns both RSA_2048 and RSA_4096 certificates.",
-                    "Type": "list",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "NextToken": {
             "Description": "Use this parameter only when paginating results and only in a subsequent request after you receive a response with truncated results. Set it to the value of NextToken from the response you just received.",
@@ -171,13 +110,7 @@
             "Description": "Specifies expiration events associated with an account.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "DaysBeforeExpiry": {
-                    "Description": "Specifies the number of days prior to certificate expiration when ACM starts generating EventBridge events. ACM sends one event per day per certificate until the certificate expires. By default, accounts receive events starting 45 days before certificate expiration.",
-                    "Type": "integer",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "IdempotencyToken": {
             "Description": "Customer-chosen string used to distinguish between calls to PutAccountConfiguration. Idempotency tokens time out after one hour. If you call PutAccountConfiguration multiple times with the same unexpired idempotency token, ACM treats it as the same request and returns the original result. If you change the idempotency token for each call, ACM treats each call as a new request.",
@@ -195,26 +128,7 @@
             "Description": "The key-value pair that defines the tag to remove.",
             "Type": "list",
             "Required": true,
-            "List Variables": [
-                {
-                    "Name": "Key",
-                    "Description": "A key-value pair that identifies or specifies metadata about an ACM resource.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "Key": {
-                            "Description": "The key of the tag.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "Value": {
-                            "Description": "The value of the tag.",
-                            "Type": "string",
-                            "Required": false
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         }
     },
     "renew_certificate": {
@@ -239,7 +153,10 @@
             "Description": "Additional FQDNs to be included in the Subject Alternative Name extension of the ACM certificate. For example, add the name www.example.net to a certificate for which the DomainName field is www.example.com if users can reach your site by using either name. The maximum number of domain names that you can add to an ACM certificate is 100. However, the initial quota is 10 domain names. If you need more than 10 names, you must request a quota increase. For more information, see Quotas .\nThe maximum length of a SAN DNS name is 253 octets. The name is made up of multiple labels separated by periods. No label can be longer than 63 octets. Consider the following examples:",
             "Type": "list",
             "Required": false,
-            "List Variables": []
+            "list variables": [
+                {},
+                {}
+            ]
         },
         "IdempotencyToken": {
             "Description": "Customer chosen string that can be used to distinguish between calls to RequestCertificate . Idempotency tokens time out after one hour. Therefore, if you call RequestCertificate multiple times with the same idempotency token within one hour, ACM recognizes that you are requesting only one certificate and will issue only one. If you change the idempotency token for each call, ACM recognizes that you are requesting multiple certificates.",
@@ -250,38 +167,13 @@
             "Description": "The domain name that you want ACM to use to send you emails so that you can validate domain ownership.",
             "Type": "list",
             "Required": false,
-            "List Variables": [
-                {
-                    "Name": "DomainName",
-                    "Description": "Contains information about the domain names that you want ACM to use to send you emails that enable you to validate domain ownership.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "DomainName": {
-                            "Description": "A fully qualified domain name (FQDN) in the certificate request.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "ValidationDomain": {
-                            "Description": "The domain name that you want ACM to use to send you validation emails. This domain name is the suffix of the email addresses that you want ACM to use. This must be the same as the DomainName value or a superdomain of the DomainName value. For example, if you request a certificate for testing.example.com, you can specify example.com for this value. In that case, ACM sends domain validation emails to the following five addresses:",
-                            "Type": "string",
-                            "Required": true
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         },
         "Options": {
             "Description": "Currently, you can use this parameter to specify whether to add the certificate to a certificate transparency log. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser. For more information, see Opting Out of Certificate Transparency Logging .",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "CertificateTransparencyLoggingPreference": {
-                    "Description": "You can opt out of certificate transparency logging by specifying the DISABLED option. Opt in by specifying ENABLED .",
-                    "Type": "string",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "CertificateAuthorityArn": {
             "Description": "The Amazon Resource Name (ARN) of the private certificate authority (CA) that will be used to issue the certificate. If you do not provide an ARN and you are trying to request a private certificate, ACM will attempt to issue a public certificate. For more information about private CAs, see the Amazon Web Services Certificate Manager Private Certificate Authority (PCA) user guide. The ARN must have the following form:",
@@ -292,26 +184,7 @@
             "Description": "One or more resource tags to associate with the certificate.",
             "Type": "list",
             "Required": false,
-            "List Variables": [
-                {
-                    "Name": "Key",
-                    "Description": "A key-value pair that identifies or specifies metadata about an ACM resource.",
-                    "Type": "dict",
-                    "Required": false,
-                    "Dict Variable": {
-                        "Key": {
-                            "Description": "The key of the tag.",
-                            "Type": "string",
-                            "Required": true
-                        },
-                        "Value": {
-                            "Description": "The value of the tag.",
-                            "Type": "string",
-                            "Required": false
-                        }
-                    }
-                }
-            ]
+            "list variables": {}
         }
     },
     "resend_validation_email": {
@@ -328,7 +201,8 @@
         "ValidationDomain": {
             "Description": "The base validation domain that will act as the suffix of the email addresses that are used to send the emails. This must be the same as the Domain value or a superdomain of the Domain value. For example, if you requested a certificate for site.subdomain.example.com and specify a ValidationDomain of subdomain.example.com, ACM sends email to the domain registrant, technical contact, and administrative contact in WHOIS and the following five addresses:",
             "Type": "string",
-            "Required": true
+            "Required": true,
+            "string variables": {}
         }
     },
     "update_certificate_options": {
@@ -341,13 +215,7 @@
             "Description": "Use to update the options for your certificate. Currently, you can specify whether to add your certificate to a transparency log. Certificate transparency makes it possible to detect SSL/TLS certificates that have been mistakenly or maliciously issued. Certificates that have not been logged typically produce an error message in a browser.",
             "Type": "dict",
             "Required": true,
-            "Dict Variable": {
-                "CertificateTransparencyLoggingPreference": {
-                    "Description": "You can opt out of certificate transparency logging by specifying the DISABLED option. Opt in by specifying ENABLED .",
-                    "Type": "string",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         }
     },
     "paginate": {
@@ -355,58 +223,19 @@
             "Description": "Filter the certificate list by status value.",
             "Type": "list",
             "Required": false,
-            "List Variables": [
-                {
-                    "Name": null,
-                    "Description": null,
-                    "Type": "string",
-                    "Required": false
-                }
-            ]
+            "list variables": {}
         },
         "Includes": {
             "Description": "Filter the certificate list. For more information, see the  Filters structure.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "extendedKeyUsage": {
-                    "Description": "Specify one or more  ExtendedKeyUsage extension values.",
-                    "Type": "list",
-                    "Required": false
-                },
-                "keyUsage": {
-                    "Description": "Specify one or more  KeyUsage extension values.",
-                    "Type": "list",
-                    "Required": false
-                },
-                "keyTypes": {
-                    "Description": "Specify one or more algorithms that can be used to generate key pairs.\nDefault filtering returns only RSA_1024 and RSA_2048 certificates that have at least one domain. To return other certificate types, provide the desired type signatures in a comma-separated list. For example, \"keyTypes\": [\"RSA_2048,RSA_4096\"] returns both RSA_2048 and RSA_4096 certificates.",
-                    "Type": "list",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         },
         "PaginationConfig": {
             "Description": "A dictionary that provides parameters to control pagination.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "MaxItems": {
-                    "Description": "The total number of items to return. If the total number of items available is more than the value specified in max-items then a NextToken will be provided in the output that you can use to resume pagination.",
-                    "Type": "integer",
-                    "Required": false
-                },
-                "PageSize": {
-                    "Description": "The size of each page.",
-                    "Type": "integer",
-                    "Required": false
-                },
-                "StartingToken": {
-                    "Description": "A token to specify where to start paginating. This is the NextToken from a previous response.",
-                    "Type": "string",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         }
     },
     "wait": {
@@ -419,18 +248,7 @@
             "Description": "A dictionary that provides parameters to control waiting behavior.",
             "Type": "dict",
             "Required": false,
-            "Dict Variable": {
-                "Delay": {
-                    "Description": "The amount of time in seconds to wait between attempts. Default: 60",
-                    "Type": "integer",
-                    "Required": false
-                },
-                "MaxAttempts": {
-                    "Description": "The maximum number of attempts to be made. Default: 40",
-                    "Type": "integer",
-                    "Required": false
-                }
-            }
+            "dict variables": {}
         }
     }
 }

@@ -1,0 +1,641 @@
+{
+    "associate_accounts": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the billing group that associates the array of account IDs.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "The associating array of account IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "associate_pricing_rules": {
+        "Arn": {
+            "Description": "The PricingPlanArn that the PricingRuleArns are associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "PricingRuleArns": {
+            "Description": "The PricingRuleArns that are associated with the Pricing Plan.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_associate_resources_to_custom_line_item": {
+        "TargetArn": {
+            "Description": "A percentage custom line item ARN to associate the resources to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArns": {
+            "Description": "A list containing the ARNs of the resources to be associated.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "BillingPeriodRange": {
+            "Description": "The billing period range in which the custom line item request will be applied.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "batch_disassociate_resources_from_custom_line_item": {
+        "TargetArn": {
+            "Description": "A percentage custom line item ARN to disassociate the resources from.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArns": {
+            "Description": "A list containing the ARNs of resources to be disassociated.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "BillingPeriodRange": {
+            "Description": "The billing period range in which the custom line item request will be applied.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_billing_group": {
+        "ClientToken": {
+            "Description": "The token that is needed to support idempotency. Idempotency isn't currently supported, but will be implemented in a future update.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The billing group name. The names must be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountGrouping": {
+            "Description": "The set of accounts that will be under the billing group. The set of accounts resemble the linked accounts in a consolidated family.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ComputationPreference": {
+            "Description": "The preferences and settings that will be used to compute the Amazon Web Services charges for a billing group.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PrimaryAccountId": {
+            "Description": "The account ID that serves as the main account in a billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The billing group description.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to a billing group. This feature isn't available during the beta.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_custom_line_item": {
+        "ClientToken": {
+            "Description": "The token that is needed to support idempotency. Idempotency isn't currently supported, but will be implemented in a future update.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the custom line item.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the custom line item. This is shown on the Bills page in association with the charge value.",
+            "Type": "string",
+            "Required": true
+        },
+        "BillingGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) that references the billing group where the custom line item applies to.",
+            "Type": "string",
+            "Required": true
+        },
+        "BillingPeriodRange": {
+            "Description": "A time range for which the custom line item is effective.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to a custom line item.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ChargeDetails": {
+            "Description": "A CustomLineItemChargeDetails that describes the charge details for a custom line item.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_pricing_plan": {
+        "ClientToken": {
+            "Description": "The token that is needed to support idempotency. Idempotency isn't currently supported, but will be implemented in a future update.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The pricing plan name. The names must be unique to each pricing plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The pricing plan description.",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingRuleArns": {
+            "Description": "A list of Amazon Resource Names (ARNs) that define the pricing plan parameters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to a pricing plan.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_pricing_rule": {
+        "ClientToken": {
+            "Description": "The token that is needed to support idempotency. Idempotency isn't currently supported, but will be implemented in a future update.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The pricing rule name. The names must be unique to each pricing rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The pricing rule description.",
+            "Type": "string",
+            "Required": false
+        },
+        "Scope": {
+            "Description": "The scope of pricing rule that indicates if it is globally applicable, or is service-specific.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of pricing rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "ModifierPercentage": {
+            "Description": "A percentage modifier applied on the public pricing rates.",
+            "Type": "float",
+            "Required": true
+        },
+        "Service": {
+            "Description": "If the Scope attribute is set to SERVICE , the attribute indicates which service the PricingRule is applicable for.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to a pricing rule.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_billing_group": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the billing group you're deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_custom_line_item": {
+        "Arn": {
+            "Description": "The ARN of the custom line item to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "BillingPeriodRange": {
+            "Description": "The billing period range in which the custom line item request will be applied.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_pricing_plan": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the pricing plan you're deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_pricing_rule": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the pricing rule you are deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_accounts": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the billing group that the array of account IDs will disassociate from.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "The array of account IDs to disassociate.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "disassociate_pricing_rules": {
+        "Arn": {
+            "Description": "The pricing plan Amazon Resource Name (ARN) to disassociate pricing rules from.",
+            "Type": "string",
+            "Required": true
+        },
+        "PricingRuleArns": {
+            "Description": "A list containing the Amazon Resource Name (ARN) of the pricing rules that will be disassociated.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "list_account_associations": {
+        "BillingPeriod": {
+            "Description": "The preferred billing period to get account associations.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The filter on the account ID of the linked account, or any of the following:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token used on subsequent calls to retrieve accounts.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_billing_group_cost_reports": {
+        "BillingPeriod": {
+            "Description": "The preferred billing period for your report.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of reports to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used on subsequent calls to get reports.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A ListBillingGroupCostReportsFilter to specify billing groups to retrieve reports from.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_billing_groups": {
+        "BillingPeriod": {
+            "Description": "The preferred billing period to get billing groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of billing groups to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used on subsequent calls to get billing groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A ListBillingGroupsFilter that specifies the billing group and pricing plan to retrieve billing group information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_custom_line_items": {
+        "BillingPeriod": {
+            "Description": "The preferred billing period to get custom line items (FFLIs).",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of billing groups to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used on subsequent calls to get custom line items (FFLIs).",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A ListCustomLineItemsFilter that specifies the custom line item names and/or billing group Amazon Resource Names (ARNs) to retrieve FFLI information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_pricing_plans": {
+        "BillingPeriod": {
+            "Description": "The preferred billing period to get pricing plan.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A ListPricingPlansFilter that specifies the Amazon Resource Name (ARNs) of pricing plans to retrieve pricing plans information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of pricing plans to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used on subsequent call to get pricing plans.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pricing_plans_associated_with_pricing_rule": {
+        "BillingPeriod": {
+            "Description": "The pricing plan billing period for which associations will be listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingRuleArn": {
+            "Description": "The pricing rule Amazon Resource Name (ARN) for which associations will be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The optional maximum number of pricing rule associations to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The optional pagination token returned by a previous call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pricing_rules": {
+        "BillingPeriod": {
+            "Description": "The preferred billing period to get the pricing plan.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A DescribePricingRuleFilter that specifies the Amazon Resource Name (ARNs) of pricing rules to retrieve pricing rules information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of pricing rules to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used on subsequent call to get pricing rules.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pricing_rules_associated_to_pricing_plan": {
+        "BillingPeriod": {
+            "Description": "The billing period for which the pricing rule associations are to be listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlanArn": {
+            "Description": "The Amazon Resource Name (ARN) of the pricing plan for which associations are to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The optional maximum number of pricing rule associations to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The optional pagination token returned by a previous call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_resources_associated_to_custom_line_item": {
+        "BillingPeriod": {
+            "Description": "The billing period for which the resource associations will be listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "Arn": {
+            "Description": "The ARN of the custom line item for which the resource associations will be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "(Optional) The maximum number of resource associations to be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "(Optional) The pagination token returned by a previous request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "(Optional) A ListResourcesAssociatedToCustomLineItemFilter that can specify the types of resources that should be retrieved.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource to list the tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which to add tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to add to the resource as a list of key-value pairs.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which to delete tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tags to delete from the resource as a list of key-value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_billing_group": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the billing group being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the billing group. The names must be unique to each billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "The status of the billing group. Only one of the valid values can be used.",
+            "Type": "string",
+            "Required": false
+        },
+        "ComputationPreference": {
+            "Description": "The preferences and settings that will be used to compute the Amazon Web Services charges for a billing group.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description of the billing group.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_custom_line_item": {
+        "Arn": {
+            "Description": "The ARN of the custom line item to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The new name for the custom line item.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The new line item description of the custom line item.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChargeDetails": {
+            "Description": "A ListCustomLineItemChargeDetails containing the new charge details for the custom line item.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "BillingPeriodRange": {
+            "Description": "The billing period range in which the custom line item request will be applied.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_pricing_plan": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the pricing plan you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the pricing plan. The name must be unique to each pricing plan.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The pricing plan description.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_pricing_rule": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the pricing rule to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The new name of the pricing rule. The name must be unique to each pricing rule.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The new description for the pricing rule.",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The new pricing rule type.",
+            "Type": "string",
+            "Required": false
+        },
+        "ModifierPercentage": {
+            "Description": "The new modifier to show pricing plan rates as a percentage.",
+            "Type": "float",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "BillingPeriod": {
+            "Description": "The billing period for which the resource associations will be listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "Arn": {
+            "Description": "The ARN of the custom line item for which the resource associations will be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "(Optional) A ListResourcesAssociatedToCustomLineItemFilter that can specify the types of resources that should be retrieved.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

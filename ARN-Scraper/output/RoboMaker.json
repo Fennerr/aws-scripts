@@ -1,0 +1,954 @@
+{
+    "batch_delete_worlds": {
+        "worlds": {
+            "Description": "A list of Amazon Resource Names (arns) that correspond to worlds to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_describe_simulation_job": {
+        "jobs": {
+            "Description": "A list of Amazon Resource Names (ARNs) of simulation jobs to describe.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "cancel_deployment_job": {
+        "job": {
+            "Description": "The deployment job ARN to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_simulation_job": {
+        "job": {
+            "Description": "The simulation job ARN to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_simulation_job_batch": {
+        "batch": {
+            "Description": "The id of the batch to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_world_export_job": {
+        "job": {
+            "Description": "The Amazon Resource Name (arn) of the world export job to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_world_generation_job": {
+        "job": {
+            "Description": "The Amazon Resource Name (arn) of the world generator job to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_deployment_job": {
+        "deploymentConfig": {
+            "Description": "The requested deployment configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "fleet": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet to deploy.",
+            "Type": "string",
+            "Required": true
+        },
+        "deploymentApplicationConfigs": {
+            "Description": "The deployment application configuration.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the deployment job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_fleet": {
+        "name": {
+            "Description": "The name of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the fleet.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_robot": {
+        "name": {
+            "Description": "The name for the robot.",
+            "Type": "string",
+            "Required": true
+        },
+        "architecture": {
+            "Description": "The target architecture of the robot.",
+            "Type": "string",
+            "Required": true
+        },
+        "greengrassGroupId": {
+            "Description": "The Greengrass group id.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the robot.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_robot_application": {
+        "name": {
+            "Description": "The name of the robot application.",
+            "Type": "string",
+            "Required": true
+        },
+        "sources": {
+            "Description": "The sources of the robot application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "robotSoftwareSuite": {
+            "Description": "The robot software suite (ROS distribuition) used by the robot application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the robot application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "environment": {
+            "Description": "The object that contains that URI of the Docker image that you use for your robot application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_robot_application_version": {
+        "application": {
+            "Description": "The application information for the robot application.",
+            "Type": "string",
+            "Required": true
+        },
+        "currentRevisionId": {
+            "Description": "The current revision id for the robot application. If you provide a value and it matches the latest revision ID, a new version will be created.",
+            "Type": "string",
+            "Required": false
+        },
+        "s3Etags": {
+            "Description": "The Amazon S3 identifier for the zip file bundle that you use for your robot application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "imageDigest": {
+            "Description": "A SHA256 identifier for the Docker image that you use for your robot application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_simulation_application": {
+        "name": {
+            "Description": "The name of the simulation application.",
+            "Type": "string",
+            "Required": true
+        },
+        "sources": {
+            "Description": "The sources of the simulation application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "simulationSoftwareSuite": {
+            "Description": "The simulation software suite used by the simulation application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "robotSoftwareSuite": {
+            "Description": "The robot software suite (ROS distribution) used by the simulation application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "renderingEngine": {
+            "Description": "The rendering engine for the simulation application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the simulation application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "environment": {
+            "Description": "The object that contains the Docker image URI used to create your simulation application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_simulation_application_version": {
+        "application": {
+            "Description": "The application information for the simulation application.",
+            "Type": "string",
+            "Required": true
+        },
+        "currentRevisionId": {
+            "Description": "The current revision id for the simulation application. If you provide a value and it matches the latest revision ID, a new version will be created.",
+            "Type": "string",
+            "Required": false
+        },
+        "s3Etags": {
+            "Description": "The Amazon S3 eTag identifier for the zip file bundle that you use to create the simulation application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "imageDigest": {
+            "Description": "The SHA256 digest used to identify the Docker image URI used to created the simulation application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_simulation_job": {
+        "clientRequestToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "outputLocation": {
+            "Description": "Location for output files generated by the simulation job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "loggingConfig": {
+            "Description": "The logging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxJobDurationInSeconds": {
+            "Description": "The maximum simulation job duration in seconds (up to 14 days or 1,209,600 seconds. When maxJobDurationInSeconds is reached, the simulation job will status will transition to Completed .",
+            "Type": "integer",
+            "Required": true
+        },
+        "iamRole": {
+            "Description": "The IAM role name that allows the simulation instance to call the AWS APIs that are specified in its associated policies on your behalf. This is how credentials are passed in to your simulation job.",
+            "Type": "string",
+            "Required": true
+        },
+        "failureBehavior": {
+            "Description": "The failure behavior the simulation job.\nLeaves the instance running for its maximum timeout duration after a 4XX error code.\nStop the simulation job and terminate the instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "robotApplications": {
+            "Description": "The robot application to use in the simulation job.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "simulationApplications": {
+            "Description": "The simulation application to use in the simulation job.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "dataSources": {
+            "Description": "Specify data sources to mount read-only files from S3 into your simulation. These files are available under /opt/robomaker/datasources/data_source_name .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the simulation job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "vpcConfig": {
+            "Description": "If your simulation job accesses resources in a VPC, you provide this parameter identifying the list of security group IDs and subnet IDs. These must belong to the same VPC. You must provide at least one security group and one subnet ID.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "compute": {
+            "Description": "Compute information for the simulation job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_world_export_job": {
+        "clientRequestToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "worlds": {
+            "Description": "A list of Amazon Resource Names (arns) that correspond to worlds to export.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "outputLocation": {
+            "Description": "The output location.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "iamRole": {
+            "Description": "The IAM role that the world export process uses to access the Amazon S3 bucket and put the export.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the world export job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_world_generation_job": {
+        "clientRequestToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "template": {
+            "Description": "The Amazon Resource Name (arn) of the world template describing the worlds you want to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "worldCount": {
+            "Description": "Information about the world count.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the world generator job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "worldTags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the generated worlds.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_world_template": {
+        "clientRequestToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the world template.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateBody": {
+            "Description": "The world template body.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateLocation": {
+            "Description": "The location of the world template.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the world template.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_fleet": {
+        "fleet": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_robot": {
+        "robot": {
+            "Description": "The Amazon Resource Name (ARN) of the robot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_robot_application": {
+        "application": {
+            "Description": "The Amazon Resource Name (ARN) of the the robot application.",
+            "Type": "string",
+            "Required": true
+        },
+        "applicationVersion": {
+            "Description": "The version of the robot application to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_simulation_application": {
+        "application": {
+            "Description": "The application information for the simulation application to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "applicationVersion": {
+            "Description": "The version of the simulation application to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_world_template": {
+        "template": {
+            "Description": "The Amazon Resource Name (arn) of the world template you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_robot": {
+        "fleet": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "robot": {
+            "Description": "The Amazon Resource Name (ARN) of the robot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_deployment_job": {
+        "job": {
+            "Description": "The Amazon Resource Name (ARN) of the deployment job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_fleet": {
+        "fleet": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_robot": {
+        "robot": {
+            "Description": "The Amazon Resource Name (ARN) of the robot to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_robot_application": {
+        "application": {
+            "Description": "The Amazon Resource Name (ARN) of the robot application.",
+            "Type": "string",
+            "Required": true
+        },
+        "applicationVersion": {
+            "Description": "The version of the robot application to describe.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_simulation_application": {
+        "application": {
+            "Description": "The application information for the simulation application.",
+            "Type": "string",
+            "Required": true
+        },
+        "applicationVersion": {
+            "Description": "The version of the simulation application to describe.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_simulation_job": {
+        "job": {
+            "Description": "The Amazon Resource Name (ARN) of the simulation job to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_simulation_job_batch": {
+        "batch": {
+            "Description": "The id of the batch to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_world": {
+        "world": {
+            "Description": "The Amazon Resource Name (arn) of the world you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_world_export_job": {
+        "job": {
+            "Description": "The Amazon Resource Name (arn) of the world export job to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_world_generation_job": {
+        "job": {
+            "Description": "The Amazon Resource Name (arn) of the world generation job to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_world_template": {
+        "template": {
+            "Description": "The Amazon Resource Name (arn) of the world template you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_world_template_body": {
+        "template": {
+            "Description": "The Amazon Resource Name (arn) of the world template.",
+            "Type": "string",
+            "Required": false
+        },
+        "generationJob": {
+            "Description": "The Amazon Resource Name (arn) of the world generator job.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_deployment_jobs": {
+        "filters": {
+            "Description": "Optional filters to limit results.\nThe filter names status and fleetName are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status InProgress or the status Pending .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListDeploymentJobs again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListDeploymentJobs only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListDeploymentJobs request with the returned nextToken value. This value can be between 1 and 200. If this parameter is not used, then ListDeploymentJobs returns up to 200 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_fleets": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListFleets again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListFleets only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListFleets request with the returned nextToken value. This value can be between 1 and 200. If this parameter is not used, then ListFleets returns up to 200 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results.\nThe filter name name is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_robot_applications": {
+        "versionQualifier": {
+            "Description": "The version qualifier of the robot application.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListRobotApplications again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListRobotApplications only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListRobotApplications request with the returned nextToken value. This value can be between 1 and 100. If this parameter is not used, then ListRobotApplications returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results.\nThe filter name name is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_robots": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListRobots again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListRobots only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListRobots request with the returned nextToken value. This value can be between 1 and 200. If this parameter is not used, then ListRobots returns up to 200 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results.\nThe filter names status and fleetName are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status Registered or the status Available .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_simulation_applications": {
+        "versionQualifier": {
+            "Description": "The version qualifier of the simulation application.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListSimulationApplications again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListSimulationApplications only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListSimulationApplications request with the returned nextToken value. This value can be between 1 and 100. If this parameter is not used, then ListSimulationApplications returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional list of filters to limit results.\nThe filter name name is supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_simulation_job_batches": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListSimulationJobBatches again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListSimulationJobBatches only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListSimulationJobBatches request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_simulation_jobs": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListSimulationJobs again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListSimulationJobs only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListSimulationJobs request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then ListSimulationJobs returns up to 1000 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results.\nThe filter names status and simulationApplicationName and robotApplicationName are supported. When filtering, you must use the complete value of the filtered item. You can use up to three filters, but they must be for the same named item. For example, if you are looking for items with the status Preparing or the status Running .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The AWS RoboMaker Amazon Resource Name (ARN) with tags to be listed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_world_export_jobs": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListWorldExportJobs again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListWorldExportJobs only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListWorldExportJobs request with the returned nextToken value. This value can be between 1 and 100. If this parameter is not used, then ListWorldExportJobs returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results. You can use generationJobId and templateId .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_world_generation_jobs": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListWorldGenerationJobsRequest again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListWorldGeneratorJobs only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListWorldGeneratorJobs request with the returned nextToken value. This value can be between 1 and 100. If this parameter is not used, then ListWorldGeneratorJobs returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results. You can use status and templateId .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_world_templates": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListWorldTemplates again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListWorldTemplates only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListWorldTemplates request with the returned nextToken value. This value can be between 1 and 100. If this parameter is not used, then ListWorldTemplates returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_worlds": {
+        "nextToken": {
+            "Description": "If the previous paginated request did not return all of the remaining results, the response object's nextToken parameter value is set to a token. To retrieve the next set of results, call ListWorlds again and assign that token to the request object's nextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "When this parameter is used, ListWorlds only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListWorlds request with the returned nextToken value. This value can be between 1 and 100. If this parameter is not used, then ListWorlds returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Optional filters to limit results. You can use status .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "register_robot": {
+        "fleet": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "robot": {
+            "Description": "The Amazon Resource Name (ARN) of the robot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restart_simulation_job": {
+        "job": {
+            "Description": "The Amazon Resource Name (ARN) of the simulation job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_simulation_job_batch": {
+        "clientRequestToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "batchPolicy": {
+            "Description": "The batch policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "createSimulationJobRequests": {
+            "Description": "A list of simulation job requests to create in the batch.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the deployment job batch.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "sync_deployment_job": {
+        "clientRequestToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "fleet": {
+            "Description": "The target fleet for the synchronization.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS RoboMaker resource you are tagging.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A map that contains tag keys and tag values that are attached to the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS RoboMaker resource you are removing tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A map that contains tag keys and tag values that will be unattached from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_robot_application": {
+        "application": {
+            "Description": "The application information for the robot application.",
+            "Type": "string",
+            "Required": true
+        },
+        "sources": {
+            "Description": "The sources of the robot application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "robotSoftwareSuite": {
+            "Description": "The robot software suite (ROS distribution) used by the robot application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "currentRevisionId": {
+            "Description": "The revision id for the robot application.",
+            "Type": "string",
+            "Required": false
+        },
+        "environment": {
+            "Description": "The object that contains the Docker image URI for your robot application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_simulation_application": {
+        "application": {
+            "Description": "The application information for the simulation application.",
+            "Type": "string",
+            "Required": true
+        },
+        "sources": {
+            "Description": "The sources of the simulation application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "simulationSoftwareSuite": {
+            "Description": "The simulation software suite used by the simulation application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "robotSoftwareSuite": {
+            "Description": "Information about the robot software suite (ROS distribution).",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "renderingEngine": {
+            "Description": "The rendering engine for the simulation application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "currentRevisionId": {
+            "Description": "The revision id for the robot application.",
+            "Type": "string",
+            "Required": false
+        },
+        "environment": {
+            "Description": "The object that contains the Docker image URI for your simulation application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_world_template": {
+        "template": {
+            "Description": "The Amazon Resource Name (arn) of the world template to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the template.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateBody": {
+            "Description": "The world template body.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateLocation": {
+            "Description": "The location of the world template.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "filters": {
+            "Description": "Optional filters to limit results. You can use status .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

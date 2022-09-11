@@ -1,0 +1,392 @@
+{
+    "create_connector_profile": {
+        "connectorProfileName": {
+            "Description": "The name of the connector profile. The name is unique for each ConnectorProfile in your Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "kmsArn": {
+            "Description": "The ARN (Amazon Resource Name) of the Key Management Service (KMS) key you provide for encryption. This is required if you do not want to use the Amazon AppFlow-managed KMS key. If you don't provide anything here, Amazon AppFlow uses the Amazon AppFlow-managed KMS key.",
+            "Type": "string",
+            "Required": false
+        },
+        "connectorType": {
+            "Description": "The type of connector, such as Salesforce, Amplitude, and so on.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectorLabel": {
+            "Description": "The label of the connector. The label is unique for each ConnectorRegistration in your Amazon Web Services account. Only needed if calling for CUSTOMCONNECTOR connector type/.",
+            "Type": "string",
+            "Required": false
+        },
+        "connectionMode": {
+            "Description": "Indicates the connection mode and specifies whether it is public or private. Private flows use Amazon Web Services PrivateLink to route data over Amazon Web Services infrastructure without exposing it to the public internet.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectorProfileConfig": {
+            "Description": "Defines the connector-specific configuration and credentials.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_flow": {
+        "flowName": {
+            "Description": "The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the flow you want to create.",
+            "Type": "string",
+            "Required": false
+        },
+        "kmsArn": {
+            "Description": "The ARN (Amazon Resource Name) of the Key Management Service (KMS) key you provide for encryption. This is required if you do not want to use the Amazon AppFlow-managed KMS key. If you don't provide anything here, Amazon AppFlow uses the Amazon AppFlow-managed KMS key.",
+            "Type": "string",
+            "Required": false
+        },
+        "triggerConfig": {
+            "Description": "The trigger settings that determine how and when the flow runs.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "sourceFlowConfig": {
+            "Description": "The configuration that controls how Amazon AppFlow retrieves data from the source connector.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "destinationFlowConfigList": {
+            "Description": "The configuration that controls how Amazon AppFlow places data in the destination connector.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tasks": {
+            "Description": "A list of tasks that Amazon AppFlow performs while transferring the data in the flow run.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for your flow.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_connector_profile": {
+        "connectorProfileName": {
+            "Description": "The name of the connector profile. The name is unique for each ConnectorProfile in your account.",
+            "Type": "string",
+            "Required": true
+        },
+        "forceDelete": {
+            "Description": "Indicates whether Amazon AppFlow should delete the profile, even if it is currently in use in one or more flows.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_flow": {
+        "flowName": {
+            "Description": "The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only.",
+            "Type": "string",
+            "Required": true
+        },
+        "forceDelete": {
+            "Description": "Indicates whether Amazon AppFlow should delete the flow, even if it is currently in use.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_connector": {
+        "connectorType": {
+            "Description": "The connector type, such as CUSTOMCONNECTOR, Saleforce, Marketo. Please choose CUSTOMCONNECTOR for Lambda based custom connectors.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectorLabel": {
+            "Description": "The label of the connector. The label is unique for each ConnectorRegistration in your Amazon Web Services account. Only needed if calling for CUSTOMCONNECTOR connector type/.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_connector_entity": {
+        "connectorEntityName": {
+            "Description": "The entity name for that connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectorType": {
+            "Description": "The type of connector application, such as Salesforce, Amplitude, and so on.",
+            "Type": "string",
+            "Required": false
+        },
+        "connectorProfileName": {
+            "Description": "The name of the connector profile. The name is unique for each ConnectorProfile in the Amazon Web Services account.",
+            "Type": "string",
+            "Required": false
+        },
+        "apiVersion": {
+            "Description": "The version of the API that's used by the connector.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_connector_profiles": {
+        "connectorProfileNames": {
+            "Description": "The name of the connector profile. The name is unique for each ConnectorProfile in the Amazon Web Services account.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "connectorType": {
+            "Description": "The type of connector, such as Salesforce, Amplitude, and so on.",
+            "Type": "string",
+            "Required": false
+        },
+        "connectorLabel": {
+            "Description": "The name of the connector. The name is unique for each ConnectorRegistration in your Amazon Web Services account. Only needed if calling for CUSTOMCONNECTOR connector type/.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the maximum number of items that should be returned in the result set. The default for maxResults is 20 (for all paginated API operations).",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token for the next page of data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_connectors": {
+        "connectorTypes": {
+            "Description": "The type of connector, such as Salesforce, Amplitude, and so on.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of items that should be returned in the result set. The default is 20.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token for the next page of data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_flow": {
+        "flowName": {
+            "Description": "The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_flow_execution_records": {
+        "flowName": {
+            "Description": "The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "Specifies the maximum number of items that should be returned in the result set. The default for maxResults is 20 (for all paginated API operations).",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token for the next page of data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_connector_entities": {
+        "connectorProfileName": {
+            "Description": "The name of the connector profile. The name is unique for each ConnectorProfile in the Amazon Web Services account, and is used to query the downstream connector.",
+            "Type": "string",
+            "Required": false
+        },
+        "connectorType": {
+            "Description": "The type of connector, such as Salesforce, Amplitude, and so on.",
+            "Type": "string",
+            "Required": false
+        },
+        "entitiesPath": {
+            "Description": "This optional parameter is specific to connector implementation. Some connectors support multiple levels or categories of entities. You can find out the list of roots for such providers by sending a request without the entitiesPath parameter. If the connector supports entities at different roots, this initial request returns the list of roots. Otherwise, this request returns all entities supported by the provider.",
+            "Type": "string",
+            "Required": false
+        },
+        "apiVersion": {
+            "Description": "The version of the API that's used by the connector.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_connectors": {
+        "maxResults": {
+            "Description": "Specifies the maximum number of items that should be returned in the result set. The default for maxResults is 20 (for all paginated API operations).",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token for the next page of data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_flows": {
+        "maxResults": {
+            "Description": "Specifies the maximum number of items that should be returned in the result set.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token for next page of data.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the specified flow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "register_connector": {
+        "connectorLabel": {
+            "Description": "The name of the connector. The name is unique for each ConnectorRegistration in your Amazon Web Services account.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description about the connector that's being registered.",
+            "Type": "string",
+            "Required": false
+        },
+        "connectorProvisioningType": {
+            "Description": "The provisioning type of the connector. Currently the only supported value is LAMBDA.",
+            "Type": "string",
+            "Required": false
+        },
+        "connectorProvisioningConfig": {
+            "Description": "The provisioning type of the connector. Currently the only supported value is LAMBDA.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_flow": {
+        "flowName": {
+            "Description": "The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_flow": {
+        "flowName": {
+            "Description": "The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the flow that you want to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for your flow.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "unregister_connector": {
+        "connectorLabel": {
+            "Description": "The label of the connector. The label is unique for each ConnectorRegistration in your Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "forceDelete": {
+            "Description": "Indicates whether Amazon AppFlow should unregister the connector, even if it is currently in use in one or more connector profiles. The default value is false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the flow that you want to untag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag keys associated with the tag that you want to remove from your flow.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_connector_profile": {
+        "connectorProfileName": {
+            "Description": "The name of the connector profile and is unique for each ConnectorProfile in the Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionMode": {
+            "Description": "Indicates the connection mode and if it is public or private.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectorProfileConfig": {
+            "Description": "Defines the connector-specific profile configuration and credentials.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_flow": {
+        "flowName": {
+            "Description": "The specified name of the flow. Spaces are not allowed. Use underscores (_) or hyphens (-) only.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the flow.",
+            "Type": "string",
+            "Required": false
+        },
+        "triggerConfig": {
+            "Description": "The trigger settings that determine how and when the flow runs.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "sourceFlowConfig": {
+            "Description": "Contains information about the configuration of the source connector used in the flow.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "destinationFlowConfigList": {
+            "Description": "The configuration that controls how Amazon AppFlow transfers data to the destination connector.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tasks": {
+            "Description": "A list of tasks that Amazon AppFlow performs while transferring the data in the flow run.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    }
+}

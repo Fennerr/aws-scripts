@@ -1,0 +1,509 @@
+{
+    "associate_entity_to_thing": {
+        "thingName": {
+            "Description": "The name of the thing to which the entity is to be associated.",
+            "Type": "string",
+            "Required": true
+        },
+        "entityId": {
+            "Description": "The ID of the device to be associated with the thing.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespaceVersion": {
+            "Description": "The version of the user's namespace. Defaults to the latest version of the user's namespace.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_flow_template": {
+        "definition": {
+            "Description": "The workflow DefinitionDocument .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "compatibleNamespaceVersion": {
+            "Description": "The namespace version in which the workflow is to be created.\nIf no value is specified, the latest version is used by default.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_system_instance": {
+        "tags": {
+            "Description": "Metadata, consisting of key-value pairs, that can be used to categorize your system instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "definition": {
+            "Description": "A document that defines an entity.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "target": {
+            "Description": "The target type of the deployment. Valid values are GREENGRASS and CLOUD .",
+            "Type": "string",
+            "Required": true
+        },
+        "greengrassGroupName": {
+            "Description": "The name of the Greengrass group where the system instance will be deployed. This value is required if the value of the target parameter is GREENGRASS .",
+            "Type": "string",
+            "Required": false
+        },
+        "s3BucketName": {
+            "Description": "The name of the Amazon Simple Storage Service bucket that will be used to store and deploy the system instance's resource file. This value is required if the value of the target parameter is GREENGRASS .",
+            "Type": "string",
+            "Required": false
+        },
+        "metricsConfiguration": {
+            "Description": "An object that specifies whether cloud metrics are collected in a deployment and, if so, what role is used to collect metrics.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "flowActionsRoleArn": {
+            "Description": "The ARN of the IAM role that AWS IoT Things Graph will assume when it executes the flow. This role must have read and write access to AWS Lambda and AWS IoT and any other AWS services that the flow uses when it executes. This value is required if the value of the target parameter is CLOUD .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_system_template": {
+        "definition": {
+            "Description": "The DefinitionDocument used to create the system.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "compatibleNamespaceVersion": {
+            "Description": "The namespace version in which the system is to be created.\nIf no value is specified, the latest version is used by default.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_flow_template": {
+        "id": {
+            "Description": "The ID of the workflow to be deleted.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_namespace": "No parameters defined",
+    "delete_system_instance": {
+        "id": {
+            "Description": "The ID of the system instance to be deleted.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_system_template": {
+        "id": {
+            "Description": "The ID of the system to be deleted.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deploy_system_instance": {
+        "id": {
+            "Description": "The ID of the system instance. This value is returned by the CreateSystemInstance action.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "deprecate_flow_template": {
+        "id": {
+            "Description": "The ID of the workflow to be deleted.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deprecate_system_template": {
+        "id": {
+            "Description": "The ID of the system to delete.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_namespace": {
+        "namespaceName": {
+            "Description": "The name of the user's namespace. Set this to aws to get the public namespace.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "dissociate_entity_from_thing": {
+        "thingName": {
+            "Description": "The name of the thing to disassociate.",
+            "Type": "string",
+            "Required": true
+        },
+        "entityType": {
+            "Description": "The entity type from which to disassociate the thing.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_entities": {
+        "ids": {
+            "Description": "An array of entity IDs.\nThe IDs should be in the following format.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "namespaceVersion": {
+            "Description": "The version of the user's namespace. Defaults to the latest version of the user's namespace.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_flow_template": {
+        "id": {
+            "Description": "The ID of the workflow.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionNumber": {
+            "Description": "The number of the workflow revision to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_flow_template_revisions": {
+        "id": {
+            "Description": "The ID of the workflow.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_namespace_deletion_status": "No parameters defined",
+    "get_system_instance": {
+        "id": {
+            "Description": "The ID of the system deployment instance. This value is returned by CreateSystemInstance .\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_system_template": {
+        "id": {
+            "Description": "The ID of the system to get. This ID must be in the user's namespace.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionNumber": {
+            "Description": "The number that specifies the revision of the system to get.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_system_template_revisions": {
+        "id": {
+            "Description": "The ID of the system template.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_upload_status": {
+        "uploadId": {
+            "Description": "The ID of the upload. This value is returned by the UploadEntityDefinitions action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_flow_execution_messages": {
+        "flowExecutionId": {
+            "Description": "The ID of the flow execution.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "maxResults": {
+            "Description": "The maximum number of tags to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose tags are to be returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token that specifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "search_entities": {
+        "entityTypes": {
+            "Description": "The entity types for which to search.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "filters": {
+            "Description": "Optional filter to apply to the search. Valid filters are NAME NAMESPACE, SEMANTIC_TYPE_PATH and REFERENCED_ENTITY_ID. REFERENCED_ENTITY_ID filters on entities that are used by the entity in the result set. For example, you can filter on the ID of a property that is used in a state.\nMultiple filters function as OR criteria in the query. Multiple values passed inside the filter function as AND criteria.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "namespaceVersion": {
+            "Description": "The version of the user's namespace. Defaults to the latest version of the user's namespace.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_flow_executions": {
+        "systemInstanceId": {
+            "Description": "The ID of the system instance that contains the flow.",
+            "Type": "string",
+            "Required": true
+        },
+        "flowExecutionId": {
+            "Description": "The ID of a flow execution.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "The date and time of the earliest flow execution to return.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The date and time of the latest flow execution to return.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_flow_templates": {
+        "filters": {
+            "Description": "An array of objects that limit the result set. The only valid filter is DEVICE_MODEL_ID .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_system_instances": {
+        "filters": {
+            "Description": "Optional filter to apply to the search. Valid filters are SYSTEM_TEMPLATE_ID, STATUS, and GREENGRASS_GROUP_NAME .\nMultiple filters function as OR criteria in the query. Multiple values passed inside the filter function as AND criteria.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_system_templates": {
+        "filters": {
+            "Description": "An array of filters that limit the result set. The only valid filter is FLOW_TEMPLATE_ID .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_things": {
+        "entityId": {
+            "Description": "The ID of the entity to which the things are associated.\nThe IDs should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The string that specifies the next page of results. Use this when you're paginating results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "namespaceVersion": {
+            "Description": "The version of the user's namespace. Defaults to the latest version of the user's namespace.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose tags are returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tags to add to the resource.&gt;",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "undeploy_system_instance": {
+        "id": {
+            "Description": "The ID of the system instance to remove from its target.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose tags are to be removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of tag key names to remove from the resource. You don't specify the value. Both the key and its associated value are removed.\nThis parameter to the API requires a JSON text string argument. For information on how to format a JSON parameter for the various command line tool environments, see Using JSON for Parameters in the AWS CLI User Guide .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_flow_template": {
+        "id": {
+            "Description": "The ID of the workflow to be updated.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "definition": {
+            "Description": "The DefinitionDocument that contains the updated workflow definition.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "compatibleNamespaceVersion": {
+            "Description": "The version of the user's namespace.\nIf no value is specified, the latest version is used by default. Use the GetFlowTemplateRevisions if you want to find earlier revisions of the flow to update.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_system_template": {
+        "id": {
+            "Description": "The ID of the system to be updated.\nThe ID should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "definition": {
+            "Description": "The DefinitionDocument that contains the updated system definition.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "compatibleNamespaceVersion": {
+            "Description": "The version of the user's namespace. Defaults to the latest version of the user's namespace.\nIf no value is specified, the latest version is used by default.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "upload_entity_definitions": {
+        "document": {
+            "Description": "The DefinitionDocument that defines the updated entities.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "syncWithPublicNamespace": {
+            "Description": "A Boolean that specifies whether to synchronize with the latest version of the public namespace. If set to true , the upload will create a new namespace version.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "deprecateExistingEntities": {
+            "Description": "A Boolean that specifies whether to deprecate all entities in the latest version before uploading the new DefinitionDocument . If set to true , the upload will create a new namespace version.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "entityId": {
+            "Description": "The ID of the entity to which the things are associated.\nThe IDs should be in the following format.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespaceVersion": {
+            "Description": "The version of the user's namespace. Defaults to the latest version of the user's namespace.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

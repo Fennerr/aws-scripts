@@ -1,0 +1,239 @@
+{
+    "associate_device_with_placement": {
+        "projectName": {
+            "Description": "The name of the project containing the placement in which to associate the device.",
+            "Type": "string",
+            "Required": true
+        },
+        "placementName": {
+            "Description": "The name of the placement in which to associate the device.",
+            "Type": "string",
+            "Required": true
+        },
+        "deviceId": {
+            "Description": "The ID of the physical device to be associated with the given placement in the project. Note that a mandatory 4 character prefix is required for all deviceId values.",
+            "Type": "string",
+            "Required": true
+        },
+        "deviceTemplateName": {
+            "Description": "The device template name to associate with the device ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_placement": {
+        "placementName": {
+            "Description": "The name of the placement to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectName": {
+            "Description": "The name of the project in which to create the placement.",
+            "Type": "string",
+            "Required": true
+        },
+        "attributes": {
+            "Description": "Optional user-defined key/value pairs providing contextual data (such as location or function) for the placement.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_project": {
+        "projectName": {
+            "Description": "The name of the project to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "An optional description for the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "placementTemplate": {
+            "Description": "The schema defining the placement to be created. A placement template defines placement default attributes and device templates. You cannot add or remove device templates after the project has been created. However, you can update callbackOverrides for the device templates using the UpdateProject API.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Optional tags (metadata key/value pairs) to be associated with the project. For example, { {\"key1\": \"value1\", \"key2\": \"value2\"} }. For more information, see AWS Tagging Strategies .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_placement": {
+        "placementName": {
+            "Description": "The name of the empty placement to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectName": {
+            "Description": "The project containing the empty placement to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_project": {
+        "projectName": {
+            "Description": "The name of the empty project to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_placement": {
+        "placementName": {
+            "Description": "The name of the placement within a project.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectName": {
+            "Description": "The project containing the placement to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_project": {
+        "projectName": {
+            "Description": "The name of the project to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_device_from_placement": {
+        "projectName": {
+            "Description": "The name of the project that contains the placement.",
+            "Type": "string",
+            "Required": true
+        },
+        "placementName": {
+            "Description": "The name of the placement that the device should be removed from.",
+            "Type": "string",
+            "Required": true
+        },
+        "deviceTemplateName": {
+            "Description": "The device ID that should be removed from the placement.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_devices_in_placement": {
+        "projectName": {
+            "Description": "The name of the project containing the placement.",
+            "Type": "string",
+            "Required": true
+        },
+        "placementName": {
+            "Description": "The name of the placement to get the devices from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_placements": {
+        "projectName": {
+            "Description": "The project containing the placements to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per request. If not set, a default value of 100 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_projects": {
+        "nextToken": {
+            "Description": "The token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per request. If not set, a default value of 100 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource whose tags you want to list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resouce for which tag(s) should be added or modified.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The new or modifying tag(s) for the resource. See AWS IoT 1-Click Service Limits for the maximum number of tags allowed per resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource whose tag you want to remove.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of those tags which you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_placement": {
+        "placementName": {
+            "Description": "The name of the placement to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectName": {
+            "Description": "The name of the project containing the placement to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "attributes": {
+            "Description": "The user-defined object of attributes used to update the placement. The maximum number of key/value pairs is 50.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_project": {
+        "projectName": {
+            "Description": "The name of the project to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "An optional user-defined description for the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "placementTemplate": {
+            "Description": "An object defining the project update. Once a project has been created, you cannot add device template names to the project. However, for a given placementTemplate, you can update the associated callbackOverrides for the device definition using this API.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

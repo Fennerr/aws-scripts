@@ -1,0 +1,884 @@
+{
+    "count_closed_workflow_executions": {
+        "domain": {
+            "Description": "The name of the domain containing the workflow executions to count.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTimeFilter": {
+            "Description": "If specified, only workflow executions that meet the start time criteria of the filter are counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "closeTimeFilter": {
+            "Description": "If specified, only workflow executions that meet the close time criteria of the filter are counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "executionFilter": {
+            "Description": "If specified, only workflow executions matching the WorkflowId in the filter are counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "typeFilter": {
+            "Description": "If specified, indicates the type of the workflow executions to be counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tagFilter": {
+            "Description": "If specified, only executions that have a tag that matches the filter are counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "closeStatusFilter": {
+            "Description": "If specified, only workflow executions that match this close status are counted. This filter has an affect only if executionStatus is specified as CLOSED .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "count_open_workflow_executions": {
+        "domain": {
+            "Description": "The name of the domain containing the workflow executions to count.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTimeFilter": {
+            "Description": "Specifies the start time criteria that workflow executions must meet in order to be counted.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "typeFilter": {
+            "Description": "Specifies the type of the workflow executions to be counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tagFilter": {
+            "Description": "If specified, only executions that have a tag that matches the filter are counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "executionFilter": {
+            "Description": "If specified, only workflow executions matching the WorkflowId in the filter are counted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "count_pending_activity_tasks": {
+        "domain": {
+            "Description": "The name of the domain that contains the task list.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskList": {
+            "Description": "The name of the task list.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "count_pending_decision_tasks": {
+        "domain": {
+            "Description": "The name of the domain that contains the task list.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskList": {
+            "Description": "The name of the task list.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "deprecate_activity_type": {
+        "domain": {
+            "Description": "The name of the domain in which the activity type is registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "activityType": {
+            "Description": "The activity type to deprecate.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "deprecate_domain": {
+        "name": {
+            "Description": "The name of the domain to deprecate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deprecate_workflow_type": {
+        "domain": {
+            "Description": "The name of the domain in which the workflow type is registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowType": {
+            "Description": "The workflow type to deprecate.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "describe_activity_type": {
+        "domain": {
+            "Description": "The name of the domain in which the activity type is registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "activityType": {
+            "Description": "The activity type to get information about. Activity types are identified by the name and version that were supplied when the activity was registered.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "describe_domain": {
+        "name": {
+            "Description": "The name of the domain to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_workflow_execution": {
+        "domain": {
+            "Description": "The name of the domain containing the workflow execution.",
+            "Type": "string",
+            "Required": true
+        },
+        "execution": {
+            "Description": "The workflow execution to describe.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "describe_workflow_type": {
+        "domain": {
+            "Description": "The name of the domain in which this workflow type is registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowType": {
+            "Description": "The workflow type to describe.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "get_workflow_execution_history": {
+        "domain": {
+            "Description": "The name of the domain containing the workflow execution.",
+            "Type": "string",
+            "Required": true
+        },
+        "execution": {
+            "Description": "Specifies the workflow execution for which to return the history.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "nextPageToken": {
+            "Description": "If NextPageToken is returned there are more results available. The value of NextPageToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 60 seconds. Using an expired pagination token will return a 400 error: \"Specified token has exceeded its maximum lifetime \".\nThe configured maximumPageSize determines how many results can be returned in a single call.",
+            "Type": "string",
+            "Required": false
+        },
+        "maximumPageSize": {
+            "Description": "The maximum number of results that are returned per call. Use nextPageToken to obtain further pages of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the events in reverse order. By default the results are returned in ascending order of the eventTimeStamp of the events.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_activity_types": {
+        "domain": {
+            "Description": "The name of the domain in which the activity types have been registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "If specified, only lists the activity types that have this name.",
+            "Type": "string",
+            "Required": false
+        },
+        "registrationStatus": {
+            "Description": "Specifies the registration status of the activity types to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextPageToken": {
+            "Description": "If NextPageToken is returned there are more results available. The value of NextPageToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 60 seconds. Using an expired pagination token will return a 400 error: \"Specified token has exceeded its maximum lifetime \".\nThe configured maximumPageSize determines how many results can be returned in a single call.",
+            "Type": "string",
+            "Required": false
+        },
+        "maximumPageSize": {
+            "Description": "The maximum number of results that are returned per call. Use nextPageToken to obtain further pages of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the results in reverse order. By default, the results are returned in ascending alphabetical order by name of the activity types.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_closed_workflow_executions": {
+        "domain": {
+            "Description": "The name of the domain that contains the workflow executions to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTimeFilter": {
+            "Description": "If specified, the workflow executions are included in the returned results based on whether their start times are within the range specified by this filter. Also, if this parameter is specified, the returned results are ordered by their start times.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "closeTimeFilter": {
+            "Description": "If specified, the workflow executions are included in the returned results based on whether their close times are within the range specified by this filter. Also, if this parameter is specified, the returned results are ordered by their close times.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "executionFilter": {
+            "Description": "If specified, only workflow executions matching the workflow ID specified in the filter are returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "closeStatusFilter": {
+            "Description": "If specified, only workflow executions that match this close status are listed. For example, if TERMINATED is specified, then only TERMINATED workflow executions are listed.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "typeFilter": {
+            "Description": "If specified, only executions of the type specified in the filter are returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tagFilter": {
+            "Description": "If specified, only executions that have the matching tag are listed.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "nextPageToken": {
+            "Description": "If NextPageToken is returned there are more results available. The value of NextPageToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 60 seconds. Using an expired pagination token will return a 400 error: \"Specified token has exceeded its maximum lifetime \".\nThe configured maximumPageSize determines how many results can be returned in a single call.",
+            "Type": "string",
+            "Required": false
+        },
+        "maximumPageSize": {
+            "Description": "The maximum number of results that are returned per call. Use nextPageToken to obtain further pages of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the results in reverse order. By default the results are returned in descending order of the start or the close time of the executions.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_domains": {
+        "nextPageToken": {
+            "Description": "If NextPageToken is returned there are more results available. The value of NextPageToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 60 seconds. Using an expired pagination token will return a 400 error: \"Specified token has exceeded its maximum lifetime \".\nThe configured maximumPageSize determines how many results can be returned in a single call.",
+            "Type": "string",
+            "Required": false
+        },
+        "registrationStatus": {
+            "Description": "Specifies the registration status of the domains to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "maximumPageSize": {
+            "Description": "The maximum number of results that are returned per call. Use nextPageToken to obtain further pages of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the results in reverse order. By default, the results are returned in ascending alphabetical order by name of the domains.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_open_workflow_executions": {
+        "domain": {
+            "Description": "The name of the domain that contains the workflow executions to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTimeFilter": {
+            "Description": "Workflow executions are included in the returned results based on whether their start times are within the range specified by this filter.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "typeFilter": {
+            "Description": "If specified, only executions of the type specified in the filter are returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tagFilter": {
+            "Description": "If specified, only executions that have the matching tag are listed.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "nextPageToken": {
+            "Description": "If NextPageToken is returned there are more results available. The value of NextPageToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 60 seconds. Using an expired pagination token will return a 400 error: \"Specified token has exceeded its maximum lifetime \".\nThe configured maximumPageSize determines how many results can be returned in a single call.",
+            "Type": "string",
+            "Required": false
+        },
+        "maximumPageSize": {
+            "Description": "The maximum number of results that are returned per call. Use nextPageToken to obtain further pages of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the results in reverse order. By default the results are returned in descending order of the start time of the executions.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "executionFilter": {
+            "Description": "If specified, only workflow executions matching the workflow ID specified in the filter are returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the Amazon SWF domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_workflow_types": {
+        "domain": {
+            "Description": "The name of the domain in which the workflow types have been registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "If specified, lists the workflow type with this name.",
+            "Type": "string",
+            "Required": false
+        },
+        "registrationStatus": {
+            "Description": "Specifies the registration status of the workflow types to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextPageToken": {
+            "Description": "If NextPageToken is returned there are more results available. The value of NextPageToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 60 seconds. Using an expired pagination token will return a 400 error: \"Specified token has exceeded its maximum lifetime \".\nThe configured maximumPageSize determines how many results can be returned in a single call.",
+            "Type": "string",
+            "Required": false
+        },
+        "maximumPageSize": {
+            "Description": "The maximum number of results that are returned per call. Use nextPageToken to obtain further pages of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the results in reverse order. By default the results are returned in ascending alphabetical order of the name of the workflow types.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "poll_for_activity_task": {
+        "domain": {
+            "Description": "The name of the domain that contains the task lists being polled.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskList": {
+            "Description": "Specifies the task list to poll for activity tasks.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "identity": {
+            "Description": "Identity of the worker making the request, recorded in the ActivityTaskStarted event in the workflow history. This enables diagnostic tracing when problems arise. The form of this identity is user defined.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "poll_for_decision_task": {
+        "domain": {
+            "Description": "The name of the domain containing the task lists to poll.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskList": {
+            "Description": "Specifies the task list to poll for decision tasks.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "identity": {
+            "Description": "Identity of the decider making the request, which is recorded in the DecisionTaskStarted event in the workflow history. This enables diagnostic tracing when problems arise. The form of this identity is user defined.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextPageToken": {
+            "Description": "If NextPageToken is returned there are more results available. The value of NextPageToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 60 seconds. Using an expired pagination token will return a 400 error: \"Specified token has exceeded its maximum lifetime \".\nThe configured maximumPageSize determines how many results can be returned in a single call.",
+            "Type": "string",
+            "Required": false
+        },
+        "maximumPageSize": {
+            "Description": "The maximum number of results that are returned per call. Use nextPageToken to obtain further pages of results.\nThis is an upper limit only; the actual number of results returned per call may be fewer than the specified maximum.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the events in reverse order. By default the results are returned in ascending order of the eventTimestamp of the events.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "record_activity_task_heartbeat": {
+        "taskToken": {
+            "Description": "The taskToken of the  ActivityTask .",
+            "Type": "string",
+            "Required": true
+        },
+        "details": {
+            "Description": "If specified, contains details about the progress of the task.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_activity_type": {
+        "domain": {
+            "Description": "The name of the domain in which this activity is to be registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the activity type within the domain.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "string",
+            "Required": true
+        },
+        "version": {
+            "Description": "The version of the activity type.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A textual description of the activity type.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultTaskStartToCloseTimeout": {
+            "Description": "If set, specifies the default maximum duration that a worker can take to process tasks of this activity type. This default can be overridden when scheduling an activity task using the ScheduleActivityTask   Decision .\nThe duration is specified in seconds, an integer greater than or equal to 0. You can use NONE to specify unlimited duration.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultTaskHeartbeatTimeout": {
+            "Description": "If set, specifies the default maximum time before which a worker processing a task of this type must report progress by calling  RecordActivityTaskHeartbeat. If the timeout is exceeded, the activity task is automatically timed out. This default can be overridden when scheduling an activity task using the ScheduleActivityTask   Decision. If the activity worker subsequently attempts to record a heartbeat or returns a result, the activity worker receives an UnknownResource fault. In this case, Amazon SWF no longer considers the activity task to be valid; the activity worker should clean up the activity task.\nThe duration is specified in seconds, an integer greater than or equal to 0. You can use NONE to specify unlimited duration.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultTaskList": {
+            "Description": "If set, specifies the default task list to use for scheduling tasks of this activity type. This default task list is used if a task list isn't provided when a task is scheduled through the ScheduleActivityTask   Decision .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "defaultTaskPriority": {
+            "Description": "The default task priority to assign to the activity type. If not assigned, then 0 is used. Valid values are integers that range from Java's Integer.MIN_VALUE (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.\nFor more information about setting task priority, see Setting Task Priority in the in the *Amazon SWF Developer Guide .* .",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultTaskScheduleToStartTimeout": {
+            "Description": "If set, specifies the default maximum duration that a task of this activity type can wait before being assigned to a worker. This default can be overridden when scheduling an activity task using the ScheduleActivityTask   Decision .\nThe duration is specified in seconds, an integer greater than or equal to 0. You can use NONE to specify unlimited duration.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultTaskScheduleToCloseTimeout": {
+            "Description": "If set, specifies the default maximum duration for a task of this activity type. This default can be overridden when scheduling an activity task using the ScheduleActivityTask   Decision .\nThe duration is specified in seconds, an integer greater than or equal to 0. You can use NONE to specify unlimited duration.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_domain": {
+        "name": {
+            "Description": "Name of the domain to register. The name must be unique in the region that the domain is registered in.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A text description of the domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "workflowExecutionRetentionPeriodInDays": {
+            "Description": "The duration (in days) that records and histories of workflow executions on the domain should be kept by the service. After the retention period, the workflow execution isn't available in the results of visibility calls.\nIf you pass the value NONE or 0 (zero), then the workflow execution history isn't retained. As soon as the workflow execution completes, the execution record and its history are deleted.\nThe maximum workflow execution retention period is 90 days. For more information about Amazon SWF service limits, see: Amazon SWF Service Limits in the Amazon SWF Developer Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Tags to be added when registering a domain.\nTags may only contain unicode letters, digits, whitespace, or these symbols: _. : / = + - @ .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "register_workflow_type": {
+        "domain": {
+            "Description": "The name of the domain in which to register the workflow type.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the workflow type.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "string",
+            "Required": true
+        },
+        "version": {
+            "Description": "The version of the workflow type.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "Textual description of the workflow type.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultTaskStartToCloseTimeout": {
+            "Description": "If set, specifies the default maximum duration of decision tasks for this workflow type. This default can be overridden when starting a workflow execution using the  StartWorkflowExecution action or the StartChildWorkflowExecution   Decision .\nThe duration is specified in seconds, an integer greater than or equal to 0. You can use NONE to specify unlimited duration.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultExecutionStartToCloseTimeout": {
+            "Description": "If set, specifies the default maximum duration for executions of this workflow type. You can override this default when starting an execution through the  StartWorkflowExecution Action or StartChildWorkflowExecution   Decision .\nThe duration is specified in seconds; an integer greater than or equal to 0. Unlike some of the other timeout parameters in Amazon SWF, you cannot specify a value of \"NONE\" for defaultExecutionStartToCloseTimeout ; there is a one-year max limit on the time that a workflow execution can run. Exceeding this limit always causes the workflow execution to time out.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultTaskList": {
+            "Description": "If set, specifies the default task list to use for scheduling decision tasks for executions of this workflow type. This default is used only if a task list isn't provided when starting the execution through the  StartWorkflowExecution Action or StartChildWorkflowExecution   Decision .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "defaultTaskPriority": {
+            "Description": "The default task priority to assign to the workflow type. If not assigned, then 0 is used. Valid values are integers that range from Java's Integer.MIN_VALUE (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.\nFor more information about setting task priority, see Setting Task Priority in the Amazon SWF Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultChildPolicy": {
+            "Description": "If set, specifies the default policy to use for the child workflow executions when a workflow execution of this type is terminated, by calling the  TerminateWorkflowExecution action explicitly or due to an expired timeout. This default can be overridden when starting a workflow execution using the  StartWorkflowExecution action or the StartChildWorkflowExecution   Decision .\nThe supported child policies are:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "defaultLambdaRole": {
+            "Description": "The default IAM role attached to this workflow type.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "request_cancel_workflow_execution": {
+        "domain": {
+            "Description": "The name of the domain containing the workflow execution to cancel.",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowId": {
+            "Description": "The workflowId of the workflow execution to cancel.",
+            "Type": "string",
+            "Required": true
+        },
+        "runId": {
+            "Description": "The runId of the workflow execution to cancel.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "respond_activity_task_canceled": {
+        "taskToken": {
+            "Description": "The taskToken of the  ActivityTask .",
+            "Type": "string",
+            "Required": true
+        },
+        "details": {
+            "Description": "Information about the cancellation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "respond_activity_task_completed": {
+        "taskToken": {
+            "Description": "The taskToken of the  ActivityTask .",
+            "Type": "string",
+            "Required": true
+        },
+        "result": {
+            "Description": "The result of the activity task. It is a free form string that is implementation specific.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "respond_activity_task_failed": {
+        "taskToken": {
+            "Description": "The taskToken of the  ActivityTask .",
+            "Type": "string",
+            "Required": true
+        },
+        "reason": {
+            "Description": "Description of the error that may assist in diagnostics.",
+            "Type": "string",
+            "Required": false
+        },
+        "details": {
+            "Description": "Detailed information about the failure.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "respond_decision_task_completed": {
+        "taskToken": {
+            "Description": "The taskToken from the  DecisionTask .",
+            "Type": "string",
+            "Required": true
+        },
+        "decisions": {
+            "Description": "The list of decisions (possibly empty) made by the decider while processing this decision task. See the docs for the  Decision structure for details.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "executionContext": {
+            "Description": "User defined context to add to workflow execution.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "signal_workflow_execution": {
+        "domain": {
+            "Description": "The name of the domain containing the workflow execution to signal.",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowId": {
+            "Description": "The workflowId of the workflow execution to signal.",
+            "Type": "string",
+            "Required": true
+        },
+        "runId": {
+            "Description": "The runId of the workflow execution to signal.",
+            "Type": "string",
+            "Required": false
+        },
+        "signalName": {
+            "Description": "The name of the signal. This name must be meaningful to the target workflow.",
+            "Type": "string",
+            "Required": true
+        },
+        "input": {
+            "Description": "Data to attach to the WorkflowExecutionSignaled event in the target workflow execution's history.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_workflow_execution": {
+        "domain": {
+            "Description": "The name of the domain in which the workflow execution is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowId": {
+            "Description": "The user defined identifier associated with the workflow execution. You can use this to associate a custom identifier with the workflow execution. You may specify the same identifier if a workflow execution is logically a restart of a previous execution. You cannot have two open workflow executions with the same workflowId at the same time within the same domain.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowType": {
+            "Description": "The type of the workflow to start.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "taskList": {
+            "Description": "The task list to use for the decision tasks generated for this workflow execution. This overrides the defaultTaskList specified when registering the workflow type.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "taskPriority": {
+            "Description": "The task priority to use for this workflow execution. This overrides any default priority that was assigned when the workflow type was registered. If not set, then the default task priority for the workflow type is used. Valid values are integers that range from Java's Integer.MIN_VALUE (-2147483648) to Integer.MAX_VALUE (2147483647). Higher numbers indicate higher priority.\nFor more information about setting task priority, see Setting Task Priority in the Amazon SWF Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "input": {
+            "Description": "The input for the workflow execution. This is a free form string which should be meaningful to the workflow you are starting. This input is made available to the new workflow execution in the WorkflowExecutionStarted history event.",
+            "Type": "string",
+            "Required": false
+        },
+        "executionStartToCloseTimeout": {
+            "Description": "The total duration for this workflow execution. This overrides the defaultExecutionStartToCloseTimeout specified when registering the workflow type.\nThe duration is specified in seconds; an integer greater than or equal to 0. Exceeding this limit causes the workflow execution to time out. Unlike some of the other timeout parameters in Amazon SWF, you cannot specify a value of \"NONE\" for this timeout; there is a one-year max limit on the time that a workflow execution can run.",
+            "Type": "string",
+            "Required": false
+        },
+        "tagList": {
+            "Description": "The list of tags to associate with the workflow execution. You can specify a maximum of 5 tags. You can list workflow executions with a specific tag by calling  ListOpenWorkflowExecutions or  ListClosedWorkflowExecutions and specifying a  TagFilter .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "taskStartToCloseTimeout": {
+            "Description": "Specifies the maximum duration of decision tasks for this workflow execution. This parameter overrides the defaultTaskStartToCloseTimout specified when registering the workflow type using  RegisterWorkflowType .\nThe duration is specified in seconds, an integer greater than or equal to 0. You can use NONE to specify unlimited duration.",
+            "Type": "string",
+            "Required": false
+        },
+        "childPolicy": {
+            "Description": "If set, specifies the policy to use for the child workflow executions of this workflow execution if it is terminated, by calling the  TerminateWorkflowExecution action explicitly or due to an expired timeout. This policy overrides the default child policy specified when registering the workflow type using  RegisterWorkflowType .\nThe supported child policies are:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "lambdaRole": {
+            "Description": "The IAM role to attach to this workflow execution.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the Amazon SWF domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The list of tags to add to a domain.\nTags may only contain unicode letters, digits, whitespace, or these symbols: _. : / = + - @ .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "terminate_workflow_execution": {
+        "domain": {
+            "Description": "The domain of the workflow execution to terminate.",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowId": {
+            "Description": "The workflowId of the workflow execution to terminate.",
+            "Type": "string",
+            "Required": true
+        },
+        "runId": {
+            "Description": "The runId of the workflow execution to terminate.",
+            "Type": "string",
+            "Required": false
+        },
+        "reason": {
+            "Description": "A descriptive reason for terminating the workflow execution.",
+            "Type": "string",
+            "Required": false
+        },
+        "details": {
+            "Description": "Details for terminating the workflow execution.",
+            "Type": "string",
+            "Required": false
+        },
+        "childPolicy": {
+            "Description": "If set, specifies the policy to use for the child workflow executions of the workflow execution being terminated. This policy overrides the child policy specified for the workflow execution at registration time or when starting the execution.\nThe supported child policies are:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "undeprecate_activity_type": {
+        "domain": {
+            "Description": "The name of the domain of the deprecated activity type.",
+            "Type": "string",
+            "Required": true
+        },
+        "activityType": {
+            "Description": "The activity type to undeprecate.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "undeprecate_domain": {
+        "name": {
+            "Description": "The name of the domain of the deprecated workflow type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "undeprecate_workflow_type": {
+        "domain": {
+            "Description": "The name of the domain of the deprecated workflow type.",
+            "Type": "string",
+            "Required": true
+        },
+        "workflowType": {
+            "Description": "The name of the domain of the deprecated workflow type.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the Amazon SWF domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The list of tags to remove from the Amazon SWF domain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "domain": {
+            "Description": "The name of the domain containing the task lists to poll.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskList": {
+            "Description": "Specifies the task list to poll for decision tasks.\nThe specified string must not start or end with whitespace. It must not contain a : (colon), / (slash), | (vertical bar), or any control characters (\\u0000-\\u001f | \\u007f-\\u009f ). Also, it must not be the literal string arn .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "identity": {
+            "Description": "Identity of the decider making the request, which is recorded in the DecisionTaskStarted event in the workflow history. This enables diagnostic tracing when problems arise. The form of this identity is user defined.",
+            "Type": "string",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "When set to true , returns the events in reverse order. By default the results are returned in ascending order of the eventTimestamp of the events.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

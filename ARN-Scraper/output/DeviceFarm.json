@@ -1,0 +1,1209 @@
+{
+    "create_device_pool": {
+        "projectArn": {
+            "Description": "The ARN of the project for the device pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The device pool's name.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The device pool's description.",
+            "Type": "string",
+            "Required": false
+        },
+        "rules": {
+            "Description": "The device pool's rules.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "maxDevices": {
+            "Description": "The number of devices that Device Farm can add to your device pool. Device Farm adds devices that are available and meet the criteria that you assign for the rules parameter. Depending on how many devices meet these constraints, your device pool might contain fewer devices than the value for this parameter.\nBy specifying the maximum number of devices, you can control the costs that you incur by running tests.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_instance_profile": {
+        "name": {
+            "Description": "The name of your instance profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of your instance profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "packageCleanup": {
+            "Description": "When set to true , Device Farm removes app packages after a test run. The default value is false for private devices.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "excludeAppPackagesFromCleanup": {
+            "Description": "An array of strings that specifies the list of app packages that should not be cleaned up from the device after a test run.\nThe list of packages is considered only if you set packageCleanup to true .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "rebootAfterUse": {
+            "Description": "When set to true , Device Farm reboots the instance after a test run. The default value is true .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_network_profile": {
+        "projectArn": {
+            "Description": "The Amazon Resource Name (ARN) of the project for which you want to create a network profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name for the new network profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the network profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "The type of network profile to create. Valid values are listed here.",
+            "Type": "string",
+            "Required": false
+        },
+        "uplinkBandwidthBits": {
+            "Description": "The data throughput rate in bits per second, as an integer from 0 to 104857600.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkBandwidthBits": {
+            "Description": "The data throughput rate in bits per second, as an integer from 0 to 104857600.",
+            "Type": "integer",
+            "Required": false
+        },
+        "uplinkDelayMs": {
+            "Description": "Delay time for all packets to destination in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkDelayMs": {
+            "Description": "Delay time for all packets to destination in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "uplinkJitterMs": {
+            "Description": "Time variation in the delay of received packets in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkJitterMs": {
+            "Description": "Time variation in the delay of received packets in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "uplinkLossPercent": {
+            "Description": "Proportion of transmitted packets that fail to arrive from 0 to 100 percent.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkLossPercent": {
+            "Description": "Proportion of received packets that fail to arrive from 0 to 100 percent.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_project": {
+        "name": {
+            "Description": "The project's name.",
+            "Type": "string",
+            "Required": true
+        },
+        "defaultJobTimeoutMinutes": {
+            "Description": "Sets the execution timeout value (in minutes) for a project. All test runs in this project use the specified execution timeout value unless overridden when scheduling a run.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_remote_access_session": {
+        "projectArn": {
+            "Description": "The Amazon Resource Name (ARN) of the project for which you want to create a remote access session.",
+            "Type": "string",
+            "Required": true
+        },
+        "deviceArn": {
+            "Description": "The ARN of the device for which you want to create a remote access session.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the device instance for which you want to create a remote access session.",
+            "Type": "string",
+            "Required": false
+        },
+        "sshPublicKey": {
+            "Description": "Ignored. The public key of the ssh key pair you want to use for connecting to remote devices in your remote debugging session. This key is required only if remoteDebugEnabled is set to true .\nRemote debugging is no longer supported .",
+            "Type": "string",
+            "Required": false
+        },
+        "remoteDebugEnabled": {
+            "Description": "Set to true if you want to access devices remotely for debugging in your remote access session.\nRemote debugging is no longer supported .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "remoteRecordEnabled": {
+            "Description": "Set to true to enable remote recording for the remote access session.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "remoteRecordAppArn": {
+            "Description": "The Amazon Resource Name (ARN) for the app to be recorded in the remote access session.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the remote access session to create.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientId": {
+            "Description": "Unique identifier for the client. If you want access to multiple devices on the same client, you should pass the same clientId value in each call to CreateRemoteAccessSession. This identifier is required only if remoteDebugEnabled is set to true .\nRemote debugging is no longer supported .",
+            "Type": "string",
+            "Required": false
+        },
+        "configuration": {
+            "Description": "The configuration information for the remote access session request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "interactionMode": {
+            "Description": "The interaction mode of the remote access session. Valid values are:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "skipAppResign": {
+            "Description": "When set to true, for private devices, Device Farm does not sign your app again. For public devices, Device Farm always signs your apps again.\nFor more information on how Device Farm modifies your uploads during tests, see Do you modify my app?",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_test_grid_project": {
+        "name": {
+            "Description": "Human-readable name of the Selenium testing project.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "Human-readable description of the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "vpcConfig": {
+            "Description": "The VPC security groups and subnets that are attached to a project.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_test_grid_url": {
+        "projectArn": {
+            "Description": "ARN (from  CreateTestGridProject or  ListTestGridProjects ) to associate with the short-term URL.",
+            "Type": "string",
+            "Required": true
+        },
+        "expiresInSeconds": {
+            "Description": "Lifetime, in seconds, of the URL.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "create_upload": {
+        "projectArn": {
+            "Description": "The ARN of the project for the upload.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The upload's file name. The name should not contain any forward slashes (/ ). If you are uploading an iOS app, the file name must end with the .ipa extension. If you are uploading an Android app, the file name must end with the .apk extension. For all others, the file name must end with the .zip file extension.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The upload's upload type.\nMust be one of the following values:\nIf you call CreateUpload with WEB_APP specified, AWS Device Farm throws an ArgumentException error.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "contentType": {
+            "Description": "The upload's content type (for example, application/octet-stream ).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_vpce_configuration": {
+        "vpceConfigurationName": {
+            "Description": "The friendly name you give to your VPC endpoint configuration, to manage your configurations more easily.",
+            "Type": "string",
+            "Required": true
+        },
+        "vpceServiceName": {
+            "Description": "The name of the VPC endpoint service running in your AWS account that you want Device Farm to test.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceDnsName": {
+            "Description": "The DNS name of the service running in your VPC that you want Device Farm to test.",
+            "Type": "string",
+            "Required": true
+        },
+        "vpceConfigurationDescription": {
+            "Description": "An optional description that provides details about your VPC endpoint configuration.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_device_pool": {
+        "arn": {
+            "Description": "Represents the Amazon Resource Name (ARN) of the Device Farm device pool to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_instance_profile": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the instance profile you are requesting to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_network_profile": {
+        "arn": {
+            "Description": "The ARN of the network profile to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_project": {
+        "arn": {
+            "Description": "Represents the Amazon Resource Name (ARN) of the Device Farm project to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_remote_access_session": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the session for which you want to delete remote access.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_run": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) for the run to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_test_grid_project": {
+        "projectArn": {
+            "Description": "The ARN of the project to delete, from  CreateTestGridProject or  ListTestGridProjects .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_upload": {
+        "arn": {
+            "Description": "Represents the Amazon Resource Name (ARN) of the Device Farm upload to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_vpce_configuration": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_account_settings": "No parameters defined",
+    "get_device": {
+        "arn": {
+            "Description": "The device type's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_device_instance": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the instance you're requesting information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_device_pool": {
+        "arn": {
+            "Description": "The device pool's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_device_pool_compatibility": {
+        "devicePoolArn": {
+            "Description": "The device pool's ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "appArn": {
+            "Description": "The ARN of the app that is associated with the specified device pool.",
+            "Type": "string",
+            "Required": false
+        },
+        "testType": {
+            "Description": "The test type for the specified device pool.\nAllowed values include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "test": {
+            "Description": "Information about the uploaded test to be run against the device pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "configuration": {
+            "Description": "An object that contains information about the settings for a run.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_instance_profile": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of an instance profile.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_job": {
+        "arn": {
+            "Description": "The job's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_network_profile": {
+        "arn": {
+            "Description": "The ARN of the network profile to return information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_offering_status": {
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_project": {
+        "arn": {
+            "Description": "The project's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_remote_access_session": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the remote access session about which you want to get session information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_run": {
+        "arn": {
+            "Description": "The run's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_suite": {
+        "arn": {
+            "Description": "The suite's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_test": {
+        "arn": {
+            "Description": "The test's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_test_grid_project": {
+        "projectArn": {
+            "Description": "The ARN of the Selenium testing project, from either  CreateTestGridProject or  ListTestGridProjects .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_test_grid_session": {
+        "projectArn": {
+            "Description": "The ARN for the project that this session belongs to. See  CreateTestGridProject and  ListTestGridProjects .",
+            "Type": "string",
+            "Required": false
+        },
+        "sessionId": {
+            "Description": "An ID associated with this session.",
+            "Type": "string",
+            "Required": false
+        },
+        "sessionArn": {
+            "Description": "An ARN that uniquely identifies a  TestGridSession .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_upload": {
+        "arn": {
+            "Description": "The upload's ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_vpce_configuration": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "install_to_remote_access_session": {
+        "remoteAccessSessionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the remote access session about which you are requesting information.",
+            "Type": "string",
+            "Required": true
+        },
+        "appArn": {
+            "Description": "The ARN of the app about which you are requesting information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_artifacts": {
+        "arn": {
+            "Description": "The run, job, suite, or test ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The artifacts' type.\nAllowed values include:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_device_instances": {
+        "maxResults": {
+            "Description": "An integer that specifies the maximum number of items you want to return in the API response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_device_pools": {
+        "arn": {
+            "Description": "The project ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The device pools' type.\nAllowed values include:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_devices": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "filters": {
+            "Description": "Used to select a set of devices. A filter is made up of an attribute, an operator, and one or more values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_instance_profiles": {
+        "maxResults": {
+            "Description": "An integer that specifies the maximum number of items you want to return in the API response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_jobs": {
+        "arn": {
+            "Description": "The run's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_network_profiles": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the project for which you want to list network profiles.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The type of network profile to return information about. Valid values are listed here.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_offering_promotions": {
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_offering_transactions": {
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_offerings": {
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_projects": {
+        "arn": {
+            "Description": "Optional. If no Amazon Resource Name (ARN) is specified, then AWS Device Farm returns a list of all projects for the AWS account. You can also specify a project ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_remote_access_sessions": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the project about which you are requesting information.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_runs": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the project for which you want to list runs.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_samples": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the job used to list samples.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_suites": {
+        "arn": {
+            "Description": "The job's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource or resources for which to list tags. You can associate tags with the following Device Farm resources: PROJECT, RUN, NETWORK_PROFILE, INSTANCE_PROFILE, DEVICE_INSTANCE, SESSION, DEVICE_POOL, DEVICE, and VPCE_CONFIGURATION .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_test_grid_projects": {
+        "maxResult": {
+            "Description": "Return no more than this number of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "From a response, used to continue a paginated listing.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_test_grid_session_actions": {
+        "sessionArn": {
+            "Description": "The ARN of the session to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResult": {
+            "Description": "The maximum number of sessions to return per response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_test_grid_session_artifacts": {
+        "sessionArn": {
+            "Description": "The ARN of a  TestGridSession .",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "Limit results to a specified type of artifact.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResult": {
+            "Description": "The maximum number of results to be returned by a request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_test_grid_sessions": {
+        "projectArn": {
+            "Description": "ARN of a  TestGridProject .",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "Return only sessions in this state.",
+            "Type": "string",
+            "Required": false
+        },
+        "creationTimeAfter": {
+            "Description": "Return only sessions created after this time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "creationTimeBefore": {
+            "Description": "Return only sessions created before this time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTimeAfter": {
+            "Description": "Return only sessions that ended after this time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTimeBefore": {
+            "Description": "Return only sessions that ended before this time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "maxResult": {
+            "Description": "Return only this many results at a time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tests": {
+        "arn": {
+            "Description": "The test suite's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_unique_problems": {
+        "arn": {
+            "Description": "The unique problems' ARNs.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_uploads": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the project for which you want to list uploads.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The type of upload.\nMust be one of the following values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_vpce_configurations": {
+        "maxResults": {
+            "Description": "An integer that specifies the maximum number of items you want to return in the API response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "purchase_offering": {
+        "offeringId": {
+            "Description": "The ID of the offering.",
+            "Type": "string",
+            "Required": true
+        },
+        "quantity": {
+            "Description": "The number of device slots to purchase in an offering request.",
+            "Type": "integer",
+            "Required": true
+        },
+        "offeringPromotionId": {
+            "Description": "The ID of the offering promotion to be applied to the purchase.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "renew_offering": {
+        "offeringId": {
+            "Description": "The ID of a request to renew an offering.",
+            "Type": "string",
+            "Required": true
+        },
+        "quantity": {
+            "Description": "The quantity requested in an offering renewal.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "schedule_run": {
+        "projectArn": {
+            "Description": "The ARN of the project for the run to be scheduled.",
+            "Type": "string",
+            "Required": true
+        },
+        "appArn": {
+            "Description": "The ARN of an application package to run tests against, created with  CreateUpload . See  ListUploads .",
+            "Type": "string",
+            "Required": false
+        },
+        "devicePoolArn": {
+            "Description": "The ARN of the device pool for the run to be scheduled.",
+            "Type": "string",
+            "Required": false
+        },
+        "deviceSelectionConfiguration": {
+            "Description": "The filter criteria used to dynamically select a set of devices for a test run and the maximum number of devices to be included in the run.\nEither ** devicePoolArn ** or ** deviceSelectionConfiguration ** is required in a request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "The name for the run to be scheduled.",
+            "Type": "string",
+            "Required": false
+        },
+        "test": {
+            "Description": "Information about the test for the run to be scheduled.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "configuration": {
+            "Description": "Information about the settings for the run to be scheduled.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "executionConfiguration": {
+            "Description": "Specifies configuration information about a test run, such as the execution timeout (in minutes).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "stop_job": {
+        "arn": {
+            "Description": "Represents the Amazon Resource Name (ARN) of the Device Farm job to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_remote_access_session": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the remote access session to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_run": {
+        "arn": {
+            "Description": "Represents the Amazon Resource Name (ARN) of the Device Farm run to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource or resources to which to add tags. You can associate tags with the following Device Farm resources: PROJECT, RUN, NETWORK_PROFILE, INSTANCE_PROFILE, DEVICE_INSTANCE, SESSION, DEVICE_POOL, DEVICE, and VPCE_CONFIGURATION .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters. Tag values can have a maximum length of 256 characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource or resources from which to delete tags. You can associate tags with the following Device Farm resources: PROJECT, RUN, NETWORK_PROFILE, INSTANCE_PROFILE, DEVICE_INSTANCE, SESSION, DEVICE_POOL, DEVICE, and VPCE_CONFIGURATION .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of the tags to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_device_instance": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the device instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "profileArn": {
+            "Description": "The ARN of the profile that you want to associate with the device instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "labels": {
+            "Description": "An array of strings that you want to associate with the device instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_device_pool": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the Device Farm device pool to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "A string that represents the name of the device pool to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description of the device pool to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "rules": {
+            "Description": "Represents the rules to modify for the device pool. Updating rules is optional. If you update rules for your request, the update replaces the existing rules.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxDevices": {
+            "Description": "The number of devices that Device Farm can add to your device pool. Device Farm adds devices that are available and that meet the criteria that you assign for the rules parameter. Depending on how many devices meet these constraints, your device pool might contain fewer devices than the value for this parameter.\nBy specifying the maximum number of devices, you can control the costs that you incur by running tests.\nIf you use this parameter in your request, you cannot use the clearMaxDevices parameter in the same request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "clearMaxDevices": {
+            "Description": "Sets whether the maxDevices parameter applies to your device pool. If you set this parameter to true, the maxDevices parameter does not apply, and Device Farm does not limit the number of devices that it adds to your device pool. In this case, Device Farm adds all available devices that meet the criteria specified in the rules parameter.\nIf you use this parameter in your request, you cannot use the maxDevices parameter in the same request.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_instance_profile": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the instance profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The updated name for your instance profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The updated description for your instance profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "packageCleanup": {
+            "Description": "The updated choice for whether you want to specify package cleanup. The default value is false for private devices.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "excludeAppPackagesFromCleanup": {
+            "Description": "An array of strings that specifies the list of app packages that should not be cleaned up from the device after a test run is over.\nThe list of packages is only considered if you set packageCleanup to true .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "rebootAfterUse": {
+            "Description": "The updated choice for whether you want to reboot the device after use. The default value is true .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_network_profile": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the project for which you want to update network profile settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the network profile about which you are returning information.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the network profile about which you are returning information.",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "The type of network profile to return information about. Valid values are listed here.",
+            "Type": "string",
+            "Required": false
+        },
+        "uplinkBandwidthBits": {
+            "Description": "The data throughput rate in bits per second, as an integer from 0 to 104857600.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkBandwidthBits": {
+            "Description": "The data throughput rate in bits per second, as an integer from 0 to 104857600.",
+            "Type": "integer",
+            "Required": false
+        },
+        "uplinkDelayMs": {
+            "Description": "Delay time for all packets to destination in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkDelayMs": {
+            "Description": "Delay time for all packets to destination in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "uplinkJitterMs": {
+            "Description": "Time variation in the delay of received packets in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkJitterMs": {
+            "Description": "Time variation in the delay of received packets in milliseconds as an integer from 0 to 2000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "uplinkLossPercent": {
+            "Description": "Proportion of transmitted packets that fail to arrive from 0 to 100 percent.",
+            "Type": "integer",
+            "Required": false
+        },
+        "downlinkLossPercent": {
+            "Description": "Proportion of received packets that fail to arrive from 0 to 100 percent.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_project": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the project whose name to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "A string that represents the new name of the project that you are updating.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultJobTimeoutMinutes": {
+            "Description": "The number of minutes a test run in the project executes before it times out.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_test_grid_project": {
+        "projectArn": {
+            "Description": "ARN of the project to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "Human-readable name for the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "Human-readable description for the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "vpcConfig": {
+            "Description": "The VPC security groups and subnets that are attached to a project.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_upload": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the uploaded test spec.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The upload's test spec file name. The name must not contain any forward slashes (/). The test spec file name must end with the .yaml or .yml file extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "contentType": {
+            "Description": "The upload's content type (for example, application/x-yaml ).",
+            "Type": "string",
+            "Required": false
+        },
+        "editContent": {
+            "Description": "Set to true if the YAML file has changed and must be updated. Otherwise, set to false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_vpce_configuration": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the VPC endpoint configuration you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "vpceConfigurationName": {
+            "Description": "The friendly name you give to your VPC endpoint configuration to manage your configurations more easily.",
+            "Type": "string",
+            "Required": false
+        },
+        "vpceServiceName": {
+            "Description": "The name of the VPC endpoint service running in your AWS account that you want Device Farm to test.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceDnsName": {
+            "Description": "The DNS (domain) name used to connect to your private service in your VPC. The DNS name must not already be in use on the internet.",
+            "Type": "string",
+            "Required": false
+        },
+        "vpceConfigurationDescription": {
+            "Description": "An optional description that provides details about your VPC endpoint configuration.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

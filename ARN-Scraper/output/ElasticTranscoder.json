@@ -1,0 +1,375 @@
+{
+    "cancel_job": {
+        "Id": {
+            "Description": "The identifier of the job that you want to cancel.\nTo get a list of the jobs (including their jobId ) that have a status of Submitted, use the  ListJobsByStatus API action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_job": {
+        "PipelineId": {
+            "Description": "The Id of the pipeline that you want Elastic Transcoder to use for transcoding. The pipeline determines several settings, including the Amazon S3 bucket from which Elastic Transcoder gets the files to transcode and the bucket into which Elastic Transcoder puts the transcoded files.",
+            "Type": "string",
+            "Required": true
+        },
+        "Input": {
+            "Description": "A section of the request body that provides information about the file that is being transcoded.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Inputs": {
+            "Description": "A section of the request body that provides information about the files that are being transcoded.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Output": {
+            "Description": "A section of the request body that provides information about the transcoded (target) file. We strongly recommend that you use the Outputs syntax instead of the Output syntax.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Outputs": {
+            "Description": "A section of the request body that provides information about the transcoded (target) files. We recommend that you use the Outputs syntax instead of the Output syntax.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OutputKeyPrefix": {
+            "Description": "The value, if any, that you want Elastic Transcoder to prepend to the names of all files that this job creates, including output files, thumbnails, and playlists.",
+            "Type": "string",
+            "Required": false
+        },
+        "Playlists": {
+            "Description": "If you specify a preset in PresetId for which the value of Container is fmp4 (Fragmented MP4) or ts (MPEG-TS), Playlists contains information about the master playlists that you want Elastic Transcoder to create.\nThe maximum number of master playlists in a job is 30.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserMetadata": {
+            "Description": "User-defined metadata that you want to associate with an Elastic Transcoder job. You specify metadata in key/value pairs, and you can add up to 10 key/value pairs per job. Elastic Transcoder does not guarantee that key/value pairs are returned in the same order in which you specify them.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_pipeline": {
+        "Name": {
+            "Description": "The name of the pipeline. We recommend that the name be unique within the AWS account, but uniqueness is not enforced.\nConstraints: Maximum 40 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputBucket": {
+            "Description": "The Amazon S3 bucket in which you saved the media files that you want to transcode.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputBucket": {
+            "Description": "The Amazon S3 bucket in which you want Elastic Transcoder to save the transcoded files. (Use this, or use ContentConfig:Bucket plus ThumbnailConfig:Bucket.)\nSpecify this value when all of the following are true:\nIf you want to save transcoded files and playlists in one bucket and thumbnails in another bucket, specify which users can access the transcoded files or the permissions the users have, or change the Amazon S3 storage class, omit OutputBucket and specify values for ContentConfig and ThumbnailConfig instead.",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Role": {
+            "Description": "The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder to use to create the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsKmsKeyArn": {
+            "Description": "The AWS Key Management Service (AWS KMS) key that you want to use with this pipeline.\nIf you use either s3 or s3-aws-kms as your Encryption:Mode, you don't need to provide a key with your job because a default key, known as an AWS-KMS key, is created for you automatically. You need to provide an AWS-KMS key only if you want to use a non-default AWS-KMS key, or if you are using an Encryption:Mode of aes-cbc-pkcs7, aes-ctr, or aes-gcm .",
+            "Type": "string",
+            "Required": false
+        },
+        "Notifications": {
+            "Description": "The Amazon Simple Notification Service (Amazon SNS) topic that you want to notify to report job status.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ContentConfig": {
+            "Description": "The optional ContentConfig object specifies information about the Amazon S3 bucket in which you want Elastic Transcoder to save transcoded files and playlists: which bucket to use, which users you want to have access to the files, the type of access you want users to have, and the storage class that you want to assign to the files.\nIf you specify values for ContentConfig, you must also specify values for ThumbnailConfig .\nIf you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ThumbnailConfig": {
+            "Description": "The ThumbnailConfig object specifies several values, including the Amazon S3 bucket in which you want Elastic Transcoder to save thumbnail files, which users you want to have access to the files, the type of access you want users to have, and the storage class that you want to assign to the files.\nIf you specify values for ContentConfig, you must also specify values for ThumbnailConfig even if you don't want to create thumbnails.\nIf you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_preset": {
+        "Name": {
+            "Description": "The name of the preset. We recommend that the name be unique within the AWS account, but uniqueness is not enforced.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the preset.",
+            "Type": "string",
+            "Required": false
+        },
+        "Container": {
+            "Description": "The container type for the output file. Valid values include flac, flv, fmp4, gif, mp3, mp4, mpg, mxf, oga, ogg, ts, and webm .",
+            "Type": "string",
+            "Required": true
+        },
+        "Video": {
+            "Description": "A section of the request body that specifies the video parameters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Audio": {
+            "Description": "A section of the request body that specifies the audio parameters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Thumbnails": {
+            "Description": "A section of the request body that specifies the thumbnail parameters, if any.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_pipeline": {
+        "Id": {
+            "Description": "The identifier of the pipeline that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_preset": {
+        "Id": {
+            "Description": "The identifier of the preset for which you want to get detailed information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_jobs_by_pipeline": {
+        "PipelineId": {
+            "Description": "The ID of the pipeline for which you want to get job information.",
+            "Type": "string",
+            "Required": true
+        },
+        "Ascending": {
+            "Description": "To list jobs in chronological order by the date and time that they were submitted, enter true . To list jobs in reverse chronological order, enter false .",
+            "Type": "string",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "When Elastic Transcoder returns more than one page of results, use pageToken in subsequent GET requests to get each successive page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_jobs_by_status": {
+        "Status": {
+            "Description": "To get information about all of the jobs associated with the current AWS account that have a given status, specify the following status: Submitted, Progressing, Complete, Canceled, or Error .",
+            "Type": "string",
+            "Required": true
+        },
+        "Ascending": {
+            "Description": "To list jobs in chronological order by the date and time that they were submitted, enter true . To list jobs in reverse chronological order, enter false .",
+            "Type": "string",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "When Elastic Transcoder returns more than one page of results, use pageToken in subsequent GET requests to get each successive page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pipelines": {
+        "Ascending": {
+            "Description": "To list pipelines in chronological order by the date and time that they were created, enter true . To list pipelines in reverse chronological order, enter false .",
+            "Type": "string",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "When Elastic Transcoder returns more than one page of results, use pageToken in subsequent GET requests to get each successive page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_presets": {
+        "Ascending": {
+            "Description": "To list presets in chronological order by the date and time that they were created, enter true . To list presets in reverse chronological order, enter false .",
+            "Type": "string",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "When Elastic Transcoder returns more than one page of results, use pageToken in subsequent GET requests to get each successive page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "read_job": {
+        "Id": {
+            "Description": "The identifier of the job for which you want to get detailed information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "read_pipeline": {
+        "Id": {
+            "Description": "The identifier of the pipeline to read.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "read_preset": {
+        "Id": {
+            "Description": "The identifier of the preset for which you want to get detailed information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "test_role": {
+        "Role": {
+            "Description": "The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder to test.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputBucket": {
+            "Description": "The Amazon S3 bucket that contains media files to be transcoded. The action attempts to read from this bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputBucket": {
+            "Description": "The Amazon S3 bucket that Elastic Transcoder writes transcoded media files to. The action attempts to read from this bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Topics": {
+            "Description": "The ARNs of one or more Amazon Simple Notification Service (Amazon SNS) topics that you want the action to send a test notification to.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_pipeline": {
+        "Id": {
+            "Description": "The ID of the pipeline that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the pipeline. We recommend that the name be unique within the AWS account, but uniqueness is not enforced.\nConstraints: Maximum 40 characters",
+            "Type": "string",
+            "Required": false
+        },
+        "InputBucket": {
+            "Description": "The Amazon S3 bucket in which you saved the media files that you want to transcode and the graphics that you want to use as watermarks.",
+            "Type": "string",
+            "Required": false
+        },
+        "Role": {
+            "Description": "The IAM Amazon Resource Name (ARN) for the role that you want Elastic Transcoder to use to transcode jobs for this pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "AwsKmsKeyArn": {
+            "Description": "The AWS Key Management Service (AWS KMS) key that you want to use with this pipeline.\nIf you use either s3 or s3-aws-kms as your Encryption:Mode, you don't need to provide a key with your job because a default key, known as an AWS-KMS key, is created for you automatically. You need to provide an AWS-KMS key only if you want to use a non-default AWS-KMS key, or if you are using an Encryption:Mode of aes-cbc-pkcs7, aes-ctr, or aes-gcm .",
+            "Type": "string",
+            "Required": false
+        },
+        "Notifications": {
+            "Description": "The topic ARN for the Amazon Simple Notification Service (Amazon SNS) topic that you want to notify to report job status.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ContentConfig": {
+            "Description": "The optional ContentConfig object specifies information about the Amazon S3 bucket in which you want Elastic Transcoder to save transcoded files and playlists: which bucket to use, which users you want to have access to the files, the type of access you want users to have, and the storage class that you want to assign to the files.\nIf you specify values for ContentConfig, you must also specify values for ThumbnailConfig .\nIf you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ThumbnailConfig": {
+            "Description": "The ThumbnailConfig object specifies several values, including the Amazon S3 bucket in which you want Elastic Transcoder to save thumbnail files, which users you want to have access to the files, the type of access you want users to have, and the storage class that you want to assign to the files.\nIf you specify values for ContentConfig, you must also specify values for ThumbnailConfig even if you don't want to create thumbnails.\nIf you specify values for ContentConfig and ThumbnailConfig, omit the OutputBucket object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_pipeline_notifications": {
+        "Id": {
+            "Description": "The identifier of the pipeline for which you want to change notification settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "Notifications": {
+            "Description": "The topic ARN for the Amazon Simple Notification Service (Amazon SNS) topic that you want to notify to report job status.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_pipeline_status": {
+        "Id": {
+            "Description": "The identifier of the pipeline to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "The desired status of the pipeline:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "paginate": {
+        "Ascending": {
+            "Description": "To list presets in chronological order by the date and time that they were created, enter true . To list presets in reverse chronological order, enter false .",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "Id": {
+            "Description": "The identifier of the job for which you want to get detailed information.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

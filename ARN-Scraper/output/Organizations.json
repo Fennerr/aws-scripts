@@ -1,0 +1,693 @@
+{
+    "accept_handshake": {
+        "HandshakeId": {
+            "Description": "The unique identifier (ID) of the handshake that you want to accept.\nThe regex pattern for handshake ID string requires \"h-\" followed by from 8 to 32 lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_policy": {
+        "PolicyId": {
+            "Description": "The unique identifier (ID) of the policy that you want to attach to the target. You can get the ID for the policy by calling the  ListPolicies operation.\nThe regex pattern for a policy ID string requires \"p-\" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetId": {
+            "Description": "The unique identifier (ID) of the root, OU, or account that you want to attach the policy to. You can get the ID by calling the  ListRoots,  ListOrganizationalUnitsForParent, or  ListAccounts operations.\nThe regex pattern for a target ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "cancel_handshake": {
+        "HandshakeId": {
+            "Description": "The unique identifier (ID) of the handshake that you want to cancel. You can get the ID from the  ListHandshakesForOrganization operation.\nThe regex pattern for handshake ID string requires \"h-\" followed by from 8 to 32 lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "close_account": {
+        "AccountId": {
+            "Description": "Retrieves the Amazon Web Services account Id for the current CloseAccount API request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_account": {
+        "Email": {
+            "Description": "The email address of the owner to assign to the new member account. This email address must not already be associated with another Amazon Web Services account. You must use a valid email address to complete account creation.\nThe rules for a valid email address:\nYou can't access the root user of the account or remove an account that was created with an invalid email address.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "AccountName": {
+            "Description": "The friendly name of the member account.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleName": {
+            "Description": "(Optional)\nThe name of an IAM role that Organizations automatically preconfigures in the new member account. This role trusts the management account, allowing users in the management account to assume the role, as permitted by the management account administrator. The role has administrator permissions in the new member account.\nIf you don't specify this parameter, the role name defaults to OrganizationAccountAccessRole .\nFor more information about how to use this role to access the member account, see the following links:\nThe regex pattern that is used to validate this parameter. The pattern can include uppercase letters, lowercase letters, digits with no spaces, and any of the following characters: =,.@-",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "IamUserAccessToBilling": {
+            "Description": "If set to ALLOW, the new account enables IAM users to access account billing information if they have the required permissions. If set to DENY, only the root user of the new account can access account billing information. For more information, see Activating Access to the Billing and Cost Management Console in the Amazon Web Services Billing and Cost Management User Guide .\nIf you don't specify this parameter, the value defaults to ALLOW, and IAM users and roles with the required permissions can access billing information for the new account.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags that you want to attach to the newly created account. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null. For more information about tagging, see Tagging Organizations resources in the Organizations User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_gov_cloud_account": {
+        "Email": {
+            "Description": "Specifies the email address of the owner to assign to the new member account in the commercial Region. This email address must not already be associated with another Amazon Web Services account. You must use a valid email address to complete account creation.\nThe rules for a valid email address:\nYou can't access the root user of the account or remove an account that was created with an invalid email address. Like all request parameters for CreateGovCloudAccount, the request for the email address for the Amazon Web Services GovCloud (US) account originates from the commercial Region, not from the Amazon Web Services GovCloud (US) Region.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "AccountName": {
+            "Description": "The friendly name of the member account.\nThe account name can consist of only the characters [a-z],[A-Z],[0-9], hyphen (-), or dot (.) You can't separate characters with a dash (\u2013).",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleName": {
+            "Description": "(Optional)\nThe name of an IAM role that Organizations automatically preconfigures in the new member accounts in both the Amazon Web Services GovCloud (US) Region and in the commercial Region. This role trusts the management account, allowing users in the management account to assume the role, as permitted by the management account administrator. The role has administrator permissions in the new member account.\nIf you don't specify this parameter, the role name defaults to OrganizationAccountAccessRole .\nFor more information about how to use this role to access the member account, see Accessing and Administering the Member Accounts in Your Organization in the Organizations User Guide and steps 2 and 3 in Tutorial: Delegate Access Across Amazon Web Services accounts Using IAM Roles in the IAM User Guide.\nThe regex pattern that is used to validate this parameter. The pattern can include uppercase letters, lowercase letters, digits with no spaces, and any of the following characters: =,.@-",
+            "Type": "string",
+            "Required": false
+        },
+        "IamUserAccessToBilling": {
+            "Description": "If set to ALLOW, the new linked account in the commercial Region enables IAM users to access account billing information if they have the required permissions. If set to DENY, only the root user of the new account can access account billing information. For more information, see Activating Access to the Billing and Cost Management Console in the Amazon Web Services Billing and Cost Management User Guide.\nIf you don't specify this parameter, the value defaults to ALLOW, and IAM users and roles with the required permissions can access billing information for the new account.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags that you want to attach to the newly created account. These tags are attached to the commercial account associated with the GovCloud account, and not to the GovCloud account itself. To add tags to the actual GovCloud account, call the  TagResource operation in the GovCloud region after the new GovCloud account exists.\nFor each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null. For more information about tagging, see Tagging Organizations resources in the Organizations User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_organization": {
+        "FeatureSet": {
+            "Description": "Specifies the feature set supported by the new organization. Each feature set supports different levels of functionality.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "create_organizational_unit": {
+        "ParentId": {
+            "Description": "The unique identifier (ID) of the parent root or OU that you want to create the new OU in.\nThe regex pattern for a parent ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Name": {
+            "Description": "The friendly name to assign to the new OU.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags that you want to attach to the newly created OU. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null. For more information about tagging, see Tagging Organizations resources in the Organizations User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_policy": {
+        "Content": {
+            "Description": "The policy text content to add to the new policy. The text that you supply must adhere to the rules of the policy type you specify in the Type parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "An optional description to assign to the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The friendly name to assign to the policy.\nThe regex pattern that is used to validate this parameter is a string of any of the characters in the ASCII character range.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of policy to create. You can specify one of the following values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags that you want to attach to the newly created policy. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null. For more information about tagging, see Tagging Organizations resources in the Organizations User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "decline_handshake": {
+        "HandshakeId": {
+            "Description": "The unique identifier (ID) of the handshake that you want to decline. You can get the ID from the  ListHandshakesForAccount operation.\nThe regex pattern for handshake ID string requires \"h-\" followed by from 8 to 32 lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_organization": "No parameters defined",
+    "delete_organizational_unit": {
+        "OrganizationalUnitId": {
+            "Description": "The unique identifier (ID) of the organizational unit that you want to delete. You can get the ID from the  ListOrganizationalUnitsForParent operation.\nThe regex pattern for an organizational unit ID string requires \"ou-\" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second \"-\" dash and from 8 to 32 additional lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_policy": {
+        "PolicyId": {
+            "Description": "The unique identifier (ID) of the policy that you want to delete. You can get the ID from the  ListPolicies or  ListPoliciesForTarget operations.\nThe regex pattern for a policy ID string requires \"p-\" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_delegated_administrator": {
+        "AccountId": {
+            "Description": "The account ID number of the member account in the organization that you want to deregister as a delegated administrator.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServicePrincipal": {
+            "Description": "The service principal name of an Amazon Web Services service for which the account is a delegated administrator.\nDelegated administrator privileges are revoked for only the specified Amazon Web Services service from the member account. If the specified service is the only service for which the member account is a delegated administrator, the operation also revokes Organizations read action permissions.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account": {
+        "AccountId": {
+            "Description": "The unique identifier (ID) of the Amazon Web Services account that you want information about. You can get the ID from the  ListAccounts or  ListAccountsForParent operations.\nThe regex pattern for an account ID string requires exactly 12 digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_create_account_status": {
+        "CreateAccountRequestId": {
+            "Description": "Specifies the Id value that uniquely identifies the CreateAccount request. You can get the value from the CreateAccountStatus.Id response in an earlier  CreateAccount request, or from the  ListCreateAccountStatus operation.\nThe regex pattern for a create account request ID string requires \"car-\" followed by from 8 to 32 lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_effective_policy": {
+        "PolicyType": {
+            "Description": "The type of policy that you want information about. You can specify one of the following values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TargetId": {
+            "Description": "When you're signed in as the management account, specify the ID of the account that you want details about. Specifying an organization root or organizational unit (OU) as the target is not supported.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_handshake": {
+        "HandshakeId": {
+            "Description": "The unique identifier (ID) of the handshake that you want information about. You can get the ID from the original call to  InviteAccountToOrganization, or from a call to  ListHandshakesForAccount or  ListHandshakesForOrganization .\nThe regex pattern for handshake ID string requires \"h-\" followed by from 8 to 32 lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_organization": "No parameters defined",
+    "describe_organizational_unit": {
+        "OrganizationalUnitId": {
+            "Description": "The unique identifier (ID) of the organizational unit that you want details about. You can get the ID from the  ListOrganizationalUnitsForParent operation.\nThe regex pattern for an organizational unit ID string requires \"ou-\" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second \"-\" dash and from 8 to 32 additional lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_policy": {
+        "PolicyId": {
+            "Description": "The unique identifier (ID) of the policy that you want details about. You can get the ID from the  ListPolicies or  ListPoliciesForTarget operations.\nThe regex pattern for a policy ID string requires \"p-\" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_policy": {
+        "PolicyId": {
+            "Description": "The unique identifier (ID) of the policy you want to detach. You can get the ID from the  ListPolicies or  ListPoliciesForTarget operations.\nThe regex pattern for a policy ID string requires \"p-\" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetId": {
+            "Description": "The unique identifier (ID) of the root, OU, or account that you want to detach the policy from. You can get the ID from the  ListRoots,  ListOrganizationalUnitsForParent, or  ListAccounts operations.\nThe regex pattern for a target ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "disable_aws_service_access": {
+        "ServicePrincipal": {
+            "Description": "The service principal name of the Amazon Web Services service for which you want to disable integration with your organization. This is typically in the form of a URL, such as `` service-abbreviation .amazonaws.com`` .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_policy_type": {
+        "RootId": {
+            "Description": "The unique identifier (ID) of the root in which you want to disable a policy type. You can get the ID from the  ListRoots operation.\nThe regex pattern for a root ID string requires \"r-\" followed by from 4 to 32 lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyType": {
+            "Description": "The policy type that you want to disable in this root. You can specify one of the following values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "enable_all_features": "No parameters defined",
+    "enable_aws_service_access": {
+        "ServicePrincipal": {
+            "Description": "The service principal name of the Amazon Web Services service for which you want to enable integration with your organization. This is typically in the form of a URL, such as `` service-abbreviation .amazonaws.com`` .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_policy_type": {
+        "RootId": {
+            "Description": "The unique identifier (ID) of the root in which you want to enable a policy type. You can get the ID from the  ListRoots operation.\nThe regex pattern for a root ID string requires \"r-\" followed by from 4 to 32 lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyType": {
+            "Description": "The policy type that you want to enable. You can specify one of the following values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "invite_account_to_organization": {
+        "Target": {
+            "Description": "The identifier (ID) of the Amazon Web Services account that you want to invite to join your organization. This is a JSON object that contains the following elements:\nIf you use the CLI, you can submit this as a single string, similar to the following example:\nIf you specify \"Type\": \"ACCOUNT\", you must provide the Amazon Web Services account ID number as the Id. If you specify \"Type\": \"EMAIL\", you must specify the email address that is associated with the account.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Notes": {
+            "Description": "Additional information that you want to include in the generated email to the recipient account owner.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags that you want to attach to the account when it becomes a member of the organization. For each tag in the list, you must specify both a tag key and a value. You can set the value to an empty string, but you can't set it to null. For more information about tagging, see Tagging Organizations resources in the Organizations User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "leave_organization": "No parameters defined",
+    "list_accounts": {
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_accounts_for_parent": {
+        "ParentId": {
+            "Description": "The unique identifier (ID) for the parent root or organization unit (OU) whose accounts you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_aws_service_access_for_organization": {
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_children": {
+        "ParentId": {
+            "Description": "The unique identifier (ID) for the parent root or OU whose children you want to list.\nThe regex pattern for a parent ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ChildType": {
+            "Description": "Filters the output to include only the specified child type.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_create_account_status": {
+        "States": {
+            "Description": "A list of one or more states that you want included in the response. If this parameter isn't present, all requests are included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_delegated_administrators": {
+        "ServicePrincipal": {
+            "Description": "Specifies a service principal name. If specified, then the operation lists the delegated administrators only for the specified service.\nIf you don't specify a service principal, the operation lists all delegated administrators for all services in your organization.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_delegated_services_for_account": {
+        "AccountId": {
+            "Description": "The account ID number of a delegated administrator account in the organization.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_handshakes_for_account": {
+        "Filter": {
+            "Description": "Filters the handshakes that you want included in the response. The default is all types. Use the ActionType element to limit the output to only a specified type, such as INVITE, ENABLE_ALL_FEATURES, or APPROVE_ALL_FEATURES. Alternatively, for the ENABLE_ALL_FEATURES handshake that generates a separate child handshake for each member account, you can specify ParentHandshakeId to see only the handshakes that were generated by that parent request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_handshakes_for_organization": {
+        "Filter": {
+            "Description": "A filter of the handshakes that you want included in the response. The default is all types. Use the ActionType element to limit the output to only a specified type, such as INVITE, ENABLE-ALL-FEATURES, or APPROVE-ALL-FEATURES. Alternatively, for the ENABLE-ALL-FEATURES handshake that generates a separate child handshake for each member account, you can specify the ParentHandshakeId to see only the handshakes that were generated by that parent request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_organizational_units_for_parent": {
+        "ParentId": {
+            "Description": "The unique identifier (ID) of the root or OU whose child OUs you want to list.\nThe regex pattern for a parent ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_parents": {
+        "ChildId": {
+            "Description": "The unique identifier (ID) of the OU or account whose parent containers you want to list. Don't specify a root.\nThe regex pattern for a child ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_policies": {
+        "Filter": {
+            "Description": "Specifies the type of policy that you want to include in the response. You must specify one of the following values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_policies_for_target": {
+        "TargetId": {
+            "Description": "The unique identifier (ID) of the root, organizational unit, or account whose policies you want to list.\nThe regex pattern for a target ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Filter": {
+            "Description": "The type of policy that you want to include in the returned list. You must specify one of the following values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_roots": {
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceId": {
+            "Description": "The ID of the resource with the tags to list.\nYou can specify any of the following taggable resources.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_targets_for_policy": {
+        "PolicyId": {
+            "Description": "The unique identifier (ID) of the policy whose attachments you want to know.\nThe regex pattern for a policy ID string requires \"p-\" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The parameter for receiving additional results if you receive a NextToken response in a previous request. A NextToken response indicates that more output is available. Set this parameter to the value of the previous call's NextToken response to indicate where the output should continue from.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the maximum you specify, the NextToken response element is present and has a value (is not null). Include that value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that Organizations might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "move_account": {
+        "AccountId": {
+            "Description": "The unique identifier (ID) of the account that you want to move.\nThe regex pattern for an account ID string requires exactly 12 digits.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceParentId": {
+            "Description": "The unique identifier (ID) of the root or organizational unit that you want to move the account from.\nThe regex pattern for a parent ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DestinationParentId": {
+            "Description": "The unique identifier (ID) of the root or organizational unit that you want to move the account to.\nThe regex pattern for a parent ID string requires one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "register_delegated_administrator": {
+        "AccountId": {
+            "Description": "The account ID number of the member account in the organization to register as a delegated administrator.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServicePrincipal": {
+            "Description": "The service principal of the Amazon Web Services service for which you want to make the member account a delegated administrator.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_account_from_organization": {
+        "AccountId": {
+            "Description": "The unique identifier (ID) of the member account that you want to remove from the organization.\nThe regex pattern for an account ID string requires exactly 12 digits.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceId": {
+            "Description": "The ID of the resource to add a tag to.\nYou can specify any of the following taggable resources.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to add to the specified resource.\nFor each tag in the list, you must specify both a tag key and a value. The value can be an empty string, but you can't set it to null .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceId": {
+            "Description": "The ID of the resource to remove a tag from.\nYou can specify any of the following taggable resources.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TagKeys": {
+            "Description": "The list of keys for tags to remove from the specified resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_organizational_unit": {
+        "OrganizationalUnitId": {
+            "Description": "The unique identifier (ID) of the OU that you want to rename. You can get the ID from the  ListOrganizationalUnitsForParent operation.\nThe regex pattern for an organizational unit ID string requires \"ou-\" followed by from 4 to 32 lowercase letters or digits (the ID of the root that contains the OU). This string is followed by a second \"-\" dash and from 8 to 32 additional lowercase letters or digits.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The new name that you want to assign to the OU.\nThe regex pattern that is used to validate this parameter is a string of any of the characters in the ASCII character range.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_policy": {
+        "PolicyId": {
+            "Description": "The unique identifier (ID) of the policy that you want to update.\nThe regex pattern for a policy ID string requires \"p-\" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "If provided, the new name for the policy.\nThe regex pattern that is used to validate this parameter is a string of any of the characters in the ASCII character range.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "If provided, the new description for the policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "Content": {
+            "Description": "If provided, the new content for the policy. The text must be correctly formatted JSON that complies with the syntax for the policy's type. For more information, see Service Control Policy Syntax in the Organizations User Guide.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PolicyId": {
+            "Description": "The unique identifier (ID) of the policy whose attachments you want to know.\nThe regex pattern for a policy ID string requires \"p-\" followed by from 8 to 128 lowercase or uppercase letters, digits, or the underscore character (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

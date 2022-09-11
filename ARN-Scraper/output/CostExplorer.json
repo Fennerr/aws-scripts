@@ -1,0 +1,1005 @@
+{
+    "create_anomaly_monitor": {
+        "AnomalyMonitor": {
+            "Description": "The cost anomaly detection monitor object that you want to create.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ResourceTags": {
+            "Description": "An optional list of tags to associate with the specified ` AnomalyMonitor https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalyMonitor.html`__. You can use resource tags to control access to your monitor using IAM policies.\nEach tag consists of a key and a value, and each key must be unique for the resource. The following restrictions apply to resource tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_anomaly_subscription": {
+        "AnomalySubscription": {
+            "Description": "The cost anomaly subscription object that you want to create.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ResourceTags": {
+            "Description": "An optional list of tags to associate with the specified ` AnomalySubscription https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_AnomalySubscription.html`__. You can use resource tags to control access to your subscription using IAM policies.\nEach tag consists of a key and a value, and each key must be unique for the resource. The following restrictions apply to resource tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_cost_category_definition": {
+        "Name": {
+            "Description": "The unique name of the Cost Category.",
+            "Type": "string",
+            "Required": true
+        },
+        "RuleVersion": {
+            "Description": "The rule schema version in this particular Cost Category.",
+            "Type": "string",
+            "Required": true
+        },
+        "Rules": {
+            "Description": "The Cost Category rules used to categorize costs. For more information, see CostCategoryRule .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DefaultValue": {
+            "Description": "The default value for the cost category.",
+            "Type": "string",
+            "Required": false
+        },
+        "SplitChargeRules": {
+            "Description": "The split charge rules used to allocate your charges between your Cost Category values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ResourceTags": {
+            "Description": "An optional list of tags to associate with the specified ` CostCategory https://docs.aws.amazon.com/aws-cost-management/latest/APIReference/API_CostCategory.html`__. You can use resource tags to control access to your cost category using IAM policies.\nEach tag consists of a key and a value, and each key must be unique for the resource. The following restrictions apply to resource tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "delete_anomaly_monitor": {
+        "MonitorArn": {
+            "Description": "The unique identifier of the cost anomaly monitor that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_anomaly_subscription": {
+        "SubscriptionArn": {
+            "Description": "The unique identifier of the cost anomaly subscription that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_cost_category_definition": {
+        "CostCategoryArn": {
+            "Description": "The unique identifier for your Cost Category.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_cost_category_definition": {
+        "CostCategoryArn": {
+            "Description": "The unique identifier for your Cost Category.",
+            "Type": "string",
+            "Required": true
+        },
+        "EffectiveOn": {
+            "Description": "The date when the Cost Category was effective.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_anomalies": {
+        "MonitorArn": {
+            "Description": "Retrieves all of the cost anomalies detected for a specific cost anomaly monitor Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": false
+        },
+        "DateInterval": {
+            "Description": "Assigns the start and end dates for retrieving cost anomalies. The returned anomaly object will have an AnomalyEndDate in the specified time range.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Feedback": {
+            "Description": "Filters anomaly results by the feedback field on the anomaly object.",
+            "Type": "string",
+            "Required": false
+        },
+        "TotalImpact": {
+            "Description": "Filters anomaly results by the total impact field on the anomaly object. For example, you can filter anomalies GREATER_THAN 200.00 to retrieve anomalies, with an estimated dollar impact greater than 200.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of entries a paginated response contains.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_anomaly_monitors": {
+        "MonitorArnList": {
+            "Description": "A list of cost anomaly monitor ARNs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of entries that a paginated response contains.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_anomaly_subscriptions": {
+        "SubscriptionArnList": {
+            "Description": "A list of cost anomaly subscription ARNs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MonitorArn": {
+            "Description": "Cost anomaly monitor ARNs.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of entries a paginated response contains.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_cost_and_usage": {
+        "TimePeriod": {
+            "Description": "Sets the start date and end date for retrieving Amazon Web Services costs. The start date is inclusive, but the end date is exclusive. For example, if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01 .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Granularity": {
+            "Description": "Sets the Amazon Web Services cost granularity to MONTHLY or DAILY, or HOURLY. If Granularity isn't set, the response object doesn't include the Granularity, either MONTHLY or DAILY, or HOURLY .",
+            "Type": "string",
+            "Required": true
+        },
+        "Filter": {
+            "Description": "Filters Amazon Web Services costs by different dimensions. For example, you can specify SERVICE and LINKED_ACCOUNT and get the costs that are associated with that account's usage of that service. You can nest Expression objects to define any combination of dimension filters. For more information, see Expression .\nValid values for MatchOptions for Dimensions are EQUALS and CASE_SENSITIVE .\nValid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT, and CASE_SENSITIVE. Default values are EQUALS and CASE_SENSITIVE .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Metrics": {
+            "Description": "Which metrics are returned in the query. For more information about blended and unblended rates, see Why does the \"blended\" annotation appear on some line items in my bill? .\nValid values are AmortizedCost, BlendedCost, NetAmortizedCost, NetUnblendedCost, NormalizedUsageAmount, UnblendedCost, and UsageQuantity .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "GroupBy": {
+            "Description": "You can group Amazon Web Services costs using up to two different groups, either dimensions, tag keys, cost categories, or any two group by types.\nValid values for the DIMENSION type are AZ, INSTANCE_TYPE, LEGAL_ENTITY_NAME, INVOICING_ENTITY, LINKED_ACCOUNT, OPERATION, PLATFORM, PURCHASE_TYPE, SERVICE, TENANCY, RECORD_TYPE, and USAGE_TYPE .\nWhen you group by the TAG type and include a valid tag key, you get all tag values, including empty strings.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_cost_and_usage_with_resources": {
+        "TimePeriod": {
+            "Description": "Sets the start and end dates for retrieving Amazon Web Services costs. The range must be within the last 14 days (the start date cannot be earlier than 14 days ago). The start date is inclusive, but the end date is exclusive. For example, if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01 .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Granularity": {
+            "Description": "Sets the Amazon Web Services cost granularity to MONTHLY, DAILY, or HOURLY. If Granularity isn't set, the response object doesn't include the Granularity, MONTHLY, DAILY, or HOURLY .",
+            "Type": "string",
+            "Required": true
+        },
+        "Filter": {
+            "Description": "Filters Amazon Web Services costs by different dimensions. For example, you can specify SERVICE and LINKED_ACCOUNT and get the costs that are associated with that account's usage of that service. You can nest Expression objects to define any combination of dimension filters. For more information, see Expression .\nThe GetCostAndUsageWithResources operation requires that you either group by or filter by a ResourceId. It requires the Expression \"SERVICE = Amazon Elastic Compute Cloud - Compute\" in the filter.\nValid values for MatchOptions for Dimensions are EQUALS and CASE_SENSITIVE .\nValid values for MatchOptions for CostCategories and Tags are EQUALS, ABSENT, and CASE_SENSITIVE. Default values are EQUALS and CASE_SENSITIVE .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Metrics": {
+            "Description": "Which metrics are returned in the query. For more information about blended and unblended rates, see Why does the \"blended\" annotation appear on some line items in my bill? .\nValid values are AmortizedCost, BlendedCost, NetAmortizedCost, NetUnblendedCost, NormalizedUsageAmount, UnblendedCost, and UsageQuantity .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GroupBy": {
+            "Description": "You can group Amazon Web Services costs using up to two different groups: DIMENSION, TAG, COST_CATEGORY .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_cost_categories": {
+        "SearchString": {
+            "Description": "The value that you want to search the filter values for.\nIf you don't specify a CostCategoryName, SearchString is used to filter Cost Category names that match the SearchString pattern. If you specify a CostCategoryName, SearchString is used to filter Cost Category values that match the SearchString pattern.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimePeriod": {
+            "Description": "The time period of the request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "CostCategoryName": {
+            "Description": "The unique name of the Cost Category.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Use Expression to filter by cost or by usage. There are two patterns:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "SortBy": {
+            "Description": "The value that you sort the data by.\nThe key represents the cost and usage metrics. The following values are supported:\nThe supported key values for the SortOrder value are ASCENDING and DESCENDING .\nWhen you use the SortBy value, the NextPageToken and SearchString key values aren't supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "This field is only used when the SortBy value is provided in the request.\nThe maximum number of objects that are returned for this request. If MaxResults isn't specified with the SortBy value, the request returns 1000 results as the default value for this parameter.\nFor GetCostCategories, MaxResults has an upper quota of 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextPageToken": {
+            "Description": "If the number of objects that are still available for retrieval exceeds the quota, Amazon Web Services returns a NextPageToken value in the response. To retrieve the next batch of objects, provide the NextPageToken from the previous call in your next request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_cost_forecast": {
+        "TimePeriod": {
+            "Description": "The period of time that you want the forecast to cover. The start date must be equal to or no later than the current date to avoid a validation error.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Metric": {
+            "Description": "Which metric Cost Explorer uses to create your forecast. For more information about blended and unblended rates, see Why does the \"blended\" annotation appear on some line items in my bill? .\nValid values for a GetCostForecast call are the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Granularity": {
+            "Description": "How granular you want the forecast to be. You can get 3 months of DAILY forecasts or 12 months of MONTHLY forecasts.\nThe GetCostForecast operation supports only DAILY and MONTHLY granularities.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filter": {
+            "Description": "The filters that you want to use to filter your forecast. The GetCostForecast API supports filtering by the following dimensions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "PredictionIntervalLevel": {
+            "Description": "Cost Explorer always returns the mean forecast as a single point. You can request a prediction interval around the mean by specifying a confidence level. The higher the confidence level, the more confident Cost Explorer is about the actual value falling in the prediction interval. Higher confidence levels result in wider prediction intervals.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_dimension_values": {
+        "SearchString": {
+            "Description": "The value that you want to search the filter values for.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimePeriod": {
+            "Description": "The start date and end date for retrieving the dimension values. The start date is inclusive, but the end date is exclusive. For example, if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01 .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Dimension": {
+            "Description": "The name of the dimension. Each Dimension is available for a different Context. For more information, see Context .",
+            "Type": "string",
+            "Required": true
+        },
+        "Context": {
+            "Description": "The context for the call to GetDimensionValues. This can be RESERVATIONS or COST_AND_USAGE. The default value is COST_AND_USAGE. If the context is set to RESERVATIONS, the resulting dimension values can be used in the GetReservationUtilization operation. If the context is set to COST_AND_USAGE, the resulting dimension values can be used in the GetCostAndUsage operation.\nIf you set the context to COST_AND_USAGE, you can use the following dimensions for searching:\nIf you set the context to RESERVATIONS, you can use the following dimensions for searching:\nIf you set the context to SAVINGS_PLANS, you can use the following dimensions for searching:",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "Filter": {
+            "Description": "Use Expression to filter by cost or by usage. There are two patterns:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "SortBy": {
+            "Description": "The value that you want to sort the data by.\nThe key represents cost and usage metrics. The following values are supported:\nThe supported values for the SortOrder key are ASCENDING or DESCENDING .\nWhen you specify a SortBy paramater, the context must be COST_AND_USAGE. Further, when using SortBy, NextPageToken and SearchString aren't supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "This field is only used when SortBy is provided in the request. The maximum number of objects that are returned for this request. If MaxResults isn't specified with SortBy, the request returns 1000 results as the default value for this parameter.\nFor GetDimensionValues, MaxResults has an upper limit of 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_reservation_coverage": {
+        "TimePeriod": {
+            "Description": "The start and end dates of the period that you want to retrieve data about reservation coverage for. You can retrieve data for a maximum of 13 months: the last 12 months and the current month. The start date is inclusive, but the end date is exclusive. For example, if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01 .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "GroupBy": {
+            "Description": "You can group the data by the following attributes:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Granularity": {
+            "Description": "The granularity of the Amazon Web Services cost data for the reservation. Valid values are MONTHLY and DAILY .\nIf GroupBy is set, Granularity can't be set. If Granularity isn't set, the response object doesn't include Granularity, either MONTHLY or DAILY .\nThe GetReservationCoverage operation supports only DAILY and MONTHLY granularities.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Filters utilization data by dimensions. You can filter by the following dimensions:\nIf you don't provide a SERVICE filter, Cost Explorer defaults to EC2.\nCost category is also supported.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "Metrics": {
+            "Description": "The measurement that you want your reservation coverage reported in.\nValid values are Hour, Unit, and Cost. You can use multiple values in a request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "The value by which you want to sort the data.\nThe following values are supported for Key :\nSupported values for SortOrder are ASCENDING or DESCENDING .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects that you returned for this request. If more objects are available, in the response, Amazon Web Services provides a NextPageToken value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_reservation_purchase_recommendation": {
+        "AccountId": {
+            "Description": "The account ID that's associated with the recommendation.",
+            "Type": "string",
+            "Required": false
+        },
+        "Service": {
+            "Description": "The specific service that you want recommendations for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filter": {
+            "Description": "Use Expression to filter by cost or by usage. There are two patterns:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "AccountScope": {
+            "Description": "The account scope that you want your recommendations for. Amazon Web Services calculates recommendations including the management account and member accounts if the value is set to PAYER . If the value is LINKED , recommendations are calculated for individual member accounts only.",
+            "Type": "string",
+            "Required": false
+        },
+        "LookbackPeriodInDays": {
+            "Description": "The number of previous days that you want Amazon Web Services to consider when it calculates your recommendations.",
+            "Type": "string",
+            "Required": false
+        },
+        "TermInYears": {
+            "Description": "The reservation term that you want recommendations for.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaymentOption": {
+            "Description": "The reservation purchase option that you want recommendations for.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServiceSpecification": {
+            "Description": "The hardware specifications for the service instances that you want recommendations for, such as standard or convertible Amazon EC2 instances.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PageSize": {
+            "Description": "The number of recommendations that you want returned in a single response object.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextPageToken": {
+            "Description": "The pagination token that indicates the next set of results that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_reservation_utilization": {
+        "TimePeriod": {
+            "Description": "Sets the start and end dates for retrieving Reserved Instance (RI) utilization. The start date is inclusive, but the end date is exclusive. For example, if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01 .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "GroupBy": {
+            "Description": "Groups only by SUBSCRIPTION_ID. Metadata is included.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Granularity": {
+            "Description": "If GroupBy is set, Granularity can't be set. If Granularity isn't set, the response object doesn't include Granularity, either MONTHLY or DAILY. If both GroupBy and Granularity aren't set, GetReservationUtilization defaults to DAILY .\nThe GetReservationUtilization operation supports only DAILY and MONTHLY granularities.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Filters utilization data by dimensions. You can filter by the following dimensions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "SortBy": {
+            "Description": "The value that you want to sort the data by.\nThe following values are supported for Key :\nThe supported values for SortOrder are ASCENDING and DESCENDING .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects that you returned for this request. If more objects are available, in the response, Amazon Web Services provides a NextPageToken value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_rightsizing_recommendation": {
+        "Filter": {
+            "Description": "Use Expression to filter by cost or by usage. There are two patterns:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "Configuration": {
+            "Description": "You can use Configuration to customize recommendations across two attributes. You can choose to view recommendations for instances within the same instance families or across different instance families. You can also choose to view your estimated savings that are associated with recommendations with consideration of existing Savings Plans or RI benefits, or neither.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Service": {
+            "Description": "The specific service that you want recommendations for. The only valid value for GetRightsizingRecommendation is \"AmazonEC2 \".",
+            "Type": "string",
+            "Required": true
+        },
+        "PageSize": {
+            "Description": "The number of recommendations that you want returned in a single response object.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextPageToken": {
+            "Description": "The pagination token that indicates the next set of results that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_savings_plans_coverage": {
+        "TimePeriod": {
+            "Description": "The time period that you want the usage and costs for. The Start date must be within 13 months. The End date must be after the Start date, and before the current date. Future dates can't be used as an End date.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "GroupBy": {
+            "Description": "You can group the data using the attributes INSTANCE_FAMILY, REGION, or SERVICE .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Granularity": {
+            "Description": "The granularity of the Amazon Web Services cost data for your Savings Plans. Granularity can't be set if GroupBy is set.\nThe GetSavingsPlansCoverage operation supports only DAILY and MONTHLY granularities.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Filters Savings Plans coverage data by dimensions. You can filter data for Savings Plans usage with the following dimensions:\nCost category is also supported.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "Metrics": {
+            "Description": "The measurement that you want your Savings Plans coverage reported in. The only valid value is SpendCoveredBySavingsPlans .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to be returned in a response. The default is 20 , with a minimum value of 1 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "The value that you want to sort the data by.\nThe following values are supported for Key :\nThe supported values for SortOrder are ASCENDING and DESCENDING .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_savings_plans_purchase_recommendation": {
+        "SavingsPlansType": {
+            "Description": "The Savings Plans recommendation type that's requested.",
+            "Type": "string",
+            "Required": true
+        },
+        "TermInYears": {
+            "Description": "The savings plan recommendation term that's used to generate these recommendations.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaymentOption": {
+            "Description": "The payment option that's used to generate these recommendations.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountScope": {
+            "Description": "The account scope that you want your recommendations for. Amazon Web Services calculates recommendations including the management account and member accounts if the value is set to PAYER . If the value is LINKED , recommendations are calculated for individual member accounts only.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of recommendations that you want returned in a single response object.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LookbackPeriodInDays": {
+            "Description": "The lookback period that's used to generate the recommendation.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filter": {
+            "Description": "You can filter your recommendations by Account ID with the LINKED_ACCOUNT dimension. To filter your recommendations by Account ID, specify Key as LINKED_ACCOUNT and Value as the comma-separated Acount ID(s) that you want to see Savings Plans purchase recommendations for.\nFor GetSavingsPlansPurchaseRecommendation, the Filter doesn't include CostCategories or Tags. It only includes Dimensions. With Dimensions, Key must be LINKED_ACCOUNT and Value can be a single Account ID or multiple comma-separated Account IDs that you want to see Savings Plans Purchase Recommendations for. AND and OR operators are not supported.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_savings_plans_utilization": {
+        "TimePeriod": {
+            "Description": "The time period that you want the usage and costs for. The Start date must be within 13 months. The End date must be after the Start date, and before the current date. Future dates can't be used as an End date.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Granularity": {
+            "Description": "The granularity of the Amazon Web Services utillization data for your Savings Plans.\nThe GetSavingsPlansUtilization operation supports only DAILY and MONTHLY granularities.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Filters Savings Plans utilization coverage data for active Savings Plans dimensions. You can filter data with the following dimensions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "SortBy": {
+            "Description": "The value that you want to sort the data by.\nThe following values are supported for Key :\nThe supported values for SortOrder are ASCENDING and DESCENDING .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_savings_plans_utilization_details": {
+        "TimePeriod": {
+            "Description": "The time period that you want the usage and costs for. The Start date must be within 13 months. The End date must be after the Start date, and before the current date. Future dates can't be used as an End date.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Filter": {
+            "Description": "Filters Savings Plans utilization coverage data for active Savings Plans dimensions. You can filter data with the following dimensions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "DataType": {
+            "Description": "The data type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of items to be returned in a response. The default is 20 , with a minimum value of 1 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "The value that you want to sort the data by.\nThe following values are supported for Key :\nThe supported values for SortOrder are ASCENDING and DESCENDING .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_tags": {
+        "SearchString": {
+            "Description": "The value that you want to search for.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimePeriod": {
+            "Description": "The start and end dates for retrieving the dimension values. The start date is inclusive, but the end date is exclusive. For example, if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01 .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TagKey": {
+            "Description": "The key of the tag that you want to return values for.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "Use Expression to filter by cost or by usage. There are two patterns:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "SortBy": {
+            "Description": "The value that you want to sort the data by.\nThe key represents cost and usage metrics. The following values are supported:\nThe supported values for SortOrder are ASCENDING and DESCENDING .\nWhen you use SortBy, NextPageToken and SearchString aren't supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxResults": {
+            "Description": "This field is only used when SortBy is provided in the request. The maximum number of objects that are returned for this request. If MaxResults isn't specified with SortBy, the request returns 1000 results as the default value for this parameter.\nFor GetTags, MaxResults has an upper quota of 1000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextPageToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_usage_forecast": {
+        "TimePeriod": {
+            "Description": "The start and end dates of the period that you want to retrieve usage forecast for. The start date is included in the period, but the end date isn't included in the period. For example, if start is 2017-01-01 and end is 2017-05-01, then the cost and usage data is retrieved from 2017-01-01 up to and including 2017-04-30 but not including 2017-05-01. The start date must be equal to or later than the current date to avoid a validation error.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Metric": {
+            "Description": "Which metric Cost Explorer uses to create your forecast.\nValid values for a GetUsageForecast call are the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Granularity": {
+            "Description": "How granular you want the forecast to be. You can get 3 months of DAILY forecasts or 12 months of MONTHLY forecasts.\nThe GetUsageForecast operation supports only DAILY and MONTHLY granularities.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filter": {
+            "Description": "The filters that you want to use to filter your forecast. The GetUsageForecast API supports filtering by the following dimensions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "PredictionIntervalLevel": {
+            "Description": "Amazon Web Services Cost Explorer always returns the mean forecast as a single point. You can request a prediction interval around the mean by specifying a confidence level. The higher the confidence level, the more confident Cost Explorer is about the actual value falling in the prediction interval. Higher confidence levels result in wider prediction intervals.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_cost_allocation_tags": {
+        "Status": {
+            "Description": "The status of cost allocation tag keys that are returned for this request.",
+            "Type": "string",
+            "Required": false
+        },
+        "TagKeys": {
+            "Description": "The list of cost allocation tag keys that are returned for this request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Type": {
+            "Description": "The type of CostAllocationTag object that are returned for this request. The AWSGenerated type tags are tags that Amazon Web Services defines and applies to support Amazon Web Services resources for cost allocation purposes. The UserDefined type tags are tags that you define, create, and apply to resources.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects that are returned for this request. By default, the request returns 100 results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_cost_category_definitions": {
+        "EffectiveOn": {
+            "Description": "The date when the Cost Category was effective.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of entries a paginated response contains.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. For a list of supported resources, see ResourceTag .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "provide_anomaly_feedback": {
+        "AnomalyId": {
+            "Description": "A cost anomaly ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Feedback": {
+            "Description": "Describes whether the cost anomaly was a planned activity or you considered it an anomaly.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. For a list of supported resources, see ResourceTag .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceTags": {
+            "Description": "A list of tag key-value pairs to be added to the resource.\nEach tag consists of a key and a value, and each key must be unique for the resource. The following restrictions apply to resource tags:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. For a list of supported resources, see ResourceTag .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceTagKeys": {
+            "Description": "A list of tag keys associated with tags that need to be removed from the resource. If you specify a tag key that doesn't exist, it's ignored. Although the maximum number of array members is 200, user-tag maximum is 50. The remaining are reserved for Amazon Web Services use.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_anomaly_monitor": {
+        "MonitorArn": {
+            "Description": "Cost anomaly monitor Amazon Resource Names (ARNs).",
+            "Type": "string",
+            "Required": true
+        },
+        "MonitorName": {
+            "Description": "The new name for the cost anomaly monitor.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_anomaly_subscription": {
+        "SubscriptionArn": {
+            "Description": "A cost anomaly subscription Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "Threshold": {
+            "Description": "The update to the threshold value for receiving notifications.",
+            "Type": "float",
+            "Required": false
+        },
+        "Frequency": {
+            "Description": "The update to the frequency value that subscribers receive notifications.",
+            "Type": "string",
+            "Required": false
+        },
+        "MonitorArnList": {
+            "Description": "A list of cost anomaly monitor ARNs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Subscribers": {
+            "Description": "The update to the subscriber list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SubscriptionName": {
+            "Description": "The new name of the subscription.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_cost_allocation_tags_status": {
+        "CostAllocationTagsStatus": {
+            "Description": "The list of CostAllocationTagStatusEntry objects that are used to update cost allocation tags status for this request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_cost_category_definition": {
+        "CostCategoryArn": {
+            "Description": "The unique identifier for your Cost Category.",
+            "Type": "string",
+            "Required": true
+        },
+        "RuleVersion": {
+            "Description": "The rule schema version in this particular Cost Category.",
+            "Type": "string",
+            "Required": true
+        },
+        "Rules": {
+            "Description": "The Expression object used to categorize costs. For more information, see CostCategoryRule .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DefaultValue": {
+            "Description": "The default value for the cost category.",
+            "Type": "string",
+            "Required": false
+        },
+        "SplitChargeRules": {
+            "Description": "The split charge rules used to allocate your charges between your Cost Category values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    }
+}

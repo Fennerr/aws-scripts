@@ -1,0 +1,951 @@
+{
+    "associate_assessment_report_evidence_folder": {
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceFolderId": {
+            "Description": "The identifier for the folder that the evidence is stored in.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_associate_assessment_report_evidence": {
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceFolderId": {
+            "Description": "The identifier for the folder that the evidence is stored in.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceIds": {
+            "Description": "The list of evidence identifiers.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_create_delegation_by_assessment": {
+        "createDelegationRequests": {
+            "Description": "The API request to batch create delegations in Audit Manager.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_delete_delegation_by_assessment": {
+        "delegationIds": {
+            "Description": "The identifiers for the delegations.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_disassociate_assessment_report_evidence": {
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceFolderId": {
+            "Description": "The identifier for the folder that the evidence is stored in.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceIds": {
+            "Description": "The list of evidence identifiers.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_import_evidence_to_assessment_control": {
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The identifier for the control set.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlId": {
+            "Description": "The identifier for the control.",
+            "Type": "string",
+            "Required": true
+        },
+        "manualEvidence": {
+            "Description": "The list of manual evidence objects.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_assessment": {
+        "name": {
+            "Description": "The name of the assessment to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The optional description of the assessment to be created.",
+            "Type": "string",
+            "Required": false
+        },
+        "assessmentReportsDestination": {
+            "Description": "The assessment report storage destination for the assessment that's being created.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "scope": {
+            "Description": "The wrapper that contains the Amazon Web Services accounts and services that are in scope for the assessment.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "roles": {
+            "Description": "The list of roles for the assessment.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "frameworkId": {
+            "Description": "The identifier for the framework that the assessment will be created from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags that are associated with the assessment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_assessment_framework": {
+        "name": {
+            "Description": "The name of the new custom framework.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "An optional description for the new custom framework.",
+            "Type": "string",
+            "Required": false
+        },
+        "complianceType": {
+            "Description": "The compliance type that the new custom framework supports, such as CIS or HIPAA.",
+            "Type": "string",
+            "Required": false
+        },
+        "controlSets": {
+            "Description": "The control sets that are associated with the framework.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags that are associated with the framework.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_assessment_report": {
+        "name": {
+            "Description": "The name of the new assessment report.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the assessment report.",
+            "Type": "string",
+            "Required": false
+        },
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_control": {
+        "name": {
+            "Description": "The name of the control.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the control.",
+            "Type": "string",
+            "Required": false
+        },
+        "testingInformation": {
+            "Description": "The steps to follow to determine if the control is satisfied.",
+            "Type": "string",
+            "Required": false
+        },
+        "actionPlanTitle": {
+            "Description": "The title of the action plan for remediating the control.",
+            "Type": "string",
+            "Required": false
+        },
+        "actionPlanInstructions": {
+            "Description": "The recommended actions to carry out if the control isn't fulfilled.",
+            "Type": "string",
+            "Required": false
+        },
+        "controlMappingSources": {
+            "Description": "The data mapping sources for the control.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags that are associated with the control.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_assessment": {
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_assessment_framework": {
+        "frameworkId": {
+            "Description": "The identifier for the custom framework.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_assessment_framework_share": {
+        "requestId": {
+            "Description": "The unique identifier for the share request to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "requestType": {
+            "Description": "Specifies whether the share request is a sent request or a received request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_assessment_report": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "assessmentReportId": {
+            "Description": "The unique identifier for the assessment report.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_control": {
+        "controlId": {
+            "Description": "The unique identifier for the control.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_account": "No parameters defined",
+    "deregister_organization_admin_account": {
+        "adminAccountId": {
+            "Description": "The identifier for the administrator account.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_assessment_report_evidence_folder": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceFolderId": {
+            "Description": "The unique identifier for the folder that the evidence is stored in.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_account_status": "No parameters defined",
+    "get_assessment": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_assessment_framework": {
+        "frameworkId": {
+            "Description": "The identifier for the framework.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_assessment_report_url": {
+        "assessmentReportId": {
+            "Description": "The unique identifier for the assessment report.",
+            "Type": "string",
+            "Required": true
+        },
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_change_logs": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The unique identifier for the control set.",
+            "Type": "string",
+            "Required": false
+        },
+        "controlId": {
+            "Description": "The unique identifier for the control.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_control": {
+        "controlId": {
+            "Description": "The identifier for the control.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_delegations": {
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_evidence": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The unique identifier for the control set.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceFolderId": {
+            "Description": "The unique identifier for the folder that the evidence is stored in.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceId": {
+            "Description": "The unique identifier for the evidence.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_evidence_by_evidence_folder": {
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The identifier for the control set.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceFolderId": {
+            "Description": "The unique identifier for the folder that the evidence is stored in.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_evidence_folder": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The unique identifier for the control set.",
+            "Type": "string",
+            "Required": true
+        },
+        "evidenceFolderId": {
+            "Description": "The unique identifier for the folder that the evidence is stored in.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_evidence_folders_by_assessment": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_evidence_folders_by_assessment_control": {
+        "assessmentId": {
+            "Description": "The identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The identifier for the control set.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlId": {
+            "Description": "The identifier for the control.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_insights": "No parameters defined",
+    "get_insights_by_assessment": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_organization_admin_account": "No parameters defined",
+    "get_services_in_scope": "No parameters defined",
+    "get_settings": {
+        "attribute": {
+            "Description": "The list of SettingAttribute enum values.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_assessment_control_insights_by_control_domain": {
+        "controlDomainId": {
+            "Description": "The unique identifier for the control domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "assessmentId": {
+            "Description": "The unique identifier for the active assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_assessment_framework_share_requests": {
+        "requestType": {
+            "Description": "Specifies whether the share request is a sent request or a received request.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_assessment_frameworks": {
+        "frameworkType": {
+            "Description": "The type of framework, such as a standard framework or a custom framework.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_assessment_reports": {
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_assessments": {
+        "status": {
+            "Description": "The current status of the assessment.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_control_domain_insights": {
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_control_domain_insights_by_assessment": {
+        "assessmentId": {
+            "Description": "The unique identifier for the active assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_control_insights_by_control_domain": {
+        "controlDomainId": {
+            "Description": "The unique identifier for the control domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_controls": {
+        "controlType": {
+            "Description": "The type of control, such as a standard control or a custom control.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_keywords_for_data_source": {
+        "source": {
+            "Description": "The control mapping data source that the keywords apply to.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_notifications": {
+        "nextToken": {
+            "Description": "The pagination token that's used to fetch the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Represents the maximum number of results on a page or for an API request call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "register_account": {
+        "kmsKey": {
+            "Description": "The KMS key details.",
+            "Type": "string",
+            "Required": false
+        },
+        "delegatedAdminAccount": {
+            "Description": "The delegated administrator account for Audit Manager.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_organization_admin_account": {
+        "adminAccountId": {
+            "Description": "The identifier for the delegated administrator account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_assessment_framework_share": {
+        "frameworkId": {
+            "Description": "The unique identifier for the custom framework to be shared.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationAccount": {
+            "Description": "The Amazon Web Services account of the recipient.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationRegion": {
+            "Description": "The Amazon Web Services Region of the recipient.",
+            "Type": "string",
+            "Required": true
+        },
+        "comment": {
+            "Description": "An optional comment from the sender about the share request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags that are associated with the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the specified resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The name or key of the tag.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_assessment": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "assessmentName": {
+            "Description": "The name of the assessment to be updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "assessmentDescription": {
+            "Description": "The description of the assessment.",
+            "Type": "string",
+            "Required": false
+        },
+        "scope": {
+            "Description": "The scope of the assessment.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "assessmentReportsDestination": {
+            "Description": "The assessment report storage destination for the assessment that's being updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "roles": {
+            "Description": "The list of roles for the assessment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_assessment_control": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The unique identifier for the control set.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlId": {
+            "Description": "The unique identifier for the control.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlStatus": {
+            "Description": "The status of the control.",
+            "Type": "string",
+            "Required": false
+        },
+        "commentBody": {
+            "Description": "The comment body text for the control.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_assessment_control_set_status": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "controlSetId": {
+            "Description": "The unique identifier for the control set.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The status of the control set that's being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "comment": {
+            "Description": "The comment that's related to the status update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_assessment_framework": {
+        "frameworkId": {
+            "Description": "The unique identifier for the framework.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the framework to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the updated framework.",
+            "Type": "string",
+            "Required": false
+        },
+        "complianceType": {
+            "Description": "The compliance type that the new custom framework supports, such as CIS or HIPAA.",
+            "Type": "string",
+            "Required": false
+        },
+        "controlSets": {
+            "Description": "The control sets that are associated with the framework.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_assessment_framework_share": {
+        "requestId": {
+            "Description": "The unique identifier for the share request.",
+            "Type": "string",
+            "Required": true
+        },
+        "requestType": {
+            "Description": "Specifies whether the share request is a sent request or a received request.",
+            "Type": "string",
+            "Required": true
+        },
+        "action": {
+            "Description": "Specifies the update action for the share request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_assessment_status": {
+        "assessmentId": {
+            "Description": "The unique identifier for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The current status of the assessment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_control": {
+        "controlId": {
+            "Description": "The identifier for the control.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the updated control.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The optional description of the control.",
+            "Type": "string",
+            "Required": false
+        },
+        "testingInformation": {
+            "Description": "The steps that you should follow to determine if the control is met.",
+            "Type": "string",
+            "Required": false
+        },
+        "actionPlanTitle": {
+            "Description": "The title of the action plan for remediating the control.",
+            "Type": "string",
+            "Required": false
+        },
+        "actionPlanInstructions": {
+            "Description": "The recommended actions to carry out if the control isn't fulfilled.",
+            "Type": "string",
+            "Required": false
+        },
+        "controlMappingSources": {
+            "Description": "The data mapping sources for the control.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_settings": {
+        "snsTopic": {
+            "Description": "The Amazon Simple Notification Service (Amazon SNS) topic that Audit Manager sends notifications to.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultAssessmentReportsDestination": {
+            "Description": "The default storage destination for assessment reports.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "defaultProcessOwners": {
+            "Description": "A list of the default audit owners.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "kmsKey": {
+            "Description": "The KMS key details.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "validate_assessment_report_integrity": {
+        "s3RelativePath": {
+            "Description": "The relative path of the Amazon S3 bucket that the assessment report is stored in.",
+            "Type": "string",
+            "Required": true
+        }
+    }
+}

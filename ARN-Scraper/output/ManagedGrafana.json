@@ -1,0 +1,330 @@
+{
+    "associate_license": {
+        "licenseType": {
+            "Description": "The type of license to associate with the workspace.",
+            "Type": "string",
+            "Required": true
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace to associate the license with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_workspace": {
+        "accountAccessType": {
+            "Description": "Specifies whether the workspace can access Amazon Web Services resources in this Amazon Web Services account only, or whether it can also access Amazon Web Services resources in other accounts in the same organization. If you specify ORGANIZATION, you must specify which organizational units the workspace can access in the workspaceOrganizationalUnits parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "authenticationProviders": {
+            "Description": "Specifies whether this workspace uses SAML 2.0, Amazon Web Services Single Sign On, or both to authenticate users for using the Grafana console within a workspace. For more information, see User authentication in Amazon Managed Grafana .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive, user-provided identifier to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "organizationRoleName": {
+            "Description": "The name of an IAM role that already exists to use with Organizations to access Amazon Web Services data sources and notification channels in other accounts in an organization.",
+            "Type": "string",
+            "Required": false
+        },
+        "permissionType": {
+            "Description": "If you specify SERVICE_MANAGED on AWS Grafana console, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels. In CLI mode, the permissionType SERVICE_MANAGED will not create the IAM role for you.\nIf you specify CUSTOMER_MANAGED, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization that is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose CUSTOMER_MANAGED .\nFor more information, see Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels .",
+            "Type": "string",
+            "Required": true
+        },
+        "stackSetName": {
+            "Description": "The name of the CloudFormation stack set to use to generate IAM roles to be used for this workspace.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The list of tags associated with the workspace.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "workspaceDataSources": {
+            "Description": "Specify the Amazon Web Services data sources that you want to be queried in this workspace. Specifying these data sources here enables Amazon Managed Grafana to create IAM roles and permissions that allow Amazon Managed Grafana to read data from these sources. You must still add them as data sources in the Grafana console in the workspace.\nIf you don't specify a data source here, you can still add it as a data source in the workspace console later. However, you will then have to manually configure permissions for it.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workspaceDescription": {
+            "Description": "A description for the workspace. This is used only to help you identify this workspace.\nPattern: ^[\\\\p{L}\\\\p{Z}\\\\p{N}\\\\p{P}]{0,2048}$",
+            "Type": "string",
+            "Required": false
+        },
+        "workspaceName": {
+            "Description": "The name for the workspace. It does not have to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "workspaceNotificationDestinations": {
+            "Description": "Specify the Amazon Web Services notification channels that you plan to use in this workspace. Specifying these data sources here enables Amazon Managed Grafana to create IAM roles and permissions that allow Amazon Managed Grafana to use these channels.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workspaceOrganizationalUnits": {
+            "Description": "Specifies the organizational units that this workspace is allowed to use data sources from, if this workspace is in an account that is part of an organization.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workspaceRoleArn": {
+            "Description": "The workspace needs an IAM role that grants permissions to the Amazon Web Services resources that the workspace will view data from. If you already have a role that you want to use, specify it here. The permission type should be set to CUSTOMER_MANAGED .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_workspace_api_key": {
+        "keyName": {
+            "Description": "Specifies the name of the key to create. Key names must be unique to the workspace.",
+            "Type": "string",
+            "Required": true
+        },
+        "keyRole": {
+            "Description": "Specifies the permission level of the key.\nValid Values: VIEWER | EDITOR | ADMIN",
+            "Type": "string",
+            "Required": true
+        },
+        "secondsToLive": {
+            "Description": "Specifies the time in seconds until the key expires. Keys can be valid for up to 30 days.",
+            "Type": "integer",
+            "Required": true
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace in which to create an API key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_workspace": {
+        "workspaceId": {
+            "Description": "The ID of the workspace to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_workspace_api_key": {
+        "keyName": {
+            "Description": "The name of the API key to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_workspace": {
+        "workspaceId": {
+            "Description": "The ID of the workspace to display information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_workspace_authentication": {
+        "workspaceId": {
+            "Description": "The ID of the workspace to return authentication information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_license": {
+        "licenseType": {
+            "Description": "The type of license to remove from the workspace.",
+            "Type": "string",
+            "Required": true
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace to remove the Grafana Enterprise license from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_permissions": {
+        "groupId": {
+            "Description": "(Optional) Limits the results to only the group that matches this ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to use when requesting the next set of results. You received this token from a previous ListPermissions operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "userId": {
+            "Description": "(Optional) Limits the results to only the user that matches this ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "userType": {
+            "Description": "(Optional) If you specify SSO_USER , then only the permissions of Amazon Web Services SSO users are returned. If you specify SSO_GROUP , only the permissions of Amazon Web Services SSO groups are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace to list permissions for. This parameter is required.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource the list of tags are associated with.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_workspaces": {
+        "maxResults": {
+            "Description": "The maximum number of workspaces to include in the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of workspaces to return. (You receive this token from a previous ListWorkspaces operation.)",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource the tag is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The list of tag keys and values to associate with the resource. You can associate tag keys only, tags (key and values) only or a combination of tag keys and tags.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource the tag association is removed from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The key values of the tag to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_permissions": {
+        "updateInstructionBatch": {
+            "Description": "An array of structures that contain the permission updates to make.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_workspace": {
+        "accountAccessType": {
+            "Description": "Specifies whether the workspace can access Amazon Web Services resources in this Amazon Web Services account only, or whether it can also access Amazon Web Services resources in other accounts in the same organization. If you specify ORGANIZATION , you must specify which organizational units the workspace can access in the workspaceOrganizationalUnits parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "organizationRoleName": {
+            "Description": "The name of an IAM role that already exists to use to access resources through Organizations.",
+            "Type": "string",
+            "Required": false
+        },
+        "permissionType": {
+            "Description": "If you specify Service Managed, Amazon Managed Grafana automatically creates the IAM roles and provisions the permissions that the workspace needs to use Amazon Web Services data sources and notification channels.\nIf you specify CUSTOMER_MANAGED, you will manage those roles and permissions yourself. If you are creating this workspace in a member account of an organization and that account is not a delegated administrator account, and you want the workspace to access data sources in other Amazon Web Services accounts in the organization, you must choose CUSTOMER_MANAGED .\nFor more information, see Amazon Managed Grafana permissions and policies for Amazon Web Services data sources and notification channels",
+            "Type": "string",
+            "Required": false
+        },
+        "stackSetName": {
+            "Description": "The name of the CloudFormation stack set to use to generate IAM roles to be used for this workspace.",
+            "Type": "string",
+            "Required": false
+        },
+        "workspaceDataSources": {
+            "Description": "Specify the Amazon Web Services data sources that you want to be queried in this workspace. Specifying these data sources here enables Amazon Managed Grafana to create IAM roles and permissions that allow Amazon Managed Grafana to read data from these sources. You must still add them as data sources in the Grafana console in the workspace.\nIf you don't specify a data source here, you can still add it as a data source later in the workspace console. However, you will then have to manually configure permissions for it.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workspaceDescription": {
+            "Description": "A description for the workspace. This is used only to help you identify this workspace.",
+            "Type": "string",
+            "Required": false
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "workspaceName": {
+            "Description": "A new name for the workspace to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "workspaceNotificationDestinations": {
+            "Description": "Specify the Amazon Web Services notification channels that you plan to use in this workspace. Specifying these data sources here enables Amazon Managed Grafana to create IAM roles and permissions that allow Amazon Managed Grafana to use these channels.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workspaceOrganizationalUnits": {
+            "Description": "Specifies the organizational units that this workspace is allowed to use data sources from, if this workspace is in an account that is part of an organization.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workspaceRoleArn": {
+            "Description": "The workspace needs an IAM role that grants permissions to the Amazon Web Services resources that the workspace will view data from. If you already have a role that you want to use, specify it here. If you omit this field and you specify some Amazon Web Services resources in workspaceDataSources or workspaceNotificationDestinations , a new IAM role with the necessary permissions is automatically created.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_workspace_authentication": {
+        "authenticationProviders": {
+            "Description": "Specifies whether this workspace uses SAML 2.0, Amazon Web Services Single Sign On, or both to authenticate users for using the Grafana console within a workspace. For more information, see User authentication in Amazon Managed Grafana .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "samlConfiguration": {
+            "Description": "If the workspace uses SAML, use this structure to map SAML assertion attributes to workspace user information and define which groups in the assertion attribute are to have the Admin and Editor roles in the workspace.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "workspaceId": {
+            "Description": "The ID of the workspace to update the authentication for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

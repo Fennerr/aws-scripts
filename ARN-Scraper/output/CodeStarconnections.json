@@ -1,0 +1,167 @@
+{
+    "create_connection": {
+        "ProviderType": {
+            "Description": "The name of the external provider where your third-party code repository is configured.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConnectionName": {
+            "Description": "The name of the connection to be created. The name must be unique in the calling AWS account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value pair to use when tagging the resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "HostArn": {
+            "Description": "The Amazon Resource Name (ARN) of the host associated with the connection to be created.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_host": {
+        "Name": {
+            "Description": "The name of the host to be created. The name must be unique in the calling AWS account.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderType": {
+            "Description": "The name of the installed provider to be associated with your connection. The host resource represents the infrastructure where your provider type is installed. The valid provider type is GitHub Enterprise Server.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderEndpoint": {
+            "Description": "The endpoint of the infrastructure to be represented by the host after it is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "VpcConfiguration": {
+            "Description": "The VPC configuration to be provisioned for the host. A VPC must be configured and the infrastructure to be represented by the host must already be connected to the VPC.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "\n(dict) --A tag is a key-value pair that is used to manage the resource.\nThis tag is available for use by AWS services that support tags.\n\nKey (string)[REQUIRED]The tag's key.\n\nValue (string)[REQUIRED]The tag's value.\n\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_connection": {
+        "ConnectionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the connection to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_host": {
+        "HostArn": {
+            "Description": "The Amazon Resource Name (ARN) of the host to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_connection": {
+        "ConnectionArn": {
+            "Description": "The Amazon Resource Name (ARN) of a connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_host": {
+        "HostArn": {
+            "Description": "The Amazon Resource Name (ARN) of the requested host.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_connections": {
+        "ProviderTypeFilter": {
+            "Description": "Filters the list of connections to those associated with a specified provider, such as Bitbucket.",
+            "Type": "string",
+            "Required": false
+        },
+        "HostArnFilter": {
+            "Description": "Filters the list of connections to those associated with a specified host.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token that was returned from the previous ListConnections call, which can be used to return the next set of connections in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_hosts": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token that was returned from the previous ListHosts call, which can be used to return the next set of hosts in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for which you want to get information about tags, if any.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which you want to add or update tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags you want to modify or add to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of keys for the tags to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_host": {
+        "HostArn": {
+            "Description": "The Amazon Resource Name (ARN) of the host to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderEndpoint": {
+            "Description": "The URL or endpoint of the host to be updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcConfiguration": {
+            "Description": "The VPC configuration of the host to be updated. A VPC must be configured and the infrastructure to be represented by the host must already be connected to the VPC.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

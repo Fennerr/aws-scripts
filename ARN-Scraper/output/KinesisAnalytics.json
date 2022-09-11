@@ -1,0 +1,338 @@
+{
+    "add_application_cloud_watch_logging_option": {
+        "ApplicationName": {
+            "Description": "The Kinesis Analytics application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version ID of the Kinesis Analytics application.",
+            "Type": "integer",
+            "Required": true
+        },
+        "CloudWatchLoggingOption": {
+            "Description": "Provides the CloudWatch log stream Amazon Resource Name (ARN) and the IAM role ARN. Note: To write application messages to CloudWatch, the IAM role that is used must have the PutLogEvents policy action enabled.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_input": {
+        "ApplicationName": {
+            "Description": "Name of your existing Amazon Kinesis Analytics application to which you want to add the streaming source.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "Current version of your Amazon Kinesis Analytics application. You can use the DescribeApplication operation to find the current application version.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Input": {
+            "Description": "The Input to add.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_input_processing_configuration": {
+        "ApplicationName": {
+            "Description": "Name of the application to which you want to add the input processing configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "Version of the application to which you want to add the input processing configuration. You can use the DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "InputId": {
+            "Description": "The ID of the input configuration to add the input processing configuration to. You can get a list of the input IDs for an application using the DescribeApplication operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputProcessingConfiguration": {
+            "Description": "The InputProcessingConfiguration to add to the application.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_output": {
+        "ApplicationName": {
+            "Description": "Name of the application to which you want to add the output configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "Version of the application to which you want to add the output configuration. You can use the DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Output": {
+            "Description": "An array of objects, each describing one output configuration. In the output configuration, you specify the name of an in-application stream, a destination (that is, an Amazon Kinesis stream, an Amazon Kinesis Firehose delivery stream, or an AWS Lambda function), and record the formation to use when writing to the destination.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_application_reference_data_source": {
+        "ApplicationName": {
+            "Description": "Name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "Version of the application for which you are adding the reference data source. You can use the DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ReferenceDataSource": {
+            "Description": "The reference data source can be an object in your Amazon S3 bucket. Amazon Kinesis Analytics reads the object and copies the data into the in-application table that is created. You provide an S3 bucket, object key name, and the resulting in-application table that is created. You must also provide an IAM role with the necessary permissions that Amazon Kinesis Analytics can assume to read the object from your S3 bucket on your behalf.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_application": {
+        "ApplicationName": {
+            "Description": "Name of your Amazon Kinesis Analytics application (for example, sample-app ).",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplicationDescription": {
+            "Description": "Summary description of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "Inputs": {
+            "Description": "Use this parameter to configure the application input.\nYou can configure your application to receive input from a single streaming source. In this configuration, you map this streaming source to an in-application stream that is created. Your application code can then query the in-application stream like a table (you can think of it as a constantly updating table).\nFor the streaming source, you provide its Amazon Resource Name (ARN) and format of data on the stream (for example, JSON, CSV, etc.). You also must provide an IAM role that Amazon Kinesis Analytics can assume to read this stream on your behalf.\nTo create the in-application stream, you need to specify a schema to transform your data into a schematized version used in SQL. In the schema, you provide the necessary mapping of the data elements in the streaming source to record columns in the in-app stream.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Outputs": {
+            "Description": "You can configure application output to write data from any of the in-application streams to up to three destinations.\nThese destinations can be Amazon Kinesis streams, Amazon Kinesis Firehose delivery streams, AWS Lambda destinations, or any combination of the three.\nIn the configuration, you specify the in-application stream name, the destination stream or Lambda function Amazon Resource Name (ARN), and the format to use when writing data. You must also provide an IAM role that Amazon Kinesis Analytics can assume to write to the destination stream or Lambda function on your behalf.\nIn the output configuration, you also provide the output stream or Lambda function ARN. For stream destinations, you provide the format of data in the stream (for example, JSON, CSV). You also must provide an IAM role that Amazon Kinesis Analytics can assume to write to the stream or Lambda function on your behalf.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CloudWatchLoggingOptions": {
+            "Description": "Use this parameter to configure a CloudWatch log stream to monitor application configuration errors. For more information, see Working with Amazon CloudWatch Logs .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ApplicationCode": {
+            "Description": "One or more SQL statements that read input data, transform it, and generate output. For example, you can write a SQL statement that reads data from one in-application stream, generates a running average of the number of advertisement clicks by vendor, and insert resulting rows in another in-application stream using pumps. For more information about the typical pattern, see Application Code .\nYou can provide such series of SQL statements, where output of one statement can be used as the input for the next statement. You store intermediate results by creating in-application streams and pumps.\nNote that the application code must create the streams with names specified in the Outputs. For example, if your Outputs defines output streams named ExampleOutputStream1 and ExampleOutputStream2, then your application code must create these streams.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of one or more tags to assign to the application. A tag is a key-value pair that identifies an application. Note that the maximum number of application tags includes system tags. The maximum number of user-defined application tags is 50. For more information, see Using Tagging .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_application": {
+        "ApplicationName": {
+            "Description": "Name of the Amazon Kinesis Analytics application to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "CreateTimestamp": {
+            "Description": "You can use the DescribeApplication operation to get this value.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "delete_application_cloud_watch_logging_option": {
+        "ApplicationName": {
+            "Description": "The Kinesis Analytics application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version ID of the Kinesis Analytics application.",
+            "Type": "integer",
+            "Required": true
+        },
+        "CloudWatchLoggingOptionId": {
+            "Description": "The CloudWatchLoggingOptionId of the CloudWatch logging option to delete. You can get the CloudWatchLoggingOptionId by using the DescribeApplication operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application_input_processing_configuration": {
+        "ApplicationName": {
+            "Description": "The Kinesis Analytics application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The version ID of the Kinesis Analytics application.",
+            "Type": "integer",
+            "Required": true
+        },
+        "InputId": {
+            "Description": "The ID of the input configuration from which to delete the input processing configuration. You can get a list of the input IDs for an application by using the DescribeApplication operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application_output": {
+        "ApplicationName": {
+            "Description": "Amazon Kinesis Analytics application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "Amazon Kinesis Analytics application version. You can use the DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "OutputId": {
+            "Description": "The ID of the configuration to delete. Each output configuration that is added to the application, either when the application is created or later using the AddApplicationOutput operation, has a unique ID. You need to provide the ID to uniquely identify the output configuration that you want to delete from the application configuration. You can use the DescribeApplication operation to get the specific OutputId .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application_reference_data_source": {
+        "ApplicationName": {
+            "Description": "Name of an existing application.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "Version of the application. You can use the DescribeApplication operation to get the current application version. If the version specified is not the current version, the ConcurrentModificationException is returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ReferenceId": {
+            "Description": "ID of the reference data source. When you add a reference data source to your application using the AddApplicationReferenceDataSource, Amazon Kinesis Analytics assigns an ID. You can use the DescribeApplication operation to get the reference ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_application": {
+        "ApplicationName": {
+            "Description": "Name of the application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "discover_input_schema": {
+        "ResourceARN": {
+            "Description": "Amazon Resource Name (ARN) of the streaming source.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleARN": {
+            "Description": "ARN of the IAM role that Amazon Kinesis Analytics can assume to access the stream on your behalf.",
+            "Type": "string",
+            "Required": false
+        },
+        "InputStartingPositionConfiguration": {
+            "Description": "Point at which you want Amazon Kinesis Analytics to start reading records from the specified streaming source discovery purposes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "S3Configuration": {
+            "Description": "Specify this parameter to discover a schema from data in an Amazon S3 object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "InputProcessingConfiguration": {
+            "Description": "The InputProcessingConfiguration to use to preprocess the records before discovering the schema of the records.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_applications": {
+        "Limit": {
+            "Description": "Maximum number of applications to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ExclusiveStartApplicationName": {
+            "Description": "Name of the application to start the list with. When using pagination to retrieve the list, you don't need to specify this parameter in the first request. However, in subsequent requests, you add the last application name from the previous response to get the next page of applications.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the application for which to retrieve tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_application": {
+        "ApplicationName": {
+            "Description": "Name of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputConfigurations": {
+            "Description": "Identifies the specific input, by ID, that the application starts consuming. Amazon Kinesis Analytics starts reading the streaming source associated with the input. You can also specify where in the streaming source you want Amazon Kinesis Analytics to start reading.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "stop_application": {
+        "ApplicationName": {
+            "Description": "Name of the running application to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the application to assign the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value tags to assign to the application.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the Kinesis Analytics application from which to remove the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of keys of tags to remove from the specified application.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_application": {
+        "ApplicationName": {
+            "Description": "Name of the Amazon Kinesis Analytics application to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentApplicationVersionId": {
+            "Description": "The current application version ID. You can use the DescribeApplication operation to get this value.",
+            "Type": "integer",
+            "Required": true
+        },
+        "ApplicationUpdate": {
+            "Description": "Describes application updates.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    }
+}

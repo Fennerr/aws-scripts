@@ -1,0 +1,1036 @@
+{
+    "associate_web_acl": {
+        "WebACLArn": {
+            "Description": "The Amazon Resource Name (ARN) of the web ACL that you want to associate with the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to associate with the web ACL.\nThe ARN must be in one of the following formats:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "check_capacity": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Rules": {
+            "Description": "An array of  Rule that you're configuring to use in a rule group or web ACL.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_ip_set": {
+        "Name": {
+            "Description": "The name of the IP set. You cannot change the name of an IPSet after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Description": {
+            "Description": "A description of the IP set that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "IPAddressVersion": {
+            "Description": "The version of the IP addresses, either IPV4 or IPV6 .",
+            "Type": "string",
+            "Required": true
+        },
+        "Addresses": {
+            "Description": "Contains an array of strings that specifies zero or more IP addresses or blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except for /0.\nExample address strings:\nFor more information about CIDR notation, see the Wikipedia entry Classless Inter-Domain Routing .\nExample JSON Addresses specifications:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "An array of key:value pairs to associate with the resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_regex_pattern_set": {
+        "Name": {
+            "Description": "The name of the set. You cannot change the name after you create the set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Description": {
+            "Description": "A description of the set that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegularExpressionList": {
+            "Description": "Array of regular expression strings.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "An array of key:value pairs to associate with the resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_rule_group": {
+        "Name": {
+            "Description": "The name of the rule group. You cannot change the name of a rule group after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Capacity": {
+            "Description": "The web ACL capacity units (WCUs) required for this rule group.\nWhen you create your own rule group, you define this, and you cannot change it after creation. When you add or modify the rules in a rule group, WAF enforces this limit. You can check the capacity for a set of rules using  CheckCapacity .\nWAF uses WCUs to calculate and control the operating resources that are used to run your rules, rule groups, and web ACLs. WAF calculates capacity differently for each rule type, to reflect the relative cost of each rule. Simple rules that cost little to run use fewer WCUs than more complex rules that use more processing power. Rule group capacity is fixed at creation, which helps users plan their web ACL WCU usage when they use a rule group. The WCU limit for web ACLs is 1,500.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the rule group that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "Rules": {
+            "Description": "The  Rule statements used to identify the web requests that you want to allow, block, or count. Each rule includes one top-level statement that WAF uses to identify matching web requests, and parameters that govern how WAF handles them.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VisibilityConfig": {
+            "Description": "Defines and enables Amazon CloudWatch metrics and web request sample collection.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "An array of key:value pairs to associate with the resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CustomResponseBodies": {
+            "Description": "A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group.\nFor information about customizing web requests and responses, see Customizing web requests and responses in WAF in the WAF Developer Guide .\nFor information about the limits on count and size for custom request and response settings, see WAF quotas in the WAF Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_web_acl": {
+        "Name": {
+            "Description": "The name of the web ACL. You cannot change the name of a web ACL after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DefaultAction": {
+            "Description": "The action to perform if none of the Rules contained in the WebACL match.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description of the web ACL that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "Rules": {
+            "Description": "The  Rule statements used to identify the web requests that you want to allow, block, or count. Each rule includes one top-level statement that WAF uses to identify matching web requests, and parameters that govern how WAF handles them.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VisibilityConfig": {
+            "Description": "Defines and enables Amazon CloudWatch metrics and web request sample collection.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "An array of key:value pairs to associate with the resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CustomResponseBodies": {
+            "Description": "A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the web ACL, and then use them in the rules and default actions that you define in the web ACL.\nFor information about customizing web requests and responses, see Customizing web requests and responses in WAF in the WAF Developer Guide .\nFor information about the limits on count and size for custom request and response settings, see WAF quotas in the WAF Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CaptchaConfig": {
+            "Description": "Specifies how WAF should handle CAPTCHA evaluations for rules that don't have their own CaptchaConfig settings. If you don't specify this, WAF uses its default settings for CaptchaConfig .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_firewall_manager_rule_groups": {
+        "WebACLArn": {
+            "Description": "The Amazon Resource Name (ARN) of the web ACL.",
+            "Type": "string",
+            "Required": true
+        },
+        "WebACLLockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_ip_set": {
+        "Name": {
+            "Description": "The name of the IP set. You cannot change the name of an IPSet after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_logging_configuration": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the web ACL from which you want to delete the  LoggingConfiguration .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_permission_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the rule group from which you want to delete the policy.\nYou must be the owner of the rule group to perform this operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_regex_pattern_set": {
+        "Name": {
+            "Description": "The name of the set. You cannot change the name after you create the set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_rule_group": {
+        "Name": {
+            "Description": "The name of the rule group. You cannot change the name of a rule group after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the rule group. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_web_acl": {
+        "Name": {
+            "Description": "The name of the web ACL. You cannot change the name of a web ACL after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The unique identifier for the web ACL. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_managed_rule_group": {
+        "VendorName": {
+            "Description": "The name of the managed rule group vendor. You use this, along with the rule group name, to identify the rule group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the managed rule group. You use this, along with the vendor name, to identify the rule group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "VersionName": {
+            "Description": "The version of the rule group. You can only use a version that is not scheduled for expiration. If you don't provide this, WAF uses the vendor's default version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_web_acl": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to disassociate from the web ACL.\nThe ARN must be in one of the following formats:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "generate_mobile_sdk_release_url": {
+        "Platform": {
+            "Description": "The device platform.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReleaseVersion": {
+            "Description": "The release version. For the latest available version, specify LATEST .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_ip_set": {
+        "Name": {
+            "Description": "The name of the IP set. You cannot change the name of an IPSet after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_logging_configuration": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the web ACL for which you want to get the  LoggingConfiguration .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_managed_rule_set": {
+        "Name": {
+            "Description": "The name of the managed rule set. You use this, along with the rule set ID, to identify the rule set.\nThis name is assigned to the corresponding managed rule group, which your customers can access and use.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the managed rule set. The ID is returned in the responses to commands like list. You provide it to operations like get and update .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_mobile_sdk_release": {
+        "Platform": {
+            "Description": "The device platform.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReleaseVersion": {
+            "Description": "The release version. For the latest available version, specify LATEST .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_permission_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the rule group for which you want to get the policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rate_based_statement_managed_keys": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "WebACLName": {
+            "Description": "The name of the web ACL. You cannot change the name of a web ACL after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "WebACLId": {
+            "Description": "The unique identifier for the web ACL. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "RuleGroupRuleName": {
+            "Description": "The name of the rule group reference statement in your web ACL. This is required only when you have the rate-based rule nested inside a rule group.",
+            "Type": "string",
+            "Required": false
+        },
+        "RuleName": {
+            "Description": "The name of the rate-based rule to get the keys for. If you have the rule defined inside a rule group that you're using in your web ACL, also provide the name of the rule group reference statement in the request parameter RuleGroupRuleName .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_regex_pattern_set": {
+        "Name": {
+            "Description": "The name of the set. You cannot change the name after you create the set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rule_group": {
+        "Name": {
+            "Description": "The name of the rule group. You cannot change the name of a rule group after you create it.",
+            "Type": "string",
+            "Required": false
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the rule group. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": false
+        },
+        "ARN": {
+            "Description": "The Amazon Resource Name (ARN) of the entity.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_sampled_requests": {
+        "WebAclArn": {
+            "Description": "The Amazon resource name (ARN) of the WebACL for which you want a sample of requests.",
+            "Type": "string",
+            "Required": true
+        },
+        "RuleMetricName": {
+            "Description": "The metric name assigned to the Rule or RuleGroup for which you want a sample of requests.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TimeWindow": {
+            "Description": "The start date and time and the end date and time of the range for which you want GetSampledRequests to return a sample of requests. You must specify the times in Coordinated Universal Time (UTC) format. UTC format includes the special designator, Z. For example, \"2016-09-27T14:50Z\". You can specify any time range in the previous three hours. If you specify a start time that's earlier than three hours ago, WAF sets it to three hours ago.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxItems": {
+            "Description": "The number of requests that you want WAF to return from among the first 5,000 requests that your Amazon Web Services resource received during the time range. If your resource received fewer requests than the value of MaxItems, GetSampledRequests returns information about all of them.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_web_acl": {
+        "Name": {
+            "Description": "The name of the web ACL. You cannot change the name of a web ACL after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The unique identifier for the web ACL. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_web_acl_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose web ACL you want to retrieve.\nThe ARN must be in one of the following formats:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "list_available_managed_rule_group_versions": {
+        "VendorName": {
+            "Description": "The name of the managed rule group vendor. You use this, along with the rule group name, to identify the rule group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the managed rule group. You use this, along with the vendor name, to identify the rule group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_available_managed_rule_groups": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_ip_sets": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_logging_configurations": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_managed_rule_sets": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_mobile_sdk_releases": {
+        "Platform": {
+            "Description": "The device platform to retrieve the list for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_regex_pattern_sets": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resources_for_web_acl": {
+        "WebACLArn": {
+            "Description": "The Amazon Resource Name (ARN) of the web ACL.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "Used for web ACLs that are scoped for regional applications. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_rule_groups": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_web_acls": {
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextMarker": {
+            "Description": "When you request a list of objects with a Limit setting, if the number of objects that are still available for retrieval exceeds the limit, WAF returns a NextMarker value in the response. To retrieve the next batch of objects, provide the marker from the prior call in your next request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects that you want WAF to return for this request. If more objects are available, in the response, WAF provides a NextMarker value that you can use in a subsequent call to get the next batch of objects.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_logging_configuration": {
+        "LoggingConfiguration": {
+            "Description": "[REQUIRED]\n\nResourceArn (string)[REQUIRED]The Amazon Resource Name (ARN) of the web ACL that you want to associate with LogDestinationConfigs .\n\nLogDestinationConfigs (list)[REQUIRED]The logging destination configuration that you want to associate with the web ACL.\n\nNote\nYou can associate one logging destination to a web ACL.\n\n\n(string) --\n\n\nRedactedFields (list) --The parts of the request that you want to keep out of the logs. For example, if you redact the SingleHeader field, the HEADER field in the logs will be xxx .\n\nNote\nYou can specify only the following fields for redaction: UriPath , QueryString , SingleHeader , Method , and JsonBody .\n\n\n(dict) --The part of the web request that you want WAF to inspect. Include the single FieldToMatch type that you want to inspect, with additional specifications as needed, according to the type. You specify a single request component in FieldToMatch for each rule statement that requires it. To inspect more than one component of the web request, create a separate rule statement for each component.\nExample JSON for a QueryString field to match:\n\n\"FieldToMatch\": { \"QueryString\": {} }\nExample JSON for a Method field to match specification:\n\n\"FieldToMatch\": { \"Method\": { \"Name\": \"DELETE\" } }\n\nSingleHeader (dict) --Inspect a single header. Provide the name of the header to inspect, for example, User-Agent or Referer . This setting isn't case sensitive.\nExample JSON: \"SingleHeader\": { \"Name\": \"haystack\" }\nAlternately, you can filter and inspect all headers with the Headers FieldToMatch setting.\n\nName (string)[REQUIRED]The name of the query header to inspect.\n\n\n\nSingleQueryArgument (dict) --Inspect a single query argument. Provide the name of the query argument to inspect, such as UserName or SalesRegion . The name can be up to 30 characters long and isn't case sensitive.\nExample JSON: \"SingleQueryArgument\": { \"Name\": \"myArgument\" }\n\nName (string)[REQUIRED]The name of the query argument to inspect.\n\n\n\nAllQueryArguments (dict) --Inspect all query arguments.\n\nUriPath (dict) --Inspect the request URI path. This is the part of the web request that identifies a resource, for example, /images/daily-ad.jpg .\n\nQueryString (dict) --Inspect the query string. This is the part of a URL that appears after a ? character, if any.\n\nBody (dict) --Inspect the request body as plain text. The request body immediately follows the request headers. This is the part of a request that contains any additional data that you want to send to your web server as the HTTP request body, such as data from a form.\nOnly the first 8 KB (8192 bytes) of the request body are forwarded to WAF for inspection by the underlying host service. For information about how to handle oversized request bodies, see the Body object configuration.\n\nOversizeHandling (string) --What WAF should do if the body is larger than WAF can inspect. WAF does not support inspecting the entire contents of the body of a web request when the body exceeds 8 KB (8192 bytes). Only the first 8 KB of the request body are forwarded to WAF by the underlying host service.\nThe options for oversize handling are the following:\n\nCONTINUE - Inspect the body normally, according to the rule inspection criteria.\nMATCH - Treat the web request as matching the rule statement. WAF applies the rule action to the request.\nNO_MATCH - Treat the web request as not matching the rule statement.\n\nYou can combine the MATCH or NO_MATCH settings for oversize handling with your rule and web ACL action settings, so that you block any request whose body is over 8 KB.\nDefault: CONTINUE\n\n\n\nMethod (dict) --Inspect the HTTP method. The method indicates the type of operation that the request is asking the origin to perform.\n\nJsonBody (dict) --Inspect the request body as JSON. The request body immediately follows the request headers. This is the part of a request that contains any additional data that you want to send to your web server as the HTTP request body, such as data from a form.\nOnly the first 8 KB (8192 bytes) of the request body are forwarded to WAF for inspection by the underlying host service. For information about how to handle oversized request bodies, see the JsonBody object configuration.\n\nMatchPattern (dict)[REQUIRED]The patterns to look for in the JSON body. WAF inspects the results of these pattern matches against the rule inspection criteria.\n\nAll (dict) --Match all of the elements. See also MatchScope in  JsonBody .\nYou must specify either this setting or the IncludedPaths setting, but not both.\n\nIncludedPaths (list) --Match only the specified include paths. See also MatchScope in  JsonBody .\nProvide the include paths using JSON Pointer syntax. For example, \"IncludedPaths\": [\"/dogs/0/name\", \"/dogs/1/name\"] . For information about this syntax, see the Internet Engineering Task Force (IETF) documentation JavaScript Object Notation (JSON) Pointer .\nYou must specify either this setting or the All setting, but not both.\n\nNote\nDon't use this option to include all paths. Instead, use the All setting.\n\n\n(string) --\n\n\n\n\nMatchScope (string)[REQUIRED]The parts of the JSON to match against using the MatchPattern . If you specify All , WAF matches against keys and values.\n\nInvalidFallbackBehavior (string) --What WAF should do if it fails to completely parse the JSON body. The options are the following:\n\nEVALUATE_AS_STRING - Inspect the body as plain text. WAF applies the text transformations and inspection criteria that you defined for the JSON inspection to the body text string.\nMATCH - Treat the web request as matching the rule statement. WAF applies the rule action to the request.\nNO_MATCH - Treat the web request as not matching the rule statement.\n\nIf you don't provide this setting, WAF parses and evaluates the content only up to the first parsing failure that it encounters.\nWAF does its best to parse the entire JSON body, but might be forced to stop for reasons such as invalid characters, duplicate keys, truncation, and any content whose root node isn't an object or an array.\nWAF parses the JSON in the following examples as two valid key, value pairs:\n\nMissing comma: {\"key1\":\"value1\"\"key2\":\"value2\"}\nMissing colon: {\"key1\":\"value1\",\"key2\"\"value2\"}\nExtra colons: {\"key1\"::\"value1\",\"key2\"\"value2\"}\n\n\nOversizeHandling (string) --What WAF should do if the body is larger than WAF can inspect. WAF does not support inspecting the entire contents of the body of a web request when the body exceeds 8 KB (8192 bytes). Only the first 8 KB of the request body are forwarded to WAF by the underlying host service.\nThe options for oversize handling are the following:\n\nCONTINUE - Inspect the body normally, according to the rule inspection criteria.\nMATCH - Treat the web request as matching the rule statement. WAF applies the rule action to the request.\nNO_MATCH - Treat the web request as not matching the rule statement.\n\nYou can combine the MATCH or NO_MATCH settings for oversize handling with your rule and web ACL action settings, so that you block any request whose body is over 8 KB.\nDefault: CONTINUE\n\n\n\nHeaders (dict) --Inspect the request headers. You must configure scope and pattern matching filters in the Headers object, to define the set of headers to and the parts of the headers that WAF inspects.\nOnly the first 8 KB (8192 bytes) of a request's headers and only the first 200 headers are forwarded to WAF for inspection by the underlying host service. You must configure how to handle any oversize header content in the Headers object. WAF applies the pattern matching filters to the headers that it receives from the underlying host service.\n\nMatchPattern (dict)[REQUIRED]The filter to use to identify the subset of headers to inspect in a web request.\nYou must specify exactly one setting: either All , IncludedHeaders , or ExcludedHeaders .\nExample JSON: \"MatchPattern\": { \"ExcludedHeaders\": {\"KeyToExclude1\", \"KeyToExclude2\"} }\n\nAll (dict) --Inspect all headers.\n\nIncludedHeaders (list) --Inspect only the headers that have a key that matches one of the strings specified here.\n\n(string) --\n\n\nExcludedHeaders (list) --Inspect only the headers whose keys don't match any of the strings specified here.\n\n(string) --\n\n\n\n\nMatchScope (string)[REQUIRED]The parts of the headers to match with the rule inspection criteria. If you specify All , WAF inspects both keys and values.\n\nOversizeHandling (string)[REQUIRED]What WAF should do if the headers of the request are larger than WAF can inspect. WAF does not support inspecting the entire contents of request headers when they exceed 8 KB (8192 bytes) or 200 total headers. The underlying host service forwards a maximum of 200 headers and at most 8 KB of header contents to WAF.\nThe options for oversize handling are the following:\n\nCONTINUE - Inspect the headers normally, according to the rule inspection criteria.\nMATCH - Treat the web request as matching the rule statement. WAF applies the rule action to the request.\nNO_MATCH - Treat the web request as not matching the rule statement.\n\n\n\n\nCookies (dict) --Inspect the request cookies. You must configure scope and pattern matching filters in the Cookies object, to define the set of cookies and the parts of the cookies that WAF inspects.\nOnly the first 8 KB (8192 bytes) of a request's cookies and only the first 200 cookies are forwarded to WAF for inspection by the underlying host service. You must configure how to handle any oversize cookie content in the Cookies object. WAF applies the pattern matching filters to the cookies that it receives from the underlying host service.\n\nMatchPattern (dict)[REQUIRED]The filter to use to identify the subset of cookies to inspect in a web request.\nYou must specify exactly one setting: either All , IncludedCookies , or ExcludedCookies .\nExample JSON: \"MatchPattern\": { \"IncludedCookies\": {\"KeyToInclude1\", \"KeyToInclude2\", \"KeyToInclude3\"} }\n\nAll (dict) --Inspect all cookies.\n\nIncludedCookies (list) --Inspect only the cookies that have a key that matches one of the strings specified here.\n\n(string) --\n\n\nExcludedCookies (list) --Inspect only the cookies whose keys don't match any of the strings specified here.\n\n(string) --\n\n\n\n\nMatchScope (string)[REQUIRED]The parts of the cookies to inspect with the rule inspection criteria. If you specify All , WAF inspects both keys and values.\n\nOversizeHandling (string)[REQUIRED]What WAF should do if the cookies of the request are larger than WAF can inspect. WAF does not support inspecting the entire contents of request cookies when they exceed 8 KB (8192 bytes) or 200 total cookies. The underlying host service forwards a maximum of 200 cookies and at most 8 KB of cookie contents to WAF.\nThe options for oversize handling are the following:\n\nCONTINUE - Inspect the cookies normally, according to the rule inspection criteria.\nMATCH - Treat the web request as matching the rule statement. WAF applies the rule action to the request.\nNO_MATCH - Treat the web request as not matching the rule statement.\n\n\n\n\n\n\n\n\nManagedByFirewallManager (boolean) --Indicates whether the logging configuration was created by Firewall Manager, as part of an WAF policy configuration. If true, only Firewall Manager can modify or delete the configuration.\n\nLoggingFilter (dict) --Filtering that specifies which web requests are kept in the logs and which are dropped. You can filter on the rule action and on the web request labels that were applied by matching rules during web ACL evaluation.\n\nFilters (list)[REQUIRED]The filters that you want to apply to the logs.\n\n(dict) --A single logging filter, used in  LoggingFilter .\n\nBehavior (string)[REQUIRED]How to handle logs that satisfy the filter's conditions and requirement.\n\nRequirement (string)[REQUIRED]Logic to apply to the filtering conditions. You can specify that, in order to satisfy the filter, a log must match all conditions or must match at least one condition.\n\nConditions (list)[REQUIRED]Match conditions for the filter.\n\n(dict) --A single match condition for a  Filter .\n\nActionCondition (dict) --A single action condition. This is the action setting that a log record must contain in order to meet the condition.\n\nAction (string)[REQUIRED]The action setting that a log record must contain in order to meet the condition.\n\n\n\nLabelNameCondition (dict) --A single label name condition. This is the fully qualified label name that a log record must contain in order to meet the condition. Fully qualified labels have a prefix, optional namespaces, and label name. The prefix identifies the rule group or web ACL context of the rule that added the label.\n\nLabelName (string)[REQUIRED]The label name that a log record must contain in order to meet the condition. This must be a fully qualified label name. Fully qualified labels have a prefix, optional namespaces, and label name. The prefix identifies the rule group or web ACL context of the rule that added the label.\n\n\n\n\n\n\n\n\n\n\n\nDefaultBehavior (string)[REQUIRED]Default handling for logs that don't match any of the specified filtering conditions.\n\n\n\n\n",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_managed_rule_set_versions": {
+        "Name": {
+            "Description": "The name of the managed rule set. You use this, along with the rule set ID, to identify the rule set.\nThis name is assigned to the corresponding managed rule group, which your customers can access and use.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the managed rule set. The ID is returned in the responses to commands like list. You provide it to operations like get and update .",
+            "Type": "string",
+            "Required": true
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecommendedVersion": {
+            "Description": "The version of the named managed rule group that you'd like your customers to choose, from among your version offerings.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionsToPublish": {
+            "Description": "The versions of the named managed rule group that you want to offer to your customers.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_permission_policy": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the  RuleGroup to which you want to attach the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The policy to attach to the specified rule group.\nThe policy specifications must conform to the following:\nFor more information, see IAM Policies .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An array of key:value pairs to associate with the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "An array of keys identifying the tags to disassociate from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_ip_set": {
+        "Name": {
+            "Description": "The name of the IP set. You cannot change the name of an IPSet after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the IP set that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "Addresses": {
+            "Description": "Contains an array of strings that specifies zero or more IP addresses or blocks of IP addresses in Classless Inter-Domain Routing (CIDR) notation. WAF supports all IPv4 and IPv6 CIDR ranges except for /0.\nExample address strings:\nFor more information about CIDR notation, see the Wikipedia entry Classless Inter-Domain Routing .\nExample JSON Addresses specifications:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_managed_rule_set_version_expiry_date": {
+        "Name": {
+            "Description": "The name of the managed rule set. You use this, along with the rule set ID, to identify the rule set.\nThis name is assigned to the corresponding managed rule group, which your customers can access and use.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the managed rule set. The ID is returned in the responses to commands like list. You provide it to operations like get and update .",
+            "Type": "string",
+            "Required": true
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionToExpire": {
+            "Description": "The version that you want to remove from your list of offerings for the named managed rule group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExpiryTimestamp": {
+            "Description": "The time that you want the version to expire.\nTimes are in Coordinated Universal Time (UTC) format. UTC format includes the special designator, Z. For example, \"2016-09-27T14:50Z\".",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "update_regex_pattern_set": {
+        "Name": {
+            "Description": "The name of the set. You cannot change the name after you create the set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the set. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the set that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegularExpressionList": {
+            "Description": "[REQUIRED]\n\n(dict) --A single regular expression. This is used in a  RegexPatternSet .\n\nRegexString (string) --The string representing the regular expression.\n\n\n\n\n",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_rule_group": {
+        "Name": {
+            "Description": "The name of the rule group. You cannot change the name of a rule group after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "A unique identifier for the rule group. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the rule group that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "Rules": {
+            "Description": "The  Rule statements used to identify the web requests that you want to allow, block, or count. Each rule includes one top-level statement that WAF uses to identify matching web requests, and parameters that govern how WAF handles them.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VisibilityConfig": {
+            "Description": "Defines and enables Amazon CloudWatch metrics and web request sample collection.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomResponseBodies": {
+            "Description": "A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the rule group, and then use them in the rules that you define in the rule group.\nFor information about customizing web requests and responses, see Customizing web requests and responses in WAF in the WAF Developer Guide .\nFor information about the limits on count and size for custom request and response settings, see WAF quotas in the WAF Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_web_acl": {
+        "Name": {
+            "Description": "The name of the web ACL. You cannot change the name of a web ACL after you create it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scope": {
+            "Description": "Specifies whether this is for an Amazon CloudFront distribution or for a regional application. A regional application can be an Application Load Balancer (ALB), an Amazon API Gateway REST API, an AppSync GraphQL API, or an Amazon Cognito user pool.\nTo work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The unique identifier for the web ACL. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultAction": {
+            "Description": "The action to perform if none of the Rules contained in the WebACL match.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description of the web ACL that helps with identification.",
+            "Type": "string",
+            "Required": false
+        },
+        "Rules": {
+            "Description": "The  Rule statements used to identify the web requests that you want to allow, block, or count. Each rule includes one top-level statement that WAF uses to identify matching web requests, and parameters that govern how WAF handles them.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VisibilityConfig": {
+            "Description": "Defines and enables Amazon CloudWatch metrics and web request sample collection.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LockToken": {
+            "Description": "A token used for optimistic locking. WAF returns a token to your get and list requests, to mark the state of the entity at the time of the request. To make changes to the entity associated with the token, you provide the token to operations like update and delete. WAF uses the token to ensure that no changes have been made to the entity since you last retrieved it. If a change has been made, the update fails with a WAFOptimisticLockException. If this happens, perform another get, and use the new token returned by that operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomResponseBodies": {
+            "Description": "A map of custom response keys and content bodies. When you create a rule with a block action, you can send a custom response to the web request. You define these for the web ACL, and then use them in the rules and default actions that you define in the web ACL.\nFor information about customizing web requests and responses, see Customizing web requests and responses in WAF in the WAF Developer Guide .\nFor information about the limits on count and size for custom request and response settings, see WAF quotas in the WAF Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CaptchaConfig": {
+            "Description": "Specifies how WAF should handle CAPTCHA evaluations for rules that don't have their own CaptchaConfig settings. If you don't specify this, WAF uses its default settings for CaptchaConfig .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

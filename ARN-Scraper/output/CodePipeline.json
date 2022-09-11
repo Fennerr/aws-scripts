@@ -1,0 +1,640 @@
+{
+    "acknowledge_job": {
+        "jobId": {
+            "Description": "The unique system-generated ID of the job for which you want to confirm receipt.",
+            "Type": "string",
+            "Required": true
+        },
+        "nonce": {
+            "Description": "A system-generated random number that AWS CodePipeline uses to ensure that the job is being worked on by only one job worker. Get this number from the response of the  PollForJobs request that returned this job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "acknowledge_third_party_job": {
+        "jobId": {
+            "Description": "The unique system-generated ID of the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "nonce": {
+            "Description": "A system-generated random number that AWS CodePipeline uses to ensure that the job is being worked on by only one job worker. Get this number from the response to a  GetThirdPartyJobDetails request.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_custom_action_type": {
+        "category": {
+            "Description": "The category of the custom action, such as a build action or a test action.",
+            "Type": "string",
+            "Required": true
+        },
+        "provider": {
+            "Description": "The provider of the service used in the custom action, such as AWS CodeDeploy.",
+            "Type": "string",
+            "Required": true
+        },
+        "version": {
+            "Description": "The version identifier of the custom action.",
+            "Type": "string",
+            "Required": true
+        },
+        "settings": {
+            "Description": "URLs that provide users information about this custom action.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "configurationProperties": {
+            "Description": "The configuration properties for the custom action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "inputArtifactDetails": {
+            "Description": "The details of the input artifact for the action, such as its commit ID.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "outputArtifactDetails": {
+            "Description": "The details of the output artifact of the action, such as its commit ID.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags for the custom action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_pipeline": {
+        "pipeline": {
+            "Description": "Represents the structure of actions and stages to be performed in the pipeline.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags for the pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_custom_action_type": {
+        "category": {
+            "Description": "The category of the custom action that you want to delete, such as source or deploy.",
+            "Type": "string",
+            "Required": true
+        },
+        "provider": {
+            "Description": "The provider of the service used in the custom action, such as AWS CodeDeploy.",
+            "Type": "string",
+            "Required": true
+        },
+        "version": {
+            "Description": "The version of the custom action to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_pipeline": {
+        "name": {
+            "Description": "The name of the pipeline to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_webhook": {
+        "name": {
+            "Description": "The name of the webhook you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_webhook_with_third_party": {
+        "webhookName": {
+            "Description": "The name of the webhook you want to deregister.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disable_stage_transition": {
+        "pipelineName": {
+            "Description": "The name of the pipeline in which you want to disable the flow of artifacts from one stage to another.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the stage where you want to disable the inbound or outbound transition of artifacts.",
+            "Type": "string",
+            "Required": true
+        },
+        "transitionType": {
+            "Description": "Specifies whether artifacts are prevented from transitioning into the stage and being processed by the actions in that stage (inbound), or prevented from transitioning from the stage after they have been processed by the actions in that stage (outbound).",
+            "Type": "string",
+            "Required": true
+        },
+        "reason": {
+            "Description": "The reason given to the user that a stage is disabled, such as waiting for manual approval or manual tests. This message is displayed in the pipeline console UI.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_stage_transition": {
+        "pipelineName": {
+            "Description": "The name of the pipeline in which you want to enable the flow of artifacts from one stage to another.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the stage where you want to enable the transition of artifacts, either into the stage (inbound) or from that stage to the next stage (outbound).",
+            "Type": "string",
+            "Required": true
+        },
+        "transitionType": {
+            "Description": "Specifies whether artifacts are allowed to enter the stage and be processed by the actions in that stage (inbound) or whether already processed artifacts are allowed to transition to the next stage (outbound).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_action_type": {
+        "category": {
+            "Description": "Defines what kind of action can be taken in the stage. The following are the valid values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "owner": {
+            "Description": "The creator of an action type that was created with any supported integration model. There are two valid values: AWS and ThirdParty .",
+            "Type": "string",
+            "Required": true
+        },
+        "provider": {
+            "Description": "The provider of the action type being called. The provider name is specified when the action type is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "version": {
+            "Description": "A string that describes the action type version.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_job_details": {
+        "jobId": {
+            "Description": "The unique system-generated ID for the job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_pipeline": {
+        "name": {
+            "Description": "The name of the pipeline for which you want to get information. Pipeline names must be unique under an AWS user account.",
+            "Type": "string",
+            "Required": true
+        },
+        "version": {
+            "Description": "The version number of the pipeline. If you do not specify a version, defaults to the current version.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_pipeline_execution": {
+        "pipelineName": {
+            "Description": "The name of the pipeline about which you want to get execution details.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineExecutionId": {
+            "Description": "The ID of the pipeline execution about which you want to get execution details.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_pipeline_state": {
+        "name": {
+            "Description": "The name of the pipeline about which you want to get information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_third_party_job_details": {
+        "jobId": {
+            "Description": "The unique system-generated ID used for identifying the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_action_executions": {
+        "pipelineName": {
+            "Description": "The name of the pipeline for which you want to list action execution history.",
+            "Type": "string",
+            "Required": true
+        },
+        "filter": {
+            "Description": "Input information used to filter action execution history.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Action execution history is retained for up to 12 months, based on action execution start times. Default value is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token that was returned from the previous ListActionExecutions call, which can be used to return the next set of action executions in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_action_types": {
+        "actionOwnerFilter": {
+            "Description": "Filters the list of action types to those created by a specified entity.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous list action types call, which can be used to return the next set of action types in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "regionFilter": {
+            "Description": "The Region to filter on for the list of action types.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pipeline_executions": {
+        "pipelineName": {
+            "Description": "The name of the pipeline for which you want to get execution summary information.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value. Pipeline history is limited to the most recent 12 months, based on pipeline execution start times. Default value is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token that was returned from the previous ListPipelineExecutions call, which can be used to return the next set of pipeline executions in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pipelines": {
+        "nextToken": {
+            "Description": "An identifier that was returned from the previous list pipelines call. It can be used to return the next set of pipelines in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of pipelines to return in a single call. To retrieve the remaining pipelines, make another call with the returned nextToken value. The minimum value you can specify is 1. The maximum accepted value is 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to get tags for.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token that was returned from the previous API call, which would be used to return the next page of the list. The ListTagsforResource call lists all available tags in one call and does not use pagination.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_webhooks": {
+        "NextToken": {
+            "Description": "The token that was returned from the previous ListWebhooks call, which can be used to return the next set of webhooks in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "poll_for_jobs": {
+        "actionTypeId": {
+            "Description": "Represents information about an action type.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "maxBatchSize": {
+            "Description": "The maximum number of jobs to return in a poll for jobs call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "queryParam": {
+            "Description": "A map of property names and values. For an action type with no queryable properties, this value must be null or an empty map. For an action type with a queryable property, you must supply that property as a key in the map. Only jobs whose action configuration matches the mapped value are returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "poll_for_third_party_jobs": {
+        "actionTypeId": {
+            "Description": "Represents information about an action type.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "maxBatchSize": {
+            "Description": "The maximum number of jobs to return in a poll for jobs call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_action_revision": {
+        "pipelineName": {
+            "Description": "The name of the pipeline that starts processing the revision to the source.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the stage that contains the action that acts on the revision.",
+            "Type": "string",
+            "Required": true
+        },
+        "actionName": {
+            "Description": "The name of the action that processes the revision.",
+            "Type": "string",
+            "Required": true
+        },
+        "actionRevision": {
+            "Description": "Represents information about the version (or revision) of an action.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_approval_result": {
+        "pipelineName": {
+            "Description": "The name of the pipeline that contains the action.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the stage that contains the action.",
+            "Type": "string",
+            "Required": true
+        },
+        "actionName": {
+            "Description": "The name of the action for which approval is requested.",
+            "Type": "string",
+            "Required": true
+        },
+        "result": {
+            "Description": "Represents information about the result of the approval request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "token": {
+            "Description": "The system-generated token used to identify a unique approval request. The token for each open approval request can be obtained using the  GetPipelineState action. It is used to validate that the approval request corresponding to this token is still valid.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_job_failure_result": {
+        "jobId": {
+            "Description": "The unique system-generated ID of the job that failed. This is the same ID returned from PollForJobs .",
+            "Type": "string",
+            "Required": true
+        },
+        "failureDetails": {
+            "Description": "The details about the failure of a job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_job_success_result": {
+        "jobId": {
+            "Description": "The unique system-generated ID of the job that succeeded. This is the same ID returned from PollForJobs .",
+            "Type": "string",
+            "Required": true
+        },
+        "currentRevision": {
+            "Description": "The ID of the current revision of the artifact successfully worked on by the job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "continuationToken": {
+            "Description": "A token generated by a job worker, such as an AWS CodeDeploy deployment ID, that a successful job provides to identify a custom action in progress. Future jobs use this token to identify the running instance of the action. It can be reused to return more information about the progress of the custom action. When the action is complete, no continuation token should be supplied.",
+            "Type": "string",
+            "Required": false
+        },
+        "executionDetails": {
+            "Description": "The execution details of the successful job, such as the actions taken by the job worker.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "outputVariables": {
+            "Description": "Key-value pairs produced as output by a job worker that can be made available to a downstream action configuration. outputVariables can be included only when there is no continuation token on the request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_third_party_job_failure_result": {
+        "jobId": {
+            "Description": "The ID of the job that failed. This is the same ID returned from PollForThirdPartyJobs .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.",
+            "Type": "string",
+            "Required": true
+        },
+        "failureDetails": {
+            "Description": "Represents information about failure details.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_third_party_job_success_result": {
+        "jobId": {
+            "Description": "The ID of the job that successfully completed. This is the same ID returned from PollForThirdPartyJobs .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The clientToken portion of the clientId and clientToken pair used to verify that the calling entity is allowed access to the job and its details.",
+            "Type": "string",
+            "Required": true
+        },
+        "currentRevision": {
+            "Description": "Represents information about a current revision.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "continuationToken": {
+            "Description": "A token generated by a job worker, such as an AWS CodeDeploy deployment ID, that a successful job provides to identify a partner action in progress. Future jobs use this token to identify the running instance of the action. It can be reused to return more information about the progress of the partner action. When the action is complete, no continuation token should be supplied.",
+            "Type": "string",
+            "Required": false
+        },
+        "executionDetails": {
+            "Description": "The details of the actions taken and results produced on an artifact as it passes through stages in the pipeline.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_webhook": {
+        "webhook": {
+            "Description": "The detail provided in an input file to create the webhook, such as the webhook name, the pipeline name, and the action name. Give the webhook a unique name that helps you identify it. You might name the webhook after the pipeline and action it targets so that you can easily recognize what it's used for later.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags for the webhook.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "register_webhook_with_third_party": {
+        "webhookName": {
+            "Description": "The name of an existing webhook created with PutWebhook to register with a supported third party.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "retry_stage_execution": {
+        "pipelineName": {
+            "Description": "The name of the pipeline that contains the failed stage.",
+            "Type": "string",
+            "Required": true
+        },
+        "stageName": {
+            "Description": "The name of the failed stage to be retried.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineExecutionId": {
+            "Description": "The ID of the pipeline execution in the failed stage to be retried. Use the  GetPipelineState action to retrieve the current pipelineExecutionId of the failed stage",
+            "Type": "string",
+            "Required": true
+        },
+        "retryMode": {
+            "Description": "The scope of the retry attempt. Currently, the only supported value is FAILED_ACTIONS.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_pipeline_execution": {
+        "name": {
+            "Description": "The name of the pipeline to start.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientRequestToken": {
+            "Description": "The system-generated unique ID used to identify a unique execution request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "stop_pipeline_execution": {
+        "pipelineName": {
+            "Description": "The name of the pipeline to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineExecutionId": {
+            "Description": "The ID of the pipeline execution to be stopped in the current stage. Use the GetPipelineState action to retrieve the current pipelineExecutionId.",
+            "Type": "string",
+            "Required": true
+        },
+        "abandon": {
+            "Description": "Use this option to stop the pipeline execution by abandoning, rather than finishing, in-progress actions.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "reason": {
+            "Description": "Use this option to enter comments, such as the reason the pipeline was stopped.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource you want to add tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags you want to modify or add to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The list of keys for the tags to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_action_type": {
+        "actionType": {
+            "Description": "The action type definition for the action type to be updated.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_pipeline": {
+        "pipeline": {
+            "Description": "The name of the pipeline to be updated.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

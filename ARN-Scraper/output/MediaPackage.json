@@ -1,0 +1,377 @@
+{
+    "configure_logs": {
+        "EgressAccessLogs": {
+            "Description": "Configure egress access logging.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Id": {
+            "Description": "[REQUIRED] The ID of the channel to log subscription.",
+            "Type": "string",
+            "Required": false
+        },
+        "IngressAccessLogs": {
+            "Description": "Configure ingress access logging.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_channel": {
+        "Description": {
+            "Description": "A short text description of the Channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "Id": {
+            "Description": "[REQUIRED] The ID of the Channel. The ID must be unique within the region and it cannot be changed after a Channel is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A collection of tags associated with a resource",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_harvest_job": {
+        "EndTime": {
+            "Description": "[REQUIRED] The end of the time-window which will be harvested",
+            "Type": "string",
+            "Required": false
+        },
+        "Id": {
+            "Description": "[REQUIRED] The ID of the HarvestJob. The ID must be unique within the region and it cannot be changed after the HarvestJob is submitted",
+            "Type": "string",
+            "Required": false
+        },
+        "OriginEndpointId": {
+            "Description": "[REQUIRED] The ID of the OriginEndpoint that the HarvestJob will harvest from. This cannot be changed after the HarvestJob is submitted.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3Destination": {
+            "Description": "[REQUIRED] Configuration parameters for where in an S3 bucket to place the harvested content\n\nBucketName (string)[REQUIRED] The name of an S3 bucket within which harvested content will be exported\nManifestKey (string)[REQUIRED] The key in the specified S3 bucket where the harvested top-level manifest will be placed.\nRoleArn (string)[REQUIRED] The IAM role used to write to the specified S3 bucket\n\n",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StartTime": {
+            "Description": "[REQUIRED] The start of the time-window which will be harvested",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_origin_endpoint": {
+        "Authorization": {
+            "Description": "CDN Authorization credentials",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ChannelId": {
+            "Description": "[REQUIRED] The ID of the Channel that the OriginEndpoint will be associated with. This cannot be changed after the OriginEndpoint is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "CmafPackage": {
+            "Description": "A Common Media Application Format (CMAF) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DashPackage": {
+            "Description": "A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A short text description of the OriginEndpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "HlsPackage": {
+            "Description": "An HTTP Live Streaming (HLS) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Id": {
+            "Description": "[REQUIRED] The ID of the OriginEndpoint. The ID must be unique within the region and it cannot be changed after the OriginEndpoint is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "ManifestName": {
+            "Description": "A short string that will be used as the filename of the OriginEndpoint URL (defaults to \"index\").",
+            "Type": "string",
+            "Required": false
+        },
+        "MssPackage": {
+            "Description": "A Microsoft Smooth Streaming (MSS) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Origination": {
+            "Description": "Control whether origination of video is allowed for this OriginEndpoint. If set to ALLOW, the OriginEndpoint may by requested, pursuant to any other form of access control. If set to DENY, the OriginEndpoint may not be requested. This can be helpful for Live to VOD harvesting, or for temporarily disabling origination",
+            "Type": "string",
+            "Required": false
+        },
+        "StartoverWindowSeconds": {
+            "Description": "Maximum duration (seconds) of content to retain for startover playback. If not specified, startover playback will be disabled for the OriginEndpoint.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A collection of tags associated with a resource",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TimeDelaySeconds": {
+            "Description": "Amount of delay (seconds) to enforce on the playback of live content. If not specified, there will be no time delay in effect for the OriginEndpoint.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Whitelist": {
+            "Description": "A list of source IP CIDR blocks that will be allowed to access the OriginEndpoint.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_channel": {
+        "Id": {
+            "Description": "[REQUIRED] The ID of the Channel to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_origin_endpoint": {
+        "Id": {
+            "Description": "[REQUIRED] The ID of the OriginEndpoint to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_channel": {
+        "Id": {
+            "Description": "[REQUIRED] The ID of a Channel.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_harvest_job": {
+        "Id": {
+            "Description": "[REQUIRED] The ID of the HarvestJob.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_origin_endpoint": {
+        "Id": {
+            "Description": "[REQUIRED] The ID of the OriginEndpoint.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channels": {
+        "MaxResults": {
+            "Description": "Upper bound on number of records to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token used to resume pagination from the end of a previous request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_harvest_jobs": {
+        "IncludeChannelId": {
+            "Description": "When specified, the request will return only HarvestJobs associated with the given Channel ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "IncludeStatus": {
+            "Description": "When specified, the request will return only HarvestJobs in the given status.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The upper bound on the number of records to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token used to resume pagination from the end of a previous request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_origin_endpoints": {
+        "ChannelId": {
+            "Description": "When specified, the request will return only OriginEndpoints associated with the given Channel ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The upper bound on the number of records to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token used to resume pagination from the end of a previous request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "rotate_channel_credentials": {
+        "Id": {
+            "Description": "[REQUIRED] The ID of the channel to update.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "rotate_ingest_endpoint_credentials": {
+        "Id": {
+            "Description": "[REQUIRED] The ID of the channel the IngestEndpoint is on.",
+            "Type": "string",
+            "Required": false
+        },
+        "IngestEndpointId": {
+            "Description": "[REQUIRED] The id of the IngestEndpoint whose credentials should be rotated",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "[REQUIRED]\n\n(string) --\n(string) --\n\n\n\n",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        },
+        "TagKeys": {
+            "Description": "[REQUIRED] The key(s) of tag to be deleted\n\n(string) --\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_channel": {
+        "Description": {
+            "Description": "A short text description of the Channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "Id": {
+            "Description": "[REQUIRED] The ID of the Channel to update.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_origin_endpoint": {
+        "Authorization": {
+            "Description": "CDN Authorization credentials",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CmafPackage": {
+            "Description": "A Common Media Application Format (CMAF) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DashPackage": {
+            "Description": "A Dynamic Adaptive Streaming over HTTP (DASH) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A short text description of the OriginEndpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "HlsPackage": {
+            "Description": "An HTTP Live Streaming (HLS) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Id": {
+            "Description": "[REQUIRED] The ID of the OriginEndpoint to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "ManifestName": {
+            "Description": "A short string that will be appended to the end of the Endpoint URL.",
+            "Type": "string",
+            "Required": false
+        },
+        "MssPackage": {
+            "Description": "A Microsoft Smooth Streaming (MSS) packaging configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Origination": {
+            "Description": "Control whether origination of video is allowed for this OriginEndpoint. If set to ALLOW, the OriginEndpoint may by requested, pursuant to any other form of access control. If set to DENY, the OriginEndpoint may not be requested. This can be helpful for Live to VOD harvesting, or for temporarily disabling origination",
+            "Type": "string",
+            "Required": false
+        },
+        "StartoverWindowSeconds": {
+            "Description": "Maximum duration (in seconds) of content to retain for startover playback. If not specified, startover playback will be disabled for the OriginEndpoint.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TimeDelaySeconds": {
+            "Description": "Amount of delay (in seconds) to enforce on the playback of live content. If not specified, there will be no time delay in effect for the OriginEndpoint.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Whitelist": {
+            "Description": "A list of source IP CIDR blocks that will be allowed to access the OriginEndpoint.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "ChannelId": {
+            "Description": "When specified, the request will return only OriginEndpoints associated with the given Channel ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

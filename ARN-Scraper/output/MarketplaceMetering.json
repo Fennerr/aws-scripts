@@ -1,0 +1,72 @@
+{
+    "batch_meter_usage": {
+        "UsageRecords": {
+            "Description": "The set of UsageRecords to submit. BatchMeterUsage accepts up to 25 UsageRecords at a time.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ProductCode": {
+            "Description": "Product code is used to uniquely identify a product in AWS Marketplace. The product code should be the same as the one used during the publishing of a new product.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "meter_usage": {
+        "ProductCode": {
+            "Description": "Product code is used to uniquely identify a product in AWS Marketplace. The product code should be the same as the one used during the publishing of a new product.",
+            "Type": "string",
+            "Required": true
+        },
+        "Timestamp": {
+            "Description": "Timestamp, in UTC, for which the usage is being reported. Your application can meter usage for up to one hour in the past. Make sure the timestamp value is not before the start of the software usage.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "UsageDimension": {
+            "Description": "It will be one of the fcp dimension name provided during the publishing of the product.",
+            "Type": "string",
+            "Required": true
+        },
+        "UsageQuantity": {
+            "Description": "Consumption value for the hour. Defaults to 0 if not specified.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DryRun": {
+            "Description": "Checks whether you have the permissions required for the action, but does not make the request. If you have the permissions, the request returns DryRunOperation ; otherwise, it returns UnauthorizedException . Defaults to false if not specified.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "UsageAllocations": {
+            "Description": "The set of UsageAllocations to submit.\nThe sum of all UsageAllocation quantities must equal the UsageQuantity of the MeterUsage request, and each UsageAllocation must have a unique set of tags (include no tags).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "register_usage": {
+        "ProductCode": {
+            "Description": "Product code is used to uniquely identify a product in AWS Marketplace. The product code should be the same as the one used during the publishing of a new product.",
+            "Type": "string",
+            "Required": true
+        },
+        "PublicKeyVersion": {
+            "Description": "Public Key Version provided by AWS Marketplace",
+            "Type": "integer",
+            "Required": true
+        },
+        "Nonce": {
+            "Description": "(Optional) To scope down the registration to a specific running software instance and guard against replay attacks.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "resolve_customer": {
+        "RegistrationToken": {
+            "Description": "When a buyer visits your website during the registration process, the buyer submits a registration token through the browser. The registration token is resolved to obtain a CustomerIdentifier along with the CustomerAWSAccountId and ProductCode .",
+            "Type": "string",
+            "Required": true
+        }
+    }
+}

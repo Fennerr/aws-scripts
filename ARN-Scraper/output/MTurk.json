@@ -1,0 +1,811 @@
+{
+    "accept_qualification_request": {
+        "QualificationRequestId": {
+            "Description": "The ID of the Qualification request, as returned by the GetQualificationRequests operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegerValue": {
+            "Description": "The value of the Qualification. You can omit this value if you are using the presence or absence of the Qualification as the basis for a HIT requirement.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "approve_assignment": {
+        "AssignmentId": {
+            "Description": "The ID of the assignment. The assignment must correspond to a HIT created by the Requester.",
+            "Type": "string",
+            "Required": true
+        },
+        "RequesterFeedback": {
+            "Description": "A message for the Worker, which the Worker can see in the Status section of the web site.",
+            "Type": "string",
+            "Required": false
+        },
+        "OverrideRejection": {
+            "Description": "A flag indicating that an assignment should be approved even if it was previously rejected. Defaults to False .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "associate_qualification_with_worker": {
+        "QualificationTypeId": {
+            "Description": "The ID of the Qualification type to use for the assigned Qualification.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkerId": {
+            "Description": "The ID of the Worker to whom the Qualification is being assigned. Worker IDs are included with submitted HIT assignments and Qualification requests.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegerValue": {
+            "Description": "The value of the Qualification to assign.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SendNotification": {
+            "Description": "Specifies whether to send a notification email message to the Worker saying that the qualification was assigned to the Worker. Note: this is true by default.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_additional_assignments_for_hit": {
+        "HITId": {
+            "Description": "The ID of the HIT to extend.",
+            "Type": "string",
+            "Required": true
+        },
+        "NumberOfAdditionalAssignments": {
+            "Description": "The number of additional assignments to request for this HIT.",
+            "Type": "integer",
+            "Required": true
+        },
+        "UniqueRequestToken": {
+            "Description": "A unique identifier for this request, which allows you to retry the call on error without extending the HIT multiple times. This is useful in cases such as network timeouts where it is unclear whether or not the call succeeded on the server. If the extend HIT already exists in the system from a previous call using the same UniqueRequestToken , subsequent calls will return an error with a message containing the request ID.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_hit": {
+        "MaxAssignments": {
+            "Description": "The number of times the HIT can be accepted and completed before the HIT becomes unavailable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AutoApprovalDelayInSeconds": {
+            "Description": "The number of seconds after an assignment for the HIT has been submitted, after which the assignment is considered Approved automatically unless the Requester explicitly rejects it.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LifetimeInSeconds": {
+            "Description": "An amount of time, in seconds, after which the HIT is no longer available for users to accept. After the lifetime of the HIT elapses, the HIT no longer appears in HIT searches, even if not all of the assignments for the HIT have been accepted.",
+            "Type": "integer",
+            "Required": true
+        },
+        "AssignmentDurationInSeconds": {
+            "Description": "The amount of time, in seconds, that a Worker has to complete the HIT after accepting it. If a Worker does not complete the assignment within the specified duration, the assignment is considered abandoned. If the HIT is still active (that is, its lifetime has not elapsed), the assignment becomes available for other users to find and accept.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Reward": {
+            "Description": "The amount of money the Requester will pay a Worker for successfully completing the HIT.",
+            "Type": "string",
+            "Required": true
+        },
+        "Title": {
+            "Description": "The title of the HIT. A title should be short and descriptive about the kind of task the HIT contains. On the Amazon Mechanical Turk web site, the HIT title appears in search results, and everywhere the HIT is mentioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "Keywords": {
+            "Description": "One or more words or phrases that describe the HIT, separated by commas. These words are used in searches to find HITs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A general description of the HIT. A description includes detailed information about the kind of task the HIT contains. On the Amazon Mechanical Turk web site, the HIT description appears in the expanded view of search results, and in the HIT and assignment screens. A good description gives the user enough information to evaluate the HIT before accepting it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Question": {
+            "Description": "The data the person completing the HIT uses to produce the results.\nConstraints: Must be a QuestionForm data structure, an ExternalQuestion data structure, or an HTMLQuestion data structure. The XML question data must not be larger than 64 kilobytes (65,535 bytes) in size, including whitespace.\nEither a Question parameter or a HITLayoutId parameter must be provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "RequesterAnnotation": {
+            "Description": "An arbitrary data field. The RequesterAnnotation parameter lets your application attach arbitrary data to the HIT for tracking purposes. For example, this parameter could be an identifier internal to the Requester's application that corresponds with the HIT.\nThe RequesterAnnotation parameter for a HIT is only visible to the Requester who created the HIT. It is not shown to the Worker, or any other Requester.\nThe RequesterAnnotation parameter may be different for each HIT you submit. It does not affect how your HITs are grouped.",
+            "Type": "string",
+            "Required": false
+        },
+        "QualificationRequirements": {
+            "Description": "Conditions that a Worker's Qualifications must meet in order to accept the HIT. A HIT can have between zero and ten Qualification requirements. All requirements must be met in order for a Worker to accept the HIT. Additionally, other actions can be restricted using the ActionsGuarded field on each QualificationRequirement structure.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UniqueRequestToken": {
+            "Description": "A unique identifier for this request which allows you to retry the call on error without creating duplicate HITs. This is useful in cases such as network timeouts where it is unclear whether or not the call succeeded on the server. If the HIT already exists in the system from a previous call using the same UniqueRequestToken, subsequent calls will return a AWS.MechanicalTurk.HitAlreadyExists error with a message containing the HITId.",
+            "Type": "string",
+            "Required": false
+        },
+        "AssignmentReviewPolicy": {
+            "Description": "The Assignment-level Review Policy applies to the assignments under the HIT. You can specify for Mechanical Turk to take various actions based on the policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "HITReviewPolicy": {
+            "Description": "The HIT-level Review Policy applies to the HIT. You can specify for Mechanical Turk to take various actions based on the policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "HITLayoutId": {
+            "Description": "The HITLayoutId allows you to use a pre-existing HIT design with placeholder values and create an additional HIT by providing those values as HITLayoutParameters.\nConstraints: Either a Question parameter or a HITLayoutId parameter must be provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "HITLayoutParameters": {
+            "Description": "If the HITLayoutId is provided, any placeholder values must be filled in with values using the HITLayoutParameter structure. For more information, see HITLayout.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_hit_type": {
+        "AutoApprovalDelayInSeconds": {
+            "Description": "The number of seconds after an assignment for the HIT has been submitted, after which the assignment is considered Approved automatically unless the Requester explicitly rejects it.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AssignmentDurationInSeconds": {
+            "Description": "The amount of time, in seconds, that a Worker has to complete the HIT after accepting it. If a Worker does not complete the assignment within the specified duration, the assignment is considered abandoned. If the HIT is still active (that is, its lifetime has not elapsed), the assignment becomes available for other users to find and accept.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Reward": {
+            "Description": "The amount of money the Requester will pay a Worker for successfully completing the HIT.",
+            "Type": "string",
+            "Required": true
+        },
+        "Title": {
+            "Description": "The title of the HIT. A title should be short and descriptive about the kind of task the HIT contains. On the Amazon Mechanical Turk web site, the HIT title appears in search results, and everywhere the HIT is mentioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "Keywords": {
+            "Description": "One or more words or phrases that describe the HIT, separated by commas. These words are used in searches to find HITs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A general description of the HIT. A description includes detailed information about the kind of task the HIT contains. On the Amazon Mechanical Turk web site, the HIT description appears in the expanded view of search results, and in the HIT and assignment screens. A good description gives the user enough information to evaluate the HIT before accepting it.",
+            "Type": "string",
+            "Required": true
+        },
+        "QualificationRequirements": {
+            "Description": "Conditions that a Worker's Qualifications must meet in order to accept the HIT. A HIT can have between zero and ten Qualification requirements. All requirements must be met in order for a Worker to accept the HIT. Additionally, other actions can be restricted using the ActionsGuarded field on each QualificationRequirement structure.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_hit_with_hit_type": {
+        "HITTypeId": {
+            "Description": "The HIT type ID you want to create this HIT with.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxAssignments": {
+            "Description": "The number of times the HIT can be accepted and completed before the HIT becomes unavailable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LifetimeInSeconds": {
+            "Description": "An amount of time, in seconds, after which the HIT is no longer available for users to accept. After the lifetime of the HIT elapses, the HIT no longer appears in HIT searches, even if not all of the assignments for the HIT have been accepted.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Question": {
+            "Description": "The data the person completing the HIT uses to produce the results.\nConstraints: Must be a QuestionForm data structure, an ExternalQuestion data structure, or an HTMLQuestion data structure. The XML question data must not be larger than 64 kilobytes (65,535 bytes) in size, including whitespace.\nEither a Question parameter or a HITLayoutId parameter must be provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "RequesterAnnotation": {
+            "Description": "An arbitrary data field. The RequesterAnnotation parameter lets your application attach arbitrary data to the HIT for tracking purposes. For example, this parameter could be an identifier internal to the Requester's application that corresponds with the HIT.\nThe RequesterAnnotation parameter for a HIT is only visible to the Requester who created the HIT. It is not shown to the Worker, or any other Requester.\nThe RequesterAnnotation parameter may be different for each HIT you submit. It does not affect how your HITs are grouped.",
+            "Type": "string",
+            "Required": false
+        },
+        "UniqueRequestToken": {
+            "Description": "A unique identifier for this request which allows you to retry the call on error without creating duplicate HITs. This is useful in cases such as network timeouts where it is unclear whether or not the call succeeded on the server. If the HIT already exists in the system from a previous call using the same UniqueRequestToken, subsequent calls will return a AWS.MechanicalTurk.HitAlreadyExists error with a message containing the HITId.",
+            "Type": "string",
+            "Required": false
+        },
+        "AssignmentReviewPolicy": {
+            "Description": "The Assignment-level Review Policy applies to the assignments under the HIT. You can specify for Mechanical Turk to take various actions based on the policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "HITReviewPolicy": {
+            "Description": "The HIT-level Review Policy applies to the HIT. You can specify for Mechanical Turk to take various actions based on the policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "HITLayoutId": {
+            "Description": "The HITLayoutId allows you to use a pre-existing HIT design with placeholder values and create an additional HIT by providing those values as HITLayoutParameters.\nConstraints: Either a Question parameter or a HITLayoutId parameter must be provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "HITLayoutParameters": {
+            "Description": "If the HITLayoutId is provided, any placeholder values must be filled in with values using the HITLayoutParameter structure. For more information, see HITLayout.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_qualification_type": {
+        "Name": {
+            "Description": "The name you give to the Qualification type. The type name is used to represent the Qualification to Workers, and to find the type using a Qualification type search. It must be unique across all of your Qualification types.",
+            "Type": "string",
+            "Required": true
+        },
+        "Keywords": {
+            "Description": "One or more words or phrases that describe the Qualification type, separated by commas. The keywords of a type make the type easier to find during a search.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A long description for the Qualification type. On the Amazon Mechanical Turk website, the long description is displayed when a Worker examines a Qualification type.",
+            "Type": "string",
+            "Required": true
+        },
+        "QualificationTypeStatus": {
+            "Description": "The initial status of the Qualification type.\nConstraints: Valid values are: Active | Inactive",
+            "Type": "string",
+            "Required": true
+        },
+        "RetryDelayInSeconds": {
+            "Description": "The number of seconds that a Worker must wait after requesting a Qualification of the Qualification type before the worker can retry the Qualification request.\nConstraints: None. If not specified, retries are disabled and Workers can request a Qualification of this type only once, even if the Worker has not been granted the Qualification. It is not possible to disable retries for a Qualification type after it has been created with retries enabled. If you want to disable retries, you must delete existing retry-enabled Qualification type and then create a new Qualification type with retries disabled.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Test": {
+            "Description": "The questions for the Qualification test a Worker must answer correctly to obtain a Qualification of this type. If this parameter is specified, TestDurationInSeconds must also be specified.\nConstraints: Must not be longer than 65535 bytes. Must be a QuestionForm data structure. This parameter cannot be specified if AutoGranted is true.\nConstraints: None. If not specified, the Worker may request the Qualification without answering any questions.",
+            "Type": "string",
+            "Required": false
+        },
+        "AnswerKey": {
+            "Description": "The answers to the Qualification test specified in the Test parameter, in the form of an AnswerKey data structure.\nConstraints: Must not be longer than 65535 bytes.\nConstraints: None. If not specified, you must process Qualification requests manually.",
+            "Type": "string",
+            "Required": false
+        },
+        "TestDurationInSeconds": {
+            "Description": "The number of seconds the Worker has to complete the Qualification test, starting from the time the Worker requests the Qualification.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AutoGranted": {
+            "Description": "Specifies whether requests for the Qualification type are granted immediately, without prompting the Worker with a Qualification test.\nConstraints: If the Test parameter is specified, this parameter cannot be true.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AutoGrantedValue": {
+            "Description": "The Qualification value to use for automatically granted Qualifications. This parameter is used only if the AutoGranted parameter is true.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_worker_block": {
+        "WorkerId": {
+            "Description": "The ID of the Worker to block.",
+            "Type": "string",
+            "Required": true
+        },
+        "Reason": {
+            "Description": "A message explaining the reason for blocking the Worker. This parameter enables you to keep track of your Workers. The Worker does not see this message.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_hit": {
+        "HITId": {
+            "Description": "The ID of the HIT to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_qualification_type": {
+        "QualificationTypeId": {
+            "Description": "The ID of the QualificationType to dispose.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_worker_block": {
+        "WorkerId": {
+            "Description": "The ID of the Worker to unblock.",
+            "Type": "string",
+            "Required": true
+        },
+        "Reason": {
+            "Description": "A message that explains the reason for unblocking the Worker. The Worker does not see this message.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_qualification_from_worker": {
+        "WorkerId": {
+            "Description": "The ID of the Worker who possesses the Qualification to be revoked.",
+            "Type": "string",
+            "Required": true
+        },
+        "QualificationTypeId": {
+            "Description": "The ID of the Qualification type of the Qualification to be revoked.",
+            "Type": "string",
+            "Required": true
+        },
+        "Reason": {
+            "Description": "A text message that explains why the Qualification was revoked. The user who had the Qualification sees this message.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_account_balance": "No parameters defined",
+    "get_assignment": {
+        "AssignmentId": {
+            "Description": "The ID of the Assignment to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_file_upload_url": {
+        "AssignmentId": {
+            "Description": "The ID of the assignment that contains the question with a FileUploadAnswer.",
+            "Type": "string",
+            "Required": true
+        },
+        "QuestionIdentifier": {
+            "Description": "The identifier of the question with a FileUploadAnswer, as specified in the QuestionForm of the HIT.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_hit": {
+        "HITId": {
+            "Description": "The ID of the HIT to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_qualification_score": {
+        "QualificationTypeId": {
+            "Description": "The ID of the QualificationType.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkerId": {
+            "Description": "The ID of the Worker whose Qualification is being updated.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_qualification_type": {
+        "QualificationTypeId": {
+            "Description": "The ID of the QualificationType.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_assignments_for_hit": {
+        "HITId": {
+            "Description": "The ID of the HIT.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Pagination token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "AssignmentStatuses": {
+            "Description": "The status of the assignments to return: Submitted | Approved | Rejected",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_bonus_payments": {
+        "HITId": {
+            "Description": "The ID of the HIT associated with the bonus payments to retrieve. If not specified, all bonus payments for all assignments for the given HIT are returned. Either the HITId parameter or the AssignmentId parameter must be specified",
+            "Type": "string",
+            "Required": false
+        },
+        "AssignmentId": {
+            "Description": "The ID of the assignment associated with the bonus payments to retrieve. If specified, only bonus payments for the given assignment are returned. Either the HITId parameter or the AssignmentId parameter must be specified",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_hits": {
+        "NextToken": {
+            "Description": "Pagination token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_hits_for_qualification_type": {
+        "QualificationTypeId": {
+            "Description": "The ID of the Qualification type to use when querying HITs.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Pagination Token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Limit the number of results returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_qualification_requests": {
+        "QualificationTypeId": {
+            "Description": "The ID of the QualificationType.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Mechanical Turk returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_qualification_types": {
+        "Query": {
+            "Description": "A text query against all of the searchable attributes of Qualification types.",
+            "Type": "string",
+            "Required": false
+        },
+        "MustBeRequestable": {
+            "Description": "Specifies that only Qualification types that a user can request through the Amazon Mechanical Turk web site, such as by taking a Qualification test, are returned as results of the search. Some Qualification types, such as those assigned automatically by the system, cannot be requested directly by users. If false, all Qualification types, including those managed by the system, are considered. Valid values are True | False.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "MustBeOwnedByCaller": {
+            "Description": "Specifies that only Qualification types that the Requester created are returned. If false, the operation returns all Qualification types.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there is more data to retrieve), Amazon Mechanical Turk returns a pagination token in the response. You can use this pagination token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_review_policy_results_for_hit": {
+        "HITId": {
+            "Description": "The unique identifier of the HIT to retrieve review results for.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyLevels": {
+            "Description": "The Policy Level(s) to retrieve review results for - HIT or Assignment. If omitted, the default behavior is to retrieve all data for both policy levels. For a list of all the described policies, see Review Policies.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RetrieveActions": {
+            "Description": "Specify if the operation should retrieve a list of the actions taken executing the Review Policies and their outcomes.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RetrieveResults": {
+            "Description": "Specify if the operation should retrieve a list of the results computed by the Review Policies.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Limit the number of results returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_reviewable_hits": {
+        "HITTypeId": {
+            "Description": "The ID of the HIT type of the HITs to consider for the query. If not specified, all HITs for the Reviewer are considered",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "Can be either Reviewable or Reviewing . Reviewable is the default value.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination Token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Limit the number of results returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_worker_blocks": {
+        "NextToken": {
+            "Description": "Pagination token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_workers_with_qualification_type": {
+        "QualificationTypeId": {
+            "Description": "The ID of the Qualification type of the Qualifications to return.",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "The status of the Qualifications to return. Can be Granted | Revoked .",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination Token",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Limit the number of results returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "notify_workers": {
+        "Subject": {
+            "Description": "The subject line of the email message to send. Can include up to 200 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageText": {
+            "Description": "The text of the email message to send. Can include up to 4,096 characters",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkerIds": {
+            "Description": "A list of Worker IDs you wish to notify. You can notify upto 100 Workers at a time.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "reject_assignment": {
+        "AssignmentId": {
+            "Description": "The ID of the assignment. The assignment must correspond to a HIT created by the Requester.",
+            "Type": "string",
+            "Required": true
+        },
+        "RequesterFeedback": {
+            "Description": "A message for the Worker, which the Worker can see in the Status section of the web site.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reject_qualification_request": {
+        "QualificationRequestId": {
+            "Description": "The ID of the Qualification request, as returned by the ListQualificationRequests operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "Reason": {
+            "Description": "A text message explaining why the request was rejected, to be shown to the Worker who made the request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_bonus": {
+        "WorkerId": {
+            "Description": "The ID of the Worker being paid the bonus.",
+            "Type": "string",
+            "Required": true
+        },
+        "BonusAmount": {
+            "Description": "The Bonus amount is a US Dollar amount specified using a string (for example, \"5\" represents $5.00 USD and \"101.42\" represents $101.42 USD). Do not include currency symbols or currency codes.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentId": {
+            "Description": "The ID of the assignment for which this bonus is paid.",
+            "Type": "string",
+            "Required": true
+        },
+        "Reason": {
+            "Description": "A message that explains the reason for the bonus payment. The Worker receiving the bonus can see this message.",
+            "Type": "string",
+            "Required": true
+        },
+        "UniqueRequestToken": {
+            "Description": "A unique identifier for this request, which allows you to retry the call on error without granting multiple bonuses. This is useful in cases such as network timeouts where it is unclear whether or not the call succeeded on the server. If the bonus already exists in the system from a previous call using the same UniqueRequestToken, subsequent calls will return an error with a message containing the request ID.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_test_event_notification": {
+        "Notification": {
+            "Description": "The notification specification to test. This value is identical to the value you would provide to the UpdateNotificationSettings operation when you establish the notification specification for a HIT type.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TestEventType": {
+            "Description": "The event to simulate to test the notification specification. This event is included in the test message even if the notification specification does not include the event type. The notification specification does not filter out the test event.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_expiration_for_hit": {
+        "HITId": {
+            "Description": "The HIT to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExpireAt": {
+            "Description": "The date and time at which you want the HIT to expire",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "update_hit_review_status": {
+        "HITId": {
+            "Description": "The ID of the HIT to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Revert": {
+            "Description": "Specifies how to update the HIT status. Default is False .",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        }
+    },
+    "update_hit_type_of_hit": {
+        "HITId": {
+            "Description": "The HIT to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "HITTypeId": {
+            "Description": "The ID of the new HIT type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_notification_settings": {
+        "HITTypeId": {
+            "Description": "The ID of the HIT type whose notification specification is being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Notification": {
+            "Description": "The notification specification for the HIT type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Active": {
+            "Description": "Specifies whether notifications are sent for HITs of this HIT type, according to the notification specification. You must specify either the Notification parameter or the Active parameter for the call to UpdateNotificationSettings to succeed.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_qualification_type": {
+        "QualificationTypeId": {
+            "Description": "The ID of the Qualification type to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The new description of the Qualification type.",
+            "Type": "string",
+            "Required": false
+        },
+        "QualificationTypeStatus": {
+            "Description": "The new status of the Qualification type - Active | Inactive",
+            "Type": "string",
+            "Required": false
+        },
+        "Test": {
+            "Description": "The questions for the Qualification test a Worker must answer correctly to obtain a Qualification of this type. If this parameter is specified, TestDurationInSeconds must also be specified.\nConstraints: Must not be longer than 65535 bytes. Must be a QuestionForm data structure. This parameter cannot be specified if AutoGranted is true.\nConstraints: None. If not specified, the Worker may request the Qualification without answering any questions.",
+            "Type": "string",
+            "Required": false
+        },
+        "AnswerKey": {
+            "Description": "The answers to the Qualification test specified in the Test parameter, in the form of an AnswerKey data structure.",
+            "Type": "string",
+            "Required": false
+        },
+        "TestDurationInSeconds": {
+            "Description": "The number of seconds the Worker has to complete the Qualification test, starting from the time the Worker requests the Qualification.",
+            "Type": "integer",
+            "Required": false
+        },
+        "RetryDelayInSeconds": {
+            "Description": "The amount of time, in seconds, that Workers must wait after requesting a Qualification of the specified Qualification type before they can retry the Qualification request. It is not possible to disable retries for a Qualification type after it has been created with retries enabled. If you want to disable retries, you must dispose of the existing retry-enabled Qualification type using DisposeQualificationType and then create a new Qualification type with retries disabled using CreateQualificationType.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AutoGranted": {
+            "Description": "Specifies whether requests for the Qualification type are granted immediately, without prompting the Worker with a Qualification test.\nConstraints: If the Test parameter is specified, this parameter cannot be true.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AutoGrantedValue": {
+            "Description": "The Qualification value to use for automatically granted Qualifications. This parameter is used only if the AutoGranted parameter is true.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "QualificationTypeId": {
+            "Description": "The ID of the Qualification type of the Qualifications to return.",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "The status of the Qualifications to return. Can be Granted | Revoked .",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

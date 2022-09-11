@@ -1,0 +1,546 @@
+{
+    "create_discoverer": {
+        "Description": {
+            "Description": "A description for the discoverer.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceArn": {
+            "Description": "The ARN of the event bus.",
+            "Type": "string",
+            "Required": true
+        },
+        "CrossAccount": {
+            "Description": "Support discovery of schemas in events sent to the bus from another account. (default: true).",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Tags associated with the resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_registry": {
+        "Description": {
+            "Description": "A description of the registry to be created.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags to associate with the registry.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_schema": {
+        "Content": {
+            "Description": "The source of the schema definition.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the schema.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags associated with the schema.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Type": {
+            "Description": "The type of schema.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_discoverer": {
+        "DiscovererId": {
+            "Description": "The ID of the discoverer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_registry": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_policy": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_schema": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_schema_version": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaVersion": {
+            "Description": "[REQUIRED] The version number of the schema",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_code_binding": {
+        "Language": {
+            "Description": "The language of the code binding.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaVersion": {
+            "Description": "Specifying this limits the results to only this schema version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_discoverer": {
+        "DiscovererId": {
+            "Description": "The ID of the discoverer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_registry": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_schema": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaVersion": {
+            "Description": "Specifying this limits the results to only this schema version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "export_schema": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaVersion": {
+            "Description": "Specifying this limits the results to only this schema version.",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "[REQUIRED]",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_code_binding_source": {
+        "Language": {
+            "Description": "The language of the code binding.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaVersion": {
+            "Description": "Specifying this limits the results to only this schema version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_discovered_schema": {
+        "Events": {
+            "Description": "An array of strings where each string is a JSON event. These are the events that were used to generate the schema. The array includes a single type of event and has a maximum size of 10 events.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Type": {
+            "Description": "The type of event.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_resource_policy": {
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_discoverers": {
+        "DiscovererIdPrefix": {
+            "Description": "Specifying this limits the results to only those discoverer IDs that start with the specified prefix.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token that specifies the next page of results to return. To request the first page, leave NextToken empty. The token will expire in 24 hours, and cannot be shared with other accounts.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceArnPrefix": {
+            "Description": "Specifying this limits the results to only those ARNs that start with the specified prefix.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_registries": {
+        "Limit": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token that specifies the next page of results to return. To request the first page, leave NextToken empty. The token will expire in 24 hours, and cannot be shared with other accounts.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryNamePrefix": {
+            "Description": "Specifying this limits the results to only those registry names that start with the specified prefix.",
+            "Type": "string",
+            "Required": false
+        },
+        "Scope": {
+            "Description": "Can be set to Local or AWS to limit responses to your custom registries, or the ones provided by AWS.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_schema_versions": {
+        "Limit": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token that specifies the next page of results to return. To request the first page, leave NextToken empty. The token will expire in 24 hours, and cannot be shared with other accounts.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_schemas": {
+        "Limit": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token that specifies the next page of results to return. To request the first page, leave NextToken empty. The token will expire in 24 hours, and cannot be shared with other accounts.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaNamePrefix": {
+            "Description": "Specifying this limits the results to only those schema names that start with the specified prefix.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_code_binding": {
+        "Language": {
+            "Description": "The language of the code binding.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaVersion": {
+            "Description": "Specifying this limits the results to only this schema version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_resource_policy": {
+        "Policy": {
+            "Description": "The resource-based policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": false
+        },
+        "RevisionId": {
+            "Description": "The revision ID of the policy.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "search_schemas": {
+        "Keywords": {
+            "Description": "Specifying this limits the results to only schemas that include the provided keywords.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token that specifies the next page of results to return. To request the first page, leave NextToken empty. The token will expire in 24 hours, and cannot be shared with other accounts.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_discoverer": {
+        "DiscovererId": {
+            "Description": "The ID of the discoverer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_discoverer": {
+        "DiscovererId": {
+            "Description": "The ID of the discoverer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags associated with the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Keys of key-value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_discoverer": {
+        "Description": {
+            "Description": "The description of the discoverer to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "DiscovererId": {
+            "Description": "The ID of the discoverer.",
+            "Type": "string",
+            "Required": true
+        },
+        "CrossAccount": {
+            "Description": "Support discovery of schemas in events sent to the bus from another account. (default: true)",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_registry": {
+        "Description": {
+            "Description": "The description of the registry to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_schema": {
+        "ClientTokenId": {
+            "Description": "The ID of the client token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Content": {
+            "Description": "The source of the schema definition.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the schema.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The schema type for the events schema.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "Keywords": {
+            "Description": "Specifying this limits the results to only schemas that include the provided keywords.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "Language": {
+            "Description": "The language of the code binding.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegistryName": {
+            "Description": "The name of the registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaName": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaVersion": {
+            "Description": "Specifying this limits the results to only this schema version.",
+            "Type": "string",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

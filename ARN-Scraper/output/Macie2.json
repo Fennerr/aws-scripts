@@ -1,0 +1,904 @@
+{
+    "accept_invitation": {
+        "administratorAccountId": {
+            "Description": "The Amazon Web Services account ID for the account that sent the invitation.",
+            "Type": "string",
+            "Required": false
+        },
+        "invitationId": {
+            "Description": "The unique identifier for the invitation to accept.",
+            "Type": "string",
+            "Required": true
+        },
+        "masterAccount": {
+            "Description": "(Deprecated) The Amazon Web Services account ID for the account that sent the invitation. This property has been replaced by the administratorAccountId property and is retained only for backward compatibility.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_get_custom_data_identifiers": {
+        "ids": {
+            "Description": "An array of custom data identifier IDs, one for each custom data identifier to retrieve information about.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_allow_list": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "criteria": {
+            "Description": "The criteria that specify the text or text pattern to ignore. The criteria can be the location and name of an S3 object that lists specific text to ignore (s3WordsList), or a regular expression (regex) that defines a text pattern to ignore.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "description": {
+            "Description": "A custom description of the allow list. The description can contain as many as 512 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "A custom name for the allow list. The name can contain as many as 128 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A map of key-value pairs that specifies the tags to associate with the allow list.\nAn allow list can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_classification_job": {
+        "allowListIds": {
+            "Description": "An array of unique identifiers, one for each allow list for the job to use when it analyzes data.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "customDataIdentifierIds": {
+            "Description": "An array of unique identifiers, one for each custom data identifier for the job to use when it analyzes data. To use only managed data identifiers, don't specify a value for this property and specify a value other than NONE for the managedDataIdentifierSelector property.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "description": {
+            "Description": "A custom description of the job. The description can contain as many as 200 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "initialRun": {
+            "Description": "For a recurring job, specifies whether to analyze all existing, eligible objects immediately after the job is created (true). To analyze only those objects that are created or changed after you create the job and before the job's first scheduled run, set this value to false.\nIf you configure the job to run only once, don't specify a value for this property.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "jobType": {
+            "Description": "The schedule for running the job. Valid values are:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "managedDataIdentifierIds": {
+            "Description": "An array of unique identifiers, one for each managed data identifier for the job to include (use) or exclude (not use) when it analyzes data. Inclusion or exclusion depends on the managed data identifier selection type that you specify for the job (managedDataIdentifierSelector).\nTo retrieve a list of valid values for this property, use the ListManagedDataIdentifiers operation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "managedDataIdentifierSelector": {
+            "Description": "The selection type to apply when determining which managed data identifiers the job uses to analyze data. Valid values are:\nIf you don't specify a value for this property, the job uses all managed data identifiers. If you don't specify a value for this property or you specify ALL or EXCLUDE for a recurring job, the job also uses new managed data identifiers as they are released.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "name": {
+            "Description": "A custom name for the job. The name can contain as many as 500 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "s3JobDefinition": {
+            "Description": "The S3 buckets that contain the objects to analyze, and the scope of that analysis.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "samplingPercentage": {
+            "Description": "The sampling depth, as a percentage, for the job to apply when processing objects. This value determines the percentage of eligible objects that the job analyzes. If this value is less than 100, Amazon Macie selects the objects to analyze at random, up to the specified percentage, and analyzes all the data in those objects.",
+            "Type": "integer",
+            "Required": false
+        },
+        "scheduleFrequency": {
+            "Description": "The recurrence pattern for running the job. To run the job only once, don't specify a value for this property and set the value for the jobType property to ONE_TIME.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A map of key-value pairs that specifies the tags to associate with the job.\nA job can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_custom_data_identifier": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A custom description of the custom data identifier. The description can contain as many as 512 characters.\nWe strongly recommend that you avoid including any sensitive data in the description of a custom data identifier. Other users of your account might be able to see this description, depending on the actions that they're allowed to perform in Amazon Macie.",
+            "Type": "string",
+            "Required": false
+        },
+        "ignoreWords": {
+            "Description": "An array that lists specific character sequences (ignore words ) to exclude from the results. If the text matched by the regular expression contains any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4-90 UTF-8 characters. Ignore words are case sensitive.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "keywords": {
+            "Description": "An array that lists specific character sequences (keywords ), one of which must precede and be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3-90 UTF-8 characters. Keywords aren't case sensitive.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maximumMatchDistance": {
+            "Description": "The maximum number of characters that can exist between the end of at least one complete character sequence specified by the keywords array and the end of the text that matches the regex pattern. If a complete keyword precedes all the text that matches the pattern and the keyword is within the specified distance, Amazon Macie includes the result. The distance can be 1-300 characters. The default value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "name": {
+            "Description": "A custom name for the custom data identifier. The name can contain as many as 128 characters.\nWe strongly recommend that you avoid including any sensitive data in the name of a custom data identifier. Other users of your account might be able to see this name, depending on the actions that they're allowed to perform in Amazon Macie.",
+            "Type": "string",
+            "Required": true
+        },
+        "regex": {
+            "Description": "The regular expression (regex ) that defines the pattern to match. The expression can contain as many as 512 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "severityLevels": {
+            "Description": "The severity to assign to findings that the custom data identifier produces, based on the number of occurrences of text that matches the custom data identifier's detection criteria. You can specify as many as three SeverityLevel objects in this array, one for each severity: LOW, MEDIUM, or HIGH. If you specify more than one, the occurrences thresholds must be in ascending order by severity, moving from LOW to HIGH. For example, 1 for LOW, 50 for MEDIUM, and 100 for HIGH. If an S3 object contains fewer occurrences than the lowest specified threshold, Amazon Macie doesn't create a finding.\nIf you don't specify any values for this array, Macie creates findings for S3 objects that contain at least one occurrence of text that matches the detection criteria, and Macie assigns the MEDIUM severity to those findings.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "A map of key-value pairs that specifies the tags to associate with the custom data identifier.\nA custom data identifier can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_findings_filter": {
+        "action": {
+            "Description": "The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A custom description of the filter. The description can contain as many as 512 characters.\nWe strongly recommend that you avoid including any sensitive data in the description of a filter. Other users of your account might be able to see this description, depending on the actions that they're allowed to perform in Amazon Macie.",
+            "Type": "string",
+            "Required": false
+        },
+        "findingCriteria": {
+            "Description": "The criteria to use to filter findings.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "A custom name for the filter. The name must contain at least 3 characters and can contain as many as 64 characters.\nWe strongly recommend that you avoid including any sensitive data in the name of a filter. Other users of your account might be able to see this name, depending on the actions that they're allowed to perform in Amazon Macie.",
+            "Type": "string",
+            "Required": true
+        },
+        "position": {
+            "Description": "The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.",
+            "Type": "integer",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A map of key-value pairs that specifies the tags to associate with the filter.\nA findings filter can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_invitations": {
+        "accountIds": {
+            "Description": "An array that lists Amazon Web Services account IDs, one for each account to send the invitation to.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "disableEmailNotification": {
+            "Description": "Specifies whether to send the invitation as an email message. If this value is false, Amazon Macie sends the invitation (as an email message) to the email address that you specified for the recipient's account when you associated the account with your account. The default value is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "message": {
+            "Description": "Custom text to include in the email message that contains the invitation. The text can contain as many as 80 alphanumeric characters.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_member": {
+        "account": {
+            "Description": "The details of the account to associate with the administrator account.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A map of key-value pairs that specifies the tags to associate with the account in Amazon Macie.\nAn account can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_sample_findings": {
+        "findingTypes": {
+            "Description": "An array of finding types, one for each type of sample finding to create. To create a sample of every type of finding that Amazon Macie supports, don't include this array in your request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "decline_invitations": {
+        "accountIds": {
+            "Description": "An array that lists Amazon Web Services account IDs, one for each account that sent an invitation to decline.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_allow_list": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ignoreJobChecks": {
+            "Description": "Specifies whether to force deletion of the allow list, even if active classification jobs are configured to use the list.\nWhen you try to delete an allow list, Amazon Macie checks for classification jobs that use the list and have a status other than COMPLETE or CANCELLED. By default, Macie rejects your request if any jobs meet these criteria. To skip these checks and delete the list, set this value to true. To delete the list only if no active jobs are configured to use it, set this value to false.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_custom_data_identifier": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_findings_filter": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_invitations": {
+        "accountIds": {
+            "Description": "An array that lists Amazon Web Services account IDs, one for each account that sent an invitation to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_member": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_buckets": {
+        "criteria": {
+            "Description": "The criteria to use to filter the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of the response. The default value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortCriteria": {
+            "Description": "The criteria to use to sort the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "describe_classification_job": {
+        "jobId": {
+            "Description": "The unique identifier for the classification job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_organization_configuration": "No parameters defined",
+    "disable_macie": "No parameters defined",
+    "disable_organization_admin_account": {
+        "adminAccountId": {
+            "Description": "The Amazon Web Services account ID of the delegated Amazon Macie administrator account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_from_administrator_account": "No parameters defined",
+    "disassociate_from_master_account": "No parameters defined",
+    "disassociate_member": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_macie": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "findingPublishingFrequency": {
+            "Description": "Specifies how often to publish updates to policy findings for the account. This includes publishing updates to Security Hub and Amazon EventBridge (formerly Amazon CloudWatch Events).",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "Specifies the new status for the account. To enable Amazon Macie and start all Macie activities for the account, set this value to ENABLED.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "enable_organization_admin_account": {
+        "adminAccountId": {
+            "Description": "The Amazon Web Services account ID for the account to designate as the delegated Amazon Macie administrator account for the organization.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_administrator_account": "No parameters defined",
+    "get_allow_list": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_bucket_statistics": {
+        "accountId": {
+            "Description": "The unique identifier for the Amazon Web Services account.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_classification_export_configuration": "No parameters defined",
+    "get_custom_data_identifier": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_finding_statistics": {
+        "findingCriteria": {
+            "Description": "The criteria to use to filter the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "groupBy": {
+            "Description": "The finding property to use to group the query results. Valid values are:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "size": {
+            "Description": "The maximum number of items to include in each page of the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "sortCriteria": {
+            "Description": "The criteria to use to sort the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_findings": {
+        "findingIds": {
+            "Description": "An array of strings that lists the unique identifiers for the findings to retrieve. You can specify as many as 50 unique identifiers in this array.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "sortCriteria": {
+            "Description": "The criteria for sorting the results of the request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_findings_filter": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_findings_publication_configuration": "No parameters defined",
+    "get_invitations_count": "No parameters defined",
+    "get_macie_session": "No parameters defined",
+    "get_master_account": "No parameters defined",
+    "get_member": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_reveal_configuration": "No parameters defined",
+    "get_sensitive_data_occurrences": {
+        "findingId": {
+            "Description": "The unique identifier for the finding.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_sensitive_data_occurrences_availability": {
+        "findingId": {
+            "Description": "The unique identifier for the finding.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_usage_statistics": {
+        "filterBy": {
+            "Description": "An array of objects, one for each condition to use to filter the query results. If you specify more than one condition, Amazon Macie uses an AND operator to join the conditions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortBy": {
+            "Description": "The criteria to use to sort the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "timeRange": {
+            "Description": "The inclusive time period to query usage data for. Valid values are: MONTH_TO_DATE, for the current calendar month to date; and, PAST_30_DAYS, for the preceding 30 days. If you don't specify a value, Amazon Macie provides usage data for the preceding 30 days.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_usage_totals": {
+        "timeRange": {
+            "Description": "The inclusive time period to retrieve the data for. Valid values are: MONTH_TO_DATE, for the current calendar month to date; and, PAST_30_DAYS, for the preceding 30 days. If you don't specify a value for this parameter, Amazon Macie provides aggregated usage data for the preceding 30 days.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_allow_lists": {
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of a paginated response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_classification_jobs": {
+        "filterCriteria": {
+            "Description": "The criteria to use to filter the results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortCriteria": {
+            "Description": "The criteria to use to sort the results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_custom_data_identifiers": {
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_findings": {
+        "findingCriteria": {
+            "Description": "The criteria to use to filter the results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortCriteria": {
+            "Description": "The criteria to use to sort the results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_findings_filters": {
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of a paginated response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_invitations": {
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of a paginated response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_managed_data_identifiers": {
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_members": {
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of a paginated response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "onlyAssociated": {
+            "Description": "Specifies which accounts to include in the response, based on the status of an account's relationship with the administrator account. By default, the response includes only current member accounts. To include all accounts, set this value to false.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_organization_admin_accounts": {
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of a paginated response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_classification_export_configuration": {
+        "configuration": {
+            "Description": "The location to store data classification results in, and the encryption settings to use when storing results in that location.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_findings_publication_configuration": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "securityHubConfiguration": {
+            "Description": "The configuration settings that determine which findings to publish to Security Hub.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "search_resources": {
+        "bucketCriteria": {
+            "Description": "The filter conditions that determine which S3 buckets to include or exclude from the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of items to include in each page of the response. The default value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken string that specifies which page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortCriteria": {
+            "Description": "The criteria to use to sort the results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A map of key-value pairs that specifies the tags to associate with the resource.\nA resource can have a maximum of 50 tags. Each tag consists of a tag key and an associated tag value. The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "test_custom_data_identifier": {
+        "ignoreWords": {
+            "Description": "An array that lists specific character sequences (ignore words ) to exclude from the results. If the text matched by the regular expression contains any string in this array, Amazon Macie ignores it. The array can contain as many as 10 ignore words. Each ignore word can contain 4-90 UTF-8 characters. Ignore words are case sensitive.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "keywords": {
+            "Description": "An array that lists specific character sequences (keywords ), one of which must precede and be within proximity (maximumMatchDistance) of the regular expression to match. The array can contain as many as 50 keywords. Each keyword can contain 3-90 UTF-8 characters. Keywords aren't case sensitive.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maximumMatchDistance": {
+            "Description": "The maximum number of characters that can exist between the end of at least one complete character sequence specified by the keywords array and the end of the text that matches the regex pattern. If a complete keyword precedes all the text that matches the pattern and the keyword is within the specified distance, Amazon Macie includes the result. The distance can be 1-300 characters. The default value is 50.",
+            "Type": "integer",
+            "Required": false
+        },
+        "regex": {
+            "Description": "The regular expression (regex ) that defines the pattern to match. The expression can contain as many as 512 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "sampleText": {
+            "Description": "The sample text to inspect by using the custom data identifier. The text can contain as many as 1,000 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "One or more tags (keys) to remove from the resource. In an HTTP request to remove multiple tags, append the tagKeys parameter and argument for each tag to remove, separated by an ampersand (&amp;).",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_allow_list": {
+        "criteria": {
+            "Description": "The criteria that specify the text or text pattern to ignore. The criteria can be the location and name of an S3 object that lists specific text to ignore (s3WordsList), or a regular expression that defines a text pattern to ignore (regex).\nYou can change a list's underlying criteria, such as the name of the S3 object or the regular expression to use. However, you can't change the type from s3WordsList to regex or the other way around.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "description": {
+            "Description": "A custom description of the allow list. The description can contain as many as 512 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "A custom name for the allow list. The name can contain as many as 128 characters.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_classification_job": {
+        "jobId": {
+            "Description": "The unique identifier for the classification job.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobStatus": {
+            "Description": "The new status for the job. Valid values are:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "update_findings_filter": {
+        "action": {
+            "Description": "The action to perform on findings that meet the filter criteria (findingCriteria). Valid values are: ARCHIVE, suppress (automatically archive) the findings; and, NOOP, don't perform any action on the findings.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A custom description of the filter. The description can contain as many as 512 characters.\nWe strongly recommend that you avoid including any sensitive data in the description of a filter. Other users might be able to see this description, depending on the actions that they're allowed to perform in Amazon Macie.",
+            "Type": "string",
+            "Required": false
+        },
+        "findingCriteria": {
+            "Description": "The criteria to use to filter findings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "A custom name for the filter. The name must contain at least 3 characters and can contain as many as 64 characters.\nWe strongly recommend that you avoid including any sensitive data in the name of a filter. Other users might be able to see this name, depending on the actions that they're allowed to perform in Amazon Macie.",
+            "Type": "string",
+            "Required": false
+        },
+        "position": {
+            "Description": "The position of the filter in the list of saved filters on the Amazon Macie console. This value also determines the order in which the filter is applied to findings, relative to other filters that are also applied to the findings.",
+            "Type": "integer",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive token that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_macie_session": {
+        "findingPublishingFrequency": {
+            "Description": "Specifies how often to publish updates to policy findings for the account. This includes publishing updates to Security Hub and Amazon EventBridge (formerly Amazon CloudWatch Events).",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "Specifies a new status for the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_member_session": {
+        "id": {
+            "Description": "The unique identifier for the Amazon Macie resource that the request applies to.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "Specifies the new status for the account. Valid values are: ENABLED, resume all Amazon Macie activities for the account; and, PAUSED, suspend all Macie activities for the account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_organization_configuration": {
+        "autoEnable": {
+            "Description": "Specifies whether to enable Amazon Macie automatically for an account when the account is added to the organization in Organizations.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "update_reveal_configuration": {
+        "configuration": {
+            "Description": "The new configuration settings and the status of the configuration for the account.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "bucketCriteria": {
+            "Description": "The filter conditions that determine which S3 buckets to include or exclude from the query results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "sortCriteria": {
+            "Description": "The criteria to use to sort the results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "findingId": {
+            "Description": "The unique identifier for the finding.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

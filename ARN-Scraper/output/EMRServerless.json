@@ -1,0 +1,312 @@
+{
+    "cancel_job_run": {
+        "applicationId": {
+            "Description": "The ID of the application on which the job run will be canceled.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobRunId": {
+            "Description": "The ID of the job run to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_application": {
+        "name": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "releaseLabel": {
+            "Description": "The EMR release version associated with the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The type of application you want to start, such as Spark or Hive.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The client idempotency token of the application to create. Its value must be unique for each request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "initialCapacity": {
+            "Description": "The capacity to initialize when the application is created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maximumCapacity": {
+            "Description": "The maximum capacity to allocate when the application is created. This is cumulative across all workers at any given point in time, not just when an application is created. No new resources will be created once any one of the defined limits is hit.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags assigned to the application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "autoStartConfiguration": {
+            "Description": "The configuration for an application to automatically start on job submission.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "autoStopConfiguration": {
+            "Description": "The configuration for an application to automatically stop after a certain amount of time being idle.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "networkConfiguration": {
+            "Description": "The network configuration for customer VPC connectivity.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_application": {
+        "applicationId": {
+            "Description": "The ID of the application that will be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_application": {
+        "applicationId": {
+            "Description": "The ID of the application that will be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_job_run": {
+        "applicationId": {
+            "Description": "The ID of the application on which the job run is submitted.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobRunId": {
+            "Description": "The ID of the job run.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_applications": {
+        "nextToken": {
+            "Description": "The token for the next set of application results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of applications that can be listed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "states": {
+            "Description": "An optional filter for application states. Note that if this filter contains multiple states, the resulting list will be grouped by the state.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_job_runs": {
+        "applicationId": {
+            "Description": "The ID of the application for which to list the job run.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token for the next set of job run results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of job runs that can be listed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "createdAtAfter": {
+            "Description": "The lower bound of the option to filter by creation date and time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "createdAtBefore": {
+            "Description": "The upper bound of the option to filter by creation date and time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "states": {
+            "Description": "An optional filter for job run states. Note that if this filter contains multiple states, the resulting list will be grouped by the state.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource to list the tags for. Currently, the supported resources are Amazon EMR Serverless applications and job runs.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_application": {
+        "applicationId": {
+            "Description": "The ID of the application to start.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_job_run": {
+        "applicationId": {
+            "Description": "The ID of the application on which to run the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The client idempotency token of the job run to start. Its value must be unique for each request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionRoleArn": {
+            "Description": "The execution role ARN for the job run.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobDriver": {
+            "Description": "The job driver for the job run.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "configurationOverrides": {
+            "Description": "The configuration overrides for the job run.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags assigned to the job run.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "executionTimeoutMinutes": {
+            "Description": "The maximum duration for the job run to run. If the job run runs beyond this duration, it will be automatically cancelled.",
+            "Type": "integer",
+            "Required": false
+        },
+        "name": {
+            "Description": "The optional job run name. This doesn't have to be unique.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "stop_application": {
+        "applicationId": {
+            "Description": "The ID of the application to stop.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource to list the tags for. Currently, the supported resources are Amazon EMR Serverless applications and job runs.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to add to the resource. A tag is an array of key-value pairs.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource to list the tags for. Currently, the supported resources are Amazon EMR Serverless applications and job runs.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of the tags to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_application": {
+        "applicationId": {
+            "Description": "The ID of the application to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The client idempotency token of the application to update. Its value must be unique for each request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "initialCapacity": {
+            "Description": "The capacity to initialize when the application is updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maximumCapacity": {
+            "Description": "The maximum capacity to allocate when the application is updated. This is cumulative across all workers at any given point in time during the lifespan of the application. No new resources will be created once any one of the defined limits is hit.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "autoStartConfiguration": {
+            "Description": "The configuration for an application to automatically start on job submission.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "autoStopConfiguration": {
+            "Description": "The configuration for an application to automatically stop after a certain amount of time being idle.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "networkConfiguration": {
+            "Description": "The network configuration for customer VPC connectivity.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "applicationId": {
+            "Description": "The ID of the application for which to list the job run.",
+            "Type": "string",
+            "Required": true
+        },
+        "createdAtAfter": {
+            "Description": "The lower bound of the option to filter by creation date and time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "createdAtBefore": {
+            "Description": "The upper bound of the option to filter by creation date and time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "states": {
+            "Description": "An optional filter for job run states. Note that if this filter contains multiple states, the resulting list will be grouped by the state.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,150 @@
+{
+    "create_rule": {
+        "RetentionPeriod": {
+            "Description": "Information about the retention period for which the retention rule is to retain resources.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "The retention rule description.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Information about the tags to assign to the retention rule.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ResourceType": {
+            "Description": "The resource type to be retained by the retention rule. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To retain snapshots, specify EBS_SNAPSHOT. To retain EBS-backed AMIs, specify EC2_IMAGE .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceTags": {
+            "Description": "Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule.\nYou can add the same tag key and value pair to a maximum or five retention rules.\nTo create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_rule": {
+        "Identifier": {
+            "Description": "The unique ID of the retention rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_rule": {
+        "Identifier": {
+            "Description": "The unique ID of the retention rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_rules": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceType": {
+            "Description": "The resource type retained by the retention rule. Only retention rules that retain the specified resource type are listed. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To list retention rules that retain snapshots, specify EBS_SNAPSHOT. To list retention rules that retain EBS-backed AMIs, specify EC2_IMAGE .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceTags": {
+            "Description": "Information about the resource tags used to identify resources that are retained by the retention rule.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the retention rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the retention rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Information about the tags to assign to the retention rule.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the retention rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys of the tags to unassign. All tags that have the specified tag key are unassigned.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_rule": {
+        "Identifier": {
+            "Description": "The unique ID of the retention rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetentionPeriod": {
+            "Description": "Information about the retention period for which the retention rule is to retain resources.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "The retention rule description.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceType": {
+            "Description": "The resource type to be retained by the retention rule. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To retain snapshots, specify EBS_SNAPSHOT . To retain EBS-backed AMIs, specify EC2_IMAGE .",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceTags": {
+            "Description": "Specifies the resource tags to use to identify resources that are to be retained by a tag-level retention rule. For tag-level retention rules, only deleted resources, of the specified resource type, that have one or more of the specified tag key and value pairs are retained. If a resource is deleted, but it does not have any of the specified tag key and value pairs, it is immediately deleted without being retained by the retention rule.\nYou can add the same tag key and value pair to a maximum or five retention rules.\nTo create a Region-level retention rule, omit this parameter. A Region-level retention rule does not have any resource tags specified. It retains all deleted resources of the specified resource type in the Region in which the rule is created, even if the resources are not tagged.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "ResourceType": {
+            "Description": "The resource type retained by the retention rule. Only retention rules that retain the specified resource type are listed. Currently, only Amazon EBS snapshots and EBS-backed AMIs are supported. To list retention rules that retain snapshots, specify EBS_SNAPSHOT. To list retention rules that retain EBS-backed AMIs, specify EC2_IMAGE .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceTags": {
+            "Description": "Information about the resource tags used to identify resources that are retained by the retention rule.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

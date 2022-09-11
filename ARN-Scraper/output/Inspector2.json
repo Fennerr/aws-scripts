@@ -1,0 +1,440 @@
+{
+    "associate_member": {
+        "accountId": {
+            "Description": "The Amazon Web Services account ID of the member account to be associated.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_get_account_status": {
+        "accountIds": {
+            "Description": "The 12-digit Amazon Web Services account IDs of the accounts to retrieve Amazon Inspector status for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "batch_get_free_trial_info": {
+        "accountIds": {
+            "Description": "The account IDs to get free trial status for.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "cancel_findings_report": {
+        "reportId": {
+            "Description": "The ID of the report to be canceled.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_filter": {
+        "action": {
+            "Description": "Defines the action that is to be applied to the findings that match the filter.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "filterCriteria": {
+            "Description": "Defines the criteria to be used in the filter for querying findings.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "The name of the filter. Minimum length of 3. Maximum length of 64. Valid characters include alphanumeric characters, dot (.), underscore (_), and dash (-). Spaces are not allowed.",
+            "Type": "string",
+            "Required": true
+        },
+        "reason": {
+            "Description": "The reason for creating the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of tags for the filter.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_findings_report": {
+        "filterCriteria": {
+            "Description": "The filter criteria to apply to the results of the finding report.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "reportFormat": {
+            "Description": "The format to generate the report in.",
+            "Type": "string",
+            "Required": true
+        },
+        "s3Destination": {
+            "Description": "The Amazon S3 export destination for the report.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_filter": {
+        "arn": {
+            "Description": "The Amazon Resource Number (ARN) of the filter to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_organization_configuration": "No parameters defined",
+    "disable": {
+        "accountIds": {
+            "Description": "An array of account IDs you want to disable Amazon Inspector scans for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceTypes": {
+            "Description": "The resource scan types you want to disable.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "disable_delegated_admin_account": {
+        "delegatedAdminAccountId": {
+            "Description": "The Amazon Web Services account ID of the current Amazon Inspector delegated administrator.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_member": {
+        "accountId": {
+            "Description": "The Amazon Web Services account ID of the member account to disassociate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable": {
+        "accountIds": {
+            "Description": "A list of account IDs you want to enable Amazon Inspector scans for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "clientToken": {
+            "Description": "The idempotency token for the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceTypes": {
+            "Description": "The resource scan types you want to enable.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "enable_delegated_admin_account": {
+        "clientToken": {
+            "Description": "The idempotency token for the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "delegatedAdminAccountId": {
+            "Description": "The Amazon Web Services account ID of the Amazon Inspector delegated administrator.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_configuration": "No parameters defined",
+    "get_delegated_admin_account": "No parameters defined",
+    "get_findings_report_status": {
+        "reportId": {
+            "Description": "The ID of the report to retrieve the status of.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_member": {
+        "accountId": {
+            "Description": "The Amazon Web Services account ID of the member account to retrieve information on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_account_permissions": {
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        },
+        "service": {
+            "Description": "The service scan type to check permissions for.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_coverage": {
+        "filterCriteria": {
+            "Description": "An object that contains details on the filters to apply to the coverage data for your environment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_coverage_statistics": {
+        "filterCriteria": {
+            "Description": "An object that contains details on the filters to apply to the coverage data for your environment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "groupBy": {
+            "Description": "The value to group the results by.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_delegated_admin_accounts": {
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_filters": {
+        "action": {
+            "Description": "The action the filter applies to matched findings.",
+            "Type": "string",
+            "Required": false
+        },
+        "arns": {
+            "Description": "The Amazon resource number (ARN) of the filter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_finding_aggregations": {
+        "accountIds": {
+            "Description": "The Amazon Web Services account IDs to retrieve finding aggregation data for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "aggregationRequest": {
+            "Description": "Details of the aggregation request that is used to filter your aggregation results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "aggregationType": {
+            "Description": "The type of the aggregation request.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_findings": {
+        "filterCriteria": {
+            "Description": "Details on the filters to apply to your finding results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortCriteria": {
+            "Description": "Details on the sort criteria to apply to your finding results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_members": {
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        },
+        "onlyAssociated": {
+            "Description": "Specifies whether to list only currently associated members if True or to list all members within the organization if False .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon resource number (ARN) of the resource to list tags of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_usage_totals": {
+        "accountIds": {
+            "Description": "The Amazon Web Services account IDs to retrieve usage totals for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in the response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request to a list action. For subsequent calls, use the NextToken value returned from the previous request to continue listing results after the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to apply a tag to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to be added to a resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the resource to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_configuration": {
+        "ecrConfiguration": {
+            "Description": "Specifies how the ECR automated re-scan will be updated for your environment.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_filter": {
+        "action": {
+            "Description": "Specifies the action that is to be applied to the findings that match the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description of the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "filterArn": {
+            "Description": "The Amazon Resource Number (ARN) of the filter to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterCriteria": {
+            "Description": "Defines the criteria to be update in the filter.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "The name of the filter.",
+            "Type": "string",
+            "Required": false
+        },
+        "reason": {
+            "Description": "The reason the filter was updated.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_organization_configuration": {
+        "autoEnable": {
+            "Description": "Defines which scan types are enabled automatically for new members of your Amazon Inspector organization.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "accountIds": {
+            "Description": "The Amazon Web Services account IDs to retrieve usage totals for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

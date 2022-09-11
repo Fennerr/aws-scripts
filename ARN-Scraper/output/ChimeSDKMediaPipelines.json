@@ -1,0 +1,176 @@
+{
+    "create_media_capture_pipeline": {
+        "SourceType": {
+            "Description": "Source type from which the media artifacts are captured. A Chime SDK Meeting is the only supported source.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceArn": {
+            "Description": "ARN of the source from which the media artifacts are captured.",
+            "Type": "string",
+            "Required": true
+        },
+        "SinkType": {
+            "Description": "Destination type to which the media artifacts are saved. You must use an S3 bucket.",
+            "Type": "string",
+            "Required": true
+        },
+        "SinkArn": {
+            "Description": "The ARN of the sink type.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "The unique identifier for the client request. The token makes the API request idempotent. Use a unique token for each media pipeline request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChimeSdkMeetingConfiguration": {
+            "Description": "The configuration for a specified media pipeline. SourceType must be ChimeSdkMeeting .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tag key-value pairs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_media_concatenation_pipeline": {
+        "Sources": {
+            "Description": "An object that specifies the sources for the media concatenation pipeline.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Sinks": {
+            "Description": "An object that specifies the data sinks for the media concatenation pipeline.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "The unique identifier for the client request. The token makes the API request idempotent. Use a unique token for each media concatenation pipeline request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags associated with the media concatenation pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_media_live_connector_pipeline": {
+        "Sources": {
+            "Description": "The media pipeline's data sources.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Sinks": {
+            "Description": "The media pipeline's data sinks.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "The token assigned to the client making the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags associated with the media pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_media_capture_pipeline": {
+        "MediaPipelineId": {
+            "Description": "The ID of the media pipeline being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_media_pipeline": {
+        "MediaPipelineId": {
+            "Description": "The ID of the media pipeline to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_media_capture_pipeline": {
+        "MediaPipelineId": {
+            "Description": "The ID of the pipeline that you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_media_pipeline": {
+        "MediaPipelineId": {
+            "Description": "The ID of the pipeline that you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_media_capture_pipelines": {
+        "NextToken": {
+            "Description": "The token used to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. Valid Range: 1 - 99.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_media_pipelines": {
+        "NextToken": {
+            "Description": "The token used to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. Valid Range: 1 - 99.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the media pipeline associated with any tags. The ARN consists of the pipeline's region, resource ID, and pipeline ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the media pipeline associated with any tags. The ARN consists of the pipeline's endpoint region, resource ID, and pipeline ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags associated with the specified media pipeline.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the pipeline that you want to untag.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The key/value pairs in the tag that you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    }
+}

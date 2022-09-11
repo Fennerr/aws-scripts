@@ -1,0 +1,71 @@
+{
+    "describe_stream": {
+        "StreamArn": {
+            "Description": "The Amazon Resource Name (ARN) for the stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The maximum number of shard objects to return. The upper limit is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ExclusiveStartShardId": {
+            "Description": "The shard ID of the first item that this operation will evaluate. Use the value that was returned for LastEvaluatedShardId in the previous operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_records": {
+        "ShardIterator": {
+            "Description": "A shard iterator that was retrieved from a previous GetShardIterator operation. This iterator can be used to access the stream records in this shard.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The maximum number of records to return from the shard. The upper limit is 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_shard_iterator": {
+        "StreamArn": {
+            "Description": "The Amazon Resource Name (ARN) for the stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardId": {
+            "Description": "The identifier of the shard. The iterator will be returned for this shard ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardIteratorType": {
+            "Description": "Determines how the shard iterator is used to start reading stream records from the shard:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "SequenceNumber": {
+            "Description": "The sequence number of a stream record in the shard from which to start reading.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_streams": {
+        "TableName": {
+            "Description": "If this parameter is provided, then only the streams associated with this table name are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of streams to return. The upper limit is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ExclusiveStartStreamArn": {
+            "Description": "The ARN (Amazon Resource Name) of the first item that this operation will evaluate. Use the value that was returned for LastEvaluatedStreamArn in the previous operation.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

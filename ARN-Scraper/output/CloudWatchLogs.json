@@ -1,0 +1,760 @@
+{
+    "associate_kms_key": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "kmsKeyId": {
+            "Description": "The Amazon Resource Name (ARN) of the CMK to use when encrypting log data. This must be a symmetric CMK. For more information, see Amazon Resource Names - Key Management Service and Using Symmetric and Asymmetric Keys .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_export_task": {
+        "taskId": {
+            "Description": "The ID of the export task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_export_task": {
+        "taskName": {
+            "Description": "The name of the export task.",
+            "Type": "string",
+            "Required": false
+        },
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamNamePrefix": {
+            "Description": "Export only log streams that match the provided prefix. If you don't specify a value, no prefix filter is applied.",
+            "Type": "string",
+            "Required": false
+        },
+        "fromTime": {
+            "Description": "The start time of the range for the request, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp earlier than this time are not exported.",
+            "Type": "integer",
+            "Required": true
+        },
+        "to": {
+            "Description": "The end time of the range for the request, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than this time are not exported.",
+            "Type": "integer",
+            "Required": true
+        },
+        "destination": {
+            "Description": "The name of S3 bucket for the exported log data. The bucket must be in the same Amazon Web Services region.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationPrefix": {
+            "Description": "The prefix used as the start of the key for every object exported. If you don't specify a value, the default is exportedlogs .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_log_group": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "kmsKeyId": {
+            "Description": "The Amazon Resource Name (ARN) of the CMK to use when encrypting log data. For more information, see Amazon Resource Names - Key Management Service .",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The key-value pairs to use for the tags.\nCloudWatch Logs doesn\u2019t support IAM policies that prevent users from assigning specified tags to log groups using the aws:Resource/*key-name* `` or ``aws:TagKeys condition keys. For more information about using tags to control access, see Controlling access to Amazon Web Services resources using tags .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_log_stream": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamName": {
+            "Description": "The name of the log stream.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_destination": {
+        "destinationName": {
+            "Description": "The name of the destination.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_log_group": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_log_stream": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamName": {
+            "Description": "The name of the log stream.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_metric_filter": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterName": {
+            "Description": "The name of the metric filter.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_query_definition": {
+        "queryDefinitionId": {
+            "Description": "The ID of the query definition that you want to delete. You can use DescribeQueryDefinitions to retrieve the IDs of your saved query definitions.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_policy": {
+        "policyName": {
+            "Description": "The name of the policy to be revoked. This parameter is required.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_retention_policy": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_subscription_filter": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterName": {
+            "Description": "The name of the subscription filter.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_destinations": {
+        "DestinationNamePrefix": {
+            "Description": "The prefix to match. If you don't specify a value, no prefix filter is applied.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of items returned. If you don't specify a value, the default is up to 50 items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_export_tasks": {
+        "taskId": {
+            "Description": "The ID of the export task. Specifying a task ID filters the results to zero or one export tasks.",
+            "Type": "string",
+            "Required": false
+        },
+        "statusCode": {
+            "Description": "The status code of the export task. Specifying a status code filters the results to zero or more export tasks.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of items returned. If you don't specify a value, the default is up to 50 items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_log_groups": {
+        "logGroupNamePrefix": {
+            "Description": "The prefix to match.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of items returned. If you don't specify a value, the default is up to 50 items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_log_streams": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamNamePrefix": {
+            "Description": "The prefix to match.\nIf orderBy is LastEventTime, you cannot specify this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "orderBy": {
+            "Description": "If the value is LogStreamName, the results are ordered by log stream name. If the value is LastEventTime, the results are ordered by the event time. The default value is LogStreamName .\nIf you order the results by event time, you cannot specify the logStreamNamePrefix parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "descending": {
+            "Description": "If the value is true, results are returned in descending order. If the value is to false, results are returned in ascending order. The default value is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of items returned. If you don't specify a value, the default is up to 50 items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_metric_filters": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": false
+        },
+        "filterNamePrefix": {
+            "Description": "The prefix to match. CloudWatch Logs uses the value you set here only if you also include the logGroupName parameter in your request.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of items returned. If you don't specify a value, the default is up to 50 items.",
+            "Type": "integer",
+            "Required": false
+        },
+        "metricName": {
+            "Description": "Filters results to include only those with the specified metric name. If you include this parameter in your request, you must also include the metricNamespace parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "metricNamespace": {
+            "Description": "Filters results to include only those in the specified namespace. If you include this parameter in your request, you must also include the metricName parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_queries": {
+        "logGroupName": {
+            "Description": "Limits the returned queries to only those for the specified log group.",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "Limits the returned queries to only those that have the specified status. Valid values are Cancelled , Complete , Failed , Running , and Scheduled .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Limits the number of returned queries to the specified number.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. The token expires after 24 hours.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_query_definitions": {
+        "queryDefinitionNamePrefix": {
+            "Description": "Use this parameter to filter your results to only the query definitions that have names that start with the prefix you specify.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Limits the number of returned query definitions to the specified number.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. The token expires after 24 hours.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_resource_policies": {
+        "nextToken": {
+            "Description": "The token for the next set of items to return. The token expires after 24 hours.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of resource policies to be displayed with one call of this API.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_subscription_filters": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterNamePrefix": {
+            "Description": "The prefix to match. If you don't specify a value, no prefix filter is applied.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of items returned. If you don't specify a value, the default is up to 50 items.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "disassociate_kms_key": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "filter_log_events": {
+        "logGroupName": {
+            "Description": "The name of the log group to search.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamNames": {
+            "Description": "Filters the results to only logs from the log streams in this list.\nIf you specify a value for both logStreamNamePrefix and logStreamNames, the action returns an InvalidParameterException error.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "logStreamNamePrefix": {
+            "Description": "Filters the results to include only events from log streams that have names starting with this prefix.\nIf you specify a value for both logStreamNamePrefix and logStreamNames, but the value for logStreamNamePrefix does not match any log stream names specified in logStreamNames, the action returns an InvalidParameterException error.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "The start of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp before this time are not returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than this time are not returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filterPattern": {
+            "Description": "The filter pattern to use. For more information, see Filter and Pattern Syntax .\nIf not provided, all the events are matched.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of events to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of events to return. The default is 10,000 events.",
+            "Type": "integer",
+            "Required": false
+        },
+        "interleaved": {
+            "Description": "If the value is true, the operation makes a best effort to provide responses that contain events from multiple log streams within the log group, interleaved in a single response. If the value is false, all the matched log events in the first log stream are searched first, then those in the next log stream, and so on. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_log_events": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamName": {
+            "Description": "The name of the log stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp equal to this time or later than this time are included. Events with a timestamp earlier than this time are not included.",
+            "Type": "integer",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp equal to or later than this time are not included.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of log events returned. If you don't specify a value, the maximum is as many log events as can fit in a response size of 1 MB, up to 10,000 log events.",
+            "Type": "integer",
+            "Required": false
+        },
+        "startFromHead": {
+            "Description": "If the value is true, the earliest log events are returned first. If the value is false, the latest log events are returned first. The default value is false.\nIf you are using a previous nextForwardToken value as the nextToken in this operation, you must specify true for startFromHead .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_log_group_fields": {
+        "logGroupName": {
+            "Description": "The name of the log group to search.",
+            "Type": "string",
+            "Required": true
+        },
+        "time": {
+            "Description": "The time to set as the center of the query. If you specify time, the 15 minutes before this time are queries. If you omit time the 8 minutes before and 8 minutes after this time are searched.\nThe time value is specified as epoch time, the number of seconds since January 1, 1970, 00:00:00 UTC.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_log_record": {
+        "logRecordPointer": {
+            "Description": "The pointer corresponding to the log event record you want to retrieve. You get this from the response of a GetQueryResults operation. In that response, the value of the @ptr field for a log event is the value to use as logRecordPointer to retrieve that complete log event record.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_query_results": {
+        "queryId": {
+            "Description": "The ID number of the query.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags_log_group": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_destination": {
+        "destinationName": {
+            "Description": "A name for the destination.",
+            "Type": "string",
+            "Required": true
+        },
+        "targetArn": {
+            "Description": "The ARN of an Amazon Kinesis stream to which to deliver matching log events.",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The ARN of an IAM role that grants CloudWatch Logs permissions to call the Amazon Kinesis PutRecord operation on the destination stream.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_destination_policy": {
+        "destinationName": {
+            "Description": "A name for an existing destination.",
+            "Type": "string",
+            "Required": true
+        },
+        "accessPolicy": {
+            "Description": "An IAM policy document that authorizes cross-account users to deliver their log events to the associated destination. This can be up to 5120 bytes.",
+            "Type": "string",
+            "Required": true
+        },
+        "forceUpdate": {
+            "Description": "Specify true if you are updating an existing destination policy to grant permission to an organization ID instead of granting permission to individual AWS accounts. Before you update a destination policy this way, you must first update the subscription filters in the accounts that send logs to this destination. If you do not, the subscription filters might stop working. By specifying true for forceUpdate, you are affirming that you have already updated the subscription filters. For more information, see Updating an existing cross-account subscription\nIf you omit this parameter, the default of false is used.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_log_events": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamName": {
+            "Description": "The name of the log stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "logEvents": {
+            "Description": "The log events.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "sequenceToken": {
+            "Description": "The sequence token obtained from the response of the previous PutLogEvents call. An upload in a newly created log stream does not require a sequence token. You can also get the sequence token using DescribeLogStreams . If you call PutLogEvents twice within a narrow time period using the same value for sequenceToken , both calls might be successful or one might be rejected.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_metric_filter": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterName": {
+            "Description": "A name for the metric filter.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterPattern": {
+            "Description": "A filter pattern for extracting metric data out of ingested log events.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricTransformations": {
+            "Description": "A collection of information that defines how metric data gets emitted.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "put_query_definition": {
+        "name": {
+            "Description": "A name for the query definition. If you are saving a lot of query definitions, we recommend that you name them so that you can easily find the ones you want by using the first part of the name as a filter in the queryDefinitionNamePrefix parameter of DescribeQueryDefinitions .",
+            "Type": "string",
+            "Required": true
+        },
+        "queryDefinitionId": {
+            "Description": "If you are updating a query definition, use this parameter to specify the ID of the query definition that you want to update. You can use DescribeQueryDefinitions to retrieve the IDs of your saved query definitions.\nIf you are creating a query definition, do not specify this parameter. CloudWatch generates a unique ID for the new query definition and include it in the response to this operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "logGroupNames": {
+            "Description": "Use this parameter to include specific log groups as part of your query definition.\nIf you are updating a query definition and you omit this parameter, then the updated definition will contain no log groups.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "queryString": {
+            "Description": "The query string to use for this definition. For more information, see CloudWatch Logs Insights Query Syntax .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_resource_policy": {
+        "policyName": {
+            "Description": "Name of the new policy. This parameter is required.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyDocument": {
+            "Description": "Details of the new policy, including the identity of the principal that is enabled to put logs to this account. This is formatted as a JSON string. This parameter is required.\nThe following example creates a resource policy enabling the Route 53 service to put DNS query logs in to the specified log group. Replace \"logArn\" with the ARN of your CloudWatch Logs resource, such as a log group or log stream.\nCloudWatch Logs also supports aws:SourceArn and aws:SourceAccount condition context keys.\nIn the example resource policy, you would replace the value of SourceArn with the resource making the call from Route 53 to CloudWatch Logs and replace the value of SourceAccount with the Amazon Web Services account ID making that call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_retention_policy": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "retentionInDays": {
+            "Description": "The number of days to retain the log events in the specified log group. Possible values are: 1, 3, 5, 7, 14, 30, 60, 90, 120, 150, 180, 365, 400, 545, 731, 1827, 2192, 2557, 2922, 3288, and 3653.\nTo set a log group to never have log events expire, use DeleteRetentionPolicy .",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "put_subscription_filter": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "filterName": {
+            "Description": "A name for the subscription filter. If you are updating an existing filter, you must specify the correct name in filterName. To find the name of the filter currently associated with a log group, use DescribeSubscriptionFilters .",
+            "Type": "string",
+            "Required": true
+        },
+        "filterPattern": {
+            "Description": "A filter pattern for subscribing to a filtered stream of log events.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationArn": {
+            "Description": "The ARN of the destination to deliver matching log events to. Currently, the supported destinations are:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "roleArn": {
+            "Description": "The ARN of an IAM role that grants CloudWatch Logs permissions to deliver ingested log events to the destination stream. You don't need to provide the ARN when you are working with a logical destination for cross-account delivery.",
+            "Type": "string",
+            "Required": false
+        },
+        "distribution": {
+            "Description": "The method used to distribute log data to the destination. By default, log data is grouped by log stream, but the grouping can be set to random for a more even distribution. This property is only applicable when the destination is an Amazon Kinesis stream.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_query": {
+        "logGroupName": {
+            "Description": "The log group on which to perform the query.\nA StartQuery operation must include a logGroupNames or a logGroupName parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "logGroupNames": {
+            "Description": "The list of log groups to be queried. You can include up to 20 log groups.\nA StartQuery operation must include a logGroupNames or a logGroupName parameter, but not both.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "startTime": {
+            "Description": "The beginning of the time range to query. The range is inclusive, so the specified start time is included in the query. Specified as epoch time, the number of seconds since January 1, 1970, 00:00:00 UTC.",
+            "Type": "integer",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end of the time range to query. The range is inclusive, so the specified end time is included in the query. Specified as epoch time, the number of seconds since January 1, 1970, 00:00:00 UTC.",
+            "Type": "integer",
+            "Required": true
+        },
+        "queryString": {
+            "Description": "The query string to use. For more information, see CloudWatch Logs Insights Query Syntax .",
+            "Type": "string",
+            "Required": true
+        },
+        "limit": {
+            "Description": "The maximum number of log events to return in the query. If the query string uses the fields command, only the specified fields and their values are returned. The default is 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "stop_query": {
+        "queryId": {
+            "Description": "The ID number of the query to stop. To find this ID number, use DescribeQueries .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_log_group": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The key-value pairs to use for the tags.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "test_metric_filter": {
+        "filterPattern": {
+            "Description": "A symbolic description of how CloudWatch Logs should interpret the data in each log event. For example, a log event can contain timestamps, IP addresses, strings, and so on. You use the filter pattern to specify what to look for in the log event message.",
+            "Type": "string",
+            "Required": true
+        },
+        "logEventMessages": {
+            "Description": "The log event messages to test.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_log_group": {
+        "logGroupName": {
+            "Description": "The name of the log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys. The corresponding tags are removed from the log group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "logGroupName": {
+            "Description": "The name of the log group to search.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamNames": {
+            "Description": "Filters the results to only logs from the log streams in this list.\nIf you specify a value for both logStreamNamePrefix and logStreamNames, the action returns an InvalidParameterException error.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "logStreamNamePrefix": {
+            "Description": "Filters the results to include only events from log streams that have names starting with this prefix.\nIf you specify a value for both logStreamNamePrefix and logStreamNames, but the value for logStreamNamePrefix does not match any log stream names specified in logStreamNames, the action returns an InvalidParameterException error.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "The start of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp before this time are not returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end of the time range, expressed as the number of milliseconds after Jan 1, 1970 00:00:00 UTC. Events with a timestamp later than this time are not returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filterPattern": {
+            "Description": "The filter pattern to use. For more information, see Filter and Pattern Syntax .\nIf not provided, all the events are matched.",
+            "Type": "string",
+            "Required": false
+        },
+        "interleaved": {
+            "Description": "If the value is true, the operation makes a best effort to provide responses that contain events from multiple log streams within the log group, interleaved in a single response. If the value is false, all the matched log events in the first log stream are searched first, then those in the next log stream, and so on. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

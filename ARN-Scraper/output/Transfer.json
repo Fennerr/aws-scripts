@@ -1,0 +1,1111 @@
+{
+    "create_access": {
+        "HomeDirectory": {
+            "Description": "The landing directory (folder) for a user when they log in to the server using the client.\nA HomeDirectory example is /bucket_name/home/mydirectory .",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryType": {
+            "Description": "The type of landing directory (folder) that you want your users' home directory to be when they log in to the server. If you set it to PATH , the user will see the absolute Amazon S3 bucket or EFS paths as is in their file transfer protocol clients. If you set it LOGICAL , you need to provide mappings in the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS paths visible to your users.",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryMappings": {
+            "Description": "Logical directory mappings that specify what Amazon S3 or Amazon EFS paths and keys should be visible to your user and how you want to make them visible. You must specify the Entry and Target pair, where Entry shows how the path is made visible and Target is the actual Amazon S3 or Amazon EFS path. If you only specify a target, it is displayed as is. You also must ensure that your Identity and Access Management (IAM) role provides access to paths in Target. This value can be set only when HomeDirectoryType is set to LOGICAL .\nThe following is an Entry and Target pair example.\nIn most cases, you can use this value instead of the session policy to lock down your user to the designated home directory (\"chroot \"). To do this, you can set Entry to / and set Target to the HomeDirectory parameter value.\nThe following is an Entry and Target pair example for chroot .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Policy": {
+            "Description": "A session policy for your user so that you can use the same Identity and Access Management (IAM) role across multiple users. This policy scopes down a user's access to portions of their Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket} .",
+            "Type": "string",
+            "Required": false
+        },
+        "PosixProfile": {
+            "Description": "The full POSIX identity, including user ID (Uid ), group ID (Gid ), and any secondary groups IDs (SecondaryGids ), that controls your users' access to your Amazon EFS file systems. The POSIX permissions that are set on files and directories in your file system determine the level of access your users get when transferring files into and out of your Amazon EFS file systems.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Role": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that controls your users' access to your Amazon S3 bucket or Amazon EFS file system. The policies attached to this role determine the level of access that you want to provide your users when transferring files into and out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should also contain a trust relationship that allows the server to access your resources when servicing your users' transfer requests.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalId": {
+            "Description": "A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.\nIn that command, replace YourGroupName with the name of your Active Directory group.\nThe regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_agreement": {
+        "Description": {
+            "Description": "A name or short description to identify the agreement.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance. This is the specific server that the agreement uses.",
+            "Type": "string",
+            "Required": true
+        },
+        "LocalProfileId": {
+            "Description": "A unique identifier for the AS2 local profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "PartnerProfileId": {
+            "Description": "A unique identifier for the partner profile used in the agreement.",
+            "Type": "string",
+            "Required": true
+        },
+        "BaseDirectory": {
+            "Description": "The landing directory (folder) for files transferred by using the AS2 protocol.\nA BaseDirectory example is ``/DOC-EXAMPLE-BUCKET /home /mydirectory `` .",
+            "Type": "string",
+            "Required": true
+        },
+        "AccessRole": {
+            "Description": "With AS2, you can send files by calling StartFileTransfer and specifying the file paths in the request parameter, SendFilePaths. We use the file\u2019s parent directory (for example, for --send-file-paths /bucket/dir/file.txt, parent directory is /bucket/dir/ ) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the AccessRole needs to provide read and write access to the parent directory of the file location used in the StartFileTransfer request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with StartFileTransfer .",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "The status of the agreement. The agreement can be either ACTIVE or INACTIVE .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Key-value pairs that can be used to group and search for agreements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_connector": {
+        "Url": {
+            "Description": "The URL of the partner's AS2 endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "As2Config": {
+            "Description": "A structure that contains the parameters for a connector object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AccessRole": {
+            "Description": "With AS2, you can send files by calling StartFileTransfer and specifying the file paths in the request parameter, SendFilePaths. We use the file\u2019s parent directory (for example, for --send-file-paths /bucket/dir/file.txt, parent directory is /bucket/dir/ ) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the AccessRole needs to provide read and write access to the parent directory of the file location used in the StartFileTransfer request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with StartFileTransfer .",
+            "Type": "string",
+            "Required": true
+        },
+        "LoggingRole": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a connector to turn on CloudWatch logging for Amazon S3 events. When set, you can view connector activity in your CloudWatch logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Key-value pairs that can be used to group and search for connectors. Tags are metadata attached to connectors for any purpose.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_profile": {
+        "As2Id": {
+            "Description": "The As2Id is the AS2-name, as defined in the RFC 4130. For inbound transfers, this is the AS2-From header for the AS2 messages sent from the partner. For outbound connectors, this is the AS2-To header for the AS2 messages sent to the partner using the StartFileTransfer API operation. This ID cannot include spaces.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProfileType": {
+            "Description": "Indicates whether to list only LOCAL type profiles or only PARTNER type profiles. If not supplied in the request, the command lists all types of profiles.",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateIds": {
+            "Description": "An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Key-value pairs that can be used to group and search for AS2 profiles.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_server": {
+        "Certificate": {
+            "Description": "The Amazon Resource Name (ARN) of the Certificate Manager (ACM) certificate. Required when Protocols is set to FTPS .\nTo request a new public certificate, see Request a public certificate in the Certificate Manager User Guide .\nTo import an existing certificate into ACM, see Importing certificates into ACM in the Certificate Manager User Guide .\nTo request a private certificate to use FTPS through private IP addresses, see Request a private certificate in the Certificate Manager User Guide .\nCertificates with the following cryptographic algorithms and key sizes are supported:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Domain": {
+            "Description": "The domain of the storage system that is used for file transfers. There are two domains available: Amazon Simple Storage Service (Amazon S3) and Amazon Elastic File System (Amazon EFS). The default value is S3.",
+            "Type": "string",
+            "Required": false
+        },
+        "EndpointDetails": {
+            "Description": "The virtual private cloud (VPC) endpoint settings that are configured for your server. When you host your endpoint within your VPC, you can make your endpoint accessible only to resources within your VPC, or you can attach Elastic IP addresses and make your endpoint accessible to clients over the internet. Your VPC's default security groups are automatically assigned to your endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EndpointType": {
+            "Description": "The type of endpoint that you want your server to use. You can choose to make your server's endpoint publicly accessible (PUBLIC) or host it inside your VPC. With an endpoint that is hosted in a VPC, you can restrict access to your server and resources only within your VPC or choose to make it internet facing by attaching Elastic IP addresses directly to it.",
+            "Type": "string",
+            "Required": false
+        },
+        "HostKey": {
+            "Description": "The RSA, ECDSA, or ED25519 private key to use for your server.\nUse the following command to generate an RSA 2048 bit key with no passphrase:\nUse a minimum value of 2048 for the -b option. You can create a stronger key by using 3072 or 4096.\nUse the following command to generate an ECDSA 256 bit key with no passphrase:\nValid values for the -b option for ECDSA are 256, 384, and 521.\nUse the following command to generate an ED25519 key with no passphrase:\nFor all of these commands, you can replace my-new-server-key with a string of your choice.\nFor more information, see Change the host key for your SFTP-enabled server in the Transfer Family User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "IdentityProviderDetails": {
+            "Description": "Required when IdentityProviderType is set to AWS_DIRECTORY_SERVICE or API_GATEWAY. Accepts an array containing all of the information required to use a directory in AWS_DIRECTORY_SERVICE or invoke a customer-supplied authentication API, including the API Gateway URL. Not required when IdentityProviderType is set to SERVICE_MANAGED .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IdentityProviderType": {
+            "Description": "The mode of authentication for a server. The default value is SERVICE_MANAGED, which allows you to store and access user credentials within the Transfer Family service.\nUse AWS_DIRECTORY_SERVICE to provide access to Active Directory groups in Directory Service for Microsoft Active Directory or Microsoft Active Directory in your on-premises environment or in Amazon Web Services using AD Connector. This option also requires you to provide a Directory ID by using the IdentityProviderDetails parameter.\nUse the API_GATEWAY value to integrate with an identity provider of your choosing. The API_GATEWAY setting requires you to provide an Amazon API Gateway endpoint URL to call for authentication by using the IdentityProviderDetails parameter.\nUse the AWS_LAMBDA value to directly use an Lambda function as your identity provider. If you choose this value, you must specify the ARN for the Lambda function in the Function parameter or the IdentityProviderDetails data type.",
+            "Type": "string",
+            "Required": false
+        },
+        "LoggingRole": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch logging for Amazon S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "PostAuthenticationLoginBanner": {
+            "Description": "Specifies a string to display when users connect to a server. This string is displayed after the user authenticates.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreAuthenticationLoginBanner": {
+            "Description": "Specifies a string to display when users connect to a server. This string is displayed before the user authenticates. For example, the following banner displays details about using the system:",
+            "Type": "string",
+            "Required": false
+        },
+        "Protocols": {
+            "Description": "Specifies the file transfer protocol or protocols over which your file transfer protocol client can connect to your server's endpoint. The available protocols are:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "ProtocolDetails": {
+            "Description": "The protocol settings that are configured for your server.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "SecurityPolicyName": {
+            "Description": "Specifies the name of the security policy that is attached to the server.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Key-value pairs that can be used to group and search for servers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "WorkflowDetails": {
+            "Description": "Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_user": {
+        "HomeDirectory": {
+            "Description": "The landing directory (folder) for a user when they log in to the server using the client.\nA HomeDirectory example is /bucket_name/home/mydirectory .",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryType": {
+            "Description": "The type of landing directory (folder) that you want your users' home directory to be when they log in to the server. If you set it to PATH , the user will see the absolute Amazon S3 bucket or EFS paths as is in their file transfer protocol clients. If you set it LOGICAL , you need to provide mappings in the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS paths visible to your users.",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryMappings": {
+            "Description": "Logical directory mappings that specify what Amazon S3 or Amazon EFS paths and keys should be visible to your user and how you want to make them visible. You must specify the Entry and Target pair, where Entry shows how the path is made visible and Target is the actual Amazon S3 or Amazon EFS path. If you only specify a target, it is displayed as is. You also must ensure that your Identity and Access Management (IAM) role provides access to paths in Target. This value can be set only when HomeDirectoryType is set to LOGICAL .\nThe following is an Entry and Target pair example.\nIn most cases, you can use this value instead of the session policy to lock your user down to the designated home directory (\"chroot \"). To do this, you can set Entry to / and set Target to the HomeDirectory parameter value.\nThe following is an Entry and Target pair example for chroot .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Policy": {
+            "Description": "A session policy for your user so that you can use the same Identity and Access Management (IAM) role across multiple users. This policy scopes down a user's access to portions of their Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket} .",
+            "Type": "string",
+            "Required": false
+        },
+        "PosixProfile": {
+            "Description": "Specifies the full POSIX identity, including user ID (Uid ), group ID (Gid ), and any secondary groups IDs (SecondaryGids ), that controls your users' access to your Amazon EFS file systems. The POSIX permissions that are set on files and directories in Amazon EFS determine the level of access your users get when transferring files into and out of your Amazon EFS file systems.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Role": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that controls your users' access to your Amazon S3 bucket or Amazon EFS file system. The policies attached to this role determine the level of access that you want to provide your users when transferring files into and out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should also contain a trust relationship that allows the server to access your resources when servicing your users' transfer requests.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.",
+            "Type": "string",
+            "Required": true
+        },
+        "SshPublicKeyBody": {
+            "Description": "The public portion of the Secure Shell (SSH) key used to authenticate the user to the server.\nTransfer Family accepts RSA, ECDSA, and ED25519 keys.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Key-value pairs that can be used to group and search for users. Tags are metadata attached to users for any purpose.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserName": {
+            "Description": "A unique string that identifies a user and is associated with a ServerId. This user name must be a minimum of 3 and a maximum of 100 characters long. The following are valid characters: a-z, A-Z, 0-9, underscore '_', hyphen '-', period '.', and at sign '@'. The user name can't start with a hyphen, period, or at sign.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_workflow": {
+        "Description": {
+            "Description": "A textual description for the workflow.",
+            "Type": "string",
+            "Required": false
+        },
+        "Steps": {
+            "Description": "Specifies the details for the steps that are in the specified workflow.\nThe TYPE specifies which of the following actions is being taken for this step.\nFor file location, you specify either the S3 bucket and key, or the EFS file system ID and path.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "OnExceptionSteps": {
+            "Description": "Specifies the steps (actions) to take if errors are encountered during execution of the workflow.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Key-value pairs that can be used to group and search for workflows. Tags are metadata attached to workflows for any purpose.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_access": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server that has this user assigned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalId": {
+            "Description": "A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.\nIn that command, replace YourGroupName with the name of your Active Directory group.\nThe regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_agreement": {
+        "AgreementId": {
+            "Description": "A unique identifier for the agreement. This identifier is returned when you create an agreement.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerId": {
+            "Description": "The server ID associated with the agreement that you are deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_certificate": {
+        "CertificateId": {
+            "Description": "The ID of the certificate object that you are deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_connector": {
+        "ConnectorId": {
+            "Description": "The unique identifier for the connector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_profile": {
+        "ProfileId": {
+            "Description": "The ID of the profile that you are deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_server": {
+        "ServerId": {
+            "Description": "A unique system-assigned identifier for a server instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_ssh_public_key": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a file transfer protocol-enabled server instance that has the user assigned to it.",
+            "Type": "string",
+            "Required": true
+        },
+        "SshPublicKeyId": {
+            "Description": "A unique identifier used to reference your user's specific SSH key.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "A unique string that identifies a user whose public key is being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance that has the user assigned to it.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "A unique string that identifies a user that is being deleted from a server.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_workflow": {
+        "WorkflowId": {
+            "Description": "A unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_access": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server that has this access assigned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalId": {
+            "Description": "A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.\nIn that command, replace YourGroupName with the name of your Active Directory group.\nThe regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_agreement": {
+        "AgreementId": {
+            "Description": "A unique identifier for the agreement. This identifier is returned when you create an agreement.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerId": {
+            "Description": "The server ID that's associated with the agreement.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_certificate": {
+        "CertificateId": {
+            "Description": "An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_connector": {
+        "ConnectorId": {
+            "Description": "The unique identifier for the connector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_execution": {
+        "ExecutionId": {
+            "Description": "A unique identifier for the execution of a workflow.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkflowId": {
+            "Description": "A unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_profile": {
+        "ProfileId": {
+            "Description": "The identifier of the profile that you want described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_security_policy": {
+        "SecurityPolicyName": {
+            "Description": "Specifies the name of the security policy that is attached to the server.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_server": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_user": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server that has this user assigned.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The name of the user assigned to one or more servers. User names are part of the sign-in credentials to use the Transfer Family service and perform file transfer tasks.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_workflow": {
+        "WorkflowId": {
+            "Description": "A unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_certificate": {
+        "Usage": {
+            "Description": "Specifies whether this certificate is used for signing or encryption.",
+            "Type": "string",
+            "Required": true
+        },
+        "Certificate": {
+            "Description": "The file that contains the certificate to import.",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateChain": {
+            "Description": "An optional list of certificates that make up the chain for the certificate that's being imported.",
+            "Type": "string",
+            "Required": false
+        },
+        "PrivateKey": {
+            "Description": "The file that contains the private key for the certificate that's being imported.",
+            "Type": "string",
+            "Required": false
+        },
+        "ActiveDate": {
+            "Description": "An optional date that specifies when the certificate becomes active.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "InactiveDate": {
+            "Description": "An optional date that specifies when the certificate becomes inactive.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A short description that helps identify the certificate.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Key-value pairs that can be used to group and search for certificates.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "import_ssh_public_key": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server.",
+            "Type": "string",
+            "Required": true
+        },
+        "SshPublicKeyBody": {
+            "Description": "The public key portion of an SSH key pair.\nTransfer Family accepts RSA, ECDSA, and ED25519 keys.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The name of the user account that is assigned to one or more servers.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_accesses": {
+        "MaxResults": {
+            "Description": "Specifies the maximum number of access SIDs to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When you can get additional results from the ListAccesses call, a NextToken parameter is returned in the output. You can then pass in a subsequent command to the NextToken parameter to continue listing additional accesses.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server that has users assigned to it.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_agreements": {
+        "MaxResults": {
+            "Description": "The maximum number of agreements to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When you can get additional results from the ListAgreements call, a NextToken parameter is returned in the output. You can then pass in a subsequent command to the NextToken parameter to continue listing additional agreements.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerId": {
+            "Description": "The identifier of the server for which you want a list of agreements.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_certificates": {
+        "MaxResults": {
+            "Description": "The maximum number of certificates to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When you can get additional results from the ListCertificates call, a NextToken parameter is returned in the output. You can then pass in a subsequent command to the NextToken parameter to continue listing additional certificates.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_connectors": {
+        "MaxResults": {
+            "Description": "The maximum number of connectors to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When you can get additional results from the ListConnectors call, a NextToken parameter is returned in the output. You can then pass in a subsequent command to the NextToken parameter to continue listing additional connectors.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_executions": {
+        "MaxResults": {
+            "Description": "Specifies the maximum number of executions to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "This is useful for pagination, for instance. If you have 100 executions for a workflow, you might only want to list first 10. If so, call the API by specifying the max-results :\nThis returns details for the first 10 executions, as well as the pointer (NextToken ) to the eleventh execution. You can now call the API again, supplying the NextToken value you received:\nThis call returns the next 10 executions, the 11th through the 20th. You can then repeat the call until the details for all 100 executions have been returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "WorkflowId": {
+            "Description": "A unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_profiles": {
+        "MaxResults": {
+            "Description": "The maximum number of profiles to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When there are additional results that were not returned, a NextToken parameter is returned. You can use that value for a subsequent call to ListProfiles to continue listing results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProfileType": {
+            "Description": "Indicates whether to list only LOCAL type profiles or only PARTNER type profiles. If not supplied in the request, the command lists all types of profiles.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_security_policies": {
+        "MaxResults": {
+            "Description": "Specifies the number of security policies to return as a response to the ListSecurityPolicies query.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When additional results are obtained from the ListSecurityPolicies command, a NextToken parameter is returned in the output. You can then pass the NextToken parameter in a subsequent command to continue listing additional security policies.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_servers": {
+        "MaxResults": {
+            "Description": "Specifies the number of servers to return as a response to the ListServers query.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When additional results are obtained from the ListServers command, a NextToken parameter is returned in the output. You can then pass the NextToken parameter in a subsequent command to continue listing additional servers.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "Arn": {
+            "Description": "Requests the tags associated with a particular Amazon Resource Name (ARN). An ARN is an identifier for a specific Amazon Web Services resource, such as a server, user, or role.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Specifies the number of tags to return as a response to the ListTagsForResource request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When you request additional results from the ListTagsForResource operation, a NextToken parameter is returned in the input. You can then pass in a subsequent command to the NextToken parameter to continue listing additional tags.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_users": {
+        "MaxResults": {
+            "Description": "Specifies the number of users to return as a response to the ListUsers request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When you can get additional results from the ListUsers call, a NextToken parameter is returned in the output. You can then pass in a subsequent command to the NextToken parameter to continue listing additional users.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server that has users assigned to it.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_workflows": {
+        "MaxResults": {
+            "Description": "Specifies the maximum number of workflows to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "ListWorkflows returns the NextToken parameter in the output. You can then pass the NextToken parameter in a subsequent command to continue listing additional workflows.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_workflow_step_state": {
+        "WorkflowId": {
+            "Description": "A unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExecutionId": {
+            "Description": "A unique identifier for the execution of a workflow.",
+            "Type": "string",
+            "Required": true
+        },
+        "Token": {
+            "Description": "Used to distinguish between multiple callbacks for multiple Lambda steps within the same execution.",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "Indicates whether the specified step succeeded or failed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_file_transfer": {
+        "ConnectorId": {
+            "Description": "The unique identifier for the connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "SendFilePaths": {
+            "Description": "An array of strings. Each string represents the absolute path for one outbound file transfer. For example, `` DOC-EXAMPLE-BUCKET /myfile.txt `` .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "start_server": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server that you start.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_server": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server that you stopped.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "Arn": {
+            "Description": "An Amazon Resource Name (ARN) for a specific Amazon Web Services resource, such as a server, user, or role.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Key-value pairs assigned to ARNs that you can use to group and search for resources by type. You can attach this metadata to user accounts for any purpose.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "test_identity_provider": {
+        "ServerId": {
+            "Description": "A system-assigned identifier for a specific server. That server's user authentication method is tested with a user name and password.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerProtocol": {
+            "Description": "The type of file transfer protocol to be tested.\nThe available protocols are:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SourceIp": {
+            "Description": "The source IP address of the user account to be tested.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserName": {
+            "Description": "The name of the user account to be tested.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPassword": {
+            "Description": "The password of the user account to be tested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "untag_resource": {
+        "Arn": {
+            "Description": "The value of the resource that will have the tag removed. An Amazon Resource Name (ARN) is an identifier for a specific Amazon Web Services resource, such as a server, user, or role.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "TagKeys are key-value pairs assigned to ARNs that can be used to group and search for resources by type. This metadata can be attached to resources for any purpose.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_access": {
+        "HomeDirectory": {
+            "Description": "The landing directory (folder) for a user when they log in to the server using the client.\nA HomeDirectory example is /bucket_name/home/mydirectory .",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryType": {
+            "Description": "The type of landing directory (folder) that you want your users' home directory to be when they log in to the server. If you set it to PATH , the user will see the absolute Amazon S3 bucket or EFS paths as is in their file transfer protocol clients. If you set it LOGICAL , you need to provide mappings in the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS paths visible to your users.",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryMappings": {
+            "Description": "Logical directory mappings that specify what Amazon S3 or Amazon EFS paths and keys should be visible to your user and how you want to make them visible. You must specify the Entry and Target pair, where Entry shows how the path is made visible and Target is the actual Amazon S3 or Amazon EFS path. If you only specify a target, it is displayed as is. You also must ensure that your Identity and Access Management (IAM) role provides access to paths in Target. This value can be set only when HomeDirectoryType is set to LOGICAL .\nThe following is an Entry and Target pair example.\nIn most cases, you can use this value instead of the session policy to lock down your user to the designated home directory (\"chroot \"). To do this, you can set Entry to / and set Target to the HomeDirectory parameter value.\nThe following is an Entry and Target pair example for chroot .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Policy": {
+            "Description": "A session policy for your user so that you can use the same Identity and Access Management (IAM) role across multiple users. This policy scopes down a user's access to portions of their Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket} .",
+            "Type": "string",
+            "Required": false
+        },
+        "PosixProfile": {
+            "Description": "The full POSIX identity, including user ID (Uid ), group ID (Gid ), and any secondary groups IDs (SecondaryGids ), that controls your users' access to your Amazon EFS file systems. The POSIX permissions that are set on files and directories in your file system determine the level of access your users get when transferring files into and out of your Amazon EFS file systems.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Role": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that controls your users' access to your Amazon S3 bucket or Amazon EFS file system. The policies attached to this role determine the level of access that you want to provide your users when transferring files into and out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should also contain a trust relationship that allows the server to access your resources when servicing your users' transfer requests.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance. This is the specific server that you added your user to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalId": {
+            "Description": "A unique identifier that is required to identify specific groups within your directory. The users of the group that you associate have access to your Amazon S3 or Amazon EFS resources over the enabled protocols using Transfer Family. If you know the group name, you can view the SID values by running the following command using Windows PowerShell.\nIn that command, replace YourGroupName with the name of your Active Directory group.\nThe regular expression used to validate this parameter is a string of characters consisting of uppercase and lowercase alphanumeric characters with no spaces. You can also include underscores or any of the following characters: =,.@:/-",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_agreement": {
+        "AgreementId": {
+            "Description": "A unique identifier for the agreement. This identifier is returned when you create an agreement.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance. This is the specific server that the agreement uses.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "To replace the existing description, provide a short description for the agreement.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "You can update the status for the agreement, either activating an inactive agreement or the reverse.",
+            "Type": "string",
+            "Required": false
+        },
+        "LocalProfileId": {
+            "Description": "A unique identifier for the AS2 local profile.\nTo change the local profile identifier, provide a new value here.",
+            "Type": "string",
+            "Required": false
+        },
+        "PartnerProfileId": {
+            "Description": "A unique identifier for the partner profile. To change the partner profile identifier, provide a new value here.",
+            "Type": "string",
+            "Required": false
+        },
+        "BaseDirectory": {
+            "Description": "To change the landing directory (folder) for files that are transferred, provide the bucket folder that you want to use; for example, ``/DOC-EXAMPLE-BUCKET /home /mydirectory `` .",
+            "Type": "string",
+            "Required": false
+        },
+        "AccessRole": {
+            "Description": "With AS2, you can send files by calling StartFileTransfer and specifying the file paths in the request parameter, SendFilePaths . We use the file\u2019s parent directory (for example, for --send-file-paths /bucket/dir/file.txt , parent directory is /bucket/dir/ ) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the AccessRole needs to provide read and write access to the parent directory of the file location used in the StartFileTransfer request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with StartFileTransfer .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_certificate": {
+        "CertificateId": {
+            "Description": "The identifier of the certificate object that you are updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ActiveDate": {
+            "Description": "An optional date that specifies when the certificate becomes active.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "InactiveDate": {
+            "Description": "An optional date that specifies when the certificate becomes inactive.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A short description to help identify the certificate.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_connector": {
+        "ConnectorId": {
+            "Description": "The unique identifier for the connector.",
+            "Type": "string",
+            "Required": true
+        },
+        "Url": {
+            "Description": "The URL of the partner's AS2 endpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "As2Config": {
+            "Description": "A structure that contains the parameters for a connector object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccessRole": {
+            "Description": "With AS2, you can send files by calling StartFileTransfer and specifying the file paths in the request parameter, SendFilePaths . We use the file\u2019s parent directory (for example, for --send-file-paths /bucket/dir/file.txt , parent directory is /bucket/dir/ ) to temporarily store a processed AS2 message file, store the MDN when we receive them from the partner, and write a final JSON file containing relevant metadata of the transmission. So, the AccessRole needs to provide read and write access to the parent directory of the file location used in the StartFileTransfer request. Additionally, you need to provide read and write access to the parent directory of the files that you intend to send with StartFileTransfer .",
+            "Type": "string",
+            "Required": false
+        },
+        "LoggingRole": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a connector to turn on CloudWatch logging for Amazon S3 events. When set, you can view connector activity in your CloudWatch logs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_profile": {
+        "ProfileId": {
+            "Description": "The identifier of the profile object that you are updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateIds": {
+            "Description": "An array of identifiers for the imported certificates. You use this identifier for working with profiles and partner profiles.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_server": {
+        "Certificate": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Web ServicesCertificate Manager (ACM) certificate. Required when Protocols is set to FTPS .\nTo request a new public certificate, see Request a public certificate in the Amazon Web ServicesCertificate Manager User Guide .\nTo import an existing certificate into ACM, see Importing certificates into ACM in the Amazon Web ServicesCertificate Manager User Guide .\nTo request a private certificate to use FTPS through private IP addresses, see Request a private certificate in the Amazon Web ServicesCertificate Manager User Guide .\nCertificates with the following cryptographic algorithms and key sizes are supported:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProtocolDetails": {
+            "Description": "The protocol settings that are configured for your server.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "EndpointDetails": {
+            "Description": "The virtual private cloud (VPC) endpoint settings that are configured for your server. When you host your endpoint within your VPC, you can make your endpoint accessible only to resources within your VPC, or you can attach Elastic IP addresses and make your endpoint accessible to clients over the internet. Your VPC's default security groups are automatically assigned to your endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EndpointType": {
+            "Description": "The type of endpoint that you want your server to use. You can choose to make your server's endpoint publicly accessible (PUBLIC) or host it inside your VPC. With an endpoint that is hosted in a VPC, you can restrict access to your server and resources only within your VPC or choose to make it internet facing by attaching Elastic IP addresses directly to it.",
+            "Type": "string",
+            "Required": false
+        },
+        "HostKey": {
+            "Description": "The RSA, ECDSA, or ED25519 private key to use for your server.\nUse the following command to generate an RSA 2048 bit key with no passphrase:\nUse a minimum value of 2048 for the -b option. You can create a stronger key by using 3072 or 4096.\nUse the following command to generate an ECDSA 256 bit key with no passphrase:\nValid values for the -b option for ECDSA are 256, 384, and 521.\nUse the following command to generate an ED25519 key with no passphrase:\nFor all of these commands, you can replace my-new-server-key with a string of your choice.\nFor more information, see Change the host key for your SFTP-enabled server in the Transfer Family User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "IdentityProviderDetails": {
+            "Description": "An array containing all of the information required to call a customer's authentication API method.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LoggingRole": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that allows a server to turn on Amazon CloudWatch logging for Amazon S3 or Amazon EFSevents. When set, you can view user activity in your CloudWatch logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "PostAuthenticationLoginBanner": {
+            "Description": "Specifies a string to display when users connect to a server. This string is displayed after the user authenticates.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreAuthenticationLoginBanner": {
+            "Description": "Specifies a string to display when users connect to a server. This string is displayed before the user authenticates. For example, the following banner displays details about using the system:",
+            "Type": "string",
+            "Required": false
+        },
+        "Protocols": {
+            "Description": "Specifies the file transfer protocol or protocols over which your file transfer protocol client can connect to your server's endpoint. The available protocols are:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "SecurityPolicyName": {
+            "Description": "Specifies the name of the security policy that is attached to the server.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance that the user account is assigned to.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkflowDetails": {
+            "Description": "Specifies the workflow ID for the workflow to assign and the execution role that's used for executing the workflow.\nTo remove an associated workflow from a server, you can provide an empty OnUpload object, as in the following example.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_user": {
+        "HomeDirectory": {
+            "Description": "The landing directory (folder) for a user when they log in to the server using the client.\nA HomeDirectory example is /bucket_name/home/mydirectory .",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryType": {
+            "Description": "The type of landing directory (folder) that you want your users' home directory to be when they log in to the server. If you set it to PATH , the user will see the absolute Amazon S3 bucket or EFS paths as is in their file transfer protocol clients. If you set it LOGICAL , you need to provide mappings in the HomeDirectoryMappings for how you want to make Amazon S3 or Amazon EFS paths visible to your users.",
+            "Type": "string",
+            "Required": false
+        },
+        "HomeDirectoryMappings": {
+            "Description": "Logical directory mappings that specify what Amazon S3 or Amazon EFS paths and keys should be visible to your user and how you want to make them visible. You must specify the Entry and Target pair, where Entry shows how the path is made visible and Target is the actual Amazon S3 or Amazon EFS path. If you only specify a target, it is displayed as is. You also must ensure that your Identity and Access Management (IAM) role provides access to paths in Target. This value can be set only when HomeDirectoryType is set to LOGICAL .\nThe following is an Entry and Target pair example.\nIn most cases, you can use this value instead of the session policy to lock down your user to the designated home directory (\"chroot \"). To do this, you can set Entry to '/' and set Target to the HomeDirectory parameter value.\nThe following is an Entry and Target pair example for chroot .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Policy": {
+            "Description": "A session policy for your user so that you can use the same Identity and Access Management (IAM) role across multiple users. This policy scopes down a user's access to portions of their Amazon S3 bucket. Variables that you can use inside this policy include ${Transfer:UserName}, ${Transfer:HomeDirectory}, and ${Transfer:HomeBucket} .",
+            "Type": "string",
+            "Required": false
+        },
+        "PosixProfile": {
+            "Description": "Specifies the full POSIX identity, including user ID (Uid ), group ID (Gid ), and any secondary groups IDs (SecondaryGids ), that controls your users' access to your Amazon Elastic File Systems (Amazon EFS). The POSIX permissions that are set on files and directories in your file system determines the level of access your users get when transferring files into and out of your Amazon EFS file systems.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Role": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role that controls your users' access to your Amazon S3 bucket or Amazon EFS file system. The policies attached to this role determine the level of access that you want to provide your users when transferring files into and out of your Amazon S3 bucket or Amazon EFS file system. The IAM role should also contain a trust relationship that allows the server to access your resources when servicing your users' transfer requests.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server instance that the user account is assigned to.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "A unique string that identifies a user and is associated with a server as specified by the ServerId. This user name must be a minimum of 3 and a maximum of 100 characters long. The following are valid characters: a-z, A-Z, 0-9, underscore '_', hyphen '-', period '.', and at sign '@'. The user name can't start with a hyphen, period, or at sign.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "ServerId": {
+            "Description": "A system-assigned unique identifier for a server.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

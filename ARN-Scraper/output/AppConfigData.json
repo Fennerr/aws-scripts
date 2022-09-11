@@ -1,0 +1,31 @@
+{
+    "get_latest_configuration": {
+        "ConfigurationToken": {
+            "Description": "Token describing the current state of the configuration session. To obtain a token, first call the  StartConfigurationSession API. Note that every call to GetLatestConfiguration will return a new ConfigurationToken (NextPollConfigurationToken in the response) and MUST be provided to subsequent GetLatestConfiguration API calls.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_configuration_session": {
+        "ApplicationIdentifier": {
+            "Description": "The application ID or the application name.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentIdentifier": {
+            "Description": "The environment ID or the environment name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileIdentifier": {
+            "Description": "The configuration profile ID or the configuration profile name.",
+            "Type": "string",
+            "Required": true
+        },
+        "RequiredMinimumPollIntervalInSeconds": {
+            "Description": "Sets a constraint on a session. If you specify a value of, for example, 60 seconds, then the client that established the session can't call  GetLatestConfiguration more frequently then every 60 seconds.",
+            "Type": "integer",
+            "Required": false
+        }
+    }
+}

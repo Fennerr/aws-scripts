@@ -1,0 +1,996 @@
+{
+    "accept_direct_connect_gateway_association_proposal": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "proposalId": {
+            "Description": "The ID of the request proposal.",
+            "Type": "string",
+            "Required": true
+        },
+        "associatedGatewayOwnerAccount": {
+            "Description": "The ID of the Amazon Web Services account that owns the virtual private gateway or transit gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "overrideAllowedPrefixesToDirectConnectGateway": {
+            "Description": "Overrides the Amazon VPC prefixes advertised to the Direct Connect gateway.\nFor information about how to set the prefixes, see Allowed Prefixes in the Direct Connect User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "allocate_connection_on_interconnect": {
+        "bandwidth": {
+            "Description": "The bandwidth of the connection. The possible values are 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, and 10Gbps. Note that only those Direct Connect Partners who have met specific requirements are allowed to create a 1Gbps, 2Gbps, 5Gbps or 10Gbps hosted connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionName": {
+            "Description": "The name of the provisioned connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "ownerAccount": {
+            "Description": "The ID of the Amazon Web Services account of the customer for whom the connection will be provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "interconnectId": {
+            "Description": "The ID of the interconnect on which the connection will be provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "vlan": {
+            "Description": "The dedicated VLAN provisioned to the connection.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "allocate_hosted_connection": {
+        "connectionId": {
+            "Description": "The ID of the interconnect or LAG.",
+            "Type": "string",
+            "Required": true
+        },
+        "ownerAccount": {
+            "Description": "The ID of the Amazon Web Services account ID of the customer for the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "bandwidth": {
+            "Description": "The bandwidth of the connection. The possible values are 50Mbps, 100Mbps, 200Mbps, 300Mbps, 400Mbps, 500Mbps, 1Gbps, 2Gbps, 5Gbps, and 10Gbps. Note that only those Direct Connect Partners who have met specific requirements are allowed to create a 1Gbps, 2Gbps, 5Gbps or 10Gbps hosted connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionName": {
+            "Description": "The name of the hosted connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "vlan": {
+            "Description": "The dedicated VLAN provisioned to the hosted connection.",
+            "Type": "integer",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags associated with the connection.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "allocate_private_virtual_interface": {
+        "connectionId": {
+            "Description": "The ID of the connection on which the private virtual interface is provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ownerAccount": {
+            "Description": "The ID of the Amazon Web Services account that owns the virtual private interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "newPrivateVirtualInterfaceAllocation": {
+            "Description": "Information about the private virtual interface.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "allocate_public_virtual_interface": {
+        "connectionId": {
+            "Description": "The ID of the connection on which the public virtual interface is provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ownerAccount": {
+            "Description": "The ID of the Amazon Web Services account that owns the public virtual interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "newPublicVirtualInterfaceAllocation": {
+            "Description": "Information about the public virtual interface.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "allocate_transit_virtual_interface": {
+        "connectionId": {
+            "Description": "The ID of the connection on which the transit virtual interface is provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ownerAccount": {
+            "Description": "The ID of the Amazon Web Services account that owns the transit virtual interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "newTransitVirtualInterfaceAllocation": {
+            "Description": "Information about the transit virtual interface.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "associate_connection_with_lag": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "lagId": {
+            "Description": "The ID of the LAG with which to associate the connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_hosted_connection": {
+        "connectionId": {
+            "Description": "The ID of the hosted connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "parentConnectionId": {
+            "Description": "The ID of the interconnect or the LAG.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_mac_sec_key": {
+        "connectionId": {
+            "Description": "The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG (dxlag-xxxx).\nYou can use  DescribeConnections or  DescribeLags to retrieve connection ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "secretARN": {
+            "Description": "The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key to associate with the dedicated connection.\nYou can use  DescribeConnections or  DescribeLags to retrieve the MAC Security (MACsec) secret key.\nIf you use this request parameter, you do not use the ckn and cak request parameters.",
+            "Type": "string",
+            "Required": false
+        },
+        "ckn": {
+            "Description": "The MAC Security (MACsec) CKN to associate with the dedicated connection.\nYou can create the CKN/CAK pair using an industry standard tool.\nThe valid values are 64 hexadecimal characters (0-9, A-E).\nIf you use this request parameter, you must use the cak request parameter and not use the secretARN request parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "cak": {
+            "Description": "The MAC Security (MACsec) CAK to associate with the dedicated connection.\nYou can create the CKN/CAK pair using an industry standard tool.\nThe valid values are 64 hexadecimal characters (0-9, A-E).\nIf you use this request parameter, you must use the ckn request parameter and not use the secretARN request parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_virtual_interface": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionId": {
+            "Description": "The ID of the LAG or connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "confirm_connection": {
+        "connectionId": {
+            "Description": "The ID of the hosted connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "confirm_customer_agreement": {
+        "agreementName": {
+            "Description": "The name of the customer agreement.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "confirm_private_virtual_interface": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "virtualGatewayId": {
+            "Description": "The ID of the virtual private gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "confirm_public_virtual_interface": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "confirm_transit_virtual_interface": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_bgp_peer": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "newBGPPeer": {
+            "Description": "Information about the BGP peer.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_connection": {
+        "location": {
+            "Description": "The location of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "bandwidth": {
+            "Description": "The bandwidth of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionName": {
+            "Description": "The name of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "lagId": {
+            "Description": "The ID of the LAG.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags to associate with the lag.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "providerName": {
+            "Description": "The name of the service provider associated with the requested connection.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestMACSec": {
+            "Description": "Indicates whether you want the connection to support MAC Security (MACsec).\nMAC Security (MACsec) is only available on dedicated connections. For information about MAC Security (MACsec) prerequisties, see MACsec prerequisties in the Direct Connect User Guide .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_direct_connect_gateway": {
+        "directConnectGatewayName": {
+            "Description": "The name of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "amazonSideAsn": {
+            "Description": "The autonomous system number (ASN) for Border Gateway Protocol (BGP) to be configured on the Amazon side of the connection. The ASN must be in the private range of 64,512 to 65,534 or 4,200,000,000 to 4,294,967,294. The default is 64512.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_direct_connect_gateway_association": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "gatewayId": {
+            "Description": "The ID of the virtual private gateway or transit gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "addAllowedPrefixesToDirectConnectGateway": {
+            "Description": "The Amazon VPC prefixes to advertise to the Direct Connect gateway\nThis parameter is required when you create an association to a transit gateway.\nFor information about how to set the prefixes, see Allowed Prefixes in the Direct Connect User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "virtualGatewayId": {
+            "Description": "The ID of the virtual private gateway.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_direct_connect_gateway_association_proposal": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "directConnectGatewayOwnerAccount": {
+            "Description": "The ID of the Amazon Web Services account that owns the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "gatewayId": {
+            "Description": "The ID of the virtual private gateway or transit gateway.",
+            "Type": "string",
+            "Required": true
+        },
+        "addAllowedPrefixesToDirectConnectGateway": {
+            "Description": "The Amazon VPC prefixes to advertise to the Direct Connect gateway.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "removeAllowedPrefixesToDirectConnectGateway": {
+            "Description": "The Amazon VPC prefixes to no longer advertise to the Direct Connect gateway.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_interconnect": {
+        "interconnectName": {
+            "Description": "The name of the interconnect.",
+            "Type": "string",
+            "Required": true
+        },
+        "bandwidth": {
+            "Description": "The port bandwidth, in Gbps. The possible values are 1 and 10.",
+            "Type": "string",
+            "Required": true
+        },
+        "location": {
+            "Description": "The location of the interconnect.",
+            "Type": "string",
+            "Required": true
+        },
+        "lagId": {
+            "Description": "The ID of the LAG.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags to associate with the interconnect.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "providerName": {
+            "Description": "The name of the service provider associated with the interconnect.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_lag": {
+        "numberOfConnections": {
+            "Description": "The number of physical dedicated connections initially provisioned and bundled by the LAG.",
+            "Type": "integer",
+            "Required": true
+        },
+        "location": {
+            "Description": "The location for the LAG.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionsBandwidth": {
+            "Description": "The bandwidth of the individual physical dedicated connections bundled by the LAG. The possible values are 1Gbps and 10Gbps.",
+            "Type": "string",
+            "Required": true
+        },
+        "lagName": {
+            "Description": "The name of the LAG.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionId": {
+            "Description": "The ID of an existing dedicated connection to migrate to the LAG.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags to associate with the LAG.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "childConnectionTags": {
+            "Description": "The tags to associate with the automtically created LAGs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "providerName": {
+            "Description": "The name of the service provider associated with the LAG.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestMACSec": {
+            "Description": "Indicates whether the connection will support MAC Security (MACsec).",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_private_virtual_interface": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "newPrivateVirtualInterface": {
+            "Description": "Information about the private virtual interface.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_public_virtual_interface": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "newPublicVirtualInterface": {
+            "Description": "Information about the public virtual interface.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_transit_virtual_interface": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "newTransitVirtualInterface": {
+            "Description": "Information about the transit virtual interface.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_bgp_peer": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "asn": {
+            "Description": "The autonomous system (AS) number for Border Gateway Protocol (BGP) configuration.",
+            "Type": "integer",
+            "Required": false
+        },
+        "customerAddress": {
+            "Description": "The IP address assigned to the customer interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "bgpPeerId": {
+            "Description": "The ID of the BGP peer.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_connection": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_direct_connect_gateway": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_direct_connect_gateway_association": {
+        "associationId": {
+            "Description": "The ID of the Direct Connect gateway association.",
+            "Type": "string",
+            "Required": false
+        },
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "virtualGatewayId": {
+            "Description": "The ID of the virtual private gateway.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_direct_connect_gateway_association_proposal": {
+        "proposalId": {
+            "Description": "The ID of the proposal.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_interconnect": {
+        "interconnectId": {
+            "Description": "The ID of the interconnect.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_lag": {
+        "lagId": {
+            "Description": "The ID of the LAG.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_virtual_interface": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_connection_loa": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "providerName": {
+            "Description": "The name of the APN partner or service provider who establishes connectivity on your behalf. If you specify this parameter, the LOA-CFA lists the provider name alongside your company name as the requester of the cross connect.",
+            "Type": "string",
+            "Required": false
+        },
+        "loaContentType": {
+            "Description": "The standard media type for the LOA-CFA document. The only supported value is application/pdf.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_connections": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_connections_on_interconnect": {
+        "interconnectId": {
+            "Description": "The ID of the interconnect.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_customer_metadata": "No parameters defined",
+    "describe_direct_connect_gateway_association_proposals": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "proposalId": {
+            "Description": "The ID of the proposal.",
+            "Type": "string",
+            "Required": false
+        },
+        "associatedGatewayId": {
+            "Description": "The ID of the associated gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.\nIf MaxResults is given a value larger than 100, only 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_direct_connect_gateway_associations": {
+        "associationId": {
+            "Description": "The ID of the Direct Connect gateway association.",
+            "Type": "string",
+            "Required": false
+        },
+        "associatedGatewayId": {
+            "Description": "The ID of the associated gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.\nIf MaxResults is given a value larger than 100, only 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token provided in the previous call to retrieve the next page.",
+            "Type": "string",
+            "Required": false
+        },
+        "virtualGatewayId": {
+            "Description": "The ID of the virtual private gateway or transit gateway.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_direct_connect_gateway_attachments": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.\nIf MaxResults is given a value larger than 100, only 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token provided in the previous call to retrieve the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_direct_connect_gateways": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.\nIf MaxResults is given a value larger than 100, only 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token provided in the previous call to retrieve the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_hosted_connections": {
+        "connectionId": {
+            "Description": "The ID of the interconnect or LAG.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_interconnect_loa": {
+        "interconnectId": {
+            "Description": "The ID of the interconnect.",
+            "Type": "string",
+            "Required": true
+        },
+        "providerName": {
+            "Description": "The name of the service provider who establishes connectivity on your behalf. If you supply this parameter, the LOA-CFA lists the provider name alongside your company name as the requester of the cross connect.",
+            "Type": "string",
+            "Required": false
+        },
+        "loaContentType": {
+            "Description": "The standard media type for the LOA-CFA document. The only supported value is application/pdf.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_interconnects": {
+        "interconnectId": {
+            "Description": "The ID of the interconnect.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_lags": {
+        "lagId": {
+            "Description": "The ID of the LAG.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_loa": {
+        "connectionId": {
+            "Description": "The ID of a connection, LAG, or interconnect.",
+            "Type": "string",
+            "Required": true
+        },
+        "providerName": {
+            "Description": "The name of the service provider who establishes connectivity on your behalf. If you specify this parameter, the LOA-CFA lists the provider name alongside your company name as the requester of the cross connect.",
+            "Type": "string",
+            "Required": false
+        },
+        "loaContentType": {
+            "Description": "The standard media type for the LOA-CFA document. The only supported value is application/pdf.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_locations": "No parameters defined",
+    "describe_router_configuration": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "routerTypeIdentifier": {
+            "Description": "Identifies the router by a combination of vendor, platform, and software version. For example, CiscoSystemsInc-2900SeriesRouters-IOS124 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_tags": {
+        "resourceArns": {
+            "Description": "The Amazon Resource Names (ARNs) of the resources.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_virtual_gateways": "No parameters defined",
+    "describe_virtual_interfaces": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": false
+        },
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_connection_from_lag": {
+        "connectionId": {
+            "Description": "The ID of the connection.",
+            "Type": "string",
+            "Required": true
+        },
+        "lagId": {
+            "Description": "The ID of the LAG.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_mac_sec_key": {
+        "connectionId": {
+            "Description": "The ID of the dedicated connection (dxcon-xxxx), or the ID of the LAG (dxlag-xxxx).\nYou can use  DescribeConnections or  DescribeLags to retrieve connection ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "secretARN": {
+            "Description": "The Amazon Resource Name (ARN) of the MAC Security (MACsec) secret key.\nYou can use  DescribeConnections to retrieve the ARN of the MAC Security (MACsec) secret key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_virtual_interface_test_history": {
+        "testId": {
+            "Description": "The ID of the virtual interface failover test.",
+            "Type": "string",
+            "Required": false
+        },
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface that was tested.",
+            "Type": "string",
+            "Required": false
+        },
+        "bgpPeers": {
+            "Description": "The BGP peers that were placed in the DOWN state during the virtual interface failover test.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "status": {
+            "Description": "The status of the virtual interface failover test.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return with a single call. To retrieve the remaining results, make another call with the returned nextToken value.\nIf MaxResults is given a value larger than 100, only 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_bgp_failover_test": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface you want to test.",
+            "Type": "string",
+            "Required": true
+        },
+        "bgpPeers": {
+            "Description": "The BGP peers to place in the DOWN state.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "testDurationInMinutes": {
+            "Description": "The time in minutes that the virtual interface failover test will last.\nMaximum value: 180 minutes (3 hours).\nDefault: 180 minutes (3 hours).",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "stop_bgp_failover_test": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual interface you no longer want to test.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to add.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag keys of the tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_connection": {
+        "connectionId": {
+            "Description": "The ID of the dedicated connection.\nYou can use  DescribeConnections to retrieve the connection ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "connectionName": {
+            "Description": "The name of the connection.",
+            "Type": "string",
+            "Required": false
+        },
+        "encryptionMode": {
+            "Description": "The connection MAC Security (MACsec) encryption mode.\nThe valid values are no_encrypt, should_encrypt, and must_encrypt .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_direct_connect_gateway": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "newDirectConnectGatewayName": {
+            "Description": "The new name for the Direct Connect gateway.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_direct_connect_gateway_association": {
+        "associationId": {
+            "Description": "The ID of the Direct Connect gateway association.",
+            "Type": "string",
+            "Required": false
+        },
+        "addAllowedPrefixesToDirectConnectGateway": {
+            "Description": "The Amazon VPC prefixes to advertise to the Direct Connect gateway.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "removeAllowedPrefixesToDirectConnectGateway": {
+            "Description": "The Amazon VPC prefixes to no longer advertise to the Direct Connect gateway.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_lag": {
+        "lagId": {
+            "Description": "The ID of the LAG.",
+            "Type": "string",
+            "Required": true
+        },
+        "lagName": {
+            "Description": "The name of the LAG.",
+            "Type": "string",
+            "Required": false
+        },
+        "minimumLinks": {
+            "Description": "The minimum number of physical connections that must be operational for the LAG itself to be operational.",
+            "Type": "integer",
+            "Required": false
+        },
+        "encryptionMode": {
+            "Description": "The LAG MAC Security (MACsec) encryption mode.\nAmazon Web Services applies the value to all connections which are part of the LAG.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_virtual_interface_attributes": {
+        "virtualInterfaceId": {
+            "Description": "The ID of the virtual private interface.",
+            "Type": "string",
+            "Required": true
+        },
+        "mtu": {
+            "Description": "The maximum transmission unit (MTU), in bytes. The supported values are 1500 and 9001. The default value is 1500.",
+            "Type": "integer",
+            "Required": false
+        },
+        "enableSiteLink": {
+            "Description": "Indicates whether to enable or disable SiteLink.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "virtualInterfaceName": {
+            "Description": "The name of the virtual private interface.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "directConnectGatewayId": {
+            "Description": "The ID of the Direct Connect gateway.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

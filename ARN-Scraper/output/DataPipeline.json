@@ -1,0 +1,350 @@
+{
+    "activate_pipeline": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "parameterValues": {
+            "Description": "A list of parameter values to pass to the pipeline at activation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "startTimestamp": {
+            "Description": "The date and time to resume the pipeline. By default, the pipeline resumes from the last completed execution.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "add_tags": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to add, as key/value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_pipeline": {
+        "name": {
+            "Description": "The name for the pipeline. You can use the same name for multiple pipelines associated with your AWS account, because AWS Data Pipeline assigns each pipeline a unique pipeline identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "uniqueId": {
+            "Description": "A unique identifier. This identifier is not the same as the pipeline identifier assigned by AWS Data Pipeline. You are responsible for defining the format and ensuring the uniqueness of this identifier. You use this parameter to ensure idempotency during repeated calls to CreatePipeline. For example, if the first call to CreatePipeline does not succeed, you can pass in the same unique identifier and pipeline name combination on a subsequent call to CreatePipeline. CreatePipeline ensures that if a pipeline already exists with the same name and unique identifier, a new pipeline is not created. Instead, you'll receive the pipeline identifier from the previous attempt. The uniqueness of the name and unique identifier combination is scoped to the AWS account or IAM user credentials.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description for the pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "A list of tags to associate with the pipeline at creation. Tags let you control access to pipelines. For more information, see Controlling User Access to Pipelines in the AWS Data Pipeline Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "deactivate_pipeline": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "cancelActive": {
+            "Description": "Indicates whether to cancel any running objects. The default is true, which sets the state of any running objects to CANCELED . If this value is false, the pipeline is deactivated after all running objects finish.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_pipeline": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_objects": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline that contains the object definitions.",
+            "Type": "string",
+            "Required": true
+        },
+        "objectIds": {
+            "Description": "The IDs of the pipeline objects that contain the definitions to be described. You can pass as many as 25 identifiers in a single call to DescribeObjects .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "evaluateExpressions": {
+            "Description": "Indicates whether any expressions in the object should be evaluated when the object descriptions are returned.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "marker": {
+            "Description": "The starting point for the results to be returned. For the first call, this value should be empty. As long as there are more results, continue to call DescribeObjects with the marker value from the previous call to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_pipelines": {
+        "pipelineIds": {
+            "Description": "The IDs of the pipelines to describe. You can pass as many as 25 identifiers in a single call. To obtain pipeline IDs, call  ListPipelines .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "evaluate_expression": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "objectId": {
+            "Description": "The ID of the object.",
+            "Type": "string",
+            "Required": true
+        },
+        "expression": {
+            "Description": "The expression to evaluate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_pipeline_definition": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "version": {
+            "Description": "The version of the pipeline definition to retrieve. Set this parameter to latest (default) to use the last definition saved to the pipeline or active to use the last definition that was activated.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pipelines": {
+        "marker": {
+            "Description": "The starting point for the results to be returned. For the first call, this value should be empty. As long as there are more results, continue to call ListPipelines with the marker value from the previous call to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "poll_for_task": {
+        "workerGroup": {
+            "Description": "The type of task the task runner is configured to accept and process. The worker group is set as a field on objects in the pipeline when they are created. You can only specify a single value for workerGroup in the call to PollForTask. There are no wildcard values permitted in workerGroup ; the string must be an exact, case-sensitive, match.",
+            "Type": "string",
+            "Required": true
+        },
+        "hostname": {
+            "Description": "The public DNS name of the calling task runner.",
+            "Type": "string",
+            "Required": false
+        },
+        "instanceIdentity": {
+            "Description": "Identity information for the EC2 instance that is hosting the task runner. You can get this value from the instance using http://169.254.169.254/latest/meta-data/instance-id. For more information, see Instance Metadata in the Amazon Elastic Compute Cloud User Guide. Passing in this value proves that your task runner is running on an EC2 instance, and ensures the proper AWS Data Pipeline service charges are applied to your pipeline.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_pipeline_definition": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineObjects": {
+            "Description": "The objects that define the pipeline. These objects overwrite the existing pipeline definition.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "parameterObjects": {
+            "Description": "The parameter objects used with the pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "parameterValues": {
+            "Description": "The parameter values used with the pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "query_objects": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "query": {
+            "Description": "The query that defines the objects to be returned. The Query object can contain a maximum of ten selectors. The conditions in the query are limited to top-level String fields in the object. These filters can be applied to components, instances, and attempts.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "sphere": {
+            "Description": "Indicates whether the query applies to components or instances. The possible values are: COMPONENT, INSTANCE, and ATTEMPT .",
+            "Type": "string",
+            "Required": true
+        },
+        "marker": {
+            "Description": "The starting point for the results to be returned. For the first call, this value should be empty. As long as there are more results, continue to call QueryObjects with the marker value from the previous call to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "limit": {
+            "Description": "The maximum number of object names that QueryObjects will return in a single call. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "remove_tags": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of the tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "report_task_progress": {
+        "taskId": {
+            "Description": "The ID of the task assigned to the task runner. This value is provided in the response for  PollForTask .",
+            "Type": "string",
+            "Required": true
+        },
+        "fields": {
+            "Description": "Key-value pairs that define the properties of the ReportTaskProgressInput object.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "report_task_runner_heartbeat": {
+        "taskrunnerId": {
+            "Description": "The ID of the task runner. This value should be unique across your AWS account. In the case of AWS Data Pipeline Task Runner launched on a resource managed by AWS Data Pipeline, the web service provides a unique identifier when it launches the application. If you have written a custom task runner, you should assign a unique identifier for the task runner.",
+            "Type": "string",
+            "Required": true
+        },
+        "workerGroup": {
+            "Description": "The type of task the task runner is configured to accept and process. The worker group is set as a field on objects in the pipeline when they are created. You can only specify a single value for workerGroup . There are no wildcard values permitted in workerGroup ; the string must be an exact, case-sensitive, match.",
+            "Type": "string",
+            "Required": false
+        },
+        "hostname": {
+            "Description": "The public DNS name of the task runner.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "set_status": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline that contains the objects.",
+            "Type": "string",
+            "Required": true
+        },
+        "objectIds": {
+            "Description": "The IDs of the objects. The corresponding objects can be either physical or components, but not a mix of both types.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "status": {
+            "Description": "The status to be set on all the objects specified in objectIds. For components, use PAUSE or RESUME. For instances, use TRY_CANCEL, RERUN, or MARK_FINISHED .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_task_status": {
+        "taskId": {
+            "Description": "The ID of the task assigned to the task runner. This value is provided in the response for  PollForTask .",
+            "Type": "string",
+            "Required": true
+        },
+        "taskStatus": {
+            "Description": "If FINISHED, the task successfully completed. If FAILED, the task ended unsuccessfully. Preconditions use false.",
+            "Type": "string",
+            "Required": true
+        },
+        "errorId": {
+            "Description": "If an error occurred during the task, this value specifies the error code. This value is set on the physical attempt object. It is used to display error information to the user. It should not start with string \"Service_\" which is reserved by the system.",
+            "Type": "string",
+            "Required": false
+        },
+        "errorMessage": {
+            "Description": "If an error occurred during the task, this value specifies a text description of the error. This value is set on the physical attempt object. It is used to display error information to the user. The web service does not parse this value.",
+            "Type": "string",
+            "Required": false
+        },
+        "errorStackTrace": {
+            "Description": "If an error occurred during the task, this value specifies the stack trace associated with the error. This value is set on the physical attempt object. It is used to display error information to the user. The web service does not parse this value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "validate_pipeline_definition": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineObjects": {
+            "Description": "The objects that define the pipeline changes to validate against the pipeline.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "parameterObjects": {
+            "Description": "The parameter objects used with the pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "parameterValues": {
+            "Description": "The parameter values used with the pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "pipelineId": {
+            "Description": "The ID of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "query": {
+            "Description": "The query that defines the objects to be returned. The Query object can contain a maximum of ten selectors. The conditions in the query are limited to top-level String fields in the object. These filters can be applied to components, instances, and attempts.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "sphere": {
+            "Description": "Indicates whether the query applies to components or instances. The possible values are: COMPONENT, INSTANCE, and ATTEMPT .",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

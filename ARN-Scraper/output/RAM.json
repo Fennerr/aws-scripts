@@ -1,0 +1,602 @@
+{
+    "accept_resource_share_invitation": {
+        "resourceShareInvitationArn": {
+            "Description": "The Amazon Resoure Name (ARN) of the invitation that you want to accept.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_resource_share": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share that you want to add principals or resources to.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArns": {
+            "Description": "Specifies a list of Amazon Resource Names (ARNs) of the resources that you want to share. This can be null if you want to add only principals.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "principals": {
+            "Description": "Specifies a list of principals to whom you want to the resource share. This can be null if you want to add only resources.\nWhat the principals can do with the resources in the share is determined by the RAM permissions that you associate with the resource share. See  AssociateResourceSharePermission .\nYou can include the following values:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_resource_share_permission": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share to which you want to add or replace permissions.",
+            "Type": "string",
+            "Required": true
+        },
+        "permissionArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the RAM permission to associate with the resource share. To find the ARN for a permission, use either the  ListPermissions operation or go to the Permissions library page in the RAM console and then choose the name of the permission. The ARN is displayed on the detail page.",
+            "Type": "string",
+            "Required": true
+        },
+        "replace": {
+            "Description": "Specifies whether the specified permission should replace or add to the existing permission associated with the resource share. Use true to replace the current permissions. Use false to add the permission to the current permission. The default value is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        },
+        "permissionVersion": {
+            "Description": "Specifies the version of the RAM permission to associate with the resource share. If you don't specify this parameter, the operation uses the version designated as the default. You can use the  ListPermissionVersions operation to discover the available versions of a permission.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_resource_share": {
+        "name": {
+            "Description": "Specifies the name of the resource share.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArns": {
+            "Description": "Specifies a list of one or more ARNs of the resources to associate with the resource share.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "principals": {
+            "Description": "Specifies a list of one or more principals to associate with the resource share.\nYou can include the following values:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "tags": {
+            "Description": "Specifies one or more tags to attach to the resource share itself. It doesn't attach the tags to the resources associated with the resource share.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "allowExternalPrincipals": {
+            "Description": "Specifies whether principals outside your organization in Organizations can be associated with a resource share. A value of true lets you share with individual Amazon Web Services accounts that are not in your organization. A value of false only has meaning if your account is a member of an Amazon Web Services Organization. The default value is true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        },
+        "permissionArns": {
+            "Description": "Specifies the Amazon Resource Names (ARNs) of the RAM permission to associate with the resource share. If you do not specify an ARN for the permission, RAM automatically attaches the default version of the permission for each resource type. You can associate only one permission with each resource type included in the resource share.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_resource_share": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_resource_share": {
+        "resourceShareArn": {
+            "Description": "Specifies Amazon Resoure Name (ARN) of the resource share that you want to remove resources from.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArns": {
+            "Description": "Specifies a list of Amazon Resource Names (ARNs) for one or more resources that you want to remove from the resource share. After the operation runs, these resources are no longer shared with principals outside of the Amazon Web Services account that created the resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "principals": {
+            "Description": "Specifies a list of one or more principals that no longer are to have access to the resources in this resource share.\nYou can include the following values:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_resource_share_permission": {
+        "resourceShareArn": {
+            "Description": "The Amazon Resoure Name (ARN) of the resource share from which you want to disassociate a permission.",
+            "Type": "string",
+            "Required": true
+        },
+        "permissionArn": {
+            "Description": "The Amazon Resoure Name (ARN) of the permission to disassociate from the resource share. Changes to permissions take effect immediately.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "enable_sharing_with_aws_organization": "No parameters defined",
+    "get_permission": {
+        "permissionArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the permission whose contents you want to retrieve. To find the ARN for a permission, use either the  ListPermissions operation or go to the Permissions library page in the RAM console and then choose the name of the permission. The ARN is displayed on the detail page.",
+            "Type": "string",
+            "Required": true
+        },
+        "permissionVersion": {
+            "Description": "Specifies identifier for the version of the RAM permission to retrieve. If you don't specify this parameter, the operation retrieves the default version.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_resource_policies": {
+        "resourceArns": {
+            "Description": "Specifies the Amazon Resource Names (ARNs) of the resources whose policies you want to retrieve.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "principal": {
+            "Description": "Specifies the principal.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_resource_share_associations": {
+        "associationType": {
+            "Description": "Specifies whether you want to retrieve the associations that involve a specified resource or principal.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "resourceShareArns": {
+            "Description": "Specifies a list of Amazon Resource Names (ARNs) of the resource share whose associations you want to retrieve.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource whose resource shares you want to retrieve.\nYou cannot specify this parameter if the association type is PRINCIPAL .",
+            "Type": "string",
+            "Required": false
+        },
+        "principal": {
+            "Description": "Specifies the ID of the principal whose resource shares you want to retrieve. This can be an Amazon Web Services account ID, an organization ID, an organizational unit ID, or the Amazon Resoure Name (ARN) of an individual IAM user or role.\nYou cannot specify this parameter if the association type is RESOURCE .",
+            "Type": "string",
+            "Required": false
+        },
+        "associationStatus": {
+            "Description": "Specifies that you want to retrieve only associations with this status.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_resource_share_invitations": {
+        "resourceShareInvitationArns": {
+            "Description": "Specifies the Amazon Resource Names (ARNs) of the resource share invitations you want information about.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceShareArns": {
+            "Description": "Specifies that you want details about invitations only for the resource shares described by this list of Amazon Resource Names (ARNs)",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_resource_shares": {
+        "resourceShareArns": {
+            "Description": "Specifies the Amazon Resource Names (ARNs) of individual resource shares that you want information about.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceShareStatus": {
+            "Description": "Specifies that you want to retrieve details of only those resource shares that have this status.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceOwner": {
+            "Description": "Specifies that you want to retrieve details of only those resource shares that match the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "name": {
+            "Description": "Specifies the name of an individual resource share that you want to retrieve details about.",
+            "Type": "string",
+            "Required": false
+        },
+        "tagFilters": {
+            "Description": "Specifies that you want to retrieve details of only those resource shares that match the specified tag keys and values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "permissionArn": {
+            "Description": "Specifies that you want to retrieve details of only those resource shares that use the RAM permission with this Amazon Resoure Name (ARN) .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pending_invitation_resources": {
+        "resourceShareInvitationArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the invitation. You can use  GetResourceShareInvitations to find the ARN of the invitation.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "resourceRegionScope": {
+            "Description": "Specifies that you want the results to include only resources that have the specified scope.\nThe default value is ALL .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_permission_versions": {
+        "permissionArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the RAM permission whose versions you want to list. You can use the permissionVersion parameter on the  AssociateResourceSharePermission operation to specify a non-default version to attach.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_permissions": {
+        "resourceType": {
+            "Description": "Specifies that you want to list permissions for only the specified resource type. For example, to list only permissions that apply to EC2 subnets, specify ec2:Subnet . You can use the  ListResourceTypes operation to get the specific string required.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_principals": {
+        "resourceOwner": {
+            "Description": "Specifies that you want to list information for only resource shares that match the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "resourceArn": {
+            "Description": "Specifies that you want to list principal information for the resource share with the specified Amazon Resoure Name (ARN) .",
+            "Type": "string",
+            "Required": false
+        },
+        "principals": {
+            "Description": "Specifies that you want to list information for only the listed principals.\nYou can include the following values:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "resourceType": {
+            "Description": "Specifies that you want to list information for only principals associated with resource shares that include the specified resource type.\nFor a list of valid values, query the  ListResourceTypes operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceShareArns": {
+            "Description": "Specifies that you want to list information for only principals associated with the resource shares specified by a list the Amazon Resource Names (ARNs) .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resource_share_permissions": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share for which you want to retrieve the associated permissions.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resource_types": {
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "resourceRegionScope": {
+            "Description": "Specifies that you want the results to include only resources that have the specified scope.\nThe default value is ALL .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_resources": {
+        "resourceOwner": {
+            "Description": "Specifies that you want to list only the resource shares that match the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "principal": {
+            "Description": "Specifies that you want to list only the resource shares that are associated with the specified principal.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceType": {
+            "Description": "Specifies that you want to list only the resource shares that include resources of the specified resource type.\nFor valid values, query the  ListResourceTypes operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceArns": {
+            "Description": "Specifies that you want to list only the resource shares that include resources with the specified Amazon Resource Names (ARNs) .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceShareArns": {
+            "Description": "Specifies that you want to list only resources in the resource shares identified by the specified Amazon Resource Names (ARNs) .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "Specifies that you want to receive the next page of results. Valid only if you received a NextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's NextToken response to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the total number of results that you want included on each page of the response. If you do not include this parameter, it defaults to a value that is specific to the operation. If additional items exist beyond the number you specify, the NextToken response element is returned with a value (not null). Include the specified value as the NextToken request parameter in the next call to the operation to get the next part of the results. Note that the service might return fewer results than the maximum even when there are more results available. You should check NextToken after every operation to ensure that you receive all of the results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "resourceRegionScope": {
+            "Description": "Specifies that you want the results to include only resources that have the specified scope.\nThe default value is ALL .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "promote_resource_share_created_from_policy": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share to promote.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reject_resource_share_invitation": {
+        "resourceShareInvitationArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the invitation that you want to reject.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share that you want to add tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of one or more tag key and value pairs. The tag key must be present and not be an empty string. The tag value must be present but can be an empty string.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share that you want to remove tags from. The tags are removed from the resource share, not the resources in the resource share.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "Specifies a list of one or more tag keys that you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_resource_share": {
+        "resourceShareArn": {
+            "Description": "Specifies the Amazon Resoure Name (ARN) of the resource share that you want to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "If specified, the new name that you want to attach to the resource share.",
+            "Type": "string",
+            "Required": false
+        },
+        "allowExternalPrincipals": {
+            "Description": "Specifies whether principals outside your organization in Organizations can be associated with a resource share.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. .\nIf you don't provide this value, then Amazon Web Services generates a random one for you.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "resourceOwner": {
+            "Description": "Specifies that you want to list only the resource shares that match the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "principal": {
+            "Description": "Specifies that you want to list only the resource shares that are associated with the specified principal.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceType": {
+            "Description": "Specifies that you want to list only the resource shares that include resources of the specified resource type.\nFor valid values, query the  ListResourceTypes operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceArns": {
+            "Description": "Specifies that you want to list only the resource shares that include resources with the specified Amazon Resource Names (ARNs) .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceShareArns": {
+            "Description": "Specifies that you want to list only resources in the resource shares identified by the specified Amazon Resource Names (ARNs) .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceRegionScope": {
+            "Description": "Specifies that you want the results to include only resources that have the specified scope.\nThe default value is ALL .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,487 @@
+{
+    "cancel_cluster": {
+        "ClusterId": {
+            "Description": "The 39-character ID for the cluster that you want to cancel, for example CID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_job": {
+        "JobId": {
+            "Description": "The 39-character job ID for the job that you want to cancel, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_address": {
+        "Address": {
+            "Description": "The address that you want the Snow device shipped to.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_cluster": {
+        "JobType": {
+            "Description": "The type of job for this cluster. Currently, the only job type supported for clusters is LOCAL_USE .\nFor more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "Resources": {
+            "Description": "The resources associated with the cluster job. These resources include Amazon S3 buckets and optional Lambda functions written in the Python language.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OnDeviceServiceConfiguration": {
+            "Description": "Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family device clusters support Amazon S3 and NFS (Network File System).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "An optional description of this specific cluster, for example Environmental Data Cluster-01 .",
+            "Type": "string",
+            "Required": false
+        },
+        "AddressId": {
+            "Description": "The ID for the address that you want the cluster shipped to.",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKeyARN": {
+            "Description": "The KmsKeyARN value that you want to associate with this cluster. KmsKeyARN values are created by using the CreateKey API action in Key Management Service (KMS).",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleARN": {
+            "Description": "The RoleARN that you want to associate with this cluster. RoleArn values are created by using the CreateRole API action in Identity and Access Management (IAM).",
+            "Type": "string",
+            "Required": true
+        },
+        "SnowballType": {
+            "Description": "The type of Snow Family Devices to use for this cluster.\nFor more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "ShippingOption": {
+            "Description": "The shipping speed for each node in this cluster. This speed doesn't dictate how soon you'll get each Snowball Edge device, rather it represents how quickly each device moves to its destination while in transit. Regional shipping speeds are as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Notification": {
+            "Description": "The Amazon Simple Notification Service (Amazon SNS) notification settings for this cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ForwardingAddressId": {
+            "Description": "The forwarding address ID for a cluster. This field is not supported in most regions.",
+            "Type": "string",
+            "Required": false
+        },
+        "TaxDocuments": {
+            "Description": "The tax documents required in your Amazon Web Services Region.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RemoteManagement": {
+            "Description": "Allows you to securely operate and manage Snow devices in a cluster remotely from outside of your internal network. When set to INSTALLED_AUTOSTART , remote management will automatically be available when the device arrives at your location. Otherwise, you need to use the Snowball Client to manage the device.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_job": {
+        "JobType": {
+            "Description": "Defines the type of job that you're creating.",
+            "Type": "string",
+            "Required": false
+        },
+        "Resources": {
+            "Description": "Defines the Amazon S3 buckets associated with this job.\nWith IMPORT jobs, you specify the bucket or buckets that your transferred data will be imported into.\nWith EXPORT jobs, you specify the bucket or buckets that your transferred data will be exported from. Optionally, you can also specify a KeyRange value. If you choose to export a range, you define the length of the range by providing either an inclusive BeginMarker value, an inclusive EndMarker value, or both. Ranges are UTF-8 binary sorted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OnDeviceServiceConfiguration": {
+            "Description": "Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family supports Amazon S3 and NFS (Network File System) and the Amazon Web Services Storage Gateway service Tape Gateway type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "Defines an optional description of this specific job, for example Important Photos 2016-08-11 .",
+            "Type": "string",
+            "Required": false
+        },
+        "AddressId": {
+            "Description": "The ID for the address that you want the Snow device shipped to.",
+            "Type": "string",
+            "Required": false
+        },
+        "KmsKeyARN": {
+            "Description": "The KmsKeyARN that you want to associate with this job. KmsKeyARN s are created using the CreateKey Key Management Service (KMS) API action.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleARN": {
+            "Description": "The RoleARN that you want to associate with this job. RoleArn s are created using the CreateRole Identity and Access Management (IAM) API action.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnowballCapacityPreference": {
+            "Description": "If your job is being created in one of the US regions, you have the option of specifying what size Snow device you'd like for this job. In all other regions, Snowballs come with 80 TB in storage capacity.\nFor more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ShippingOption": {
+            "Description": "The shipping speed for this job. This speed doesn't dictate how soon you'll get the Snow device, rather it represents how quickly the Snow device moves to its destination while in transit. Regional shipping speeds are as follows:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Notification": {
+            "Description": "Defines the Amazon Simple Notification Service (Amazon SNS) notification settings for this job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClusterId": {
+            "Description": "The ID of a cluster. If you're creating a job for a node in a cluster, you need to provide only this clusterId value. The other job attributes are inherited from the cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnowballType": {
+            "Description": "The type of Snow Family Devices to use for this job.\nThe type of Amazon Web Services Snow device to use for this job. Currently, the only supported device type for cluster jobs is EDGE .\nFor more information, see Snowball Edge Device Options in the Snowball Edge Developer Guide.\nFor more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ForwardingAddressId": {
+            "Description": "The forwarding address ID for a job. This field is not supported in most Regions.",
+            "Type": "string",
+            "Required": false
+        },
+        "TaxDocuments": {
+            "Description": "The tax documents required in your Amazon Web Services Region.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceConfiguration": {
+            "Description": "Defines the device configuration for an Snowcone job.\nFor more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RemoteManagement": {
+            "Description": "Allows you to securely operate and manage Snowcone devices remotely from outside of your internal network. When set to INSTALLED_AUTOSTART , remote management will automatically be available when the device arrives at your location. Otherwise, you need to use the Snowball Client to manage the device.",
+            "Type": "string",
+            "Required": false
+        },
+        "LongTermPricingId": {
+            "Description": "The ID of the long-term pricing type for the device.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_long_term_pricing": {
+        "LongTermPricingType": {
+            "Description": "The type of long-term pricing option you want for the device, either 1-year or 3-year long-term pricing.",
+            "Type": "string",
+            "Required": true
+        },
+        "IsLongTermPricingAutoRenew": {
+            "Description": "Specifies whether the current long-term pricing type for the device should be renewed.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SnowballType": {
+            "Description": "The type of Snow Family Devices to use for the long-term pricing job.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_return_shipping_label": {
+        "JobId": {
+            "Description": "The ID for a job that you want to create the return shipping label for; for example, JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        },
+        "ShippingOption": {
+            "Description": "The shipping speed for a particular job. This speed doesn't dictate how soon the device is returned to Amazon Web Services. This speed represents how quickly it moves to its destination while in transit. Regional shipping speeds are as follows:",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_address": {
+        "AddressId": {
+            "Description": "The automatically generated ID for a specific address.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_addresses": {
+        "MaxResults": {
+            "Description": "The number of ADDRESS objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "HTTP requests are stateless. To identify what object comes \"next\" in the list of ADDRESS objects, you have the option of specifying a value for NextToken as the starting point for your list of returned addresses.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_cluster": {
+        "ClusterId": {
+            "Description": "The automatically generated ID for a cluster.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_job": {
+        "JobId": {
+            "Description": "The automatically generated ID for a job, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_return_shipping_label": {
+        "JobId": {
+            "Description": "The automatically generated ID for a job, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_job_manifest": {
+        "JobId": {
+            "Description": "The ID for a job that you want to get the manifest file for, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_job_unlock_code": {
+        "JobId": {
+            "Description": "The ID for the job that you want to get the UnlockCode value for, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_snowball_usage": "No parameters defined",
+    "get_software_updates": {
+        "JobId": {
+            "Description": "The ID for a job that you want to get the software update file for, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_cluster_jobs": {
+        "ClusterId": {
+            "Description": "The 39-character ID for the cluster that you want to list, for example CID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The number of JobListEntry objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "HTTP requests are stateless. To identify what object comes \"next\" in the list of JobListEntry objects, you have the option of specifying NextToken as the starting point for your returned list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_clusters": {
+        "MaxResults": {
+            "Description": "The number of ClusterListEntry objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "HTTP requests are stateless. To identify what object comes \"next\" in the list of ClusterListEntry objects, you have the option of specifying NextToken as the starting point for your returned list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_compatible_images": {
+        "MaxResults": {
+            "Description": "The maximum number of results for the list of compatible images. Currently, a Snowball Edge device can store 10 AMIs.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "HTTP requests are stateless. To identify what object comes \"next\" in the list of compatible images, you can specify a value for NextToken as the starting point for your list of returned images.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_jobs": {
+        "MaxResults": {
+            "Description": "The number of JobListEntry objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "HTTP requests are stateless. To identify what object comes \"next\" in the list of JobListEntry objects, you have the option of specifying NextToken as the starting point for your returned list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_long_term_pricing": {
+        "MaxResults": {
+            "Description": "The maximum number of ListLongTermPricing objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Because HTTP requests are stateless, this is the starting point for your next list of ListLongTermPricing to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_cluster": {
+        "ClusterId": {
+            "Description": "The cluster ID of the cluster that you want to update, for example CID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleARN": {
+            "Description": "The new role Amazon Resource Name (ARN) that you want to associate with this cluster. To create a role ARN, use the CreateRole API action in Identity and Access Management (IAM).",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of this cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "Resources": {
+            "Description": "The updated arrays of  JobResource objects that can include updated  S3Resource objects or  LambdaResource objects.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OnDeviceServiceConfiguration": {
+            "Description": "Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family device clusters support Amazon S3 and NFS (Network File System).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AddressId": {
+            "Description": "The ID of the updated  Address object.",
+            "Type": "string",
+            "Required": false
+        },
+        "ShippingOption": {
+            "Description": "The updated shipping option value of this cluster's  ShippingDetails object.",
+            "Type": "string",
+            "Required": false
+        },
+        "Notification": {
+            "Description": "The new or updated  Notification object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ForwardingAddressId": {
+            "Description": "The updated ID for the forwarding address for a cluster. This field is not supported in most regions.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_job": {
+        "JobId": {
+            "Description": "The job ID of the job that you want to update, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleARN": {
+            "Description": "The new role Amazon Resource Name (ARN) that you want to associate with this job. To create a role ARN, use the CreateRole Identity and Access Management (IAM) API action.",
+            "Type": "string",
+            "Required": false
+        },
+        "Notification": {
+            "Description": "The new or updated  Notification object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Resources": {
+            "Description": "The updated JobResource object, or the updated  JobResource object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OnDeviceServiceConfiguration": {
+            "Description": "Specifies the service or services on the Snow Family device that your transferred data will be exported from or imported into. Amazon Web Services Snow Family supports Amazon S3 and NFS (Network File System) and the Amazon Web Services Storage Gateway service Tape Gateway type.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AddressId": {
+            "Description": "The ID of the updated  Address object.",
+            "Type": "string",
+            "Required": false
+        },
+        "ShippingOption": {
+            "Description": "The updated shipping option value of this job's  ShippingDetails object.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of this job's  JobMetadata object.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnowballCapacityPreference": {
+            "Description": "The updated SnowballCapacityPreference of this job's  JobMetadata object. The 50 TB Snowballs are only available in the US regions.\nFor more information, see \"https://docs.aws.amazon.com/snowball/latest/snowcone-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide or \"https://docs.aws.amazon.com/snowball/latest/developer-guide/snow-device-types.html\" (Snow Family Devices and Capacity) in the Snowcone User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ForwardingAddressId": {
+            "Description": "The updated ID for the forwarding address for a job. This field is not supported in most regions.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_job_shipment_state": {
+        "JobId": {
+            "Description": "The job ID of the job whose shipment date you want to update, for example JID123e4567-e89b-12d3-a456-426655440000 .",
+            "Type": "string",
+            "Required": true
+        },
+        "ShipmentState": {
+            "Description": "The state of a device when it is being shipped.\nSet to RECEIVED when the device arrives at your location.\nSet to RETURNED when you have returned the device to Amazon Web Services.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_long_term_pricing": {
+        "LongTermPricingId": {
+            "Description": "The ID of the long-term pricing type for the device.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReplacementJob": {
+            "Description": "Specifies that a device that is ordered with long-term pricing should be replaced with a new device.",
+            "Type": "string",
+            "Required": false
+        },
+        "IsLongTermPricingAutoRenew": {
+            "Description": "If set to true , specifies that the current long-term pricing type for the device should be automatically renewed before the long-term pricing contract expires.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

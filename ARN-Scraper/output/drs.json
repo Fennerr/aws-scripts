@@ -1,0 +1,623 @@
+{
+    "create_extended_source_server": {
+        "sourceServerArn": {
+            "Description": "This defines the ARN of the source server in staging Account based on which you want to create an extended source server.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tags associated with the extended source server.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_replication_configuration_template": {
+        "associateDefaultSecurityGroup": {
+            "Description": "Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "bandwidthThrottling": {
+            "Description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.",
+            "Type": "integer",
+            "Required": true
+        },
+        "createPublicIP": {
+            "Description": "Whether to create a Public IP for the Recovery Instance by default.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "dataPlaneRouting": {
+            "Description": "The data plane routing mechanism that will be used for replication.",
+            "Type": "string",
+            "Required": true
+        },
+        "defaultLargeStagingDiskType": {
+            "Description": "The Staging Disk EBS volume type to be used during replication.",
+            "Type": "string",
+            "Required": true
+        },
+        "ebsEncryption": {
+            "Description": "The type of EBS encryption to be used during replication.",
+            "Type": "string",
+            "Required": true
+        },
+        "ebsEncryptionKeyArn": {
+            "Description": "The ARN of the EBS encryption key to be used during replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "pitPolicy": {
+            "Description": "The Point in time (PIT) policy to manage snapshots taken during replication.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "replicationServerInstanceType": {
+            "Description": "The instance type to be used for the replication server.",
+            "Type": "string",
+            "Required": true
+        },
+        "replicationServersSecurityGroupsIDs": {
+            "Description": "The security group IDs that will be used by the replication server.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "stagingAreaSubnetId": {
+            "Description": "The subnet to be used by the replication staging area.",
+            "Type": "string",
+            "Required": true
+        },
+        "stagingAreaTags": {
+            "Description": "A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "A set of tags to be associated with the Replication Configuration Template resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "useDedicatedReplicationServer": {
+            "Description": "Whether to use a dedicated Replication Server in the replication staging area.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "delete_job": {
+        "jobID": {
+            "Description": "The ID of the Job to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_recovery_instance": {
+        "recoveryInstanceID": {
+            "Description": "The ID of the Recovery Instance to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_replication_configuration_template": {
+        "replicationConfigurationTemplateID": {
+            "Description": "The ID of the Replication Configuration Template to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_source_server": {
+        "sourceServerID": {
+            "Description": "The ID of the Source Server to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_job_log_items": {
+        "jobID": {
+            "Description": "The ID of the Job for which Job log items will be retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "Maximum number of Job log items to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next Job log items to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_jobs": {
+        "filters": {
+            "Description": "A set of filters by which to return Jobs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "Maximum number of Jobs to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next Job to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_recovery_instances": {
+        "filters": {
+            "Description": "A set of filters by which to return Recovery Instances.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "Maximum number of Recovery Instances to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next Recovery Instance to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_recovery_snapshots": {
+        "filters": {
+            "Description": "A set of filters by which to return Recovery Snapshots.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "Maximum number of Recovery Snapshots to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next Recovery Snapshot to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "order": {
+            "Description": "The sorted ordering by which to return Recovery Snapshots.",
+            "Type": "string",
+            "Required": false
+        },
+        "sourceServerID": {
+            "Description": "Filter Recovery Snapshots by Source Server ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_replication_configuration_templates": {
+        "maxResults": {
+            "Description": "Maximum number of Replication Configuration Templates to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next Replication Configuration Template to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "replicationConfigurationTemplateIDs": {
+            "Description": "The IDs of the Replication Configuration Templates to retrieve. An empty list means all Replication Configuration Templates.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_source_servers": {
+        "filters": {
+            "Description": "A set of filters by which to return Source Servers.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "Maximum number of Source Servers to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next Source Server to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disconnect_recovery_instance": {
+        "recoveryInstanceID": {
+            "Description": "The ID of the Recovery Instance to disconnect.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disconnect_source_server": {
+        "sourceServerID": {
+            "Description": "The ID of the Source Server to disconnect.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_failback_replication_configuration": {
+        "recoveryInstanceID": {
+            "Description": "The ID of the Recovery Instance whose failback replication configuration should be returned.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_launch_configuration": {
+        "sourceServerID": {
+            "Description": "The ID of the Source Server that we want to retrieve a Launch Configuration for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_replication_configuration": {
+        "sourceServerID": {
+            "Description": "The ID of the Source Serve for this Replication Configuration.r",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "initialize_service": "No parameters defined",
+    "list_extensible_source_servers": {
+        "maxResults": {
+            "Description": "The maximum number of extensible source servers to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next extensible source server to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "stagingAccountID": {
+            "Description": "The Id of the staging Account to retrieve extensible source servers from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_staging_accounts": {
+        "maxResults": {
+            "Description": "The maximum number of staging Accounts to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token of the next staging Account to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource whose tags should be returned.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "retry_data_replication": {
+        "sourceServerID": {
+            "Description": "The ID of the Source Server whose data replication should be retried.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_failback_launch": {
+        "recoveryInstanceIDs": {
+            "Description": "The IDs of the Recovery Instance whose failback launch we want to request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags to be associated with the failback launch Job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_recovery": {
+        "isDrill": {
+            "Description": "Whether this Source Server Recovery operation is a drill or not.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "sourceServers": {
+            "Description": "The Source Servers that we want to start a Recovery Job for.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags to be associated with the Recovery Job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "stop_failback": {
+        "recoveryInstanceID": {
+            "Description": "The ID of the Recovery Instance we want to stop failback for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "ARN of the resource for which tags are to be added or updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Array of tags to be added or updated.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "terminate_recovery_instances": {
+        "recoveryInstanceIDs": {
+            "Description": "The IDs of the Recovery Instances that should be terminated.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "ARN of the resource for which tags are to be removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "Array of tags to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_failback_replication_configuration": {
+        "bandwidthThrottling": {
+            "Description": "Configure bandwidth throttling for the outbound data transfer rate of the Recovery Instance in Mbps.",
+            "Type": "integer",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the Failback Replication Configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "recoveryInstanceID": {
+            "Description": "The ID of the Recovery Instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "usePrivateIP": {
+            "Description": "Whether to use Private IP for the failback replication of the Recovery Instance.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_launch_configuration": {
+        "copyPrivateIp": {
+            "Description": "Whether we should copy the Private IP of the Source Server to the Recovery Instance.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "copyTags": {
+            "Description": "Whether we want to copy the tags of the Source Server to the EC2 machine of the Recovery Instance.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "launchDisposition": {
+            "Description": "The state of the Recovery Instance in EC2 after the recovery operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "licensing": {
+            "Description": "The licensing configuration to be used for this launch configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "The name of the launch configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "sourceServerID": {
+            "Description": "The ID of the Source Server that we want to retrieve a Launch Configuration for.",
+            "Type": "string",
+            "Required": true
+        },
+        "targetInstanceTypeRightSizingMethod": {
+            "Description": "Whether Elastic Disaster Recovery should try to automatically choose the instance type that best matches the OS, CPU, and RAM of your Source Server.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_replication_configuration": {
+        "associateDefaultSecurityGroup": {
+            "Description": "Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "bandwidthThrottling": {
+            "Description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.",
+            "Type": "integer",
+            "Required": false
+        },
+        "createPublicIP": {
+            "Description": "Whether to create a Public IP for the Recovery Instance by default.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "dataPlaneRouting": {
+            "Description": "The data plane routing mechanism that will be used for replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultLargeStagingDiskType": {
+            "Description": "The Staging Disk EBS volume type to be used during replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "ebsEncryption": {
+            "Description": "The type of EBS encryption to be used during replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "ebsEncryptionKeyArn": {
+            "Description": "The ARN of the EBS encryption key to be used during replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the Replication Configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "pitPolicy": {
+            "Description": "The Point in time (PIT) policy to manage snapshots taken during replication.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "replicatedDisks": {
+            "Description": "The configuration of the disks of the Source Server to be replicated.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "replicationServerInstanceType": {
+            "Description": "The instance type to be used for the replication server.",
+            "Type": "string",
+            "Required": false
+        },
+        "replicationServersSecurityGroupsIDs": {
+            "Description": "The security group IDs that will be used by the replication server.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "sourceServerID": {
+            "Description": "The ID of the Source Server for this Replication Configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "stagingAreaSubnetId": {
+            "Description": "The subnet to be used by the replication staging area.",
+            "Type": "string",
+            "Required": false
+        },
+        "stagingAreaTags": {
+            "Description": "A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "useDedicatedReplicationServer": {
+            "Description": "Whether to use a dedicated Replication Server in the replication staging area.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_replication_configuration_template": {
+        "arn": {
+            "Description": "The Replication Configuration Template ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "associateDefaultSecurityGroup": {
+            "Description": "Whether to associate the default Elastic Disaster Recovery Security group with the Replication Configuration Template.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "bandwidthThrottling": {
+            "Description": "Configure bandwidth throttling for the outbound data transfer rate of the Source Server in Mbps.",
+            "Type": "integer",
+            "Required": false
+        },
+        "createPublicIP": {
+            "Description": "Whether to create a Public IP for the Recovery Instance by default.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "dataPlaneRouting": {
+            "Description": "The data plane routing mechanism that will be used for replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultLargeStagingDiskType": {
+            "Description": "The Staging Disk EBS volume type to be used during replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "ebsEncryption": {
+            "Description": "The type of EBS encryption to be used during replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "ebsEncryptionKeyArn": {
+            "Description": "The ARN of the EBS encryption key to be used during replication.",
+            "Type": "string",
+            "Required": false
+        },
+        "pitPolicy": {
+            "Description": "The Point in time (PIT) policy to manage snapshots taken during replication.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "replicationConfigurationTemplateID": {
+            "Description": "The Replication Configuration Template ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "replicationServerInstanceType": {
+            "Description": "The instance type to be used for the replication server.",
+            "Type": "string",
+            "Required": false
+        },
+        "replicationServersSecurityGroupsIDs": {
+            "Description": "The security group IDs that will be used by the replication server.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "stagingAreaSubnetId": {
+            "Description": "The subnet to be used by the replication staging area.",
+            "Type": "string",
+            "Required": false
+        },
+        "stagingAreaTags": {
+            "Description": "A set of tags to be associated with all resources created in the replication staging area: EC2 replication server, EBS volumes, EBS snapshots, etc.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "useDedicatedReplicationServer": {
+            "Description": "Whether to use a dedicated Replication Server in the replication staging area.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

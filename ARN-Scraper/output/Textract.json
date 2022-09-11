@@ -1,0 +1,220 @@
+{
+    "analyze_document": {
+        "Document": {
+            "Description": "The input document as base64-encoded bytes or an Amazon S3 object. If you use the AWS CLI to call Amazon Textract operations, you can't pass image bytes. The document must be an image in JPEG, PNG, PDF, or TIFF format.\nIf you're using an AWS SDK to call Amazon Textract, you might not need to base64-encode image bytes that are passed using the Bytes field.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "FeatureTypes": {
+            "Description": "A list of the types of analysis to perform. Add TABLES to the list to return information about the tables that are detected in the input document. Add FORMS to return detected form data. To perform both types of analysis, add TABLES and FORMS to FeatureTypes. All lines and words detected in the document are included in the response (including text that isn't related to the value of FeatureTypes ).",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "HumanLoopConfig": {
+            "Description": "Sets the configuration for the human in the loop workflow for analyzing documents.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "QueriesConfig": {
+            "Description": "Contains Queries and the alias for those Queries, as determined by the input.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "analyze_expense": {
+        "Document": {
+            "Description": "The input document, either as bytes or as an S3 object.\nYou pass image bytes to an Amazon Textract API operation by using the Bytes property. For example, you would use the Bytes property to pass a document loaded from a local file system. Image bytes passed by using the Bytes property must be base64 encoded. Your code might not need to encode document file bytes if you're using an AWS SDK to call Amazon Textract API operations.\nYou pass images stored in an S3 bucket to an Amazon Textract API operation by using the S3Object property. Documents stored in an S3 bucket don't need to be base64 encoded.\nThe AWS Region for the S3 bucket that contains the S3 object must match the AWS Region that you use for Amazon Textract operations.\nIf you use the AWS CLI to call Amazon Textract operations, passing image bytes using the Bytes property isn't supported. You must first upload the document to an Amazon S3 bucket, and then call the operation using the S3Object property.\nFor Amazon Textract to process an S3 object, the user must have permission to access the S3 object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "analyze_id": {
+        "DocumentPages": {
+            "Description": "The document being passed to AnalyzeID.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "detect_document_text": {
+        "Document": {
+            "Description": "The input document as base64-encoded bytes or an Amazon S3 object. If you use the AWS CLI to call Amazon Textract operations, you can't pass image bytes. The document must be an image in JPEG or PNG format.\nIf you're using an AWS SDK to call Amazon Textract, you might not need to base64-encode image bytes that are passed using the Bytes field.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "get_document_analysis": {
+        "JobId": {
+            "Description": "A unique identifier for the text-detection job. The JobId is returned from StartDocumentAnalysis. A JobId value is only valid for 7 days.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value that you can specify is 1,000. If you specify a value greater than 1,000, a maximum of 1,000 results is returned. The default value is 1,000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more blocks to retrieve), Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of blocks.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_document_text_detection": {
+        "JobId": {
+            "Description": "A unique identifier for the text detection job. The JobId is returned from StartDocumentTextDetection. A JobId value is only valid for 7 days.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 1,000. If you specify a value greater than 1,000, a maximum of 1,000 results is returned. The default value is 1,000.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more blocks to retrieve), Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of blocks.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_expense_analysis": {
+        "JobId": {
+            "Description": "A unique identifier for the text detection job. The JobId is returned from StartExpenseAnalysis. A JobId value is only valid for 7 days.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per paginated call. The largest value you can specify is 20. If you specify a value greater than 20, a maximum of 20 results is returned. The default value is 20.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous response was incomplete (because there are more blocks to retrieve), Amazon Textract returns a pagination token in the response. You can use this pagination token to retrieve the next set of blocks.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_document_analysis": {
+        "DocumentLocation": {
+            "Description": "The location of the document to be processed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "FeatureTypes": {
+            "Description": "A list of the types of analysis to perform. Add TABLES to the list to return information about the tables that are detected in the input document. Add FORMS to return detected form data. To perform both types of analysis, add TABLES and FORMS to FeatureTypes. All lines and words detected in the document are included in the response (including text that isn't related to the value of FeatureTypes ).",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "The idempotent token that you use to identify the start request. If you use the same token with multiple StartDocumentAnalysis requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidentally started more than once. For more information, see Calling Amazon Textract Asynchronous Operations .",
+            "Type": "string",
+            "Required": false
+        },
+        "JobTag": {
+            "Description": "An identifier that you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use JobTag to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OutputConfig": {
+            "Description": "Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the GetDocumentAnalysis operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KMSKeyId": {
+            "Description": "The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.",
+            "Type": "string",
+            "Required": false
+        },
+        "QueriesConfig": {
+            "Description": "\nQueries (list)[REQUIRED]\n(dict) --Each query contains the question you want to ask in the Text and the alias you want to associate.\n\nText (string)[REQUIRED]Question that Amazon Textract will apply to the document. An example would be \"What is the customer's SSN?\"\n\nAlias (string) --Alias attached to the query, for ease of location.\n\nPages (list) --List of pages associated with the query. The following is a list of rules for using this parameter.\n\nIf a page is not specified, it is set to [\"1\"] by default.\nThe following characters are allowed in the parameter's string: 0 1 2 3 4 5 6 7 8 9 - * . No whitespace is allowed.\nWhen using * to indicate all pages, it must be the only element in the string.\nYou can use page intervals, such as [\u201c1-3\u201d, \u201c1-1\u201d, \u201c4-*\u201d] . Where * indicates last page of document.\nSpecified pages must be greater than 0 and less than or equal to the number of pages in the document.\n\n\n(string) --\n\n\n\n\n\n\n\n",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_document_text_detection": {
+        "DocumentLocation": {
+            "Description": "The location of the document to be processed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "The idempotent token that's used to identify the start request. If you use the same token with multiple StartDocumentTextDetection requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidentally started more than once. For more information, see Calling Amazon Textract Asynchronous Operations .",
+            "Type": "string",
+            "Required": false
+        },
+        "JobTag": {
+            "Description": "An identifier that you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use JobTag to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OutputConfig": {
+            "Description": "Sets if the output will go to a customer defined bucket. By default Amazon Textract will save the results internally to be accessed with the GetDocumentTextDetection operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KMSKeyId": {
+            "Description": "The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_expense_analysis": {
+        "DocumentLocation": {
+            "Description": "The location of the document to be processed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "The idempotent token that's used to identify the start request. If you use the same token with multiple StartDocumentTextDetection requests, the same JobId is returned. Use ClientRequestToken to prevent the same job from being accidentally started more than once. For more information, see Calling Amazon Textract Asynchronous Operations",
+            "Type": "string",
+            "Required": false
+        },
+        "JobTag": {
+            "Description": "An identifier you specify that's included in the completion notification published to the Amazon SNS topic. For example, you can use JobTag to identify the type of document that the completion notification corresponds to (such as a tax form or a receipt).",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationChannel": {
+            "Description": "The Amazon SNS topic ARN that you want Amazon Textract to publish the completion status of the operation to.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OutputConfig": {
+            "Description": "Sets if the output will go to a customer defined bucket. By default, Amazon Textract will save the results internally to be accessed by the GetExpenseAnalysis operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KMSKeyId": {
+            "Description": "The KMS key used to encrypt the inference results. This can be in either Key ID or Key Alias format. When a KMS key is provided, the KMS key will be used for server-side encryption of the objects in the customer bucket. When this parameter is not enabled, the result will be encrypted server side,using SSE-S3.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

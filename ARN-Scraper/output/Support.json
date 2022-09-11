@@ -1,0 +1,260 @@
+{
+    "add_attachments_to_set": {
+        "attachmentSetId": {
+            "Description": "The ID of the attachment set. If an attachmentSetId is not specified, a new attachment set is created, and the ID of the set is returned in the response. If an attachmentSetId is specified, the attachments are added to the specified set, if it exists.",
+            "Type": "string",
+            "Required": false
+        },
+        "attachments": {
+            "Description": "One or more attachments to add to the set. You can add up to three attachments per set. The size limit is 5 MB per attachment.\nIn the Attachment object, use the data parameter to specify the contents of the attachment file. In the previous request syntax, the value for data appear as blob, which is represented as a base64-encoded string. The value for fileName is the name of the attachment, such as troubleshoot-screenshot.png .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "add_communication_to_case": {
+        "caseId": {
+            "Description": "The support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47",
+            "Type": "string",
+            "Required": false
+        },
+        "communicationBody": {
+            "Description": "The body of an email communication to add to the support case.",
+            "Type": "string",
+            "Required": true
+        },
+        "ccEmailAddresses": {
+            "Description": "The email addresses in the CC line of an email to be added to the support case.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "attachmentSetId": {
+            "Description": "The ID of a set of one or more attachments for the communication to add to the case. Create the set by calling  AddAttachmentsToSet",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_case": {
+        "subject": {
+            "Description": "The title of the support case. The title appears in the Subject field on the Amazon Web Services Support Center Create Case page.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceCode": {
+            "Description": "The code for the Amazon Web Services service. You can use the  DescribeServices operation to get the possible serviceCode values.",
+            "Type": "string",
+            "Required": false
+        },
+        "severityCode": {
+            "Description": "A value that indicates the urgency of the case. This value determines the response time according to your service level agreement with Amazon Web Services Support. You can use the  DescribeSeverityLevels operation to get the possible values for severityCode .\nFor more information, see  SeverityLevel and Choosing a Severity in the Amazon Web Services Support User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "categoryCode": {
+            "Description": "The category of problem for the support case. You also use the  DescribeServices operation to get the category code for a service. Each Amazon Web Services service defines its own set of category codes.",
+            "Type": "string",
+            "Required": false
+        },
+        "communicationBody": {
+            "Description": "The communication body text that describes the issue. This text appears in the Description field on the Amazon Web Services Support Center Create Case page.",
+            "Type": "string",
+            "Required": true
+        },
+        "ccEmailAddresses": {
+            "Description": "A list of email addresses that Amazon Web Services Support copies on case correspondence. Amazon Web Services Support identifies the account that creates the case when you specify your Amazon Web Services credentials in an HTTP POST method or use the Amazon Web Services SDKs .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "language": {
+            "Description": "The language in which Amazon Web Services Support handles the case. You must specify the ISO 639-1 code for the language parameter if you want support in that language. Currently, English (\"en\") and Japanese (\"ja\") are supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "issueType": {
+            "Description": "The type of issue for the case. You can specify customer-service or technical . If you don't specify a value, the default is technical .",
+            "Type": "string",
+            "Required": false
+        },
+        "attachmentSetId": {
+            "Description": "The ID of a set of one or more attachments for the case. Create the set by using the  AddAttachmentsToSet operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_attachment": {
+        "attachmentId": {
+            "Description": "The ID of the attachment to return. Attachment IDs are returned by the  DescribeCommunications operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_cases": {
+        "caseIdList": {
+            "Description": "A list of ID numbers of the support cases you want returned. The maximum number of cases is 100.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "displayId": {
+            "Description": "The ID displayed for a case in the Amazon Web Services Support Center user interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "afterTime": {
+            "Description": "The start date for a filtered date search on support case communications. Case communications are available for 12 months after creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "beforeTime": {
+            "Description": "The end date for a filtered date search on support case communications. Case communications are available for 12 months after creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeResolvedCases": {
+            "Description": "Specifies whether to include resolved support cases in the DescribeCases response. By default, resolved cases aren't included.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A resumption point for pagination.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return before paginating.",
+            "Type": "integer",
+            "Required": false
+        },
+        "language": {
+            "Description": "The ISO 639-1 code for the language in which Amazon Web Services provides support. Amazon Web Services Support currently supports English (\"en\") and Japanese (\"ja\"). Language parameters must be passed explicitly for operations that take them.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeCommunications": {
+            "Description": "Specifies whether to include communications in the DescribeCases response. By default, communications are included.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_communications": {
+        "caseId": {
+            "Description": "The support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47",
+            "Type": "string",
+            "Required": true
+        },
+        "beforeTime": {
+            "Description": "The end date for a filtered date search on support case communications. Case communications are available for 12 months after creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "afterTime": {
+            "Description": "The start date for a filtered date search on support case communications. Case communications are available for 12 months after creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A resumption point for pagination.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return before paginating.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_services": {
+        "serviceCodeList": {
+            "Description": "A JSON-formatted list of service codes available for Amazon Web Services services.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "language": {
+            "Description": "The ISO 639-1 code for the language in which Amazon Web Services provides support. Amazon Web Services Support currently supports English (\"en\") and Japanese (\"ja\"). Language parameters must be passed explicitly for operations that take them.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_severity_levels": {
+        "language": {
+            "Description": "The ISO 639-1 code for the language in which Amazon Web Services provides support. Amazon Web Services Support currently supports English (\"en\") and Japanese (\"ja\"). Language parameters must be passed explicitly for operations that take them.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_trusted_advisor_check_refresh_statuses": {
+        "checkIds": {
+            "Description": "The IDs of the Trusted Advisor checks to get the status.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_trusted_advisor_check_result": {
+        "checkId": {
+            "Description": "The unique identifier for the Trusted Advisor check.",
+            "Type": "string",
+            "Required": true
+        },
+        "language": {
+            "Description": "The ISO 639-1 code for the language in which Amazon Web Services provides support. Amazon Web Services Support currently supports English (\"en\") and Japanese (\"ja\"). Language parameters must be passed explicitly for operations that take them.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_trusted_advisor_check_summaries": {
+        "checkIds": {
+            "Description": "The IDs of the Trusted Advisor checks.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_trusted_advisor_checks": {
+        "language": {
+            "Description": "The ISO 639-1 code for the language in which Amazon Web Services provides support. Amazon Web Services Support currently supports English (\"en\") and Japanese (\"ja\"). Language parameters must be passed explicitly for operations that take them.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "refresh_trusted_advisor_check": {
+        "checkId": {
+            "Description": "The unique identifier for the Trusted Advisor check to refresh.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "resolve_case": {
+        "caseId": {
+            "Description": "The support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "caseId": {
+            "Description": "The support case ID requested or returned in the call. The case ID is an alphanumeric string formatted as shown in this example: case-12345678910-2013-c4c1d2bf33c5cf47",
+            "Type": "string",
+            "Required": true
+        },
+        "beforeTime": {
+            "Description": "The end date for a filtered date search on support case communications. Case communications are available for 12 months after creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "afterTime": {
+            "Description": "The start date for a filtered date search on support case communications. Case communications are available for 12 months after creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

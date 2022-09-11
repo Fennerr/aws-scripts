@@ -1,0 +1,207 @@
+{
+    "delete_lexicon": {
+        "Name": {
+            "Description": "The name of the lexicon to delete. Must be an existing lexicon in the region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_voices": {
+        "Engine": {
+            "Description": "Specifies the engine (standard or neural ) used by Amazon Polly when processing input text for speech synthesis.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "The language identification tag (ISO 639 code for the language name-ISO 3166 country code) for filtering the list of voices returned. If you don't specify this optional parameter, all available voices are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "IncludeAdditionalLanguageCodes": {
+            "Description": "Boolean value indicating whether to return any bilingual voices that use the specified language as an additional language. For instance, if you request all languages that use US English (es-US), and there is an Italian voice that speaks both Italian (it-IT) and US English, that voice will be included if you specify yes but not if you specify no .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque pagination token returned from the previous DescribeVoices operation. If present, this indicates where to continue the listing.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_lexicon": {
+        "Name": {
+            "Description": "Name of the lexicon.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_speech_synthesis_task": {
+        "TaskId": {
+            "Description": "The Amazon Polly generated identifier for a speech synthesis task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_lexicons": {
+        "NextToken": {
+            "Description": "An opaque pagination token returned from previous ListLexicons operation. If present, indicates where to continue the list of lexicons.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_speech_synthesis_tasks": {
+        "MaxResults": {
+            "Description": "Maximum number of speech synthesis tasks returned in a List operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token to use in the next request to continue the listing of speech synthesis tasks.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "Status of the speech synthesis tasks returned in a List operation",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_lexicon": {
+        "Name": {
+            "Description": "Name of the lexicon. The name must follow the regular express format [0-9A-Za-z]{1,20}. That is, the name is a case-sensitive alphanumeric string up to 20 characters long.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "Content of the PLS lexicon as string data.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_speech_synthesis_task": {
+        "Engine": {
+            "Description": "Specifies the engine (standard or neural ) for Amazon Polly to use when processing input text for speech synthesis. Using a voice that is not supported for the engine selected will result in an error.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "Optional language code for the Speech Synthesis request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN).\nIf a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the DescribeVoices operation for the LanguageCode parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.",
+            "Type": "string",
+            "Required": false
+        },
+        "LexiconNames": {
+            "Description": "List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OutputFormat": {
+            "Description": "The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputS3BucketName": {
+            "Description": "Amazon S3 bucket name to which the output file will be saved.",
+            "Type": "string",
+            "Required": true
+        },
+        "OutputS3KeyPrefix": {
+            "Description": "The Amazon S3 key prefix for the output speech file.",
+            "Type": "string",
+            "Required": false
+        },
+        "SampleRate": {
+            "Description": "The audio frequency specified in Hz.\nThe valid values for mp3 and ogg_vorbis are \"8000\", \"16000\", \"22050\", and \"24000\". The default value for standard voices is \"22050\". The default value for neural voices is \"24000\".\nValid values for pcm are \"8000\" and \"16000\" The default value is \"16000\".",
+            "Type": "string",
+            "Required": false
+        },
+        "SnsTopicArn": {
+            "Description": "ARN for the SNS topic optionally used for providing status notification for a speech synthesis task.",
+            "Type": "string",
+            "Required": false
+        },
+        "SpeechMarkTypes": {
+            "Description": "The type of speech marks returned for the input text.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Text": {
+            "Description": "The input text to synthesize. If you specify ssml as the TextType, follow the SSML format for the input text.",
+            "Type": "string",
+            "Required": true
+        },
+        "TextType": {
+            "Description": "Specifies whether the input text is plain text or SSML. The default value is plain text.",
+            "Type": "string",
+            "Required": false
+        },
+        "VoiceId": {
+            "Description": "Voice ID to use for the synthesis.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "synthesize_speech": {
+        "Engine": {
+            "Description": "Specifies the engine (standard or neural ) for Amazon Polly to use when processing input text for speech synthesis. For information on Amazon Polly voices and which voices are available in standard-only, NTTS-only, and both standard and NTTS formats, see Available Voices .\nWhen using NTTS-only voices such as Kevin (en-US), this parameter is required and must be set to neural. If the engine is not specified, or is set to standard, this will result in an error.\nType: String\nValid Values: standard | neural\nRequired: Yes\nFor standard voices, this is not required; the engine parameter defaults to standard. If the engine is not specified, or is set to standard and an NTTS-only voice is selected, this will result in an error.",
+            "Type": "string",
+            "Required": false
+        },
+        "LanguageCode": {
+            "Description": "Optional language code for the Synthesize Speech request. This is only necessary if using a bilingual voice, such as Aditi, which can be used for either Indian English (en-IN) or Hindi (hi-IN).\nIf a bilingual voice is used and no language code is specified, Amazon Polly uses the default language of the bilingual voice. The default language for any voice is the one returned by the DescribeVoices operation for the LanguageCode parameter. For example, if no language code is specified, Aditi will use Indian English rather than Hindi.",
+            "Type": "string",
+            "Required": false
+        },
+        "LexiconNames": {
+            "Description": "List of one or more pronunciation lexicon names you want the service to apply during synthesis. Lexicons are applied only if the language of the lexicon is the same as the language of the voice. For information about storing lexicons, see PutLexicon .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OutputFormat": {
+            "Description": "The format in which the returned output will be encoded. For audio stream, this will be mp3, ogg_vorbis, or pcm. For speech marks, this will be json.\nWhen pcm is used, the content returned is audio/pcm in a signed 16-bit, 1 channel (mono), little-endian format.",
+            "Type": "string",
+            "Required": true
+        },
+        "SampleRate": {
+            "Description": "The audio frequency specified in Hz.\nThe valid values for mp3 and ogg_vorbis are \"8000\", \"16000\", \"22050\", and \"24000\". The default value for standard voices is \"22050\". The default value for neural voices is \"24000\".\nValid values for pcm are \"8000\" and \"16000\" The default value is \"16000\".",
+            "Type": "string",
+            "Required": false
+        },
+        "SpeechMarkTypes": {
+            "Description": "The type of speech marks returned for the input text.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Text": {
+            "Description": "Input text to synthesize. If you specify ssml as the TextType, follow the SSML format for the input text.",
+            "Type": "string",
+            "Required": true
+        },
+        "TextType": {
+            "Description": "Specifies whether the input text is plain text or SSML. The default value is plain text. For more information, see Using SSML .",
+            "Type": "string",
+            "Required": false
+        },
+        "VoiceId": {
+            "Description": "Voice ID to use for the synthesis. You can get a list of available voice IDs by calling the DescribeVoices operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "Status": {
+            "Description": "Status of the speech synthesis tasks returned in a List operation",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

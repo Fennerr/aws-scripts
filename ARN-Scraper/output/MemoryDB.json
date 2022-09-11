@@ -1,0 +1,765 @@
+{
+    "batch_update_cluster": {
+        "ClusterNames": {
+            "Description": "The cluster names to apply the updates.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ServiceUpdate": {
+            "Description": "The unique ID of the service update",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "copy_snapshot": {
+        "SourceSnapshotName": {
+            "Description": "The name of an existing snapshot from which to make a copy.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetSnapshotName": {
+            "Description": "A name for the snapshot copy. MemoryDB does not permit overwriting a snapshot, therefore this name must be unique within its context - MemoryDB or an Amazon S3 bucket if exporting.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetBucket": {
+            "Description": "The Amazon S3 bucket to which the snapshot is exported. This parameter is used only when exporting a snapshot for external access. When using this parameter to export a snapshot, be sure MemoryDB has the needed permissions to this S3 bucket. For more information, see Step 2: Grant MemoryDB Access to Your Amazon S3 Bucket .",
+            "Type": "string",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "The ID of the KMS key used to encrypt the target snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_acl": {
+        "ACLName": {
+            "Description": "The name of the Access Control List.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserNames": {
+            "Description": "The list of users that belong to the Access Control List.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_cluster": {
+        "ClusterName": {
+            "Description": "The name of the cluster. This value must be unique as it also serves as the cluster identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeType": {
+            "Description": "The compute and memory capacity of the nodes in the cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "ParameterGroupName": {
+            "Description": "The name of the parameter group associated with the cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "An optional description of the cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "NumShards": {
+            "Description": "The number of shards the cluster will contain. The default value is 1.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NumReplicasPerShard": {
+            "Description": "The number of replicas to apply to each shard. The default value is 1. The maximum is 5.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SubnetGroupName": {
+            "Description": "The name of the subnet group to be used for the cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "SecurityGroupIds": {
+            "Description": "A list of security group names to associate with this cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaintenanceWindow": {
+            "Description": "Specifies the weekly time range during which maintenance on the cluster is performed. It is specified as a range in the format ddd:hh24:mi-ddd:hh24:mi (24H Clock UTC). The minimum maintenance window is a 60 minute period.",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port number on which each of the nodes accepts connections.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SnsTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Simple Notification Service (SNS) topic to which notifications are sent.",
+            "Type": "string",
+            "Required": false
+        },
+        "TLSEnabled": {
+            "Description": "A flag to enable in-transit encryption on the cluster.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "The ID of the KMS key used to encrypt the cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotArns": {
+            "Description": "A list of Amazon Resource Names (ARN) that uniquely identify the RDB snapshot files stored in Amazon S3. The snapshot files are used to populate the new cluster. The Amazon S3 object name in the ARN cannot contain any commas.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SnapshotName": {
+            "Description": "The name of a snapshot from which to restore data into the new cluster. The snapshot status changes to restoring while the new cluster is being created.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotRetentionLimit": {
+            "Description": "The number of days for which MemoryDB retains automatic snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. Tags are comma-separated key,value pairs (e.g. Key=myKey, Value=myKeyValue. You can include multiple tags as shown following: Key=myKey, Value=myKeyValue Key=mySecondKey, Value=mySecondKeyValue.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SnapshotWindow": {
+            "Description": "The daily time range (in UTC) during which MemoryDB begins taking a daily snapshot of your shard.\nExample: 05:00-09:00\nIf you do not specify this parameter, MemoryDB automatically chooses an appropriate time range.",
+            "Type": "string",
+            "Required": false
+        },
+        "ACLName": {
+            "Description": "The name of the Access Control List to associate with the cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineVersion": {
+            "Description": "The version number of the Redis engine to be used for the cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "When set to true, the cluster will automatically receive minor engine version upgrades after launch.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_parameter_group": {
+        "ParameterGroupName": {
+            "Description": "The name of the parameter group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Family": {
+            "Description": "The name of the parameter group family that the parameter group can be used with.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "An optional description of the parameter group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_snapshot": {
+        "ClusterName": {
+            "Description": "The snapshot is created from this cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotName": {
+            "Description": "A name for the snapshot being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKeyId": {
+            "Description": "The ID of the KMS key used to encrypt the snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_subnet_group": {
+        "SubnetGroupName": {
+            "Description": "The name of the subnet group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the subnet group.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetIds": {
+            "Description": "A list of VPC subnet IDs for the subnet group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_user": {
+        "UserName": {
+            "Description": "The name of the user. This value must be unique as it also serves as the user identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthenticationMode": {
+            "Description": "Denotes the user's authentication properties, such as whether it requires a password to authenticate.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AccessString": {
+            "Description": "Access permissions string used for this user.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_acl": {
+        "ACLName": {
+            "Description": "The name of the Access Control List to delete",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_cluster": {
+        "ClusterName": {
+            "Description": "The name of the cluster to be deleted",
+            "Type": "string",
+            "Required": true
+        },
+        "FinalSnapshotName": {
+            "Description": "The user-supplied name of a final cluster snapshot. This is the unique name that identifies the snapshot. MemoryDB creates the snapshot, and then deletes the cluster immediately afterward.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_parameter_group": {
+        "ParameterGroupName": {
+            "Description": "The name of the parameter group to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_snapshot": {
+        "SnapshotName": {
+            "Description": "The name of the snapshot to delete",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_subnet_group": {
+        "SubnetGroupName": {
+            "Description": "The name of the subnet group to delete",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user": {
+        "UserName": {
+            "Description": "The name of the user to delete",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_acls": {
+        "ACLName": {
+            "Description": "The name of the ACL",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_clusters": {
+        "ClusterName": {
+            "Description": "The name of the cluster",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        },
+        "ShowShardDetails": {
+            "Description": "An optional flag that can be included in the request to retrieve information about the individual shard(s).",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_engine_versions": {
+        "EngineVersion": {
+            "Description": "The Redis engine version",
+            "Type": "string",
+            "Required": false
+        },
+        "ParameterGroupFamily": {
+            "Description": "The name of a specific parameter group family to return details for.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultOnly": {
+            "Description": "If true, specifies that only the default version of the specified engine or engine and major version combination is to be returned.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_events": {
+        "SourceName": {
+            "Description": "The identifier of the event source for which events are returned. If not specified, all sources are included in the response.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceType": {
+            "Description": "The event source to retrieve events for. If no value is specified, all events are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The beginning of the time interval to retrieve events for, specified in ISO 8601 format. Example: 2017-03-30T07:03:49.555Z",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The end of the time interval for which to retrieve events, specified in ISO 8601 format. Example: 2017-03-30T07:03:49.555Z",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Duration": {
+            "Description": "The number of minutes worth of events to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_parameter_groups": {
+        "ParameterGroupName": {
+            "Description": "The name of a specific parameter group to return details for.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_parameters": {
+        "ParameterGroupName": {
+            "Description": "he name of a specific parameter group to return details for.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_service_updates": {
+        "ServiceUpdateName": {
+            "Description": "The unique ID of the service update to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClusterNames": {
+            "Description": "The list of cluster names to identify service updates to apply",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Status": {
+            "Description": "The status(es) of the service updates to filter on",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_snapshots": {
+        "ClusterName": {
+            "Description": "A user-supplied cluster identifier. If this parameter is specified, only snapshots associated with that specific cluster are described.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotName": {
+            "Description": "A user-supplied name of the snapshot. If this parameter is specified, only this named snapshot is described.",
+            "Type": "string",
+            "Required": false
+        },
+        "Source": {
+            "Description": "If set to system, the output shows snapshots that were automatically created by MemoryDB. If set to user the output shows snapshots that were manually created. If omitted, the output shows both automatically and manually created snapshots.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ShowDetail": {
+            "Description": "A Boolean value which if true, the shard configuration is included in the snapshot description.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_subnet_groups": {
+        "SubnetGroupName": {
+            "Description": "The name of the subnet group to return details for.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_users": {
+        "UserName": {
+            "Description": "The name of the user",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filter to determine the list of users to return.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An optional argument to pass in case the total number of records exceeds the value of MaxResults. If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "failover_shard": {
+        "ClusterName": {
+            "Description": "The cluster being failed over",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardName": {
+            "Description": "The name of the shard",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_allowed_node_type_updates": {
+        "ClusterName": {
+            "Description": "The name of the cluster you want to scale. MemoryDB uses the cluster name to identify the current node type being used by this cluster, and from that to create a list of node types you can scale up to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for which you want the list of tags",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reset_parameter_group": {
+        "ParameterGroupName": {
+            "Description": "The name of the parameter group to reset.",
+            "Type": "string",
+            "Required": true
+        },
+        "AllParameters": {
+            "Description": "If true, all parameters in the parameter group are reset to their default values. If false, only the parameters listed by ParameterNames are reset to their default values.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ParameterNames": {
+            "Description": "An array of parameter names to reset to their default values. If AllParameters is true, do not use ParameterNames. If AllParameters is false, you must specify the name of at least one parameter to reset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which the tags are to be added",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to be added to this resource. A tag is a key-value pair. A tag key must be accompanied by a tag value, although null is accepted.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which the tags are to be removed",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of keys of the tags that are to be removed",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_acl": {
+        "ACLName": {
+            "Description": "The name of the Access Control List",
+            "Type": "string",
+            "Required": true
+        },
+        "UserNamesToAdd": {
+            "Description": "The list of users to add to the Access Control List",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserNamesToRemove": {
+            "Description": "The list of users to remove from the Access Control List",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_cluster": {
+        "ClusterName": {
+            "Description": "The name of the cluster to update",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the cluster to update",
+            "Type": "string",
+            "Required": false
+        },
+        "SecurityGroupIds": {
+            "Description": "The SecurityGroupIds to update",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaintenanceWindow": {
+            "Description": "The maintenance window to update",
+            "Type": "string",
+            "Required": false
+        },
+        "SnsTopicArn": {
+            "Description": "The SNS topic ARN to update",
+            "Type": "string",
+            "Required": false
+        },
+        "SnsTopicStatus": {
+            "Description": "The status of the Amazon SNS notification topic. Notifications are sent only if the status is active.",
+            "Type": "string",
+            "Required": false
+        },
+        "ParameterGroupName": {
+            "Description": "The name of the parameter group to update",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotWindow": {
+            "Description": "The daily time range (in UTC) during which MemoryDB begins taking a daily snapshot of your cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotRetentionLimit": {
+            "Description": "The number of days for which MemoryDB retains automatic cluster snapshots before deleting them. For example, if you set SnapshotRetentionLimit to 5, a snapshot that was taken today is retained for 5 days before being deleted.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NodeType": {
+            "Description": "A valid node type that you want to scale this cluster up or down to.",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The upgraded version of the engine to be run on the nodes. You can upgrade to a newer engine version, but you cannot downgrade to an earlier engine version. If you want to use an earlier engine version, you must delete the existing cluster and create it anew with the earlier engine version.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicaConfiguration": {
+            "Description": "The number of replicas that will reside in each shard",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ShardConfiguration": {
+            "Description": "The number of shards in the cluster",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ACLName": {
+            "Description": "The Access Control List that is associated with the cluster",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_parameter_group": {
+        "ParameterGroupName": {
+            "Description": "The name of the parameter group to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "ParameterNameValues": {
+            "Description": "An array of parameter names and values for the parameter update. You must supply at least one parameter name and value; subsequent arguments are optional. A maximum of 20 parameters may be updated per request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_subnet_group": {
+        "SubnetGroupName": {
+            "Description": "The name of the subnet group",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the subnet group",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetIds": {
+            "Description": "The EC2 subnet IDs for the subnet group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_user": {
+        "UserName": {
+            "Description": "The name of the user",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthenticationMode": {
+            "Description": "Denotes the user's authentication properties, such as whether it requires a password to authenticate.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccessString": {
+            "Description": "Access permissions string used for this user.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

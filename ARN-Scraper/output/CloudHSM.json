@@ -1,0 +1,259 @@
+{
+    "add_tags_to_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS CloudHSM resource to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagList": {
+            "Description": "One or more tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_hapg": {
+        "Label": {
+            "Description": "The label of the new high-availability partition group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_hsm": {
+        "SubnetId": {
+            "Description": "The identifier of the subnet in your VPC in which to place the HSM.",
+            "Type": "string",
+            "Required": true
+        },
+        "SshKey": {
+            "Description": "The SSH public key to install on the HSM.",
+            "Type": "string",
+            "Required": true
+        },
+        "EniIp": {
+            "Description": "The IP address to assign to the HSM's ENI.\nIf an IP address is not specified, an IP address will be randomly chosen from the CIDR range of the subnet.",
+            "Type": "string",
+            "Required": false
+        },
+        "IamRoleArn": {
+            "Description": "The ARN of an IAM role to enable the AWS CloudHSM service to allocate an ENI on your behalf.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExternalId": {
+            "Description": "The external ID from IamRoleArn , if present.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubscriptionType": {
+            "Description": "Specifies the type of subscription for the HSM.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ClientToken": {
+            "Description": "A user-defined token to ensure idempotence. Subsequent calls to this operation with the same token will be ignored.",
+            "Type": "string",
+            "Required": false
+        },
+        "SyslogIp": {
+            "Description": "The IP address for the syslog monitoring server. The AWS CloudHSM service only supports one syslog monitoring server.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_luna_client": {
+        "Label": {
+            "Description": "The label for the client.",
+            "Type": "string",
+            "Required": false
+        },
+        "Certificate": {
+            "Description": "The contents of a Base64-Encoded X.509 v3 certificate to be installed on the HSMs used by this client.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_hapg": {
+        "HapgArn": {
+            "Description": "The ARN of the high-availability partition group to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_hsm": {
+        "HsmArn": {
+            "Description": "The ARN of the HSM to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_luna_client": {
+        "ClientArn": {
+            "Description": "The ARN of the client to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_hapg": {
+        "HapgArn": {
+            "Description": "The ARN of the high-availability partition group to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_hsm": {
+        "HsmArn": {
+            "Description": "The ARN of the HSM. Either the HsmArn or the SerialNumber parameter must be specified.",
+            "Type": "string",
+            "Required": false
+        },
+        "HsmSerialNumber": {
+            "Description": "The serial number of the HSM. Either the HsmArn or the HsmSerialNumber parameter must be specified.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_luna_client": {
+        "ClientArn": {
+            "Description": "The ARN of the client.",
+            "Type": "string",
+            "Required": false
+        },
+        "CertificateFingerprint": {
+            "Description": "The certificate fingerprint.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_config": {
+        "ClientArn": {
+            "Description": "The ARN of the client.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientVersion": {
+            "Description": "The client version.",
+            "Type": "string",
+            "Required": true
+        },
+        "HapgList": {
+            "Description": "A list of ARNs that identify the high-availability partition groups that are associated with the client.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "list_available_zones": "No parameters defined",
+    "list_hapgs": {
+        "NextToken": {
+            "Description": "The NextToken value from a previous call to ListHapgs . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_hsms": {
+        "NextToken": {
+            "Description": "The NextToken value from a previous call to ListHsms . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_luna_clients": {
+        "NextToken": {
+            "Description": "The NextToken value from a previous call to ListLunaClients . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS CloudHSM resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "modify_hapg": {
+        "HapgArn": {
+            "Description": "The ARN of the high-availability partition group to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "Label": {
+            "Description": "The new label for the high-availability partition group.",
+            "Type": "string",
+            "Required": false
+        },
+        "PartitionSerialList": {
+            "Description": "The list of partition serial numbers to make members of the high-availability partition group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_hsm": {
+        "HsmArn": {
+            "Description": "The ARN of the HSM to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubnetId": {
+            "Description": "The new identifier of the subnet that the HSM is in. The new subnet must be in the same Availability Zone as the current subnet.",
+            "Type": "string",
+            "Required": false
+        },
+        "EniIp": {
+            "Description": "The new IP address for the elastic network interface (ENI) attached to the HSM.\nIf the HSM is moved to a different subnet, and an IP address is not specified, an IP address will be randomly chosen from the CIDR range of the new subnet.",
+            "Type": "string",
+            "Required": false
+        },
+        "IamRoleArn": {
+            "Description": "The new IAM role ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExternalId": {
+            "Description": "The new external ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "SyslogIp": {
+            "Description": "The new IP address for the syslog monitoring server. The AWS CloudHSM service only supports one syslog monitoring server.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "modify_luna_client": {
+        "ClientArn": {
+            "Description": "The ARN of the client.",
+            "Type": "string",
+            "Required": true
+        },
+        "Certificate": {
+            "Description": "The new certificate for the client.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_tags_from_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the AWS CloudHSM resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeyList": {
+            "Description": "The tag key or keys to remove.\nSpecify only the tag key to remove (not the value). To overwrite the value for an existing tag, use  AddTagsToResource .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

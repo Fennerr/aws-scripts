@@ -1,0 +1,979 @@
+{
+    "associate_file_system_aliases": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "FileSystemId": {
+            "Description": "Specifies the file system with which you want to associate one or more DNS aliases.",
+            "Type": "string",
+            "Required": true
+        },
+        "Aliases": {
+            "Description": "An array of one or more DNS alias names to associate with the file system. The alias name has to comply with the following formatting requirements:\nFor DNS alias names, Amazon FSx stores alphabetic characters as lowercase letters (a-z), regardless of how you specify them: as uppercase letters, lowercase letters, or the corresponding letters in escape codes.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "cancel_data_repository_task": {
+        "TaskId": {
+            "Description": "Specifies the data repository task to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "copy_backup": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceBackupId": {
+            "Description": "The ID of the source backup. Specifies the ID of the backup that's being copied.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceRegion": {
+            "Description": "The source Amazon Web Services Region of the backup. Specifies the Amazon Web Services Region from which the backup is being copied. The source and destination Regions must be in the same Amazon Web Services partition. If you don't specify a Region, SourceRegion defaults to the Region where the request is sent from (in-Region copy).",
+            "Type": "string",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "Specifies the ID of the Key Management Service (KMS) key to use for encrypting data on Amazon FSx file systems, as follows:\nIf a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account is used. For more information, see Encrypt in the Key Management Service API Reference .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CopyTags": {
+            "Description": "A Boolean flag indicating whether tags from the source backup should be copied to the backup copy. This value defaults to false .\nIf you set CopyTags to true and the source backup has existing tags, you can use the Tags parameter to create new tags, provided that the sum of the source backup tags and the new tags doesn't exceed 50. Both sets of tags are merged. If there are tag conflicts (for example, two tags with the same key but different values), the tags created with the Tags parameter take precedence.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of Tag values, with a maximum of 50 elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_backup": {
+        "FileSystemId": {
+            "Description": "The ID of the file system to back up.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent creation. This string is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "(Optional) The tags to apply to the backup at backup creation. The key value of the Name tag appears in the console as the backup name. If you have set CopyTagsToBackups to true, and you specify one or more tags using the CreateBackup operation, no existing file system tags are copied from the file system to the backup.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VolumeId": {
+            "Description": "(Optional) The ID of the FSx for ONTAP volume to back up.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_data_repository_association": {
+        "FileSystemId": {
+            "Description": "The globally unique ID of the file system, assigned by Amazon FSx.",
+            "Type": "string",
+            "Required": true
+        },
+        "FileSystemPath": {
+            "Description": "A path on the file system that points to a high-level directory (such as /ns1/ ) or subdirectory (such as /ns1/subdir/ ) that will be mapped 1-1 with DataRepositoryPath. The leading forward slash in the name is required. Two data repository associations cannot have overlapping file system paths. For example, if a data repository is associated with file system path /ns1/, then you cannot link another data repository with file system path /ns1/ns2 .\nThis path specifies where in your file system files will be exported from or imported to. This file system directory can be linked to only one Amazon S3 bucket, and no other S3 bucket can be linked to the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataRepositoryPath": {
+            "Description": "The path to the Amazon S3 data repository that will be linked to the file system. The path can be an S3 bucket or prefix in the format s3://myBucket/myPrefix/. This path specifies where in the S3 data repository files will be imported from or exported to.",
+            "Type": "string",
+            "Required": true
+        },
+        "BatchImportMetaDataOnCreate": {
+            "Description": "Set to true to run an import data repository task to import metadata from the data repository to the file system after the data repository association is created. Default is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ImportedFileChunkSize": {
+            "Description": "For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system.\nThe default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000 MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.",
+            "Type": "integer",
+            "Required": false
+        },
+        "S3": {
+            "Description": "The configuration for an Amazon S3 data repository linked to an Amazon FSx Lustre file system with a data repository association. The configuration defines which file events (new, changed, or deleted files or directories) are automatically imported from the linked data repository to the file system or automatically exported from the file system to the data repository.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of Tag values, with a maximum of 50 elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_data_repository_task": {
+        "Type": {
+            "Description": "Specifies the type of data repository task to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "Paths": {
+            "Description": "A list of paths for the data repository task to use when the task is processed. If a path that you provide isn't valid, the task fails.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "FileSystemId": {
+            "Description": "The globally unique ID of the file system, assigned by Amazon FSx.",
+            "Type": "string",
+            "Required": true
+        },
+        "Report": {
+            "Description": "Defines whether or not Amazon FSx provides a CompletionReport once the task has completed. A CompletionReport provides a detailed report on the files that Amazon FSx processed that meet the criteria specified by the Scope parameter. For more information, see Working with Task Completion Reports .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of Tag values, with a maximum of 50 elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_file_system": {
+        "ClientRequestToken": {
+            "Description": "A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent creation. This string is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "FileSystemType": {
+            "Description": "The type of Amazon FSx file system to create. Valid values are WINDOWS, LUSTRE, ONTAP, and OPENZFS .",
+            "Type": "string",
+            "Required": true
+        },
+        "StorageCapacity": {
+            "Description": "Sets the storage capacity of the file system that you're creating, in gibibytes (GiB).",
+            "Type": "integer",
+            "Required": true,
+            "integer variables": [
+                {},
+                {}
+            ]
+        },
+        "StorageType": {
+            "Description": "Sets the storage type for the file system that you're creating. Valid values are SSD and HDD .\nDefault value is SSD. For more information, see Storage type options in the FSx for Windows File Server User Guide and Multiple storage options in the FSx for Lustre User Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SubnetIds": {
+            "Description": "Specifies the IDs of the subnets that the file system will be accessible from. For Windows and ONTAP MULTI_AZ_1 deployment types,provide exactly two subnet IDs, one for the preferred file server and one for the standby file server. You specify one of these subnets as the preferred subnet using the WindowsConfiguration &gt; PreferredSubnetID or OntapConfiguration &gt; PreferredSubnetID properties. For more information about Multi-AZ file system configuration, see Availability and durability: Single-AZ and Multi-AZ file systems in the Amazon FSx for Windows User Guide and Availability and durability in the Amazon FSx for ONTAP User Guide .\nFor Windows SINGLE_AZ_1 and SINGLE_AZ_2 and all Lustre deployment types, provide exactly one subnet ID. The file server is launched in that subnet's Availability Zone.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "A list of IDs specifying the security groups to apply to all network interfaces created for file system access. This list isn't returned in later requests to describe the file system.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to apply to the file system that's being created. The key value of the Name tag appears in the console as the file system name.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "Specifies the ID of the Key Management Service (KMS) key to use for encrypting data on Amazon FSx file systems, as follows:\nIf a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account is used. For more information, see Encrypt in the Key Management Service API Reference .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "WindowsConfiguration": {
+            "Description": "The Microsoft Windows configuration for the file system that's being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LustreConfiguration": {
+            "Description": "The Lustre configuration for the file system being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OntapConfiguration": {
+            "Description": "The ONTAP configuration properties of the FSx for ONTAP file system that you are creating.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "FileSystemTypeVersion": {
+            "Description": "(Optional) For FSx for Lustre file systems, sets the Lustre version for the file system that you're creating. Valid values are 2.10 and 2.12 :\nDefault value = 2.10, except when DeploymentType is set to PERSISTENT_2, then the default is 2.12 .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "OpenZFSConfiguration": {
+            "Description": "The OpenZFS configuration for the file system that's being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_file_system_from_backup": {
+        "BackupId": {
+            "Description": "The ID of the source backup. Specifies the backup that you are copying.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent creation. This string is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetIds": {
+            "Description": "Specifies the IDs of the subnets that the file system will be accessible from. For Windows MULTI_AZ_1 file system deployment types, provide exactly two subnet IDs, one for the preferred file server and one for the standby file server. You specify one of these subnets as the preferred subnet using the WindowsConfiguration &gt; PreferredSubnetID property.\nWindows SINGLE_AZ_1 and SINGLE_AZ_2 file system deployment types, Lustre file systems, and OpenZFS file systems provide exactly one subnet ID. The file server is launched in that subnet's Availability Zone.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "A list of IDs for the security groups that apply to the specified network interfaces created for file system access. These security groups apply to all network interfaces. This value isn't returned in later DescribeFileSystem requests.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be applied to the file system at file system creation. The key value of the Name tag appears in the console as the file system name.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "WindowsConfiguration": {
+            "Description": "The configuration for this Microsoft Windows file system.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LustreConfiguration": {
+            "Description": "The Lustre configuration for the file system being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StorageType": {
+            "Description": "Sets the storage type for the Windows or OpenZFS file system that you're creating from a backup. Valid values are SSD and HDD .\nThe default value is SSD .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "Specifies the ID of the Key Management Service (KMS) key to use for encrypting data on Amazon FSx file systems, as follows:\nIf a KmsKeyId isn't specified, the Amazon FSx-managed KMS key for your account is used. For more information, see Encrypt in the Key Management Service API Reference .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "FileSystemTypeVersion": {
+            "Description": "Sets the version for the Amazon FSx for Lustre file system that you're creating from a backup. Valid values are 2.10 and 2.12 .\nYou don't need to specify FileSystemTypeVersion because it will be applied using the backup's FileSystemTypeVersion setting. If you choose to specify FileSystemTypeVersion when creating from backup, the value must match the backup's FileSystemTypeVersion setting.",
+            "Type": "string",
+            "Required": false
+        },
+        "OpenZFSConfiguration": {
+            "Description": "The OpenZFS configuration for the file system that's being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_snapshot": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "VolumeId": {
+            "Description": "The ID of the volume that you are taking a snapshot of.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of Tag values, with a maximum of 50 elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_storage_virtual_machine": {
+        "ActiveDirectoryConfiguration": {
+            "Description": "Describes the self-managed Microsoft Active Directory to which you want to join the SVM. Joining an Active Directory provides user authentication and access control for SMB clients, including Microsoft Windows and macOS client accessing the file system.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "FileSystemId": {
+            "Description": "The globally unique ID of the file system, assigned by Amazon FSx.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the SVM.",
+            "Type": "string",
+            "Required": true
+        },
+        "SvmAdminPassword": {
+            "Description": "The password to use when managing the SVM using the NetApp ONTAP CLI or REST API. If you do not specify a password, you can still use the file system's fsxadmin user to manage the SVM.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of Tag values, with a maximum of 50 elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RootVolumeSecurityStyle": {
+            "Description": "The security style of the root volume of the SVM. Specify one of the following values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "create_volume": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeType": {
+            "Description": "Specifies the type of volume to create; ONTAP and OPENZFS are the only valid volume types.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "Specifies the name of the volume that you're creating.",
+            "Type": "string",
+            "Required": true
+        },
+        "OntapConfiguration": {
+            "Description": "Specifies the configuration to use when creating the ONTAP volume.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of Tag values, with a maximum of 50 elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OpenZFSConfiguration": {
+            "Description": "Specifies the configuration to use when creating the OpenZFS volume.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_volume_from_backup": {
+        "BackupId": {
+            "Description": "The ID of the source backup. Specifies the backup that you are copying.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the new volume you're creating.",
+            "Type": "string",
+            "Required": true
+        },
+        "OntapConfiguration": {
+            "Description": "Specifies the configuration of the ONTAP volume that you are creating.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of Tag values, with a maximum of 50 elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_backup": {
+        "BackupId": {
+            "Description": "The ID of the backup that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent deletion. This parameter is automatically filled on your behalf when using the CLI or SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_data_repository_association": {
+        "AssociationId": {
+            "Description": "The ID of the data repository association that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeleteDataInFileSystem": {
+            "Description": "Set to true to delete the data in the file system that corresponds to the data repository association.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "delete_file_system": {
+        "FileSystemId": {
+            "Description": "The ID of the file system that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent deletion. This token is automatically filled on your behalf when using the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "WindowsConfiguration": {
+            "Description": "The configuration object for the Microsoft Windows file system used in the DeleteFileSystem operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LustreConfiguration": {
+            "Description": "The configuration object for the Amazon FSx for Lustre file system being deleted in the DeleteFileSystem operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OpenZFSConfiguration": {
+            "Description": "The configuration object for the OpenZFS file system used in the DeleteFileSystem operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_snapshot": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotId": {
+            "Description": "The ID of the snapshot that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_storage_virtual_machine": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageVirtualMachineId": {
+            "Description": "The ID of the SVM that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_volume": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeId": {
+            "Description": "The ID of the volume that you are deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "OntapConfiguration": {
+            "Description": "For Amazon FSx for ONTAP volumes, specify whether to take a final backup of the volume and apply tags to the backup. To apply tags to the backup, you must have the fsx:TagResource permission.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OpenZFSConfiguration": {
+            "Description": "For Amazon FSx for OpenZFS volumes, specify whether to delete all child volumes and snapshots.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "describe_backups": {
+        "BackupIds": {
+            "Description": "The IDs of the backups that you want to retrieve. This parameter value overrides any filters. If any IDs aren't found, a BackupNotFound error occurs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "The filters structure. The supported names are file-system-id, backup-type, file-system-type, and volume-id .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "Maximum number of backups to return in the response. This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the MaxResults parameter specified in the request and the service's internal maximum number of items per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque pagination token returned from a previous DescribeBackups operation. If a token is present, the operation continues the list from where the returning call left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_data_repository_associations": {
+        "AssociationIds": {
+            "Description": "IDs of the data repository associations whose descriptions you want to retrieve (String).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "A list of Filter elements.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of resources to return in the response. This value must be an integer greater than zero.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "(Optional) Opaque pagination token returned from a previous operation (String). If present, this token indicates from what point you can continue processing the request, where the previous NextToken value left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_data_repository_tasks": {
+        "TaskIds": {
+            "Description": "(Optional) IDs of the tasks whose descriptions you want to retrieve (String).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "(Optional) You can use filters to narrow the DescribeDataRepositoryTasks response to include just tasks for specific file systems, or tasks in a specific lifecycle state.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of resources to return in the response. This value must be an integer greater than zero.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "(Optional) Opaque pagination token returned from a previous operation (String). If present, this token indicates from what point you can continue processing the request, where the previous NextToken value left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_file_system_aliases": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "FileSystemId": {
+            "Description": "The ID of the file system to return the associated DNS aliases for (String).",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of DNS aliases to return in the response (integer). This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the MaxResults parameter specified in the request and the service's internal maximum number of items per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Opaque pagination token returned from a previous DescribeFileSystemAliases operation (String). If a token is included in the request, the action continues the list from where the previous returning call left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_file_systems": {
+        "FileSystemIds": {
+            "Description": "IDs of the file systems whose descriptions you want to retrieve (String).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "Maximum number of file systems to return in the response (integer). This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the MaxResults parameter specified in the request and the service's internal maximum number of items per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Opaque pagination token returned from a previous DescribeFileSystems operation (String). If a token present, the operation continues the list from where the returning call left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_snapshots": {
+        "SnapshotIds": {
+            "Description": "The IDs of the snapshots that you want to retrieve. This parameter value overrides any filters. If any IDs aren't found, a SnapshotNotFound error occurs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "The filters structure. The supported names are file-system-id or volume-id .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of resources to return in the response. This value must be an integer greater than zero.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "(Optional) Opaque pagination token returned from a previous operation (String). If present, this token indicates from what point you can continue processing the request, where the previous NextToken value left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_storage_virtual_machines": {
+        "StorageVirtualMachineIds": {
+            "Description": "Enter the ID of one or more SVMs that you want to view.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Enter a filter name:value pair to view a select set of SVMs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of resources to return in the response. This value must be an integer greater than zero.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "(Optional) Opaque pagination token returned from a previous operation (String). If present, this token indicates from what point you can continue processing the request, where the previous NextToken value left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_volumes": {
+        "VolumeIds": {
+            "Description": "The IDs of the volumes whose descriptions you want to retrieve.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Enter a filter Name and Values pair to view a select set of volumes.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of resources to return in the response. This value must be an integer greater than zero.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "(Optional) Opaque pagination token returned from a previous operation (String). If present, this token indicates from what point you can continue processing the request, where the previous NextToken value left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_file_system_aliases": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "FileSystemId": {
+            "Description": "Specifies the file system from which to disassociate the DNS aliases.",
+            "Type": "string",
+            "Required": true
+        },
+        "Aliases": {
+            "Description": "An array of one or more DNS alias names to disassociate, or remove, from the file system.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the Amazon FSx resource that will have its tags listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of tags to return in the response (integer). This parameter value must be greater than 0. The number of items that Amazon FSx returns is the minimum of the MaxResults parameter specified in the request and the service's internal maximum number of items per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Opaque pagination token returned from a previous ListTagsForResource operation (String). If a token present, the action continues the list from where the returning call left off.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "release_file_system_nfs_v3_locks": {
+        "FileSystemId": {
+            "Description": "The globally unique ID of the file system, assigned by Amazon FSx.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "restore_volume_from_snapshot": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeId": {
+            "Description": "The ID of the volume that you are restoring.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotId": {
+            "Description": "The ID of the source snapshot. Specifies the snapshot that you are restoring from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Options": {
+            "Description": "The settings used when restoring the specified volume from snapshot.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon FSx resource that you want to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags for the resource. If a tag with a given key already exists, the value is replaced by the one specified in this parameter.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The ARN of the Amazon FSx resource to untag.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of keys of tags on the resource to untag. In case the tag key doesn't exist, the call will still succeed to be idempotent.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_data_repository_association": {
+        "AssociationId": {
+            "Description": "The ID of the data repository association that you are updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ImportedFileChunkSize": {
+            "Description": "For files imported from a data repository, this value determines the stripe count and maximum amount of data per file (in MiB) stored on a single physical disk. The maximum number of disks that a single file can be striped across is limited by the total number of disks that make up the file system.\nThe default chunk size is 1,024 MiB (1 GiB) and can go as high as 512,000 MiB (500 GiB). Amazon S3 objects have a maximum size of 5 TB.",
+            "Type": "integer",
+            "Required": false
+        },
+        "S3": {
+            "Description": "The configuration for an Amazon S3 data repository linked to an Amazon FSx Lustre file system with a data repository association. The configuration defines which file events (new, changed, or deleted files or directories) are automatically imported from the linked data repository to the file system or automatically exported from the file system to the data repository.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_file_system": {
+        "FileSystemId": {
+            "Description": "The ID of the file system that you are updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A string of up to 64 ASCII characters that Amazon FSx uses to ensure idempotent updates. This string is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageCapacity": {
+            "Description": "Use this parameter to increase the storage capacity of an Amazon FSx for Windows File Server, Amazon FSx for Lustre, or Amazon FSx for NetApp ONTAP file system. Specifies the storage capacity target value, in GiB, to increase the storage capacity for the file system that you're updating.\nFor Windows file systems, the storage capacity target value must be at least 10 percent greater than the current storage capacity value. To increase storage capacity, the file system must have at least 16 MBps of throughput capacity. For more information, see Managing storage capacity in the Amazon FSx for Windows File Server User Guide .\nFor Lustre file systems, the storage capacity target value can be the following:\nFor more information, see Managing storage and throughput capacity in the Amazon FSx for Lustre User Guide .\nFor ONTAP file systems, the storage capacity target value must be at least 10 percent greater than the current storage capacity value. For more information, see Managing storage capacity and provisioned IOPS in the Amazon FSx for NetApp ONTAP User Guide .",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "WindowsConfiguration": {
+            "Description": "The configuration updates for an Amazon FSx for Windows File Server file system.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LustreConfiguration": {
+            "Description": "The configuration object for Amazon FSx for Lustre file systems used in the UpdateFileSystem operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OntapConfiguration": {
+            "Description": "The configuration updates for an Amazon FSx for NetApp ONTAP file system.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OpenZFSConfiguration": {
+            "Description": "The configuration updates for an Amazon FSx for OpenZFS file system.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_snapshot": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the snapshot to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnapshotId": {
+            "Description": "The ID of the snapshot that you want to update, in the format fsvolsnap-0123456789abcdef0 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_storage_virtual_machine": {
+        "ActiveDirectoryConfiguration": {
+            "Description": "Updates the Microsoft Active Directory (AD) configuration for an SVM that is joined to an AD.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageVirtualMachineId": {
+            "Description": "The ID of the SVM that you want to update, in the format svm-0123456789abcdef0 .",
+            "Type": "string",
+            "Required": true
+        },
+        "SvmAdminPassword": {
+            "Description": "Enter a new SvmAdminPassword if you are updating it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_volume": {
+        "ClientRequestToken": {
+            "Description": "(Optional) An idempotency token for resource creation, in a string of up to 64 ASCII characters. This token is automatically filled on your behalf when you use the Command Line Interface (CLI) or an Amazon Web Services SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "VolumeId": {
+            "Description": "The ID of the volume that you want to update, in the format fsvol-0123456789abcdef0 .",
+            "Type": "string",
+            "Required": true
+        },
+        "OntapConfiguration": {
+            "Description": "The configuration of the ONTAP volume that you are updating.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Name": {
+            "Description": "The name of the OpenZFS volume. OpenZFS root volumes are automatically named FSX . Child volume names must be unique among their parent volume's children. The name of the volume is part of the mount string for the OpenZFS volume.",
+            "Type": "string",
+            "Required": false
+        },
+        "OpenZFSConfiguration": {
+            "Description": "The configuration of the OpenZFS volume that you are updating.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "ResourceARN": {
+            "Description": "The ARN of the Amazon FSx resource that will have its tags listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

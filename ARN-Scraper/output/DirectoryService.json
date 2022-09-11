@@ -1,0 +1,1050 @@
+{
+    "accept_shared_directory": {
+        "SharedDirectoryId": {
+            "Description": "Identifier of the shared directory in the directory consumer account. This identifier is different for each directory owner account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "add_ip_routes": {
+        "DirectoryId": {
+            "Description": "Identifier (ID) of the directory to which to add the address block.",
+            "Type": "string",
+            "Required": true
+        },
+        "IpRoutes": {
+            "Description": "IP address blocks, using CIDR format, of the traffic to route. This is often the IP address block of the DNS server used for your self-managed domain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "UpdateSecurityGroupForDirectoryControllers": {
+            "Description": "If set to true, updates the inbound and outbound rules of the security group that has the description: \"Amazon Web Services created security group for directory ID directory controllers.\" Following are the new rules:\nInbound:\nOutbound:\nThese security rules impact an internal network interface that is not exposed publicly.",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "add_region": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory to which you want to add Region replication.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegionName": {
+            "Description": "The name of the Region where you want to add domain controllers for replication. For example, us-east-1 .",
+            "Type": "string",
+            "Required": true
+        },
+        "VPCSettings": {
+            "Description": "Contains VPC information for the  CreateDirectory or  CreateMicrosoftAD operation.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "add_tags_to_resource": {
+        "ResourceId": {
+            "Description": "Identifier (ID) for the directory to which to add the tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the directory.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "cancel_schema_extension": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory whose schema extension will be canceled.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaExtensionId": {
+            "Description": "The identifier of the schema extension that will be canceled.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "connect_directory": {
+        "Name": {
+            "Description": "The fully qualified name of your self-managed directory, such as corp.example.com .",
+            "Type": "string",
+            "Required": true
+        },
+        "ShortName": {
+            "Description": "The NetBIOS name of your self-managed directory, such as CORP .",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password for your self-managed user account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the directory.",
+            "Type": "string",
+            "Required": false
+        },
+        "Size": {
+            "Description": "The size of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectSettings": {
+            "Description": "A  DirectoryConnectSettings object that contains additional information for the operation.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to AD Connector.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_alias": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to create the alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "Alias": {
+            "Description": "The requested alias.\nThe alias must be unique amongst all aliases in Amazon Web Services. This operation throws an EntityAlreadyExistsException error if the alias already exists.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_computer": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory in which to create the computer account.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComputerName": {
+            "Description": "The name of the computer account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "A one-time password that is used to join the computer to the directory. You should generate a random, strong password to use for this parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "OrganizationalUnitDistinguishedName": {
+            "Description": "The fully-qualified distinguished name of the organizational unit to place the computer account in.",
+            "Type": "string",
+            "Required": false
+        },
+        "ComputerAttributes": {
+            "Description": "An array of  Attribute objects that contain any LDAP attributes to apply to the computer account.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_conditional_forwarder": {
+        "DirectoryId": {
+            "Description": "The directory ID of the Amazon Web Services directory for which you are creating the conditional forwarder.",
+            "Type": "string",
+            "Required": true
+        },
+        "RemoteDomainName": {
+            "Description": "The fully qualified domain name (FQDN) of the remote domain with which you will set up a trust relationship.",
+            "Type": "string",
+            "Required": true
+        },
+        "DnsIpAddrs": {
+            "Description": "The IP addresses of the remote DNS server associated with RemoteDomainName.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_directory": {
+        "Name": {
+            "Description": "The fully qualified name for the directory, such as corp.example.com .",
+            "Type": "string",
+            "Required": true
+        },
+        "ShortName": {
+            "Description": "The NetBIOS name of the directory, such as CORP .",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password for the directory administrator. The directory creation process creates a directory administrator account with the user name Administrator and this password.\nIf you need to change the password for the administrator account, you can use the  ResetUserPassword API call.\nThe regex pattern for this string is made up of the following conditions:\nAND any 3 of the following password complexity rules required by Active Directory:\nFor additional information about how Active Directory passwords are enforced, see Password must meet complexity requirements on the Microsoft website.",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "Description": {
+            "Description": "A description for the directory.",
+            "Type": "string",
+            "Required": false
+        },
+        "Size": {
+            "Description": "The size of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "VpcSettings": {
+            "Description": "A  DirectoryVpcSettings object that contains additional information for the operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the Simple AD directory.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_log_subscription": {
+        "DirectoryId": {
+            "Description": "Identifier of the directory to which you want to subscribe and receive real-time logs to your specified CloudWatch log group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LogGroupName": {
+            "Description": "The name of the CloudWatch log group where the real-time domain controller logs are forwarded.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_microsoft_ad": {
+        "Name": {
+            "Description": "The fully qualified domain name for the Managed Microsoft AD directory, such as corp.example.com. This name will resolve inside your VPC only. It does not need to be publicly resolvable.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShortName": {
+            "Description": "The NetBIOS name for your domain, such as CORP . If you don't specify a NetBIOS name, it will default to the first part of your directory DNS. For example, CORP for the directory DNS corp.example.com .",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password for the default administrative user named Admin .\nIf you need to change the password for the administrator account, you can use the  ResetUserPassword API call.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the directory. This label will appear on the Amazon Web Services console Directory Details page after the directory is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcSettings": {
+            "Description": "Contains VPC information for the  CreateDirectory or  CreateMicrosoftAD operation.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Edition": {
+            "Description": "Managed Microsoft AD is available in two editions: Standard and Enterprise . Enterprise is the default.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the Managed Microsoft AD directory.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_snapshot": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory of which to take a snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The descriptive name to apply to the snapshot.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_trust": {
+        "DirectoryId": {
+            "Description": "The Directory ID of the Managed Microsoft AD directory for which to establish the trust relationship.",
+            "Type": "string",
+            "Required": true
+        },
+        "RemoteDomainName": {
+            "Description": "The Fully Qualified Domain Name (FQDN) of the external domain for which to create the trust relationship.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrustPassword": {
+            "Description": "The trust password. The must be the same password that was used when creating the trust relationship on the external domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrustDirection": {
+            "Description": "The direction of the trust relationship.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrustType": {
+            "Description": "The trust relationship type. Forest is the default.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConditionalForwarderIpAddrs": {
+            "Description": "The IP addresses of the remote DNS server associated with RemoteDomainName.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SelectiveAuth": {
+            "Description": "Optional parameter to enable selective authentication for the trust.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_conditional_forwarder": {
+        "DirectoryId": {
+            "Description": "The directory ID for which you are deleting the conditional forwarder.",
+            "Type": "string",
+            "Required": true
+        },
+        "RemoteDomainName": {
+            "Description": "The fully qualified domain name (FQDN) of the remote domain with which you are deleting the conditional forwarder.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_directory": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_log_subscription": {
+        "DirectoryId": {
+            "Description": "Identifier of the directory whose log subscription you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_snapshot": {
+        "SnapshotId": {
+            "Description": "The identifier of the directory snapshot to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_trust": {
+        "TrustId": {
+            "Description": "The Trust ID of the trust relationship to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeleteAssociatedConditionalForwarder": {
+            "Description": "Delete a conditional forwarder as part of a DeleteTrustRequest.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "deregister_certificate": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateId": {
+            "Description": "The identifier of the certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_event_topic": {
+        "DirectoryId": {
+            "Description": "The Directory ID to remove as a publisher. This directory will no longer send messages to the specified Amazon SNS topic.",
+            "Type": "string",
+            "Required": true
+        },
+        "TopicName": {
+            "Description": "The name of the Amazon SNS topic from which to remove the directory as a publisher.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_certificate": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateId": {
+            "Description": "The identifier of the certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_client_authentication_settings": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to retrieve information.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of client authentication for which to retrieve information. If no type is specified, a list of all client authentication types that are supported for the specified directory is retrieved.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The DescribeClientAuthenticationSettingsResult.NextToken value from a previous call to  DescribeClientAuthenticationSettings . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of items to return. If this value is zero, the maximum number of items is specified by the limitations of the operation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_conditional_forwarders": {
+        "DirectoryId": {
+            "Description": "The directory ID for which to get the list of associated conditional forwarders.",
+            "Type": "string",
+            "Required": true
+        },
+        "RemoteDomainNames": {
+            "Description": "The fully qualified domain names (FQDN) of the remote domains for which to get the list of associated conditional forwarders. If this member is null, all conditional forwarders are returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_directories": {
+        "DirectoryIds": {
+            "Description": "A list of identifiers of the directories for which to obtain the information. If this member is null, all directories that belong to the current account are returned.\nAn empty list results in an InvalidParameterException being thrown.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The DescribeDirectoriesResult.NextToken value from a previous call to  DescribeDirectories . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of items to return. If this value is zero, the maximum number of items is specified by the limitations of the operation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_domain_controllers": {
+        "DirectoryId": {
+            "Description": "Identifier of the directory for which to retrieve the domain controller information.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainControllerIds": {
+            "Description": "A list of identifiers for the domain controllers whose information will be provided.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The DescribeDomainControllers.NextToken value from a previous call to  DescribeDomainControllers . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_event_topics": {
+        "DirectoryId": {
+            "Description": "The Directory ID for which to get the list of associated Amazon SNS topics. If this member is null, associations for all Directory IDs are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "TopicNames": {
+            "Description": "A list of Amazon SNS topic names for which to obtain the information. If this member is null, all associations for the specified Directory ID are returned.\nAn empty list results in an InvalidParameterException being thrown.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_ldaps_settings": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of LDAP security to enable. Currently only the value Client is supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The type of next token used for pagination.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Specifies the number of items that should be displayed on one page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_regions": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "RegionName": {
+            "Description": "The name of the Region. For example, us-east-1 .",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The DescribeRegionsResult.NextToken value from a previous call to  DescribeRegions . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_settings": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to retrieve information.",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "The status of the directory settings for which to retrieve information.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The DescribeSettingsResult.NextToken value from a previous call to  DescribeSettings . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_shared_directories": {
+        "OwnerDirectoryId": {
+            "Description": "Returns the identifier of the directory in the directory owner account.",
+            "Type": "string",
+            "Required": true
+        },
+        "SharedDirectoryIds": {
+            "Description": "A list of identifiers of all shared directories in your account.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The DescribeSharedDirectoriesResult.NextToken value from a previous call to  DescribeSharedDirectories . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The number of shared directories to return in the response object.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_snapshots": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to retrieve snapshot information.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnapshotIds": {
+            "Description": "A list of identifiers of the snapshots to obtain the information for. If this member is null or empty, all snapshots are returned using the Limit and NextToken members.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The DescribeSnapshotsResult.NextToken value from a previous call to  DescribeSnapshots . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_trusts": {
+        "DirectoryId": {
+            "Description": "The Directory ID of the Amazon Web Services directory that is a part of the requested trust relationship.",
+            "Type": "string",
+            "Required": false
+        },
+        "TrustIds": {
+            "Description": "A list of identifiers of the trust relationships for which to obtain the information. If this member is null, all trust relationships that belong to the current account are returned.\nAn empty list results in an InvalidParameterException being thrown.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The DescribeTrustsResult.NextToken value from a previous call to  DescribeTrusts . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of objects to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "disable_client_authentication": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of client authentication to disable. Currently, only the parameter, SmartCard is supported.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_ldaps": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of LDAP security to enable. Currently only the value Client is supported.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_radius": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to disable MFA.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_sso": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to disable single-sign on.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The username of an alternate account to use to disable single-sign on. This is only used for AD Connector directories. This account must have privileges to remove a service principal name.\nIf the AD Connector service account does not have privileges to remove a service principal name, you can specify an alternate account with the UserName and Password parameters. These credentials are only used to disable single sign-on and are not stored by the service. The AD Connector service account is not changed.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password of an alternate account to use to disable single-sign on. This is only used for AD Connector directories. For more information, see the UserName parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "enable_client_authentication": {
+        "DirectoryId": {
+            "Description": "The identifier of the specified directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of client authentication to enable. Currently only the value SmartCard is supported. Smart card authentication in AD Connector requires that you enable Kerberos Constrained Delegation for the Service User to the LDAP service in your self-managed AD.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_ldaps": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of LDAP security to enable. Currently only the value Client is supported.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_radius": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to enable MFA.",
+            "Type": "string",
+            "Required": true
+        },
+        "RadiusSettings": {
+            "Description": "A  RadiusSettings object that contains information about the RADIUS server.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "enable_sso": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to enable single-sign on.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The username of an alternate account to use to enable single-sign on. This is only used for AD Connector directories. This account must have privileges to add a service principal name.\nIf the AD Connector service account does not have privileges to add a service principal name, you can specify an alternate account with the UserName and Password parameters. These credentials are only used to enable single sign-on and are not stored by the service. The AD Connector service account is not changed.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password of an alternate account to use to enable single-sign on. This is only used for AD Connector directories. For more information, see the UserName parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_directory_limits": "No parameters defined",
+    "get_snapshot_limits": {
+        "DirectoryId": {
+            "Description": "Contains the identifier of the directory to obtain the limits for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_certificates": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A token for requesting another page of certificates if the NextToken response element indicates that more certificates are available. Use the value of the returned NextToken element in your request until the token comes back as null . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The number of items that should show up on one page",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_ip_routes": {
+        "DirectoryId": {
+            "Description": "Identifier (ID) of the directory for which you want to retrieve the IP addresses.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The ListIpRoutes.NextToken value from a previous call to  ListIpRoutes . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Maximum number of items to return. If this value is zero, the maximum number of items is specified by the limitations of the operation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_log_subscriptions": {
+        "DirectoryId": {
+            "Description": "If a DirectoryID is provided, lists only the log subscription associated with that directory. If no DirectoryId is provided, lists all log subscriptions associated with your Amazon Web Services account. If there are no log subscriptions for the Amazon Web Services account or the directory, an empty list will be returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of items returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_schema_extensions": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory from which to retrieve the schema extension information.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The ListSchemaExtensions.NextToken value from a previous call to ListSchemaExtensions . Pass null if this is the first call.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceId": {
+            "Description": "Identifier (ID) of the directory for which you want to retrieve tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Reserved for future use.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "Reserved for future use.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "register_certificate": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "CertificateData": {
+            "Description": "The certificate PEM string that needs to be registered.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The function that the registered certificate performs. Valid values include ClientLDAPS or ClientCertAuth . The default value is ClientLDAPS .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientCertAuthSettings": {
+            "Description": "A ClientCertAuthSettings object that contains client certificate authentication settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "register_event_topic": {
+        "DirectoryId": {
+            "Description": "The Directory ID that will publish status messages to the Amazon SNS topic.",
+            "Type": "string",
+            "Required": true
+        },
+        "TopicName": {
+            "Description": "The Amazon SNS topic name to which the directory will publish status messages. This Amazon SNS topic must be in the same region as the specified Directory ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reject_shared_directory": {
+        "SharedDirectoryId": {
+            "Description": "Identifier of the shared directory in the directory consumer account. This identifier is different for each directory owner account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_ip_routes": {
+        "DirectoryId": {
+            "Description": "Identifier (ID) of the directory from which you want to remove the IP addresses.",
+            "Type": "string",
+            "Required": true
+        },
+        "CidrIps": {
+            "Description": "IP address blocks that you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "remove_region": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which you want to remove Region replication.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_tags_from_resource": {
+        "ResourceId": {
+            "Description": "Identifier (ID) of the directory from which to remove the tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag key (name) of the tag to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "reset_user_password": {
+        "DirectoryId": {
+            "Description": "Identifier of the Managed Microsoft AD or Simple AD directory in which the user resides.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The user name of the user whose password will be reset.",
+            "Type": "string",
+            "Required": true
+        },
+        "NewPassword": {
+            "Description": "The new password that will be reset.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restore_from_snapshot": {
+        "SnapshotId": {
+            "Description": "The identifier of the snapshot to restore from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "share_directory": {
+        "DirectoryId": {
+            "Description": "Identifier of the Managed Microsoft AD directory that you want to share with other Amazon Web Services accounts.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShareNotes": {
+            "Description": "A directory share request that is sent by the directory owner to the directory consumer. The request includes a typed message to help the directory consumer administrator determine whether to approve or reject the share invitation.",
+            "Type": "string",
+            "Required": false
+        },
+        "ShareTarget": {
+            "Description": "Identifier for the directory consumer account with whom the directory is to be shared.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ShareMethod": {
+            "Description": "The method used when sharing a directory to determine whether the directory should be shared within your Amazon Web Services organization (ORGANIZATIONS ) or with any Amazon Web Services account by sending a directory sharing request (HANDSHAKE ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_schema_extension": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which the schema extension will be applied to.",
+            "Type": "string",
+            "Required": true
+        },
+        "CreateSnapshotBeforeSchemaExtension": {
+            "Description": "If true, creates a snapshot of the directory before applying the schema extension.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "LdifContent": {
+            "Description": "The LDIF file represented as a string. To construct the LdifContent string, precede each line as it would be formatted in an ldif file with n. See the example request below for more details. The file size can be no larger than 1MB.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the schema extension.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "unshare_directory": {
+        "DirectoryId": {
+            "Description": "The identifier of the Managed Microsoft AD directory that you want to stop sharing.",
+            "Type": "string",
+            "Required": true
+        },
+        "UnshareTarget": {
+            "Description": "Identifier for the directory consumer account with whom the directory has to be unshared.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_conditional_forwarder": {
+        "DirectoryId": {
+            "Description": "The directory ID of the Amazon Web Services directory for which to update the conditional forwarder.",
+            "Type": "string",
+            "Required": true
+        },
+        "RemoteDomainName": {
+            "Description": "The fully qualified domain name (FQDN) of the remote domain with which you will set up a trust relationship.",
+            "Type": "string",
+            "Required": true
+        },
+        "DnsIpAddrs": {
+            "Description": "The updated IP addresses of the remote DNS server associated with the conditional forwarder.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_number_of_domain_controllers": {
+        "DirectoryId": {
+            "Description": "Identifier of the directory to which the domain controllers will be added or removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "DesiredNumber": {
+            "Description": "The number of domain controllers desired in the directory.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "update_radius": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to update the RADIUS server information.",
+            "Type": "string",
+            "Required": true
+        },
+        "RadiusSettings": {
+            "Description": "A  RadiusSettings object that contains information about the RADIUS server.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_settings": {
+        "DirectoryId": {
+            "Description": "The identifier of the directory for which to update settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "Settings": {
+            "Description": "The list of  Setting objects.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_trust": {
+        "TrustId": {
+            "Description": "Identifier of the trust relationship.",
+            "Type": "string",
+            "Required": true
+        },
+        "SelectiveAuth": {
+            "Description": "Updates selective authentication for the trust.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "verify_trust": {
+        "TrustId": {
+            "Description": "The unique Trust ID of the trust relationship to verify.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "ResourceId": {
+            "Description": "Identifier (ID) of the directory for which you want to retrieve tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

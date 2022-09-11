@@ -1,0 +1,2035 @@
+{
+    "activate_type": {
+        "Type": {
+            "Description": "The extension type.\nConditional: You must specify PublicTypeArn, or TypeName, Type, and PublisherId .",
+            "Type": "string",
+            "Required": false
+        },
+        "PublicTypeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the public extension.\nConditional: You must specify PublicTypeArn, or TypeName, Type, and PublisherId .",
+            "Type": "string",
+            "Required": false
+        },
+        "PublisherId": {
+            "Description": "The ID of the extension publisher.\nConditional: You must specify PublicTypeArn, or TypeName, Type, and PublisherId .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension.\nConditional: You must specify PublicTypeArn, or TypeName, Type, and PublisherId .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeNameAlias": {
+            "Description": "An alias to assign to the public extension, in this account and region. If you specify an alias for the extension, CloudFormation treats the alias as the extension type name within this account and region. You must use the alias to refer to the extension in your templates, API calls, and CloudFormation console.\nAn extension alias must be unique within a given account and region. You can activate the same public resource multiple times in the same account and region, using different type name aliases.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoUpdate": {
+            "Description": "Whether to automatically update the extension in this account and region when a new minor version is published by the extension publisher. Major versions released by the publisher must be manually updated.\nThe default is true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "LoggingConfig": {
+            "Description": "Contains logging configuration information for an extension.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ExecutionRoleArn": {
+            "Description": "The name of the IAM execution role to use to activate the extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionBump": {
+            "Description": "Manually updates a previously-activated type to a new major or minor version, if available. You can also use this parameter to update the value of AutoUpdate .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "MajorVersion": {
+            "Description": "The major version of this extension you want to activate, if multiple major versions are available. The default is the latest major version. CloudFormation uses the latest available minor version of the major version selected.\nYou can specify MajorVersion or VersionBump, but not both.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "batch_describe_type_configurations": {
+        "TypeConfigurationIdentifiers": {
+            "Description": "The list of identifiers for the desired extension configurations.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "cancel_update_stack": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that's associated with the stack.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this CancelUpdateStack request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to cancel an update on a stack with the same name. You might retry CancelUpdateStack requests to ensure that CloudFormation successfully received them.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "continue_update_rollback": {
+        "StackName": {
+            "Description": "The name or the unique ID of the stack that you want to continue rolling back.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFormation assumes to roll back the stack. CloudFormation uses the role's credentials to make calls on your behalf. CloudFormation always uses this role for all future operations on the stack. Provided that users have permission to operate on the stack, CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least permission.\nIf you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that's generated from your user credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourcesToSkip": {
+            "Description": "A list of the logical IDs of the resources that CloudFormation skips during the continue update rollback operation. You can specify only resources that are in the UPDATE_FAILED state because a rollback failed. You can't specify resources that are in the UPDATE_FAILED state for other reasons, for example, because an update was canceled. To check why a resource update failed, use the  DescribeStackResources action, and view the resource status reason.\nSpecify the minimum number of resources required to successfully roll back your stack. For example, a failed resource update might cause dependent resources to fail. In this case, it might not be necessary to skip the dependent resources.\nTo skip resources that are part of nested stacks, use the following format: NestedStackName.ResourceLogicalID. If you want to specify the logical ID of a stack resource (Type: AWS::CloudFormation::Stack ) in the ResourcesToSkip list, then its corresponding embedded stack must be in one of the following states: DELETE_IN_PROGRESS, DELETE_COMPLETE, or DELETE_FAILED .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this ContinueUpdateRollback request. Specify this token if you plan to retry requests so that CloudFormationknows that you're not attempting to continue the rollback to a stack with the same name. You might retry ContinueUpdateRollback requests to ensure that CloudFormation successfully received them.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_change_set": {
+        "StackName": {
+            "Description": "The name or the unique ID of the stack for which you are creating a change set. CloudFormation generates the change set by comparing this stack's information with the information that you submit, such as a modified template or different parameter input values.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateBody": {
+            "Description": "A structure that contains the body of the revised template, with a minimum length of 1 byte and a maximum length of 51,200 bytes. CloudFormation generates the change set by comparing this template with the template of the stack that you specified.\nConditional: You must specify only TemplateBody or TemplateURL .",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "The location of the file that contains the revised template. The URL must point to a template (max size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems Manager document. CloudFormation generates the change set by comparing this template with the stack that you specified.\nConditional: You must specify only TemplateBody or TemplateURL .",
+            "Type": "string",
+            "Required": false
+        },
+        "UsePreviousTemplate": {
+            "Description": "Whether to reuse the template that's associated with the stack to create the change set.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "A list of Parameter structures that specify input parameters for the change set. For more information, see the  Parameter data type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Capabilities": {
+            "Description": "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for CloudFormation to create the stack.\nIf your stack template contains these resources, we suggest that you review all permissions associated with them and edit their permissions if necessary.\nFor more information, see Acknowledging IAM resources in CloudFormation templates .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "ResourceTypes": {
+            "Description": "The template resource types that you have permissions to work with if you execute this change set, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance .\nIf the list of resource types doesn't include a resource type that you're updating, the stack update fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for condition keys in IAM policies for CloudFormation. For more information, see Controlling access with Identity and Access Management in the CloudFormation User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFormation assumes when executing the change set. CloudFormation uses the role's credentials to make calls on your behalf. CloudFormation uses this role for all future operations on the stack. Provided that users have permission to operate on the stack, CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least permission.\nIf you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that is generated from your user credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "RollbackConfiguration": {
+            "Description": "The rollback triggers for CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NotificationARNs": {
+            "Description": "The Amazon Resource Names (ARNs) of Amazon Simple Notification Service (Amazon SNS) topics that CloudFormation associates with the stack. To remove all associated notification topics, specify an empty list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Key-value pairs to associate with this stack. CloudFormation also propagates these tags to resources in the stack. You can specify a maximum of 50 tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ChangeSetName": {
+            "Description": "The name of the change set. The name must be unique among all change sets that are associated with the specified stack.\nA change set name can contain only alphanumeric, case sensitive characters, and hyphens. It must start with an alphabetical character and can't exceed 128 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for this CreateChangeSet request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to create another change set with the same name. You might retry CreateChangeSet requests to ensure that CloudFormation successfully received them.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description to help you identify this change set.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChangeSetType": {
+            "Description": "The type of change set operation. To create a change set for a new stack, specify CREATE. To create a change set for an existing stack, specify UPDATE. To create a change set for an import operation, specify IMPORT .\nIf you create a change set for a new stack, CloudFormation creates a stack with a unique stack ID, but no template or resources. The stack will be in the ` REVIEW_IN_PROGRESS https://docs.aws.amazon.com/AWSCloudFormation/latest/UserGuide/using-cfn-describing-stacks.html#d0e11995`__ state until you execute the change set.\nBy default, CloudFormation specifies UPDATE. You can't use the UPDATE type to create a change set for a new stack or the CREATE type to create a change set for an existing stack.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourcesToImport": {
+            "Description": "The resources to import into your stack.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IncludeNestedStacks": {
+            "Description": "Creates a change set for the all nested stacks specified in the template. The default behavior of this action is set to False . To include nested sets in a change set, specify True .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_stack": {
+        "StackName": {
+            "Description": "The name that's associated with the stack. The name must be unique in the Region in which you are creating the stack.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateBody": {
+            "Description": "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, go to Template anatomy in the CloudFormation User Guide.\nConditional: You must specify either the TemplateBody or the TemplateURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems Manager document. For more information, go to the Template anatomy in the CloudFormation User Guide.\nConditional: You must specify either the TemplateBody or the TemplateURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "A list of Parameter structures that specify input parameters for the stack. For more information, see the Parameter data type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DisableRollback": {
+            "Description": "Set to true to disable rollback of the stack if stack creation failed. You can specify either DisableRollback or OnFailure, but not both.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RollbackConfiguration": {
+            "Description": "The rollback triggers for CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "TimeoutInMinutes": {
+            "Description": "The amount of time that can pass before the stack status becomes CREATE_FAILED; if DisableRollback is not set or is set to false , the stack will be rolled back.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NotificationARNs": {
+            "Description": "The Amazon Simple Notification Service (Amazon SNS) topic ARNs to publish stack related events. You can find your Amazon SNS topic ARNs using the Amazon SNS console or your Command Line Interface (CLI).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Capabilities": {
+            "Description": "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for CloudFormation to create the stack.\nIf your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.\nFor more information, see Acknowledging IAM Resources in CloudFormation Templates .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "ResourceTypes": {
+            "Description": "The template resource types that you have permissions to work with for this create stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance. Use the following syntax to describe template resource types: AWS::* (for all Amazon Web Services resources), Custom::* (for all custom resources), Custom::*logical_ID* `` (for a specific custom resource), ``AWS::*service_name* ::* (for all resources of a particular Amazon Web Services service), and ``AWS::service_name ::resource_logical_ID `` (for a specific Amazon Web Services resource).\nIf the list of resource types doesn't include a resource that you're creating, the stack creation fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for CloudFormation-specific condition keys in IAM policies. For more information, see Controlling Access with Identity and Access Management .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFormation assumes to create the stack. CloudFormation uses the role's credentials to make calls on your behalf. CloudFormation always uses this role for all future operations on the stack. Provided that users have permission to operate on the stack, CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least privilege.\nIf you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that's generated from your user credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "OnFailure": {
+            "Description": "Determines what action will be taken if stack creation fails. This must be one of: DO_NOTHING, ROLLBACK, or DELETE. You can specify either OnFailure or DisableRollback, but not both.\nDefault: ROLLBACK",
+            "Type": "string",
+            "Required": false
+        },
+        "StackPolicyBody": {
+            "Description": "Structure containing the stack policy body. For more information, go to Prevent Updates to Stack Resources in the CloudFormation User Guide . You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackPolicyURL": {
+            "Description": "Location of a file containing the stack policy. The URL must point to a policy (maximum size: 16 KB) located in an S3 bucket in the same Region as the stack. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Key-value pairs to associate with this stack. CloudFormation also propagates these tags to the resources created in the stack. A maximum number of 50 tags can be specified.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this CreateStack request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to create a stack with the same name. You might retry CreateStack requests to ensure that CloudFormation successfully received them.\nAll events initiated by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a CreateStack operation with the token token1, then all the StackEvents generated by that operation will have ClientRequestToken set as token1 .\nIn the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format Console-StackOperation-ID, which helps you easily identify the stack operation. For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002 .",
+            "Type": "string",
+            "Required": false
+        },
+        "EnableTerminationProtection": {
+            "Description": "Whether to enable termination protection on the specified stack. If a user attempts to delete a stack with termination protection enabled, the operation fails and the stack remains unchanged. For more information, see Protecting a Stack From Being Deleted in the CloudFormation User Guide. Termination protection is deactivated on stacks by default.\nFor nested stacks, termination protection is set on the root stack and can't be changed directly on the nested stack.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_stack_instances": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you want to create stack instances from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Accounts": {
+            "Description": "[Self-managed permissions] The names of one or more Amazon Web Services accounts that you want to create stack instances in the specified Region(s) for.\nYou can specify Accounts or DeploymentTargets, but not both.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DeploymentTargets": {
+            "Description": "[Service-managed permissions] The Organizations accounts for which to create stack instances in the specified Amazon Web Services Regions.\nYou can specify Accounts or DeploymentTargets, but not both.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Regions": {
+            "Description": "The names of one or more Amazon Web Services Regions where you want to create stack instances using the specified Amazon Web Services accounts.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ParameterOverrides": {
+            "Description": "A list of stack set parameters whose values you want to override in the selected stack instances.\nAny overridden parameter values will be applied to all stack instances in the specified accounts and Amazon Web Services Regions. When specifying parameters and their values, be aware of how CloudFormation sets parameter values during stack instance operations:\nDuring stack set updates, any parameter values overridden for a stack instance aren't updated, but retain their overridden value.\nYou can only override the parameter values that are specified in the stack set; to add or delete a parameter itself, use UpdateStackSet to update the stack set template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "OperationPreferences": {
+            "Description": "Preferences for how CloudFormation performs this stack set operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OperationId": {
+            "Description": "The unique identifier for this stack set operation.\nThe operation ID also functions as an idempotency token, to ensure that CloudFormation performs the stack set operation only once, even if you retry the request multiple times. You might retry stack set operation requests to ensure that CloudFormation successfully received them.\nIf you don't specify an operation ID, the SDK generates one automatically.\nRepeating this stack set operation with a new operation ID retries all stack instances whose status is OUTDATED .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "create_stack_set": {
+        "StackSetName": {
+            "Description": "The name to associate with the stack set. The name must be unique in the Region where you create your stack set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the stack set. You can use the description to identify the stack set's purpose or other important information.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateBody": {
+            "Description": "The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, see Template Anatomy in the CloudFormation User Guide.\nConditional: You must specify either the TemplateBody or the TemplateURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "The location of the file that contains the template body. The URL must point to a template (maximum size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems Manager document. For more information, see Template Anatomy in the CloudFormation User Guide.\nConditional: You must specify either the TemplateBody or the TemplateURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackId": {
+            "Description": "The stack ID you are importing into a new stack set. Specify the Amazon Resource Name (ARN) of the stack.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "The input parameters for the stack set template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Capabilities": {
+            "Description": "In some cases, you must explicitly acknowledge that your stack set template contains certain capabilities in order for CloudFormation to create the stack set and related stack instances.\nIf your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.\nFor more information, see Acknowledging IAM Resources in CloudFormation Templates .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "The key-value pairs to associate with this stack set and the stacks created from it. CloudFormation also propagates these tags to supported resources that are created in the stacks. A maximum number of 50 tags can be specified.\nIf you specify tags as part of a CreateStackSet action, CloudFormation checks to see if you have the required IAM permission to tag resources. If you don't, the entire CreateStackSet action fails with an access denied error, and the stack set is not created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AdministrationRoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role to use to create this stack set.\nSpecify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account. For more information, see Prerequisites: Granting Permissions for Stack Set Operations in the CloudFormation User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ExecutionRoleName": {
+            "Description": "The name of the IAM execution role to use to create the stack set. If you do not specify an execution role, CloudFormation uses the AWSCloudFormationStackSetExecutionRole role for the stack set operation.\nSpecify an IAM role only if you are using customized execution roles to control which stack resources users and groups can include in their stack sets.",
+            "Type": "string",
+            "Required": false
+        },
+        "PermissionModel": {
+            "Description": "Describes how the IAM roles required for stack set operations are created. By default, SELF-MANAGED is specified.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AutoDeployment": {
+            "Description": "Describes whether StackSets automatically deploys to Organizations accounts that are added to the target organization or organizational unit (OU). Specify only if PermissionModel is SERVICE_MANAGED .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.\nStack sets with service-managed permissions are created in the management account, including stack sets that are created by delegated administrators.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this CreateStackSet request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to create another stack set with the same name. You might retry CreateStackSet requests to ensure that CloudFormation successfully received them.\nIf you don't specify an operation ID, the SDK generates one automatically.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ManagedExecution": {
+            "Description": "Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "deactivate_type": {
+        "TypeName": {
+            "Description": "The type name of the extension, in this account and region. If you specified a type name alias when enabling the extension, use the type name alias.\nConditional: You must specify either Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The extension type.\nConditional: You must specify either Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) for the extension, in this account and region.\nConditional: You must specify either Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_change_set": {
+        "ChangeSetName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the change set that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackName": {
+            "Description": "If you specified the name of a change set to delete, specify the stack name or Amazon Resource Name (ARN) that's associated with it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_stack": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that's associated with the stack.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetainResources": {
+            "Description": "For stacks in the DELETE_FAILED state, a list of resource logical IDs that are associated with the resources you want to retain. During deletion, CloudFormation deletes the stack but doesn't delete the retained resources.\nRetaining resources is useful when you can't delete a resource, such as a non-empty S3 bucket, but you want to delete the stack.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFormation assumes to delete the stack. CloudFormation uses the role's credentials to make calls on your behalf.\nIf you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that's generated from your user credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this DeleteStack request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to delete a stack with the same name. You might retry DeleteStack requests to ensure that CloudFormation successfully received them.\nAll events initiated by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a CreateStack operation with the token token1, then all the StackEvents generated by that operation will have ClientRequestToken set as token1 .\nIn the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format Console-StackOperation-ID, which helps you easily identify the stack operation. For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_stack_instances": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you want to delete stack instances for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Accounts": {
+            "Description": "[Self-managed permissions] The names of the Amazon Web Services accounts that you want to delete stack instances for.\nYou can specify Accounts or DeploymentTargets, but not both.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DeploymentTargets": {
+            "Description": "[Service-managed permissions] The Organizations accounts from which to delete stack instances.\nYou can specify Accounts or DeploymentTargets, but not both.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Regions": {
+            "Description": "The Amazon Web Services Regions where you want to delete stack set instances.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "OperationPreferences": {
+            "Description": "Preferences for how CloudFormation performs this stack set operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RetainStacks": {
+            "Description": "Removes the stack instances from the specified stack set, but doesn't delete the stacks. You can't reassociate a retained stack or add an existing, saved stack to a new stack set.\nFor more information, see Stack set operation options .",
+            "Type": "boolean",
+            "Required": true
+        },
+        "OperationId": {
+            "Description": "The unique identifier for this stack set operation.\nIf you don't specify an operation ID, the SDK generates one automatically.\nThe operation ID also functions as an idempotency token, to ensure that CloudFormation performs the stack set operation only once, even if you retry the request multiple times. You can retry stack set operation requests to ensure that CloudFormation successfully received them.\nRepeating this stack set operation with a new operation ID retries all stack instances whose status is OUTDATED .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "delete_stack_set": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you're deleting. You can obtain this value by running  ListStackSets .",
+            "Type": "string",
+            "Required": true
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "deregister_type": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The kind of extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionId": {
+            "Description": "The ID of a specific version of the extension. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the extension version when it is registered.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_account_limits": {
+        "NextToken": {
+            "Description": "A string that identifies the next page of limits that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_change_set": {
+        "ChangeSetName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the change set that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackName": {
+            "Description": "If you specified the name of a change set, specify the stack name or ID (ARN) of the change set you want to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A string (provided by the  DescribeChangeSet response output) that identifies the next page of information that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_change_set_hooks": {
+        "ChangeSetName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the change set that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackName": {
+            "Description": "If you specified the name of a change set, specify the stack name or stack ID (ARN) of the change set you want to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A string, provided by the DescribeChangeSetHooks response output, that identifies the next page of information that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "LogicalResourceId": {
+            "Description": "If specified, lists only the hooks related to the specified LogicalResourceId .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_publisher": {
+        "PublisherId": {
+            "Description": "The ID of the extension publisher.\nIf you don't supply a PublisherId, and you have registered as an extension publisher, DescribePublisher returns information about your own publisher account.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_stack_drift_detection_status": {
+        "StackDriftDetectionId": {
+            "Description": "The ID of the drift detection results of this operation.\nCloudFormation generates new results, with a new drift detection ID, each time this operation is run. However, the number of drift results CloudFormation retains for any given stack, and for how long, may vary.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_stack_events": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that's associated with the stack, which aren't always interchangeable:\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "A string that identifies the next page of events that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_stack_instance": {
+        "StackSetName": {
+            "Description": "The name or the unique stack ID of the stack set that you want to get stack instance information for.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackInstanceAccount": {
+            "Description": "The ID of an Amazon Web Services account that's associated with this stack instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackInstanceRegion": {
+            "Description": "The name of a Region that's associated with this stack instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "describe_stack_resource": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that's associated with the stack, which aren't always interchangeable:\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "LogicalResourceId": {
+            "Description": "The logical name of the resource as specified in the template.\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_stack_resource_drifts": {
+        "StackName": {
+            "Description": "The name of the stack for which you want drift information.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackResourceDriftStatusFilters": {
+            "Description": "The resource drift status values to use as filters for the resource drift results returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "A string that identifies the next page of stack resource drift results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_stack_resources": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that is associated with the stack, which aren't always interchangeable:\nDefault: There is no default value.\nRequired: Conditional. If you don't specify StackName, you must specify PhysicalResourceId .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "LogicalResourceId": {
+            "Description": "The logical name of the resource as specified in the template.\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhysicalResourceId": {
+            "Description": "The name or unique identifier that corresponds to a physical instance ID of a resource supported by CloudFormation.\nFor example, for an Amazon Elastic Compute Cloud (EC2) instance, PhysicalResourceId corresponds to the InstanceId. You can pass the EC2 InstanceId to DescribeStackResources to find which stack the instance belongs to and what other resources are part of the stack.\nRequired: Conditional. If you don't specify PhysicalResourceId, you must specify StackName .\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_stack_set": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set whose description you want.",
+            "Type": "string",
+            "Required": true
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "describe_stack_set_operation": {
+        "StackSetName": {
+            "Description": "The name or the unique stack ID of the stack set for the stack operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "OperationId": {
+            "Description": "The unique ID of the stack set operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "describe_stacks": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that's associated with the stack, which aren't always interchangeable:\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "A string that identifies the next page of stacks that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_type": {
+        "Type": {
+            "Description": "The kind of extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionId": {
+            "Description": "The ID of a specific version of the extension. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the extension version when it is registered.\nIf you specify a VersionId, DescribeType returns information about that specific extension version. Otherwise, it returns information about the default extension version.",
+            "Type": "string",
+            "Required": false
+        },
+        "PublisherId": {
+            "Description": "The publisher ID of the extension publisher.\nExtensions provided by Amazon Web Services are not assigned a publisher ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "PublicVersionNumber": {
+            "Description": "The version number of a public third-party extension.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_type_registration": {
+        "RegistrationToken": {
+            "Description": "The identifier for this registration request.\nThis registration token is generated by CloudFormation when you initiate a registration request using ``  RegisterType `` .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_stack_drift": {
+        "StackName": {
+            "Description": "The name of the stack for which you want to detect drift.",
+            "Type": "string",
+            "Required": true
+        },
+        "LogicalResourceIds": {
+            "Description": "The logical names of any resources you want to use as filters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "detect_stack_resource_drift": {
+        "StackName": {
+            "Description": "The name of the stack to which the resource belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "LogicalResourceId": {
+            "Description": "The logical name of the resource for which to return drift information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detect_stack_set_drift": {
+        "StackSetName": {
+            "Description": "The name of the stack set on which to perform the drift detection operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "OperationPreferences": {
+            "Description": "The user-specified preferences for how CloudFormation performs a stack set operation.\nFor more information about maximum concurrent accounts and failure tolerance, see Stack set operation options .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OperationId": {
+            "Description": "This field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "estimate_template_cost": {
+        "TemplateBody": {
+            "Description": "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. (For more information, go to Template Anatomy in the CloudFormation User Guide.)\nConditional: You must pass TemplateBody or TemplateURL. If both are passed, only TemplateBody is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "Location of file containing the template body. The URL must point to a template that's located in an Amazon S3 bucket or a Systems Manager document. For more information, go to Template Anatomy in the CloudFormation User Guide.\nConditional: You must pass TemplateURL or TemplateBody. If both are passed, only TemplateBody is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "A list of Parameter structures that specify input parameters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "execute_change_set": {
+        "ChangeSetName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the change set that you want use to update the specified stack.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackName": {
+            "Description": "If you specified the name of a change set, specify the stack name or Amazon Resource Name (ARN) that's associated with the change set you want to execute.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this ExecuteChangeSet request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to execute a change set to update a stack with the same name. You might retry ExecuteChangeSet requests to ensure that CloudFormation successfully received them.",
+            "Type": "string",
+            "Required": false
+        },
+        "DisableRollback": {
+            "Description": "Preserves the state of previously provisioned resources when an operation fails.\nDefault: True",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_stack_policy": {
+        "StackName": {
+            "Description": "The name or unique stack ID that's associated with the stack whose policy you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_template": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that's associated with the stack, which aren't always interchangeable:\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ChangeSetName": {
+            "Description": "The name or Amazon Resource Name (ARN) of a change set for which CloudFormation returns the associated template. If you specify a name, you must also specify the StackName .",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateStage": {
+            "Description": "For templates that include transforms, the stage of the template that CloudFormation returns. To get the user-submitted template, specify Original. To get the template after CloudFormation has processed all transforms, specify Processed .\nIf the template doesn't include transforms, Original and Processed return the same template. By default, CloudFormation specifies Processed .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_template_summary": {
+        "TemplateBody": {
+            "Description": "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information about templates, see Template anatomy in the CloudFormation User Guide.\nConditional: You must specify only one of the following parameters: StackName, StackSetName, TemplateBody, or TemplateURL .",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that's located in an Amazon S3 bucket or a Systems Manager document. For more information about templates, see Template anatomy in the CloudFormation User Guide.\nConditional: You must specify only one of the following parameters: StackName, StackSetName, TemplateBody, or TemplateURL .",
+            "Type": "string",
+            "Required": false
+        },
+        "StackName": {
+            "Description": "The name or the stack ID that's associated with the stack, which aren't always interchangeable. For running stacks, you can specify either the stack's name or its unique stack ID. For deleted stack, you must specify the unique stack ID.\nConditional: You must specify only one of the following parameters: StackName, StackSetName, TemplateBody, or TemplateURL .",
+            "Type": "string",
+            "Required": false
+        },
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set from which the stack was created.\nConditional: You must specify only one of the following parameters: StackName, StackSetName, TemplateBody, or TemplateURL .",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "import_stacks_to_stack_set": {
+        "StackSetName": {
+            "Description": "The name of the stack set. The name must be unique in the Region where you create your stack set.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackIds": {
+            "Description": "The IDs of the stacks you are importing into a stack set. You import up to 10 stacks per stack set at a time.\nSpecify either StackIds or StackIdsUrl .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "StackIdsUrl": {
+            "Description": "The Amazon S3 URL which contains list of stack ids to be inputted.\nSpecify either StackIds or StackIdsUrl .",
+            "Type": "string",
+            "Required": false
+        },
+        "OrganizationalUnitIds": {
+            "Description": "The list of OU ID's to which the stacks being imported has to be mapped as deployment target.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OperationPreferences": {
+            "Description": "The user-specified preferences for how CloudFormation performs a stack set operation.\nFor more information about maximum concurrent accounts and failure tolerance, see Stack set operation options .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OperationId": {
+            "Description": "A unique, user defined, identifier for the stack set operation.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "By default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_change_sets": {
+        "StackName": {
+            "Description": "The name or the Amazon Resource Name (ARN) of the stack for which you want to list change sets.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A string (provided by the  ListChangeSets response output) that identifies the next page of change sets that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_exports": {
+        "NextToken": {
+            "Description": "A string (provided by the  ListExports response output) that identifies the next page of exported output values that you asked to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_imports": {
+        "ExportName": {
+            "Description": "The name of the exported output value. CloudFormation returns the stack names that are importing this value.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A string (provided by the  ListImports response output) that identifies the next page of stacks that are importing the specified exported output value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_stack_instances": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you want to list stack instances for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous request didn't return all the remaining results, the response's NextToken parameter value is set to a token. To retrieve the next set of results, call ListStackInstances again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The status that stack instances are filtered by.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "StackInstanceAccount": {
+            "Description": "The name of the Amazon Web Services account that you want to list stack instances for.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackInstanceRegion": {
+            "Description": "The name of the Region where you want to list stack instances.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_stack_resources": {
+        "StackName": {
+            "Description": "The name or the unique stack ID that is associated with the stack, which aren't always interchangeable:\nDefault: There is no default value.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NextToken": {
+            "Description": "A string that identifies the next page of stack resources that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_stack_set_operation_results": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you want to get operation results for.",
+            "Type": "string",
+            "Required": true
+        },
+        "OperationId": {
+            "Description": "The ID of the stack set operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous request didn't return all the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call ListStackSetOperationResults again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_stack_set_operations": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you want to get operation summaries for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "If the previous paginated request didn't return all of the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call ListStackSetOperations again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_stack_sets": {
+        "NextToken": {
+            "Description": "If the previous paginated request didn't return all the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call ListStackSets again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Status": {
+            "Description": "The status of the stack sets that you want to get summary information about.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_stacks": {
+        "NextToken": {
+            "Description": "A string that identifies the next page of stacks that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackStatusFilter": {
+            "Description": "Stack status to use as a filter. Specify one or more stack status codes to list only stacks with the specified status codes. For a complete list of stack status codes, see the StackStatus parameter of the  Stack data type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_type_registrations": {
+        "Type": {
+            "Description": "The kind of extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistrationStatusFilter": {
+            "Description": "The current status of the extension registration request.\nThe default is IN_PROGRESS .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous paginated request didn't return all the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_type_versions": {
+        "Type": {
+            "Description": "The kind of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension for which you want version summary information.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the extension for which you want version summary information.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous paginated request didn't return all of the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        },
+        "DeprecatedStatus": {
+            "Description": "The deprecation status of the extension versions that you want to get summary information about.\nValid values include:\nThe default is LIVE .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PublisherId": {
+            "Description": "The publisher ID of the extension publisher.\nExtensions published by Amazon aren't assigned a publisher ID.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_types": {
+        "Visibility": {
+            "Description": "The scope at which the extensions are visible and usable in CloudFormation operations.\nValid values include:\nThe default is PRIVATE .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisioningType": {
+            "Description": "For resource types, the provisioning behavior of the resource type. CloudFormation determines the provisioning type during registration, based on the types of handlers in the schema handler package submitted.\nValid values include:\nThe default is FULLY_MUTABLE .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DeprecatedStatus": {
+            "Description": "The deprecation status of the extension that you want to get summary information about.\nValid values include:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Type": {
+            "Description": "The type of extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filter criteria to use in determining which extensions to return.\nFilters must be compatible with Visibility to return valid results. For example, specifying AWS_TYPES for Category and PRIVATE for Visibility returns an empty list of types, but specifying PUBLIC for Visibility returns the desired list.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "If the previous paginated request didn't return all the remaining results, the response object's NextToken parameter value is set to a token. To retrieve the next set of results, call this action again and assign that token to the request object's NextToken parameter. If there are no remaining results, the previous response object's NextToken parameter is set to null .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "publish_type": {
+        "Type": {
+            "Description": "The type of the extension.\nConditional: You must specify Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the extension.\nConditional: You must specify Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension.\nConditional: You must specify Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "PublicVersionNumber": {
+            "Description": "The version number to assign to this version of the extension.\nUse the following format, and adhere to semantic versioning when assigning a version number to your extension:\nFor more information, see Semantic Versioning 2.0.0 .\nIf you don't specify a version number, CloudFormation increments the version number by one minor version release.\nYou cannot specify a version number the first time you publish a type. CloudFormation automatically sets the first version number to be 1.0.0 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "record_handler_progress": {
+        "BearerToken": {
+            "Description": "Reserved for use by the CloudFormation CLI .",
+            "Type": "string",
+            "Required": true
+        },
+        "OperationStatus": {
+            "Description": "Reserved for use by the CloudFormation CLI .",
+            "Type": "string",
+            "Required": true
+        },
+        "CurrentOperationStatus": {
+            "Description": "Reserved for use by the CloudFormation CLI .",
+            "Type": "string",
+            "Required": false
+        },
+        "StatusMessage": {
+            "Description": "Reserved for use by the CloudFormation CLI .",
+            "Type": "string",
+            "Required": false
+        },
+        "ErrorCode": {
+            "Description": "Reserved for use by the CloudFormation CLI .",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceModel": {
+            "Description": "Reserved for use by the CloudFormation CLI .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "Reserved for use by the CloudFormation CLI .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_publisher": {
+        "AcceptTermsAndConditions": {
+            "Description": "Whether you accept the Terms and Conditions for publishing extensions in the CloudFormation registry. You must accept the terms and conditions in order to register to publish public extensions to the CloudFormation registry.\nThe default is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ConnectionArn": {
+            "Description": "If you are using a Bitbucket or GitHub account for identity verification, the Amazon Resource Name (ARN) for your connection to that account.\nFor more information, see Registering your account to publish CloudFormation extensions in the CloudFormation CLI User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_type": {
+        "Type": {
+            "Description": "The kind of extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension being registered.\nWe suggest that extension names adhere to the following patterns:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "SchemaHandlerPackage": {
+            "Description": "A URL to the S3 bucket containing the extension project package that contains the necessary files for the extension you want to register.\nFor information about generating a schema handler package for the extension you want to register, see submit in the CloudFormation CLI User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "LoggingConfig": {
+            "Description": "Specifies logging configuration information for an extension.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ExecutionRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role for CloudFormation to assume when invoking the extension.\nFor CloudFormation to assume the specified execution role, the role must contain a trust relationship with the CloudFormation service principle (resources.cloudformation.amazonaws.com ). For more information about adding trust relationships, see Modifying a role trust policy in the Identity and Access Management User Guide .\nIf your extension calls Amazon Web Services APIs in any of its handlers, you must create an * IAM execution role * that includes the necessary permissions to call those Amazon Web Services APIs, and provision that execution role in your account. When CloudFormation needs to invoke the resource type handler, CloudFormation assumes this execution role to create a temporary session token, which it then passes to the resource type handler, thereby supplying your resource type with the appropriate credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier that acts as an idempotency key for this registration request. Specifying a client request token prevents CloudFormation from generating more than one version of an extension from the same registration request, even if the request is submitted multiple times.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "rollback_stack": {
+        "StackName": {
+            "Description": "The name that's associated with the stack.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management role that CloudFormation assumes to rollback the stack.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this RollbackStack request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "set_stack_policy": {
+        "StackName": {
+            "Description": "The name or unique stack ID that you want to associate a policy with.",
+            "Type": "string",
+            "Required": true
+        },
+        "StackPolicyBody": {
+            "Description": "Structure containing the stack policy body. For more information, go to Prevent updates to stack resources in the CloudFormation User Guide. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackPolicyURL": {
+            "Description": "Location of a file containing the stack policy. The URL must point to a policy (maximum size: 16 KB) located in an Amazon S3 bucket in the same Amazon Web Services Region as the stack. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "set_type_configuration": {
+        "TypeArn": {
+            "Description": "The Amazon Resource Name (ARN) for the extension, in this account and region.\nFor public extensions, this will be the ARN assigned when you activate the type in this account and region. For private extensions, this will be the ARN assigned when you register the type in this account and region.\nDo not include the extension versions suffix at the end of the ARN. You can set the configuration for an extension, but not for a specific extension version.",
+            "Type": "string",
+            "Required": false
+        },
+        "Configuration": {
+            "Description": "The configuration data for the extension, in this account and region.\nThe configuration data must be formatted as JSON, and validate against the schema returned in the ConfigurationSchema response element of API_DescribeType. For more information, see Defining account-level configuration data for an extension in the CloudFormation CLI User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationAlias": {
+            "Description": "An alias by which to refer to this extension configuration data.\nConditional: Specifying a configuration alias is required when setting a configuration for a resource type extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension.\nConditional: You must specify ConfigurationArn, or Type and TypeName .",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The type of extension.\nConditional: You must specify ConfigurationArn, or Type and TypeName .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "set_type_default_version": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the extension for which you want version summary information.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The kind of extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension.\nConditional: You must specify either TypeName and Type, or Arn .",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionId": {
+            "Description": "The ID of a specific version of the extension. The version ID is the value at the end of the Amazon Resource Name (ARN) assigned to the extension version when it is registered.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "signal_resource": {
+        "StackName": {
+            "Description": "The stack name or unique stack ID that includes the resource that you want to signal.",
+            "Type": "string",
+            "Required": true
+        },
+        "LogicalResourceId": {
+            "Description": "The logical ID of the resource that you want to signal. The logical ID is the name of the resource that given in the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "UniqueId": {
+            "Description": "A unique ID of the signal. When you signal Amazon EC2 instances or Auto Scaling groups, specify the instance ID that you are signaling as the unique ID. If you send multiple signals to a single resource (such as signaling a wait condition), each signal requires a different unique ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Status": {
+            "Description": "The status of the signal, which is either success or failure. A failure signal causes CloudFormation to immediately fail the stack creation or update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_stack_set_operation": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you want to stop the operation for.",
+            "Type": "string",
+            "Required": true
+        },
+        "OperationId": {
+            "Description": "The ID of the stack operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "test_type": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the extension.\nConditional: You must specify Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The type of the extension to test.\nConditional: You must specify Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "TypeName": {
+            "Description": "The name of the extension to test.\nConditional: You must specify Arn, or TypeName and Type .",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionId": {
+            "Description": "The version of the extension to test.\nYou can specify the version id with either Arn, or with TypeName and Type .\nIf you don't specify a version, CloudFormation uses the default version of the extension in this account and region for testing.",
+            "Type": "string",
+            "Required": false
+        },
+        "LogDeliveryBucket": {
+            "Description": "The S3 bucket to which CloudFormation delivers the contract test execution logs.\nCloudFormation delivers the logs by the time contract testing has completed and the extension has been assigned a test type status of PASSED or FAILED .\nThe user calling TestType must be able to access items in the specified S3 bucket. Specifically, the user needs the following permissions:\nFor more information, see Actions, Resources, and Condition Keys for Amazon S3 in the Amazon Web Services Identity and Access Management User Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "update_stack": {
+        "StackName": {
+            "Description": "The name or unique stack ID of the stack to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateBody": {
+            "Description": "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. (For more information, go to Template Anatomy in the CloudFormation User Guide.)\nConditional: You must specify only one of the following parameters: TemplateBody, TemplateURL, or set the UsePreviousTemplate to true .",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "Location of file containing the template body. The URL must point to a template that's located in an Amazon S3 bucket or a Systems Manager document. For more information, go to Template Anatomy in the CloudFormation User Guide.\nConditional: You must specify only one of the following parameters: TemplateBody, TemplateURL, or set the UsePreviousTemplate to true .",
+            "Type": "string",
+            "Required": false
+        },
+        "UsePreviousTemplate": {
+            "Description": "Reuse the existing template that is associated with the stack that you are updating.\nConditional: You must specify only one of the following parameters: TemplateBody, TemplateURL, or set the UsePreviousTemplate to true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "StackPolicyDuringUpdateBody": {
+            "Description": "Structure containing the temporary overriding stack policy body. You can specify either the StackPolicyDuringUpdateBody or the StackPolicyDuringUpdateURL parameter, but not both.\nIf you want to update protected resources, specify a temporary overriding stack policy during this update. If you don't specify a stack policy, the current policy that is associated with the stack will be used.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackPolicyDuringUpdateURL": {
+            "Description": "Location of a file containing the temporary overriding stack policy. The URL must point to a policy (max size: 16KB) located in an S3 bucket in the same Region as the stack. You can specify either the StackPolicyDuringUpdateBody or the StackPolicyDuringUpdateURL parameter, but not both.\nIf you want to update protected resources, specify a temporary overriding stack policy during this update. If you don't specify a stack policy, the current policy that is associated with the stack will be used.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "A list of Parameter structures that specify input parameters for the stack. For more information, see the Parameter data type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Capabilities": {
+            "Description": "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for CloudFormation to update the stack.\nIf your stack template contains these resources, we suggest that you review all permissions associated with them and edit their permissions if necessary.\nFor more information, see Acknowledging IAM Resources in CloudFormation Templates .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "ResourceTypes": {
+            "Description": "The template resource types that you have permissions to work with for this update stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance .\nIf the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for CloudFormation-specific condition keys in IAM policies. For more information, see Controlling Access with Identity and Access Management .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFormation assumes to update the stack. CloudFormation uses the role's credentials to make calls on your behalf. CloudFormation always uses this role for all future operations on the stack. Provided that users have permission to operate on the stack, CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least privilege.\nIf you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that is generated from your user credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "RollbackConfiguration": {
+            "Description": "The rollback triggers for CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StackPolicyBody": {
+            "Description": "Structure containing a new stack policy body. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.\nYou might update the stack policy, for example, in order to protect a new resource that you created during a stack update. If you don't specify a stack policy, the current policy that is associated with the stack is unchanged.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackPolicyURL": {
+            "Description": "Location of a file containing the updated stack policy. The URL must point to a policy (max size: 16KB) located in an S3 bucket in the same Region as the stack. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.\nYou might update the stack policy, for example, in order to protect a new resource that you created during a stack update. If you don't specify a stack policy, the current policy that is associated with the stack is unchanged.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationARNs": {
+            "Description": "Amazon Simple Notification Service topic Amazon Resource Names (ARNs) that CloudFormation associates with the stack. Specify an empty list to remove all notification topics.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Key-value pairs to associate with this stack. CloudFormation also propagates these tags to supported resources in the stack. You can specify a maximum number of 50 tags.\nIf you don't specify this parameter, CloudFormation doesn't modify the stack's tags. If you specify an empty value, CloudFormation removes all associated tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DisableRollback": {
+            "Description": "Preserve the state of previously provisioned resources when an operation fails.\nDefault: False",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this UpdateStack request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to update a stack with the same name. You might retry UpdateStack requests to ensure that CloudFormation successfully received them.\nAll events triggered by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a CreateStack operation with the token token1, then all the StackEvents generated by that operation will have ClientRequestToken set as token1 .\nIn the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format Console-StackOperation-ID, which helps you easily identify the stack operation. For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_stack_instances": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set associated with the stack instances.",
+            "Type": "string",
+            "Required": true
+        },
+        "Accounts": {
+            "Description": "[Self-managed permissions] The names of one or more Amazon Web Services accounts for which you want to update parameter values for stack instances. The overridden parameter values will be applied to all stack instances in the specified accounts and Amazon Web Services Regions.\nYou can specify Accounts or DeploymentTargets, but not both.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DeploymentTargets": {
+            "Description": "[Service-managed permissions] The Organizations accounts for which you want to update parameter values for stack instances. If your update targets OUs, the overridden parameter values only apply to the accounts that are currently in the target OUs and their child OUs. Accounts added to the target OUs and their child OUs in the future won't use the overridden values.\nYou can specify Accounts or DeploymentTargets, but not both.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Regions": {
+            "Description": "The names of one or more Amazon Web Services Regions in which you want to update parameter values for stack instances. The overridden parameter values will be applied to all stack instances in the specified accounts and Amazon Web Services Regions.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ParameterOverrides": {
+            "Description": "A list of input parameters whose values you want to update for the specified stack instances.\nAny overridden parameter values will be applied to all stack instances in the specified accounts and Amazon Web Services Regions. When specifying parameters and their values, be aware of how CloudFormation sets parameter values during stack instance update operations:\nDuring stack set updates, any parameter values overridden for a stack instance aren't updated, but retain their overridden value.\nYou can only override the parameter values that are specified in the stack set; to add or delete a parameter itself, use UpdateStackSet to update the stack set template. If you add a parameter to a template, before you can override the parameter value specified in the stack set you must first use UpdateStackSet to update all stack instances with the updated template and parameter value specified in the stack set. Once a stack instance has been updated with the new parameter, you can then override the parameter value using UpdateStackInstances .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "OperationPreferences": {
+            "Description": "Preferences for how CloudFormation performs this stack set operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OperationId": {
+            "Description": "The unique identifier for this stack set operation.\nThe operation ID also functions as an idempotency token, to ensure that CloudFormation performs the stack set operation only once, even if you retry the request multiple times. You might retry stack set operation requests to ensure that CloudFormation successfully received them.\nIf you don't specify an operation ID, the SDK generates one automatically.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "update_stack_set": {
+        "StackSetName": {
+            "Description": "The name or unique ID of the stack set that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A brief description of updates that you are making.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateBody": {
+            "Description": "The structure that contains the template body, with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, see Template Anatomy in the CloudFormation User Guide.\nConditional: You must specify only one of the following parameters: TemplateBody or TemplateURL \u2014or set UsePreviousTemplate to true.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "The location of the file that contains the template body. The URL must point to a template (maximum size: 460,800 bytes) that is located in an Amazon S3 bucket or a Systems Manager document. For more information, see Template Anatomy in the CloudFormation User Guide.\nConditional: You must specify only one of the following parameters: TemplateBody or TemplateURL \u2014or set UsePreviousTemplate to true.",
+            "Type": "string",
+            "Required": false
+        },
+        "UsePreviousTemplate": {
+            "Description": "Use the existing template that's associated with the stack set that you're updating.\nConditional: You must specify only one of the following parameters: TemplateBody or TemplateURL \u2014or set UsePreviousTemplate to true.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "A list of input parameters for the stack set template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Capabilities": {
+            "Description": "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for CloudFormation to update the stack set and its associated stack instances.\nIf your stack template contains these resources, we recommend that you review all permissions associated with them and edit their permissions if necessary.\nFor more information, see Acknowledging IAM Resources in CloudFormation Templates .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "The key-value pairs to associate with this stack set and the stacks created from it. CloudFormation also propagates these tags to supported resources that are created in the stacks. You can specify a maximum number of 50 tags.\nIf you specify tags for this parameter, those tags replace any list of tags that are currently associated with this stack set. This means:\nIf you specify new tags as part of an UpdateStackSet action, CloudFormation checks to see if you have the required IAM permission to tag resources. If you omit tags that are currently associated with the stack set from the list of tags you specify, CloudFormation assumes that you want to remove those tags from the stack set, and checks to see if you have permission to untag resources. If you don't have the necessary permission(s), the entire UpdateStackSet action fails with an access denied error, and the stack set is not updated.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "OperationPreferences": {
+            "Description": "Preferences for how CloudFormation performs this stack set operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdministrationRoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role to use to update this stack set.\nSpecify an IAM role only if you are using customized administrator roles to control which users or groups can manage specific stack sets within the same administrator account. For more information, see Granting Permissions for Stack Set Operations in the CloudFormation User Guide .\nIf you specified a customized administrator role when you created the stack set, you must specify a customized administrator role, even if it is the same customized administrator role used with this stack set previously.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExecutionRoleName": {
+            "Description": "The name of the IAM execution role to use to update the stack set. If you do not specify an execution role, CloudFormation uses the AWSCloudFormationStackSetExecutionRole role for the stack set operation.\nSpecify an IAM role only if you are using customized execution roles to control which stack resources users and groups can include in their stack sets.\nIf you specify a customized execution role, CloudFormation uses that role to update the stack. If you do not specify a customized execution role, CloudFormation performs the update using the role previously associated with the stack set, so long as you have permissions to perform operations on the stack set.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeploymentTargets": {
+            "Description": "[Service-managed permissions] The Organizations accounts in which to update associated stack instances.\nTo update all the stack instances associated with this stack set, do not specify DeploymentTargets or Regions .\nIf the stack set update includes changes to the template (that is, if TemplateBody or TemplateURL is specified), or the Parameters, CloudFormation marks all stack instances with a status of OUTDATED prior to updating the stack instances in the specified accounts and Amazon Web Services Regions. If the stack set update doesn't include changes to the template or parameters, CloudFormation updates the stack instances in the specified accounts and Regions, while leaving all other stack instances with their existing stack instance status.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PermissionModel": {
+            "Description": "Describes how the IAM roles required for stack set operations are created. You cannot modify PermissionModel if there are stack instances associated with your stack set.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AutoDeployment": {
+            "Description": "[Service-managed permissions] Describes whether StackSets automatically deploys to Organizations accounts that are added to a target organization or organizational unit (OU).\nIf you specify AutoDeployment, don't specify DeploymentTargets or Regions .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OperationId": {
+            "Description": "The unique ID for this stack set operation.\nThe operation ID also functions as an idempotency token, to ensure that CloudFormation performs the stack set operation only once, even if you retry the request multiple times. You might retry stack set operation requests to ensure that CloudFormation successfully received them.\nIf you don't specify an operation ID, CloudFormation generates one automatically.\nRepeating this stack set operation with a new operation ID retries all stack instances whose status is OUTDATED .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Accounts": {
+            "Description": "[Self-managed permissions] The accounts in which to update associated stack instances. If you specify accounts, you must also specify the Amazon Web Services Regions in which to update stack set instances.\nTo update all the stack instances associated with this stack set, don't specify the Accounts or Regions properties.\nIf the stack set update includes changes to the template (that is, if the TemplateBody or TemplateURL properties are specified), or the Parameters property, CloudFormation marks all stack instances with a status of OUTDATED prior to updating the stack instances in the specified accounts and Amazon Web Services Regions. If the stack set update does not include changes to the template or parameters, CloudFormation updates the stack instances in the specified accounts and Amazon Web Services Regions, while leaving all other stack instances with their existing stack instance status.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Regions": {
+            "Description": "The Amazon Web Services Regions in which to update associated stack instances. If you specify Regions, you must also specify accounts in which to update stack set instances.\nTo update all the stack instances associated with this stack set, do not specify the Accounts or Regions properties.\nIf the stack set update includes changes to the template (that is, if the TemplateBody or TemplateURL properties are specified), or the Parameters property, CloudFormation marks all stack instances with a status of OUTDATED prior to updating the stack instances in the specified accounts and Regions. If the stack set update does not include changes to the template or parameters, CloudFormation updates the stack instances in the specified accounts and Regions, while leaving all other stack instances with their existing stack instance status.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CallAs": {
+            "Description": "[Service-managed permissions] Specifies whether you are acting as an account administrator in the organization's management account or as a delegated administrator in a member account.\nBy default, SELF is specified. Use SELF for stack sets with self-managed permissions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ManagedExecution": {
+            "Description": "Describes whether StackSets performs non-conflicting operations concurrently and queues conflicting operations.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_termination_protection": {
+        "EnableTerminationProtection": {
+            "Description": "Whether to enable termination protection on the specified stack.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "StackName": {
+            "Description": "The name or unique ID of the stack for which you want to set termination protection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "validate_template": {
+        "TemplateBody": {
+            "Description": "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. For more information, go to Template Anatomy in the CloudFormation User Guide.\nConditional: You must pass TemplateURL or TemplateBody. If both are passed, only TemplateBody is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "Location of file containing the template body. The URL must point to a template (max size: 460,800 bytes) that is located in an Amazon S3 bucket or a Systems Manager document. For more information, go to Template Anatomy in the CloudFormation User Guide.\nConditional: You must pass TemplateURL or TemplateBody. If both are passed, only TemplateBody is used.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "Visibility": {
+            "Description": "The scope at which the extensions are visible and usable in CloudFormation operations.\nValid values include:\nThe default is PRIVATE .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisioningType": {
+            "Description": "For resource types, the provisioning behavior of the resource type. CloudFormation determines the provisioning type during registration, based on the types of handlers in the schema handler package submitted.\nValid values include:\nThe default is FULLY_MUTABLE .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DeprecatedStatus": {
+            "Description": "The deprecation status of the extension that you want to get summary information about.\nValid values include:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Type": {
+            "Description": "The type of extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filter criteria to use in determining which extensions to return.\nFilters must be compatible with Visibility to return valid results. For example, specifying AWS_TYPES for Category and PRIVATE for Visibility returns an empty list of types, but specifying PUBLIC for Visibility returns the desired list.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "RegistrationToken": {
+            "Description": "The identifier for this registration request.\nThis registration token is generated by CloudFormation when you initiate a registration request using ``  RegisterType `` .",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_available_subresources": "No parameters defined",
+    "Event": {
+        "id": {
+            "Description": "The Event's id identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "Stack": "No parameters defined",
+    "StackResource": {
+        "stack_name": {
+            "Description": "The StackResource's stack_name identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        },
+        "logical_id": {
+            "Description": "The StackResource's logical_id identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "StackResourceSummary": {
+        "stack_name": {
+            "Description": "The StackResourceSummary's stack_name identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        },
+        "logical_id": {
+            "Description": "The StackResourceSummary's logical_id identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "all": "No parameters defined",
+    "filter": {
+        "NextToken": {
+            "Description": "A string that identifies the next page of stack resources that you want to retrieve.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "limit": {
+        "count": {
+            "Description": "The limit to the number of resources in the iterable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "page_size": {
+        "count": {
+            "Description": "The number of items returned by each service call",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "cancel_update": {
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this CancelUpdateStack request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to cancel an update on a stack with the same name. You might retry CancelUpdateStack requests to ensure that CloudFormation successfully received them.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete": {
+        "RetainResources": {
+            "Description": "For stacks in the DELETE_FAILED state, a list of resource logical IDs that are associated with the resources you want to retain. During deletion, CloudFormation deletes the stack but doesn't delete the retained resources.\nRetaining resources is useful when you can't delete a resource, such as a non-empty S3 bucket, but you want to delete the stack.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFormation assumes to delete the stack. CloudFormation uses the role's credentials to make calls on your behalf.\nIf you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that's generated from your user credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this DeleteStack request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to delete a stack with the same name. You might retry DeleteStack requests to ensure that CloudFormation successfully received them.\nAll events initiated by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a CreateStack operation with the token token1, then all the StackEvents generated by that operation will have ClientRequestToken set as token1 .\nIn the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format Console-StackOperation-ID, which helps you easily identify the stack operation. For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "load": "No parameters defined",
+    "reload": "No parameters defined",
+    "update": {
+        "TemplateBody": {
+            "Description": "Structure containing the template body with a minimum length of 1 byte and a maximum length of 51,200 bytes. (For more information, go to Template Anatomy in the CloudFormation User Guide.)\nConditional: You must specify only one of the following parameters: TemplateBody, TemplateURL, or set the UsePreviousTemplate to true .",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateURL": {
+            "Description": "Location of file containing the template body. The URL must point to a template that's located in an Amazon S3 bucket or a Systems Manager document. For more information, go to Template Anatomy in the CloudFormation User Guide.\nConditional: You must specify only one of the following parameters: TemplateBody, TemplateURL, or set the UsePreviousTemplate to true .",
+            "Type": "string",
+            "Required": false
+        },
+        "UsePreviousTemplate": {
+            "Description": "Reuse the existing template that is associated with the stack that you are updating.\nConditional: You must specify only one of the following parameters: TemplateBody, TemplateURL, or set the UsePreviousTemplate to true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "StackPolicyDuringUpdateBody": {
+            "Description": "Structure containing the temporary overriding stack policy body. You can specify either the StackPolicyDuringUpdateBody or the StackPolicyDuringUpdateURL parameter, but not both.\nIf you want to update protected resources, specify a temporary overriding stack policy during this update. If you don't specify a stack policy, the current policy that is associated with the stack will be used.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackPolicyDuringUpdateURL": {
+            "Description": "Location of a file containing the temporary overriding stack policy. The URL must point to a policy (max size: 16KB) located in an S3 bucket in the same Region as the stack. You can specify either the StackPolicyDuringUpdateBody or the StackPolicyDuringUpdateURL parameter, but not both.\nIf you want to update protected resources, specify a temporary overriding stack policy during this update. If you don't specify a stack policy, the current policy that is associated with the stack will be used.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "A list of Parameter structures that specify input parameters for the stack. For more information, see the Parameter data type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Capabilities": {
+            "Description": "In some cases, you must explicitly acknowledge that your stack template contains certain capabilities in order for CloudFormation to update the stack.\nIf your stack template contains these resources, we suggest that you review all permissions associated with them and edit their permissions if necessary.\nFor more information, see Acknowledging IAM Resources in CloudFormation Templates .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "ResourceTypes": {
+            "Description": "The template resource types that you have permissions to work with for this update stack action, such as AWS::EC2::Instance, AWS::EC2::*, or Custom::MyCustomInstance .\nIf the list of resource types doesn't include a resource that you're updating, the stack update fails. By default, CloudFormation grants permissions to all resource types. Identity and Access Management (IAM) uses this parameter for CloudFormation-specific condition keys in IAM policies. For more information, see Controlling Access with Identity and Access Management .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of an Identity and Access Management (IAM) role that CloudFormation assumes to update the stack. CloudFormation uses the role's credentials to make calls on your behalf. CloudFormation always uses this role for all future operations on the stack. Provided that users have permission to operate on the stack, CloudFormation uses this role even if the users don't have permission to pass it. Ensure that the role grants least privilege.\nIf you don't specify a value, CloudFormation uses the role that was previously associated with the stack. If no role is available, CloudFormation uses a temporary session that is generated from your user credentials.",
+            "Type": "string",
+            "Required": false
+        },
+        "RollbackConfiguration": {
+            "Description": "The rollback triggers for CloudFormation to monitor during stack creation and updating operations, and for the specified monitoring period afterwards.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "StackPolicyBody": {
+            "Description": "Structure containing a new stack policy body. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.\nYou might update the stack policy, for example, in order to protect a new resource that you created during a stack update. If you don't specify a stack policy, the current policy that is associated with the stack is unchanged.",
+            "Type": "string",
+            "Required": false
+        },
+        "StackPolicyURL": {
+            "Description": "Location of a file containing the updated stack policy. The URL must point to a policy (max size: 16KB) located in an S3 bucket in the same Region as the stack. You can specify either the StackPolicyBody or the StackPolicyURL parameter, but not both.\nYou might update the stack policy, for example, in order to protect a new resource that you created during a stack update. If you don't specify a stack policy, the current policy that is associated with the stack is unchanged.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationARNs": {
+            "Description": "Amazon Simple Notification Service topic Amazon Resource Names (ARNs) that CloudFormation associates with the stack. Specify an empty list to remove all notification topics.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Key-value pairs to associate with this stack. CloudFormation also propagates these tags to supported resources in the stack. You can specify a maximum number of 50 tags.\nIf you don't specify this parameter, CloudFormation doesn't modify the stack's tags. If you specify an empty value, CloudFormation removes all associated tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DisableRollback": {
+            "Description": "Preserve the state of previously provisioned resources when an operation fails.\nDefault: False",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique identifier for this UpdateStack request. Specify this token if you plan to retry requests so that CloudFormation knows that you're not attempting to update a stack with the same name. You might retry UpdateStack requests to ensure that CloudFormation successfully received them.\nAll events triggered by a given stack operation are assigned the same client request token, which you can use to track operations. For example, if you execute a CreateStack operation with the token token1, then all the StackEvents generated by that operation will have ClientRequestToken set as token1 .\nIn the console, stack operations display the client request token on the Events tab. Stack operations that are initiated from the console use the token format Console-StackOperation-ID, which helps you easily identify the stack operation. For example, if you create a stack using the console, each stack event would be assigned the same token in the following format: Console-CreateStack-7f59c3cf-00d2-40c7-b2ff-e75db0987002 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "Resource": "No parameters defined"
+}

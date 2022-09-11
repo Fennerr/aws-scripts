@@ -1,0 +1,1588 @@
+{
+    "create_capacity_provider": {
+        "name": {
+            "Description": "The name of the capacity provider. Up to 255 characters are allowed. They include letters (both upper and lowercase letters), numbers, underscores (_), and hyphens (-). The name can't be prefixed with \"aws \", \"ecs \", or \"fargate \".",
+            "Type": "string",
+            "Required": true
+        },
+        "autoScalingGroupProvider": {
+            "Description": "The details of the Auto Scaling group for the capacity provider.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the capacity provider to categorize and organize them more conveniently. Each tag consists of a key and an optional value. You define both of them.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_cluster": {
+        "clusterName": {
+            "Description": "The name of your cluster. If you don't specify a name for your cluster, you create a cluster that's named default . Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the cluster to help you categorize and organize them. Each tag consists of a key and an optional value. You define both.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "settings": {
+            "Description": "The setting to use when creating a cluster. This parameter is used to turn on CloudWatch Container Insights for a cluster. If this value is specified, it overrides the containerInsights value set with  PutAccountSetting or  PutAccountSettingDefault .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "configuration": {
+            "Description": "The execute command configuration for the cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "capacityProviders": {
+            "Description": "The short name of one or more capacity providers to associate with the cluster. A capacity provider must be associated with a cluster before it can be included as part of the default capacity provider strategy of the cluster or used in a capacity provider strategy when calling the  CreateService or  RunTask actions.\nIf specifying a capacity provider that uses an Auto Scaling group, the capacity provider must be created but not associated with another cluster. New Auto Scaling group capacity providers can be created with the  CreateCapacityProvider API operation.\nTo use a Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used.\nThe  PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "defaultCapacityProviderStrategy": {
+            "Description": "The capacity provider strategy to set as the default for the cluster. After a default capacity provider strategy is set for a cluster, when you call the  RunTask or  CreateService APIs with no capacity provider strategy or launch type specified, the default capacity provider strategy for the cluster is used.\nIf a default capacity provider strategy isn't defined for a cluster when it was created, it can be defined later with the  PutClusterCapacityProviders API operation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_service": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that you run your service on. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of your service. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed. Service names must be unique within a cluster, but you can have similarly named services in multiple clusters within a Region or across multiple Regions.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskDefinition": {
+            "Description": "The family and revision (family:revision ) or full ARN of the task definition to run in your service. If a revision isn't specified, the latest ACTIVE revision is used.\nA task definition must be specified if the service uses either the ECS or CODE_DEPLOY deployment controllers.",
+            "Type": "string",
+            "Required": false
+        },
+        "loadBalancers": {
+            "Description": "A load balancer object representing the load balancers to use with your service. For more information, see Service load balancing in the Amazon Elastic Container Service Developer Guide .\nIf the service uses the rolling update (ECS ) deployment controller and using either an Application Load Balancer or Network Load Balancer, you must specify one or more target group ARNs to attach to the service. The service-linked role is required for services that use multiple target groups. For more information, see Using service-linked roles for Amazon ECS in the Amazon Elastic Container Service Developer Guide .\nIf the service uses the CODE_DEPLOY deployment controller, the service is required to use either an Application Load Balancer or Network Load Balancer. When creating an CodeDeploy deployment group, you specify two target groups (referred to as a targetGroupPair ). During a deployment, CodeDeploy determines which task set in your service has the status PRIMARY, and it associates one target group with it. Then, it also associates the other target group with the replacement task set. The load balancer can also have up to two listeners: a required listener for production traffic and an optional listener that you can use to perform validation tests with Lambda functions before routing production traffic to it.\nIf you use the CODE_DEPLOY deployment controller, these values can be changed when updating the service.\nFor Application Load Balancers and Network Load Balancers, this object must contain the load balancer target group ARN, the container name, and the container port to access from the load balancer. The container name must be as it appears in a container definition. The load balancer name parameter must be omitted. When a task from this service is placed on a container instance, the container instance and port combination is registered as a target in the target group that's specified here.\nFor Classic Load Balancers, this object must contain the load balancer name, the container name, and the container port to access from the load balancer. The container name must be as it appears in a container definition. The target group ARN parameter must be omitted. When a task from this service is placed on a container instance, the container instance is registered with the load balancer that's specified here.\nServices with tasks that use the awsvpc network mode (for example, those with the Fargate launch type) only support Application Load Balancers and Network Load Balancers. Classic Load Balancers aren't supported. Also, when you create any target groups for these services, you must choose ip as the target type, not instance. This is because tasks that use the awsvpc network mode are associated with an elastic network interface, not an Amazon EC2 instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "serviceRegistries": {
+            "Description": "The details of the service discovery registry to associate with this service. For more information, see Service discovery .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "desiredCount": {
+            "Description": "The number of instantiations of the specified task definition to place and keep running on your cluster.\nThis is required if schedulingStrategy is REPLICA or isn't specified. If schedulingStrategy is DAEMON then this isn't required.",
+            "Type": "integer",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "An identifier that you provide to ensure the idempotency of the request. It must be unique and is case sensitive. Up to 32 ASCII characters are allowed.",
+            "Type": "string",
+            "Required": false
+        },
+        "launchType": {
+            "Description": "The infrastructure that you run your service on. For more information, see Amazon ECS launch types in the Amazon Elastic Container Service Developer Guide .\nThe FARGATE launch type runs your tasks on Fargate On-Demand infrastructure.\nThe EC2 launch type runs your tasks on Amazon EC2 instances registered to your cluster.\nThe EXTERNAL launch type runs your tasks on your on-premises server or virtual machine (VM) capacity registered to your cluster.\nA service can use either a launch type or a capacity provider strategy. If a launchType is specified, the capacityProviderStrategy parameter must be omitted.",
+            "Type": "string",
+            "Required": false
+        },
+        "capacityProviderStrategy": {
+            "Description": "The capacity provider strategy to use for the service.\nIf a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used.\nA capacity provider strategy may contain a maximum of 6 capacity providers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "platformVersion": {
+            "Description": "The platform version that your tasks in the service are running on. A platform version is specified only for tasks using the Fargate launch type. If one isn't specified, the LATEST platform version is used. For more information, see Fargate platform versions in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "role": {
+            "Description": "The name or full Amazon Resource Name (ARN) of the IAM role that allows Amazon ECS to make calls to your load balancer on your behalf. This parameter is only permitted if you are using a load balancer with your service and your task definition doesn't use the awsvpc network mode. If you specify the role parameter, you must also specify a load balancer object with the loadBalancers parameter.\nIf your specified role has a path other than /, then you must either specify the full role ARN (this is recommended) or prefix the role name with the path. For example, if a role with the name bar has a path of /foo/ then you would specify /foo/bar as the role name. For more information, see Friendly names and paths in the IAM User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "deploymentConfiguration": {
+            "Description": "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "placementConstraints": {
+            "Description": "An array of placement constraint objects to use for tasks in your service. You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition and those specified at runtime.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "placementStrategy": {
+            "Description": "The placement strategy objects to use for tasks in your service. You can specify a maximum of 5 strategy rules for each service.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "networkConfiguration": {
+            "Description": "The network configuration for the service. This parameter is required for task definitions that use the awsvpc network mode to receive their own elastic network interface, and it isn't supported for other network modes. For more information, see Task networking in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "healthCheckGracePeriodSeconds": {
+            "Description": "The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing target health checks after a task has first started. This is only used when your service is configured to use a load balancer. If your service has a load balancer defined and you don't specify a health check grace period value, the default value of 0 is used.\nIf you do not use an Elastic Load Balancing, we recomend that you use the startPeriod in the task definition healtch check parameters. For more information, see Health check .\nIf your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 2,147,483,647 seconds (about 69 years). During that time, the Amazon ECS service scheduler ignores health check status. This grace period can prevent the service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.",
+            "Type": "integer",
+            "Required": false
+        },
+        "schedulingStrategy": {
+            "Description": "The scheduling strategy to use for the service. For more information, see Services .\nThere are two service scheduler strategies available:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "deploymentController": {
+            "Description": "The deployment controller to use for the service. If no deployment controller is specified, the default value of ECS is used.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the service to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. When a service is deleted, the tags are deleted as well.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "enableECSManagedTags": {
+            "Description": "Specifies whether to turn on Amazon ECS managed tags for the tasks within the service. For more information, see Tagging your Amazon ECS resources in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "propagateTags": {
+            "Description": "Specifies whether to propagate the tags from the task definition to the task. If no value is specified, the tags aren't propagated. Tags can only be propagated to the task during task creation. To add tags to a task after task creation, use the  TagResource API action.",
+            "Type": "string",
+            "Required": false
+        },
+        "enableExecuteCommand": {
+            "Description": "Determines whether the execute command functionality is enabled for the service. If true , this enables execute command functionality on all containers in the service tasks.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_task_set": {
+        "service": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the service to create the task set in.",
+            "Type": "string",
+            "Required": true
+        },
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to create the task set in.",
+            "Type": "string",
+            "Required": true
+        },
+        "externalId": {
+            "Description": "An optional non-unique tag that identifies this task set in external systems. If the task set is associated with a service discovery registry, the tasks in this task set will have the ECS_TASK_SET_EXTERNAL_ID Cloud Map attribute set to the provided value.",
+            "Type": "string",
+            "Required": false
+        },
+        "taskDefinition": {
+            "Description": "The task definition for the tasks in the task set to use.",
+            "Type": "string",
+            "Required": true
+        },
+        "networkConfiguration": {
+            "Description": "An object representing the network configuration for a task set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "loadBalancers": {
+            "Description": "A load balancer object representing the load balancer to use with the task set. The supported load balancer types are either an Application Load Balancer or a Network Load Balancer.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "serviceRegistries": {
+            "Description": "The details of the service discovery registries to assign to this task set. For more information, see Service discovery .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "launchType": {
+            "Description": "The launch type that new tasks in the task set uses. For more information, see Amazon ECS launch types in the Amazon Elastic Container Service Developer Guide .\nIf a launchType is specified, the capacityProviderStrategy parameter must be omitted.",
+            "Type": "string",
+            "Required": false
+        },
+        "capacityProviderStrategy": {
+            "Description": "The capacity provider strategy to use for the task set.\nA capacity provider strategy consists of one or more capacity providers along with the base and weight to assign to them. A capacity provider must be associated with the cluster to be used in a capacity provider strategy. The  PutClusterCapacityProviders API is used to associate a capacity provider with a cluster. Only capacity providers with an ACTIVE or UPDATING status can be used.\nIf a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used.\nIf specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the  CreateCapacityProvider API operation.\nTo use a Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used.\nThe  PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "platformVersion": {
+            "Description": "The platform version that the tasks in the task set uses. A platform version is specified only for tasks using the Fargate launch type. If one isn't specified, the LATEST platform version is used.",
+            "Type": "string",
+            "Required": false
+        },
+        "scale": {
+            "Description": "A floating-point percentage of the desired number of tasks to place and keep running in the task set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The identifier that you provide to ensure the idempotency of the request. It's case sensitive and must be unique. It can be up to 32 ASCII characters are allowed.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the task set to help you categorize and organize them. Each tag consists of a key and an optional value. You define both. When a service is deleted, the tags are deleted.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "delete_account_setting": {
+        "name": {
+            "Description": "The resource name to disable the account setting for. If serviceLongArnFormat is specified, the ARN for your Amazon ECS services is affected. If taskLongArnFormat is specified, the ARN and resource ID for your Amazon ECS tasks is affected. If containerInstanceLongArnFormat is specified, the ARN and resource ID for your Amazon ECS container instances is affected. If awsvpcTrunking is specified, the ENI limit for your Amazon ECS container instances is affected.",
+            "Type": "string",
+            "Required": true
+        },
+        "principalArn": {
+            "Description": "The Amazon Resource Name (ARN) of the principal. It can be an IAM user, IAM role, or the root user. If you specify the root user, it disables the account setting for all IAM users, IAM roles, and the root user of the account unless an IAM user or role explicitly overrides these settings. If this field is omitted, the setting is changed only for the authenticated user.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_attributes": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that contains the resource to delete attributes. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "attributes": {
+            "Description": "The attributes to delete from your resource. You can specify up to 10 attributes for each request. For custom attributes, specify the attribute name and target ID, but don't specify the value. If you specify the target ID using the short form, you must also specify the target type.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_capacity_provider": {
+        "capacityProvider": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the capacity provider to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_cluster": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_service": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service to delete. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "service": {
+            "Description": "The name of the service to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "If true , allows you to delete a service even if it wasn't scaled down to zero tasks. It's only necessary to use this if the service uses the REPLICA scheduling strategy.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_task_set": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service that the task set found in to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "service": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the service that hosts the task set to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskSet": {
+            "Description": "The task set ID or full Amazon Resource Name (ARN) of the task set to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "If true , you can delete a task set even if it hasn't been scaled down to zero.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "deregister_container_instance": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instance to deregister. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerInstance": {
+            "Description": "The container instance ID or full ARN of the container instance to deregister. For more information about the ARN format, see Amazon Resource Name (ARN) in the Amazon ECS Developer Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "Forces the container instance to be deregistered. If you have tasks running on the container instance when you deregister it with the force option, these tasks remain running until you terminate the instance or the tasks stop through some other means, but they're orphaned (no longer monitored or accounted for by Amazon ECS). If an orphaned task on your container instance is part of an Amazon ECS service, then the service scheduler starts another copy of that task, on a different container instance if possible.\nAny containers in orphaned service tasks that are registered with a Classic Load Balancer or an Application Load Balancer target group are deregistered. They begin connection draining according to the settings on the load balancer or target group.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "deregister_task_definition": {
+        "taskDefinition": {
+            "Description": "The family and revision (family:revision ) or full Amazon Resource Name (ARN) of the task definition to deregister. You must specify a revision .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_capacity_providers": {
+        "capacityProviders": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of one or more capacity providers. Up to 100 capacity providers can be described in an action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "include": {
+            "Description": "Specifies whether or not you want to see the resource tags for the capacity provider. If TAGS is specified, the tags are included in the response. If this field is omitted, tags aren't included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of account setting results returned by DescribeCapacityProviders in paginated output. When this parameter is used, DescribeCapacityProviders only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeCapacityProviders request with the returned nextToken value. This value can be between 1 and 10. If this parameter is not used, then DescribeCapacityProviders returns up to 10 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribeCapacityProviders request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_clusters": {
+        "clusters": {
+            "Description": "A list of up to 100 cluster names or full cluster Amazon Resource Name (ARN) entries. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "include": {
+            "Description": "Determines whether to include additional information about the clusters in the response. If this field is omitted, this information isn't included.\nIf ATTACHMENTS is specified, the attachments for the container instances or tasks within the cluster are included.\nIf SETTINGS is specified, the settings for the cluster are included.\nIf CONFIGURATIONS is specified, the configuration for the cluster is included.\nIf STATISTICS is specified, the task and service count is included, separated by launch type.\nIf TAGS is specified, the metadata tags associated with the cluster are included.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_container_instances": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instances to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the container instance or container instances you are describing were launched in any cluster other than the default cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerInstances": {
+            "Description": "A list of up to 100 container instance IDs or full Amazon Resource Name (ARN) entries.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "include": {
+            "Description": "Specifies whether you want to see the resource tags for the container instance. If TAGS is specified, the tags are included in the response. If CONTAINER_INSTANCE_HEALTH is specified, the container instance health is included in the response. If this field is omitted, tags and container instance health status aren't included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_services": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN)the cluster that hosts the service to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the service or services you are describing were launched in any cluster other than the default cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "services": {
+            "Description": "A list of services to describe. You may specify up to 10 services to describe in a single operation.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "include": {
+            "Description": "Determines whether you want to see the resource tags for the service. If TAGS is specified, the tags are included in the response. If this field is omitted, tags aren't included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_task_definition": {
+        "taskDefinition": {
+            "Description": "The family for the latest ACTIVE revision, family and revision (family:revision ) for a specific revision in the family, or full Amazon Resource Name (ARN) of the task definition to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "include": {
+            "Description": "Determines whether to see the resource tags for the task definition. If TAGS is specified, the tags are included in the response. If this field is omitted, tags aren't included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_task_sets": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service that the task sets exist in.",
+            "Type": "string",
+            "Required": true
+        },
+        "service": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the service that the task sets exist in.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskSets": {
+            "Description": "The ID or full Amazon Resource Name (ARN) of task sets to describe.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "include": {
+            "Description": "Specifies whether to see the resource tags for the task set. If TAGS is specified, the tags are included in the response. If this field is omitted, tags aren't included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_tasks": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task or tasks to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the task or tasks you are describing were launched in any cluster other than the default cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "tasks": {
+            "Description": "A list of up to 100 task IDs or full ARN entries.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "include": {
+            "Description": "Specifies whether you want to see the resource tags for the task. If TAGS is specified, the tags are included in the response. If this field is omitted, tags aren't included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "discover_poll_endpoint": {
+        "containerInstance": {
+            "Description": "The container instance ID or full ARN of the container instance. For more information about the ARN format, see Amazon Resource Name (ARN) in the Amazon ECS Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that the container instance belongs to.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "execute_command": {
+        "cluster": {
+            "Description": "The Amazon Resource Name (ARN) or short name of the cluster the task is running in. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "container": {
+            "Description": "The name of the container to execute the command on. A container name only needs to be specified for tasks containing multiple containers.",
+            "Type": "string",
+            "Required": false
+        },
+        "command": {
+            "Description": "The command to run on the container.",
+            "Type": "string",
+            "Required": true
+        },
+        "interactive": {
+            "Description": "Use this flag to run your command in interactive mode.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "task": {
+            "Description": "The Amazon Resource Name (ARN) or ID of the task the container is part of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_account_settings": {
+        "name": {
+            "Description": "The name of the account setting you want to list the settings for.",
+            "Type": "string",
+            "Required": false
+        },
+        "value": {
+            "Description": "The value of the account settings to filter results with. You must also specify an account setting name to use this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "principalArn": {
+            "Description": "The ARN of the principal, which can be an IAM user, IAM role, or the root user. If this field is omitted, the account settings are listed only for the authenticated user.",
+            "Type": "string",
+            "Required": false
+        },
+        "effectiveSettings": {
+            "Description": "Determines whether to return the effective settings. If true , the account settings for the root user or the default setting for the principalArn are returned. If false , the account settings for the principalArn are returned if they're set. Otherwise, no account settings are returned.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListAccountSettings request indicating that more results are available to fulfill the request and further calls will be needed. If maxResults was provided, it's possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of account setting results returned by ListAccountSettings in paginated output. When this parameter is used, ListAccountSettings only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListAccountSettings request with the returned nextToken value. This value can be between 1 and 10. If this parameter isn't used, then ListAccountSettings returns up to 10 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_attributes": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to list attributes. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "targetType": {
+            "Description": "The type of the target to list attributes with.",
+            "Type": "string",
+            "Required": true
+        },
+        "attributeName": {
+            "Description": "The name of the attribute to filter the results with.",
+            "Type": "string",
+            "Required": false
+        },
+        "attributeValue": {
+            "Description": "The value of the attribute to filter results with. You must also specify an attribute name to use this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListAttributes request indicating that more results are available to fulfill the request and further calls are needed. If maxResults was provided, it's possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of cluster results that ListAttributes returned in paginated output. When this parameter is used, ListAttributes only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListAttributes request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListAttributes returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_clusters": {
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListClusters request indicating that more results are available to fulfill the request and further calls are needed. If maxResults was provided, it's possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of cluster results that ListClusters returned in paginated output. When this parameter is used, ListClusters only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListClusters request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListClusters returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_container_instances": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instances to list. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "filter": {
+            "Description": "You can filter the results of a ListContainerInstances operation with cluster query language statements. For more information, see Cluster Query Language in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListContainerInstances request indicating that more results are available to fulfill the request and further calls are needed. If maxResults was provided, it's possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of container instance results that ListContainerInstances returned in paginated output. When this parameter is used, ListContainerInstances only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListContainerInstances request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListContainerInstances returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "status": {
+            "Description": "Filters the container instances by status. For example, if you specify the DRAINING status, the results include only container instances that have been set to DRAINING using  UpdateContainerInstancesState . If you don't specify this parameter, the default is to include container instances set to all states other than INACTIVE .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_services": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to use when filtering the ListServices results. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListServices request indicating that more results are available to fulfill the request and further calls will be needed. If maxResults was provided, it is possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of service results that ListServices returned in paginated output. When this parameter is used, ListServices only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListServices request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListServices returns up to 10 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "launchType": {
+            "Description": "The launch type to use when filtering the ListServices results.",
+            "Type": "string",
+            "Required": false
+        },
+        "schedulingStrategy": {
+            "Description": "The scheduling strategy to use when filtering the ListServices results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource to list the tags for. Currently, the supported resources are Amazon ECS tasks, services, task definitions, clusters, and container instances.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_task_definition_families": {
+        "familyPrefix": {
+            "Description": "The familyPrefix is a string that's used to filter the results of ListTaskDefinitionFamilies . If you specify a familyPrefix , only task definition family names that begin with the familyPrefix string are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "The task definition family status to filter the ListTaskDefinitionFamilies results with. By default, both ACTIVE and INACTIVE task definition families are listed. If this parameter is set to ACTIVE , only task definition families that have an ACTIVE task definition revision are returned. If this parameter is set to INACTIVE , only task definition families that do not have any ACTIVE task definition revisions are returned. If you paginate the resulting output, be sure to keep the status value constant in each subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListTaskDefinitionFamilies request indicating that more results are available to fulfill the request and further calls will be needed. If maxResults was provided, it is possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of task definition family results that ListTaskDefinitionFamilies returned in paginated output. When this parameter is used, ListTaskDefinitions only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListTaskDefinitionFamilies request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListTaskDefinitionFamilies returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_task_definitions": {
+        "familyPrefix": {
+            "Description": "The full family name to filter the ListTaskDefinitions results with. Specifying a familyPrefix limits the listed task definitions to task definition revisions that belong to that family.",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "The task definition status to filter the ListTaskDefinitions results with. By default, only ACTIVE task definitions are listed. By setting this parameter to INACTIVE , you can view task definitions that are INACTIVE as long as an active task or service still references them. If you paginate the resulting output, be sure to keep the status value constant in each subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "sort": {
+            "Description": "The order to sort the results in. Valid values are ASC and DESC . By default, (ASC ) task definitions are listed lexicographically by family name and in ascending numerical order by revision so that the newest task definitions in a family are listed last. Setting this parameter to DESC reverses the sort order on family name and revision. This is so that the newest task definitions in a family are listed first.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListTaskDefinitions request indicating that more results are available to fulfill the request and further calls will be needed. If maxResults was provided, it is possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of task definition results that ListTaskDefinitions returned in paginated output. When this parameter is used, ListTaskDefinitions only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListTaskDefinitions request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListTaskDefinitions returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tasks": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to use when filtering the ListTasks results. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerInstance": {
+            "Description": "The container instance ID or full ARN of the container instance to use when filtering the ListTasks results. Specifying a containerInstance limits the results to tasks that belong to that container instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "family": {
+            "Description": "The name of the task definition family to use when filtering the ListTasks results. Specifying a family limits the results to tasks that belong to that family.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a ListTasks request indicating that more results are available to fulfill the request and further calls will be needed. If maxResults was provided, it's possible the number of results to be fewer than maxResults .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of task results that ListTasks returned in paginated output. When this parameter is used, ListTasks only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListTasks request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListTasks returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "startedBy": {
+            "Description": "The startedBy value to filter the task results with. Specifying a startedBy value limits the results to tasks that were started with that value.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of the service to use when filtering the ListTasks results. Specifying a serviceName limits the results to tasks that belong to that service.",
+            "Type": "string",
+            "Required": false
+        },
+        "desiredStatus": {
+            "Description": "The task desired status to use when filtering the ListTasks results. Specifying a desiredStatus of STOPPED limits the results to tasks that Amazon ECS has set the desired status to STOPPED. This can be useful for debugging tasks that aren't starting properly or have died or finished. The default status filter is RUNNING, which shows tasks that Amazon ECS has set the desired status to RUNNING .",
+            "Type": "string",
+            "Required": false
+        },
+        "launchType": {
+            "Description": "The launch type to use when filtering the ListTasks results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_account_setting": {
+        "name": {
+            "Description": "The Amazon ECS resource name for which to modify the account setting. If serviceLongArnFormat is specified, the ARN for your Amazon ECS services is affected. If taskLongArnFormat is specified, the ARN and resource ID for your Amazon ECS tasks is affected. If containerInstanceLongArnFormat is specified, the ARN and resource ID for your Amazon ECS container instances is affected. If awsvpcTrunking is specified, the elastic network interface (ENI) limit for your Amazon ECS container instances is affected. If containerInsights is specified, the default setting for CloudWatch Container Insights for your clusters is affected.",
+            "Type": "string",
+            "Required": true
+        },
+        "value": {
+            "Description": "The account setting value for the specified principal ARN. Accepted values are enabled and disabled .",
+            "Type": "string",
+            "Required": true
+        },
+        "principalArn": {
+            "Description": "The ARN of the principal, which can be an IAM user, IAM role, or the root user. If you specify the root user, it modifies the account setting for all IAM users, IAM roles, and the root user of the account unless an IAM user or role explicitly overrides these settings. If this field is omitted, the setting is changed only for the authenticated user.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_account_setting_default": {
+        "name": {
+            "Description": "The resource name for which to modify the account setting. If serviceLongArnFormat is specified, the ARN for your Amazon ECS services is affected. If taskLongArnFormat is specified, the ARN and resource ID for your Amazon ECS tasks is affected. If containerInstanceLongArnFormat is specified, the ARN and resource ID for your Amazon ECS container instances is affected. If awsvpcTrunking is specified, the ENI limit for your Amazon ECS container instances is affected. If containerInsights is specified, the default setting for CloudWatch Container Insights for your clusters is affected.",
+            "Type": "string",
+            "Required": true
+        },
+        "value": {
+            "Description": "The account setting value for the specified principal ARN. Accepted values are enabled and disabled .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_attributes": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that contains the resource to apply attributes. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "attributes": {
+            "Description": "The attributes to apply to your resource. You can specify up to 10 custom attributes for each resource. You can specify up to 10 attributes in a single call.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "put_cluster_capacity_providers": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to modify the capacity provider settings for. If you don't specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": true
+        },
+        "capacityProviders": {
+            "Description": "The name of one or more capacity providers to associate with the cluster.\nIf specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the  CreateCapacityProvider API operation.\nTo use a Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "defaultCapacityProviderStrategy": {
+            "Description": "The capacity provider strategy to use by default for the cluster.\nWhen creating a service or running a task on a cluster, if no capacity provider or launch type is specified then the default capacity provider strategy for the cluster is used.\nA capacity provider strategy consists of one or more capacity providers along with the base and weight to assign to them. A capacity provider must be associated with the cluster to be used in a capacity provider strategy. The  PutClusterCapacityProviders API is used to associate a capacity provider with a cluster. Only capacity providers with an ACTIVE or UPDATING status can be used.\nIf specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the  CreateCapacityProvider API operation.\nTo use a Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "register_container_instance": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to register your container instance with. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "instanceIdentityDocument": {
+            "Description": "The instance identity document for the EC2 instance to register. This document can be found by running the following command from the instance: curl http://169.254.169.254/latest/dynamic/instance-identity/document/",
+            "Type": "string",
+            "Required": false
+        },
+        "instanceIdentityDocumentSignature": {
+            "Description": "The instance identity document signature for the EC2 instance to register. This signature can be found by running the following command from the instance: curl http://169.254.169.254/latest/dynamic/instance-identity/signature/",
+            "Type": "string",
+            "Required": false
+        },
+        "totalResources": {
+            "Description": "The resources available on the instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "versionInfo": {
+            "Description": "The version information for the Amazon ECS container agent and Docker daemon that runs on the container instance.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "containerInstanceArn": {
+            "Description": "The ARN of the container instance (if it was previously registered).",
+            "Type": "string",
+            "Required": false
+        },
+        "attributes": {
+            "Description": "The container instance attributes that this container instance supports.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "platformDevices": {
+            "Description": "The devices that are available on the container instance. The only supported device type is a GPU.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the container instance to help you categorize and organize them. Each tag consists of a key and an optional value. You define both.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "register_task_definition": {
+        "family": {
+            "Description": "You must specify a family for a task definition. You can use it track multiple versions of the same task definition. The family is used as a name for your task definition. Up to 255 letters (uppercase and lowercase), numbers, underscores, and hyphens are allowed.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskRoleArn": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the IAM role that containers in this task can assume. All containers in this task are granted the permissions that are specified in this role. For more information, see IAM Roles for Tasks in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "executionRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task execution role that grants the Amazon ECS container agent permission to make Amazon Web Services API calls on your behalf. The task execution IAM role is required depending on the requirements of your task. For more information, see Amazon ECS task execution IAM role in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "networkMode": {
+            "Description": "The Docker networking mode to use for the containers in the task. The valid values are none, bridge, awsvpc, and host. If no network mode is specified, the default is bridge .\nFor Amazon ECS tasks on Fargate, the awsvpc network mode is required. For Amazon ECS tasks on Amazon EC2 Linux instances, any network mode can be used. For Amazon ECS tasks on Amazon EC2 Windows instances, &lt;default&gt; or awsvpc can be used. If the network mode is set to none, you cannot specify port mappings in your container definitions, and the tasks containers do not have external connectivity. The host and awsvpc network modes offer the highest networking performance for containers because they use the EC2 network stack instead of the virtualized network stack provided by the bridge mode.\nWith the host and awsvpc network modes, exposed container ports are mapped directly to the corresponding host port (for the host network mode) or the attached elastic network interface port (for the awsvpc network mode), so you cannot take advantage of dynamic host port mappings.\nIf the network mode is awsvpc, the task is allocated an elastic network interface, and you must specify a  NetworkConfiguration value when you create a service or run a task with the task definition. For more information, see Task Networking in the Amazon Elastic Container Service Developer Guide .\nIf the network mode is host, you cannot run multiple instantiations of the same task on a single container instance when port mappings are used.\nFor more information, see Network settings in the Docker run reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "containerDefinitions": {
+            "Description": "A list of container definitions in JSON format that describe the different containers that make up your task.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "volumes": {
+            "Description": "A list of volume definitions in JSON format that containers in your task might use.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "placementConstraints": {
+            "Description": "An array of placement constraint objects to use for the task. You can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition and those specified at runtime.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "requiresCompatibilities": {
+            "Description": "The task launch type that Amazon ECS validates the task definition against. A client exception is returned if the task definition doesn't validate against the compatibilities specified. If no value is specified, the parameter is omitted from the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "cpu": {
+            "Description": "The number of CPU units used by the task. It can be expressed as an integer using CPU units (for example, 1024 ) or as a string using vCPUs (for example, 1 vCPU or 1 vcpu ) in a task definition. String values are converted to an integer indicating the CPU units when the task definition is registered.\nIf you're using the EC2 launch type, this field is optional. Supported values are between 128 CPU units (0.125 vCPUs) and 10240 CPU units (10 vCPUs).\nIf you're using the Fargate launch type, this field is required and you must use one of the following values, which determines your range of supported values for the memory parameter:\nThe CPU units cannot be less than 1 vCPU when you use Windows containers on Fargate.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "memory": {
+            "Description": "The amount of memory (in MiB) used by the task. It can be expressed as an integer using MiB (for example ,``1024`` ) or as a string using GB (for example, 1GB or 1 GB ) in a task definition. String values are converted to an integer indicating the MiB when the task definition is registered.\nIf using the EC2 launch type, this field is optional.\nIf using the Fargate launch type, this field is required and you must use one of the following values. This determines your range of supported values for the cpu parameter.\nThe CPU units cannot be less than 1 vCPU when you use Windows containers on Fargate.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the task definition to help you categorize and organize them. Each tag consists of a key and an optional value. You define both of them.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "pidMode": {
+            "Description": "The process namespace to use for the containers in the task. The valid values are host or task. If host is specified, then all containers within the tasks that specified the host PID mode on the same container instance share the same process namespace with the host Amazon EC2 instance. If task is specified, all containers within the specified task share the same process namespace. If no value is specified, the default is a private namespace. For more information, see PID settings in the Docker run reference .\nIf the host PID mode is used, be aware that there is a heightened risk of undesired process namespace expose. For more information, see Docker security .",
+            "Type": "string",
+            "Required": false
+        },
+        "ipcMode": {
+            "Description": "The IPC resource namespace to use for the containers in the task. The valid values are host, task, or none. If host is specified, then all containers within the tasks that specified the host IPC mode on the same container instance share the same IPC resources with the host Amazon EC2 instance. If task is specified, all containers within the specified task share the same IPC resources. If none is specified, then IPC resources within the containers of a task are private and not shared with other containers in a task or on the container instance. If no value is specified, then the IPC resource namespace sharing depends on the Docker daemon setting on the container instance. For more information, see IPC settings in the Docker run reference .\nIf the host IPC mode is used, be aware that there is a heightened risk of undesired IPC namespace expose. For more information, see Docker security .\nIf you are setting namespaced kernel parameters using systemControls for the containers in the task, the following will apply to your IPC resource namespace. For more information, see System Controls in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "proxyConfiguration": {
+            "Description": "The configuration details for the App Mesh proxy.\nFor tasks hosted on Amazon EC2 instances, the container instances require at least version 1.26.0 of the container agent and at least version 1.26.0-1 of the ecs-init package to use a proxy configuration. If your container instances are launched from the Amazon ECS-optimized AMI version 20190301 or later, then they contain the required versions of the container agent and ecs-init. For more information, see Amazon ECS-optimized AMI versions in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "inferenceAccelerators": {
+            "Description": "The Elastic Inference accelerators to use for the containers in the task.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ephemeralStorage": {
+            "Description": "The amount of ephemeral storage to allocate for the task. This parameter is used to expand the total amount of ephemeral storage available, beyond the default amount, for tasks hosted on Fargate. For more information, see Fargate task storage in the Amazon ECS User Guide for Fargate .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "runtimePlatform": {
+            "Description": "The operating system that your tasks definitions run on. A platform family is specified only for tasks using the Fargate launch type.\nWhen you specify a task definition in a service, this value must match the runtimePlatform value of the service.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "run_task": {
+        "capacityProviderStrategy": {
+            "Description": "The capacity provider strategy to use for the task.\nIf a capacityProviderStrategy is specified, the launchType parameter must be omitted. If no capacityProviderStrategy or launchType is specified, the defaultCapacityProviderStrategy for the cluster is used.\nWhen you use cluster auto scaling, you must specify capacityProviderStrategy and not launchType .\nA capacity provider strategy may contain a maximum of 6 capacity providers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to run your task on. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "count": {
+            "Description": "The number of instantiations of the specified task to place on your cluster. You can specify up to 10 tasks for each call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "enableECSManagedTags": {
+            "Description": "Specifies whether to use Amazon ECS managed tags for the task. For more information, see Tagging Your Amazon ECS Resources in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableExecuteCommand": {
+            "Description": "Determines whether to use the execute command functionality for the containers in this task. If true, this enables execute command functionality on all containers in the task.\nIf true, then the task definition must have a task role, or you must provide one as an override.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "group": {
+            "Description": "The name of the task group to associate with the task. The default value is the family name of the task definition (for example, family:my-family-name ).",
+            "Type": "string",
+            "Required": false
+        },
+        "launchType": {
+            "Description": "The infrastructure to run your standalone task on. For more information, see Amazon ECS launch types in the Amazon Elastic Container Service Developer Guide .\nThe FARGATE launch type runs your tasks on Fargate On-Demand infrastructure.\nThe EC2 launch type runs your tasks on Amazon EC2 instances registered to your cluster.\nThe EXTERNAL launch type runs your tasks on your on-premises server or virtual machine (VM) capacity registered to your cluster.\nA task can use either a launch type or a capacity provider strategy. If a launchType is specified, the capacityProviderStrategy parameter must be omitted.\nWhen you use cluster auto scaling, you must specify capacityProviderStrategy and not launchType .",
+            "Type": "string",
+            "Required": false
+        },
+        "networkConfiguration": {
+            "Description": "The network configuration for the task. This parameter is required for task definitions that use the awsvpc network mode to receive their own elastic network interface, and it isn't supported for other network modes. For more information, see Task networking in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "overrides": {
+            "Description": "A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it should receive. You can override the default command for a container (that's specified in the task definition or Docker image) with a command override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an environment override.\nA total of 8192 characters are allowed for overrides. This limit includes the JSON formatting characters of the override structure.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "placementConstraints": {
+            "Description": "An array of placement constraint objects to use for the task. You can specify up to 10 constraints for each task (including constraints in the task definition and those specified at runtime).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "placementStrategy": {
+            "Description": "The placement strategy objects to use for the task. You can specify a maximum of 5 strategy rules for each task.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "platformVersion": {
+            "Description": "The platform version the task uses. A platform version is only specified for tasks hosted on Fargate. If one isn't specified, the LATEST platform version is used. For more information, see Fargate platform versions in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "propagateTags": {
+            "Description": "Specifies whether to propagate the tags from the task definition to the task. If no value is specified, the tags aren't propagated. Tags can only be propagated to the task during task creation. To add tags to a task after task creation, use the  TagResource API action.",
+            "Type": "string",
+            "Required": false
+        },
+        "referenceId": {
+            "Description": "The reference ID to use for the task. The reference ID can have a maximum length of 1024 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "startedBy": {
+            "Description": "An optional tag specified when a task is started. For example, if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the startedBy parameter. You can then identify which tasks belong to that job by filtering the results of a  ListTasks call with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers, hyphens (-), and underscores (_) are allowed.\nIf a task is started by an Amazon ECS service, then the startedBy parameter contains the deployment ID of the service that starts it.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "taskDefinition": {
+            "Description": "The family and revision (family:revision ) or full ARN of the task definition to run. If a revision isn't specified, the latest ACTIVE revision is used.\nWhen you create an IAM policy for run-task, you can set the resource to be the latest task definition revision, or a specific revision.\nThe full ARN value must match the value that you specified as the Resource of the IAM principal's permissions policy.\nWhen you specify the policy resource as the latest task definition version (by setting the Resource in the policy to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName ), then set this value to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName .\nWhen you specify the policy resource as a specific task definition version (by setting the Resource in the policy to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:1 or arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:* ), then set this value to arn:aws:ecs:us-east-1:111122223333:task-definition/TaskFamilyName:1 .\nFor more information, see Policy Resources for Amazon ECS in the Amazon Elastic Container Service developer Guide.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_task": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster where to start your task. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerInstances": {
+            "Description": "The container instance IDs or full ARN entries for the container instances where you would like to place your task. You can specify up to 10 container instances.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "enableECSManagedTags": {
+            "Description": "Specifies whether to use Amazon ECS managed tags for the task. For more information, see Tagging Your Amazon ECS Resources in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableExecuteCommand": {
+            "Description": "Whether or not the execute command functionality is enabled for the task. If true , this enables execute command functionality on all containers in the task.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "group": {
+            "Description": "The name of the task group to associate with the task. The default value is the family name of the task definition (for example, family:my-family-name).",
+            "Type": "string",
+            "Required": false
+        },
+        "networkConfiguration": {
+            "Description": "The VPC subnet and security group configuration for tasks that receive their own elastic network interface by using the awsvpc networking mode.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "overrides": {
+            "Description": "A list of container overrides in JSON format that specify the name of a container in the specified task definition and the overrides it receives. You can override the default command for a container (that's specified in the task definition or Docker image) with a command override. You can also override existing environment variables (that are specified in the task definition or Docker image) on a container or add new environment variables to it with an environment override.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "propagateTags": {
+            "Description": "Specifies whether to propagate the tags from the task definition or the service to the task. If no value is specified, the tags aren't propagated.",
+            "Type": "string",
+            "Required": false
+        },
+        "referenceId": {
+            "Description": "The reference ID to use for the task.",
+            "Type": "string",
+            "Required": false
+        },
+        "startedBy": {
+            "Description": "An optional tag specified when a task is started. For example, if you automatically trigger a task to run a batch process job, you could apply a unique identifier for that job to your task with the startedBy parameter. You can then identify which tasks belong to that job by filtering the results of a  ListTasks call with the startedBy value. Up to 36 letters (uppercase and lowercase), numbers, hyphens (-), and underscores (_) are allowed.\nIf a task is started by an Amazon ECS service, the startedBy parameter contains the deployment ID of the service that starts it.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the task to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "taskDefinition": {
+            "Description": "The family and revision (family:revision ) or full ARN of the task definition to start. If a revision isn't specified, the latest ACTIVE revision is used.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_task": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task to stop. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "task": {
+            "Description": "The task ID or full Amazon Resource Name (ARN) of the task to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "reason": {
+            "Description": "An optional message specified when a task is stopped. For example, if you're using a custom scheduler, you can use this parameter to specify the reason for stopping the task here, and the message appears in subsequent  DescribeTasks API operations on this task. Up to 255 characters are allowed in this message.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "submit_attachment_state_changes": {
+        "cluster": {
+            "Description": "The short name or full ARN of the cluster that hosts the container instance the attachment belongs to.",
+            "Type": "string",
+            "Required": false
+        },
+        "attachments": {
+            "Description": "Any attachments associated with the state change request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "submit_container_state_change": {
+        "cluster": {
+            "Description": "The short name or full ARN of the cluster that hosts the container.",
+            "Type": "string",
+            "Required": false
+        },
+        "task": {
+            "Description": "The task ID or full Amazon Resource Name (ARN) of the task that hosts the container.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerName": {
+            "Description": "The name of the container.",
+            "Type": "string",
+            "Required": false
+        },
+        "runtimeId": {
+            "Description": "The ID of the Docker container.",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status of the state change request.",
+            "Type": "string",
+            "Required": false
+        },
+        "exitCode": {
+            "Description": "The exit code that's returned for the state change request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "reason": {
+            "Description": "The reason for the state change request.",
+            "Type": "string",
+            "Required": false
+        },
+        "networkBindings": {
+            "Description": "The network bindings of the container.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "submit_task_state_change": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task.",
+            "Type": "string",
+            "Required": false
+        },
+        "task": {
+            "Description": "The task ID or full ARN of the task in the state change request.",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status of the state change request.",
+            "Type": "string",
+            "Required": false
+        },
+        "reason": {
+            "Description": "The reason for the state change request.",
+            "Type": "string",
+            "Required": false
+        },
+        "containers": {
+            "Description": "Any containers that's associated with the state change request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "attachments": {
+            "Description": "Any attachments associated with the state change request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "managedAgents": {
+            "Description": "The details for the managed agent that's associated with the task.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "pullStartedAt": {
+            "Description": "The Unix timestamp for the time when the container image pull started.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "pullStoppedAt": {
+            "Description": "The Unix timestamp for the time when the container image pull completed.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "executionStoppedAt": {
+            "Description": "The Unix timestamp for the time when the task execution stopped.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to add tags to. Currently, the supported resources are Amazon ECS capacity providers, tasks, services, task definitions, clusters, and container instances.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to add to the resource. A tag is an array of key-value pairs.\nThe following basic restrictions apply to tags:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to delete tags from. Currently, the supported resources are Amazon ECS capacity providers, tasks, services, task definitions, clusters, and container instances.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of the tags to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_capacity_provider": {
+        "name": {
+            "Description": "The name of the capacity provider to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "autoScalingGroupProvider": {
+            "Description": "An object that represent the parameters to update for the Auto Scaling group capacity provider.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_cluster": {
+        "cluster": {
+            "Description": "The name of the cluster to modify the settings for.",
+            "Type": "string",
+            "Required": true
+        },
+        "settings": {
+            "Description": "The cluster settings for your cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "configuration": {
+            "Description": "The execute command configuration for the cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_cluster_settings": {
+        "cluster": {
+            "Description": "The name of the cluster to modify the settings for.",
+            "Type": "string",
+            "Required": true
+        },
+        "settings": {
+            "Description": "The setting to use by default for a cluster. This parameter is used to turn on CloudWatch Container Insights for a cluster. If this value is specified, it overrides the containerInsights value set with  PutAccountSetting or  PutAccountSettingDefault .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_container_agent": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that your container instance is running on. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerInstance": {
+            "Description": "The container instance ID or full ARN entries for the container instance where you would like to update the Amazon ECS container agent.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_container_instances_state": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the container instance to update. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerInstances": {
+            "Description": "A list of up to 10 container instance IDs or full ARN entries.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "status": {
+            "Description": "The container instance state to update the container instance with. The only valid values for this action are ACTIVE and DRAINING. A container instance can only be updated to DRAINING status once it has reached an ACTIVE state. If a container instance is in REGISTERING, DEREGISTERING, or REGISTRATION_FAILED state you can describe the container instance but can't update the container instance state.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_service": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that your service runs on. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "service": {
+            "Description": "The name of the service to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "desiredCount": {
+            "Description": "The number of instantiations of the task to place and keep running in your service.",
+            "Type": "integer",
+            "Required": false
+        },
+        "taskDefinition": {
+            "Description": "The family and revision (family:revision ) or full ARN of the task definition to run in your service. If a revision is not specified, the latest ACTIVE revision is used. If you modify the task definition with UpdateService , Amazon ECS spawns a task with the new version of the task definition and then stops an old task after the new version is running.",
+            "Type": "string",
+            "Required": false
+        },
+        "capacityProviderStrategy": {
+            "Description": "The capacity provider strategy to update the service to use.\nif the service uses the default capacity provider strategy for the cluster, the service can be updated to use one or more capacity providers as opposed to the default capacity provider strategy. However, when a service is using a capacity provider strategy that's not the default capacity provider strategy, the service can't be updated to use the cluster's default capacity provider strategy.\nA capacity provider strategy consists of one or more capacity providers along with the base and weight to assign to them. A capacity provider must be associated with the cluster to be used in a capacity provider strategy. The  PutClusterCapacityProviders API is used to associate a capacity provider with a cluster. Only capacity providers with an ACTIVE or UPDATING status can be used.\nIf specifying a capacity provider that uses an Auto Scaling group, the capacity provider must already be created. New capacity providers can be created with the  CreateCapacityProvider API operation.\nTo use a Fargate capacity provider, specify either the FARGATE or FARGATE_SPOT capacity providers. The Fargate capacity providers are available to all accounts and only need to be associated with a cluster to be used.\nThe  PutClusterCapacityProviders API operation is used to update the list of available capacity providers for a cluster after the cluster is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "deploymentConfiguration": {
+            "Description": "Optional deployment parameters that control how many tasks run during the deployment and the ordering of stopping and starting tasks.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "networkConfiguration": {
+            "Description": "An object representing the network configuration for the service.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "placementConstraints": {
+            "Description": "An array of task placement constraint objects to update the service to use. If no value is specified, the existing placement constraints for the service will remain unchanged. If this value is specified, it will override any existing placement constraints defined for the service. To remove all existing placement constraints, specify an empty array.\nYou can specify a maximum of 10 constraints for each task. This limit includes constraints in the task definition and those specified at runtime.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "placementStrategy": {
+            "Description": "The task placement strategy objects to update the service to use. If no value is specified, the existing placement strategy for the service will remain unchanged. If this value is specified, it will override the existing placement strategy defined for the service. To remove an existing placement strategy, specify an empty object.\nYou can specify a maximum of five strategy rules for each service.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "platformVersion": {
+            "Description": "The platform version that your tasks in the service run on. A platform version is only specified for tasks using the Fargate launch type. If a platform version is not specified, the LATEST platform version is used. For more information, see Fargate Platform Versions in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "forceNewDeployment": {
+            "Description": "Determines whether to force a new deployment of the service. By default, deployments aren't forced. You can use this option to start a new deployment with no service definition changes. For example, you can update a service's tasks to use a newer Docker image with the same image/tag combination (my_image:latest ) or to roll Fargate tasks onto a newer platform version.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "healthCheckGracePeriodSeconds": {
+            "Description": "The period of time, in seconds, that the Amazon ECS service scheduler ignores unhealthy Elastic Load Balancing target health checks after a task has first started. This is only valid if your service is configured to use a load balancer. If your service's tasks take a while to start and respond to Elastic Load Balancing health checks, you can specify a health check grace period of up to 2,147,483,647 seconds. During that time, the Amazon ECS service scheduler ignores the Elastic Load Balancing health check status. This grace period can prevent the ECS service scheduler from marking tasks as unhealthy and stopping them before they have time to come up.",
+            "Type": "integer",
+            "Required": false
+        },
+        "enableExecuteCommand": {
+            "Description": "If true, this enables execute command functionality on all task containers.\nIf you do not want to override the value that was set when the service was created, you can set this to null when performing this action.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableECSManagedTags": {
+            "Description": "Determines whether to turn on Amazon ECS managed tags for the tasks in the service. For more information, see Tagging Your Amazon ECS Resources in the Amazon Elastic Container Service Developer Guide .\nOnly tasks launched after the update will reflect the update. To update the tags on all tasks, set forceNewDeployment to true, so that Amazon ECS starts new tasks with the updated tags.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "loadBalancers": {
+            "Description": "A list of Elastic Load Balancing load balancer objects. It contains the load balancer name, the container name, and the container port to access from the load balancer. The container name is as it appears in a container definition.\nWhen you add, update, or remove a load balancer configuration, Amazon ECS starts new tasks with the updated Elastic Load Balancing configuration, and then stops the old tasks when the new tasks are running.\nFor services that use rolling updates, you can add, update, or remove Elastic Load Balancing target groups. You can update from a single target group to multiple target groups and from multiple target groups to a single target group.\nFor services that use blue/green deployments, you can update Elastic Load Balancing target groups by using `` CreateDeployment `` through CodeDeploy. Note that multiple target groups are not supported for blue/green deployments. For more information see Register multiple target groups with a service in the Amazon Elastic Container Service Developer Guide .\nFor services that use the external deployment controller, you can add, update, or remove load balancers by using CreateTaskSet. Note that multiple target groups are not supported for external deployments. For more information see Register multiple target groups with a service in the Amazon Elastic Container Service Developer Guide .\nYou can remove existing loadBalancers by passing an empty list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "propagateTags": {
+            "Description": "Determines whether to propagate the tags from the task definition or the service to the task. If no value is specified, the tags aren't propagated.\nOnly tasks launched after the update will reflect the update. To update the tags on all tasks, set forceNewDeployment to true, so that Amazon ECS starts new tasks with the updated tags.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceRegistries": {
+            "Description": "The details for the service discovery registries to assign to this service. For more information, see Service Discovery .\nWhen you add, update, or remove the service registries configuration, Amazon ECS starts new tasks with the updated service registries configuration, and then stops the old tasks when the new tasks are running.\nYou can remove existing serviceRegistries by passing an empty list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_service_primary_task_set": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service that the task set exists in.",
+            "Type": "string",
+            "Required": true
+        },
+        "service": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the service that the task set exists in.",
+            "Type": "string",
+            "Required": true
+        },
+        "primaryTaskSet": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the task set to set as the primary task set in the deployment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_task_set": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the service that the task set is found in.",
+            "Type": "string",
+            "Required": true
+        },
+        "service": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the service that the task set is found in.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskSet": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the task set to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "scale": {
+            "Description": "A floating-point percentage of the desired number of tasks to place and keep running in the task set.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster to use when filtering the ListTasks results. If you do not specify a cluster, the default cluster is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerInstance": {
+            "Description": "The container instance ID or full ARN of the container instance to use when filtering the ListTasks results. Specifying a containerInstance limits the results to tasks that belong to that container instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "family": {
+            "Description": "The name of the task definition family to use when filtering the ListTasks results. Specifying a family limits the results to tasks that belong to that family.",
+            "Type": "string",
+            "Required": false
+        },
+        "startedBy": {
+            "Description": "The startedBy value to filter the task results with. Specifying a startedBy value limits the results to tasks that were started with that value.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of the service to use when filtering the ListTasks results. Specifying a serviceName limits the results to tasks that belong to that service.",
+            "Type": "string",
+            "Required": false
+        },
+        "desiredStatus": {
+            "Description": "The task desired status to use when filtering the ListTasks results. Specifying a desiredStatus of STOPPED limits the results to tasks that Amazon ECS has set the desired status to STOPPED. This can be useful for debugging tasks that aren't starting properly or have died or finished. The default status filter is RUNNING, which shows tasks that Amazon ECS has set the desired status to RUNNING .",
+            "Type": "string",
+            "Required": false
+        },
+        "launchType": {
+            "Description": "The launch type to use when filtering the ListTasks results.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "cluster": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the cluster that hosts the task or tasks to describe. If you do not specify a cluster, the default cluster is assumed. This parameter is required if the task or tasks you are describing were launched in any cluster other than the default cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "tasks": {
+            "Description": "A list of up to 100 task IDs or full ARN entries.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "include": {
+            "Description": "Specifies whether you want to see the resource tags for the task. If TAGS is specified, the tags are included in the response. If this field is omitted, tags aren't included in the response.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

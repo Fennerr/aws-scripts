@@ -1,0 +1,1287 @@
+{
+    "add_facet_to_object": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where the object resides. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaFacet": {
+            "Description": "Identifiers for the facet that you are adding to the object. See  SchemaFacet for details.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ObjectAttributeList": {
+            "Description": "Attributes on the facet that you are adding to the object.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ObjectReference": {
+            "Description": "A reference to the object you are adding the specified facet to.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "apply_schema": {
+        "PublishedSchemaArn": {
+            "Description": "Published schema Amazon Resource Name (ARN) that needs to be copied. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory into which the schema is copied. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_object": {
+        "DirectoryArn": {
+            "Description": "Amazon Resource Name (ARN) that is associated with the  Directory where both objects reside. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ParentReference": {
+            "Description": "The parent object reference.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ChildReference": {
+            "Description": "The child object reference to be attached to the object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LinkName": {
+            "Description": "The link name with which the child object is attached to the parent.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_policy": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where both objects reside. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyReference": {
+            "Description": "The reference that is associated with the policy object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ObjectReference": {
+            "Description": "The reference that identifies the object to which the policy will be attached.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "attach_to_index": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) of the directory where the object and index exist.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexReference": {
+            "Description": "A reference to the index that you are attaching the object to.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TargetReference": {
+            "Description": "A reference to the object that you are attaching to the index.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "attach_typed_link": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) of the directory where you want to attach the typed link.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceObjectReference": {
+            "Description": "Identifies the source object that the typed link will attach to.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TargetObjectReference": {
+            "Description": "Identifies the target object that the typed link will attach to.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TypedLinkFacet": {
+            "Description": "Identifies the typed link facet that is associated with the typed link.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Attributes": {
+            "Description": "A set of attributes that are associated with the typed link.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_read": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Operations": {
+            "Description": "A list of operations that are part of the batch.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ConsistencyLevel": {
+            "Description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "batch_write": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Operations": {
+            "Description": "A list of operations that are part of the batch.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_directory": {
+        "Name": {
+            "Description": "The name of the  Directory. Should be unique per account, per region.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) of the published schema that will be copied into the data  Directory. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_facet": {
+        "SchemaArn": {
+            "Description": "The schema ARN in which the new  Facet will be created. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the  Facet, which is unique for a given schema.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "The attributes that are associated with the  Facet .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ObjectType": {
+            "Description": "Specifies whether a given object created from this facet is of type node, leaf node, policy or index.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "FacetStyle": {
+            "Description": "There are two different styles that you can define on any given facet, Static and Dynamic . For static facets, all attributes must be defined in the schema. For dynamic facets, attributes can be defined during data plane operations.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_index": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory where the index should be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "OrderedIndexedAttributeList": {
+            "Description": "Specifies the attributes that should be indexed on. Currently only a single attribute is supported.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "IsUnique": {
+            "Description": "Indicates whether the attribute that is being indexed has unique values or not.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "ParentReference": {
+            "Description": "A reference to the parent object that contains the index object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LinkName": {
+            "Description": "The name of the link between the parent object and the index object.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_object": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory in which the object will be created. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaFacets": {
+            "Description": "A list of schema facets to be associated with the object. Do not provide minor version components. See  SchemaFacet for details.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ObjectAttributeList": {
+            "Description": "The attribute map whose attribute ARN contains the key and attribute value as the map value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ParentReference": {
+            "Description": "If specified, the parent reference to which this object will be attached.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LinkName": {
+            "Description": "The name of link that is used to attach this object to a parent.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_schema": {
+        "Name": {
+            "Description": "The name that is associated with the schema. This is unique to each account and in each region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_typed_link_facet": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Facet": {
+            "Description": "[REQUIRED]\n\nFacet structure that is associated with the typed link facet.\n\nName (string)[REQUIRED]The unique name of the typed link facet.\n\nAttributes (list)[REQUIRED]A set of key-value pairs associated with the typed link. Typed link attributes are used when you have data values that are related to the link itself, and not to one of the two objects being linked. Identity attributes also serve to distinguish the link from others of the same type between the same objects.\n\n(dict) --A typed link attribute definition.\n\nName (string)[REQUIRED]The unique name of the typed link attribute.\n\nType (string)[REQUIRED]The type of the attribute.\n\nDefaultValue (dict) --The default value of the attribute (if configured).\n\nStringValue (string) --A string data value.\n\nBinaryValue (bytes) --A binary data value.\n\nBooleanValue (boolean) --A Boolean data value.\n\nNumberValue (string) --A number data value.\n\nDatetimeValue (datetime) --A date and time value.\n\n\n\nIsImmutable (boolean) --Whether the attribute is mutable or not.\n\nRules (dict) --Validation rules that are attached to the attribute definition.\n\n(string) --\n(dict) --Contains an Amazon Resource Name (ARN) and parameters that are associated with the rule.\n\nType (string) --The type of attribute validation rule.\n\nParameters (dict) --The minimum and maximum parameters that are associated with the rule.\n\n(string) --\n(string) --\n\n\n\n\n\n\n\n\n\n\nRequiredBehavior (string)[REQUIRED]The required behavior of the TypedLinkAttributeDefinition .\n\n\n\n\n\nIdentityAttributeOrder (list)[REQUIRED]The set of attributes that distinguish links made from this facet from each other, in the order of significance. Listing typed links can filter on the values of these attributes. See  ListOutgoingTypedLinks and  ListIncomingTypedLinks for details.\n\n(string) --\n\n\n\n",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_directory": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_facet": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Facet. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the facet to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_object": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where the object resides. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "A reference that identifies the object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_schema": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) of the development schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_typed_link_facet": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The unique name of the typed link facet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_from_index": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) of the directory the index and object exist in.",
+            "Type": "string",
+            "Required": true
+        },
+        "IndexReference": {
+            "Description": "A reference to the index object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "TargetReference": {
+            "Description": "A reference to the object being detached from the index.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "detach_object": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where objects reside. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ParentReference": {
+            "Description": "The parent reference from which the object with the specified link name is detached.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LinkName": {
+            "Description": "The link name associated with the object that needs to be detached.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_policy": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where both objects reside. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyReference": {
+            "Description": "Reference that identifies the policy object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ObjectReference": {
+            "Description": "Reference that identifies the object whose policy object will be detached.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "detach_typed_link": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) of the directory where you want to detach the typed link.",
+            "Type": "string",
+            "Required": true
+        },
+        "TypedLinkSpecifier": {
+            "Description": "Used to accept a typed link specifier as input.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "disable_directory": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory to disable.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_directory": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory to enable.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_applied_schema_version": {
+        "SchemaArn": {
+            "Description": "The ARN of the applied schema.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_directory": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_facet": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Facet. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the facet to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_link_attributes": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the Directory where the typed link resides. For more information, see  arns or Typed Links .",
+            "Type": "string",
+            "Required": true
+        },
+        "TypedLinkSpecifier": {
+            "Description": "Allows a typed link specifier to be accepted as input.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AttributeNames": {
+            "Description": "A list of attribute names whose values will be retrieved.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ConsistencyLevel": {
+            "Description": "The consistency level at which to retrieve the attributes on a typed link.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_object_attributes": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where the object resides.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "Reference that identifies the object whose attributes will be retrieved.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ConsistencyLevel": {
+            "Description": "The consistency level at which to retrieve the attributes on an object.",
+            "Type": "string",
+            "Required": false
+        },
+        "SchemaFacet": {
+            "Description": "Identifier for the facet whose attributes will be retrieved. See  SchemaFacet for details.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AttributeNames": {
+            "Description": "List of attribute names whose values will be retrieved.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_object_information": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory being retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "A reference to the object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ConsistencyLevel": {
+            "Description": "The consistency level at which to retrieve the object information.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_schema_as_json": {
+        "SchemaArn": {
+            "Description": "The ARN of the schema to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_typed_link_facet_information": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The unique name of the typed link facet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_applied_schema_arns": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory you are listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaArn": {
+            "Description": "The response for ListAppliedSchemaArns when this parameter is used will list all minor version ARNs for a major version.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_attached_indices": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetReference": {
+            "Description": "A reference to the object that has indices attached.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "The consistency level to use for this operation.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_development_schema_arns": {
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_directories": {
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "state": {
+            "Description": "The state of the directories in the list. Can be either Enabled, Disabled, or Deleted.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_facet_attributes": {
+        "SchemaArn": {
+            "Description": "The ARN of the schema where the facet resides.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the facet whose attributes will be retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_facet_names": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) to retrieve facet names from.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_incoming_typed_links": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) of the directory where you want to list the typed links.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "Reference that identifies the object whose attributes will be listed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "FilterAttributeRanges": {
+            "Description": "Provides range filters for multiple attributes. When providing ranges to typed link selection, any inexact ranges must be specified at the end. Any attributes that do not have a range specified are presumed to match the entire range.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterTypedLink": {
+            "Description": "Filters are interpreted in the order of the attributes on the typed link facet, not the order in which they are supplied to any API calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "The consistency level to execute the request at.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_index": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory that the index exists in.",
+            "Type": "string",
+            "Required": true
+        },
+        "RangesOnIndexedValues": {
+            "Description": "Specifies the ranges of indexed values that you want to query.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IndexReference": {
+            "Description": "The reference to the index to list.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects in a single page to retrieve from the index during a request. For more information, see Amazon Cloud Directory Limits .",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "The consistency level to execute the request at.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_managed_schema_arns": {
+        "SchemaArn": {
+            "Description": "The response for ListManagedSchemaArns. When this parameter is used, all minor version ARNs for a major version are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_object_attributes": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where the object resides. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "The reference that identifies the object whose attributes will be listed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be retrieved in a single call. This is an approximate number.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
+            "Type": "string",
+            "Required": false
+        },
+        "FacetFilter": {
+            "Description": "Used to filter the list of object attributes that are associated with a certain facet.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_object_children": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where the object resides. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "The reference that identifies the object for which child objects are being listed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be retrieved in a single call. This is an approximate number.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_object_parent_paths": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory to which the parent path applies.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "The reference that identifies the object whose parent paths are listed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be retrieved in a single call. This is an approximate number.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_object_parents": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where the object resides. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "The reference that identifies the object for which parent objects are being listed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be retrieved in a single call. This is an approximate number.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
+            "Type": "string",
+            "Required": false
+        },
+        "IncludeAllLinksToEachParent": {
+            "Description": "When set to True, returns all  ListObjectParentsResponse$ParentLinks . There could be multiple links between a parent-child pair.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_object_policies": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where objects reside. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "Reference that identifies the object for which policies will be listed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be retrieved in a single call. This is an approximate number.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_outgoing_typed_links": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) of the directory where you want to list the typed links.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "A reference that identifies the object whose attributes will be listed.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "FilterAttributeRanges": {
+            "Description": "Provides range filters for multiple attributes. When providing ranges to typed link selection, any inexact ranges must be specified at the end. Any attributes that do not have a range specified are presumed to match the entire range.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterTypedLink": {
+            "Description": "Filters are interpreted in the order of the attributes defined on the typed link facet, not the order they are supplied to any API calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "The consistency level to execute the request at.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_policy_attachments": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where objects reside. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyReference": {
+            "Description": "The reference that identifies the policy object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be retrieved in a single call. This is an approximate number.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ConsistencyLevel": {
+            "Description": "Represents the manner and timing in which the successful write or update of an object is reflected in a subsequent read operation of that same object.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_published_schema_arns": {
+        "SchemaArn": {
+            "Description": "The response for ListPublishedSchemaArns when this parameter is used will list all minor version ARNs for a major version.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token. This is for future use. Currently pagination is not supported for tagging.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The MaxResults parameter sets the maximum number of results returned in a single page. This is for future use and is not supported currently.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_typed_link_facet_attributes": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The unique name of the typed link facet.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_typed_link_facet_names": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "lookup_policy": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "Reference that identifies the object whose policies will be looked up.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be retrieved in a single call. This is an approximate number.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "publish_schema": {
+        "DevelopmentSchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the development schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Version": {
+            "Description": "The major version under which the schema will be published. Schemas have both a major and minor version associated with them.",
+            "Type": "string",
+            "Required": true
+        },
+        "MinorVersion": {
+            "Description": "The minor version under which the schema will be published. This parameter is recommended. Schemas have both a major and minor version associated with them.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The new name under which the schema will be published. If this is not provided, the development schema is considered.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_schema_from_json": {
+        "SchemaArn": {
+            "Description": "The ARN of the schema to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Document": {
+            "Description": "The replacement JSON schema.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_facet_from_object": {
+        "DirectoryArn": {
+            "Description": "The ARN of the directory in which the object resides.",
+            "Type": "string",
+            "Required": true
+        },
+        "SchemaFacet": {
+            "Description": "The facet to remove. See  SchemaFacet for details.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ObjectReference": {
+            "Description": "A reference to the object to remove the facet from.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tag key-value pairs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource. Tagging is only supported for directories.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Keys of the tag that need to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_facet": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Facet. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the facet.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeUpdates": {
+            "Description": "List of attributes that need to be updated in a given schema  Facet. Each attribute is followed by AttributeAction, which specifies the type of update operation to perform.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ObjectType": {
+            "Description": "The object type that is associated with the facet. See  CreateFacetRequest$ObjectType for more details.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_link_attributes": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the Directory where the updated typed link resides. For more information, see  arns or Typed Links .",
+            "Type": "string",
+            "Required": true
+        },
+        "TypedLinkSpecifier": {
+            "Description": "Allows a typed link specifier to be accepted as input.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AttributeUpdates": {
+            "Description": "The attributes update structure.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_object_attributes": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory where the object resides. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "The reference that identifies the object.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AttributeUpdates": {
+            "Description": "The attributes update structure.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_schema": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) of the development schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the schema.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_typed_link_facet": {
+        "SchemaArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the schema. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The unique name of the typed link facet.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeUpdates": {
+            "Description": "Attributes update structure.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "IdentityAttributeOrder": {
+            "Description": "The order of identity attributes for the facet, from most significant to least significant. The ability to filter typed links considers the order that the attributes are defined on the typed link facet. When providing ranges to a typed link selection, any inexact ranges must be specified at the end. Any attributes that do not have a range specified are presumed to match the entire range. Filters are interpreted in the order of the attributes on the typed link facet, not the order in which they are supplied to any API calls. For more information about identity attributes, see Typed Links .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "upgrade_applied_schema": {
+        "PublishedSchemaArn": {
+            "Description": "The revision of the published schema to upgrade the directory to.",
+            "Type": "string",
+            "Required": true
+        },
+        "DirectoryArn": {
+            "Description": "The ARN for the directory to which the upgraded schema will be applied.",
+            "Type": "string",
+            "Required": true
+        },
+        "DryRun": {
+            "Description": "Used for testing whether the major version schemas are backward compatible or not. If schema compatibility fails, an exception would be thrown else the call would succeed but no changes will be saved. This parameter is optional.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "upgrade_published_schema": {
+        "DevelopmentSchemaArn": {
+            "Description": "The ARN of the development schema with the changes used for the upgrade.",
+            "Type": "string",
+            "Required": true
+        },
+        "PublishedSchemaArn": {
+            "Description": "The ARN of the published schema to be upgraded.",
+            "Type": "string",
+            "Required": true
+        },
+        "MinorVersion": {
+            "Description": "Identifies the minor version of the published schema that will be created. This parameter is NOT optional.",
+            "Type": "string",
+            "Required": true
+        },
+        "DryRun": {
+            "Description": "Used for testing whether the Development schema provided is backwards compatible, or not, with the publish schema provided by the user to be upgraded. If schema compatibility fails, an exception would be thrown else the call would succeed. This parameter is optional and defaults to false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "DirectoryArn": {
+            "Description": "The Amazon Resource Name (ARN) that is associated with the  Directory. For more information, see  arns .",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectReference": {
+            "Description": "Reference that identifies the object whose policies will be looked up.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,61 @@
+{
+    "batch_get_record": {
+        "Identifiers": {
+            "Description": "A list of FeatureGroup names, with their corresponding RecordIdentifier value, and Feature name that have been requested to be retrieved in batch.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_record": {
+        "FeatureGroupName": {
+            "Description": "The name of the feature group to delete the record from.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecordIdentifierValueAsString": {
+            "Description": "The value for the RecordIdentifier that uniquely identifies the record, in string format.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventTime": {
+            "Description": "Timestamp indicating when the deletion event occurred. EventTime can be used to query data at a certain point in time.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_record": {
+        "FeatureGroupName": {
+            "Description": "The name of the feature group in which you want to put the records.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecordIdentifierValueAsString": {
+            "Description": "The value that corresponds to RecordIdentifier type and uniquely identifies the record in the FeatureGroup .",
+            "Type": "string",
+            "Required": true
+        },
+        "FeatureNames": {
+            "Description": "List of names of Features to be retrieved. If not specified, the latest value for all the Features are returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_record": {
+        "FeatureGroupName": {
+            "Description": "The name of the feature group that you want to insert the record into.",
+            "Type": "string",
+            "Required": true
+        },
+        "Record": {
+            "Description": "List of FeatureValues to be inserted. This will be a full over-write. If you only want to update few of the feature values, do the following:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    }
+}

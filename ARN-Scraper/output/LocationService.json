@@ -1,0 +1,1010 @@
+{
+    "associate_tracker_consumer": {
+        "ConsumerArn": {
+            "Description": "The Amazon Resource Name (ARN) for the geofence collection to be associated to tracker resource. Used when you need to specify a resource across all AWS.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TrackerName": {
+            "Description": "The name of the tracker resource to be associated with a geofence collection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_delete_device_position_history": {
+        "DeviceIds": {
+            "Description": "Devices whose position history you want to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "TrackerName": {
+            "Description": "The name of the tracker resource to delete the device position history from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_delete_geofence": {
+        "CollectionName": {
+            "Description": "The geofence collection storing the geofences to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "GeofenceIds": {
+            "Description": "The batch of geofences to be deleted.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_evaluate_geofences": {
+        "CollectionName": {
+            "Description": "The geofence collection used in evaluating the position of devices against its geofences.",
+            "Type": "string",
+            "Required": true
+        },
+        "DevicePositionUpdates": {
+            "Description": "Contains device details for each device to be evaluated against the given geofence collection.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_get_device_position": {
+        "DeviceIds": {
+            "Description": "Devices whose position you want to retrieve.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "TrackerName": {
+            "Description": "The tracker resource retrieving the device position.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_put_geofence": {
+        "CollectionName": {
+            "Description": "The geofence collection storing the geofences.",
+            "Type": "string",
+            "Required": true
+        },
+        "Entries": {
+            "Description": "The batch of geofences to be stored in a geofence collection.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_update_device_position": {
+        "TrackerName": {
+            "Description": "The name of the tracker resource to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Updates": {
+            "Description": "Contains the position update details for each device.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "calculate_route": {
+        "CalculatorName": {
+            "Description": "The name of the route calculator resource that you want to use to calculate the route.",
+            "Type": "string",
+            "Required": true
+        },
+        "CarModeOptions": {
+            "Description": "Specifies route preferences when traveling by Car, such as avoiding routes that use ferries or tolls.\nRequirements: TravelMode must be specified as Car .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DepartNow": {
+            "Description": "Sets the time of departure as the current time. Uses the current time to calculate a route. Otherwise, the best time of day to travel with the best traffic conditions is used to calculate the route.\nDefault Value: false\nValid Values: false | true",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DeparturePosition": {
+            "Description": "The start position for the route. Defined in World Geodetic System (WGS 84) format: [longitude, latitude] .\nValid Values: [-180 to 180,-90 to 90]",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "DepartureTime": {
+            "Description": "Specifies the desired time of departure. Uses the given time to calculate the route. Otherwise, the best time of day to travel with the best traffic conditions is used to calculate the route.",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "DestinationPosition": {
+            "Description": "The finish position for the route. Defined in World Geodetic System (WGS 84) format: [longitude, latitude] .\nValid Values: [-180 to 180,-90 to 90]",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "DistanceUnit": {
+            "Description": "Set the unit system to specify the distance.\nDefault Value: Kilometers",
+            "Type": "string",
+            "Required": false
+        },
+        "IncludeLegGeometry": {
+            "Description": "Set to include the geometry details in the result for each path between a pair of positions.\nDefault Value: false\nValid Values: false | true",
+            "Type": "boolean",
+            "Required": false
+        },
+        "TravelMode": {
+            "Description": "Specifies the mode of transport when calculating a route. Used in estimating the speed of travel and road compatibility. You can choose Car, Truck, or Walking as options for the TravelMode .\nThe TravelMode you specify also determines how you specify route preferences:\nDefault Value: Car",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "TruckModeOptions": {
+            "Description": "Specifies route preferences when traveling by Truck, such as avoiding routes that use ferries or tolls, and truck specifications to consider when choosing an optimal road.\nRequirements: TravelMode must be specified as Truck .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "WaypointPositions": {
+            "Description": "Specifies an ordered list of up to 23 intermediate positions to include along a route between the departure position and destination position.\nValid Values: [-180 to 180,-90 to 90]",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "calculate_route_matrix": {
+        "CalculatorName": {
+            "Description": "The name of the route calculator resource that you want to use to calculate the route matrix.",
+            "Type": "string",
+            "Required": true
+        },
+        "CarModeOptions": {
+            "Description": "Specifies route preferences when traveling by Car, such as avoiding routes that use ferries or tolls.\nRequirements: TravelMode must be specified as Car .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DepartNow": {
+            "Description": "Sets the time of departure as the current time. Uses the current time to calculate the route matrix. You can't set both DepartureTime and DepartNow. If neither is set, the best time of day to travel with the best traffic conditions is used to calculate the route matrix.\nDefault Value: false\nValid Values: false | true",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DeparturePositions": {
+            "Description": "The list of departure (origin) positions for the route matrix. An array of points, each of which is itself a 2-value array defined in WGS 84 format: [longitude, latitude]. For example, [-123.115, 49.285] .\nValid Values: [-180 to 180,-90 to 90]",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DepartureTime": {
+            "Description": "Specifies the desired time of departure. Uses the given time to calculate the route matrix. You can't set both DepartureTime and DepartNow. If neither is set, the best time of day to travel with the best traffic conditions is used to calculate the route matrix.",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "DestinationPositions": {
+            "Description": "The list of destination positions for the route matrix. An array of points, each of which is itself a 2-value array defined in WGS 84 format: [longitude, latitude]. For example, [-122.339, 47.615]\nValid Values: [-180 to 180,-90 to 90]",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DistanceUnit": {
+            "Description": "Set the unit system to specify the distance.\nDefault Value: Kilometers",
+            "Type": "string",
+            "Required": false
+        },
+        "TravelMode": {
+            "Description": "Specifies the mode of transport when calculating a route. Used in estimating the speed of travel and road compatibility.\nThe TravelMode you specify also determines how you specify route preferences:\nDefault Value: Car",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "TruckModeOptions": {
+            "Description": "Specifies route preferences when traveling by Truck, such as avoiding routes that use ferries or tolls, and truck specifications to consider when choosing an optimal road.\nRequirements: TravelMode must be specified as Truck .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_geofence_collection": {
+        "CollectionName": {
+            "Description": "A custom name for the geofence collection.\nRequirements:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Description": {
+            "Description": "An optional description for the geofence collection.",
+            "Type": "string",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "A key identifier for an AWS KMS customer managed key . Enter a key ID, key ARN, alias name, or alias ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlanDataSource": {
+            "Description": "This parameter is no longer used.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Applies one or more tags to the geofence collection. A tag is a key-value pair helps manage, identify, search, and filter your resources by labelling them.\nFormat: \"key\" : \"value\"\nRestrictions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_map": {
+        "Configuration": {
+            "Description": "Specifies the map style selected from an available data provider.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "An optional description for the map resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "MapName": {
+            "Description": "The name for the map resource.\nRequirements:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Applies one or more tags to the map resource. A tag is a key-value pair helps manage, identify, search, and filter your resources by labelling them.\nFormat: \"key\" : \"value\"\nRestrictions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_place_index": {
+        "DataSource": {
+            "Description": "Specifies the geospatial data provider for the new place index.\nValid values include:\nFor additional information, see Data providers on the Amazon Location Service Developer Guide .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DataSourceConfiguration": {
+            "Description": "Specifies the data storage option requesting Places.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "The optional description for the place index resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "IndexName": {
+            "Description": "The name of the place index resource.\nRequirements:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Applies one or more tags to the place index resource. A tag is a key-value pair that helps you manage, identify, search, and filter your resources.\nFormat: \"key\" : \"value\"\nRestrictions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_route_calculator": {
+        "CalculatorName": {
+            "Description": "The name of the route calculator resource.\nRequirements:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DataSource": {
+            "Description": "Specifies the data provider of traffic and road network data.\nValid values include:\nFor additional information, see Data providers on the Amazon Location Service Developer Guide .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Description": {
+            "Description": "The optional description for the route calculator resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Applies one or more tags to the route calculator resource. A tag is a key-value pair helps manage, identify, search, and filter your resources by labelling them.\nFormat: \"key\" : \"value\"\nRestrictions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {}
+            ]
+        }
+    },
+    "create_tracker": {
+        "Description": {
+            "Description": "An optional description for the tracker resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "A key identifier for an AWS KMS customer managed key . Enter a key ID, key ARN, alias name, or alias ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "PositionFiltering": {
+            "Description": "Specifies the position filtering for the tracker resource.\nValid values:\nThis field is optional. If not specified, the default value is TimeBased .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlanDataSource": {
+            "Description": "This parameter is no longer used.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Applies one or more tags to the tracker resource. A tag is a key-value pair helps manage, identify, search, and filter your resources by labelling them.\nFormat: \"key\" : \"value\"\nRestrictions:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "TrackerName": {
+            "Description": "The name for the tracker resource.\nRequirements:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "delete_geofence_collection": {
+        "CollectionName": {
+            "Description": "The name of the geofence collection to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_map": {
+        "MapName": {
+            "Description": "The name of the map resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_place_index": {
+        "IndexName": {
+            "Description": "The name of the place index resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_route_calculator": {
+        "CalculatorName": {
+            "Description": "The name of the route calculator resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_tracker": {
+        "TrackerName": {
+            "Description": "The name of the tracker resource to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_geofence_collection": {
+        "CollectionName": {
+            "Description": "The name of the geofence collection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_map": {
+        "MapName": {
+            "Description": "The name of the map resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_place_index": {
+        "IndexName": {
+            "Description": "The name of the place index resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_route_calculator": {
+        "CalculatorName": {
+            "Description": "The name of the route calculator resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_tracker": {
+        "TrackerName": {
+            "Description": "The name of the tracker resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_tracker_consumer": {
+        "ConsumerArn": {
+            "Description": "The Amazon Resource Name (ARN) for the geofence collection to be disassociated from the tracker resource. Used when you need to specify a resource across all AWS.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TrackerName": {
+            "Description": "The name of the tracker resource to be dissociated from the consumer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_device_position": {
+        "DeviceId": {
+            "Description": "The device whose position you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrackerName": {
+            "Description": "The tracker resource receiving the position update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_device_position_history": {
+        "DeviceId": {
+            "Description": "The device whose position history you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "EndTimeExclusive": {
+            "Description": "Specify the end time for the position history in ISO 8601 format: YYYY-MM-DDThh:mm:ss.sssZ. By default, the value will be the time that the request is made.\nRequirement:",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "MaxResults": {
+            "Description": "An optional limit for the number of device positions returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTimeInclusive": {
+            "Description": "Specify the start time for the position history in ISO 8601 format: YYYY-MM-DDThh:mm:ss.sssZ. By default, the value will be 24 hours prior to the time that the request is made.\nRequirement:",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "TrackerName": {
+            "Description": "The tracker resource receiving the request for the device position history.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_geofence": {
+        "CollectionName": {
+            "Description": "The geofence collection storing the target geofence.",
+            "Type": "string",
+            "Required": true
+        },
+        "GeofenceId": {
+            "Description": "The geofence you're retrieving details for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_map_glyphs": {
+        "FontStack": {
+            "Description": "A comma-separated list of fonts to load glyphs from in order of preference. For example, Noto Sans Regular, Arial Unicode .\nValid fonts stacks for Esri styles:\nValid font stacks for HERE Technologies styles:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "FontUnicodeRange": {
+            "Description": "A Unicode range of characters to download glyphs for. Each response will contain 256 characters. For example, 0\u2013255 includes all characters from range U+0000 to 00FF. Must be aligned to multiples of 256.",
+            "Type": "string",
+            "Required": true
+        },
+        "MapName": {
+            "Description": "The map resource associated with the glyph \ufb01le.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_map_sprites": {
+        "FileName": {
+            "Description": "The name of the sprite \ufb01le. Use the following \ufb01le names for the sprite sheet:\nFor the JSON document contain image offsets. Use the following \ufb01le names:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "MapName": {
+            "Description": "The map resource associated with the sprite \ufb01le.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_map_style_descriptor": {
+        "MapName": {
+            "Description": "The map resource to retrieve the style descriptor from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_map_tile": {
+        "MapName": {
+            "Description": "The map resource to retrieve the map tiles from.",
+            "Type": "string",
+            "Required": true
+        },
+        "X": {
+            "Description": "The X axis value for the map tile.",
+            "Type": "string",
+            "Required": true
+        },
+        "Y": {
+            "Description": "The Y axis value for the map tile.",
+            "Type": "string",
+            "Required": true
+        },
+        "Z": {
+            "Description": "The zoom value for the map tile.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_device_positions": {
+        "MaxResults": {
+            "Description": "An optional limit for the number of entries returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        },
+        "TrackerName": {
+            "Description": "The tracker resource containing the requested devices.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_geofence_collections": {
+        "MaxResults": {
+            "Description": "An optional limit for the number of resources returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_geofences": {
+        "CollectionName": {
+            "Description": "The name of the geofence collection storing the list of geofences.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "An optional limit for the number of geofences returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_maps": {
+        "MaxResults": {
+            "Description": "An optional limit for the number of resources returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_place_indexes": {
+        "MaxResults": {
+            "Description": "An optional limit for the maximum number of results returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_route_calculators": {
+        "MaxResults": {
+            "Description": "An optional maximum number of results returned in a single call.\nDefault Value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault Value: null",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose tags you want to retrieve.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "list_tracker_consumers": {
+        "MaxResults": {
+            "Description": "An optional limit for the number of resources returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        },
+        "TrackerName": {
+            "Description": "The tracker resource whose associated geofence collections you want to list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_trackers": {
+        "MaxResults": {
+            "Description": "An optional limit for the number of resources returned in a single call.\nDefault value: 100",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.\nDefault value: null",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_geofence": {
+        "CollectionName": {
+            "Description": "The geofence collection to store the geofence in.",
+            "Type": "string",
+            "Required": true
+        },
+        "GeofenceId": {
+            "Description": "An identifier for the geofence. For example, ExampleGeofence-1 .",
+            "Type": "string",
+            "Required": true
+        },
+        "Geometry": {
+            "Description": "Contains the details to specify the position of the geofence. Can be either a polygon or a circle. Including both will return a validation error.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "search_place_index_for_position": {
+        "IndexName": {
+            "Description": "The name of the place index resource you want to use for the search.",
+            "Type": "string",
+            "Required": true
+        },
+        "Language": {
+            "Description": "The preferred language used to return results. The value must be a valid BCP 47 language tag, for example, en for English.\nThis setting affects the languages used in the results, but not the results themselves. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.\nFor an example, we'll use the Greek language. You search for a location around Athens, Greece, with the language parameter set to en. The city in the results will most likely be returned as Athens .\nIf you set the language parameter to el, for Greek, then the city in the results will more likely be returned as \u0391\u03b8\u03ae\u03bd\u03b1 .\nIf the data provider does not have a value for Greek, the result will be in a language that the provider does support.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "An optional parameter. The maximum number of results returned per request.\nDefault value: 50",
+            "Type": "integer",
+            "Required": false
+        },
+        "Position": {
+            "Description": "Specifies the longitude and latitude of the position to query.\nThis parameter must contain a pair of numbers. The first number represents the X coordinate, or longitude; the second number represents the Y coordinate, or latitude.\nFor example, [-123.1174, 49.2847] represents a position with longitude -123.1174 and latitude 49.2847 .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "search_place_index_for_suggestions": {
+        "BiasPosition": {
+            "Description": "An optional parameter that indicates a preference for place suggestions that are closer to a specified position.\nIf provided, this parameter must contain a pair of numbers. The first number represents the X coordinate, or longitude; the second number represents the Y coordinate, or latitude.\nFor example, [-123.1174, 49.2847] represents the position with longitude -123.1174 and latitude 49.2847 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterBBox": {
+            "Description": "An optional parameter that limits the search results by returning only suggestions within a specified bounding box.\nIf provided, this parameter must contain a total of four consecutive numbers in two pairs. The first pair of numbers represents the X and Y coordinates (longitude and latitude, respectively) of the southwest corner of the bounding box; the second pair of numbers represents the X and Y coordinates (longitude and latitude, respectively) of the northeast corner of the bounding box.\nFor example, [-12.7935, -37.4835, -12.0684, -36.9542] represents a bounding box where the southwest corner has longitude -12.7935 and latitude -37.4835, and the northeast corner has longitude -12.0684 and latitude -36.9542 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterCountries": {
+            "Description": "An optional parameter that limits the search results by returning only suggestions within the provided list of countries.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "IndexName": {
+            "Description": "The name of the place index resource you want to use for the search.",
+            "Type": "string",
+            "Required": true
+        },
+        "Language": {
+            "Description": "The preferred language used to return results. The value must be a valid BCP 47 language tag, for example, en for English.\nThis setting affects the languages used in the results. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.\nFor an example, we'll use the Greek language. You search for Athens, Gr to get suggestions with the language parameter set to en. The results found will most likely be returned as Athens, Greece .\nIf you set the language parameter to el, for Greek, then the result found will more likely be returned as \u0391\u03b8\u03ae\u03bd\u03b1, \u0395\u03bb\u03bb\u03ac\u03b4\u03b1 .\nIf the data provider does not have a value for Greek, the result will be in a language that the provider does support.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "An optional parameter. The maximum number of results returned per request.\nThe default: 5",
+            "Type": "integer",
+            "Required": false
+        },
+        "Text": {
+            "Description": "The free-form partial text to use to generate place suggestions. For example, eiffel tow .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "search_place_index_for_text": {
+        "BiasPosition": {
+            "Description": "An optional parameter that indicates a preference for places that are closer to a specified position.\nIf provided, this parameter must contain a pair of numbers. The first number represents the X coordinate, or longitude; the second number represents the Y coordinate, or latitude.\nFor example, [-123.1174, 49.2847] represents the position with longitude -123.1174 and latitude 49.2847 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterBBox": {
+            "Description": "An optional parameter that limits the search results by returning only places that are within the provided bounding box.\nIf provided, this parameter must contain a total of four consecutive numbers in two pairs. The first pair of numbers represents the X and Y coordinates (longitude and latitude, respectively) of the southwest corner of the bounding box; the second pair of numbers represents the X and Y coordinates (longitude and latitude, respectively) of the northeast corner of the bounding box.\nFor example, [-12.7935, -37.4835, -12.0684, -36.9542] represents a bounding box where the southwest corner has longitude -12.7935 and latitude -37.4835, and the northeast corner has longitude -12.0684 and latitude -36.9542 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterCountries": {
+            "Description": "An optional parameter that limits the search results by returning only places that are in a specified list of countries.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "IndexName": {
+            "Description": "The name of the place index resource you want to use for the search.",
+            "Type": "string",
+            "Required": true
+        },
+        "Language": {
+            "Description": "The preferred language used to return results. The value must be a valid BCP 47 language tag, for example, en for English.\nThis setting affects the languages used in the results, but not the results themselves. If no language is specified, or not supported for a particular result, the partner automatically chooses a language for the result.\nFor an example, we'll use the Greek language. You search for Athens, Greece, with the language parameter set to en. The result found will most likely be returned as Athens .\nIf you set the language parameter to el, for Greek, then the result found will more likely be returned as \u0391\u03b8\u03ae\u03bd\u03b1 .\nIf the data provider does not have a value for Greek, the result will be in a language that the provider does support.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "An optional parameter. The maximum number of results returned per request.\nThe default: 50",
+            "Type": "integer",
+            "Required": false
+        },
+        "Text": {
+            "Description": "The address, name, city, or region to be used in the search in free-form text format. For example, 123 Any Street .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose tags you want to update.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "Applies one or more tags to specific resource. A tag is a key-value pair that helps you manage, identify, search, and filter your resources.\nFormat: \"key\" : \"value\"\nRestrictions:",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource from which you want to remove tags.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TagKeys": {
+            "Description": "The list of tag keys to remove from the specified resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_geofence_collection": {
+        "CollectionName": {
+            "Description": "The name of the geofence collection to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Updates the description for the geofence collection.",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlanDataSource": {
+            "Description": "This parameter is no longer used.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_map": {
+        "Description": {
+            "Description": "Updates the description for the map resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "MapName": {
+            "Description": "The name of the map resource to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_place_index": {
+        "DataSourceConfiguration": {
+            "Description": "Updates the data storage option for the place index resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "Updates the description for the place index resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "IndexName": {
+            "Description": "The name of the place index resource to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_route_calculator": {
+        "CalculatorName": {
+            "Description": "The name of the route calculator resource to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Updates the description for the route calculator resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_tracker": {
+        "Description": {
+            "Description": "Updates the description for the tracker resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "PositionFiltering": {
+            "Description": "Updates the position filtering for the tracker resource.\nValid values:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PricingPlan": {
+            "Description": "No longer used. If included, the only allowed value is RequestBasedUsage .",
+            "Type": "string",
+            "Required": false
+        },
+        "PricingPlanDataSource": {
+            "Description": "This parameter is no longer used.",
+            "Type": "string",
+            "Required": false
+        },
+        "TrackerName": {
+            "Description": "The name of the tracker resource to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

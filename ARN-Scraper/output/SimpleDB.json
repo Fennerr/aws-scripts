@@ -1,0 +1,167 @@
+{
+    "batch_delete_attributes": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain in which the attributes are being deleted.",
+            "Type": "string",
+            "Required": false
+        },
+        "Items": {
+            "Description": "[REQUIRED] A list of items on which to perform the operation.\n\n(dict) --\nName (string)[REQUIRED]\nAttributes (list) --\n(dict) --\nName (string)[REQUIRED] The name of the attribute.\nAlternateNameEncoding (string) --\nValue (string)[REQUIRED] The value of the attribute.\nAlternateValueEncoding (string) --\n\n\n\n\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "batch_put_attributes": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain in which the attributes are being stored.",
+            "Type": "string",
+            "Required": false
+        },
+        "Items": {
+            "Description": "[REQUIRED] A list of items on which to perform the operation.\n\n(dict) --\nName (string)[REQUIRED] The name of the replaceable item.\nAttributes (list)[REQUIRED] The list of attributes for a replaceable item.\n(dict) --\nName (string)[REQUIRED] The name of the replaceable attribute.\nValue (string)[REQUIRED] The value of the replaceable attribute.\nReplace (boolean)A flag specifying whether or not to replace the attribute/value pair or to add a new attribute/value pair. The default setting is false .\n\n\n\n\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_domain": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain to create. The name can range between 3 and 255 characters and can contain the following characters: a-z, A-Z, 0-9, '_', '-', and '.'.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_attributes": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain in which to perform the operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "ItemName": {
+            "Description": "[REQUIRED] The name of the item. Similar to rows on a spreadsheet, items represent individual objects that contain one or more value-attribute pairs.",
+            "Type": "string",
+            "Required": false
+        },
+        "Attributes": {
+            "Description": "A list of Attributes. Similar to columns on a spreadsheet, attributes represent categories of data that can be assigned to items.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Expected": {
+            "Description": "The update condition which, if specified, determines whether the specified attributes will be deleted or not. The update condition must be satisfied in order for this request to be processed and the attributes to be deleted.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_domain": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "domain_metadata": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain for which to display the metadata of.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_attributes": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain in which to perform the operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "ItemName": {
+            "Description": "[REQUIRED] The name of the item.",
+            "Type": "string",
+            "Required": false
+        },
+        "AttributeNames": {
+            "Description": "The names of the attributes.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ConsistentRead": {
+            "Description": "Determines whether or not strong consistency should be enforced when data is read from SimpleDB. If true , any data previously written to SimpleDB will be returned. Otherwise, results will be consistent eventually, and the client may not see data that was written immediately before your read.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_domains": {
+        "MaxNumberOfDomains": {
+            "Description": "The maximum number of domain names you want returned. The range is 1 to 100. The default setting is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A string informing Amazon SimpleDB where to start the next list of domain names.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_attributes": {
+        "DomainName": {
+            "Description": "[REQUIRED] The name of the domain in which to perform the operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "ItemName": {
+            "Description": "[REQUIRED] The name of the item.",
+            "Type": "string",
+            "Required": false
+        },
+        "Attributes": {
+            "Description": "[REQUIRED] The list of attributes.\n\n(dict) --\nName (string)[REQUIRED] The name of the replaceable attribute.\nValue (string)[REQUIRED] The value of the replaceable attribute.\nReplace (boolean)A flag specifying whether or not to replace the attribute/value pair or to add a new attribute/value pair. The default setting is false .\n\n\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Expected": {
+            "Description": "The update condition which, if specified, determines whether the specified attributes will be updated or not. The update condition must be satisfied in order for this request to be processed and the attributes to be updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "select": {
+        "SelectExpression": {
+            "Description": "[REQUIRED] The expression used to query the domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A string informing Amazon SimpleDB where to start the next list of ItemNames .",
+            "Type": "string",
+            "Required": false
+        },
+        "ConsistentRead": {
+            "Description": "Determines whether or not strong consistency should be enforced when data is read from SimpleDB. If true , any data previously written to SimpleDB will be returned. Otherwise, results will be consistent eventually, and the client may not see data that was written immediately before your read.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "SelectExpression": {
+            "Description": "[REQUIRED] The expression used to query the domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConsistentRead": {
+            "Description": "Determines whether or not strong consistency should be enforced when data is read from SimpleDB. If true , any data previously written to SimpleDB will be returned. Otherwise, results will be consistent eventually, and the client may not see data that was written immediately before your read.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

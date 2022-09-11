@@ -1,0 +1,536 @@
+{
+    "cancel_job": {
+        "jobId": {
+            "Description": "The Batch job ID of the job to cancel.",
+            "Type": "string",
+            "Required": true
+        },
+        "reason": {
+            "Description": "A message to attach to the job that explains the reason for canceling it. This message is returned by future  DescribeJobs operations on the job. This message is also recorded in the Batch activity logs.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_compute_environment": {
+        "computeEnvironmentName": {
+            "Description": "The name for your compute environment. It can be up to 128 letters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The type of the compute environment: MANAGED or UNMANAGED. For more information, see Compute Environments in the Batch User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "state": {
+            "Description": "The state of the compute environment. If the state is ENABLED, then the compute environment accepts jobs from a queue and can scale out automatically based on queues.\nIf the state is ENABLED, then the Batch scheduler can attempt to place jobs from an associated job queue on the compute resources within the environment. If the compute environment is managed, then it can scale its instances out or in automatically, based on the job queue demand.\nIf the state is DISABLED, then the Batch scheduler doesn't attempt to place jobs within the environment. Jobs in a STARTING or RUNNING state continue to progress normally. Managed compute environments in the DISABLED state don't scale out. However, they scale in to minvCpus value after instances become idle.",
+            "Type": "string",
+            "Required": false
+        },
+        "unmanagedvCpus": {
+            "Description": "The maximum number of vCPUs for an unmanaged compute environment. This parameter is only used for fair share scheduling to reserve vCPU capacity for new share identifiers. If this parameter isn't provided for a fair share job queue, no vCPU capacity is reserved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "computeResources": {
+            "Description": "Details about the compute resources managed by the compute environment. This parameter is required for managed compute environments. For more information, see Compute Environments in the Batch User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "serviceRole": {
+            "Description": "The full Amazon Resource Name (ARN) of the IAM role that allows Batch to make calls to other Amazon Web Services services on your behalf. For more information, see Batch service IAM role in the Batch User Guide .\nIf your specified role has a path other than /, then you must specify either the full role ARN (recommended) or prefix the role name with the path. For example, if a role with the name bar has a path of /foo/ then you would specify /foo/bar as the role name. For more information, see Friendly names and paths in the IAM User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags that you apply to the compute environment to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see Tagging Amazon Web Services Resources in Amazon Web Services General Reference .\nThese tags can be updated or removed using the TagResource and UntagResource API operations. These tags don't propagate to the underlying compute resources.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_job_queue": {
+        "jobQueueName": {
+            "Description": "The name of the job queue. It can be up to 128 letters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "state": {
+            "Description": "The state of the job queue. If the job queue state is ENABLED , it is able to accept jobs. If the job queue state is DISABLED , new jobs can't be added to the queue, but jobs already in the queue can finish.",
+            "Type": "string",
+            "Required": false
+        },
+        "schedulingPolicyArn": {
+            "Description": "The Amazon Resource Name (ARN) of the fair share scheduling policy. If this parameter is specified, the job queue uses a fair share scheduling policy. If this parameter isn't specified, the job queue uses a first in, first out (FIFO) scheduling policy. After a job queue is created, you can replace but can't remove the fair share scheduling policy. The format is aws:*Partition* :batch:*Region* :*Account* :scheduling-policy/*Name* `` . An example is ``aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy .",
+            "Type": "string",
+            "Required": false
+        },
+        "priority": {
+            "Description": "The priority of the job queue. Job queues with a higher priority (or a higher integer value for the priority parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order. For example, a job queue with a priority value of 10 is given scheduling preference over a job queue with a priority value of 1. All of the compute environments must be either EC2 (EC2 or SPOT ) or Fargate (FARGATE or FARGATE_SPOT ); EC2 and Fargate compute environments can't be mixed.",
+            "Type": "integer",
+            "Required": true
+        },
+        "computeEnvironmentOrder": {
+            "Description": "The set of compute environments mapped to a job queue and their order relative to each other. The job scheduler uses this parameter to determine which compute environment runs a specific job. Compute environments must be in the VALID state before you can associate them with a job queue. You can associate up to three compute environments with a job queue. All of the compute environments must be either EC2 (EC2 or SPOT ) or Fargate (FARGATE or FARGATE_SPOT ); EC2 and Fargate compute environments can't be mixed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags that you apply to the job queue to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see Tagging your Batch resources in Batch User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_scheduling_policy": {
+        "name": {
+            "Description": "The name of the scheduling policy. It can be up to 128 letters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "fairsharePolicy": {
+            "Description": "The fair share policy of the scheduling policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags that you apply to the scheduling policy to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see Tagging Amazon Web Services Resources in Amazon Web Services General Reference .\nThese tags can be updated or removed using the TagResource and UntagResource API operations.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_compute_environment": {
+        "computeEnvironment": {
+            "Description": "The name or Amazon Resource Name (ARN) of the compute environment to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_job_queue": {
+        "jobQueue": {
+            "Description": "The short name or full Amazon Resource Name (ARN) of the queue to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_scheduling_policy": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the scheduling policy to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_job_definition": {
+        "jobDefinition": {
+            "Description": "The name and revision (name:revision ) or full Amazon Resource Name (ARN) of the job definition to deregister.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_compute_environments": {
+        "computeEnvironments": {
+            "Description": "A list of up to 100 compute environment names or full Amazon Resource Name (ARN) entries.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of cluster results returned by DescribeComputeEnvironments in paginated output. When this parameter is used, DescribeComputeEnvironments only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeComputeEnvironments request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then DescribeComputeEnvironments returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribeComputeEnvironments request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_job_definitions": {
+        "jobDefinitions": {
+            "Description": "A list of up to 100 job definitions. Each entry in the list can either be an ARN in the format arn:aws:batch:${Region}:${Account}:job-definition/${JobDefinitionName}:${Revision} or a short version using the form ${JobDefinitionName}:${Revision} .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results returned by DescribeJobDefinitions in paginated output. When this parameter is used, DescribeJobDefinitions only returns maxResults results in a single page and a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeJobDefinitions request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then DescribeJobDefinitions returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "jobDefinitionName": {
+            "Description": "The name of the job definition to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status used to filter job definitions.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribeJobDefinitions request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_job_queues": {
+        "jobQueues": {
+            "Description": "A list of up to 100 queue names or full queue Amazon Resource Name (ARN) entries.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results returned by DescribeJobQueues in paginated output. When this parameter is used, DescribeJobQueues only returns maxResults results in a single page and a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeJobQueues request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then DescribeJobQueues returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribeJobQueues request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_jobs": {
+        "jobs": {
+            "Description": "A list of up to 100 job IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_scheduling_policies": {
+        "arns": {
+            "Description": "A list of up to 100 scheduling policy Amazon Resource Name (ARN) entries.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "list_jobs": {
+        "jobQueue": {
+            "Description": "The name or full Amazon Resource Name (ARN) of the job queue used to list jobs.",
+            "Type": "string",
+            "Required": false
+        },
+        "arrayJobId": {
+            "Description": "The job ID for an array job. Specifying an array job ID with this parameter lists all child jobs from within the specified array.",
+            "Type": "string",
+            "Required": false
+        },
+        "multiNodeJobId": {
+            "Description": "The job ID for a multi-node parallel job. Specifying a multi-node parallel job ID with this parameter lists all nodes that are associated with the specified job.",
+            "Type": "string",
+            "Required": false
+        },
+        "jobStatus": {
+            "Description": "The job status used to filter jobs in the specified queue. If the filters parameter is specified, the jobStatus parameter is ignored and jobs with any status are returned. If you don't specify a status, only RUNNING jobs are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results returned by ListJobs in paginated output. When this parameter is used, ListJobs only returns maxResults results in a single page and a nextToken response element. The remaining results of the initial request can be seen by sending another ListJobs request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, then ListJobs returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated ListJobs request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "filters": {
+            "Description": "The filter to apply to the query. Only one filter can be used at a time. When the filter is used, jobStatus is ignored. The filter doesn't apply to child jobs in an array or multi-node parallel (MNP) jobs. The results are sorted by the createdAt field, with the most recent jobs being first.\nThe value of the filter is a case-insensitive match for the job name. If the value ends with an asterisk (*), the filter will match any job name that begins with the string before the '*'. This corresponds to the jobName value. For example, test1 matches both Test1 and test1, and test1* matches both test1 and Test10. When the JOB_NAME filter is used, the results are grouped by the job name and version.\nThe value for the filter is the name or Amazon Resource Name (ARN) of the job definition. This corresponds to the jobDefinition value. The value is case sensitive. When the value for the filter is the job definition name, the results include all the jobs that used any revision of that job definition name. If the value ends with an asterisk (*), the filter will match any job definition name that begins with the string before the '*'. For example, jd1 matches only jd1, and jd1* matches both jd1 and jd1A. The version of the job definition that's used doesn't affect the sort order. When the JOB_DEFINITION filter is used and the ARN is used (which is in the form arn:${Partition}:batch:${Region}:${Account}:job-definition/${JobDefinitionName}:${Revision} ), the results include jobs that used the specified revision of the job definition. Asterisk (*) is not supported when the ARN is used.\nThe value for the filter is the time that's before the job was created. This corresponds to the createdAt value. The value is a string representation of the number of milliseconds since 00:00:00 UTC (midnight) on January 1, 1970.\nThe value for the filter is the time that's after the job was created. This corresponds to the createdAt value. The value is a string representation of the number of milliseconds since 00:00:00 UTC (midnight) on January 1, 1970.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_scheduling_policies": {
+        "maxResults": {
+            "Description": "The maximum number of results that's returned by ListSchedulingPolicies in paginated output. When this parameter is used, ListSchedulingPolicies only returns maxResults results in a single page and a nextToken response element. You can see the remaining results of the initial request by sending another ListSchedulingPolicies request with the returned nextToken value. This value can be between 1 and 100. If this parameter isn't used, ListSchedulingPolicies returns up to 100 results and a nextToken value if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The nextToken value that's returned from a previous paginated ListSchedulingPolicies request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource that tags are listed for. Batch resources that support tags are compute environments, jobs, job definitions, job queues, and scheduling policies. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "register_job_definition": {
+        "jobDefinitionName": {
+            "Description": "The name of the job definition to register. It can be up to 128 letters long. It can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The type of job definition. For more information about multi-node parallel jobs, see Creating a multi-node parallel job definition in the Batch User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "parameters": {
+            "Description": "Default parameter substitution placeholders to set in the job definition. Parameters are specified as a key-value pair mapping. Parameters in a SubmitJob request override any corresponding parameter defaults from the job definition.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "schedulingPriority": {
+            "Description": "The scheduling priority for jobs that are submitted with this job definition. This will only affect jobs in job queues with a fair share policy. Jobs with a higher scheduling priority will be scheduled before jobs with a lower scheduling priority.\nThe minimum supported value is 0 and the maximum supported value is 9999.",
+            "Type": "integer",
+            "Required": false
+        },
+        "containerProperties": {
+            "Description": "An object with various properties specific to single-node container-based jobs. If the job definition's type parameter is container, then you must specify either containerProperties or nodeProperties .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "nodeProperties": {
+            "Description": "An object with various properties specific to multi-node parallel jobs. If you specify node properties for a job, it becomes a multi-node parallel job. For more information, see Multi-node Parallel Jobs in the Batch User Guide. If the job definition's type parameter is container, then you must specify either containerProperties or nodeProperties .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "retryStrategy": {
+            "Description": "The retry strategy to use for failed jobs that are submitted with this job definition. Any retry strategy that's specified during a  SubmitJob operation overrides the retry strategy defined here. If a job is terminated due to a timeout, it isn't retried.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "propagateTags": {
+            "Description": "Specifies whether to propagate the tags from the job or job definition to the corresponding Amazon ECS task. If no value is specified, the tags are not propagated. Tags can only be propagated to the tasks during task creation. For tags with the same name, job tags are given priority over job definitions tags. If the total number of combined tags from the job and job definition is over 50, the job is moved to the FAILED state.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "timeout": {
+            "Description": "The timeout configuration for jobs that are submitted with this job definition, after which Batch terminates your jobs if they have not finished. If a job is terminated due to a timeout, it isn't retried. The minimum value for the timeout is 60 seconds. Any timeout configuration that's specified during a  SubmitJob operation overrides the timeout configuration defined here. For more information, see Job Timeouts in the Batch User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags that you apply to the job definition to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see Tagging Amazon Web Services Resources in Batch User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "platformCapabilities": {
+            "Description": "The platform capabilities required by the job definition. If no value is specified, it defaults to EC2. To run the job on Fargate resources, specify FARGATE .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "submit_job": {
+        "jobName": {
+            "Description": "The name of the job. It can be up to 128 letters long. The first character must be alphanumeric, can contain uppercase and lowercase letters, numbers, hyphens (-), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "jobQueue": {
+            "Description": "The job queue where the job is submitted. You can specify either the name or the Amazon Resource Name (ARN) of the queue.",
+            "Type": "string",
+            "Required": true
+        },
+        "shareIdentifier": {
+            "Description": "The share identifier for the job. If the job queue does not have a scheduling policy, then this parameter must not be specified. If the job queue has a scheduling policy, then this parameter must be specified.",
+            "Type": "string",
+            "Required": false
+        },
+        "schedulingPriorityOverride": {
+            "Description": "The scheduling priority for the job. This will only affect jobs in job queues with a fair share policy. Jobs with a higher scheduling priority will be scheduled before jobs with a lower scheduling priority. This will override any scheduling priority in the job definition.\nThe minimum supported value is 0 and the maximum supported value is 9999.",
+            "Type": "integer",
+            "Required": false
+        },
+        "arrayProperties": {
+            "Description": "The array properties for the submitted job, such as the size of the array. The array size can be between 2 and 10,000. If you specify array properties for a job, it becomes an array job. For more information, see Array Jobs in the Batch User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "dependsOn": {
+            "Description": "A list of dependencies for the job. A job can depend upon a maximum of 20 jobs. You can specify a SEQUENTIAL type dependency without specifying a job ID for array jobs so that each child array job completes sequentially, starting at index 0. You can also specify an N_TO_N type dependency with a job ID for array jobs. In that case, each index child of this job must wait for the corresponding index child of each dependency to complete before it can begin.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "jobDefinition": {
+            "Description": "The job definition used by this job. This value can be one of name, name:revision, or the Amazon Resource Name (ARN) for the job definition. If name is specified without a revision then the latest active revision is used.",
+            "Type": "string",
+            "Required": true
+        },
+        "parameters": {
+            "Description": "Additional parameters passed to the job that replace parameter substitution placeholders that are set in the job definition. Parameters are specified as a key and value pair mapping. Parameters in a SubmitJob request override any corresponding parameter defaults from the job definition.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "containerOverrides": {
+            "Description": "A list of container overrides in the JSON format that specify the name of a container in the specified job definition and the overrides it receives. You can override the default command for a container, which is specified in the job definition or the Docker image, with a command override. You can also override existing environment variables on a container or add new environment variables to it with an environment override.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "nodeOverrides": {
+            "Description": "A list of node overrides in JSON format that specify the node range to target and the container overrides for that node range.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "retryStrategy": {
+            "Description": "The retry strategy to use for failed jobs from this  SubmitJob operation. When a retry strategy is specified here, it overrides the retry strategy defined in the job definition.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "propagateTags": {
+            "Description": "Specifies whether to propagate the tags from the job or job definition to the corresponding Amazon ECS task. If no value is specified, the tags aren't propagated. Tags can only be propagated to the tasks during task creation. For tags with the same name, job tags are given priority over job definitions tags. If the total number of combined tags from the job and job definition is over 50, the job is moved to the FAILED state. When specified, this overrides the tag propagation setting in the job definition.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "timeout": {
+            "Description": "The timeout configuration for this  SubmitJob operation. You can specify a timeout duration after which Batch terminates your jobs if they haven't finished. If a job is terminated due to a timeout, it isn't retried. The minimum value for the timeout is 60 seconds. This configuration overrides any timeout configuration specified in the job definition. For array jobs, child jobs have the same timeout configuration as the parent job. For more information, see Job Timeouts in the Amazon Elastic Container Service Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags that you apply to the job request to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see Tagging Amazon Web Services Resources in Amazon Web Services General Reference .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that tags are added to. Batch resources that support tags are compute environments, jobs, job definitions, job queues, and scheduling policies. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags that you apply to the resource to help you categorize and organize your resources. Each tag consists of a key and an optional value. For more information, see Tagging Amazon Web Services Resources in Amazon Web Services General Reference .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "terminate_job": {
+        "jobId": {
+            "Description": "The Batch job ID of the job to terminate.",
+            "Type": "string",
+            "Required": true
+        },
+        "reason": {
+            "Description": "A message to attach to the job that explains the reason for canceling it. This message is returned by future  DescribeJobs operations on the job. This message is also recorded in the Batch activity logs.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource from which to delete tags. Batch resources that support tags are compute environments, jobs, job definitions, job queues, and scheduling policies. ARNs for child jobs of array and multi-node parallel (MNP) jobs are not supported.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of the tags to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_compute_environment": {
+        "computeEnvironment": {
+            "Description": "The name or full Amazon Resource Name (ARN) of the compute environment to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "state": {
+            "Description": "The state of the compute environment. Compute environments in the ENABLED state can accept jobs from a queue and scale in or out automatically based on the workload demand of its associated queues.\nIf the state is ENABLED, then the Batch scheduler can attempt to place jobs from an associated job queue on the compute resources within the environment. If the compute environment is managed, then it can scale its instances out or in automatically, based on the job queue demand.\nIf the state is DISABLED, then the Batch scheduler doesn't attempt to place jobs within the environment. Jobs in a STARTING or RUNNING state continue to progress normally. Managed compute environments in the DISABLED state don't scale out. However, they scale in to minvCpus value after instances become idle.",
+            "Type": "string",
+            "Required": false
+        },
+        "unmanagedvCpus": {
+            "Description": "The maximum number of vCPUs expected to be used for an unmanaged compute environment. Do not specify this parameter for a managed compute environment. This parameter is only used for fair share scheduling to reserve vCPU capacity for new share identifiers. If this parameter is not provided for a fair share job queue, no vCPU capacity will be reserved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "computeResources": {
+            "Description": "Details of the compute resources managed by the compute environment. Required for a managed compute environment. For more information, see Compute Environments in the Batch User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "serviceRole": {
+            "Description": "The full Amazon Resource Name (ARN) of the IAM role that allows Batch to make calls to other Amazon Web Services services on your behalf. For more information, see Batch service IAM role in the Batch User Guide .\nIf your specified role has a path other than /, then you must either specify the full role ARN (recommended) or prefix the role name with the path.",
+            "Type": "string",
+            "Required": false
+        },
+        "updatePolicy": {
+            "Description": "Specifies the updated infrastructure update policy for the compute environment. For more information about infrastructure updates, see Updating compute environments in the Batch User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_job_queue": {
+        "jobQueue": {
+            "Description": "The name or the Amazon Resource Name (ARN) of the job queue.",
+            "Type": "string",
+            "Required": true
+        },
+        "state": {
+            "Description": "Describes the queue's ability to accept new jobs. If the job queue state is ENABLED , it can accept jobs. If the job queue state is DISABLED , new jobs can't be added to the queue, but jobs already in the queue can finish.",
+            "Type": "string",
+            "Required": false
+        },
+        "schedulingPolicyArn": {
+            "Description": "Amazon Resource Name (ARN) of the fair share scheduling policy. Once a job queue is created, the fair share scheduling policy can be replaced but not removed. The format is aws:*Partition* :batch:*Region* :*Account* :scheduling-policy/*Name* `` . For example, ``aws:aws:batch:us-west-2:012345678910:scheduling-policy/MySchedulingPolicy .",
+            "Type": "string",
+            "Required": false
+        },
+        "priority": {
+            "Description": "The priority of the job queue. Job queues with a higher priority (or a higher integer value for the priority parameter) are evaluated first when associated with the same compute environment. Priority is determined in descending order. For example, a job queue with a priority value of 10 is given scheduling preference over a job queue with a priority value of 1 . All of the compute environments must be either EC2 (EC2 or SPOT ) or Fargate (FARGATE or FARGATE_SPOT ). EC2 and Fargate compute environments can't be mixed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "computeEnvironmentOrder": {
+            "Description": "Details the set of compute environments mapped to a job queue and their order relative to each other. This is one of the parameters used by the job scheduler to determine which compute environment runs a given job. Compute environments must be in the VALID state before you can associate them with a job queue. All of the compute environments must be either EC2 (EC2 or SPOT ) or Fargate (FARGATE or FARGATE_SPOT ). EC2 and Fargate compute environments can't be mixed.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_scheduling_policy": {
+        "arn": {
+            "Description": "The Amazon Resource Name (ARN) of the scheduling policy to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "fairsharePolicy": {
+            "Description": "The fair share policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

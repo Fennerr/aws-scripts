@@ -1,0 +1,606 @@
+{
+    "cancel_batch_job_execution": {
+        "applicationId": {
+            "Description": "The unique identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionId": {
+            "Description": "The unique identifier of the batch job execution.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_application": {
+        "clientToken": {
+            "Description": "Unique, case-sensitive identifier the service generates to ensure the idempotency of the request to create an application. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "definition": {
+            "Description": "The application definition for this application. You can specify either inline JSON or an S3 bucket location.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "description": {
+            "Description": "The description of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "engineType": {
+            "Description": "The type of the target platform for this application.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The unique identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tags to apply to the application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_data_set_import_task": {
+        "applicationId": {
+            "Description": "The unique identifier of the application for which you want to import data sets.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Unique, case-sensitive identifier you provide to ensure the idempotency of the request to create a data set import. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "importConfig": {
+            "Description": "The data set import task configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_deployment": {
+        "applicationId": {
+            "Description": "The application identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "applicationVersion": {
+            "Description": "The version of the application to deploy.",
+            "Type": "integer",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Unique, case-sensitive identifier you provide to ensure the idempotency of the request to create a deployment. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentId": {
+            "Description": "The identifier of the environment where this application will be deployed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_environment": {
+        "clientToken": {
+            "Description": "Unique, case-sensitive identifier you provide to ensure the idempotency of the request to create an environment. The service generates the clientToken when the API call is triggered. The token expires after one hour, so if you retry the API within this timeframe with the same clientToken, you will get the same response. The service also handles deleting the clientToken after it expires.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "engineType": {
+            "Description": "The engine type for the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "engineVersion": {
+            "Description": "The version of the engine type for the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "highAvailabilityConfig": {
+            "Description": "The details of a high availability configuration for this runtime environment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "instanceType": {
+            "Description": "The type of instance for the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The unique identifier of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "preferredMaintenanceWindow": {
+            "Description": "Configures a desired maintenance window for the environment. If you do not provide a value, a random system-generated value will be assigned.",
+            "Type": "string",
+            "Required": false
+        },
+        "publiclyAccessible": {
+            "Description": "Specifies whether the environment is publicly accessible.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "securityGroupIds": {
+            "Description": "The list of security groups for the VPC associated with this environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "storageConfigurations": {
+            "Description": "Optional. The storage configurations for this environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "subnetIds": {
+            "Description": "The list of subnets associated with the VPC for this environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags for the environment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_application": {
+        "applicationId": {
+            "Description": "The unique identifier of the application you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_application_from_environment": {
+        "applicationId": {
+            "Description": "The unique identifier of the application you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "environmentId": {
+            "Description": "The unique identifier of the runtime environment where the application was previously deployed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment": {
+        "environmentId": {
+            "Description": "The unique identifier of the runtime environment you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_application": {
+        "applicationId": {
+            "Description": "The identifier of the application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_application_version": {
+        "applicationId": {
+            "Description": "The unique identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "applicationVersion": {
+            "Description": "The specific version of the application.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_batch_job_execution": {
+        "applicationId": {
+            "Description": "The identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionId": {
+            "Description": "The unique identifier of the batch job execution.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_data_set_details": {
+        "applicationId": {
+            "Description": "The unique identifier of the application that this data set is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "dataSetName": {
+            "Description": "The name of the data set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_data_set_import_task": {
+        "applicationId": {
+            "Description": "The application identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskId": {
+            "Description": "The task identifier returned by the  CreateDataSetImportTask operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_deployment": {
+        "applicationId": {
+            "Description": "The unique identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "deploymentId": {
+            "Description": "The unique identifier for the deployment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment": {
+        "environmentId": {
+            "Description": "The unique identifier of the runtime environment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_application_versions": {
+        "applicationId": {
+            "Description": "The unique identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of application versions to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token returned from a previous call to this operation. This specifies the next item to return. To return to the beginning of the list, exclude this parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_applications": {
+        "environmentId": {
+            "Description": "The unique identifier of the runtime environment where the applications are deployed.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of applications to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "names": {
+            "Description": "The names of the applications.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "A pagination token to control the number of applications displayed in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_batch_job_definitions": {
+        "applicationId": {
+            "Description": "The identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of batch job definitions to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token returned from a previous call to this operation. This specifies the next item to return. To return to the beginning of the list, exclude this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "prefix": {
+            "Description": "If the batch job definition is a FileBatchJobDefinition, the prefix allows you to search on the file names of FileBatchJobDefinitions.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_batch_job_executions": {
+        "applicationId": {
+            "Description": "The unique identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionIds": {
+            "Description": "The unique identifier of each batch job execution.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "jobName": {
+            "Description": "The name of each batch job execution.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of batch job executions to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token to control the number of batch job executions displayed in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "startedAfter": {
+            "Description": "The time after which the batch job executions started.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "startedBefore": {
+            "Description": "The time before the batch job executions started.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status of the batch job executions.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_data_set_import_history": {
+        "applicationId": {
+            "Description": "The unique identifier of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token returned from a previous call to this operation. This specifies the next item to return. To return to the beginning of the list, exclude this parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_data_sets": {
+        "applicationId": {
+            "Description": "The unique identifier of the application for which you want to list the associated data sets.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token returned from a previous call to this operation. This specifies the next item to return. To return to the beginning of the list, exclude this parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "prefix": {
+            "Description": "The prefix of the data set name, which you can use to filter the list of data sets.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_deployments": {
+        "applicationId": {
+            "Description": "The application identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token returned from a previous call to this operation. This specifies the next item to return. To return to the beginning of the list, exclude this parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_engine_versions": {
+        "engineType": {
+            "Description": "The type of target platform.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of objects to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token returned from a previous call to this operation. This specifies the next item to return. To return to the beginning of the list, exclude this parameter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environments": {
+        "engineType": {
+            "Description": "The engine type for the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of environments to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "names": {
+            "Description": "The name of the environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "A pagination token to control the number of environments displayed in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_application": {
+        "applicationId": {
+            "Description": "The unique identifier of the application you want to start.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_batch_job": {
+        "applicationId": {
+            "Description": "The unique identifier of the application associated with this batch job.",
+            "Type": "string",
+            "Required": true
+        },
+        "batchJobIdentifier": {
+            "Description": "The unique identifier of the batch job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "jobParams": {
+            "Description": "The collection of batch job parameters. For details about limits for keys and values, see Coding variables in JCL .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "stop_application": {
+        "applicationId": {
+            "Description": "The unique identifier of the application you want to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "forceStop": {
+            "Description": "Stopping an application process can take a long time. Setting this parameter to true lets you force stop the application so you don't need to wait until the process finishes to apply another action on the application. The default value is false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to add to the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of the tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_application": {
+        "applicationId": {
+            "Description": "The unique identifier of the application you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "currentApplicationVersion": {
+            "Description": "The current version of the application to update.",
+            "Type": "integer",
+            "Required": true
+        },
+        "definition": {
+            "Description": "The application definition for this application. You can specify either inline JSON or an S3 bucket location.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "description": {
+            "Description": "The description of the application to update.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_environment": {
+        "applyDuringMaintenanceWindow": {
+            "Description": "Indicates whether to update the environment during the maintenance window. The default is false. Currently, Amazon Web Services Mainframe Modernization accepts the engineVersion parameter only if applyDuringMaintenanceWindow is true. If any parameter other than engineVersion is provided in UpdateEnvironmentRequest , it will fail if applyDuringMaintenanceWindow is set to true.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "desiredCapacity": {
+            "Description": "The desired capacity for the environment to update.",
+            "Type": "integer",
+            "Required": false
+        },
+        "engineVersion": {
+            "Description": "The version of the runtime engine for the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentId": {
+            "Description": "The unique identifier of the runtime environment that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceType": {
+            "Description": "The instance type for the environment to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "preferredMaintenanceWindow": {
+            "Description": "Configures a desired maintenance window for the environment. If you do not provide a value, a random system-generated value will be assigned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "engineType": {
+            "Description": "The engine type for the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "names": {
+            "Description": "The name of the environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,869 @@
+{
+    "associate_origination_identity": {
+        "PoolId": {
+            "Description": "The pool to update with the new Identity. This value can be either the PoolId or PoolArn, and you can find these values using  DescribePools .",
+            "Type": "string",
+            "Required": true
+        },
+        "OriginationIdentity": {
+            "Description": "The origination identity to use, such as PhoneNumberId, PhoneNumberArn, SenderId, or SenderIdArn. You can use  DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn, while  DescribeSenderIds can be used to get the values for SenderId and SenderIdArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "IsoCountryCode": {
+            "Description": "The new two-character code, in ISO 3166-1 alpha-2 format, for the country or region of the origination identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name to use for the new configuration set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An array of key and value pair tags that's associated with the new configuration set.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "Either the name of the configuration set or the configuration set ARN to apply event logging to. The ConfigurateSetName and ConfigurationSetArn can be found using the  DescribeConfigurationSets action.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "The name that identifies the event destination.",
+            "Type": "string",
+            "Required": true
+        },
+        "MatchingEventTypes": {
+            "Description": "An array of event types that determine which events to log. If \"ALL\" is used, then Amazon Pinpoint logs every event type.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "CloudWatchLogsDestination": {
+            "Description": "An object that contains information about an event destination for logging to Amazon CloudWatch logs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KinesisFirehoseDestination": {
+            "Description": "An object that contains information about an event destination for logging to Amazon Kinesis Data Firehose.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SnsDestination": {
+            "Description": "An object that contains information about an event destination for logging to Amazon SNS.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_opt_out_list": {
+        "OptOutListName": {
+            "Description": "The name of the new OptOutList.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An array of tags (key and value pairs) to associate with the new OptOutList.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_pool": {
+        "OriginationIdentity": {
+            "Description": "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use  DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn while  DescribeSenderIds can be used to get the values for SenderId and SenderIdArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "IsoCountryCode": {
+            "Description": "The new two-character code, in ISO 3166-1 alpha-2 format, for the country or region of the new pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageType": {
+            "Description": "The type of message. Valid values are TRANSACTIONAL for messages that are critical or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeletionProtectionEnabled": {
+            "Description": "By default this is set to false. When set to true the pool can't be deleted. You can change this value using the  UpdatePool action.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "An array of tags (key and value pairs) associated with the pool.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set or the configuration set ARN that you want to delete. The ConfigurationSetName and ConfigurationSetArn can be found using the  DescribeConfigurationSets action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_default_message_type": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set or the configuration set Amazon Resource Name (ARN) to delete the default message type from. The ConfigurationSetName and ConfigurationSetArn can be found using the  DescribeConfigurationSets action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_default_sender_id": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set or the configuration set Amazon Resource Name (ARN) to delete the default sender ID from. The ConfigurationSetName and ConfigurationSetArn can be found using the  DescribeConfigurationSets action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set or the configuration set's Amazon Resource Name (ARN) to remove the event destination from. The ConfigurateSetName and ConfigurationSetArn can be found using the  DescribeConfigurationSets action.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "The name of the event destination to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_keyword": {
+        "OriginationIdentity": {
+            "Description": "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, PoolId or PoolArn. You can use  DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn and  DescribePools to find the values of PoolId and PoolArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "Keyword": {
+            "Description": "The keyword to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_opt_out_list": {
+        "OptOutListName": {
+            "Description": "The OptOutListName or OptOutListArn of the OptOutList to delete. You can use  DescribeOptOutLists to find the values for OptOutListName and OptOutListArn.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_opted_out_number": {
+        "OptOutListName": {
+            "Description": "The OptOutListName or OptOutListArn to remove the phone number from.",
+            "Type": "string",
+            "Required": true
+        },
+        "OptedOutNumber": {
+            "Description": "The phone number, in E.164 format, to remove from the OptOutList.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_pool": {
+        "PoolId": {
+            "Description": "The PoolId or PoolArn of the pool to delete. You can use  DescribePools to find the values for PoolId and PoolArn .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_text_message_spend_limit_override": "No parameters defined",
+    "delete_voice_message_spend_limit_override": "No parameters defined",
+    "describe_account_attributes": {
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_account_limits": {
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_configuration_sets": {
+        "ConfigurationSetNames": {
+            "Description": "An array of strings. Each element can be either a ConfigurationSetName or ConfigurationSetArn.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "An array of filters to apply to the results that are returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_keywords": {
+        "OriginationIdentity": {
+            "Description": "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use  DescribePhoneNumbers to find the values for PhoneNumberId and PhoneNumberArn while  DescribeSenderIds can be used to get the values for SenderId and SenderIdArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "Keywords": {
+            "Description": "An array of keywords to search for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "An array of keyword filters to filter the results.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_opt_out_lists": {
+        "OptOutListNames": {
+            "Description": "The OptOutLists to show the details of. This is an array of strings that can be either the OptOutListName or OptOutListArn.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_opted_out_numbers": {
+        "OptOutListName": {
+            "Description": "The OptOutListName or OptOutListArn of the OptOutList. You can use  DescribeOptOutLists to find the values for OptOutListName and OptOutListArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "OptedOutNumbers": {
+            "Description": "An array of phone numbers to search for in the OptOutList.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "An array of OptedOutFilter objects to filter the results on.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_phone_numbers": {
+        "PhoneNumberIds": {
+            "Description": "The unique identifier of phone numbers to find information about. This is an array of strings that can be either the PhoneNumberId or PhoneNumberArn.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "An array of PhoneNumberFilter objects to filter the results.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_pools": {
+        "PoolIds": {
+            "Description": "The unique identifier of pools to find. This is an array of strings that can be either the PoolId or PoolArn.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "An array of PoolFilter objects to filter the results.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_sender_ids": {
+        "SenderIds": {
+            "Description": "An array of SenderIdAndCountry objects to search for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "An array of SenderIdFilter objects to filter the results.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_spend_limits": {
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "disassociate_origination_identity": {
+        "PoolId": {
+            "Description": "The unique identifier for the pool to disassociate with the origination identity. This value can be either the PoolId or PoolArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "OriginationIdentity": {
+            "Description": "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use  DescribePhoneNumbers find the values for PhoneNumberId and PhoneNumberArn, or use  DescribeSenderIds to get the values for SenderId and SenderIdArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "IsoCountryCode": {
+            "Description": "The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_pool_origination_identities": {
+        "PoolId": {
+            "Description": "The unique identifier for the pool. This value can be either the PoolId or PoolArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "An array of PoolOriginationIdentitiesFilter objects to filter the results..",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to be used for the next set of paginated results. You don't need to supply a value for this field in the initial request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to query for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_keyword": {
+        "OriginationIdentity": {
+            "Description": "The origination identity to use such as a PhoneNumberId, PhoneNumberArn, SenderId or SenderIdArn. You can use  DescribePhoneNumbers get the values for PhoneNumberId and PhoneNumberArn while  DescribeSenderIds can be used to get the values for SenderId and SenderIdArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "Keyword": {
+            "Description": "The new keyword to add.",
+            "Type": "string",
+            "Required": true
+        },
+        "KeywordMessage": {
+            "Description": "The message associated with the keyword.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "KeywordAction": {
+            "Description": "The action to perform for the new keyword when it is received.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_opted_out_number": {
+        "OptOutListName": {
+            "Description": "The OptOutListName or OptOutListArn to add the phone number to.",
+            "Type": "string",
+            "Required": true
+        },
+        "OptedOutNumber": {
+            "Description": "The phone number to add to the OptOutList in E.164 format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "release_phone_number": {
+        "PhoneNumberId": {
+            "Description": "The PhoneNumberId or PhoneNumberArn of the phone number to release. You can use  DescribePhoneNumbers to get the values for PhoneNumberId and PhoneNumberArn.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "request_phone_number": {
+        "IsoCountryCode": {
+            "Description": "The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageType": {
+            "Description": "The type of message. Valid values are TRANSACTIONAL for messages that are critical or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "NumberCapabilities": {
+            "Description": "Indicates if the phone number will be used for text messages, voice messages, or both.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "NumberType": {
+            "Description": "The type of phone number to request.",
+            "Type": "string",
+            "Required": true
+        },
+        "OptOutListName": {
+            "Description": "The name of the OptOutList to associate with the phone number. You can use the OutOutListName or OptPutListArn.",
+            "Type": "string",
+            "Required": false
+        },
+        "PoolId": {
+            "Description": "The pool to associated with the phone number. You can use the PoolId or PoolArn.",
+            "Type": "string",
+            "Required": false
+        },
+        "RegistrationId": {
+            "Description": "Use this field to attach your phone number for an external registration process.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeletionProtectionEnabled": {
+            "Description": "By default this is set to false. When set to true the phone number can't be deleted.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "An array of tags (key and value pairs) associate with the requested phone number.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you don't specify a client token, a randomly generated token is used for the request to ensure idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_text_message": {
+        "DestinationPhoneNumber": {
+            "Description": "The destination phone number in E.164 format.",
+            "Type": "string",
+            "Required": true
+        },
+        "OriginationIdentity": {
+            "Description": "The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn.",
+            "Type": "string",
+            "Required": false
+        },
+        "MessageBody": {
+            "Description": "The body of the text message.",
+            "Type": "string",
+            "Required": false
+        },
+        "MessageType": {
+            "Description": "The type of message. Valid values are TRANSACTIONAL for messages that are critical or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "Keyword": {
+            "Description": "When you register a short code in the US, you must specify a program name. If you don\u2019t have a US short code, omit this attribute.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxPrice": {
+            "Description": "The maximum amount that you want to spend, in US dollars, per each text message part. A text message can contain multiple parts.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimeToLive": {
+            "Description": "How long the text message is valid for. By default this is 72 hours.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Context": {
+            "Description": "You can specify custom data in this field. If you do, that data is logged to the event destination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DestinationCountryParameters": {
+            "Description": "This field is used for any country-specific registration requirements. Currently, this setting is only used when you send messages to recipients in India using a sender ID. For more information see Special requirements for sending SMS messages to recipients in India .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DryRun": {
+            "Description": "When set to true, the message is checked and validated, but isn't sent to the end recipient.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "send_voice_message": {
+        "DestinationPhoneNumber": {
+            "Description": "The destination phone number in E.164 format.",
+            "Type": "string",
+            "Required": true
+        },
+        "OriginationIdentity": {
+            "Description": "The origination identity to use for the voice call. This can be the PhoneNumber, PhoneNumberId, PhoneNumberArn, PoolId, or PoolArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageBody": {
+            "Description": "The text to convert to a voice message.",
+            "Type": "string",
+            "Required": false
+        },
+        "MessageBodyTextType": {
+            "Description": "Specifies if the MessageBody field contains text or speech synthesis markup language (SSML) .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VoiceId": {
+            "Description": "The voice for the Amazon Polly service to use. By default this is set to \"MATTHEW\".",
+            "Type": "string",
+            "Required": false
+        },
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxPricePerMinute": {
+            "Description": "The maximum amount to spend per voice message, in US dollars.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimeToLive": {
+            "Description": "How long the voice message is valid for. By default this is 72 hours.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Context": {
+            "Description": "You can specify custom data in this field. If you do, that data is logged to the event destination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DryRun": {
+            "Description": "When set to true, the message is checked and validated, but isn't sent to the end recipient.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "set_default_message_type": {
+        "ConfigurationSetName": {
+            "Description": "The configuration set to update with a new default message type. This field can be the ConsigurationSetName or ConfigurationSetArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "MessageType": {
+            "Description": "The type of message. Valid values are TRANSACTIONAL for messages that are critical or time-sensitive and PROMOTIONAL for messages that aren't critical or time-sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_default_sender_id": {
+        "ConfigurationSetName": {
+            "Description": "The configuration set to updated with a new default SenderId. This field can be the ConsigurationSetName or ConfigurationSetArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "SenderId": {
+            "Description": "The current sender ID for the configuration set. When sending a text message to a destination country which supports SenderIds, the default sender ID on the configuration set specified on  SendTextMessage will be used if no dedicated origination phone numbers or registered SenderIds are available in your account, instead of a generic sender ID, such as 'NOTICE'.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_text_message_spend_limit_override": {
+        "MonthlyLimit": {
+            "Description": "The new monthly limit to enforce on text messages.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "set_voice_message_spend_limit_override": {
+        "MonthlyLimit": {
+            "Description": "The new monthly limit to enforce on voice messages.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An array of key and value pair tags that are associated with the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "An array of tag key values to unassociate with the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The configuration set to update with the new event destination. Valid values for this can be the ConfigurationSetName or ConfigurationSetArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "The name to use for the event destination.",
+            "Type": "string",
+            "Required": true
+        },
+        "Enabled": {
+            "Description": "When set to true logging is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MatchingEventTypes": {
+            "Description": "An array of event types that determine which events to log.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CloudWatchLogsDestination": {
+            "Description": "An object that contains information about an event destination that sends data to CloudWatch Logs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KinesisFirehoseDestination": {
+            "Description": "An object that contains information about an event destination for logging to Kinesis Data Firehose.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SnsDestination": {
+            "Description": "An object that contains information about an event destination that sends data to Amazon SNS.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_phone_number": {
+        "PhoneNumberId": {
+            "Description": "The unique identifier of the phone number. Valid values for this field can be either the PhoneNumberId or PhoneNumberArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "TwoWayEnabled": {
+            "Description": "By default this is set to false. When set to true you can receive incoming text messages from your end recipients.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "TwoWayChannelArn": {
+            "Description": "The Amazon Resource Name (ARN) of the two way channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "SelfManagedOptOutsEnabled": {
+            "Description": "By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "OptOutListName": {
+            "Description": "The OptOutList to add the phone number to. Valid values for this field can be either the OutOutListName or OutOutListArn.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeletionProtectionEnabled": {
+            "Description": "By default this is set to false. When set to true the phone number can't be deleted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_pool": {
+        "PoolId": {
+            "Description": "The unique identifier of the pool to update. Valid values are either the PoolId or PoolArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "TwoWayEnabled": {
+            "Description": "By default this is set to false. When set to true you can receive incoming text messages from your end recipients.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "TwoWayChannelArn": {
+            "Description": "The Amazon Resource Name (ARN) of the two way channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "SelfManagedOptOutsEnabled": {
+            "Description": "By default this is set to false. When an end recipient sends a message that begins with HELP or STOP to one of your dedicated numbers, Amazon Pinpoint automatically replies with a customizable message and adds the end recipient to the OptOutList. When set to true you're responsible for responding to HELP and STOP requests. You're also responsible for tracking and honoring opt-out requests.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "OptOutListName": {
+            "Description": "The OptOutList to associate with the pool. Valid values are either OptOutListName or OptOutListArn.",
+            "Type": "string",
+            "Required": false
+        },
+        "SharedRoutesEnabled": {
+            "Description": "Indicates whether shared routes are enabled for the pool.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DeletionProtectionEnabled": {
+            "Description": "When set to true the pool can't be deleted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PoolId": {
+            "Description": "The unique identifier for the pool. This value can be either the PoolId or PoolArn.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "An array of PoolOriginationIdentitiesFilter objects to filter the results..",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

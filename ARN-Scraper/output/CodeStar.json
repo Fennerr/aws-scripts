@@ -1,0 +1,311 @@
+{
+    "associate_team_member": {
+        "projectId": {
+            "Description": "The ID of the project to which you will add the IAM user.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientRequestToken": {
+            "Description": "A user- or system-generated token that identifies the entity that requested the team member association to the project. This token can be used to repeat the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) for the IAM user you want to add to the AWS CodeStar project.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectRole": {
+            "Description": "The AWS CodeStar project role that will apply to this user. This role determines what actions a user can take in an AWS CodeStar project.",
+            "Type": "string",
+            "Required": true
+        },
+        "remoteAccessAllowed": {
+            "Description": "Whether the team member is allowed to use an SSH public/private key pair to remotely access project resources, for example Amazon EC2 instances.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_project": {
+        "name": {
+            "Description": "The display name for the project to be created in AWS CodeStar.",
+            "Type": "string",
+            "Required": true
+        },
+        "id": {
+            "Description": "The ID of the project to be created in AWS CodeStar.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the project, if any.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientRequestToken": {
+            "Description": "A user- or system-generated token that identifies the entity that requested project creation. This token can be used to repeat the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "sourceCode": {
+            "Description": "A list of the Code objects submitted with the project request. If this parameter is specified, the request must also include the toolchain parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "toolchain": {
+            "Description": "The name of the toolchain template file submitted with the project request. If this parameter is specified, the request must also include the sourceCode parameter.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags created for the project.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_user_profile": {
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user in IAM.",
+            "Type": "string",
+            "Required": true
+        },
+        "displayName": {
+            "Description": "The name that will be displayed as the friendly name for the user in AWS CodeStar.",
+            "Type": "string",
+            "Required": true
+        },
+        "emailAddress": {
+            "Description": "The email address that will be displayed as part of the user's profile in AWS CodeStar.",
+            "Type": "string",
+            "Required": true
+        },
+        "sshPublicKey": {
+            "Description": "The SSH public key associated with the user in AWS CodeStar. If a project owner allows the user remote access to project resources, this public key will be used along with the user's private key for SSH access.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_project": {
+        "id": {
+            "Description": "The ID of the project to be deleted in AWS CodeStar.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientRequestToken": {
+            "Description": "A user- or system-generated token that identifies the entity that requested project deletion. This token can be used to repeat the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "deleteStack": {
+            "Description": "Whether to send a delete request for the primary stack in AWS CloudFormation originally used to generate the project and its resources. This option will delete all AWS resources for the project (except for any buckets in Amazon S3) as well as deleting the project itself. Recommended for most use cases.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_user_profile": {
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user to delete from AWS CodeStar.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_project": {
+        "id": {
+            "Description": "The ID of the project.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_user_profile": {
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_team_member": {
+        "projectId": {
+            "Description": "The ID of the AWS CodeStar project from which you want to remove a team member.",
+            "Type": "string",
+            "Required": true
+        },
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM user or group whom you want to remove from the project.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_projects": {
+        "nextToken": {
+            "Description": "The continuation token to be used to return the next set of results, if the results cannot be returned in one response.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum amount of data that can be contained in a single set of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resources": {
+        "projectId": {
+            "Description": "The ID of the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The continuation token for the next set of results, if the results cannot be returned in one response.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum amount of data that can be contained in a single set of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_project": {
+        "id": {
+            "Description": "The ID of the project to get tags for.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "Reserved for future use.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Reserved for future use.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_team_members": {
+        "projectId": {
+            "Description": "The ID of the project for which you want to list team members.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The continuation token for the next set of results, if the results cannot be returned in one response.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of team members you want returned in a response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_user_profiles": {
+        "nextToken": {
+            "Description": "The continuation token for the next set of results, if the results cannot be returned in one response.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "tag_project": {
+        "id": {
+            "Description": "The ID of the project you want to add a tag to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags you want to add to the project.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_project": {
+        "id": {
+            "Description": "The ID of the project to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to remove from the project.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_project": {
+        "id": {
+            "Description": "The ID of the project you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the project you want to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the project, if any.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_team_member": {
+        "projectId": {
+            "Description": "The ID of the project.",
+            "Type": "string",
+            "Required": true
+        },
+        "userArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user for whom you want to change team membership attributes.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectRole": {
+            "Description": "The role assigned to the user in the project. Project roles have different levels of access. For more information, see Working with Teams in the AWS CodeStar User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "remoteAccessAllowed": {
+            "Description": "Whether a team member is allowed to remotely access project resources using the SSH public key associated with the user's profile. Even if this is set to True, the user must associate a public key with their profile before the user can access resources.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_user_profile": {
+        "userArn": {
+            "Description": "The name that will be displayed as the friendly name for the user in AWS CodeStar.",
+            "Type": "string",
+            "Required": true
+        },
+        "displayName": {
+            "Description": "The name that is displayed as the friendly name for the user in AWS CodeStar.",
+            "Type": "string",
+            "Required": false
+        },
+        "emailAddress": {
+            "Description": "The email address that is displayed as part of the user's profile in AWS CodeStar.",
+            "Type": "string",
+            "Required": false
+        },
+        "sshPublicKey": {
+            "Description": "The SSH public key associated with the user in AWS CodeStar. If a project owner allows the user remote access to project resources, this public key will be used along with the user's private key for SSH access.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,1088 @@
+{
+    "create_backup_plan": {
+        "BackupPlan": {
+            "Description": "Specifies the body of a backup plan. Includes a BackupPlanName and one or more sets of Rules .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "BackupPlanTags": {
+            "Description": "To help organize your resources, you can assign your own metadata to the resources that you create. Each tag is a key-value pair. The specified tags are assigned to all backups created with this plan.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CreatorRequestId": {
+            "Description": "Identifies the request and allows failed requests to be retried without the risk of running the operation twice. If the request includes a CreatorRequestId that matches an existing backup plan, that plan is returned. This parameter is optional.\nIf used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_backup_selection": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies the backup plan to be associated with the selection of resources.",
+            "Type": "string",
+            "Required": true
+        },
+        "BackupSelection": {
+            "Description": "Specifies the body of a request to assign a set of resources to a backup plan.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "CreatorRequestId": {
+            "Description": "A unique string that identifies the request and allows failed requests to be retried without the risk of running the operation twice. This parameter is optional.\nIf used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_backup_vault": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "BackupVaultTags": {
+            "Description": "Metadata that you can assign to help organize the resources that you create. Each tag is a key-value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EncryptionKeyArn": {
+            "Description": "The server-side encryption key that is used to protect your backups; for example, arn:aws:kms:us-west-2:111122223333:key/1234abcd-12ab-34cd-56ef-1234567890ab .",
+            "Type": "string",
+            "Required": false
+        },
+        "CreatorRequestId": {
+            "Description": "A unique string that identifies the request and allows failed requests to be retried without the risk of running the operation twice. This parameter is optional.\nIf used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_framework": {
+        "FrameworkName": {
+            "Description": "The unique name of the framework. The name must be between 1 and 256 characters, starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "FrameworkDescription": {
+            "Description": "An optional description of the framework with a maximum of 1,024 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "FrameworkControls": {
+            "Description": "A list of the controls that make up the framework. Each control in the list has a name, input parameters, and scope.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to CreateFrameworkInput. Retrying a successful request with the same idempotency token results in a success message with no action taken.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "FrameworkTags": {
+            "Description": "Metadata that you can assign to help organize the frameworks that you create. Each tag is a key-value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_report_plan": {
+        "ReportPlanName": {
+            "Description": "The unique name of the report plan. The name must be between 1 and 256 characters, starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "ReportPlanDescription": {
+            "Description": "An optional description of the report plan with a maximum of 1,024 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReportDeliveryChannel": {
+            "Description": "A structure that contains information about where and how to deliver your reports, specifically your Amazon S3 bucket name, S3 key prefix, and the formats of your reports.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ReportSetting": {
+            "Description": "Identifies the report template for the report. Reports are built using a report template. The report templates are:\nIf the report template is RESOURCE_COMPLIANCE_REPORT or CONTROL_COMPLIANCE_REPORT, this API resource also describes the report coverage by Amazon Web Services Regions and frameworks.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ReportPlanTags": {
+            "Description": "Metadata that you can assign to help organize the report plans that you create. Each tag is a key-value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to CreateReportPlanInput. Retrying a successful request with the same idempotency token results in a success message with no action taken.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_backup_plan": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_backup_selection": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "SelectionId": {
+            "Description": "Uniquely identifies the body of a request to assign a set of resources to a backup plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_backup_vault": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_backup_vault_access_policy": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_backup_vault_lock_configuration": {
+        "BackupVaultName": {
+            "Description": "The name of the backup vault from which to delete Backup Vault Lock.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_backup_vault_notifications": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_framework": {
+        "FrameworkName": {
+            "Description": "The unique name of a framework.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_recovery_point": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecoveryPointArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_report_plan": {
+        "ReportPlanName": {
+            "Description": "The unique name of a report plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_backup_job": {
+        "BackupJobId": {
+            "Description": "Uniquely identifies a request to Backup to back up a resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_backup_vault": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_copy_job": {
+        "CopyJobId": {
+            "Description": "Uniquely identifies a copy job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_framework": {
+        "FrameworkName": {
+            "Description": "The unique name of a framework.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_global_settings": "No parameters defined",
+    "describe_protected_resource": {
+        "ResourceArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a resource. The format of the ARN depends on the resource type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_recovery_point": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecoveryPointArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_region_settings": "No parameters defined",
+    "describe_report_job": {
+        "ReportJobId": {
+            "Description": "The identifier of the report job. A unique, randomly generated, Unicode, UTF-8 encoded string that is at most 1,024 bytes long. The report job ID cannot be edited.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_report_plan": {
+        "ReportPlanName": {
+            "Description": "The unique name of a report plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_restore_job": {
+        "RestoreJobId": {
+            "Description": "Uniquely identifies the job that restores a recovery point.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_recovery_point": {
+        "BackupVaultName": {
+            "Description": "The unique name of an Backup vault.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecoveryPointArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies an Backup recovery point.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "export_backup_plan_template": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_backup_plan": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionId": {
+            "Description": "Unique, randomly generated, Unicode, UTF-8 encoded strings that are at most 1,024 bytes long. Version IDs cannot be edited.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_backup_plan_from_json": {
+        "BackupPlanTemplateJson": {
+            "Description": "A customer-supplied backup plan document in JSON format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_backup_plan_from_template": {
+        "BackupPlanTemplateId": {
+            "Description": "Uniquely identifies a stored backup plan template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_backup_selection": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "SelectionId": {
+            "Description": "Uniquely identifies the body of a request to assign a set of resources to a backup plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_backup_vault_access_policy": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_backup_vault_notifications": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_recovery_point_restore_metadata": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecoveryPointArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_supported_resource_types": "No parameters defined",
+    "list_backup_jobs": {
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ByResourceArn": {
+            "Description": "Returns only backup jobs that match the specified resource Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": false
+        },
+        "ByState": {
+            "Description": "Returns only backup jobs that are in the specified state.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByBackupVaultName": {
+            "Description": "Returns only backup jobs that will be stored in the specified backup vault. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCreatedBefore": {
+            "Description": "Returns only backup jobs that were created before the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCreatedAfter": {
+            "Description": "Returns only backup jobs that were created after the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByResourceType": {
+            "Description": "Returns only backup jobs for the specified resources:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ByAccountId": {
+            "Description": "The account ID to list the jobs from. Returns only backup jobs associated with the specified account ID.\nIf used from an Organizations management account, passing * returns all jobs across the organization.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCompleteAfter": {
+            "Description": "Returns only backup jobs completed after a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCompleteBefore": {
+            "Description": "Returns only backup jobs completed before a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_backup_plan_templates": {
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_backup_plan_versions": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_backup_plans": {
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "IncludeDeleted": {
+            "Description": "A Boolean value with a default value of FALSE that returns deleted backup plans when set to TRUE .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_backup_selections": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_backup_vaults": {
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_copy_jobs": {
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ByResourceArn": {
+            "Description": "Returns only copy jobs that match the specified resource Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": false
+        },
+        "ByState": {
+            "Description": "Returns only copy jobs that are in the specified state.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCreatedBefore": {
+            "Description": "Returns only copy jobs that were created before the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCreatedAfter": {
+            "Description": "Returns only copy jobs that were created after the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByResourceType": {
+            "Description": "Returns only backup jobs for the specified resources:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ByDestinationVaultArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a source backup vault to copy from; for example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault .",
+            "Type": "string",
+            "Required": false
+        },
+        "ByAccountId": {
+            "Description": "The account ID to list the jobs from. Returns only copy jobs associated with the specified account ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCompleteBefore": {
+            "Description": "Returns only copy jobs completed before a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCompleteAfter": {
+            "Description": "Returns only copy jobs completed after a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_frameworks": {
+        "MaxResults": {
+            "Description": "The number of desired results from 1 to 1000. Optional. If unspecified, the query will return 1 MB of data.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_protected_resources": {
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_recovery_points_by_backup_vault": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ByResourceArn": {
+            "Description": "Returns only recovery points that match the specified resource Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": false
+        },
+        "ByResourceType": {
+            "Description": "Returns only recovery points that match the specified resource type.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByBackupPlanId": {
+            "Description": "Returns only recovery points that match the specified backup plan ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCreatedBefore": {
+            "Description": "Returns only recovery points that were created before the specified timestamp.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCreatedAfter": {
+            "Description": "Returns only recovery points that were created after the specified timestamp.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_recovery_points_by_resource": {
+        "ResourceArn": {
+            "Description": "An ARN that uniquely identifies a resource. The format of the ARN depends on the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_report_jobs": {
+        "ByReportPlanName": {
+            "Description": "Returns only report jobs with the specified report plan name.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCreationBefore": {
+            "Description": "Returns only report jobs that were created before the date and time specified in Unix format and Coordinated Universal Time (UTC). For example, the value 1516925490 represents Friday, January 26, 2018 12:11:30 AM.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCreationAfter": {
+            "Description": "Returns only report jobs that were created after the date and time specified in Unix format and Coordinated Universal Time (UTC). For example, the value 1516925490 represents Friday, January 26, 2018 12:11:30 AM.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByStatus": {
+            "Description": "Returns only report jobs that are in the specified status. The statuses are:",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The number of desired results from 1 to 1000. Optional. If unspecified, the query will return 1 MB of data.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_report_plans": {
+        "MaxResults": {
+            "Description": "The number of desired results from 1 to 1000. Optional. If unspecified, the query will return 1 MB of data.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_restore_jobs": {
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ByAccountId": {
+            "Description": "The account ID to list the jobs from. Returns only restore jobs associated with the specified account ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCreatedBefore": {
+            "Description": "Returns only restore jobs that were created before the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCreatedAfter": {
+            "Description": "Returns only restore jobs that were created after the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByStatus": {
+            "Description": "Returns only restore jobs associated with the specified job status.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCompleteBefore": {
+            "Description": "Returns only copy jobs completed before a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCompleteAfter": {
+            "Description": "Returns only copy jobs completed after a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_tags": {
+        "ResourceArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a resource. The format of the ARN depends on the type of resource. Valid targets for ListTags are recovery points, backup plans, and backup vaults.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The next item following a partial list of returned items. For example, if a request is made to return maxResults number of items, NextToken allows you to return more items in your list starting at the location pointed to by the next token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to be returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_backup_vault_access_policy": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The backup vault access policy document in JSON format.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_backup_vault_lock_configuration": {
+        "BackupVaultName": {
+            "Description": "The Backup Vault Lock configuration that specifies the name of the backup vault it protects.",
+            "Type": "string",
+            "Required": true
+        },
+        "MinRetentionDays": {
+            "Description": "The Backup Vault Lock configuration that specifies the minimum retention period that the vault retains its recovery points. This setting can be useful if, for example, your organization's policies require you to retain certain data for at least seven years (2555 days).\nIf this parameter is not specified, Vault Lock will not enforce a minimum retention period.\nIf this parameter is specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or longer than the minimum retention period. If the job's retention period is shorter than that minimum retention period, then the vault fails that backup or copy job, and you should either modify your lifecycle settings or use a different vault. The shortest minimum retention period you can specify is 1 day. Recovery points already saved in the vault prior to Vault Lock are not affected.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaxRetentionDays": {
+            "Description": "The Backup Vault Lock configuration that specifies the maximum retention period that the vault retains its recovery points. This setting can be useful if, for example, your organization's policies require you to destroy certain data after retaining it for four years (1460 days).\nIf this parameter is not included, Vault Lock does not enforce a maximum retention period on the recovery points in the vault. If this parameter is included without a value, Vault Lock will not enforce a maximum retention period.\nIf this parameter is specified, any backup or copy job to the vault must have a lifecycle policy with a retention period equal to or shorter than the maximum retention period. If the job's retention period is longer than that maximum retention period, then the vault fails the backup or copy job, and you should either modify your lifecycle settings or use a different vault. The longest maximum retention period you can specify is 36500 days (approximately 100 years). Recovery points already saved in the vault prior to Vault Lock are not affected.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ChangeableForDays": {
+            "Description": "The Backup Vault Lock configuration that specifies the number of days before the lock date. For example, setting ChangeableForDays to 30 on Jan. 1, 2022 at 8pm UTC will set the lock date to Jan. 31, 2022 at 8pm UTC.\nBackup enforces a 72-hour cooling-off period before Vault Lock takes effect and becomes immutable. Therefore, you must set ChangeableForDays to 3 or greater.\nBefore the lock date, you can delete Vault Lock from the vault using DeleteBackupVaultLockConfiguration or change the Vault Lock configuration using PutBackupVaultLockConfiguration. On and after the lock date, the Vault Lock becomes immutable and cannot be changed or deleted.\nIf this parameter is not specified, you can delete Vault Lock from the vault using DeleteBackupVaultLockConfiguration or change the Vault Lock configuration using PutBackupVaultLockConfiguration at any time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_backup_vault_notifications": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "SNSTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) that specifies the topic for a backup vault\u2019s events; for example, arn:aws:sns:us-west-2:111122223333:MyVaultTopic .",
+            "Type": "string",
+            "Required": true
+        },
+        "BackupVaultEvents": {
+            "Description": "An array of events that indicate the status of jobs to back up resources to the backup vault.\nFor common use cases and code samples, see Using Amazon SNS to track Backup events .\nThe following events are supported:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "start_backup_job": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a resource. The format of the ARN depends on the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "IamRoleArn": {
+            "Description": "Specifies the IAM role ARN used to create the target recovery point; for example, arn:aws:iam::123456789012:role/S3Access .",
+            "Type": "string",
+            "Required": true
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to StartBackupJob . Retrying a successful request with the same idempotency token results in a success message with no action taken.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartWindowMinutes": {
+            "Description": "A value in minutes after a backup is scheduled before a job will be canceled if it doesn't start successfully. This value is optional, and the default is 8 hours.",
+            "Type": "integer",
+            "Required": false
+        },
+        "CompleteWindowMinutes": {
+            "Description": "A value in minutes during which a successfully started backup must complete, or else Backup will cancel the job. This value is optional. This value begins counting down from when the backup was scheduled. It does not add additional time for StartWindowMinutes , or if the backup started later than scheduled.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Lifecycle": {
+            "Description": "The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup will transition and expire backups automatically according to the lifecycle that you define.\nBackups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold.\nResource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the Feature availability by resource table. Backup ignores this expression for other resource types.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RecoveryPointTags": {
+            "Description": "To help organize your resources, you can assign your own metadata to the resources that you create. Each tag is a key-value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "BackupOptions": {
+            "Description": "Specifies the backup option for a selected resource. This option is only available for Windows Volume Shadow Copy Service (VSS) backup jobs.\nValid values: Set to \"WindowsVSS\":\"enabled\" to enable the WindowsVSS backup option and create a Windows VSS backup. Set to \"WindowsVSS\"\"disabled\" to create a regular backup. The WindowsVSS option is not enabled by default.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_copy_job": {
+        "RecoveryPointArn": {
+            "Description": "An ARN that uniquely identifies a recovery point to use for the copy job; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceBackupVaultName": {
+            "Description": "The name of a logical source container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationBackupVaultArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a destination backup vault to copy to; for example, arn:aws:backup:us-east-1:123456789012:vault:aBackupVault .",
+            "Type": "string",
+            "Required": true
+        },
+        "IamRoleArn": {
+            "Description": "Specifies the IAM role ARN used to copy the target recovery point; for example, arn:aws:iam::123456789012:role/S3Access .",
+            "Type": "string",
+            "Required": true
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to StartCopyJob . Retrying a successful request with the same idempotency token results in a success message with no action taken.",
+            "Type": "string",
+            "Required": false
+        },
+        "Lifecycle": {
+            "Description": "Contains an array of Transition objects specifying how long in days before a recovery point transitions to cold storage or is deleted.\nBackups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, on the console, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold.\nResource types that are able to be transitioned to cold storage are listed in the \"Lifecycle to cold storage\" section of the Feature availability by resource table. Backup ignores this expression for other resource types.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_report_job": {
+        "ReportPlanName": {
+            "Description": "The unique name of a report plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to StartReportJobInput. Retrying a successful request with the same idempotency token results in a success message with no action taken.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_restore_job": {
+        "RecoveryPointArn": {
+            "Description": "An ARN that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45 .",
+            "Type": "string",
+            "Required": true
+        },
+        "Metadata": {
+            "Description": "A set of metadata key-value pairs. Contains information, such as a resource name, required to restore a recovery point.\nYou can get configuration metadata about a resource at the time it was backed up by calling GetRecoveryPointRestoreMetadata. However, values in addition to those provided by GetRecoveryPointRestoreMetadata might be required to restore a resource. For example, you might need to provide a new resource name if the original already exists.\nYou need to specify specific metadata to restore an Amazon Elastic File System (Amazon EFS) instance:",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "IamRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role that Backup uses to create the target recovery point; for example, arn:aws:iam::123456789012:role/S3Access .",
+            "Type": "string",
+            "Required": false
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to StartRestoreJob . Retrying a successful request with the same idempotency token results in a success message with no action taken.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceType": {
+            "Description": "Starts a job to restore a recovery point for one of the following resources:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "stop_backup_job": {
+        "BackupJobId": {
+            "Description": "Uniquely identifies a request to Backup to back up a resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Key-value pairs that are used to help organize your resources. You can assign your own metadata to the resources you create. For clarity, this is the structure to assign tags: [{\"Key\":\"string\",\"Value\":\"string\"}] .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "An ARN that uniquely identifies a resource. The format of the ARN depends on the type of the tagged resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeyList": {
+            "Description": "A list of keys to identify which key-value tags to remove from a resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_backup_plan": {
+        "BackupPlanId": {
+            "Description": "Uniquely identifies a backup plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "BackupPlan": {
+            "Description": "Specifies the body of a backup plan. Includes a BackupPlanName and one or more sets of Rules .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_framework": {
+        "FrameworkName": {
+            "Description": "The unique name of a framework. This name is between 1 and 256 characters, starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "FrameworkDescription": {
+            "Description": "An optional description of the framework with a maximum 1,024 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "FrameworkControls": {
+            "Description": "A list of the controls that make up the framework. Each control in the list has a name, input parameters, and scope.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to UpdateFrameworkInput. Retrying a successful request with the same idempotency token results in a success message with no action taken.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_global_settings": {
+        "GlobalSettings": {
+            "Description": "A value for isCrossAccountBackupEnabled and a Region. Example: update-global-settings --global-settings isCrossAccountBackupEnabled=false --region us-west-2 .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_recovery_point_lifecycle": {
+        "BackupVaultName": {
+            "Description": "The name of a logical container where backups are stored. Backup vaults are identified by names that are unique to the account used to create them and the Amazon Web Services Region where they are created. They consist of lowercase letters, numbers, and hyphens.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecoveryPointArn": {
+            "Description": "An Amazon Resource Name (ARN) that uniquely identifies a recovery point; for example, arn:aws:backup:us-east-1:123456789012:recovery-point:1EB3B5E7-9EB0-435A-A80B-108B488B0D45 .",
+            "Type": "string",
+            "Required": true
+        },
+        "Lifecycle": {
+            "Description": "The lifecycle defines when a protected resource is transitioned to cold storage and when it expires. Backup transitions and expires backups automatically according to the lifecycle that you define.\nBackups transitioned to cold storage must be stored in cold storage for a minimum of 90 days. Therefore, the \u201cretention\u201d setting must be 90 days greater than the \u201ctransition to cold after days\u201d setting. The \u201ctransition to cold after days\u201d setting cannot be changed after a backup has been transitioned to cold.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_region_settings": {
+        "ResourceTypeOptInPreference": {
+            "Description": "Updates the list of services along with the opt-in preferences for the Region.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResourceTypeManagementPreference": {
+            "Description": "Enables or disables full Backup management of backups for a resource type. To enable full Backup management for DynamoDB along with Backup's advanced DynamoDB backup features, follow the procedure to enable advanced DynamoDB backup programmatically .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_report_plan": {
+        "ReportPlanName": {
+            "Description": "The unique name of the report plan. This name is between 1 and 256 characters, starting with a letter, and consisting of letters (a-z, A-Z), numbers (0-9), and underscores (_).",
+            "Type": "string",
+            "Required": true
+        },
+        "ReportPlanDescription": {
+            "Description": "An optional description of the report plan with a maximum 1,024 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReportDeliveryChannel": {
+            "Description": "A structure that contains information about where to deliver your reports, specifically your Amazon S3 bucket name, S3 key prefix, and the formats of your reports.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ReportSetting": {
+            "Description": "Identifies the report template for the report. Reports are built using a report template. The report templates are:\nIf the report template is RESOURCE_COMPLIANCE_REPORT or CONTROL_COMPLIANCE_REPORT, this API resource also describes the report coverage by Amazon Web Services Regions and frameworks.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A customer-chosen string that you can use to distinguish between otherwise identical calls to UpdateReportPlanInput. Retrying a successful request with the same idempotency token results in a success message with no action taken.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "ByAccountId": {
+            "Description": "The account ID to list the jobs from. Returns only restore jobs associated with the specified account ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCreatedBefore": {
+            "Description": "Returns only restore jobs that were created before the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCreatedAfter": {
+            "Description": "Returns only restore jobs that were created after the specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByStatus": {
+            "Description": "Returns only restore jobs associated with the specified job status.",
+            "Type": "string",
+            "Required": false
+        },
+        "ByCompleteBefore": {
+            "Description": "Returns only copy jobs completed before a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ByCompleteAfter": {
+            "Description": "Returns only copy jobs completed after a date expressed in Unix format and Coordinated Universal Time (UTC).",
+            "Type": "datetime",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

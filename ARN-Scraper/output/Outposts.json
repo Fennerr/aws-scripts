@@ -1,0 +1,492 @@
+{
+    "cancel_order": {
+        "OrderId": {
+            "Description": "The ID of the order to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_order": {
+        "OutpostIdentifier": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the Outpost.",
+            "Type": "string",
+            "Required": true
+        },
+        "LineItems": {
+            "Description": "The line items that make up the order.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "PaymentOption": {
+            "Description": "The payment option for the order.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaymentTerm": {
+            "Description": "The payment terms for the order.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_outpost": {
+        "Name": {
+            "Description": "The name of the Outpost.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the Outpost.",
+            "Type": "string",
+            "Required": false
+        },
+        "SiteId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the site.",
+            "Type": "string",
+            "Required": true
+        },
+        "AvailabilityZone": {
+            "Description": "The Availability Zone.",
+            "Type": "string",
+            "Required": false
+        },
+        "AvailabilityZoneId": {
+            "Description": "The ID of the Availability Zone.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to apply to the Outpost.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SupportedHardwareType": {
+            "Description": "The type of hardware for this Outpost.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_site": {
+        "Name": {
+            "Description": "The name of the site.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the site.",
+            "Type": "string",
+            "Required": false
+        },
+        "Notes": {
+            "Description": "Additional information that you provide about site access requirements, electrician scheduling, personal protective equipment, or regulation of equipment materials that could affect your installation process.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to apply to a site.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OperatingAddress": {
+            "Description": "The location to install and power on the hardware. This address might be different from the shipping address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ShippingAddress": {
+            "Description": "The location to ship the hardware. This address might be different from the operating address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RackPhysicalProperties": {
+            "Description": "Information about the physical and logistical details for the rack at this site. For more information about hardware requirements for racks, see Network readiness checklist in the Amazon Web Services Outposts User Guide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_outpost": {
+        "OutpostId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the Outpost.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_site": {
+        "SiteId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the site.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_catalog_item": {
+        "CatalogItemId": {
+            "Description": "The ID of the catalog item.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_connection": {
+        "ConnectionId": {
+            "Description": "The ID of the connection you request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_order": {
+        "OrderId": {
+            "Description": "The ID of the order.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_outpost": {
+        "OutpostId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the Outpost.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_outpost_instance_types": {
+        "OutpostId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the Outpost.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum page size.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_site": {
+        "SiteId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the site.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_site_address": {
+        "SiteId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the site.",
+            "Type": "string",
+            "Required": true
+        },
+        "AddressType": {
+            "Description": "The type of the address you request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_assets": {
+        "OutpostIdentifier": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the Outpost.",
+            "Type": "string",
+            "Required": true
+        },
+        "HostIdFilter": {
+            "Description": "A filter for the host ID of Dedicated Hosts on the Outpost.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_catalog_items": {
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ItemClassFilter": {
+            "Description": "A filter for the class of items in the catalog.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SupportedStorageFilter": {
+            "Description": "A filter for the storage options of items in the catalog.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EC2FamilyFilter": {
+            "Description": "A filter for EC2 family options for items in the catalog.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_orders": {
+        "OutpostIdentifierFilter": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the Outpost.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum page size.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_outposts": {
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LifeCycleStatusFilter": {
+            "Description": "A filter for the lifecycle status of the Outpost.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AvailabilityZoneFilter": {
+            "Description": "A filter for the Availability Zone (us-east-1a ) of the Outpost.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AvailabilityZoneIdFilter": {
+            "Description": "A filter for the AZ IDs (use1-az1 ) of the Outpost.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_sites": {
+        "NextToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "OperatingAddressCountryCodeFilter": {
+            "Description": "A filter for the country code of the Outpost site.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OperatingAddressStateOrRegionFilter": {
+            "Description": "A filter for the state/region of the Outpost site.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OperatingAddressCityFilter": {
+            "Description": "A filter for the city of the Outpost site.\nFilter values are case sensitive. If you specify multiple values for a filter, the values are joined with an OR, and the request returns all results that match any of the specified values.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_connection": {
+        "DeviceSerialNumber": {
+            "Description": "The serial number of the dongle.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssetId": {
+            "Description": "The ID of the Outpost server.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientPublicKey": {
+            "Description": "The public key of the client.",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkInterfaceDeviceIndex": {
+            "Description": "The device index of the network interface on the Outpost server.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to add to the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_outpost": {
+        "OutpostId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the Outpost.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the Outpost.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the Outpost.",
+            "Type": "string",
+            "Required": false
+        },
+        "SupportedHardwareType": {
+            "Description": "The type of hardware for this Outpost.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_site": {
+        "SiteId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the site.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the site.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description of the site.",
+            "Type": "string",
+            "Required": false
+        },
+        "Notes": {
+            "Description": "Notes about a site.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_site_address": {
+        "SiteId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the site.",
+            "Type": "string",
+            "Required": true
+        },
+        "AddressType": {
+            "Description": "The type of the address.",
+            "Type": "string",
+            "Required": true
+        },
+        "Address": {
+            "Description": "The address for the site.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_site_rack_physical_properties": {
+        "SiteId": {
+            "Description": "The ID or the Amazon Resource Name (ARN) of the site.",
+            "Type": "string",
+            "Required": true
+        },
+        "PowerDrawKva": {
+            "Description": "Specify in kVA the power draw available at the hardware placement position for the rack.",
+            "Type": "string",
+            "Required": false
+        },
+        "PowerPhase": {
+            "Description": "Specify the power option that you can provide for hardware.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PowerConnector": {
+            "Description": "Specify the power connector that Amazon Web Services should plan to provide for connections to the hardware. Note the correlation between PowerPhase and PowerConnector .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PowerFeedDrop": {
+            "Description": "Specify whether the power feed comes above or below the rack.",
+            "Type": "string",
+            "Required": false
+        },
+        "UplinkGbps": {
+            "Description": "Specify the uplink speed the rack should support for the connection to the Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "UplinkCount": {
+            "Description": "Racks come with two Outpost network devices. Depending on the supported uplink speed at the site, the Outpost network devices provide a variable number of uplinks. Specify the number of uplinks for each Outpost network device that you intend to use to connect the rack to your network. Note the correlation between UplinkGbps and UplinkCount .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "FiberOpticCableType": {
+            "Description": "Specify the type of fiber that you will use to attach the Outpost to your network.",
+            "Type": "string",
+            "Required": false
+        },
+        "OpticalStandard": {
+            "Description": "Specify the type of optical standard that you will use to attach the Outpost to your network. This field is dependent on uplink speed, fiber type, and distance to the upstream device. For more information about networking requirements for racks, see Network in the Amazon Web Services Outposts User Guide.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "MaximumSupportedWeightLbs": {
+            "Description": "Specify the maximum rack weight that this site can support. NO_LIMIT is over 2000lbs.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

@@ -1,0 +1,877 @@
+{
+    "associate_lenses": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAliases": {
+            "Description": "List of lens aliases to associate or disassociate with a workload. Up to 10 lenses can be specified.\nIdentify a lens using its  LensSummary$LensAlias .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_lens_share": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "SharedWith": {
+            "Description": "The Amazon Web Services account ID or IAM role with which the workload is shared.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_lens_version": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "LensVersion": {
+            "Description": "The version of the lens being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "IsMajorVersion": {
+            "Description": "Set to true if this new major lens version.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_milestone": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "MilestoneName": {
+            "Description": "The name of the milestone in a workload.\nMilestone names must be unique within a workload.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_workload": {
+        "WorkloadName": {
+            "Description": "The name of the workload.\nThe name must be unique within an account within an Amazon Web Services Region. Spaces and capitalization are ignored when checking for uniqueness.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the workload.",
+            "Type": "string",
+            "Required": true
+        },
+        "Environment": {
+            "Description": "The environment for the workload.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountIds": {
+            "Description": "The list of Amazon Web Services account IDs associated with the workload.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AwsRegions": {
+            "Description": "The list of Amazon Web Services Regions associated with the workload, for example, us-east-2, or ca-central-1 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NonAwsRegions": {
+            "Description": "The list of non-Amazon Web Services Regions associated with the workload.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PillarPriorities": {
+            "Description": "The priorities of the pillars, which are used to order items in the improvement plan. Each pillar is represented by its  PillarReviewSummary$PillarId .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ArchitecturalDesign": {
+            "Description": "The URL of the architectural design for the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReviewOwner": {
+            "Description": "The review owner of the workload. The name, email address, or identifier for the primary group or individual that owns the workload review process.",
+            "Type": "string",
+            "Required": false
+        },
+        "IndustryType": {
+            "Description": "The industry type for the workload.\nIf specified, must be one of the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Industry": {
+            "Description": "The industry for the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "Lenses": {
+            "Description": "The list of lenses associated with the workload. Each lens is identified by its  LensSummary$LensAlias .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Notes": {
+            "Description": "The notes associated with the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be associated with the workload.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_workload_share": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "SharedWith": {
+            "Description": "The Amazon Web Services account ID or IAM role with which the workload is shared.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionType": {
+            "Description": "Permission granted on a workload share.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_lens": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensStatus": {
+            "Description": "The status of the lens to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_lens_share": {
+        "ShareId": {
+            "Description": "The ID associated with the workload share.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_workload": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_workload_share": {
+        "ShareId": {
+            "Description": "The ID associated with the workload share.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_lenses": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAliases": {
+            "Description": "List of lens aliases to associate or disassociate with a workload. Up to 10 lenses can be specified.\nIdentify a lens using its  LensSummary$LensAlias .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "export_lens": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "LensVersion": {
+            "Description": "The lens version to be exported.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_answer": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "QuestionId": {
+            "Description": "The ID of the question.",
+            "Type": "string",
+            "Required": true
+        },
+        "MilestoneNumber": {
+            "Description": "The milestone number.\nA workload can have a maximum of 100 milestones.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_lens": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "LensVersion": {
+            "Description": "The lens version to be retrieved.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_lens_review": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "MilestoneNumber": {
+            "Description": "The milestone number.\nA workload can have a maximum of 100 milestones.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_lens_review_report": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "MilestoneNumber": {
+            "Description": "The milestone number.\nA workload can have a maximum of 100 milestones.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_lens_version_difference": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "BaseLensVersion": {
+            "Description": "The base version of the lens.",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetLensVersion": {
+            "Description": "The lens version to target a difference for.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_milestone": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "MilestoneNumber": {
+            "Description": "The milestone number.\nA workload can have a maximum of 100 milestones.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_workload": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_lens": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": false
+        },
+        "JSONString": {
+            "Description": "The JSON representation of a lens.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags to associate to a lens.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_answers": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "PillarId": {
+            "Description": "The ID used to identify a pillar, for example, security .\nA pillar is identified by its  PillarReviewSummary$PillarId .",
+            "Type": "string",
+            "Required": false
+        },
+        "MilestoneNumber": {
+            "Description": "The milestone number.\nA workload can have a maximum of 100 milestones.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_lens_review_improvements": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "PillarId": {
+            "Description": "The ID used to identify a pillar, for example, security .\nA pillar is identified by its  PillarReviewSummary$PillarId .",
+            "Type": "string",
+            "Required": false
+        },
+        "MilestoneNumber": {
+            "Description": "The milestone number.\nA workload can have a maximum of 100 milestones.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_lens_reviews": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "MilestoneNumber": {
+            "Description": "The milestone number.\nA workload can have a maximum of 100 milestones.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_lens_shares": {
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "SharedWithPrefix": {
+            "Description": "The Amazon Web Services account ID or IAM role with which the lens is shared.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Status": {
+            "Description": "The status of a workload share.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_lenses": {
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LensType": {
+            "Description": "The type of lenses to be returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "LensStatus": {
+            "Description": "The status of lenses to be returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "LensName": {
+            "Description": "The full name of the lens.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_milestones": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_notifications": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_share_invitations": {
+        "WorkloadNamePrefix": {
+            "Description": "An optional string added to the beginning of each workload name returned in the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "LensNamePrefix": {
+            "Description": "An optional string added to the beginning of each lens name returned in the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ShareResourceType": {
+            "Description": "The type of share invitations to be returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "WorkloadArn": {
+            "Description": "The ARN for the workload.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_workload_shares": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "SharedWithPrefix": {
+            "Description": "The Amazon Web Services account ID or IAM role with which the workload is shared.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Status": {
+            "Description": "The status of a workload share.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_workloads": {
+        "WorkloadNamePrefix": {
+            "Description": "An optional string added to the beginning of each workload name returned in the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to use to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return for this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "WorkloadArn": {
+            "Description": "The ARN for the workload.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags for the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "WorkloadArn": {
+            "Description": "The ARN for the workload.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of tag keys. Existing tags of the resource whose keys are members of this list are removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_answer": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "QuestionId": {
+            "Description": "The ID of the question.",
+            "Type": "string",
+            "Required": true
+        },
+        "SelectedChoices": {
+            "Description": "List of selected choice IDs in a question answer.\nThe values entered replace the previously selected choices.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ChoiceUpdates": {
+            "Description": "A list of choices to update on a question in your workload. The String key corresponds to the choice ID to be updated.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Notes": {
+            "Description": "The notes associated with the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "IsApplicable": {
+            "Description": "Defines whether this question is applicable to a lens review.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Reason": {
+            "Description": "The reason why a question is not applicable to your workload.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_global_settings": {
+        "OrganizationSharingStatus": {
+            "Description": "The status of organization sharing settings.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_lens_review": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "LensNotes": {
+            "Description": "The notes associated with the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "PillarNotes": {
+            "Description": "List of pillar notes of a lens review in a workload.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_share_invitation": {
+        "ShareInvitationId": {
+            "Description": "The ID assigned to the share invitation.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShareInvitationAction": {
+            "Description": "Share invitation action taken by contributor.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_workload": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkloadName": {
+            "Description": "The name of the workload.\nThe name must be unique within an account within an Amazon Web Services Region. Spaces and capitalization are ignored when checking for uniqueness.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The description for the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "Environment": {
+            "Description": "The environment for the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccountIds": {
+            "Description": "The list of Amazon Web Services account IDs associated with the workload.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AwsRegions": {
+            "Description": "The list of Amazon Web Services Regions associated with the workload, for example, us-east-2, or ca-central-1 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NonAwsRegions": {
+            "Description": "The list of non-Amazon Web Services Regions associated with the workload.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PillarPriorities": {
+            "Description": "The priorities of the pillars, which are used to order items in the improvement plan. Each pillar is represented by its  PillarReviewSummary$PillarId .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ArchitecturalDesign": {
+            "Description": "The URL of the architectural design for the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReviewOwner": {
+            "Description": "The review owner of the workload. The name, email address, or identifier for the primary group or individual that owns the workload review process.",
+            "Type": "string",
+            "Required": false
+        },
+        "IsReviewOwnerUpdateAcknowledged": {
+            "Description": "Flag indicating whether the workload owner has acknowledged that the Review owner field is required.\nIf a Review owner is not added to the workload within 60 days of acknowledgement, access to the workload is restricted until an owner is added.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IndustryType": {
+            "Description": "The industry type for the workload.\nIf specified, must be one of the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Industry": {
+            "Description": "The industry for the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "Notes": {
+            "Description": "The notes associated with the workload.",
+            "Type": "string",
+            "Required": false
+        },
+        "ImprovementStatus": {
+            "Description": "The improvement status for a workload.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_workload_share": {
+        "ShareId": {
+            "Description": "The ID associated with the workload share.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "PermissionType": {
+            "Description": "Permission granted on a workload share.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "upgrade_lens_review": {
+        "WorkloadId": {
+            "Description": "The ID assigned to the workload. This ID is unique within an Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "LensAlias": {
+            "Description": "The alias of the lens.\nFor Amazon Web Services official lenses, this is either the lens alias, such as serverless, or the lens ARN, such as arn:aws:wellarchitected:us-west-2::lens/serverless .\nFor custom lenses, this is the lens ARN, such as arn:aws:wellarchitected:us-east-1:123456789012:lens/my-lens .\nEach lens is identified by its  LensSummary$LensAlias .",
+            "Type": "string",
+            "Required": true
+        },
+        "MilestoneName": {
+            "Description": "The name of the milestone in a workload.\nMilestone names must be unique within a workload.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique case-sensitive string used to ensure that this request is idempotent (executes only once).\nYou should not reuse the same token for other requests. If you retry a request with the same client request token and the same parameters after it has completed successfully, the result of the original request is returned.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

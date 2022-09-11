@@ -1,0 +1,298 @@
+{
+    "create_cli_token": {
+        "Name": {
+            "Description": "The name of the Amazon MWAA environment. For example, MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_environment": {
+        "AirflowConfigurationOptions": {
+            "Description": "A list of key-value pairs containing the Apache Airflow configuration options you want to attach to your environment. To learn more, see Apache Airflow configuration options .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AirflowVersion": {
+            "Description": "The Apache Airflow version for your environment. If no value is specified, it defaults to the latest version. Valid values: 1.10.12 , 2.0.2 , and 2.2.2 . To learn more, see Apache Airflow versions on Amazon Managed Workflows for Apache Airflow (MWAA) .",
+            "Type": "string",
+            "Required": false
+        },
+        "DagS3Path": {
+            "Description": "The relative path to the DAGs folder on your Amazon S3 bucket. For example, dags. To learn more, see Adding or updating DAGs .",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentClass": {
+            "Description": "The environment class type. Valid values: mw1.small , mw1.medium , mw1.large . To learn more, see Amazon MWAA environment class .",
+            "Type": "string",
+            "Required": false
+        },
+        "ExecutionRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the execution role for your environment. An execution role is an Amazon Web Services Identity and Access Management (IAM) role that grants MWAA permission to access Amazon Web Services services and resources used by your environment. For example, arn:aws:iam::123456789:role/my-execution-role. To learn more, see Amazon MWAA Execution role .",
+            "Type": "string",
+            "Required": true
+        },
+        "KmsKey": {
+            "Description": "The Amazon Web Services Key Management Service (KMS) key to encrypt the data in your environment. You can use an Amazon Web Services owned CMK, or a Customer managed CMK (advanced). To learn more, see Create an Amazon MWAA environment .",
+            "Type": "string",
+            "Required": false
+        },
+        "LoggingConfiguration": {
+            "Description": "Defines the Apache Airflow logs to send to CloudWatch Logs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaxWorkers": {
+            "Description": "The maximum number of workers that you want to run in your environment. MWAA scales the number of Apache Airflow workers up to the number you specify in the MaxWorkers field. For example, 20 . When there are no more tasks running, and no more in the queue, MWAA disposes of the extra workers leaving the one worker that is included with your environment, or the number you specify in MinWorkers .",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinWorkers": {
+            "Description": "The minimum number of workers that you want to run in your environment. MWAA scales the number of Apache Airflow workers up to the number you specify in the MaxWorkers field. When there are no more tasks running, and no more in the queue, MWAA disposes of the extra workers leaving the worker count you specify in the MinWorkers field. For example, 2 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the Amazon MWAA environment. For example, MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkConfiguration": {
+            "Description": "The VPC networking components used to secure and enable network traffic between the Amazon Web Services resources for your environment. To learn more, see About networking on Amazon MWAA .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PluginsS3ObjectVersion": {
+            "Description": "The version of the plugins.zip file on your Amazon S3 bucket. A version must be specified each time a plugins.zip file is updated. To learn more, see How S3 Versioning works .",
+            "Type": "string",
+            "Required": false
+        },
+        "PluginsS3Path": {
+            "Description": "The relative path to the plugins.zip file on your Amazon S3 bucket. For example, plugins.zip . If specified, then the plugins.zip version is required. To learn more, see Installing custom plugins .",
+            "Type": "string",
+            "Required": false
+        },
+        "RequirementsS3ObjectVersion": {
+            "Description": "The version of the requirements.txt file on your Amazon S3 bucket. A version must be specified each time a requirements.txt file is updated. To learn more, see How S3 Versioning works .",
+            "Type": "string",
+            "Required": false
+        },
+        "RequirementsS3Path": {
+            "Description": "The relative path to the requirements.txt file on your Amazon S3 bucket. For example, requirements.txt . If specified, then a file version is required. To learn more, see Installing Python dependencies .",
+            "Type": "string",
+            "Required": false
+        },
+        "Schedulers": {
+            "Description": "The number of Apache Airflow schedulers to run in your environment. Valid values:",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "SourceBucketArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where your DAG code and supporting files are stored. For example, arn:aws:s3:::my-airflow-bucket-unique-name. To learn more, see Create an Amazon S3 bucket for Amazon MWAA .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value tag pairs you want to associate to your environment. For example, \"Environment\": \"Staging\". To learn more, see Tagging Amazon Web Services resources .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "WebserverAccessMode": {
+            "Description": "The Apache Airflow Web server access mode. To learn more, see Apache Airflow access modes .",
+            "Type": "string",
+            "Required": false
+        },
+        "WeeklyMaintenanceWindowStart": {
+            "Description": "The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time to start weekly maintenance updates of your environment in the following format: DAY:HH:MM . For example: TUE:03:30 . You can specify a start time in 30 minute increments only.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_web_login_token": {
+        "Name": {
+            "Description": "The name of the Amazon MWAA environment. For example, MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment": {
+        "Name": {
+            "Description": "The name of the Amazon MWAA environment. For example, MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment": {
+        "Name": {
+            "Description": "The name of the Amazon MWAA environment. For example, MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_environments": {
+        "MaxResults": {
+            "Description": "The maximum number of results to retrieve per page. For example, 5 environments per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Retrieves the next page of the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "publish_metrics": {
+        "EnvironmentName": {
+            "Description": "Internal only. The name of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "MetricData": {
+            "Description": "[REQUIRED]\n\nInternal only . Publishes metrics to Amazon CloudWatch. To learn more about the metrics published to Amazon CloudWatch, see Amazon MWAA performance metrics in Amazon CloudWatch .\n\n(dict) --\nInternal only . Collects Apache Airflow metrics. To learn more about the metrics published to Amazon CloudWatch, see Amazon MWAA performance metrics in Amazon CloudWatch .\n\nDimensions (list) --\nInternal only . The dimensions associated with the metric.\n\n(dict) --\nInternal only . Represents the dimensions of a metric. To learn more about the metrics published to Amazon CloudWatch, see Amazon MWAA performance metrics in Amazon CloudWatch .\n\nName (string)[REQUIRED]\nInternal only . The name of the dimension.\n\nValue (string)[REQUIRED]\nInternal only . The value of the dimension.\n\n\n\n\n\nMetricName (string)[REQUIRED]\nInternal only . The name of the metric.\n\nStatisticValues (dict) --\nInternal only . The statistical values for the metric.\n\nMaximum (float) --\nInternal only . The maximum value of the sample set.\n\nMinimum (float) --\nInternal only . The minimum value of the sample set.\n\nSampleCount (integer) --\nInternal only . The number of samples used for the statistic set.\n\nSum (float) --\nInternal only . The sum of values for the sample set.\n\n\n\nTimestamp (datetime)[REQUIRED]\nInternal only . The time the metric data was received.\n\nUnit (string) --\nInternal only . The unit used to store the metric.\n\nValue (float) --\nInternal only . The value for the metric.\n\n\n\n\n",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value tag pairs you want to associate to your environment. For example, \"Environment\": \"Staging\". To learn more, see Tagging Amazon Web Services resources .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon MWAA environment. For example, arn:aws:airflow:us-east-1:123456789012:environment/MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The key-value tag pair you want to remove. For example, \"Environment\": \"Staging\" .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_environment": {
+        "AirflowConfigurationOptions": {
+            "Description": "A list of key-value pairs containing the Apache Airflow configuration options you want to attach to your environment. To learn more, see Apache Airflow configuration options .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AirflowVersion": {
+            "Description": "The Apache Airflow version for your environment. If no value is specified, defaults to the latest version. Valid values: 1.10.12 , 2.0.2 , and 2.2.2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "DagS3Path": {
+            "Description": "The relative path to the DAGs folder on your Amazon S3 bucket. For example, dags . To learn more, see Adding or updating DAGs .",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentClass": {
+            "Description": "The environment class type. Valid values: mw1.small , mw1.medium , mw1.large . To learn more, see Amazon MWAA environment class .",
+            "Type": "string",
+            "Required": false
+        },
+        "ExecutionRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the execution role in IAM that allows MWAA to access Amazon Web Services resources in your environment. For example, arn:aws:iam::123456789:role/my-execution-role . To learn more, see Amazon MWAA Execution role .",
+            "Type": "string",
+            "Required": false
+        },
+        "LoggingConfiguration": {
+            "Description": "The Apache Airflow log types to send to CloudWatch Logs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaxWorkers": {
+            "Description": "The maximum number of workers that you want to run in your environment. MWAA scales the number of Apache Airflow workers up to the number you specify in the MaxWorkers field. For example, 20 . When there are no more tasks running, and no more in the queue, MWAA disposes of the extra workers leaving the one worker that is included with your environment, or the number you specify in MinWorkers .",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinWorkers": {
+            "Description": "The minimum number of workers that you want to run in your environment. MWAA scales the number of Apache Airflow workers up to the number you specify in the MaxWorkers field. When there are no more tasks running, and no more in the queue, MWAA disposes of the extra workers leaving the worker count you specify in the MinWorkers field. For example, 2 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of your Amazon MWAA environment. For example, MyMWAAEnvironment .",
+            "Type": "string",
+            "Required": true
+        },
+        "NetworkConfiguration": {
+            "Description": "The VPC networking components used to secure and enable network traffic between the Amazon Web Services resources for your environment. To learn more, see About networking on Amazon MWAA .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PluginsS3ObjectVersion": {
+            "Description": "The version of the plugins.zip file on your Amazon S3 bucket. A version must be specified each time a plugins.zip file is updated. To learn more, see How S3 Versioning works .",
+            "Type": "string",
+            "Required": false
+        },
+        "PluginsS3Path": {
+            "Description": "The relative path to the plugins.zip file on your Amazon S3 bucket. For example, plugins.zip . If specified, then the plugins.zip version is required. To learn more, see Installing custom plugins .",
+            "Type": "string",
+            "Required": false
+        },
+        "RequirementsS3ObjectVersion": {
+            "Description": "The version of the requirements.txt file on your Amazon S3 bucket. A version must be specified each time a requirements.txt file is updated. To learn more, see How S3 Versioning works .",
+            "Type": "string",
+            "Required": false
+        },
+        "RequirementsS3Path": {
+            "Description": "The relative path to the requirements.txt file on your Amazon S3 bucket. For example, requirements.txt . If specified, then a file version is required. To learn more, see Installing Python dependencies .",
+            "Type": "string",
+            "Required": false
+        },
+        "Schedulers": {
+            "Description": "The number of Apache Airflow schedulers to run in your Amazon MWAA environment.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SourceBucketArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket where your DAG code and supporting files are stored. For example, arn:aws:s3:::my-airflow-bucket-unique-name . To learn more, see Create an Amazon S3 bucket for Amazon MWAA .",
+            "Type": "string",
+            "Required": false
+        },
+        "WebserverAccessMode": {
+            "Description": "The Apache Airflow Web server access mode. To learn more, see Apache Airflow access modes .",
+            "Type": "string",
+            "Required": false
+        },
+        "WeeklyMaintenanceWindowStart": {
+            "Description": "The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time to start weekly maintenance updates of your environment in the following format: DAY:HH:MM . For example: TUE:03:30 . You can specify a start time in 30 minute increments only.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

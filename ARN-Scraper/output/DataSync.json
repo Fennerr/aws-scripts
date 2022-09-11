@@ -1,0 +1,988 @@
+{
+    "cancel_task_execution": {
+        "TaskExecutionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task execution to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_agent": {
+        "ActivationKey": {
+            "Description": "Your agent activation key. You can get the activation key either by sending an HTTP GET request with redirects that enable you to get the agent IP address (port 80). Alternatively, you can get it from the DataSync console.\nThe redirect URL returned in the response provides you the activation key for your agent in the query string parameter activationKey. It might also include other activation-related parameters; however, these are merely defaults. The arguments you pass to this API call determine the actual configuration of your agent.\nFor more information, see Activating an Agent in the DataSync User Guide.",
+            "Type": "string",
+            "Required": true
+        },
+        "AgentName": {
+            "Description": "The name you configured for your agent. This value is a text reference that is used to identify the agent in the console.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents the tag that you want to associate with the agent. The value can be an empty string. This value helps you manage, filter, and search for your agents.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VpcEndpointId": {
+            "Description": "The ID of the VPC (virtual private cloud) endpoint that the agent has access to. This is the client-side VPC endpoint, also called a PrivateLink. If you don't have a PrivateLink VPC endpoint, see Creating a VPC Endpoint Service Configuration in the Amazon VPC User Guide.\nVPC endpoint ID looks like this: vpce-01234d5aff67890e1 .",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetArns": {
+            "Description": "The Amazon Resource Names (ARNs) of the subnets in which DataSync will create elastic network interfaces for each data transfer task. The agent that runs a task must be private. When you start a task that is associated with an agent created in a VPC, or one that has access to an IP address in a VPC, then the task is also private. In this case, DataSync creates four network interfaces for each task in your subnet. For a data transfer to work, the agent must be able to route to all these four network interfaces.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SecurityGroupArns": {
+            "Description": "The ARNs of the security groups used to protect your data transfer task subnets. See SecurityGroupArns .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_efs": {
+        "Subdirectory": {
+            "Description": "Specifies a mount path for your Amazon EFS file system. This is where DataSync reads or writes data (depending on if this is a source or destination location). By default, DataSync uses the root directory, but you can also include subdirectories.",
+            "Type": "string",
+            "Required": false
+        },
+        "EfsFilesystemArn": {
+            "Description": "Specifies the ARN for the Amazon EFS file system.",
+            "Type": "string",
+            "Required": true
+        },
+        "Ec2Config": {
+            "Description": "Specifies the subnet and security groups DataSync uses to access your Amazon EFS file system.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Specifies the key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AccessPointArn": {
+            "Description": "Specifies the Amazon Resource Name (ARN) of the access point that DataSync uses to access the Amazon EFS file system.",
+            "Type": "string",
+            "Required": false
+        },
+        "FileSystemAccessRoleArn": {
+            "Description": "Specifies an Identity and Access Management (IAM) role that DataSync assumes when mounting the Amazon EFS file system.",
+            "Type": "string",
+            "Required": false
+        },
+        "InTransitEncryption": {
+            "Description": "Specifies whether you want DataSync to use Transport Layer Security (TLS) 1.2 encryption when it copies data to or from the Amazon EFS file system.\nIf you specify an access point using AccessPointArn or an IAM role using FileSystemAccessRoleArn, you must set this parameter to TLS1_2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_location_fsx_lustre": {
+        "FsxFilesystemArn": {
+            "Description": "The Amazon Resource Name (ARN) for the FSx for Lustre file system.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecurityGroupArns": {
+            "Description": "The Amazon Resource Names (ARNs) of the security groups that are used to configure the FSx for Lustre file system.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Subdirectory": {
+            "Description": "A subdirectory in the location's path. This subdirectory in the FSx for Lustre file system is used to read data from the FSx for Lustre source location or write data to the FSx for Lustre destination.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_fsx_ontap": {
+        "Protocol": {
+            "Description": "Specifies the data transfer protocol that DataSync uses to access your Amazon FSx file system.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "SecurityGroupArns": {
+            "Description": "Specifies the Amazon EC2 security groups that provide access to your file system's preferred subnet.\nThe security groups must allow outbound traffic on the following ports (depending on the protocol you use):\nYour file system's security groups must also allow inbound traffic on the same ports.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "StorageVirtualMachineArn": {
+            "Description": "Specifies the ARN of the storage virtual machine (SVM) on your file system where you're copying data to or from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Subdirectory": {
+            "Description": "Specifies the junction path (also known as a mount point) in the SVM volume where you're copying data to or from (for example, /vol1 ).",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_fsx_open_zfs": {
+        "FsxFilesystemArn": {
+            "Description": "The Amazon Resource Name (ARN) of the FSx for OpenZFS file system.",
+            "Type": "string",
+            "Required": true
+        },
+        "Protocol": {
+            "Description": "The type of protocol that DataSync uses to access your file system.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "SecurityGroupArns": {
+            "Description": "The ARNs of the security groups that are used to configure the FSx for OpenZFS file system.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Subdirectory": {
+            "Description": "A subdirectory in the location's path that must begin with /fsx . DataSync uses this subdirectory to read or write data (depending on whether the file system is a source or destination location).",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents a tag that you want to add to the resource. The value can be an empty string. This value helps you manage, filter, and search for your resources. We recommend that you create a name tag for your location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_fsx_windows": {
+        "Subdirectory": {
+            "Description": "Specifies a mount path for your file system using forward slashes. This is where DataSync reads or writes data (depending on if this is a source or destination location).",
+            "Type": "string",
+            "Required": false
+        },
+        "FsxFilesystemArn": {
+            "Description": "Specifies the Amazon Resource Name (ARN) for the FSx for Windows File Server file system.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecurityGroupArns": {
+            "Description": "Specifies the ARNs of the security groups that provide access to your file system's preferred subnet.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Specifies labels that help you categorize, filter, and search for your Amazon Web Services resources. We recommend creating at least a name tag for your location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "User": {
+            "Description": "Specifies the user who has the permissions to access files and folders in the file system.\nFor information about choosing a user name that ensures sufficient permissions to files, folders, and metadata, see user .",
+            "Type": "string",
+            "Required": true
+        },
+        "Domain": {
+            "Description": "Specifies the name of the Windows domain that the FSx for Windows File Server belongs to.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "Specifies the password of the user who has the permissions to access files and folders in the file system.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_location_hdfs": {
+        "Subdirectory": {
+            "Description": "A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster. If the subdirectory isn't specified, it will default to / .",
+            "Type": "string",
+            "Required": false
+        },
+        "NameNodes": {
+            "Description": "The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "BlockSize": {
+            "Description": "The size of data blocks to write into the HDFS cluster. The block size must be a multiple of 512 bytes. The default block size is 128 mebibytes (MiB).",
+            "Type": "integer",
+            "Required": false
+        },
+        "ReplicationFactor": {
+            "Description": "The number of DataNodes to replicate the data to when writing to the HDFS cluster. By default, data is replicated to three DataNodes.",
+            "Type": "integer",
+            "Required": false
+        },
+        "KmsKeyProviderUri": {
+            "Description": "The URI of the HDFS cluster's Key Management Server (KMS).",
+            "Type": "string",
+            "Required": false
+        },
+        "QopConfiguration": {
+            "Description": "The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer protection settings configured on the Hadoop Distributed File System (HDFS) cluster. If QopConfiguration isn't specified, RpcProtection and DataTransferProtection default to PRIVACY. If you set RpcProtection or DataTransferProtection, the other parameter assumes the same value.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AuthenticationType": {
+            "Description": "The type of authentication used to determine the identity of the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "SimpleUser": {
+            "Description": "The user name used to identify the client on the host operating system.",
+            "Type": "string",
+            "Required": false
+        },
+        "KerberosPrincipal": {
+            "Description": "The Kerberos principal with access to the files and folders on the HDFS cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "KerberosKeytab": {
+            "Description": "The Kerberos key table (keytab) that contains mappings between the defined Kerberos principal and the encrypted keys. You can load the keytab from a file by providing the file's address. If you're using the CLI, it performs base64 encoding for you. Otherwise, provide the base64-encoded text.",
+            "Type": "bytes",
+            "Required": false
+        },
+        "KerberosKrb5Conf": {
+            "Description": "The krb5.conf file that contains the Kerberos configuration information. You can load the krb5.conf file by providing the file's address. If you're using the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded text.",
+            "Type": "bytes",
+            "Required": false
+        },
+        "AgentArns": {
+            "Description": "The Amazon Resource Names (ARNs) of the agents that are used to connect to the HDFS cluster.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_nfs": {
+        "Subdirectory": {
+            "Description": "The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that's exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network.\nTo see all the paths exported by your NFS server, run \"showmount -e nfs-server-name \" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication.\nTo transfer all the data in the folder you specified, DataSync needs to have permissions to read all the data. To ensure this, either configure the NFS export with no_root_squash, or ensure that the permissions for all of the files that you want DataSync allow read access for all users. Doing either enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.\nIf you are copying data to or from your Snowcone device, see NFS Server on Snowcone for more information.\nFor information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerHostname": {
+            "Description": "The name of the NFS server. This value is the IP address or Domain Name Service (DNS) name of the NFS server. An agent that is installed on-premises uses this hostname to mount the NFS server in a network.\nIf you are copying data to or from your Snowcone device, see NFS Server on Snowcone for more information.",
+            "Type": "string",
+            "Required": true
+        },
+        "OnPremConfig": {
+            "Description": "Contains a list of Amazon Resource Names (ARNs) of agents that are used to connect to an NFS server.\nIf you are copying data to or from your Snowcone device, see NFS Server on Snowcone for more information.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MountOptions": {
+            "Description": "The NFS mount options that DataSync can use to mount your NFS share.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_object_storage": {
+        "ServerHostname": {
+            "Description": "Specifies the domain name or IP address of the object storage server. A DataSync agent uses this hostname to mount the object storage server in a network.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerPort": {
+            "Description": "Specifies the port that your object storage server accepts inbound network traffic on (for example, port 443).",
+            "Type": "integer",
+            "Required": false
+        },
+        "ServerProtocol": {
+            "Description": "Specifies the protocol that your object storage server uses to communicate.",
+            "Type": "string",
+            "Required": false
+        },
+        "Subdirectory": {
+            "Description": "Specifies the object prefix for your object storage server. If this is a source location, DataSync only copies objects with this prefix. If this is a destination location, DataSync writes all objects with this prefix.",
+            "Type": "string",
+            "Required": false
+        },
+        "BucketName": {
+            "Description": "Specifies the name of the object storage bucket involved in the transfer.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccessKey": {
+            "Description": "Specifies the access key (for example, a user name) if credentials are required to authenticate with the object storage server.",
+            "Type": "string",
+            "Required": false
+        },
+        "SecretKey": {
+            "Description": "Specifies the secret key (for example, a password) if credentials are required to authenticate with the object storage server.",
+            "Type": "string",
+            "Required": false
+        },
+        "AgentArns": {
+            "Description": "Specifies the Amazon Resource Names (ARNs) of the DataSync agents that can securely connect with your location.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Specifies the key-value pair that represents a tag that you want to add to the resource. Tags can help you manage, filter, and search for your resources. We recommend creating a name tag for your location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_s3": {
+        "Subdirectory": {
+            "Description": "A subdirectory in the Amazon S3 bucket. This subdirectory in Amazon S3 is used to read data from the S3 source location or write data to the S3 destination.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3BucketArn": {
+            "Description": "The ARN of the Amazon S3 bucket. If the bucket is on an Amazon Web Services Outpost, this must be an access point ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "S3StorageClass": {
+            "Description": "The Amazon S3 storage class that you want to store your files in when this location is used as a task destination. For buckets in Amazon Web Services Regions, the storage class defaults to Standard. For buckets on Outposts, the storage class defaults to Amazon Web Services S3 Outposts.\nFor more information about S3 storage classes, see Amazon S3 Storage Classes. Some storage classes have behaviors that can affect your S3 storage cost. For detailed information, see Considerations when working with S3 storage classes in DataSync .",
+            "Type": "string",
+            "Required": false
+        },
+        "S3Config": {
+            "Description": "The Amazon Resource Name (ARN) of the Identity and Access Management (IAM) role used to access an Amazon S3 bucket.\nFor detailed information about using such a role, see Creating a Location for Amazon S3 in the DataSync User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AgentArns": {
+            "Description": "If you're using DataSync on an Amazon Web Services Outpost, specify the Amazon Resource Names (ARNs) of the DataSync agents deployed on your Outpost. For more information about launching a DataSync agent on an Amazon Web Services Outpost, see Deploy your DataSync agent on Outposts .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_location_smb": {
+        "Subdirectory": {
+            "Description": "The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.\nTo transfer all the data in the folder you specified, DataSync needs to have permissions to mount the SMB share, as well as to access all the data in that share. To ensure this, either ensure that the user/password specified belongs to the user who can mount the share, and who has the appropriate permissions for all of the files and directories that you want DataSync to access, or use credentials of a member of the Backup Operators group to mount the share. Doing either enables the agent to access the data. For the agent to access directories, you must additionally enable all execute access.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerHostname": {
+            "Description": "The name of the SMB server. This value is the IP address or Domain Name Service (DNS) name of the SMB server. An agent that is installed on-premises uses this hostname to mount the SMB server in a network.",
+            "Type": "string",
+            "Required": true
+        },
+        "User": {
+            "Description": "The user who can mount the share, has the permissions to access files and folders in the SMB share.\nFor information about choosing a user name that ensures sufficient permissions to files, folders, and metadata, see the User setting for SMB locations.",
+            "Type": "string",
+            "Required": true
+        },
+        "Domain": {
+            "Description": "The name of the Windows domain that the SMB server belongs to.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password of the user who can mount the share, has the permissions to access files and folders in the SMB share.",
+            "Type": "string",
+            "Required": true
+        },
+        "AgentArns": {
+            "Description": "The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "MountOptions": {
+            "Description": "The mount options used by DataSync to access the SMB server.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents the tag that you want to add to the location. The value can be an empty string. We recommend using tags to name your resources.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_task": {
+        "SourceLocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the source location for the task.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationLocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of an Amazon Web Services storage resource's location.",
+            "Type": "string",
+            "Required": true
+        },
+        "CloudWatchLogGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon CloudWatch log group that is used to monitor and log events in the task.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of a task. This value is a text reference that is used to identify the task in the console.",
+            "Type": "string",
+            "Required": false
+        },
+        "Options": {
+            "Description": "The set of configuration options that control the behavior of a single execution of the task that occurs when you call StartTaskExecution. You can configure these options to preserve metadata such as user ID (UID) and group ID (GID), file permissions, data integrity verification, and so on.\nFor each individual task execution, you can override these options by specifying the OverrideOptions before starting the task execution. For more information, see the StartTaskExecution operation.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Excludes": {
+            "Description": "A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, \"/folder1|/folder2\" .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Schedule": {
+            "Description": "Specifies a schedule used to periodically transfer files from a source to a destination location. The schedule should be specified in UTC time. For more information, see Scheduling your task .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The key-value pair that represents the tag that you want to add to the resource. The value can be an empty string.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Includes": {
+            "Description": "A list of filter rules that determines which files to include when running a task. The pattern contains a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, \"/folder1|/folder2\" .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_agent": {
+        "AgentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the agent to delete. Use the ListAgents operation to return a list of agents for your account and Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_location": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the location to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_task": {
+        "TaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_agent": {
+        "AgentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the agent to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_efs": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon EFS file system location that you want information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_fsx_lustre": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the FSx for Lustre location to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_fsx_ontap": {
+        "LocationArn": {
+            "Description": "Specifies the Amazon Resource Name (ARN) of the FSx for ONTAP file system location that you want information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_fsx_open_zfs": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the FSx for OpenZFS location to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_fsx_windows": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the FSx for Windows File Server location to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_hdfs": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the HDFS cluster location to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_nfs": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the NFS location to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_object_storage": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the object storage system location that you want information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_s3": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon S3 bucket location to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_location_smb": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the SMB location to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_task": {
+        "TaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_task_execution": {
+        "TaskExecutionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task that is being executed.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_agents": {
+        "MaxResults": {
+            "Description": "The maximum number of agents to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque string that indicates the position at which to begin the next list of agents.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_locations": {
+        "MaxResults": {
+            "Description": "The maximum number of locations to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque string that indicates the position at which to begin the next list of locations.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "You can use API filters to narrow down the list of resources returned by ListLocations. For example, to retrieve all tasks on a specific source location, you can use ListLocations with filter name LocationType S3 and Operator Equals .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource whose tags to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of locations to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque string that indicates the position at which to begin the next list of locations.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_task_executions": {
+        "TaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task whose tasks you want to list.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of executed tasks to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque string that indicates the position at which to begin the next list of the executed tasks.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tasks": {
+        "MaxResults": {
+            "Description": "The maximum number of tasks to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque string that indicates the position at which to begin the next list of tasks.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "You can use API filters to narrow down the list of resources returned by ListTasks. For example, to retrieve all tasks on a specific source location, you can use ListTasks with filter name LocationId and Operator Equals with the ARN for the location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_task_execution": {
+        "TaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the task to start.",
+            "Type": "string",
+            "Required": true
+        },
+        "OverrideOptions": {
+            "Description": "Represents the options that are available to control the behavior of a StartTaskExecution operation. Behavior includes preserving metadata such as user ID (UID), group ID (GID), and file permissions, and also overwriting files in the destination, data integrity verification, and so on.\nA task has a set of default options associated with it. If you don't specify an option in StartTaskExecution, the default value is used. You can override the defaults options on each task execution by specifying an overriding Options value to StartTaskExecution .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Includes": {
+            "Description": "A list of filter rules that determines which files to include when running a task. The pattern should contain a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, \"/folder1|/folder2\" .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Excludes": {
+            "Description": "A list of filter rules that determines which files to exclude from a task. The list contains a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, \"/folder1|/folder2\" .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to apply the tag to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to apply.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to remove the tag from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Keys": {
+            "Description": "The keys in the key-value pair in the tag to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_agent": {
+        "AgentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the agent to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name that you want to use to configure the agent.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_location_hdfs": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the source HDFS cluster location.",
+            "Type": "string",
+            "Required": true
+        },
+        "Subdirectory": {
+            "Description": "A subdirectory in the HDFS cluster. This subdirectory is used to read data from or write data to the HDFS cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "NameNodes": {
+            "Description": "The NameNode that manages the HDFS namespace. The NameNode performs operations such as opening, closing, and renaming files and directories. The NameNode contains the information to map blocks of data to the DataNodes. You can use only one NameNode.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "BlockSize": {
+            "Description": "The size of the data blocks to write into the HDFS cluster.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ReplicationFactor": {
+            "Description": "The number of DataNodes to replicate the data to when writing to the HDFS cluster.",
+            "Type": "integer",
+            "Required": false
+        },
+        "KmsKeyProviderUri": {
+            "Description": "The URI of the HDFS cluster's Key Management Server (KMS).",
+            "Type": "string",
+            "Required": false
+        },
+        "QopConfiguration": {
+            "Description": "The Quality of Protection (QOP) configuration specifies the Remote Procedure Call (RPC) and data transfer privacy settings configured on the Hadoop Distributed File System (HDFS) cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AuthenticationType": {
+            "Description": "The type of authentication used to determine the identity of the user.",
+            "Type": "string",
+            "Required": false
+        },
+        "SimpleUser": {
+            "Description": "The user name used to identify the client on the host operating system.",
+            "Type": "string",
+            "Required": false
+        },
+        "KerberosPrincipal": {
+            "Description": "The Kerberos principal with access to the files and folders on the HDFS cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "KerberosKeytab": {
+            "Description": "The Kerberos key table (keytab) that contains mappings between the defined Kerberos principal and the encrypted keys. You can load the keytab from a file by providing the file's address. If you use the CLI, it performs base64 encoding for you. Otherwise, provide the base64-encoded text.",
+            "Type": "bytes",
+            "Required": false
+        },
+        "KerberosKrb5Conf": {
+            "Description": "The krb5.conf file that contains the Kerberos configuration information. You can load the krb5.conf file by providing the file's address. If you're using the CLI, it performs the base64 encoding for you. Otherwise, provide the base64-encoded text.",
+            "Type": "bytes",
+            "Required": false
+        },
+        "AgentArns": {
+            "Description": "The ARNs of the agents that are used to connect to the HDFS cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_location_nfs": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the NFS location to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Subdirectory": {
+            "Description": "The subdirectory in the NFS file system that is used to read data from the NFS source location or write data to the NFS destination. The NFS path should be a path that's exported by the NFS server, or a subdirectory of that path. The path should be such that it can be mounted by other NFS clients in your network.\nTo see all the paths exported by your NFS server, run \"showmount -e nfs-server-name \" from an NFS client that has access to your server. You can specify any directory that appears in the results, and any subdirectory of that directory. Ensure that the NFS export is accessible without Kerberos authentication.\nTo transfer all the data in the folder that you specified, DataSync must have permissions to read all the data. To ensure this, either configure the NFS export with no_root_squash, or ensure that the files you want DataSync to access have permissions that allow read access for all users. Doing either option enables the agent to read the files. For the agent to access directories, you must additionally enable all execute access.\nIf you are copying data to or from your Snowcone device, see NFS Server on Snowcone for more information.\nFor information about NFS export configuration, see 18.7. The /etc/exports Configuration File in the Red Hat Enterprise Linux documentation.",
+            "Type": "string",
+            "Required": false
+        },
+        "OnPremConfig": {
+            "Description": "A list of Amazon Resource Names (ARNs) of agents to use for a Network File System (NFS) location.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MountOptions": {
+            "Description": "Specifies how DataSync can access a location using the NFS protocol.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_location_object_storage": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the self-managed object storage server location to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerPort": {
+            "Description": "The port that your self-managed object storage server accepts inbound network traffic on. The server port is set by default to TCP 80 (HTTP) or TCP 443 (HTTPS). You can specify a custom port if your self-managed object storage server requires one.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ServerProtocol": {
+            "Description": "The protocol that the object storage server uses to communicate. Valid values are HTTP or HTTPS .",
+            "Type": "string",
+            "Required": false
+        },
+        "Subdirectory": {
+            "Description": "The subdirectory in the self-managed object storage server that is used to read data from.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccessKey": {
+            "Description": "Optional. The access key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use AccessKey and SecretKey to provide the user name and password, respectively.",
+            "Type": "string",
+            "Required": false
+        },
+        "SecretKey": {
+            "Description": "Optional. The secret key is used if credentials are required to access the self-managed object storage server. If your object storage requires a user name and password to authenticate, use AccessKey and SecretKey to provide the user name and password, respectively.",
+            "Type": "string",
+            "Required": false
+        },
+        "AgentArns": {
+            "Description": "The Amazon Resource Name (ARN) of the agents associated with the self-managed object storage server location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_location_smb": {
+        "LocationArn": {
+            "Description": "The Amazon Resource Name (ARN) of the SMB location to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Subdirectory": {
+            "Description": "The subdirectory in the SMB file system that is used to read data from the SMB source location or write data to the SMB destination. The SMB path should be a path that's exported by the SMB server, or a subdirectory of that path. The path should be such that it can be mounted by other SMB clients in your network.\nTo transfer all the data in the folder that you specified, DataSync must have permissions to mount the SMB share and to access all the data in that share. To ensure this, do either of the following:\nDoing either of these options enables the agent to access the data. For the agent to access directories, you must also enable all execute access.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "User": {
+            "Description": "The user who can mount the share has the permissions to access files and folders in the SMB share.",
+            "Type": "string",
+            "Required": false
+        },
+        "Domain": {
+            "Description": "The name of the Windows domain that the SMB server belongs to.",
+            "Type": "string",
+            "Required": false
+        },
+        "Password": {
+            "Description": "The password of the user who can mount the share has the permissions to access files and folders in the SMB share.",
+            "Type": "string",
+            "Required": false
+        },
+        "AgentArns": {
+            "Description": "The Amazon Resource Names (ARNs) of agents to use for a Simple Message Block (SMB) location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MountOptions": {
+            "Description": "Specifies how DataSync can access a location using the SMB protocol.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_task": {
+        "TaskArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource name of the task to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Options": {
+            "Description": "Represents the options that are available to control the behavior of a StartTaskExecution operation. Behavior includes preserving metadata such as user ID (UID), group ID (GID), and file permissions, and also overwriting files in the destination, data integrity verification, and so on.\nA task has a set of default options associated with it. If you don't specify an option in StartTaskExecution, the default value is used. You can override the defaults options on each task execution by specifying an overriding Options value to StartTaskExecution .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Excludes": {
+            "Description": "A list of filter rules that determines which files to exclude from a task. The list should contain a single filter string that consists of the patterns to exclude. The patterns are delimited by \"|\" (that is, a pipe), for example, \"/folder1|/folder2\" .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Schedule": {
+            "Description": "Specifies a schedule used to periodically transfer files from a source to a destination location. You can configure your task to execute hourly, daily, weekly or on specific days of the week. You control when in the day or hour you want the task to execute. The time you specify is UTC time. For more information, see Scheduling your task .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Name": {
+            "Description": "The name of the task to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "CloudWatchLogGroupArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource name of the Amazon CloudWatch log group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Includes": {
+            "Description": "A list of filter rules that determines which files to include when running a task. The pattern contains a single filter string that consists of the patterns to include. The patterns are delimited by \"|\" (that is, a pipe), for example, \"/folder1|/folder2\" .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_task_execution": {
+        "TaskExecutionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the specific task execution that is being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Options": {
+            "Description": "Represents the options that are available to control the behavior of a StartTaskExecution operation. Behavior includes preserving metadata such as user ID (UID), group ID (GID), and file permissions, and also overwriting files in the destination, data integrity verification, and so on.\nA task has a set of default options associated with it. If you don't specify an option in StartTaskExecution, the default value is used. You can override the defaults options on each task execution by specifying an overriding Options value to StartTaskExecution .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "Filters": {
+            "Description": "You can use API filters to narrow down the list of resources returned by ListTasks. For example, to retrieve all tasks on a specific source location, you can use ListTasks with filter name LocationId and Operator Equals with the ARN for the location.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

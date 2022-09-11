@@ -1,0 +1,238 @@
+{
+    "create_notification_rule": {
+        "Name": {
+            "Description": "The name for the notification rule. Notifictaion rule names must be unique in your AWS account.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventTypeIds": {
+            "Description": "A list of event types associated with this notification rule. For a list of allowed events, see  EventTypeSummary .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Resource": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to associate with the notification rule. Supported resources include pipelines in AWS CodePipeline, repositories in AWS CodeCommit, and build projects in AWS CodeBuild.",
+            "Type": "string",
+            "Required": true
+        },
+        "Targets": {
+            "Description": "A list of Amazon Resource Names (ARNs) of SNS topics to associate with the notification rule.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DetailType": {
+            "Description": "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientRequestToken": {
+            "Description": "A unique, client-generated idempotency token that, when provided in a request, ensures the request cannot be repeated with a changed parameter. If a request with the same parameters is received and a token is included, the request returns information about the initial request that used that token.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to this notification rule. Key names cannot start with \"aws\".",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Status": {
+            "Description": "The status of the notification rule. The default value is ENABLED. If the status is set to DISABLED, notifications aren't sent for the notification rule.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_notification_rule": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the notification rule you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_target": {
+        "TargetAddress": {
+            "Description": "The Amazon Resource Name (ARN) of the SNS topic to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceUnsubscribeAll": {
+            "Description": "A Boolean value that can be used to delete all associations with this SNS topic. The default value is FALSE. If set to TRUE, all associations between that target and every notification rule in your AWS account are deleted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_notification_rule": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the notification rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_event_types": {
+        "Filters": {
+            "Description": "The filters to use to return information by service or resource type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "A non-negative integer used to limit the number of returned results. The default number is 50. The maximum number of results that can be returned is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_notification_rules": {
+        "Filters": {
+            "Description": "The filters to use to return information by service or resource type. For valid values, see  ListNotificationRulesFilter .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "A non-negative integer used to limit the number of returned results. The maximum number of results that can be returned is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) for the notification rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_targets": {
+        "Filters": {
+            "Description": "The filters to use to return information by service or resource type. Valid filters include target type, target address, and target status.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "A non-negative integer used to limit the number of returned results. The maximum number of results that can be returned is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "subscribe": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the notification rule for which you want to create the association.",
+            "Type": "string",
+            "Required": true
+        },
+        "Target": {
+            "Description": "Information about the SNS topics associated with a notification rule.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientRequestToken": {
+            "Description": "An enumeration token that, when provided in a request, returns the next batch of the results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the notification rule to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The list of tags to associate with the resource. Tag key names cannot start with \"aws\".",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "unsubscribe": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the notification rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetAddress": {
+            "Description": "The ARN of the SNS topic to unsubscribe from the notification rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "untag_resource": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the notification rule from which to remove the tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The key names of the tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_notification_rule": {
+        "Arn": {
+            "Description": "The Amazon Resource Name (ARN) of the notification rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the notification rule.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "The status of the notification rule. Valid statuses include enabled (sending notifications) or disabled (not sending notifications).",
+            "Type": "string",
+            "Required": false
+        },
+        "EventTypeIds": {
+            "Description": "A list of event types associated with this notification rule.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Targets": {
+            "Description": "The address and type of the targets to receive notifications from this notification rule.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DetailType": {
+            "Description": "The level of detail to include in the notifications for this resource. BASIC will include only the contents of the event as it would appear in AWS CloudWatch. FULL will include any supplemental information provided by AWS CodeStar Notifications and/or the service for the resource for which the notification is created.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "Filters": {
+            "Description": "The filters to use to return information by service or resource type. Valid filters include target type, target address, and target status.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,491 @@
+{
+    "create_application": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": false
+        },
+        "OpsCenterEnabled": {
+            "Description": "When set to true , creates opsItems for any problems detected on an application.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "CWEMonitorEnabled": {
+            "Description": "Indicates whether Application Insights can listen to CloudWatch events for the application resources, such as instance terminated , failed deployment , and others.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "OpsItemSNSTopicArn": {
+            "Description": "The SNS topic provided to Application Insights that is associated to the created opsItem. Allows you to receive notifications for updates to the opsItem.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "List of tags to add to the application. tag key (Key ) and an associated tag value (Value ). The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AutoConfigEnabled": {
+            "Description": "Indicates whether Application Insights automatically configures unmonitored resources in the resource group.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AutoCreate": {
+            "Description": "Configures all of the resources in the resource group by applying the recommended configurations.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "GroupingType": {
+            "Description": "Application Insights can create applications based on a resource group or on an account. To create an account-based application using all of the resources in the account, set this parameter to ACCOUNT_BASED .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_component": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceList": {
+            "Description": "The list of resource ARNs that belong to the component.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_log_pattern": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternSetName": {
+            "Description": "The name of the log pattern set.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternName": {
+            "Description": "The name of the log pattern.",
+            "Type": "string",
+            "Required": true
+        },
+        "Pattern": {
+            "Description": "The log pattern. The pattern must be DFA compatible. Patterns that utilize forward lookahead or backreference constructions are not supported.",
+            "Type": "string",
+            "Required": true
+        },
+        "Rank": {
+            "Description": "Rank of the log pattern. Must be a value between 1 and 1,000,000. The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank 1 will be the first to get matched to a log line. A pattern of rank 1,000,000 will be last to get matched. When you configure custom log patterns from the console, a Low severity pattern translates to a 750,000 rank. A Medium severity pattern translates to a 500,000 rank. And a High severity pattern translates to a 250,000 rank. Rank values less than 1 or greater than 1,000,000 are reserved for AWS-provided patterns.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "delete_application": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_component": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_log_pattern": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternSetName": {
+            "Description": "The name of the log pattern set.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternName": {
+            "Description": "The name of the log pattern.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_application": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_component": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_component_configuration": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_component_configuration_recommendation": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tier": {
+            "Description": "The tier of the application component.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_log_pattern": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternSetName": {
+            "Description": "The name of the log pattern set.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternName": {
+            "Description": "The name of the log pattern.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_observation": {
+        "ObservationId": {
+            "Description": "The ID of the observation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_problem": {
+        "ProblemId": {
+            "Description": "The ID of the problem.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_problem_observations": {
+        "ProblemId": {
+            "Description": "The ID of the problem.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_applications": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_components": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_configuration_history": {
+        "ResourceGroupName": {
+            "Description": "Resource group to which the application belongs.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The start time of the event.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The end time of the event.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EventStatus": {
+            "Description": "The status of the configuration update event. Possible values include INFO, WARN, and ERROR.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results returned by ListConfigurationHistory in paginated output. When this parameter is used, ListConfigurationHistory returns only MaxResults in a single page along with a NextToken response element. The remaining results of the initial request can be seen by sending another ListConfigurationHistory request with the returned NextToken value. If this parameter is not used, then ListConfigurationHistory returns all results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The NextToken value returned from a previous paginated ListConfigurationHistory request where MaxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the NextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_log_pattern_sets": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_log_patterns": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternSetName": {
+            "Description": "The name of the log pattern set.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_problems": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The time when the problem was detected, in epoch seconds. If you don't specify a time frame for the request, problems within the past seven days are returned.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The time when the problem ended, in epoch seconds. If not specified, problems within the past seven days are returned.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in a single call. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the application that you want to retrieve tag information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the application that you want to add one or more tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags that to add to the application. A tag consists of a required tag key (Key ) and an associated tag value (Value ). The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the application that you want to remove one or more tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tags (tag keys) that you want to remove from the resource. When you specify a tag key, the action removes both that key and its associated tag value.\nTo remove more than one tag from the application, append the TagKeys parameter and argument for each additional tag to remove, separated by an ampersand.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_application": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "OpsCenterEnabled": {
+            "Description": "When set to true , creates opsItems for any problems detected on an application.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "CWEMonitorEnabled": {
+            "Description": "Indicates whether Application Insights can listen to CloudWatch events for the application resources, such as instance terminated , failed deployment , and others.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "OpsItemSNSTopicArn": {
+            "Description": "The SNS topic provided to Application Insights that is associated to the created opsItem. Allows you to receive notifications for updates to the opsItem.",
+            "Type": "string",
+            "Required": false
+        },
+        "RemoveSNSTopic": {
+            "Description": "Disassociates the SNS topic from the opsItem created for detected problems.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AutoConfigEnabled": {
+            "Description": "Turns auto-configuration on or off.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_component": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "NewComponentName": {
+            "Description": "The new name of the component.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceList": {
+            "Description": "The list of resource ARNs that belong to the component.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_component_configuration": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ComponentName": {
+            "Description": "The name of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "Monitor": {
+            "Description": "Indicates whether the application component is monitored.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tier": {
+            "Description": "The tier of the application component.",
+            "Type": "string",
+            "Required": false
+        },
+        "ComponentConfiguration": {
+            "Description": "The configuration settings of the component. The value is the escaped JSON of the configuration. For more information about the JSON format, see Working with JSON . You can send a request to DescribeComponentConfigurationRecommendation to see the recommended configuration for a component. For the complete format of the component configuration file, see Component Configuration .",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoConfigEnabled": {
+            "Description": "Automatically configures the component by applying the recommended configurations.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_log_pattern": {
+        "ResourceGroupName": {
+            "Description": "The name of the resource group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternSetName": {
+            "Description": "The name of the log pattern set.",
+            "Type": "string",
+            "Required": true
+        },
+        "PatternName": {
+            "Description": "The name of the log pattern.",
+            "Type": "string",
+            "Required": true
+        },
+        "Pattern": {
+            "Description": "The log pattern. The pattern must be DFA compatible. Patterns that utilize forward lookahead or backreference constructions are not supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "Rank": {
+            "Description": "Rank of the log pattern. Must be a value between 1 and 1,000,000 . The patterns are sorted by rank, so we recommend that you set your highest priority patterns with the lowest rank. A pattern of rank 1 will be the first to get matched to a log line. A pattern of rank 1,000,000 will be last to get matched. When you configure custom log patterns from the console, a Low severity pattern translates to a 750,000 rank. A Medium severity pattern translates to a 500,000 rank. And a High severity pattern translates to a 250,000 rank. Rank values less than 1 or greater than 1,000,000 are reserved for AWS-provided patterns.",
+            "Type": "integer",
+            "Required": false
+        }
+    }
+}

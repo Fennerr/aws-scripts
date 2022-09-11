@@ -1,0 +1,2400 @@
+{
+    "add_custom_attributes": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to add custom attributes.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomAttributes": {
+            "Description": "An array of custom attributes, such as Mutable and Name.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "admin_add_user_to_group": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The username for the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The group name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_confirm_sign_up": {
+        "UserPoolId": {
+            "Description": "The user pool ID for which you want to confirm user registration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name for which you want to confirm user registration.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nIf your user pool configuration includes triggers, the AdminConfirmSignUp API action invokes the Lambda function that is specified for the post confirmation trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. In this payload, the clientMetadata attribute provides the data that you assigned to the ClientMetadata parameter in your AdminConfirmSignUp request. In your function code in Lambda, you can process the ClientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "admin_create_user": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where the user will be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The username for the user. Must be unique within the user pool. Must be a UTF-8 string between 1 and 128 characters. After the user is created, the username can't be changed.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserAttributes": {
+            "Description": "An array of name-value pairs that contain user attributes and attribute values to be set for the user to be created. You can create a user without specifying any attributes other than Username. However, any attributes that you specify as required (when creating a user pool or in the Attributes tab of the console) either you should supply (in your call to AdminCreateUser ) or the user should supply (when they sign up in response to your welcome message).\nFor custom attributes, you must prepend the custom: prefix to the attribute name.\nTo send a message inviting the user to sign up, you must specify the user's email address or phone number. You can do this in your call to AdminCreateUser or in the Users tab of the Amazon Cognito console for managing your user pools.\nIn your call to AdminCreateUser, you can set the email_verified attribute to True, and you can set the phone_number_verified attribute to True. You can also do this by calling AdminUpdateUserAttributes .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "ValidationData": {
+            "Description": "The user's validation data. This is an array of name-value pairs that contain user attributes and attribute values that you can use for custom validation, such as restricting the types of user accounts that can be registered. For example, you might choose to allow or disallow user sign-up based on the user's domain.\nTo configure custom validation, you must create a Pre Sign-up Lambda trigger for the user pool as described in the Amazon Cognito Developer Guide. The Lambda trigger receives the validation data and uses it in the validation process.\nThe user's validation data isn't persisted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TemporaryPassword": {
+            "Description": "The user's temporary password. This password must conform to the password policy that you specified when you created the user pool.\nThe temporary password is valid only once. To complete the Admin Create User flow, the user must enter the temporary password in the sign-in page, along with a new password to be used in all future sign-ins.\nThis parameter isn't required. If you don't specify a value, Amazon Cognito generates one for you.\nThe temporary password can only be used until the user account expiration limit that you specified when you created the user pool. To reset the account after that time limit, you must call AdminCreateUser again, specifying \"RESEND\" for the MessageAction parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "ForceAliasCreation": {
+            "Description": "This parameter is used only if the phone_number_verified or email_verified attribute is set to True. Otherwise, it is ignored.\nIf this parameter is set to True and the phone number or email address specified in the UserAttributes parameter already exists as an alias with a different user, the API call will migrate the alias from the previous user to the newly created user. The previous user will no longer be able to log in using that alias.\nIf this parameter is set to False, the API throws an AliasExistsException error if the alias already exists. The default value is False .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MessageAction": {
+            "Description": "Set to RESEND to resend the invitation message to a user that already exists and reset the expiration limit on the user's account. Set to SUPPRESS to suppress sending the message. You can specify only one value.",
+            "Type": "string",
+            "Required": false
+        },
+        "DesiredDeliveryMediums": {
+            "Description": "Specify \"EMAIL\" if email will be used to send the welcome message. Specify \"SMS\" if the phone number will be used. The default value is \"SMS\". You can specify more than one value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the AdminCreateUser API action, Amazon Cognito invokes the function that is assigned to the pre sign-up trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your AdminCreateUser request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "admin_delete_user": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to delete the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_delete_user_attributes": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to delete user attributes.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user from which you would like to delete attributes.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserAttributeNames": {
+            "Description": "An array of strings representing the user attribute names you want to delete.\nFor custom attributes, you must prepend the custom: prefix to the attribute name.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "admin_disable_provider_for_user": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "User": {
+            "Description": "The user to be disabled.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "admin_disable_user": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to disable the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user you want to disable.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_enable_user": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to enable the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user you want to enable.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_forget_device": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceKey": {
+            "Description": "The device key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_get_device": {
+        "DeviceKey": {
+            "Description": "The device key.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_get_user": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to get information about the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_initiate_auth": {
+        "UserPoolId": {
+            "Description": "The ID of the Amazon Cognito user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The app client ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthFlow": {
+            "Description": "The authentication flow for this call to run. The API action will depend on this value. For example:\nValid values include:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "AuthParameters": {
+            "Description": "The authentication parameters. These are inputs corresponding to the AuthFlow that you're invoking. The required values depend on the value of AuthFlow :",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for certain custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the AdminInitiateAuth API action, Amazon Cognito invokes the Lambda functions that are specified for various triggers. The ClientMetadata value is passed as input to the functions for only the following triggers:\nWhen Amazon Cognito invokes the functions for these triggers, it passes a JSON payload, which the function receives as input. This payload contains a validationData attribute, which provides the data that you assigned to the ClientMetadata parameter in your AdminInitiateAuth request. In your function code in Lambda, you can process the validationData value to enhance your workflow for your specific needs.\nWhen you use the AdminInitiateAuth API action, Amazon Cognito also invokes the functions for the following triggers, but it doesn't provide the ClientMetadata value as input:\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "AnalyticsMetadata": {
+            "Description": "The analytics metadata for collecting Amazon Pinpoint metrics for AdminInitiateAuth calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "admin_link_provider_for_user": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationUser": {
+            "Description": "The existing user in the user pool that you want to assign to the external IdP user account. This user can be a native (Username + Password) Amazon Cognito user pools user or a federated user (for example, a SAML or Facebook user). If the user doesn't exist, Amazon Cognito generates an exception. Amazon Cognito returns this user when the new user (with the linked IdP attribute) signs in.\nFor a native username + password user, the ProviderAttributeValue for the DestinationUser should be the username in the user pool. For a federated user, it should be the provider-specific user_id .\nThe ProviderAttributeName of the DestinationUser is ignored.\nThe ProviderName should be set to Cognito for users in Cognito user pools.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "SourceUser": {
+            "Description": "An external IdP account for a user who doesn't exist yet in the user pool. This user must be a federated user (for example, a SAML or Facebook user), not another native user.\nIf the SourceUser is using a federated social IdP, such as Facebook, Google, or Login with Amazon, you must set the ProviderAttributeName to Cognito_Subject. For social IdPs, the ProviderName will be Facebook, Google, or LoginWithAmazon, and Amazon Cognito will automatically parse the Facebook, Google, and Login with Amazon tokens for id, sub, and user_id, respectively. The ProviderAttributeValue for the user must be the same value as the id, sub, or user_id value found in the social IdP token.\nFor SAML, the ProviderAttributeName can be any value that matches a claim in the SAML assertion. If you want to link SAML users based on the subject of the SAML assertion, you should map the subject to a claim through the SAML IdP and submit that claim name as the ProviderAttributeName. If you set ProviderAttributeName to Cognito_Subject, Amazon Cognito will automatically parse the default unique identifier found in the subject from the SAML token.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "admin_list_devices": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The limit of the devices request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PaginationToken": {
+            "Description": "The pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "admin_list_groups_for_user": {
+        "Username": {
+            "Description": "The username for the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The limit of the request to list groups.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "admin_list_user_auth_events": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user pool username or an alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of authentication events to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "admin_remove_user_from_group": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The username for the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The group name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_reset_user_password": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to reset the user's password.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user whose password you want to reset.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the AdminResetUserPassword API action, Amazon Cognito invokes the function that is assigned to the custom message trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your AdminResetUserPassword request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "admin_respond_to_auth_challenge": {
+        "UserPoolId": {
+            "Description": "The ID of the Amazon Cognito user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The app client ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChallengeName": {
+            "Description": "The challenge name. For more information, see AdminInitiateAuth .",
+            "Type": "string",
+            "Required": true
+        },
+        "ChallengeResponses": {
+            "Description": "The challenge responses. These are inputs corresponding to the value of ChallengeName, for example:\nThe value of the USERNAME attribute must be the user's actual username, not an alias (such as an email address or phone number). To make this simpler, the AdminInitiateAuth response includes the actual username value in the USERNAMEUSER_ID_FOR_SRP attribute. This happens even if you specified an alias in your call to AdminInitiateAuth .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "Session": {
+            "Description": "The session that should be passed both ways in challenge-response calls to the service. If an InitiateAuth or RespondToAuthChallenge API call determines that the caller must pass another challenge, it returns a session with other challenge parameters. This session should be passed as it is to the next RespondToAuthChallenge API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "AnalyticsMetadata": {
+            "Description": "The analytics metadata for collecting Amazon Pinpoint metrics for AdminRespondToAuthChallenge calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the AdminRespondToAuthChallenge API action, Amazon Cognito invokes any functions that you have assigned to the following triggers:\nWhen Amazon Cognito invokes any of these functions, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute that provides the data that you assigned to the ClientMetadata parameter in your AdminRespondToAuthChallenge request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "admin_set_user_mfa_preference": {
+        "SMSMfaSettings": {
+            "Description": "The SMS text message MFA settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SoftwareTokenMfaSettings": {
+            "Description": "The time-based one-time password software token MFA settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Username": {
+            "Description": "The user pool username or alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_set_user_password": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to set the user's password.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user whose password you want to set.",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "The password for the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "Permanent": {
+            "Description": "True if the password is permanent, False if it is temporary.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "admin_set_user_settings": {
+        "UserPoolId": {
+            "Description": "The ID of the user pool that contains the user whose options you're setting.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user whose options you're setting.",
+            "Type": "string",
+            "Required": true
+        },
+        "MFAOptions": {
+            "Description": "You can use this parameter only to set an SMS configuration that uses SMS for delivery.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "admin_update_auth_event_feedback": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user pool username.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventId": {
+            "Description": "The authentication event ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "FeedbackValue": {
+            "Description": "The authentication event feedback value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "admin_update_device_status": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceKey": {
+            "Description": "The device key.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceRememberedStatus": {
+            "Description": "The status indicating whether a device has been remembered or not.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "admin_update_user_attributes": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to update user attributes.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name of the user for whom you want to update user attributes.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserAttributes": {
+            "Description": "An array of name-value pairs representing user attributes.\nFor custom attributes, you must prepend the custom: prefix to the attribute name.\nIf your user pool requires verification before Amazon Cognito updates an attribute value that you specify in this request, Amazon Cognito doesn\u2019t immediately update the value of that attribute. After your user receives and responds to a verification message to verify the new value, Amazon Cognito updates the attribute value. Your user can sign in and receive messages with the original attribute value until they verify the new value.\nTo update the value of an attribute that requires verification in the same API request, include the email_verified or phone_number_verified attribute, with a value of true. If you set the email_verified or phone_number_verified value for an email or phone_number attribute that requires verification to true, Amazon Cognito doesn\u2019t send a verification message to your user.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the AdminUpdateUserAttributes API action, Amazon Cognito invokes the function that is assigned to the custom message trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your AdminUpdateUserAttributes request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "admin_user_global_sign_out": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_software_token": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose software token you want to generate.",
+            "Type": "string",
+            "Required": false
+        },
+        "Session": {
+            "Description": "The session that should be passed both ways in challenge-response calls to the service. This allows authentication of the user as part of the MFA setup process.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "change_password": {
+        "PreviousPassword": {
+            "Description": "The old password.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProposedPassword": {
+            "Description": "The new password.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose password you want to change.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "confirm_device": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose device you want to confirm.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceKey": {
+            "Description": "The device key.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceSecretVerifierConfig": {
+            "Description": "The configuration of the device secret verifier.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceName": {
+            "Description": "The device name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "confirm_forgot_password": {
+        "ClientId": {
+            "Description": "The app client ID of the app associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecretHash": {
+            "Description": "A keyed-hash message authentication code (HMAC) calculated using the secret key of a user pool client and username plus the client ID in the message.",
+            "Type": "string",
+            "Required": false
+        },
+        "Username": {
+            "Description": "The user name of the user for whom you want to enter a code to retrieve a forgotten password.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfirmationCode": {
+            "Description": "The confirmation code from your user's request to reset their password. For more information, see ForgotPassword .",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "The new password that your user wants to set.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalyticsMetadata": {
+            "Description": "The Amazon Pinpoint analytics metadata for collecting metrics for ConfirmForgotPassword calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the ConfirmForgotPassword API action, Amazon Cognito invokes the function that is assigned to the post confirmation trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your ConfirmForgotPassword request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "confirm_sign_up": {
+        "ClientId": {
+            "Description": "The ID of the app client associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecretHash": {
+            "Description": "A keyed-hash message authentication code (HMAC) calculated using the secret key of a user pool client and username plus the client ID in the message.",
+            "Type": "string",
+            "Required": false
+        },
+        "Username": {
+            "Description": "The user name of the user whose registration you want to confirm.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfirmationCode": {
+            "Description": "The confirmation code sent by a user's request to confirm registration.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceAliasCreation": {
+            "Description": "Boolean to be specified to force user confirmation irrespective of existing alias. By default set to False . If this parameter is set to True and the phone number/email used for sign up confirmation already exists as an alias with a different user, the API call will migrate the alias from the previous user to the newly created user being confirmed. If set to False , the API will throw an AliasExistsException error.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AnalyticsMetadata": {
+            "Description": "The Amazon Pinpoint analytics metadata for collecting metrics for ConfirmSignUp calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the ConfirmSignUp API action, Amazon Cognito invokes the function that is assigned to the post confirmation trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your ConfirmSignUp request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_group": {
+        "GroupName": {
+            "Description": "The name of the group. Must be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A string containing the description of the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The role Amazon Resource Name (ARN) for the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "Precedence": {
+            "Description": "A non-negative integer value that specifies the precedence of this group relative to the other groups that a user can belong to in the user pool. Zero is the highest precedence value. Groups with lower Precedence values take precedence over groups with higher or null Precedence values. If a user belongs to two or more groups, it is the group with the lowest precedence value whose role ARN is given in the user's tokens for the cognito:roles and cognito:preferred_role claims.\nTwo groups can have the same Precedence value. If this happens, neither group takes precedence over the other. If two groups with the same Precedence have the same role ARN, that role is used in the cognito:preferred_role claim in tokens for users in each group. If the two groups have different role ARNs, the cognito:preferred_role claim isn't set in users' tokens.\nThe default Precedence value is null. The maximum Precedence value is 2^31-1 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_identity_provider": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderName": {
+            "Description": "The IdP name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderType": {
+            "Description": "The IdP type.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderDetails": {
+            "Description": "The IdP details. The following list describes the provider detail keys for each IdP type.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "AttributeMapping": {
+            "Description": "A mapping of IdP attributes to standard and custom user pool attributes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IdpIdentifiers": {
+            "Description": "A list of IdP identifiers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_resource_server": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "A unique resource server identifier for the resource server. This could be an HTTPS endpoint where the resource server is located, such as https://my-weather-api.example.com .",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A friendly name for the resource server.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scopes": {
+            "Description": "A list of scopes. Each scope is a key-value map with the keys name and description .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_user_import_job": {
+        "JobName": {
+            "Description": "The job name for the user import job.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that the users are being imported into.",
+            "Type": "string",
+            "Required": true
+        },
+        "CloudWatchLogsRoleArn": {
+            "Description": "The role ARN for the Amazon CloudWatch Logs Logging role for the user import job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_user_pool": {
+        "PoolName": {
+            "Description": "A string used to name the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policies": {
+            "Description": "The policies associated with the new user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LambdaConfig": {
+            "Description": "The Lambda trigger configuration information for the new user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AutoVerifiedAttributes": {
+            "Description": "The attributes to be auto-verified. Possible values: email, phone_number .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AliasAttributes": {
+            "Description": "Attributes supported as an alias for this user pool. Possible values: phone_number, email, or preferred_username .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UsernameAttributes": {
+            "Description": "Specifies whether a user can use an email address or phone number as a username when they sign up.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SmsVerificationMessage": {
+            "Description": "This parameter is no longer used. See VerificationMessageTemplateType .",
+            "Type": "string",
+            "Required": false
+        },
+        "EmailVerificationMessage": {
+            "Description": "This parameter is no longer used. See VerificationMessageTemplateType .",
+            "Type": "string",
+            "Required": false
+        },
+        "EmailVerificationSubject": {
+            "Description": "This parameter is no longer used. See VerificationMessageTemplateType .",
+            "Type": "string",
+            "Required": false
+        },
+        "VerificationMessageTemplate": {
+            "Description": "The template for the verification message that the user sees when the app requests permission to access the user's information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SmsAuthenticationMessage": {
+            "Description": "A string representing the SMS authentication message.",
+            "Type": "string",
+            "Required": false
+        },
+        "MfaConfiguration": {
+            "Description": "Specifies MFA configuration details.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserAttributeUpdateSettings": {
+            "Description": "The settings for updates to user attributes. These settings include the property AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see Verifying updates to email addresses and phone numbers .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeviceConfiguration": {
+            "Description": "The device-remembering configuration for a user pool. A null value indicates that you have deactivated device remembering in your user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EmailConfiguration": {
+            "Description": "The email configuration of your user pool. The email configuration type sets your preferred sending method, Amazon Web Services Region, and sender for messages from your user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SmsConfiguration": {
+            "Description": "The SMS configuration with the settings that your Amazon Cognito user pool must use to send an SMS message from your Amazon Web Services account through Amazon Simple Notification Service. To send SMS messages with Amazon SNS in the Amazon Web Services Region that you want, the Amazon Cognito user pool uses an Identity and Access Management (IAM) role in your Amazon Web Services account.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserPoolTags": {
+            "Description": "The tag keys and values to assign to the user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdminCreateUserConfig": {
+            "Description": "The configuration for AdminCreateUser requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Schema": {
+            "Description": "An array of schema attributes for the new user pool. These attributes can be standard or custom attributes.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserPoolAddOns": {
+            "Description": "Enables advanced security risk detection. Set the key AdvancedSecurityMode to the value \"AUDIT\".",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UsernameConfiguration": {
+            "Description": "Case sensitivity on the username input for the selected sign-in option. For example, when case sensitivity is set to False, users can sign in using either \"username\" or \"Username\". This configuration is immutable once it has been set. For more information, see UsernameConfigurationType .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccountRecoverySetting": {
+            "Description": "The available verified method a user can use to recover their password when they call ForgotPassword. You can use this setting to define a preferred method when a user has more than one method available. With this setting, SMS doesn't qualify for a valid password recovery mechanism if the user also has SMS multi-factor authentication (MFA) activated. In the absence of this setting, Amazon Cognito uses the legacy behavior to determine the recovery method where SMS is preferred through email.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_user_pool_client": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to create a user pool client.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientName": {
+            "Description": "The client name for the user pool client you would like to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "GenerateSecret": {
+            "Description": "Boolean to specify whether you want to generate a secret for the user pool client being created.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RefreshTokenValidity": {
+            "Description": "The refresh token time limit. After this limit expires, your user can't use their refresh token. To specify the time unit for RefreshTokenValidity as seconds, minutes, hours, or days, set a TokenValidityUnits value in your API request.\nFor example, when you set RefreshTokenValidity as 10 and TokenValidityUnits as days, your user can refresh their session and retrieve new access and ID tokens for 10 days.\nThe default time unit for RefreshTokenValidity in an API request is days. You can't set RefreshTokenValidity to 0. If you do, Amazon Cognito overrides the value with the default value of 30 days. Valid range is displayed below in seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AccessTokenValidity": {
+            "Description": "The access token time limit. After this limit expires, your user can't use their access token. To specify the time unit for AccessTokenValidity as seconds, minutes, hours, or days, set a TokenValidityUnits value in your API request.\nFor example, when you set AccessTokenValidity to 10 and TokenValidityUnits to hours, your user can authorize access with their access token for 10 hours.\nThe default time unit for AccessTokenValidity in an API request is hours. Valid range is displayed below in seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "IdTokenValidity": {
+            "Description": "The ID token time limit. After this limit expires, your user can't use their ID token. To specify the time unit for IdTokenValidity as seconds, minutes, hours, or days, set a TokenValidityUnits value in your API request.\nFor example, when you set IdTokenValidity as 10 and TokenValidityUnits as hours, your user can authenticate their session with their ID token for 10 hours.\nThe default time unit for AccessTokenValidity in an API request is hours. Valid range is displayed below in seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TokenValidityUnits": {
+            "Description": "The units in which the validity times are represented. The default unit for RefreshToken is days, and default for ID and access tokens are hours.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ReadAttributes": {
+            "Description": "The read attributes.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "WriteAttributes": {
+            "Description": "The user pool attributes that the app client can write to.\nIf your app client allows users to sign in through an IdP, this array must include all attributes that you have mapped to IdP attributes. Amazon Cognito updates mapped attributes when users sign in to your application through an IdP. If your app client does not have write access to a mapped attribute, Amazon Cognito throws an error when it tries to update the attribute. For more information, see Specifying IdP Attribute Mappings for Your user pool .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ExplicitAuthFlows": {
+            "Description": "The authentication flows that are supported by the user pool clients. Flow names without the ALLOW_ prefix are no longer supported, in favor of new names with the ALLOW_ prefix.\nValid values include:\nEnable admin based user password authentication flow ADMIN_USER_PASSWORD_AUTH. This setting replaces the ADMIN_NO_SRP_AUTH setting. With this authentication flow, Amazon Cognito receives the password in the request instead of using the Secure Remote Password (SRP) protocol to verify passwords.\nEnable Lambda trigger based authentication.\nEnable user password-based authentication. In this flow, Amazon Cognito receives the password in the request instead of using the SRP protocol to verify passwords.\nEnable SRP-based authentication.\nEnable the authflow that refreshes tokens.\nIf you don't specify a value for ExplicitAuthFlows, your user client supports ALLOW_USER_SRP_AUTH and ALLOW_CUSTOM_AUTH .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SupportedIdentityProviders": {
+            "Description": "A list of provider names for the identity providers (IdPs) that are supported on this client. The following are supported: COGNITO, Facebook, Google, SignInWithApple, and LoginWithAmazon. You can also specify the names that you configured for the SAML and OIDC IdPs in your user pool, for example MySAMLIdP or MyOIDCIdP .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CallbackURLs": {
+            "Description": "A list of allowed redirect (callback) URLs for the IdPs.\nA redirect URI must:\nSee OAuth 2.0 - Redirection Endpoint .\nAmazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.\nApp callback URLs such as myapp://example are also supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "LogoutURLs": {
+            "Description": "A list of allowed logout URLs for the IdPs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DefaultRedirectURI": {
+            "Description": "The default redirect URI. Must be in the CallbackURLs list.\nA redirect URI must:\nSee OAuth 2.0 - Redirection Endpoint .\nAmazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.\nApp callback URLs such as myapp://example are also supported.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AllowedOAuthFlows": {
+            "Description": "The allowed OAuth flows.\nUse a code grant flow, which provides an authorization code as the response. This code can be exchanged for access tokens with the /oauth2/token endpoint.\nIssue the access token (and, optionally, ID token, based on scopes) directly to your user.\nIssue the access token from the /oauth2/token endpoint directly to a non-person user using a combination of the client ID and client secret.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AllowedOAuthScopes": {
+            "Description": "The allowed OAuth scopes. Possible values provided by OAuth are phone, email, openid, and profile. Possible values provided by Amazon Web Services are aws.cognito.signin.user.admin. Custom scopes created in Resource Servers are also supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AllowedOAuthFlowsUserPoolClient": {
+            "Description": "Set to true if the client is allowed to follow the OAuth protocol when interacting with Amazon Cognito user pools.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AnalyticsConfiguration": {
+            "Description": "The user pool analytics configuration for collecting metrics and sending them to your Amazon Pinpoint campaign.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PreventUserExistenceErrors": {
+            "Description": "Errors and responses that you want Amazon Cognito APIs to return during authentication, account confirmation, and password recovery when the user doesn't exist in the user pool. When set to ENABLED and the user doesn't exist, authentication returns an error indicating either the username or password was incorrect. Account confirmation and password recovery return a response indicating a code was sent to a simulated destination. When set to LEGACY, those APIs return a UserNotFoundException exception if the user doesn't exist in the user pool.\nValid values include:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EnableTokenRevocation": {
+            "Description": "Activates or deactivates token revocation. For more information about revoking tokens, see RevokeToken .\nIf you don't include this parameter, token revocation is automatically activated for the new user pool client.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EnablePropagateAdditionalUserContextData": {
+            "Description": "Activates the propagation of additional user context data. For more information about propagation of user context data, see Adding advanced security to a user pool . If you don\u2019t include this parameter, you can't send device fingerprint information, including source IP address, to Amazon Cognito advanced security. You can only activate EnablePropagateAdditionalUserContextData in an app client that has a client secret.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AuthSessionValidity": {
+            "Description": "Amazon Cognito creates a session token for each API request in an authentication flow. AuthSessionValidity is the duration, in minutes, of that session token. Your user pool native user must respond to each authentication challenge before the session expires.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_user_pool_domain": {
+        "Domain": {
+            "Description": "The domain string. For custom domains, this is the fully-qualified domain name, such as auth.example.com. For Amazon Cognito prefix domains, this is the prefix alone, such as auth .",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomDomainConfig": {
+            "Description": "The configuration for a custom domain that hosts the sign-up and sign-in webpages for your application.\nProvide this parameter only if you want to use a custom domain for your user pool. Otherwise, you can exclude this parameter and use the Amazon Cognito hosted domain instead.\nFor more information about the hosted domain and custom domains, see Configuring a User Pool Domain .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_group": {
+        "GroupName": {
+            "Description": "The name of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_identity_provider": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderName": {
+            "Description": "The IdP name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_server": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that hosts the resource server.",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "The identifier for the resource server.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose user profile you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user_attributes": {
+        "UserAttributeNames": {
+            "Description": "An array of strings representing the user attribute names you want to delete.\nFor custom attributes, you must prependattach the custom: prefix to the front of the attribute name.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose attributes you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user_pool": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user_pool_client": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to delete the client.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The app client ID of the app associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user_pool_domain": {
+        "Domain": {
+            "Description": "The domain string. For custom domains, this is the fully-qualified domain name, such as auth.example.com. For Amazon Cognito prefix domains, this is the prefix alone, such as auth .",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_identity_provider": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderName": {
+            "Description": "The IdP name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_resource_server": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that hosts the resource server.",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "The identifier for the resource server",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_risk_configuration": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The app client ID.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_user_import_job": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that the users are being imported into.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The job ID for the user import job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_user_pool": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_user_pool_client": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The app client ID of the app associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_user_pool_domain": {
+        "Domain": {
+            "Description": "The domain string. For custom domains, this is the fully-qualified domain name, such as auth.example.com. For Amazon Cognito prefix domains, this is the prefix alone, such as auth .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "forget_device": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose registered device you want to forget.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeviceKey": {
+            "Description": "The device key.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "forgot_password": {
+        "ClientId": {
+            "Description": "The ID of the client associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecretHash": {
+            "Description": "A keyed-hash message authentication code (HMAC) calculated using the secret key of a user pool client and username plus the client ID in the message.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Username": {
+            "Description": "The user name of the user for whom you want to enter a code to reset a forgotten password.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalyticsMetadata": {
+            "Description": "The Amazon Pinpoint analytics metadata that contributes to your metrics for ForgotPassword calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the ForgotPassword API action, Amazon Cognito invokes any functions that are assigned to the following triggers: pre sign-up, custom message, and user migration. When Amazon Cognito invokes any of these functions, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your ForgotPassword request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_csv_header": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that the users are to be imported into.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_device": {
+        "DeviceKey": {
+            "Description": "The device key.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose device information you want to request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_group": {
+        "GroupName": {
+            "Description": "The name of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_identity_provider_by_identifier": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdpIdentifier": {
+            "Description": "The IdP identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_signing_certificate": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_ui_customization": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The client ID for the client app.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_user": {
+        "AccessToken": {
+            "Description": "A non-expired access token for the user whose information you want to query.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_user_attribute_verification_code": {
+        "AccessToken": {
+            "Description": "A non-expired access token for the user whose attribute verification code you want to generate.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeName": {
+            "Description": "The attribute name returned by the server response to get the user attribute verification code.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the GetUserAttributeVerificationCode API action, Amazon Cognito invokes the function that is assigned to the custom message trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your GetUserAttributeVerificationCode request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_user_pool_mfa_config": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "global_sign_out": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user who you want to sign out.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "initiate_auth": {
+        "AuthFlow": {
+            "Description": "The authentication flow for this call to run. The API action will depend on this value. For example:\nValid values include:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "AuthParameters": {
+            "Description": "The authentication parameters. These are inputs corresponding to the AuthFlow that you're invoking. The required values depend on the value of AuthFlow :",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for certain custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the InitiateAuth API action, Amazon Cognito invokes the Lambda functions that are specified for various triggers. The ClientMetadata value is passed as input to the functions for only the following triggers:\nWhen Amazon Cognito invokes the functions for these triggers, it passes a JSON payload, which the function receives as input. This payload contains a validationData attribute, which provides the data that you assigned to the ClientMetadata parameter in your InitiateAuth request. In your function code in Lambda, you can process the validationData value to enhance your workflow for your specific needs.\nWhen you use the InitiateAuth API action, Amazon Cognito also invokes the functions for the following triggers, but it doesn't provide the ClientMetadata value as input:\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "ClientId": {
+            "Description": "The app client ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalyticsMetadata": {
+            "Description": "The Amazon Pinpoint analytics metadata that contributes to your metrics for InitiateAuth calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_devices": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose list of devices you want to view.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The limit of the device request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PaginationToken": {
+            "Description": "The pagination token for the list request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_groups": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The limit of the request to list groups.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_identity_providers": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of IdPs to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_resource_servers": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of resource servers to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A pagination token.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user pool that the tags are assigned to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_user_import_jobs": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that the users are being imported into.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of import jobs you want the request to return.",
+            "Type": "integer",
+            "Required": true
+        },
+        "PaginationToken": {
+            "Description": "An identifier that was returned from the previous call to ListUserImportJobs , which can be used to return the next set of import jobs in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_user_pool_clients": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to list user pool clients.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results you want the request to return when listing the user pool clients.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_user_pools": {
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results you want the request to return when listing the user pools.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "list_users": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool on which the search should be performed.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributesToGet": {
+            "Description": "An array of strings, where each string is the name of a user attribute to be returned for each user in the search results. If the array is null, all attributes are returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "Maximum number of users to be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PaginationToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filter": {
+            "Description": "A filter string of the form \"AttributeName Filter-Type \"AttributeValue \"\". Quotation marks within the filter string must be escaped using the backslash () character. For example, \"family_name = \"Reddy\"\".\nIf the filter string is empty, ListUsers returns all users in the user pool.\nYou can only search for the following standard attributes:\nCustom attributes aren't searchable.\nFor more information, see Searching for Users Using the ListUsers API and Examples of Using the ListUsers API in the Amazon Cognito Developer Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_users_in_group": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The name of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The limit of the request to list users.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An identifier that was returned from the previous call to this operation, which can be used to return the next set of items in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "resend_confirmation_code": {
+        "ClientId": {
+            "Description": "The ID of the client associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecretHash": {
+            "Description": "A keyed-hash message authentication code (HMAC) calculated using the secret key of a user pool client and username plus the client ID in the message.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Username": {
+            "Description": "The username attribute of the user to whom you want to resend a confirmation code.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalyticsMetadata": {
+            "Description": "The Amazon Pinpoint analytics metadata that contributes to your metrics for ResendConfirmationCode calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the ResendConfirmationCode API action, Amazon Cognito invokes the function that is assigned to the custom message trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your ResendConfirmationCode request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "respond_to_auth_challenge": {
+        "ClientId": {
+            "Description": "The app client ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ChallengeName": {
+            "Description": "The challenge name. For more information, see InitiateAuth .",
+            "Type": "string",
+            "Required": true
+        },
+        "Session": {
+            "Description": "The session that should be passed both ways in challenge-response calls to the service. If InitiateAuth or RespondToAuthChallenge API call determines that the caller must pass another challenge, they return a session with other challenge parameters. This session should be passed as it is to the next RespondToAuthChallenge API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "ChallengeResponses": {
+            "Description": "The challenge responses. These are inputs corresponding to the value of ChallengeName, for example:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "AnalyticsMetadata": {
+            "Description": "The Amazon Pinpoint analytics metadata that contributes to your metrics for RespondToAuthChallenge calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the RespondToAuthChallenge API action, Amazon Cognito invokes any functions that are assigned to the following triggers: post authentication, pre token generation, define auth challenge, create auth challenge, and verify auth challenge. When Amazon Cognito invokes any of these functions, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your RespondToAuthChallenge request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "revoke_token": {
+        "Token": {
+            "Description": "The refresh token that you want to revoke.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The client ID for the token that you want to revoke.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientSecret": {
+            "Description": "The secret for the client ID. This is required only if the client ID has a secret.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "set_risk_configuration": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The app client ID. If ClientId is null, then the risk configuration is mapped to userPoolId. When the client ID is null, the same risk configuration is applied to all the clients in the userPool.\nOtherwise, ClientId is mapped to the client. When the client ID isn't null, the user pool configuration is overridden and the risk configuration for the client is used instead.",
+            "Type": "string",
+            "Required": false
+        },
+        "CompromisedCredentialsRiskConfiguration": {
+            "Description": "The compromised credentials risk configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccountTakeoverRiskConfiguration": {
+            "Description": "The account takeover risk configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RiskExceptionConfiguration": {
+            "Description": "The configuration to override the risk decision.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "set_ui_customization": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The client ID for the client app.",
+            "Type": "string",
+            "Required": false
+        },
+        "CSS": {
+            "Description": "The CSS values in the UI customization.",
+            "Type": "string",
+            "Required": false
+        },
+        "ImageFile": {
+            "Description": "The uploaded logo image for the UI customization.",
+            "Type": "bytes",
+            "Required": false
+        }
+    },
+    "set_user_mfa_preference": {
+        "SMSMfaSettings": {
+            "Description": "The SMS text message multi-factor authentication (MFA) settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SoftwareTokenMfaSettings": {
+            "Description": "The time-based one-time password (TOTP) software token MFA settings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose MFA preference you want to set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_user_pool_mfa_config": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "SmsMfaConfiguration": {
+            "Description": "The SMS text message MFA configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SoftwareTokenMfaConfiguration": {
+            "Description": "The software token MFA configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MfaConfiguration": {
+            "Description": "The MFA configuration. If you set the MfaConfiguration value to \u2018ON\u2019, only users who have set up an MFA factor can sign in. To learn more, see Adding Multi-Factor Authentication (MFA) to a user pool. Valid values include:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "set_user_settings": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose user settings you want to configure.",
+            "Type": "string",
+            "Required": true
+        },
+        "MFAOptions": {
+            "Description": "You can use this parameter only to set an SMS configuration that uses SMS for delivery.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "sign_up": {
+        "ClientId": {
+            "Description": "The ID of the client associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "SecretHash": {
+            "Description": "A keyed-hash message authentication code (HMAC) calculated using the secret key of a user pool client and username plus the client ID in the message.",
+            "Type": "string",
+            "Required": false
+        },
+        "Username": {
+            "Description": "The user name of the user you want to register.",
+            "Type": "string",
+            "Required": true
+        },
+        "Password": {
+            "Description": "The password of the user you want to register.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserAttributes": {
+            "Description": "An array of name-value pairs representing user attributes.\nFor custom attributes, you must prepend the custom: prefix to the attribute name.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ValidationData": {
+            "Description": "The validation data in the request to register a user.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AnalyticsMetadata": {
+            "Description": "The Amazon Pinpoint analytics metadata that contributes to your metrics for SignUp calls.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserContextData": {
+            "Description": "Contextual data about your user session, such as the device fingerprint, IP address, or location. Amazon Cognito advanced security evaluates the risk of an authentication event based on the context that your app generates and passes to Amazon Cognito when it makes API requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action triggers.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the SignUp API action, Amazon Cognito invokes any functions that are assigned to the following triggers: pre sign-up, custom message, and post confirmation. When Amazon Cognito invokes any of these functions, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your SignUp request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "start_user_import_job": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that the users are being imported into.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The job ID for the user import job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_user_import_job": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool that the users are being imported into.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The job ID for the user import job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user pool to assign the tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to assign to the user pool.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the user pool that the tags are assigned to.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of the tags to remove from the user pool.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_auth_event_feedback": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The user pool username.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventId": {
+            "Description": "The event ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "FeedbackToken": {
+            "Description": "The feedback token.",
+            "Type": "string",
+            "Required": true
+        },
+        "FeedbackValue": {
+            "Description": "The authentication event feedback value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_device_status": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose device status you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceKey": {
+            "Description": "The device key.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceRememberedStatus": {
+            "Description": "The status of whether a device is remembered.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_group": {
+        "GroupName": {
+            "Description": "The name of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A string containing the new description of the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The new role Amazon Resource Name (ARN) for the group. This is used for setting the cognito:roles and cognito:preferred_role claims in the token.",
+            "Type": "string",
+            "Required": false
+        },
+        "Precedence": {
+            "Description": "The new precedence value for the group. For more information about this parameter, see CreateGroup .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_identity_provider": {
+        "UserPoolId": {
+            "Description": "The user pool ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderName": {
+            "Description": "The IdP name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProviderDetails": {
+            "Description": "The IdP details to be updated, such as MetadataURL and MetadataFile .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AttributeMapping": {
+            "Description": "The IdP attribute mapping to be changed.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "IdpIdentifiers": {
+            "Description": "A list of IdP identifiers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_resource_server": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Identifier": {
+            "Description": "The identifier for the resource server.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the resource server.",
+            "Type": "string",
+            "Required": true
+        },
+        "Scopes": {
+            "Description": "The scope values to be set for the resource server.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_user_attributes": {
+        "UserAttributes": {
+            "Description": "An array of name-value pairs representing user attributes.\nFor custom attributes, you must prepend the custom: prefix to the attribute name.\nIf you have set an attribute to require verification before Amazon Cognito updates its value, this request doesn\u2019t immediately update the value of that attribute. After your user receives and responds to a verification message to verify the new value, Amazon Cognito updates the attribute value. Your user can sign in and receive messages with the original attribute value until they verify the new value.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose user attributes you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientMetadata": {
+            "Description": "A map of custom key-value pairs that you can provide as input for any custom workflows that this action initiates.\nYou create custom workflows by assigning Lambda functions to user pool triggers. When you use the UpdateUserAttributes API action, Amazon Cognito invokes the function that is assigned to the custom message trigger. When Amazon Cognito invokes this function, it passes a JSON payload, which the function receives as input. This payload contains a clientMetadata attribute, which provides the data that you assigned to the ClientMetadata parameter in your UpdateUserAttributes request. In your function code in Lambda, you can process the clientMetadata value to enhance your workflow for your specific needs.\nFor more information, see Customizing user pool Workflows with Lambda Triggers in the Amazon Cognito Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_user_pool": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policies": {
+            "Description": "A container with the policies you want to update in a user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LambdaConfig": {
+            "Description": "The Lambda configuration information from the request to update the user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AutoVerifiedAttributes": {
+            "Description": "The attributes that are automatically verified when Amazon Cognito requests to update user pools.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SmsVerificationMessage": {
+            "Description": "This parameter is no longer used. See VerificationMessageTemplateType .",
+            "Type": "string",
+            "Required": false
+        },
+        "EmailVerificationMessage": {
+            "Description": "This parameter is no longer used. See VerificationMessageTemplateType .",
+            "Type": "string",
+            "Required": false
+        },
+        "EmailVerificationSubject": {
+            "Description": "This parameter is no longer used. See VerificationMessageTemplateType .",
+            "Type": "string",
+            "Required": false
+        },
+        "VerificationMessageTemplate": {
+            "Description": "The template for verification messages.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SmsAuthenticationMessage": {
+            "Description": "The contents of the SMS authentication message.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserAttributeUpdateSettings": {
+            "Description": "The settings for updates to user attributes. These settings include the property AttributesRequireVerificationBeforeUpdate, a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For more information, see Verifying updates to email addresses and phone numbers .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MfaConfiguration": {
+            "Description": "Possible values include:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DeviceConfiguration": {
+            "Description": "The device-remembering configuration for a user pool. A null value indicates that you have deactivated device remembering in your user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EmailConfiguration": {
+            "Description": "The email configuration of your user pool. The email configuration type sets your preferred sending method, Amazon Web Services Region, and sender for email invitation and verification messages from your user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SmsConfiguration": {
+            "Description": "The SMS configuration with the settings that your Amazon Cognito user pool must use to send an SMS message from your Amazon Web Services account through Amazon Simple Notification Service. To send SMS messages with Amazon SNS in the Amazon Web Services Region that you want, the Amazon Cognito user pool uses an Identity and Access Management (IAM) role in your Amazon Web Services account.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserPoolTags": {
+            "Description": "The tag keys and values to assign to the user pool. A tag is a label that you can use to categorize and manage user pools in different ways, such as by purpose, owner, environment, or other criteria.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AdminCreateUserConfig": {
+            "Description": "The configuration for AdminCreateUser requests.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "UserPoolAddOns": {
+            "Description": "Enables advanced security risk detection. Set the key AdvancedSecurityMode to the value \"AUDIT\".",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AccountRecoverySetting": {
+            "Description": "The available verified method a user can use to recover their password when they call ForgotPassword. You can use this setting to define a preferred method when a user has more than one method available. With this setting, SMS doesn't qualify for a valid password recovery mechanism if the user also has SMS multi-factor authentication (MFA) activated. In the absence of this setting, Amazon Cognito uses the legacy behavior to determine the recovery method where SMS is preferred through email.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_user_pool_client": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool where you want to update the user pool client.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The ID of the client associated with the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientName": {
+            "Description": "The client name from the update user pool client request.",
+            "Type": "string",
+            "Required": false
+        },
+        "RefreshTokenValidity": {
+            "Description": "The refresh token time limit. After this limit expires, your user can't use their refresh token. To specify the time unit for RefreshTokenValidity as seconds, minutes, hours, or days, set a TokenValidityUnits value in your API request.\nFor example, when you set RefreshTokenValidity as 10 and TokenValidityUnits as days, your user can refresh their session and retrieve new access and ID tokens for 10 days.\nThe default time unit for RefreshTokenValidity in an API request is days. You can't set RefreshTokenValidity to 0. If you do, Amazon Cognito overrides the value with the default value of 30 days. Valid range is displayed below in seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AccessTokenValidity": {
+            "Description": "The access token time limit. After this limit expires, your user can't use their access token. To specify the time unit for AccessTokenValidity as seconds, minutes, hours, or days, set a TokenValidityUnits value in your API request.\nFor example, when you set AccessTokenValidity to 10 and TokenValidityUnits to hours, your user can authorize access with their access token for 10 hours.\nThe default time unit for AccessTokenValidity in an API request is hours. Valid range is displayed below in seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "IdTokenValidity": {
+            "Description": "The ID token time limit. After this limit expires, your user can't use their ID token. To specify the time unit for IdTokenValidity as seconds, minutes, hours, or days, set a TokenValidityUnits value in your API request.\nFor example, when you set IdTokenValidity as 10 and TokenValidityUnits as hours, your user can authenticate their session with their ID token for 10 hours.\nThe default time unit for AccessTokenValidity in an API request is hours. Valid range is displayed below in seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TokenValidityUnits": {
+            "Description": "The units in which the validity times are represented. The default unit for RefreshToken is days, and the default for ID and access tokens is hours.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ReadAttributes": {
+            "Description": "The read-only attributes of the user pool.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "WriteAttributes": {
+            "Description": "The writeable attributes of the user pool.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ExplicitAuthFlows": {
+            "Description": "The authentication flows that are supported by the user pool clients. Flow names without the ALLOW_ prefix are no longer supported in favor of new names with the ALLOW_ prefix. Note that values with ALLOW_ prefix must be used only along with values with the ALLOW_ prefix.\nValid values include:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "SupportedIdentityProviders": {
+            "Description": "A list of provider names for the IdPs that this client supports. The following are supported: COGNITO, Facebook, Google, SignInWithApple, LoginWithAmazon, and the names of your own SAML and OIDC providers.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CallbackURLs": {
+            "Description": "A list of allowed redirect (callback) URLs for the IdPs.\nA redirect URI must:\nSee OAuth 2.0 - Redirection Endpoint .\nAmazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.\nApp callback URLs such as myapp://example are also supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "LogoutURLs": {
+            "Description": "A list of allowed logout URLs for the IdPs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DefaultRedirectURI": {
+            "Description": "The default redirect URI. Must be in the CallbackURLs list.\nA redirect URI must:\nSee OAuth 2.0 - Redirection Endpoint .\nAmazon Cognito requires HTTPS over HTTP except for http://localhost for testing purposes only.\nApp callback URLs such as myapp://example are also supported.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AllowedOAuthFlows": {
+            "Description": "The allowed OAuth flows.\nUse a code grant flow, which provides an authorization code as the response. This code can be exchanged for access tokens with the /oauth2/token endpoint.\nIssue the access token (and, optionally, ID token, based on scopes) directly to your user.\nIssue the access token from the /oauth2/token endpoint directly to a non-person user using a combination of the client ID and client secret.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AllowedOAuthScopes": {
+            "Description": "The allowed OAuth scopes. Possible values provided by OAuth are phone, email, openid, and profile. Possible values provided by Amazon Web Services are aws.cognito.signin.user.admin. Custom scopes created in Resource Servers are also supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AllowedOAuthFlowsUserPoolClient": {
+            "Description": "Set to true if the client is allowed to follow the OAuth protocol when interacting with Amazon Cognito user pools.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AnalyticsConfiguration": {
+            "Description": "The Amazon Pinpoint analytics configuration necessary to collect metrics for this user pool.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PreventUserExistenceErrors": {
+            "Description": "Errors and responses that you want Amazon Cognito APIs to return during authentication, account confirmation, and password recovery when the user doesn't exist in the user pool. When set to ENABLED and the user doesn't exist, authentication returns an error indicating either the username or password was incorrect. Account confirmation and password recovery return a response indicating a code was sent to a simulated destination. When set to LEGACY, those APIs return a UserNotFoundException exception if the user doesn't exist in the user pool.\nValid values include:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EnableTokenRevocation": {
+            "Description": "Activates or deactivates token revocation. For more information about revoking tokens, see RevokeToken .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EnablePropagateAdditionalUserContextData": {
+            "Description": "Activates the propagation of additional user context data. For more information about propagation of user context data, see Adding advanced security to a user pool . If you don\u2019t include this parameter, you can't send device fingerprint information, including source IP address, to Amazon Cognito advanced security. You can only activate EnablePropagateAdditionalUserContextData in an app client that has a client secret.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AuthSessionValidity": {
+            "Description": "Amazon Cognito creates a session token for each API request in an authentication flow. AuthSessionValidity is the duration, in minutes, of that session token. Your user pool native user must respond to each authentication challenge before the session expires.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_user_pool_domain": {
+        "Domain": {
+            "Description": "The domain name for the custom domain that hosts the sign-up and sign-in pages for your application. One example might be auth.example.com .\nThis string can include only lowercase letters, numbers, and hyphens. Don't use a hyphen for the first or last character. Use periods to separate subdomain names.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserPoolId": {
+            "Description": "The ID of the user pool that is associated with the custom domain whose certificate you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomDomainConfig": {
+            "Description": "The configuration for a custom domain that hosts the sign-up and sign-in pages for your application. Use this object to specify an SSL certificate that is managed by ACM.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "verify_software_token": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose software token you want to verify.",
+            "Type": "string",
+            "Required": false
+        },
+        "Session": {
+            "Description": "The session that should be passed both ways in challenge-response calls to the service.",
+            "Type": "string",
+            "Required": false
+        },
+        "UserCode": {
+            "Description": "The one- time password computed using the secret code returned by AssociateSoftwareToken .",
+            "Type": "string",
+            "Required": true
+        },
+        "FriendlyDeviceName": {
+            "Description": "The friendly device name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "verify_user_attribute": {
+        "AccessToken": {
+            "Description": "A valid access token that Amazon Cognito issued to the user whose user attributes you want to verify.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeName": {
+            "Description": "The attribute name in the request to verify user attributes.",
+            "Type": "string",
+            "Required": true
+        },
+        "Code": {
+            "Description": "The verification code in the request to verify user attributes.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "UserPoolId": {
+            "Description": "The user pool ID for the user pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The name of the group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,2040 @@
+{
+    "accept_match": {
+        "TicketId": {
+            "Description": "A unique identifier for a matchmaking ticket. The ticket must be in status REQUIRES_ACCEPTANCE ; otherwise this request will fail.",
+            "Type": "string",
+            "Required": true
+        },
+        "PlayerIds": {
+            "Description": "A unique identifier for a player delivering the response. This parameter can include one or multiple player IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AcceptanceType": {
+            "Description": "Player response to the proposed match.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "claim_game_server": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group where the game server is running. Use either the  GameServerGroup name or ARN value. If you are not specifying a game server to claim, this value identifies where you want GameLift FleetIQ to look for an available game server to claim.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameServerId": {
+            "Description": "A custom string that uniquely identifies the game server to claim. If this parameter is left empty, GameLift FleetIQ searches for an available game server in the specified game server group.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameServerData": {
+            "Description": "A set of custom game server properties, formatted as a single string value. This data is passed to a game client or service when it requests information on game servers using  ListGameServers or  ClaimGameServer .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_alias": {
+        "Name": {
+            "Description": "A descriptive label that is associated with an alias. Alias names do not need to be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A human-readable description of the alias.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoutingStrategy": {
+            "Description": "The routing configuration, including routing type and fleet target, for the alias.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new alias resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the resource is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_build": {
+        "Name": {
+            "Description": "A descriptive label that is associated with a build. Build names do not need to be unique. You can use  UpdateBuild to change this value later.",
+            "Type": "string",
+            "Required": false
+        },
+        "Version": {
+            "Description": "Version information that is associated with a build or script. Version strings do not need to be unique. You can use  UpdateBuild to change this value later.",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageLocation": {
+            "Description": "Information indicating where your game build files are stored. Use this parameter only when creating a build with files stored in an Amazon S3 bucket that you own. The storage location must specify an Amazon S3 bucket name and key. The location must also specify a role ARN that you set up to allow Amazon GameLift to access your Amazon S3 bucket. The S3 bucket and your new build must be in the same Region.\nIf a StorageLocation is specified, the size of your file can be found in your Amazon S3 bucket. Amazon GameLift will report a SizeOnDisk of 0.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "OperatingSystem": {
+            "Description": "The operating system that the game server binaries are built to run on. This value determines the type of fleet resources that you can use for this build. If your game build contains multiple executables, they all must run on the same operating system. If an operating system is not specified when creating a build, Amazon GameLift uses the default value (WINDOWS_2012). This value cannot be changed later.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new build resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the resource is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_fleet": {
+        "Name": {
+            "Description": "A descriptive label that is associated with a fleet. Fleet names do not need to be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A human-readable description of the fleet.",
+            "Type": "string",
+            "Required": false
+        },
+        "BuildId": {
+            "Description": "The unique identifier for a custom game server build to be deployed on fleet instances. You can use either the build ID or ARN. The build must be uploaded to GameLift and in READY status. This fleet property cannot be changed later.",
+            "Type": "string",
+            "Required": false
+        },
+        "ScriptId": {
+            "Description": "The unique identifier for a Realtime configuration script to be deployed on fleet instances. You can use either the script ID or ARN. Scripts must be uploaded to GameLift prior to creating the fleet. This fleet property cannot be changed later.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerLaunchPath": {
+            "Description": "This parameter is no longer used. Specify a server launch path using the RuntimeConfiguration parameter. Requests that use this parameter instead continue to be valid.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerLaunchParameters": {
+            "Description": "This parameter is no longer used. Specify server launch parameters using the RuntimeConfiguration parameter. Requests that use this parameter instead continue to be valid.",
+            "Type": "string",
+            "Required": false
+        },
+        "LogPaths": {
+            "Description": "\nThis parameter is no longer used. To specify where GameLift should store log files once a server process shuts down, use the GameLift server API ProcessReady() and specify one or more directory paths in logParameters . See more information in the Server API Reference .\n\n(string) --\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EC2InstanceType": {
+            "Description": "The GameLift-supported Amazon EC2 instance type to use for all fleet instances. Instance type determines the computing resources that will be used to host your game servers, including CPU, memory, storage, and networking capacity. See Amazon Elastic Compute Cloud Instance Types for detailed descriptions of Amazon EC2 instance types.",
+            "Type": "string",
+            "Required": true
+        },
+        "EC2InboundPermissions": {
+            "Description": "The allowed IP address ranges and port settings that allow inbound traffic to access game sessions on this fleet. If the fleet is hosting a custom game build, this property must be set before players can connect to game sessions. For Realtime Servers fleets, GameLift automatically sets TCP and UDP ranges.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NewGameSessionProtectionPolicy": {
+            "Description": "The status of termination protection for active game sessions on the fleet. By default, this property is set to NoProtection. You can also set game session protection for an individual game session by calling  UpdateGameSession .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "RuntimeConfiguration": {
+            "Description": "Instructions for how to launch and maintain server processes on instances in the fleet. The runtime configuration defines one or more server process configurations, each identifying a build executable or Realtime script file and the number of processes of that type to run concurrently.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ResourceCreationLimitPolicy": {
+            "Description": "A policy that limits the number of game sessions that an individual player can create on instances in this fleet within a specified span of time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MetricGroups": {
+            "Description": "The name of an Amazon Web Services CloudWatch metric group to add this fleet to. A metric group is used to aggregate the metrics for multiple fleets. You can specify an existing metric group name or set a new name to create a new metric group. A fleet can be included in only one metric group at a time.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PeerVpcAwsAccountId": {
+            "Description": "Used when peering your GameLift fleet with a VPC, the unique identifier for the Amazon Web Services account that owns the VPC. You can find your account ID in the Amazon Web Services Management Console under account settings.",
+            "Type": "string",
+            "Required": false
+        },
+        "PeerVpcId": {
+            "Description": "A unique identifier for a VPC with resources to be accessed by your GameLift fleet. The VPC must be in the same Region as your fleet. To look up a VPC ID, use the VPC Dashboard in the Amazon Web Services Management Console. Learn more about VPC peering in VPC Peering with GameLift Fleets .",
+            "Type": "string",
+            "Required": false
+        },
+        "FleetType": {
+            "Description": "Indicates whether to use On-Demand or Spot instances for this fleet. By default, this property is set to ON_DEMAND . Learn more about when to use On-Demand versus Spot Instances . This property cannot be changed after the fleet is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceRoleArn": {
+            "Description": "A unique identifier for an IAM role that manages access to your Amazon Web Services services. With an instance role ARN set, any application that runs on an instance in this fleet can assume the role, including install scripts, server processes, and daemons (background processes). Create a role or look up a role's ARN by using the IAM dashboard in the Amazon Web Services Management Console. Learn more about using on-box credentials for your game servers at Access external resources from a game server . This property cannot be changed after the fleet is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "CertificateConfiguration": {
+            "Description": "Prompts GameLift to generate a TLS/SSL certificate for the fleet. TLS certificates are used for encrypting traffic between game clients and the game servers that are running on GameLift. By default, the CertificateConfiguration is set to DISABLED. This property cannot be changed after the fleet is created.\nNote: This feature requires the Amazon Web Services Certificate Manager (ACM) service, which is not available in all Amazon Web Services regions. When working in a region that does not support this feature, a fleet creation request with certificate generation fails with a 4xx error.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Locations": {
+            "Description": "A set of remote locations to deploy additional instances to and manage as part of the fleet. This parameter can only be used when creating fleets in Amazon Web Services Regions that support multiple locations. You can add any GameLift-supported Amazon Web Services Region as a remote location, in the form of an Amazon Web Services Region code such as us-west-2. To create a fleet with instances in the home Region only, omit this parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new fleet resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the fleet is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_fleet_locations": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to add locations to. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Locations": {
+            "Description": "A list of locations to deploy additional instances to and manage as part of the fleet. You can add any GameLift-supported Amazon Web Services Region as a remote location, in the form of an Amazon Web Services Region code such as us-west-2 .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_game_server_group": {
+        "GameServerGroupName": {
+            "Description": "An identifier for the new game server group. This value is used to generate unique ARN identifiers for the Amazon EC2 Auto Scaling group and the GameLift FleetIQ game server group. The name must be unique per Region per Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN ) for an IAM role that allows Amazon GameLift to access your Amazon EC2 Auto Scaling groups.",
+            "Type": "string",
+            "Required": true
+        },
+        "MinSize": {
+            "Description": "The minimum number of instances allowed in the Amazon EC2 Auto Scaling group. During automatic scaling events, GameLift FleetIQ and Amazon EC2 do not scale down the group below this minimum. In production, this value should be set to at least 1. After the Auto Scaling group is created, update this value directly in the Auto Scaling group using the Amazon Web Services console or APIs.",
+            "Type": "integer",
+            "Required": true
+        },
+        "MaxSize": {
+            "Description": "The maximum number of instances allowed in the Amazon EC2 Auto Scaling group. During automatic scaling events, GameLift FleetIQ and EC2 do not scale up the group above this maximum. After the Auto Scaling group is created, update this value directly in the Auto Scaling group using the Amazon Web Services console or APIs.",
+            "Type": "integer",
+            "Required": true
+        },
+        "LaunchTemplate": {
+            "Description": "The Amazon EC2 launch template that contains configuration settings and game server code to be deployed to all instances in the game server group. You can specify the template using either the template name or ID. For help with creating a launch template, see Creating a Launch Template for an Auto Scaling Group in the Amazon Elastic Compute Cloud Auto Scaling User Guide. After the Auto Scaling group is created, update this value directly in the Auto Scaling group using the Amazon Web Services console or APIs.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "InstanceDefinitions": {
+            "Description": "The Amazon EC2 instance types and sizes to use in the Auto Scaling group. The instance definitions must specify at least two different instance types that are supported by GameLift FleetIQ. For more information on instance types, see EC2 Instance Types in the Amazon Elastic Compute Cloud User Guide. You can optionally specify capacity weighting for each instance type. If no weight value is specified for an instance type, it is set to the default value \"1\". For more information about capacity weighting, see Instance Weighting for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AutoScalingPolicy": {
+            "Description": "Configuration settings to define a scaling policy for the Auto Scaling group that is optimized for game hosting. The scaling policy uses the metric \"PercentUtilizedGameServers\" to maintain a buffer of idle game servers that can immediately accommodate new games and players. After the Auto Scaling group is created, update this value directly in the Auto Scaling group using the Amazon Web Services console or APIs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "BalancingStrategy": {
+            "Description": "Indicates how GameLift FleetIQ balances the use of Spot Instances and On-Demand Instances in the game server group. Method options include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "GameServerProtectionPolicy": {
+            "Description": "A flag that indicates whether instances in the game server group are protected from early termination. Unprotected instances that have active game servers running might be terminated during a scale-down event, causing players to be dropped from the game. Protected instances cannot be terminated while there are active game servers running except in the event of a forced game server group deletion (see ). An exception to this is with Spot Instances, which can be terminated by Amazon Web Services regardless of protection status. This property is set to NO_PROTECTION by default.",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcSubnets": {
+            "Description": "A list of virtual private cloud (VPC) subnets to use with instances in the game server group. By default, all GameLift FleetIQ-supported Availability Zones are used. You can use this parameter to specify VPCs that you've set up. This property cannot be updated after the game server group is created, and the corresponding Auto Scaling group will always use the property value that is set with this request, even if the Auto Scaling group is updated directly.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new game server group resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources is useful for resource management, access management, and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the resource is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags, respectively. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_game_session": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to create a game session in. You can use either the fleet ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "AliasId": {
+            "Description": "A unique identifier for the alias associated with the fleet to create a game session in. You can use either the alias ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaximumPlayerSessionCount": {
+            "Description": "The maximum number of players that can be connected simultaneously to the game session.",
+            "Type": "integer",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A descriptive label that is associated with a game session. Session names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameProperties": {
+            "Description": "A set of custom properties for a game session, formatted as key:value pairs. These properties are passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CreatorId": {
+            "Description": "A unique identifier for a player or entity creating the game session. This parameter is required when requesting a new game session on a fleet with a resource creation limit policy. This type of policy limits the number of concurrent active game sessions that one player can create within a certain time span. GameLift uses the CreatorId to evaluate the new request against the policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameSessionId": {
+            "Description": "This parameter is no longer preferred. Please use ``IdempotencyToken`` instead. Custom string that uniquely identifies a request for a new game session. Maximum token length is 48 characters. If provided, this string is included in the new game session's ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "IdempotencyToken": {
+            "Description": "Custom string that uniquely identifies the new game session request. This is useful for ensuring that game session requests with the same idempotency token are processed only once. Subsequent requests with the same string return the original GameSession object, with an updated status. Maximum token length is 48 characters. If provided, this string is included in the new game session's ID. A game session ARN has the following format: arn:aws:gamelift:<region>::gamesession/<fleet ID>/<custom ID string or idempotency token> . Idempotency tokens remain in use for 30 days after a game session has ended; game session objects are retained for this time period and then deleted.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameSessionData": {
+            "Description": "A set of custom game session properties, formatted as a single string value. This data is passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ).",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "A fleet's remote location to place the new game session in. If this parameter is not set, the new game session is placed in the fleet's home Region. Specify a remote location with an Amazon Web Services Region code such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_game_session_queue": {
+        "Name": {
+            "Description": "A descriptive label that is associated with game session queue. Queue names must be unique within each Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "TimeoutInSeconds": {
+            "Description": "The maximum time, in seconds, that a new game session placement request remains in the queue. When a request exceeds this time, the game session placement changes to a TIMED_OUT status.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PlayerLatencyPolicies": {
+            "Description": "A set of policies that act as a sliding cap on player latency. FleetIQ works to deliver low latency for most players in a game session. These policies ensure that no individual player can be placed into a game with unreasonably high latency. Use multiple policies to gradually relax latency requirements a step at a time. Multiple policies are applied based on their maximum allowed latency, starting with the lowest value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Destinations": {
+            "Description": "A list of fleets and/or fleet aliases that can be used to fulfill game session placement requests in the queue. Destinations are identified by either a fleet ARN or a fleet alias ARN, and are listed in order of placement preference.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterConfiguration": {
+            "Description": "A list of locations where a queue is allowed to place new game sessions. Locations are specified in the form of Amazon Web Services Region codes, such as us-west-2. If this parameter is not set, game sessions can be placed in any queue location.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PriorityConfiguration": {
+            "Description": "Custom settings to use when prioritizing destinations and locations for game session placements. This configuration replaces the FleetIQ default prioritization process. Priority types that are not explicitly named will be automatically applied at the end of the prioritization process.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CustomEventData": {
+            "Description": "Information to be added to all events that are related to this game session queue.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationTarget": {
+            "Description": "An SNS topic ARN that is set up to receive game session placement notifications. See Setting up notifications for game session placement .",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new game session queue resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the resource is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_matchmaking_configuration": {
+        "Name": {
+            "Description": "A unique identifier for the matchmaking configuration. This name is used to identify the configuration associated with a matchmaking request or ticket.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A human-readable description of the matchmaking configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameSessionQueueArns": {
+            "Description": "The Amazon Resource Name (ARN ) that is assigned to a GameLift game session queue resource and uniquely identifies it. ARNs are unique across all Regions. Format is arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue name&gt;. Queues can be located in any Region. Queues are used to start new GameLift-hosted game sessions for matches that are created with this matchmaking configuration. If FlexMatchMode is set to STANDALONE, do not set this parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RequestTimeoutSeconds": {
+            "Description": "The maximum duration, in seconds, that a matchmaking ticket can remain in process before timing out. Requests that fail due to timing out can be resubmitted as needed.",
+            "Type": "integer",
+            "Required": true
+        },
+        "AcceptanceTimeoutSeconds": {
+            "Description": "The length of time (in seconds) to wait for players to accept a proposed match, if acceptance is required.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AcceptanceRequired": {
+            "Description": "A flag that determines whether a match that was created with this configuration must be accepted by the matched players. To require acceptance, set to TRUE. With this option enabled, matchmaking tickets use the status REQUIRES_ACCEPTANCE to indicate when a completed potential match is waiting for player acceptance.",
+            "Type": "boolean",
+            "Required": true
+        },
+        "RuleSetName": {
+            "Description": "A unique identifier for the matchmaking rule set to use with this configuration. You can use either the rule set name or ARN value. A matchmaking configuration can only use rule sets that are defined in the same Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "NotificationTarget": {
+            "Description": "An SNS topic ARN that is set up to receive matchmaking notifications. See Setting up notifications for matchmaking for more information.",
+            "Type": "string",
+            "Required": false
+        },
+        "AdditionalPlayerCount": {
+            "Description": "The number of player slots in a match to keep open for future players. For example, if the configuration's rule set specifies a match for a single 12-person team, and the additional player count is set to 2, only 10 players are selected for the match. This parameter is not used if FlexMatchMode is set to STANDALONE .",
+            "Type": "integer",
+            "Required": false
+        },
+        "CustomEventData": {
+            "Description": "Information to be added to all events related to this matchmaking configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameProperties": {
+            "Description": "A set of custom properties for a game session, formatted as key:value pairs. These properties are passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ). This information is added to the new  GameSession object that is created for a successful match. This parameter is not used if FlexMatchMode is set to STANDALONE .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GameSessionData": {
+            "Description": "A set of custom game session properties, formatted as a single string value. This data is passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ). This information is added to the new  GameSession object that is created for a successful match. This parameter is not used if FlexMatchMode is set to STANDALONE .",
+            "Type": "string",
+            "Required": false
+        },
+        "BackfillMode": {
+            "Description": "The method used to backfill game sessions that are created with this matchmaking configuration. Specify MANUAL when your game manages backfill requests manually or does not use the match backfill feature. Specify AUTOMATIC to have GameLift create a  StartMatchBackfill request whenever a game session has one or more open slots. Learn more about manual and automatic backfill in Backfill Existing Games with FlexMatch . Automatic backfill is not available when FlexMatchMode is set to STANDALONE .",
+            "Type": "string",
+            "Required": false
+        },
+        "FlexMatchMode": {
+            "Description": "Indicates whether this matchmaking configuration is being used with GameLift hosting or as a standalone matchmaking solution.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new matchmaking configuration resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the resource is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_matchmaking_rule_set": {
+        "Name": {
+            "Description": "A unique identifier for the matchmaking rule set. A matchmaking configuration identifies the rule set it uses by this name value. Note that the rule set name is different from the optional name field in the rule set body.",
+            "Type": "string",
+            "Required": true
+        },
+        "RuleSetBody": {
+            "Description": "A collection of matchmaking rules, formatted as a JSON string. Comments are not allowed in JSON, but most elements support a description field.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new matchmaking rule set resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the resource is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_player_session": {
+        "GameSessionId": {
+            "Description": "A unique identifier for the game session to add a player to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PlayerId": {
+            "Description": "A unique identifier for a player. Player IDs are developer-defined.",
+            "Type": "string",
+            "Required": true
+        },
+        "PlayerData": {
+            "Description": "Developer-defined information related to a player. GameLift does not use this data, so it can be formatted as needed for use in the game.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_player_sessions": {
+        "GameSessionId": {
+            "Description": "A unique identifier for the game session to add players to.",
+            "Type": "string",
+            "Required": true
+        },
+        "PlayerIds": {
+            "Description": "List of unique identifiers for the players to be added.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "PlayerDataMap": {
+            "Description": "Map of string pairs, each specifying a player ID and a set of developer-defined information related to the player. Amazon GameLift does not use this data, so it can be formatted as needed for use in the game. Any player data strings for player IDs that are not included in the PlayerIds parameter are ignored.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_script": {
+        "Name": {
+            "Description": "A descriptive label that is associated with a script. Script names do not need to be unique. You can use  UpdateScript to change this value later.",
+            "Type": "string",
+            "Required": false
+        },
+        "Version": {
+            "Description": "Version information that is associated with a build or script. Version strings do not need to be unique. You can use  UpdateScript to change this value later.",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageLocation": {
+            "Description": "The location of the Amazon S3 bucket where a zipped file containing your Realtime scripts is stored. The storage location must specify the Amazon S3 bucket name, the zip file name (the \"key\"), and a role ARN that allows Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must be in the same Region where you want to create a new script. By default, Amazon GameLift uploads the latest version of the zip file; if you have S3 object versioning turned on, you can use the ObjectVersion parameter to specify an earlier version.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ZipFile": {
+            "Description": "A data object containing your Realtime scripts and dependencies as a zip file. The zip file can have one or multiple files. Maximum size of a zip file is 5 MB.\nWhen using the Amazon Web Services CLI tool to create a script, this parameter is set to the zip file name. It must be prepended with the string \"fileb://\" to indicate that the file data is a binary object. For example: --zip-file fileb://myRealtimeScript.zip .",
+            "Type": "bytes",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A list of labels to assign to the new script resource. Tags are developer-defined key-value pairs. Tagging Amazon Web Services resources are useful for resource management, access management and cost allocation. For more information, see Tagging Amazon Web Services Resources in the Amazon Web Services General Reference. Once the resource is created, you can use  TagResource,  UntagResource, and  ListTagsForResource to add, remove, and view tags. The maximum tag limit may be lower than stated. See the Amazon Web Services General Reference for actual tagging limits.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_vpc_peering_authorization": {
+        "GameLiftAwsAccountId": {
+            "Description": "A unique identifier for the Amazon Web Services account that you use to manage your GameLift fleet. You can find your Account ID in the Amazon Web Services Management Console under account settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "PeerVpcId": {
+            "Description": "A unique identifier for a VPC with resources to be accessed by your GameLift fleet. The VPC must be in the same Region as your fleet. To look up a VPC ID, use the VPC Dashboard in the Amazon Web Services Management Console. Learn more about VPC peering in VPC Peering with GameLift Fleets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_vpc_peering_connection": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet. You can use either the fleet ID or ARN value. This tells Amazon GameLift which GameLift VPC to peer with.",
+            "Type": "string",
+            "Required": true
+        },
+        "PeerVpcAwsAccountId": {
+            "Description": "A unique identifier for the Amazon Web Services account with the VPC that you want to peer your Amazon GameLift fleet with. You can find your Account ID in the Amazon Web Services Management Console under account settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "PeerVpcId": {
+            "Description": "A unique identifier for a VPC with resources to be accessed by your GameLift fleet. The VPC must be in the same Region as your fleet. To look up a VPC ID, use the VPC Dashboard in the Amazon Web Services Management Console. Learn more about VPC peering in VPC Peering with GameLift Fleets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_alias": {
+        "AliasId": {
+            "Description": "A unique identifier of the alias that you want to delete. You can use either the alias ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_build": {
+        "BuildId": {
+            "Description": "A unique identifier for the build to delete. You can use either the build ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_fleet": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to be deleted. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_fleet_locations": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to delete locations for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Locations": {
+            "Description": "The list of fleet locations to delete. Specify locations in the form of an Amazon Web Services Region code, such as us-west-2 .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_game_server_group": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeleteOption": {
+            "Description": "The type of delete to perform. Options include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "delete_game_session_queue": {
+        "Name": {
+            "Description": "A descriptive label that is associated with game session queue. Queue names must be unique within each Region. You can use either the queue ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_matchmaking_configuration": {
+        "Name": {
+            "Description": "A unique identifier for the matchmaking configuration. You can use either the configuration name or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_matchmaking_rule_set": {
+        "Name": {
+            "Description": "A unique identifier for the matchmaking rule set to be deleted. (Note: The rule set name is different from the optional \"name\" field in the rule set body.) You can use either the rule set name or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_scaling_policy": {
+        "Name": {
+            "Description": "A descriptive label that is associated with a fleet's scaling policy. Policy names do not need to be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to be deleted. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_script": {
+        "ScriptId": {
+            "Description": "A unique identifier for the Realtime script to delete. You can use either the script ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_vpc_peering_authorization": {
+        "GameLiftAwsAccountId": {
+            "Description": "A unique identifier for the Amazon Web Services account that you use to manage your GameLift fleet. You can find your Account ID in the Amazon Web Services Management Console under account settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "PeerVpcId": {
+            "Description": "A unique identifier for a VPC with resources to be accessed by your GameLift fleet. The VPC must be in the same Region as your fleet. To look up a VPC ID, use the VPC Dashboard in the Amazon Web Services Management Console. Learn more about VPC peering in VPC Peering with GameLift Fleets .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_vpc_peering_connection": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet. This fleet specified must match the fleet referenced in the VPC peering connection record. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "VpcPeeringConnectionId": {
+            "Description": "A unique identifier for a VPC peering connection. This value is included in the  VpcPeeringConnection object, which can be retrieved by calling  DescribeVpcPeeringConnections .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deregister_game_server": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group where the game server is running. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameServerId": {
+            "Description": "A custom string that uniquely identifies the game server to deregister.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_alias": {
+        "AliasId": {
+            "Description": "The unique identifier for the fleet alias that you want to retrieve. You can use either the alias ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_build": {
+        "BuildId": {
+            "Description": "A unique identifier for the build to retrieve properties for. You can use either the build ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_ec2_instance_limits": {
+        "EC2InstanceType": {
+            "Description": "Name of an Amazon EC2 instance type that is supported in GameLift. A fleet instance type determines the computing resources of each instance in the fleet, including CPU, memory, storage, and networking capacity. Do not specify a value for this parameter to retrieve limits for all instance types.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "The name of a remote location to request instance limits for, in the form of an Amazon Web Services Region code such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_attributes": {
+        "FleetIds": {
+            "Description": "A list of unique fleet identifiers to retrieve attributes for. You can use either the fleet ID or ARN value. To retrieve attributes for all current fleets, do not include this parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. This parameter is ignored when the request specifies one or a list of fleet IDs.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value. This parameter is ignored when the request specifies one or a list of fleet IDs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_capacity": {
+        "FleetIds": {
+            "Description": "A unique identifier for the fleet(s) to retrieve capacity information for. You can use either the fleet ID or ARN value. Leave this parameter empty to retrieve capacity information for all fleets.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. This parameter is ignored when the request specifies one or a list of fleet IDs.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value. This parameter is ignored when the request specifies one or a list of fleet IDs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_events": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to get event logs for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartTime": {
+            "Description": "The earliest date to retrieve event logs for. If no start time is specified, this call returns entries starting from when the fleet was created to the specified end time. Format is a number expressed in Unix time as milliseconds (ex: \"1469498468.057\").",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The most recent date to retrieve event logs for. If no end time is specified, this call returns entries from the specified start time up to the present. Format is a number expressed in Unix time as milliseconds (ex: \"1469498468.057\").",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_location_attributes": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to retrieve remote locations for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Locations": {
+            "Description": "A list of fleet locations to retrieve information for. Specify locations in the form of an Amazon Web Services Region code, such as us-west-2 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. This limit is not currently enforced.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_location_capacity": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to request location capacity for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Location": {
+            "Description": "The fleet location to retrieve capacity information for. Specify a location in the form of an Amazon Web Services Region code, such as us-west-2 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_fleet_location_utilization": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to request location utilization for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Location": {
+            "Description": "The fleet location to retrieve utilization information for. Specify a location in the form of an Amazon Web Services Region code, such as us-west-2 .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_fleet_port_settings": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to retrieve port settings for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Location": {
+            "Description": "A remote location to check for status of port setting updates. Use the Amazon Web Services Region code format, such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fleet_utilization": {
+        "FleetIds": {
+            "Description": "A unique identifier for the fleet(s) to retrieve utilization data for. You can use either the fleet ID or ARN value. To retrieve attributes for all current fleets, do not include this parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. This parameter is ignored when the request specifies one or a list of fleet IDs.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value. This parameter is ignored when the request specifies one or a list of fleet IDs.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_game_server": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group where the game server is running. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameServerId": {
+            "Description": "A custom string that uniquely identifies the game server information to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_game_server_group": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_game_server_instances": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceIds": {
+            "Description": "The Amazon EC2 instance IDs that you want to retrieve status on. Amazon EC2 instance IDs use a 17-character format, for example: i-1234567890abcdef0. To retrieve all instances in the game server group, leave this parameter empty.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_game_session_details": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to retrieve all game sessions active on the fleet. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameSessionId": {
+            "Description": "A unique identifier for the game session to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "AliasId": {
+            "Description": "A unique identifier for the alias associated with the fleet to retrieve all game sessions for. You can use either the alias ID or ARN value.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "A fleet location to get game sessions for. You can specify a fleet's home Region or a remote location. Use the Amazon Web Services Region code format, such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "StatusFilter": {
+            "Description": "Game session status to filter results on. Possible game session statuses include ACTIVE , TERMINATED , ACTIVATING and TERMINATING (the last two are transitory).",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_game_session_placement": {
+        "PlacementId": {
+            "Description": "A unique identifier for a game session placement to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_game_session_queues": {
+        "Names": {
+            "Description": "A list of queue names to retrieve information for. You can use either the queue ID or ARN value. To request settings for all queues, leave this parameter empty.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. You can request up to 50 results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_game_sessions": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to retrieve game sessions for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameSessionId": {
+            "Description": "A unique identifier for the game session to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "AliasId": {
+            "Description": "A unique identifier for the alias associated with the fleet to retrieve game sessions for. You can use either the alias ID or ARN value.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "A fleet location to get game session details for. You can specify a fleet's home Region or a remote location. Use the Amazon Web Services Region code format, such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "StatusFilter": {
+            "Description": "Game session status to filter results on. You can filter on the following states: ACTIVE , TERMINATED , ACTIVATING , and TERMINATING . The last two are transitory and used for only very brief periods of time.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_instances": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to retrieve instance information for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceId": {
+            "Description": "A unique identifier for an instance to retrieve. Specify an instance ID or leave blank to retrieve all instances in the fleet.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "The name of a location to retrieve instance information for, in the form of an Amazon Web Services Region code such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_matchmaking": {
+        "TicketIds": {
+            "Description": "A unique identifier for a matchmaking ticket. You can include up to 10 ID values.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_matchmaking_configurations": {
+        "Names": {
+            "Description": "A unique identifier for the matchmaking configuration(s) to retrieve. You can use either the configuration name or ARN value. To request all existing configurations, leave this parameter empty.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RuleSetName": {
+            "Description": "A unique identifier for the matchmaking rule set. You can use either the rule set name or ARN value. Use this parameter to retrieve all matchmaking configurations that use this rule set.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. This parameter is limited to 10.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_matchmaking_rule_sets": {
+        "Names": {
+            "Description": "A list of one or more matchmaking rule set names to retrieve details for. (Note: The rule set name is different from the optional \"name\" field in the rule set body.) You can use either the rule set name or ARN value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_player_sessions": {
+        "GameSessionId": {
+            "Description": "A unique identifier for the game session to retrieve player sessions for.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlayerId": {
+            "Description": "A unique identifier for a player to retrieve player sessions for.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlayerSessionId": {
+            "Description": "A unique identifier for a player session to retrieve.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlayerSessionStatusFilter": {
+            "Description": "Player session status to filter results on.\nPossible player session statuses include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. If a player session ID is specified, this parameter is ignored.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value. If a player session ID is specified, this parameter is ignored.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_runtime_configuration": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to get the runtime configuration for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_scaling_policies": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet for which to retrieve scaling policies. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "StatusFilter": {
+            "Description": "Scaling policy status to filter results on. A scaling policy is only in force when in an ACTIVE status.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "The fleet location. If you don't specify this value, the response contains the scaling policies of every location in the fleet.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_script": {
+        "ScriptId": {
+            "Description": "A unique identifier for the Realtime script to retrieve properties for. You can use either the script ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_vpc_peering_authorizations": "No parameters defined",
+    "describe_vpc_peering_connections": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_game_session_log_url": {
+        "GameSessionId": {
+            "Description": "A unique identifier for the game session to get logs for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_instance_access": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet that contains the instance you want access to. You can use either the fleet ID or ARN value. The fleet can be in any of the following statuses: ACTIVATING, ACTIVE, or ERROR. Fleets with an ERROR status may be accessible for a short time before they are deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceId": {
+            "Description": "A unique identifier for the instance you want to get access to. You can access an instance in any status.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_aliases": {
+        "RoutingStrategyType": {
+            "Description": "The routing type to filter results on. Use this parameter to retrieve only aliases with a certain routing type. To retrieve all aliases, leave this parameter empty.\nPossible routing types include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Name": {
+            "Description": "A descriptive label that is associated with an alias. Alias names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_builds": {
+        "Status": {
+            "Description": "Build status to filter results by. To retrieve all builds, leave this parameter empty.\nPossible build statuses include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_fleets": {
+        "BuildId": {
+            "Description": "A unique identifier for the build to request fleets for. Use this parameter to return only fleets using a specified build. Use either the build ID or ARN value.",
+            "Type": "string",
+            "Required": false
+        },
+        "ScriptId": {
+            "Description": "A unique identifier for the Realtime script to request fleets for. Use this parameter to return only fleets using a specified script. Use either the script ID or ARN value.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_game_server_groups": {
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_game_servers": {
+        "GameServerGroupName": {
+            "Description": "An identifier for the game server group to retrieve a list of game servers from. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "SortOrder": {
+            "Description": "Indicates how to sort the returned data based on game server registration timestamp. Use ASCENDING to retrieve oldest game servers first, or use DESCENDING to retrieve newest game servers first. If this parameter is left empty, game servers are returned in no particular order.",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_scripts": {
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN ) that is assigned to and uniquely identifies the GameLift resource that you want to retrieve tags for. GameLift resource ARNs are included in the data object for the resource, which can be retrieved by calling a List or Describe operation for the resource type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_scaling_policy": {
+        "Name": {
+            "Description": "A descriptive label that is associated with a fleet's scaling policy. Policy names do not need to be unique. A fleet can have only one scaling policy with the same name.",
+            "Type": "string",
+            "Required": true
+        },
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to apply this policy to. You can use either the fleet ID or ARN value. The fleet cannot be in any of the following statuses: ERROR or DELETING.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScalingAdjustment": {
+            "Description": "Amount of adjustment to make, based on the scaling adjustment type.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ScalingAdjustmentType": {
+            "Description": "The type of adjustment to make to a fleet's instance count (see  FleetCapacity ):",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Threshold": {
+            "Description": "Metric value used to trigger a scaling event.",
+            "Type": "float",
+            "Required": false
+        },
+        "ComparisonOperator": {
+            "Description": "Comparison operator to use when measuring the metric against the threshold value.",
+            "Type": "string",
+            "Required": false
+        },
+        "EvaluationPeriods": {
+            "Description": "Length of time (in minutes) the metric must be at or beyond the threshold before a scaling event is triggered.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MetricName": {
+            "Description": "Name of the Amazon GameLift-defined metric that is used to trigger a scaling adjustment. For detailed descriptions of fleet metrics, see Monitor Amazon GameLift with Amazon CloudWatch .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PolicyType": {
+            "Description": "The type of scaling policy to create. For a target-based policy, set the parameter MetricName to 'PercentAvailableGameSessions' and specify a TargetConfiguration . For a rule-based policy set the following parameters: MetricName , ComparisonOperator , Threshold , EvaluationPeriods , ScalingAdjustmentType , and ScalingAdjustment .",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetConfiguration": {
+            "Description": "An object that contains settings for a target-based scaling policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "register_game_server": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group where the game server is running. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameServerId": {
+            "Description": "A custom string that uniquely identifies the game server to register. Game server IDs are developer-defined and must be unique across all game server groups in your Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceId": {
+            "Description": "The unique identifier for the instance where the game server is running. This ID is available in the instance metadata. EC2 instance IDs use a 17-character format, for example: i-1234567890abcdef0 .",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectionInfo": {
+            "Description": "Information that is needed to make inbound client connections to the game server. This might include the IP address and port, DNS name, and other information.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameServerData": {
+            "Description": "A set of custom game server properties, formatted as a single string value. This data is passed to a game client or service when it requests information on game servers using  ListGameServers or  ClaimGameServer .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "request_upload_credentials": {
+        "BuildId": {
+            "Description": "A unique identifier for the build to get credentials for. You can use either the build ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "resolve_alias": {
+        "AliasId": {
+            "Description": "The unique identifier of the alias that you want to retrieve a fleet ID for. You can use either the alias ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "resume_game_server_group": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResumeActions": {
+            "Description": "The activity to resume for this game server group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "search_game_sessions": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to search for active game sessions. You can use either the fleet ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "AliasId": {
+            "Description": "A unique identifier for the alias associated with the fleet to search for active game sessions. You can use either the alias ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "A fleet location to search for game sessions. You can specify a fleet's home Region or a remote location. Use the Amazon Web Services Region code format, such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "FilterExpression": {
+            "Description": "String containing the search criteria for the session search. If no filter expression is included, the request returns results for all game sessions in the fleet that are in ACTIVE status.\nA filter expression can contain one or multiple conditions. Each condition consists of the following:\nTo chain multiple conditions in a single expression, use the logical keywords AND, OR, and NOT and parentheses as needed. For example: x AND y AND NOT z, NOT (x OR y) .\nSession search evaluates conditions from left to right using the following precedence rules:\nFor example, this filter expression retrieves game sessions hosting at least ten players that have an open player slot: \"maximumSessions&gt;=10 AND hasAvailablePlayerSessions=true\" .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "SortExpression": {
+            "Description": "Instructions on how to sort the search results. If no sort expression is included, the request returns results in random order. A sort expression consists of the following elements:\nFor example, this sort expression returns the oldest active sessions first: \"SortExpression\": \"creationTimeMillis ASC\". Results with a null value for the sort operand are returned at the end of the list.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Limit": {
+            "Description": "The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages. The maximum number of results returned is 20, even if this value is not set or is set higher than 20.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token that indicates the start of the next sequential page of results. Use the token that is returned with a previous call to this operation. To start at the beginning of the result set, do not specify a value.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_fleet_actions": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to restart actions on. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Actions": {
+            "Description": "List of actions to restart on the fleet.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Location": {
+            "Description": "The fleet location to restart fleet actions for. Specify a location in the form of an Amazon Web Services Region code, such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_game_session_placement": {
+        "PlacementId": {
+            "Description": "A unique identifier to assign to the new game session placement. This value is developer-defined. The value must be unique across all Regions and cannot be reused unless you are resubmitting a canceled or timed-out placement request.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameSessionQueueName": {
+            "Description": "Name of the queue to use to place the new game session. You can use either the queue name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameProperties": {
+            "Description": "A set of custom properties for a game session, formatted as key:value pairs. These properties are passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaximumPlayerSessionCount": {
+            "Description": "The maximum number of players that can be connected simultaneously to the game session.",
+            "Type": "integer",
+            "Required": true
+        },
+        "GameSessionName": {
+            "Description": "A descriptive label that is associated with a game session. Session names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlayerLatencies": {
+            "Description": "A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to @aws; Regions. This information is used to try to place the new game session where it can offer the best possible gameplay experience for the players.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DesiredPlayerSessions": {
+            "Description": "Set of information on each player to create a player session for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GameSessionData": {
+            "Description": "A set of custom game session properties, formatted as a single string value. This data is passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_match_backfill": {
+        "TicketId": {
+            "Description": "A unique identifier for a matchmaking ticket. If no ticket ID is specified here, Amazon GameLift will generate one in the form of a UUID. Use this identifier to track the match backfill ticket status and retrieve match results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConfigurationName": {
+            "Description": "Name of the matchmaker to use for this request. You can use either the configuration name or ARN value. The ARN of the matchmaker that was used with the original game session is listed in the  GameSession object, MatchmakerData property.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameSessionArn": {
+            "Description": "A unique identifier for the game session. Use the game session ID. When using FlexMatch as a standalone matchmaking solution, this parameter is not needed.",
+            "Type": "string",
+            "Required": false
+        },
+        "Players": {
+            "Description": "Match information on all players that are currently assigned to the game session. This information is used by the matchmaker to find new players and add them to the existing game.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "start_matchmaking": {
+        "TicketId": {
+            "Description": "A unique identifier for a matchmaking ticket. If no ticket ID is specified here, Amazon GameLift will generate one in the form of a UUID. Use this identifier to track the matchmaking ticket status and retrieve match results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConfigurationName": {
+            "Description": "Name of the matchmaking configuration to use for this request. Matchmaking configurations must exist in the same Region as this request. You can use either the configuration name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Players": {
+            "Description": "Information on each player to be matched. This information must include a player ID, and may contain player attributes and latency data to be used in the matchmaking process. After a successful match, Player objects contain the name of the team the player is assigned to.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "stop_fleet_actions": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to stop actions on. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Actions": {
+            "Description": "List of actions to suspend on the fleet.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Location": {
+            "Description": "The fleet location to stop fleet actions for. Specify a location in the form of an Amazon Web Services Region code, such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "stop_game_session_placement": {
+        "PlacementId": {
+            "Description": "A unique identifier for a game session placement to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_matchmaking": {
+        "TicketId": {
+            "Description": "A unique identifier for a matchmaking ticket.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "suspend_game_server_group": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "SuspendActions": {
+            "Description": "The activity to suspend for this game server group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN ) that is assigned to and uniquely identifies the GameLift resource that you want to assign tags to. GameLift resource ARNs are included in the data object for the resource, which can be retrieved by calling a List or Describe operation for the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of one or more tags to assign to the specified GameLift resource. Tags are developer-defined and structured as key-value pairs. The maximum tag limit may be lower than stated. See Tagging Amazon Web Services Resources for actual tagging limits.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN ) that is assigned to and uniquely identifies the GameLift resource that you want to remove tags from. GameLift resource ARNs are included in the data object for the resource, which can be retrieved by calling a List or Describe operation for the resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of one or more tag keys to remove from the specified GameLift resource. An Amazon Web Services resource can have only one tag with a specific tag key, so specifying the tag key identifies which tag to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_alias": {
+        "AliasId": {
+            "Description": "A unique identifier for the alias that you want to update. You can use either the alias ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A descriptive label that is associated with an alias. Alias names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A human-readable description of the alias.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoutingStrategy": {
+            "Description": "The routing configuration, including routing type and fleet target, for the alias.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_build": {
+        "BuildId": {
+            "Description": "A unique identifier for the build to update. You can use either the build ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A descriptive label that is associated with a build. Build names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "Version": {
+            "Description": "Version information that is associated with a build or script. Version strings do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_fleet_attributes": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to update attribute metadata for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A descriptive label that is associated with a fleet. Fleet names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A human-readable description of a fleet.",
+            "Type": "string",
+            "Required": false
+        },
+        "NewGameSessionProtectionPolicy": {
+            "Description": "The game session protection policy to apply to all new instances created in this fleet. Instances that already exist are not affected. You can set protection for individual instances using  UpdateGameSession .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ResourceCreationLimitPolicy": {
+            "Description": "Policy settings that limit the number of game sessions an individual player can create over a span of time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MetricGroups": {
+            "Description": "The name of a metric group to add this fleet to. Use a metric group in Amazon CloudWatch to aggregate the metrics from multiple fleets. Provide an existing metric group name, or create a new metric group by providing a new name. A fleet can only be in one metric group at a time.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_fleet_capacity": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to update capacity settings for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "DesiredInstances": {
+            "Description": "The number of Amazon EC2 instances you want to maintain in the specified fleet location. This value must fall between the minimum and maximum size limits.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinSize": {
+            "Description": "The minimum number of instances that are allowed in the specified fleet location. If this parameter is not set, the default is 0.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaxSize": {
+            "Description": "The maximum number of instances that are allowed in the specified fleet location. If this parameter is not set, the default is 1.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Location": {
+            "Description": "The name of a remote location to update fleet capacity settings for, in the form of an Amazon Web Services Region code such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_fleet_port_settings": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to update port settings for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "InboundPermissionAuthorizations": {
+            "Description": "A collection of port settings to be added to the fleet resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "InboundPermissionRevocations": {
+            "Description": "A collection of port settings to be removed from the fleet resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_game_server": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group where the game server is running. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameServerId": {
+            "Description": "A custom string that uniquely identifies the game server to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "GameServerData": {
+            "Description": "A set of custom game server properties, formatted as a single string value. This data is passed to a game client or service when it requests information on game servers using  ListGameServers or  ClaimGameServer .",
+            "Type": "string",
+            "Required": false
+        },
+        "UtilizationStatus": {
+            "Description": "Indicates whether the game server is available or is currently hosting gameplay.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheck": {
+            "Description": "Indicates health status of the game server. A request that includes this parameter updates the game server's LastHealthCheckTime timestamp.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_game_server_group": {
+        "GameServerGroupName": {
+            "Description": "A unique identifier for the game server group. Use either the  GameServerGroup name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN ) for an IAM role that allows Amazon GameLift to access your Amazon EC2 Auto Scaling groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceDefinitions": {
+            "Description": "An updated list of Amazon EC2 instance types to use in the Auto Scaling group. The instance definitions must specify at least two different instance types that are supported by GameLift FleetIQ. This updated list replaces the entire current list of instance definitions for the game server group. For more information on instance types, see EC2 Instance Types in the Amazon EC2 User Guide. You can optionally specify capacity weighting for each instance type. If no weight value is specified for an instance type, it is set to the default value \"1\". For more information about capacity weighting, see Instance Weighting for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GameServerProtectionPolicy": {
+            "Description": "A flag that indicates whether instances in the game server group are protected from early termination. Unprotected instances that have active game servers running might be terminated during a scale-down event, causing players to be dropped from the game. Protected instances cannot be terminated while there are active game servers running except in the event of a forced game server group deletion (see ). An exception to this is with Spot Instances, which can be terminated by Amazon Web Services regardless of protection status. This property is set to NO_PROTECTION by default.",
+            "Type": "string",
+            "Required": false
+        },
+        "BalancingStrategy": {
+            "Description": "Indicates how GameLift FleetIQ balances the use of Spot Instances and On-Demand Instances in the game server group. Method options include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "update_game_session": {
+        "GameSessionId": {
+            "Description": "A unique identifier for the game session to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaximumPlayerSessionCount": {
+            "Description": "The maximum number of players that can be connected simultaneously to the game session.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Name": {
+            "Description": "A descriptive label that is associated with a game session. Session names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlayerSessionCreationPolicy": {
+            "Description": "A policy that determines whether the game session is accepting new players.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProtectionPolicy": {
+            "Description": "Game session protection policy to apply to this game session only.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "update_game_session_queue": {
+        "Name": {
+            "Description": "A descriptive label that is associated with game session queue. Queue names must be unique within each Region. You can use either the queue ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "TimeoutInSeconds": {
+            "Description": "The maximum time, in seconds, that a new game session placement request remains in the queue. When a request exceeds this time, the game session placement changes to a TIMED_OUT status.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PlayerLatencyPolicies": {
+            "Description": "A set of policies that act as a sliding cap on player latency. FleetIQ works to deliver low latency for most players in a game session. These policies ensure that no individual player can be placed into a game with unreasonably high latency. Use multiple policies to gradually relax latency requirements a step at a time. Multiple policies are applied based on their maximum allowed latency, starting with the lowest value. When updating policies, provide a complete collection of policies.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Destinations": {
+            "Description": "A list of fleets and/or fleet aliases that can be used to fulfill game session placement requests in the queue. Destinations are identified by either a fleet ARN or a fleet alias ARN, and are listed in order of placement preference. When updating this list, provide a complete list of destinations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FilterConfiguration": {
+            "Description": "A list of locations where a queue is allowed to place new game sessions. Locations are specified in the form of Amazon Web Services Region codes, such as us-west-2. If this parameter is not set, game sessions can be placed in any queue location. To remove an existing filter configuration, pass in an empty set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PriorityConfiguration": {
+            "Description": "Custom settings to use when prioritizing destinations and locations for game session placements. This configuration replaces the FleetIQ default prioritization process. Priority types that are not explicitly named will be automatically applied at the end of the prioritization process. To remove an existing priority configuration, pass in an empty set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CustomEventData": {
+            "Description": "Information to be added to all events that are related to this game session queue.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationTarget": {
+            "Description": "An SNS topic ARN that is set up to receive game session placement notifications. See Setting up notifications for game session placement .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_matchmaking_configuration": {
+        "Name": {
+            "Description": "A unique identifier for the matchmaking configuration to update. You can use either the configuration name or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A descriptive label that is associated with matchmaking configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameSessionQueueArns": {
+            "Description": "The Amazon Resource Name (ARN ) that is assigned to a GameLift game session queue resource and uniquely identifies it. ARNs are unique across all Regions. Format is arn:aws:gamelift:&lt;region&gt;::gamesessionqueue/&lt;queue name&gt;. Queues can be located in any Region. Queues are used to start new GameLift-hosted game sessions for matches that are created with this matchmaking configuration. If FlexMatchMode is set to STANDALONE, do not set this parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RequestTimeoutSeconds": {
+            "Description": "The maximum duration, in seconds, that a matchmaking ticket can remain in process before timing out. Requests that fail due to timing out can be resubmitted as needed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AcceptanceTimeoutSeconds": {
+            "Description": "The length of time (in seconds) to wait for players to accept a proposed match, if acceptance is required.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AcceptanceRequired": {
+            "Description": "A flag that indicates whether a match that was created with this configuration must be accepted by the matched players. To require acceptance, set to TRUE. With this option enabled, matchmaking tickets use the status REQUIRES_ACCEPTANCE to indicate when a completed potential match is waiting for player acceptance.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RuleSetName": {
+            "Description": "A unique identifier for the matchmaking rule set to use with this configuration. You can use either the rule set name or ARN value. A matchmaking configuration can only use rule sets that are defined in the same Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationTarget": {
+            "Description": "An SNS topic ARN that is set up to receive matchmaking notifications. See Setting up notifications for matchmaking for more information.",
+            "Type": "string",
+            "Required": false
+        },
+        "AdditionalPlayerCount": {
+            "Description": "The number of player slots in a match to keep open for future players. For example, if the configuration's rule set specifies a match for a single 12-person team, and the additional player count is set to 2, only 10 players are selected for the match. This parameter is not used if FlexMatchMode is set to STANDALONE .",
+            "Type": "integer",
+            "Required": false
+        },
+        "CustomEventData": {
+            "Description": "Information to add to all events related to the matchmaking configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "GameProperties": {
+            "Description": "A set of custom properties for a game session, formatted as key:value pairs. These properties are passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ). This information is added to the new  GameSession object that is created for a successful match. This parameter is not used if FlexMatchMode is set to STANDALONE .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GameSessionData": {
+            "Description": "A set of custom game session properties, formatted as a single string value. This data is passed to a game server process in the  GameSession object with a request to start a new game session (see Start a Game Session ). This information is added to the new  GameSession object that is created for a successful match. This parameter is not used if FlexMatchMode is set to STANDALONE .",
+            "Type": "string",
+            "Required": false
+        },
+        "BackfillMode": {
+            "Description": "The method that is used to backfill game sessions created with this matchmaking configuration. Specify MANUAL when your game manages backfill requests manually or does not use the match backfill feature. Specify AUTOMATIC to have GameLift create a  StartMatchBackfill request whenever a game session has one or more open slots. Learn more about manual and automatic backfill in Backfill Existing Games with FlexMatch . Automatic backfill is not available when FlexMatchMode is set to STANDALONE .",
+            "Type": "string",
+            "Required": false
+        },
+        "FlexMatchMode": {
+            "Description": "Indicates whether this matchmaking configuration is being used with GameLift hosting or as a standalone matchmaking solution.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "update_runtime_configuration": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to update runtime configuration for. You can use either the fleet ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "RuntimeConfiguration": {
+            "Description": "Instructions for launching server processes on each instance in the fleet. Server processes run either a custom game build executable or a Realtime Servers script. The runtime configuration lists the types of server processes to run on an instance, how to launch them, and the number of processes to run concurrently.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_script": {
+        "ScriptId": {
+            "Description": "A unique identifier for the Realtime script to update. You can use either the script ID or ARN value.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A descriptive label that is associated with a script. Script names do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "Version": {
+            "Description": "Version information that is associated with a build or script. Version strings do not need to be unique.",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageLocation": {
+            "Description": "The location of the Amazon S3 bucket where a zipped file containing your Realtime scripts is stored. The storage location must specify the Amazon S3 bucket name, the zip file name (the \"key\"), and a role ARN that allows Amazon GameLift to access the Amazon S3 storage location. The S3 bucket must be in the same Region where you want to create a new script. By default, Amazon GameLift uploads the latest version of the zip file; if you have S3 object versioning turned on, you can use the ObjectVersion parameter to specify an earlier version.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ZipFile": {
+            "Description": "A data object containing your Realtime scripts and dependencies as a zip file. The zip file can have one or multiple files. Maximum size of a zip file is 5 MB.\nWhen using the Amazon Web Services CLI tool to create a script, this parameter is set to the zip file name. It must be prepended with the string \"fileb://\" to indicate that the file data is a binary object. For example: --zip-file fileb://myRealtimeScript.zip .",
+            "Type": "bytes",
+            "Required": false
+        }
+    },
+    "validate_matchmaking_rule_set": {
+        "RuleSetBody": {
+            "Description": "A collection of matchmaking rules to validate, formatted as a JSON string.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "FleetId": {
+            "Description": "A unique identifier for the fleet to search for active game sessions. You can use either the fleet ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "AliasId": {
+            "Description": "A unique identifier for the alias associated with the fleet to search for active game sessions. You can use either the alias ID or ARN value. Each request must reference either a fleet ID or alias ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "Location": {
+            "Description": "A fleet location to search for game sessions. You can specify a fleet's home Region or a remote location. Use the Amazon Web Services Region code format, such as us-west-2 .",
+            "Type": "string",
+            "Required": false
+        },
+        "FilterExpression": {
+            "Description": "String containing the search criteria for the session search. If no filter expression is included, the request returns results for all game sessions in the fleet that are in ACTIVE status.\nA filter expression can contain one or multiple conditions. Each condition consists of the following:\nTo chain multiple conditions in a single expression, use the logical keywords AND, OR, and NOT and parentheses as needed. For example: x AND y AND NOT z, NOT (x OR y) .\nSession search evaluates conditions from left to right using the following precedence rules:\nFor example, this filter expression retrieves game sessions hosting at least ten players that have an open player slot: \"maximumSessions&gt;=10 AND hasAvailablePlayerSessions=true\" .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "SortExpression": {
+            "Description": "Instructions on how to sort the search results. If no sort expression is included, the request returns results in random order. A sort expression consists of the following elements:\nFor example, this sort expression returns the oldest active sessions first: \"SortExpression\": \"creationTimeMillis ASC\". Results with a null value for the sort operand are returned at the end of the list.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

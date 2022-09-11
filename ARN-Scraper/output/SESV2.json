@@ -1,0 +1,1201 @@
+{
+    "create_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set. The name can contain up to 64 alphanumeric characters, including letters, numbers, hyphens (-) and underscores (_) only.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrackingOptions": {
+            "Description": "An object that defines the open and click tracking options for emails that you send using the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeliveryOptions": {
+            "Description": "An object that defines the dedicated IP pool that is used to send emails that you send using the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ReputationOptions": {
+            "Description": "An object that defines whether or not Amazon SES collects reputation metrics for the emails that you send that use the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SendingOptions": {
+            "Description": "An object that defines whether or not Amazon SES can send email that you send using the configuration set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "An array of objects that define the tags (keys and values) to associate with the configuration set.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SuppressionOptions": {
+            "Description": "An object that contains information about the suppression list preferences for your account.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_configuration_set_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set .",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "A name that identifies the event destination within the configuration set.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestination": {
+            "Description": "An object that defines the event destination.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_contact": {
+        "ContactListName": {
+            "Description": "The name of the contact list to which the contact should be added.",
+            "Type": "string",
+            "Required": true
+        },
+        "EmailAddress": {
+            "Description": "The contact's email address.",
+            "Type": "string",
+            "Required": true
+        },
+        "TopicPreferences": {
+            "Description": "The contact's preferences for being opted-in to or opted-out of topics.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UnsubscribeAll": {
+            "Description": "A boolean value status noting if the contact is unsubscribed from all contact list topics.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AttributesData": {
+            "Description": "The attribute data attached to a contact.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_contact_list": {
+        "ContactListName": {
+            "Description": "The name of the contact list.",
+            "Type": "string",
+            "Required": true
+        },
+        "Topics": {
+            "Description": "An interest group, theme, or label within a list. A contact list can have multiple topics.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Description": {
+            "Description": "A description of what the contact list is about.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags associated with a contact list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_custom_verification_email_template": {
+        "TemplateName": {
+            "Description": "The name of the custom verification email template.",
+            "Type": "string",
+            "Required": true
+        },
+        "FromEmailAddress": {
+            "Description": "The email address that the custom verification email is sent from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateSubject": {
+            "Description": "The subject line of the custom verification email.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateContent": {
+            "Description": "The content of the custom verification email. The total size of the email must be less than 10 MB. The message body may contain HTML, with some limitations. For more information, see Custom Verification Email Frequently Asked Questions in the Amazon SES Developer Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "SuccessRedirectionURL": {
+            "Description": "The URL that the recipient of the verification email is sent to if his or her address is successfully verified.",
+            "Type": "string",
+            "Required": true
+        },
+        "FailureRedirectionURL": {
+            "Description": "The URL that the recipient of the verification email is sent to if his or her address is not successfully verified.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_dedicated_ip_pool": {
+        "PoolName": {
+            "Description": "The name of the dedicated IP pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An object that defines the tags (keys and values) that you want to associate with the pool.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_deliverability_test_report": {
+        "ReportName": {
+            "Description": "A unique name that helps you to identify the predictive inbox placement test when you retrieve the results.",
+            "Type": "string",
+            "Required": false
+        },
+        "FromEmailAddress": {
+            "Description": "The email address that the predictive inbox placement test email was sent from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The HTML body of the message that you sent when you performed the predictive inbox placement test.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "An array of objects that define the tags (keys and values) that you want to associate with the predictive inbox placement test.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_email_identity": {
+        "EmailIdentity": {
+            "Description": "The email address or domain to verify.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "An array of objects that define the tags (keys and values) to associate with the email identity.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DkimSigningAttributes": {
+            "Description": "If your request includes this object, Amazon SES configures the identity to use Bring Your Own DKIM (BYODKIM) for DKIM authentication purposes, or, configures the key length to be used for Easy DKIM .\nYou can only specify this object if the email identity is a domain, as opposed to an address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ConfigurationSetName": {
+            "Description": "The configuration set to use by default when sending from this identity. Note that any configuration set defined in the email sending request takes precedence.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_email_identity_policy": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyName": {
+            "Description": "The name of the policy.\nThe policy name cannot exceed 64 characters and can only include alphanumeric characters, dashes, and underscores.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The text of the policy in JSON format. The policy cannot exceed 4 KB.\nFor information about the syntax of sending authorization policies, see the Amazon SES Developer Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_email_template": {
+        "TemplateName": {
+            "Description": "The name of the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateContent": {
+            "Description": "The content of the email template, composed of a subject line, an HTML part, and a text-only part.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_import_job": {
+        "ImportDestination": {
+            "Description": "The destination for the import job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ImportDataSource": {
+            "Description": "The data source for the import job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_configuration_set_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that contains the event destination to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "The name of the event destination to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_contact": {
+        "ContactListName": {
+            "Description": "The name of the contact list from which the contact should be removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "EmailAddress": {
+            "Description": "The contact's email address.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_contact_list": {
+        "ContactListName": {
+            "Description": "The name of the contact list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_custom_verification_email_template": {
+        "TemplateName": {
+            "Description": "The name of the custom verification email template that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dedicated_ip_pool": {
+        "PoolName": {
+            "Description": "The name of the dedicated IP pool that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_email_identity": {
+        "EmailIdentity": {
+            "Description": "The identity (that is, the email address or domain) to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_email_identity_policy": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyName": {
+            "Description": "The name of the policy.\nThe policy name cannot exceed 64 characters and can only include alphanumeric characters, dashes, and underscores.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_email_template": {
+        "TemplateName": {
+            "Description": "The name of the template to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_suppressed_destination": {
+        "EmailAddress": {
+            "Description": "The suppressed email destination to remove from the account suppression list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_account": "No parameters defined",
+    "get_blacklist_reports": {
+        "BlacklistItemNames": {
+            "Description": "A list of IP addresses that you want to retrieve blacklist information about. You can only specify the dedicated IP addresses that you use to send email using Amazon SES or Amazon Pinpoint.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "get_configuration_set": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_configuration_set_event_destinations": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that contains the event destination.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_contact": {
+        "ContactListName": {
+            "Description": "The name of the contact list to which the contact belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "EmailAddress": {
+            "Description": "The contact's email addres.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_contact_list": {
+        "ContactListName": {
+            "Description": "The name of the contact list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_custom_verification_email_template": {
+        "TemplateName": {
+            "Description": "The name of the custom verification email template that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_dedicated_ip": {
+        "Ip": {
+            "Description": "The IP address that you want to obtain more information about. The value you specify has to be a dedicated IP address that's assocaited with your Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_dedicated_ips": {
+        "PoolName": {
+            "Description": "The name of the IP pool that the dedicated IP address is associated with.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token returned from a previous call to GetDedicatedIps to indicate the position of the dedicated IP pool in the list of IP pools.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to GetDedicatedIpsRequest . If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_deliverability_dashboard_options": "No parameters defined",
+    "get_deliverability_test_report": {
+        "ReportId": {
+            "Description": "A unique string that identifies the predictive inbox placement test.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_deliverability_campaign": {
+        "CampaignId": {
+            "Description": "The unique identifier for the campaign. The Deliverability dashboard automatically generates and assigns this identifier to a campaign.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_statistics_report": {
+        "Domain": {
+            "Description": "The domain that you want to obtain deliverability metrics for.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartDate": {
+            "Description": "The first day (in Unix time) that you want to obtain domain deliverability metrics for.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndDate": {
+            "Description": "The last day (in Unix time) that you want to obtain domain deliverability metrics for. The EndDate that you specify has to be less than or equal to 30 days after the StartDate .",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "get_email_identity": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_email_identity_policies": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_email_template": {
+        "TemplateName": {
+            "Description": "The name of the template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_import_job": {
+        "JobId": {
+            "Description": "The ID of the import job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_suppressed_destination": {
+        "EmailAddress": {
+            "Description": "The email address that's on the account suppression list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_configuration_sets": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListConfigurationSets to indicate the position in the list of configuration sets.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListConfigurationSets . If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_contact_lists": {
+        "PageSize": {
+            "Description": "Maximum number of contact lists to return at once. Use this parameter to paginate results. If additional contact lists exist beyond the specified limit, the NextToken element is sent in the response. Use the NextToken value in subsequent requests to retrieve additional lists.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A string token indicating that there might be additional contact lists available to be listed. Use the token provided in the Response to use in the subsequent call to ListContactLists with the same parameters to retrieve the next page of contact lists.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_contacts": {
+        "ContactListName": {
+            "Description": "The name of the contact list.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filter": {
+            "Description": "A filter that can be applied to a list of contacts.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PageSize": {
+            "Description": "The number of contacts that may be returned at once, which is dependent on if there are more or less contacts than the value of the PageSize. Use this parameter to paginate results. If additional contacts exist beyond the specified limit, the NextToken element is sent in the response. Use the NextToken value in subsequent requests to retrieve additional contacts.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A string token indicating that there might be additional contacts available to be listed. Use the token provided in the Response to use in the subsequent call to ListContacts with the same parameters to retrieve the next page of contacts.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_custom_verification_email_templates": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListCustomVerificationEmailTemplates to indicate the position in the list of custom verification email templates.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListCustomVerificationEmailTemplates. If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.\nThe value you specify has to be at least 1, and can be no more than 50.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dedicated_ip_pools": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListDedicatedIpPools to indicate the position in the list of dedicated IP pools.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListDedicatedIpPools . If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_deliverability_test_reports": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListDeliverabilityTestReports to indicate the position in the list of predictive inbox placement tests.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListDeliverabilityTestReports. If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.\nThe value you specify has to be at least 0, and can be no more than 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_domain_deliverability_campaigns": {
+        "StartDate": {
+            "Description": "The first day, in Unix time format, that you want to obtain deliverability data for.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndDate": {
+            "Description": "The last day, in Unix time format, that you want to obtain deliverability data for. This value has to be less than or equal to 30 days after the value of the StartDate parameter.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "SubscribedDomain": {
+            "Description": "The domain to obtain deliverability data for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A token that\u2019s returned from a previous call to the ListDomainDeliverabilityCampaigns operation. This token indicates the position of a campaign in the list of campaigns.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of results to include in response to a single call to the ListDomainDeliverabilityCampaigns operation. If the number of results is larger than the number that you specify in this parameter, the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_email_identities": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListEmailIdentities to indicate the position in the list of identities.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListEmailIdentities. If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.\nThe value you specify has to be at least 0, and can be no more than 1000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_email_templates": {
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListEmailTemplates to indicate the position in the list of email templates.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListEmailTemplates. If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.\nThe value you specify has to be at least 1, and can be no more than 10.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_import_jobs": {
+        "ImportDestinationType": {
+            "Description": "The destination of the import job, which can be used to list import jobs that have a certain ImportDestinationType .",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A string token indicating that there might be additional import jobs available to be listed. Copy this token to a subsequent call to ListImportJobs with the same parameters to retrieve the next page of import jobs.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "Maximum number of import jobs to return at once. Use this parameter to paginate results. If additional import jobs exist beyond the specified limit, the NextToken element is sent in the response. Use the NextToken value in subsequent requests to retrieve additional addresses.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_suppressed_destinations": {
+        "Reasons": {
+            "Description": "The factors that caused the email address to be added to .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "StartDate": {
+            "Description": "Used to filter the list of suppressed email destinations so that it only includes addresses that were added to the list after a specific date. The date that you specify should be in Unix time format.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndDate": {
+            "Description": "Used to filter the list of suppressed email destinations so that it only includes addresses that were added to the list before a specific date. The date that you specify should be in Unix time format.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token returned from a previous call to ListSuppressedDestinations to indicate the position in the list of suppressed email addresses.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The number of results to show in a single call to ListSuppressedDestinations . If the number of results is larger than the number you specified in this parameter, then the response includes a NextToken element, which you can use to obtain additional results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to retrieve tag information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_account_dedicated_ip_warmup_attributes": {
+        "AutoWarmupEnabled": {
+            "Description": "Enables or disables the automatic warm-up feature for dedicated IP addresses that are associated with your Amazon SES account in the current Amazon Web Services Region. Set to true to enable the automatic warm-up feature, or set to false to disable it.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_account_details": {
+        "MailType": {
+            "Description": "The type of email your account will send.",
+            "Type": "string",
+            "Required": true
+        },
+        "WebsiteURL": {
+            "Description": "The URL of your website. This information helps us better understand the type of content that you plan to send.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContactLanguage": {
+            "Description": "The language you would prefer to be contacted with.",
+            "Type": "string",
+            "Required": false
+        },
+        "UseCaseDescription": {
+            "Description": "A description of the types of email that you plan to send.",
+            "Type": "string",
+            "Required": true
+        },
+        "AdditionalContactEmailAddresses": {
+            "Description": "Additional email addresses that you would like to be notified regarding Amazon SES matters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ProductionAccessEnabled": {
+            "Description": "Indicates whether or not your account should have production access in the current Amazon Web Services Region.\nIf the value is false, then your account is in the sandbox. When your account is in the sandbox, you can only send email to verified identities. Additionally, the maximum number of emails you can send in a 24-hour period (your sending quota) is 200, and the maximum number of emails you can send per second (your maximum sending rate) is 1.\nIf the value is true, then your account has production access. When your account has production access, you can send email to any address. The sending quota and maximum sending rate for your account vary based on your specific use case.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_account_sending_attributes": {
+        "SendingEnabled": {
+            "Description": "Enables or disables your account's ability to send email. Set to true to enable email sending, or set to false to disable email sending.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_account_suppression_attributes": {
+        "SuppressedReasons": {
+            "Description": "A list that contains the reasons that email addresses will be automatically added to the suppression list for your account. This list can contain any or all of the following:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "put_configuration_set_delivery_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set to associate with a dedicated IP pool.",
+            "Type": "string",
+            "Required": true
+        },
+        "TlsPolicy": {
+            "Description": "Specifies whether messages that use the configuration set are required to use Transport Layer Security (TLS). If the value is Require , messages are only delivered if a TLS connection can be established. If the value is Optional , messages can be delivered in plain text if a TLS connection can't be established.",
+            "Type": "string",
+            "Required": false
+        },
+        "SendingPoolName": {
+            "Description": "The name of the dedicated IP pool to associate with the configuration set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_configuration_set_reputation_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReputationMetricsEnabled": {
+            "Description": "If true , tracking of reputation metrics is enabled for the configuration set. If false , tracking of reputation metrics is disabled for the configuration set.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_configuration_set_sending_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set to enable or disable email sending for.",
+            "Type": "string",
+            "Required": true
+        },
+        "SendingEnabled": {
+            "Description": "If true , email sending is enabled for the configuration set. If false , email sending is disabled for the configuration set.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_configuration_set_suppression_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set to change the suppression list preferences for.",
+            "Type": "string",
+            "Required": true
+        },
+        "SuppressedReasons": {
+            "Description": "A list that contains the reasons that email addresses are automatically added to the suppression list for your account. This list can contain any or all of the following:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "put_configuration_set_tracking_options": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set.",
+            "Type": "string",
+            "Required": true
+        },
+        "CustomRedirectDomain": {
+            "Description": "The domain to use to track open and click events.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_dedicated_ip_in_pool": {
+        "Ip": {
+            "Description": "The IP address that you want to move to the dedicated IP pool. The value you specify has to be a dedicated IP address that's associated with your Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "DestinationPoolName": {
+            "Description": "The name of the IP pool that you want to add the dedicated IP address to. You have to specify an IP pool that already exists.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_dedicated_ip_warmup_attributes": {
+        "Ip": {
+            "Description": "The dedicated IP address that you want to update the warm-up attributes for.",
+            "Type": "string",
+            "Required": true
+        },
+        "WarmupPercentage": {
+            "Description": "The warm-up percentage that you want to associate with the dedicated IP address.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "put_deliverability_dashboard_option": {
+        "DashboardEnabled": {
+            "Description": "Specifies whether to enable the Deliverability dashboard. To enable the dashboard, set this value to true .",
+            "Type": "boolean",
+            "Required": true
+        },
+        "SubscribedDomains": {
+            "Description": "An array of objects, one for each verified domain that you use to send email and enabled the Deliverability dashboard for.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_email_identity_configuration_set_attributes": {
+        "EmailIdentity": {
+            "Description": "The email address or domain to associate with a configuration set.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationSetName": {
+            "Description": "The configuration set to associate with an email identity.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_email_identity_dkim_attributes": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "SigningEnabled": {
+            "Description": "Sets the DKIM signing configuration for the identity.\nWhen you set this value true, then the messages that are sent from the identity are signed using DKIM. If you set this value to false, your messages are sent without DKIM signing.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_email_identity_dkim_signing_attributes": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "SigningAttributesOrigin": {
+            "Description": "The method to use to configure DKIM for the identity. There are the following possible values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "SigningAttributes": {
+            "Description": "An object that contains information about the private key and selector that you want to use to configure DKIM for the identity for Bring Your Own DKIM (BYODKIM) for the identity, or, configures the key length to be used for Easy DKIM .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_email_identity_feedback_attributes": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "EmailForwardingEnabled": {
+            "Description": "Sets the feedback forwarding configuration for the identity.\nIf the value is true, you receive email notifications when bounce or complaint events occur. These notifications are sent to the address that you specified in the Return-Path header of the original email.\nYou're required to have a method of tracking bounces and complaints. If you haven't set up another mechanism for receiving bounce or complaint notifications (for example, by setting up an event destination), you receive an email notification when these events occur (even if this setting is disabled).",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_email_identity_mail_from_attributes": {
+        "EmailIdentity": {
+            "Description": "The verified email identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "MailFromDomain": {
+            "Description": "The custom MAIL FROM domain that you want the verified identity to use. The MAIL FROM domain must meet the following criteria:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "BehaviorOnMxFailure": {
+            "Description": "The action to take if the required MX record isn't found when you send an email. When you set this value to UseDefaultValue, the mail is sent using amazonses.com as the MAIL FROM domain. When you set this value to RejectMessage, the Amazon SES API v2 returns a MailFromDomainNotVerified error, and doesn't attempt to deliver the email.\nThese behaviors are taken when the custom MAIL FROM domain configuration is in the Pending, Failed, and TemporaryFailure states.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_suppressed_destination": {
+        "EmailAddress": {
+            "Description": "The email address that should be added to the suppression list for your account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Reason": {
+            "Description": "The factors that should cause the email address to be added to the suppression list for your account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "send_bulk_email": {
+        "FromEmailAddress": {
+            "Description": "The email address to use as the \"From\" address for the email. The address that you specify has to be verified.",
+            "Type": "string",
+            "Required": false
+        },
+        "FromEmailAddressIdentityArn": {
+            "Description": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the FromEmailAddress parameter.\nFor example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to use sender@example.com, then you would specify the FromEmailAddressIdentityArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the FromEmailAddress to be sender@example.com.\nFor more information about sending authorization, see the Amazon SES Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplyToAddresses": {
+            "Description": "The \"Reply-to\" email addresses for the message. When the recipient replies to the message, each Reply-to address receives the reply.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FeedbackForwardingEmailAddress": {
+            "Description": "The address that you want bounce and complaint notifications to be sent to.",
+            "Type": "string",
+            "Required": false
+        },
+        "FeedbackForwardingEmailAddressIdentityArn": {
+            "Description": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the FeedbackForwardingEmailAddress parameter.\nFor example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to use feedback@example.com, then you would specify the FeedbackForwardingEmailAddressIdentityArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the FeedbackForwardingEmailAddress to be feedback@example.com.\nFor more information about sending authorization, see the Amazon SES Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultEmailTags": {
+            "Description": "A list of tags, in the form of name/value pairs, to apply to an email that you send using the SendEmail operation. Tags correspond to characteristics of the email that you define, so that you can publish email sending events.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DefaultContent": {
+            "Description": "An object that contains the body of the message. You can specify a template message.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "BulkEmailEntries": {
+            "Description": "The list of bulk email entry objects.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set to use when sending the email.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_custom_verification_email": {
+        "EmailAddress": {
+            "Description": "The email address to verify.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateName": {
+            "Description": "The name of the custom verification email template to use when sending the verification email.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationSetName": {
+            "Description": "Name of a configuration set to use when sending the verification email.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_email": {
+        "FromEmailAddress": {
+            "Description": "The email address to use as the \"From\" address for the email. The address that you specify has to be verified.",
+            "Type": "string",
+            "Required": false
+        },
+        "FromEmailAddressIdentityArn": {
+            "Description": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the FromEmailAddress parameter.\nFor example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to use sender@example.com, then you would specify the FromEmailAddressIdentityArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the FromEmailAddress to be sender@example.com.\nFor more information about sending authorization, see the Amazon SES Developer Guide .\nFor Raw emails, the FromEmailAddressIdentityArn value overrides the X-SES-SOURCE-ARN and X-SES-FROM-ARN headers specified in raw email message content.",
+            "Type": "string",
+            "Required": false
+        },
+        "Destination": {
+            "Description": "An object that contains the recipients of the email message.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ReplyToAddresses": {
+            "Description": "The \"Reply-to\" email addresses for the message. When the recipient replies to the message, each Reply-to address receives the reply.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FeedbackForwardingEmailAddress": {
+            "Description": "The address that you want bounce and complaint notifications to be sent to.",
+            "Type": "string",
+            "Required": false
+        },
+        "FeedbackForwardingEmailAddressIdentityArn": {
+            "Description": "This parameter is used only for sending authorization. It is the ARN of the identity that is associated with the sending authorization policy that permits you to use the email address specified in the FeedbackForwardingEmailAddress parameter.\nFor example, if the owner of example.com (which has ARN arn:aws:ses:us-east-1:123456789012:identity/example.com) attaches a policy to it that authorizes you to use feedback@example.com, then you would specify the FeedbackForwardingEmailAddressIdentityArn to be arn:aws:ses:us-east-1:123456789012:identity/example.com, and the FeedbackForwardingEmailAddress to be feedback@example.com.\nFor more information about sending authorization, see the Amazon SES Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "Content": {
+            "Description": "An object that contains the body of the message. You can send either a Simple message Raw message or a template Message.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "EmailTags": {
+            "Description": "A list of tags, in the form of name/value pairs, to apply to an email that you send using the SendEmail operation. Tags correspond to characteristics of the email that you define, so that you can publish email sending events.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set to use when sending the email.",
+            "Type": "string",
+            "Required": false
+        },
+        "ListManagementOptions": {
+            "Description": "An object used to specify a list or topic to which an email belongs, which will be used when a contact chooses to unsubscribe.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to add one or more tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of the tags that you want to add to the resource. A tag consists of a required tag key (Key ) and an associated tag value (Value ). The maximum length of a tag key is 128 characters. The maximum length of a tag value is 256 characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "test_render_email_template": {
+        "TemplateName": {
+            "Description": "The name of the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateData": {
+            "Description": "A list of replacement values to apply to the template. This parameter is a JSON object, typically consisting of key-value pairs in which the keys correspond to replacement tags in the email template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to remove one or more tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tags (tag keys) that you want to remove from the resource. When you specify a tag key, the action removes both that key and its associated tag value.\nTo remove more than one tag from the resource, append the TagKeys parameter and argument for each additional tag to remove, separated by an ampersand. For example: /v2/email/tags?ResourceArn=ResourceArn&amp;TagKeys=Key1&amp;TagKeys=Key2",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_configuration_set_event_destination": {
+        "ConfigurationSetName": {
+            "Description": "The name of the configuration set that contains the event destination to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestinationName": {
+            "Description": "The name of the event destination.",
+            "Type": "string",
+            "Required": true
+        },
+        "EventDestination": {
+            "Description": "An object that defines the event destination.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_contact": {
+        "ContactListName": {
+            "Description": "The name of the contact list.",
+            "Type": "string",
+            "Required": true
+        },
+        "EmailAddress": {
+            "Description": "The contact's email addres.",
+            "Type": "string",
+            "Required": true
+        },
+        "TopicPreferences": {
+            "Description": "The contact's preference for being opted-in to or opted-out of a topic.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UnsubscribeAll": {
+            "Description": "A boolean value status noting if the contact is unsubscribed from all contact list topics.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AttributesData": {
+            "Description": "The attribute data attached to a contact.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_contact_list": {
+        "ContactListName": {
+            "Description": "The name of the contact list.",
+            "Type": "string",
+            "Required": true
+        },
+        "Topics": {
+            "Description": "An interest group, theme, or label within a list. A contact list can have multiple topics.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Description": {
+            "Description": "A description of what the contact list is about.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_custom_verification_email_template": {
+        "TemplateName": {
+            "Description": "The name of the custom verification email template that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "FromEmailAddress": {
+            "Description": "The email address that the custom verification email is sent from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateSubject": {
+            "Description": "The subject line of the custom verification email.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateContent": {
+            "Description": "The content of the custom verification email. The total size of the email must be less than 10 MB. The message body may contain HTML, with some limitations. For more information, see Custom Verification Email Frequently Asked Questions in the Amazon SES Developer Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "SuccessRedirectionURL": {
+            "Description": "The URL that the recipient of the verification email is sent to if his or her address is successfully verified.",
+            "Type": "string",
+            "Required": true
+        },
+        "FailureRedirectionURL": {
+            "Description": "The URL that the recipient of the verification email is sent to if his or her address is not successfully verified.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_email_identity_policy": {
+        "EmailIdentity": {
+            "Description": "The email identity.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyName": {
+            "Description": "The name of the policy.\nThe policy name cannot exceed 64 characters and can only include alphanumeric characters, dashes, and underscores.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "The text of the policy in JSON format. The policy cannot exceed 4 KB.\nFor information about the syntax of sending authorization policies, see the Amazon SES Developer Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_email_template": {
+        "TemplateName": {
+            "Description": "The name of the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateContent": {
+            "Description": "The content of the email template, composed of a subject line, an HTML part, and a text-only part.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    }
+}

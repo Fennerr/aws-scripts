@@ -1,0 +1,1435 @@
+{
+    "accept_environment_account_connection": {
+        "id": {
+            "Description": "The ID of the environment account connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_component_deployment": {
+        "componentName": {
+            "Description": "The name of the component with the deployment to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_environment_deployment": {
+        "environmentName": {
+            "Description": "The name of the environment with the deployment to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_service_instance_deployment": {
+        "serviceInstanceName": {
+            "Description": "The name of the service instance with the deployment to cancel.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceName": {
+            "Description": "The name of the service with the service instance deployment to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_service_pipeline_deployment": {
+        "serviceName": {
+            "Description": "The name of the service with the service pipeline deployment to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_component": {
+        "description": {
+            "Description": "An optional customer-provided description of the component.",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentName": {
+            "Description": "The name of the Proton environment that you want to associate this component with. You must specify this when you don't specify serviceInstanceName and serviceName .",
+            "Type": "string",
+            "Required": false
+        },
+        "manifest": {
+            "Description": "A path to a manifest file that lists the Infrastructure as Code (IaC) file, template language, and rendering engine for infrastructure that a custom component provisions.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The customer-provided name of the component.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceInstanceName": {
+            "Description": "The name of the service instance that you want to attach this component to. If you don't specify this, the component isn't attached to any service instance. Specify both serviceInstanceName and serviceName or neither of them.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of the service that serviceInstanceName is associated with. If you don't specify this, the component isn't attached to any service instance. Specify both serviceInstanceName and serviceName or neither of them.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceSpec": {
+            "Description": "The service spec that you want the component to use to access service inputs. Set this only when you attach the component to a service instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton component. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "templateFile": {
+            "Description": "A path to the Infrastructure as Code (IaC) file describing infrastructure that a custom component provisions.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_environment": {
+        "componentRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in this environment. It determines the scope of infrastructure that a component can provision.\nYou must specify componentRoleArn to allow directly defined components to be associated with this environment.\nFor more information about components, see Proton components in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description of the environment that's being created and deployed.",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentAccountConnectionId": {
+            "Description": "The ID of the environment account connection that you provide if you're provisioning your environment infrastructure resources to an environment account. For more information, see Environment account connections in the Proton Administrator guide .\nTo use Amazon Web Services-managed provisioning for the environment, specify either the environmentAccountConnectionId or protonServiceRoleArn parameter and omit the provisioningRepository parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "protonServiceRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Proton service role that allows Proton to make calls to other services on your behalf.\nTo use Amazon Web Services-managed provisioning for the environment, specify either the environmentAccountConnectionId or protonServiceRoleArn parameter and omit the provisioningRepository parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "provisioningRepository": {
+            "Description": "The infrastructure repository that you use to host your rendered infrastructure templates for self-managed provisioning.\nTo use self-managed provisioning for the environment, specify this parameter and omit the environmentAccountConnectionId and protonServiceRoleArn parameters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "spec": {
+            "Description": "A YAML formatted string that provides inputs as defined in the environment template bundle schema file. For more information, see Environments in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton environment. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "templateMajorVersion": {
+            "Description": "The major version of the environment template.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateMinorVersion": {
+            "Description": "The minor version of the environment template.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The name of the environment template. For more information, see Environment Templates in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_environment_account_connection": {
+        "clientToken": {
+            "Description": "When included, if two identical requests are made with the same client token, Proton returns the environment account connection that the first request created.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "componentRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in the associated environment account. It determines the scope of infrastructure that a component can provision in the account.\nYou must specify componentRoleArn to allow directly defined components to be associated with any environments running in this account.\nFor more information about components, see Proton components in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentName": {
+            "Description": "The name of the Proton environment that's created in the associated management account.",
+            "Type": "string",
+            "Required": true
+        },
+        "managementAccountId": {
+            "Description": "The ID of the management account that accepts or rejects the environment account connection. You create and manage the Proton environment in this account. If the management account accepts the environment account connection, Proton can use the associated IAM role to provision environment infrastructure resources in the associated environment account.",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM service role that's created in the environment account. Proton uses this role to provision infrastructure resources in the associated environment account.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton environment account connection. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_environment_template": {
+        "description": {
+            "Description": "A description of the environment template.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The environment template name as displayed in the developer interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "encryptionKey": {
+            "Description": "A customer provided encryption key that Proton uses to encrypt data.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the environment template.",
+            "Type": "string",
+            "Required": true
+        },
+        "provisioning": {
+            "Description": "When included, indicates that the environment template is for customer provisioned and managed infrastructure.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton environment template. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_environment_template_version": {
+        "clientToken": {
+            "Description": "When included, if two identical requests are made with the same client token, Proton returns the environment template version that the first request created.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description of the new version of an environment template.",
+            "Type": "string",
+            "Required": false
+        },
+        "majorVersion": {
+            "Description": "To create a new minor version of the environment template, include major Version .\nTo create a new major and minor version of the environment template, exclude major Version .",
+            "Type": "string",
+            "Required": false
+        },
+        "source": {
+            "Description": "An object that includes the template bundle S3 bucket path and name for the new version of an template.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton environment template version. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "templateName": {
+            "Description": "The name of the environment template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_repository": {
+        "connectionArn": {
+            "Description": "The Amazon Resource Name (ARN) of your Amazon Web Services CodeStar connection. For more information, see Setting up for Proton in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "encryptionKey": {
+            "Description": "The ARN of your customer Amazon Web Services Key Management Service (Amazon Web Services KMS) key.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The repository name (for example, myrepos/myrepo ).",
+            "Type": "string",
+            "Required": true
+        },
+        "provider": {
+            "Description": "The repository provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton repository. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_service": {
+        "branchName": {
+            "Description": "The name of the code repository branch that holds the code that's deployed in Proton. Don't include this parameter if your service template doesn't include a service pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description of the Proton service.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The service name.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryConnectionArn": {
+            "Description": "The Amazon Resource Name (ARN) of the repository connection. For more information, see Set up repository connection in the Proton Administrator Guide and Setting up with Proton in the Proton User Guide . Don't include this parameter if your service template doesn't include a service pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryId": {
+            "Description": "The ID of the code repository. Don't include this parameter if your service template doesn't include a service pipeline.",
+            "Type": "string",
+            "Required": false
+        },
+        "spec": {
+            "Description": "A link to a spec file that provides inputs as defined in the service template bundle schema file. The spec file is in YAML format. Don\u2019t include pipeline inputs in the spec if your service template doesn\u2019t include a service pipeline. For more information, see Create a service in the Proton Administrator Guide and Create a service in the Proton User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton service. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "templateMajorVersion": {
+            "Description": "The major version of the service template that was used to create the service.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateMinorVersion": {
+            "Description": "The minor version of the service template that was used to create the service.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The name of the service template that's used to create the service.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_service_template": {
+        "description": {
+            "Description": "A description of the service template.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The name of the service template as displayed in the developer interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "encryptionKey": {
+            "Description": "A customer provided encryption key that's used to encrypt data.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the service template.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineProvisioning": {
+            "Description": "By default, Proton provides a service pipeline for your service. When this parameter is included, it indicates that an Proton service pipeline isn't provided for your service. After it's included, it can't be changed. For more information, see Service template bundles in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton service template. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_service_template_version": {
+        "clientToken": {
+            "Description": "When included, if two identical requests are made with the same client token, Proton returns the service template version that the first request created.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "compatibleEnvironmentTemplates": {
+            "Description": "An array of environment template objects that are compatible with the new service template version. A service instance based on this service template version can run in environments based on compatible templates.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "description": {
+            "Description": "A description of the new version of a service template.",
+            "Type": "string",
+            "Required": false
+        },
+        "majorVersion": {
+            "Description": "To create a new minor version of the service template, include a major Version .\nTo create a new major and minor version of the service template, exclude major Version .",
+            "Type": "string",
+            "Required": false
+        },
+        "source": {
+            "Description": "An object that includes the template bundle S3 bucket path and name for the new version of a service template.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "supportedComponentSources": {
+            "Description": "An array of supported component sources. Components with supported sources can be attached to service instances based on this service template version.\nFor more information about components, see Proton components in the Proton Administrator Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "An optional list of metadata items that you can associate with the Proton service template version. A tag is a key-value pair.\nFor more information, see Proton resources and tagging in the Proton Administrator Guide or Proton User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "templateName": {
+            "Description": "The name of the service template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_template_sync_config": {
+        "branch": {
+            "Description": "The branch of the registered repository for your template.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of your repository (for example, myrepos/myrepo ).",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryProvider": {
+            "Description": "The provider type for your repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "subdirectory": {
+            "Description": "A repository subdirectory path to your template bundle directory. When included, Proton limits the template bundle search to this repository directory.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The name of your registered template.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateType": {
+            "Description": "The type of the registered template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_component": {
+        "name": {
+            "Description": "The name of the component to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment": {
+        "name": {
+            "Description": "The name of the environment to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment_account_connection": {
+        "id": {
+            "Description": "The ID of the environment account connection to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment_template": {
+        "name": {
+            "Description": "The name of the environment template to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment_template_version": {
+        "majorVersion": {
+            "Description": "The environment template major version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "minorVersion": {
+            "Description": "The environment template minor version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateName": {
+            "Description": "The name of the environment template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_repository": {
+        "name": {
+            "Description": "The name of the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "provider": {
+            "Description": "The repository provider.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_service": {
+        "name": {
+            "Description": "The name of the service to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_service_template": {
+        "name": {
+            "Description": "The name of the service template to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_service_template_version": {
+        "majorVersion": {
+            "Description": "The service template major version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "minorVersion": {
+            "Description": "The service template minor version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateName": {
+            "Description": "The name of the service template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_template_sync_config": {
+        "templateName": {
+            "Description": "The template name.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateType": {
+            "Description": "The template type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_account_settings": "No parameters defined",
+    "get_component": {
+        "name": {
+            "Description": "The name of the component that you want to get the detailed data for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment": {
+        "name": {
+            "Description": "The name of the environment that you want to get the detailed data for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment_account_connection": {
+        "id": {
+            "Description": "The ID of the environment account connection that you want to get the detailed data for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment_template": {
+        "name": {
+            "Description": "The name of the environment template that you want to get the detailed data for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment_template_version": {
+        "majorVersion": {
+            "Description": "To get environment template major version detail data, include major Version .",
+            "Type": "string",
+            "Required": true
+        },
+        "minorVersion": {
+            "Description": "To get environment template minor version detail data, include minorVersion .",
+            "Type": "string",
+            "Required": true
+        },
+        "templateName": {
+            "Description": "The name of the environment template a version of which you want to get detailed data for..",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_repository": {
+        "name": {
+            "Description": "The repository name, for example myrepos/myrepo .",
+            "Type": "string",
+            "Required": true
+        },
+        "provider": {
+            "Description": "The repository provider.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_repository_sync_status": {
+        "branch": {
+            "Description": "The repository branch.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The repository name.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryProvider": {
+            "Description": "The repository provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "syncType": {
+            "Description": "The repository sync type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_service": {
+        "name": {
+            "Description": "The name of the service that you want to get the detailed data for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_service_instance": {
+        "name": {
+            "Description": "The name of a service instance that you want to get the detailed data for.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceName": {
+            "Description": "The name of the service that the service instance belongs to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_service_template": {
+        "name": {
+            "Description": "The name of the service template that you want to get detailed data for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_service_template_version": {
+        "majorVersion": {
+            "Description": "To get service template major version detail data, include major Version .",
+            "Type": "string",
+            "Required": true
+        },
+        "minorVersion": {
+            "Description": "To get service template minor version detail data, include minorVersion .",
+            "Type": "string",
+            "Required": true
+        },
+        "templateName": {
+            "Description": "The name of the service template a version of which you want to get detailed data for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_template_sync_config": {
+        "templateName": {
+            "Description": "The template name.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateType": {
+            "Description": "The template type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_template_sync_status": {
+        "templateName": {
+            "Description": "The template name.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateType": {
+            "Description": "The template type.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateVersion": {
+            "Description": "The template major version.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_component_outputs": {
+        "componentName": {
+            "Description": "The name of the component whose outputs you want.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next output in the array of outputs, after the list of outputs that was previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_component_provisioned_resources": {
+        "componentName": {
+            "Description": "The name of the component whose provisioned resources you want.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next provisioned resource in the array of provisioned resources, after the list of provisioned resources that was previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_components": {
+        "environmentName": {
+            "Description": "The name of an environment for result list filtering. Proton returns components associated with the environment or attached to service instances running in it.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of components to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next component in the array of components, after the list of components that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceInstanceName": {
+            "Description": "The name of a service instance for result list filtering. Proton returns the component attached to the service instance, if any.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of a service for result list filtering. Proton returns components attached to service instances of the service.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environment_account_connections": {
+        "environmentName": {
+            "Description": "The environment name that's associated with each listed environment account connection.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of environment account connections to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next environment account connection in the array of environment account connections, after the list of environment account connections that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestedBy": {
+            "Description": "The type of account making the ListEnvironmentAccountConnections request.",
+            "Type": "string",
+            "Required": true
+        },
+        "statuses": {
+            "Description": "The status details for each listed environment account connection.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_environment_outputs": {
+        "environmentName": {
+            "Description": "The environment name.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next environment output in the array of environment outputs, after the list of environment outputs that was previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environment_provisioned_resources": {
+        "environmentName": {
+            "Description": "The environment name.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next environment provisioned resource in the array of environment provisioned resources, after the list of environment provisioned resources that was previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environment_template_versions": {
+        "majorVersion": {
+            "Description": "To view a list of minor of versions under a major version of an environment template, include major Version .\nTo view a list of major versions of an environment template, exclude major Version .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of major or minor versions of an environment template to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next major or minor version in the array of major or minor versions of an environment template, after the list of major or minor versions that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The name of the environment template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_environment_templates": {
+        "maxResults": {
+            "Description": "The maximum number of environment templates to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next environment template in the array of environment templates, after the list of environment templates that was previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environments": {
+        "environmentTemplates": {
+            "Description": "An array of the versions of the environment template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of environments to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next environment in the array of environments, after the list of environments that was previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_repositories": {
+        "maxResults": {
+            "Description": "The maximum number of repositories to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next repository in the array of repositories, after the list of repositories previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_repository_sync_definitions": {
+        "nextToken": {
+            "Description": "A token that indicates the location of the next repository sync definition in the array of repository sync definitions, after the list of repository sync definitions previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The repository name.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryProvider": {
+            "Description": "The repository provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "syncType": {
+            "Description": "The sync type. The only supported value is TEMPLATE_SYNC .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_service_instance_outputs": {
+        "nextToken": {
+            "Description": "A token that indicates the location of the next output in the array of outputs, after the list of outputs that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceInstanceName": {
+            "Description": "The name of the service instance whose outputs you want.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceName": {
+            "Description": "The name of the service that serviceInstanceName is associated to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_service_instance_provisioned_resources": {
+        "nextToken": {
+            "Description": "A token that indicates the location of the next provisioned resource in the array of provisioned resources, after the list of provisioned resources that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceInstanceName": {
+            "Description": "The name of the service instance whose provisioned resources you want.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceName": {
+            "Description": "The name of the service that serviceInstanceName is associated to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_service_instances": {
+        "maxResults": {
+            "Description": "The maximum number of service instances to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next service in the array of service instances, after the list of service instances that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of the service that the service instance belongs to.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_service_pipeline_outputs": {
+        "nextToken": {
+            "Description": "A token that indicates the location of the next output in the array of outputs, after the list of outputs that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of the service whose pipeline's outputs you want.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_service_pipeline_provisioned_resources": {
+        "nextToken": {
+            "Description": "A token that indicates the location of the next provisioned resource in the array of provisioned resources, after the list of provisioned resources that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of the service whose pipeline's provisioned resources you want.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_service_template_versions": {
+        "majorVersion": {
+            "Description": "To view a list of minor of versions under a major version of a service template, include major Version .\nTo view a list of major versions of a service template, exclude major Version .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of major or minor versions of a service template to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next major or minor version in the array of major or minor versions of a service template, after the list of major or minor versions that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The name of the service template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_service_templates": {
+        "maxResults": {
+            "Description": "The maximum number of service templates to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next service template in the array of service templates, after the list of service templates previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_services": {
+        "maxResults": {
+            "Description": "The maximum number of services to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next service in the array of services, after the list of services that was previously requested.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "maxResults": {
+            "Description": "The maximum number of tags to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token that indicates the location of the next resource tag in the array of resource tags, after the list of resource tags that was previously requested.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for the listed tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "notify_resource_deployment_status_change": {
+        "deploymentId": {
+            "Description": "The deployment ID for your provisioned resource.",
+            "Type": "string",
+            "Required": false
+        },
+        "outputs": {
+            "Description": "The provisioned resource state change detail data that's returned by Proton.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceArn": {
+            "Description": "The provisioned resource Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The status of your provisioned resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "statusMessage": {
+            "Description": "The deployment status message for your provisioned resource.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "reject_environment_account_connection": {
+        "id": {
+            "Description": "The ID of the environment account connection to reject.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Proton resource to apply customer tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of customer tags to apply to the Proton resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to remove customer tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of customer tag keys that indicate the customer tags to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_account_settings": {
+        "pipelineProvisioningRepository": {
+            "Description": "A repository for pipeline provisioning. Specify it if you have environments configured for self-managed provisioning with services that include pipelines.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "pipelineServiceRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the service role you want to use for provisioning pipelines. Assumed by Proton for Amazon Web Services-managed provisioning, and by customer-owned automation for self-managed provisioning.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_component": {
+        "deploymentType": {
+            "Description": "The deployment type. It defines the mode for updating a component, as follows:\nIn this mode, a deployment doesn't occur. Only the requested metadata parameters are updated. You can only specify description in this mode.\nIn this mode, the component is deployed and updated with the new serviceSpec, templateSource, and/or type that you provide. Only requested parameters are updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "An optional customer-provided description of the component.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the component to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceInstanceName": {
+            "Description": "The name of the service instance that you want to attach this component to. Don't specify to keep the component's current service instance attachment. Specify an empty string to detach the component from the service instance it's attached to. Specify non-empty values for both serviceInstanceName and serviceName or for neither of them.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceName": {
+            "Description": "The name of the service that serviceInstanceName is associated with. Don't specify to keep the component's current service instance attachment. Specify an empty string to detach the component from the service instance it's attached to. Specify non-empty values for both serviceInstanceName and serviceName or for neither of them.",
+            "Type": "string",
+            "Required": false
+        },
+        "serviceSpec": {
+            "Description": "The service spec that you want the component to use to access service inputs. Set this only when the component is attached to a service instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateFile": {
+            "Description": "A path to the Infrastructure as Code (IaC) file describing infrastructure that a custom component provisions.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_environment": {
+        "componentRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in this environment. It determines the scope of infrastructure that a component can provision.\nThe environment must have a componentRoleArn to allow directly defined components to be associated with the environment.\nFor more information about components, see Proton components in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "deploymentType": {
+            "Description": "There are four modes for updating an environment. The deploymentType field defines the mode.\nIn this mode, a deployment doesn't occur. Only the requested metadata parameters are updated.\nIn this mode, the environment is deployed and updated with the new spec that you provide. Only requested parameters are updated. Don\u2019t include major or minor version parameters when you use this deployment-type .\nIn this mode, the environment is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can also specify a different minor version of the current major version in use.\nIn this mode, the environment is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can also specify a different major version that is higher than the major version in use and a minor version (optional).",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the environment update.",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentAccountConnectionId": {
+            "Description": "The ID of the environment account connection.\nYou can only update to a new environment account connection if it was created in the same environment account that the current environment account connection was created in and is associated with the current environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the environment to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "protonServiceRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Proton service role that allows Proton to make API calls to other services your behalf.",
+            "Type": "string",
+            "Required": false
+        },
+        "provisioningRepository": {
+            "Description": "The infrastructure repository that you use to host your rendered infrastructure templates for self-managed provisioning.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "spec": {
+            "Description": "The formatted specification that defines the update.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateMajorVersion": {
+            "Description": "The major version of the environment to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateMinorVersion": {
+            "Description": "The minor version of the environment to update.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_environment_account_connection": {
+        "componentRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM service role that Proton uses when provisioning directly defined components in the associated environment account. It determines the scope of infrastructure that a component can provision in the account.\nThe environment account connection must have a componentRoleArn to allow directly defined components to be associated with any environments running in the account.\nFor more information about components, see Proton components in the Proton Administrator Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "id": {
+            "Description": "The ID of the environment account connection to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM service role that's associated with the environment account connection to update.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_environment_template": {
+        "description": {
+            "Description": "A description of the environment template update.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The name of the environment template to update as displayed in the developer interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the environment template to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_environment_template_version": {
+        "description": {
+            "Description": "A description of environment template version to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "majorVersion": {
+            "Description": "To update a major version of an environment template, include major Version .",
+            "Type": "string",
+            "Required": true
+        },
+        "minorVersion": {
+            "Description": "To update a minor version of an environment template, include minorVersion .",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The status of the environment template minor version to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The name of the environment template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_service": {
+        "description": {
+            "Description": "The edited service description.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the service to edit.",
+            "Type": "string",
+            "Required": true
+        },
+        "spec": {
+            "Description": "Lists the service instances to add and the existing service instances to remain. Omit the existing service instances to delete from the list. Don't include edits to the existing service instances or pipeline. For more information, see Edit a service in the Proton Administrator Guide or the Proton User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_service_instance": {
+        "deploymentType": {
+            "Description": "The deployment type. It defines the mode for updating a service instance, as follows:\nIn this mode, a deployment doesn't occur. Only the requested metadata parameters are updated.\nIn this mode, the service instance is deployed and updated with the new spec that you provide. Only requested parameters are updated. Don\u2019t include major or minor version parameters when you use this deployment type.\nIn this mode, the service instance is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can also specify a different minor version of the current major version in use.\nIn this mode, the service instance is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can specify a different major version that's higher than the major version in use and a minor version.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the service instance to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceName": {
+            "Description": "The name of the service that the service instance belongs to.",
+            "Type": "string",
+            "Required": true
+        },
+        "spec": {
+            "Description": "The formatted specification that defines the service instance update.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateMajorVersion": {
+            "Description": "The major version of the service template to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateMinorVersion": {
+            "Description": "The minor version of the service template to update.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_service_pipeline": {
+        "deploymentType": {
+            "Description": "The deployment type.\nThere are four modes for updating a service pipeline. The deploymentType field defines the mode.\nIn this mode, a deployment doesn't occur. Only the requested metadata parameters are updated.\nIn this mode, the service pipeline is deployed and updated with the new spec that you provide. Only requested parameters are updated. Don\u2019t include major or minor version parameters when you use this deployment-type .\nIn this mode, the service pipeline is deployed and updated with the published, recommended (latest) minor version of the current major version in use, by default. You can specify a different minor version of the current major version in use.\nIn this mode, the service pipeline is deployed and updated with the published, recommended (latest) major and minor version of the current template, by default. You can specify a different major version that's higher than the major version in use and a minor version.",
+            "Type": "string",
+            "Required": true
+        },
+        "serviceName": {
+            "Description": "The name of the service to that the pipeline is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "spec": {
+            "Description": "The spec for the service pipeline to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateMajorVersion": {
+            "Description": "The major version of the service template that was used to create the service that the pipeline is associated with.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateMinorVersion": {
+            "Description": "The minor version of the service template that was used to create the service that the pipeline is associated with.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_service_template": {
+        "description": {
+            "Description": "A description of the service template update.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The name of the service template to update that's displayed in the developer interface.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the service template to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_service_template_version": {
+        "compatibleEnvironmentTemplates": {
+            "Description": "An array of environment template objects that are compatible with this service template version. A service instance based on this service template version can run in environments based on compatible templates.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "description": {
+            "Description": "A description of a service template version to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "majorVersion": {
+            "Description": "To update a major version of a service template, include major Version .",
+            "Type": "string",
+            "Required": true
+        },
+        "minorVersion": {
+            "Description": "To update a minor version of a service template, include minorVersion .",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The status of the service template minor version to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "supportedComponentSources": {
+            "Description": "An array of supported component sources. Components with supported sources can be attached to service instances based on this service template version.\nFor more information about components, see Proton components in the Proton Administrator Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "templateName": {
+            "Description": "The name of the service template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_template_sync_config": {
+        "branch": {
+            "Description": "The repository branch.",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryName": {
+            "Description": "The name of the repository (for example, myrepos/myrepo ).",
+            "Type": "string",
+            "Required": true
+        },
+        "repositoryProvider": {
+            "Description": "The repository provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "subdirectory": {
+            "Description": "A subdirectory path to your template bundle version. When included, limits the template bundle search to this repository directory.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The synced template name.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateType": {
+            "Description": "The synced template type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for the listed tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "name": {
+            "Description": "The name of the service that you want to get the detailed data for.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

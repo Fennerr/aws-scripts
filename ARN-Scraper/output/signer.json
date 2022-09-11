@@ -1,0 +1,378 @@
+{
+    "add_profile_permission": {
+        "profileName": {
+            "Description": "The human-readable name of the signing profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "profileVersion": {
+            "Description": "The version of the signing profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "action": {
+            "Description": "The AWS Signer action permitted as part of cross-account permissions.",
+            "Type": "string",
+            "Required": true
+        },
+        "principal": {
+            "Description": "The AWS principal receiving cross-account permissions. This may be an IAM role or another AWS account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "A unique identifier for the current profile revision.",
+            "Type": "string",
+            "Required": false
+        },
+        "statementId": {
+            "Description": "A unique identifier for the cross-account permission statement.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_signing_profile": {
+        "profileName": {
+            "Description": "The name of the signing profile to be canceled.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_signing_job": {
+        "jobId": {
+            "Description": "The ID of the signing job on input.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_signing_platform": {
+        "platformId": {
+            "Description": "The ID of the target signing platform.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_signing_profile": {
+        "profileName": {
+            "Description": "The name of the target signing profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "profileOwner": {
+            "Description": "The AWS account ID of the profile owner.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_profile_permissions": {
+        "profileName": {
+            "Description": "Name of the signing profile containing the cross-account permissions.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "String for specifying the next set of paginated results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_signing_jobs": {
+        "status": {
+            "Description": "A status value with which to filter your results.",
+            "Type": "string",
+            "Required": false
+        },
+        "platformId": {
+            "Description": "The ID of microcontroller platform that you specified for the distribution of your code image.",
+            "Type": "string",
+            "Required": false
+        },
+        "requestedBy": {
+            "Description": "The IAM principal that requested the signing job.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Specifies the maximum number of items to return in the response. Use this parameter when paginating results. If additional items exist beyond the number you specify, the nextToken element is set in the response. Use the nextToken value in a subsequent request to retrieve additional items.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "String for specifying the next set of paginated results to return. After you receive a response with truncated results, use this parameter in a subsequent request. Set it to the value of nextToken from the response that you just received.",
+            "Type": "string",
+            "Required": false
+        },
+        "isRevoked": {
+            "Description": "Filters results to return only signing jobs with revoked signatures.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "signatureExpiresBefore": {
+            "Description": "Filters results to return only signing jobs with signatures expiring before a specified timestamp.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "signatureExpiresAfter": {
+            "Description": "Filters results to return only signing jobs with signatures expiring after a specified timestamp.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "jobInvoker": {
+            "Description": "Filters results to return only signing jobs initiated by a specified IAM entity.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_signing_platforms": {
+        "category": {
+            "Description": "The category type of a signing platform.",
+            "Type": "string",
+            "Required": false
+        },
+        "partner": {
+            "Description": "Any partner entities connected to a signing platform.",
+            "Type": "string",
+            "Required": false
+        },
+        "target": {
+            "Description": "The validation template that is used by the target signing platform.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned by this operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Value for specifying the next set of paginated results to return. After you receive a response with truncated results, use this parameter in a subsequent request. Set it to the value of nextToken from the response that you just received.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_signing_profiles": {
+        "includeCanceled": {
+            "Description": "Designates whether to include profiles with the status of CANCELED .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of profiles to be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Value for specifying the next set of paginated results to return. After you receive a response with truncated results, use this parameter in a subsequent request. Set it to the value of nextToken from the response that you just received.",
+            "Type": "string",
+            "Required": false
+        },
+        "platformId": {
+            "Description": "Filters results to return only signing jobs initiated for a specified signing platform.",
+            "Type": "string",
+            "Required": false
+        },
+        "statuses": {
+            "Description": "Filters results to return only signing jobs with statuses in the specified list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the signing profile.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_signing_profile": {
+        "profileName": {
+            "Description": "The name of the signing profile to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "signingMaterial": {
+            "Description": "The AWS Certificate Manager certificate that will be used to sign code with the new signing profile.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "signatureValidityPeriod": {
+            "Description": "The default validity period override for any signature generated using this signing profile. If unspecified, the default is 135 months.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "platformId": {
+            "Description": "The ID of the signing platform to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "overrides": {
+            "Description": "A subfield of platform. This specifies any different configuration options that you want to apply to the chosen platform (such as a different hash-algorithm or signing-algorithm ).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "signingParameters": {
+            "Description": "Map of key-value pairs for signing. These can include any information that you want to use during signing.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Tags to be associated with the signing profile that is being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "remove_profile_permission": {
+        "profileName": {
+            "Description": "A human-readable name for the signing profile with permissions to be removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "revisionId": {
+            "Description": "An identifier for the current revision of the signing profile permissions.",
+            "Type": "string",
+            "Required": true
+        },
+        "statementId": {
+            "Description": "A unique identifier for the cross-account permissions statement.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "revoke_signature": {
+        "jobId": {
+            "Description": "ID of the signing job to be revoked.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobOwner": {
+            "Description": "AWS account ID of the job owner.",
+            "Type": "string",
+            "Required": false
+        },
+        "reason": {
+            "Description": "The reason for revoking the signing job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "revoke_signing_profile": {
+        "profileName": {
+            "Description": "The name of the signing profile to be revoked.",
+            "Type": "string",
+            "Required": true
+        },
+        "profileVersion": {
+            "Description": "The version of the signing profile to be revoked.",
+            "Type": "string",
+            "Required": true
+        },
+        "reason": {
+            "Description": "The reason for revoking a signing profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "effectiveTime": {
+            "Description": "A timestamp for when revocation of a Signing Profile should become effective. Signatures generated using the signing profile after this timestamp are not trusted.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "start_signing_job": {
+        "source": {
+            "Description": "The S3 bucket that contains the object to sign or a BLOB that contains your raw code.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "destination": {
+            "Description": "The S3 bucket in which to save your signed object. The destination contains the name of your bucket and an optional prefix.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "profileName": {
+            "Description": "The name of the signing profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientRequestToken": {
+            "Description": "String that identifies the signing request. All calls after the first that use this token return the same response as the first call.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "profileOwner": {
+            "Description": "The AWS account ID of the signing profile owner.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the signing profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "One or more tags to be associated with the signing profile.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for the signing profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of tag keys to be removed from the signing profile.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "includeCanceled": {
+            "Description": "Designates whether to include profiles with the status of CANCELED .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "platformId": {
+            "Description": "Filters results to return only signing jobs initiated for a specified signing platform.",
+            "Type": "string",
+            "Required": false
+        },
+        "statuses": {
+            "Description": "Filters results to return only signing jobs with statuses in the specified list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "jobId": {
+            "Description": "The ID of the signing job on input.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

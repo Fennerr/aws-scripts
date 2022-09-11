@@ -1,0 +1,4220 @@
+{
+    "accept_certificate_transfer": {
+        "certificateId": {
+            "Description": "The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        },
+        "setAsActive": {
+            "Description": "Specifies whether the certificate is active.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "add_thing_to_billing_group": {
+        "billingGroupName": {
+            "Description": "The name of the billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "billingGroupArn": {
+            "Description": "The ARN of the billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingName": {
+            "Description": "The name of the thing to be added to the billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingArn": {
+            "Description": "The ARN of the thing to be added to the billing group.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "add_thing_to_thing_group": {
+        "thingGroupName": {
+            "Description": "The name of the group to which you are adding a thing.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingGroupArn": {
+            "Description": "The ARN of the group to which you are adding a thing.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingName": {
+            "Description": "The name of the thing to add to a group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingArn": {
+            "Description": "The ARN of the thing to add to a group.",
+            "Type": "string",
+            "Required": false
+        },
+        "overrideDynamicGroups": {
+            "Description": "Override dynamic thing groups with static thing groups when 10-group limit is reached. If a thing belongs to 10 thing groups, and one or more of those groups are dynamic thing groups, adding a thing to a static group removes the thing from the last dynamic group.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "associate_targets_with_job": {
+        "targets": {
+            "Description": "A list of thing group ARNs that define the targets of the job.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "jobId": {
+            "Description": "The unique identifier you assigned to this job when it was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "comment": {
+            "Description": "An optional comment string describing why the job was associated with the targets.",
+            "Type": "string",
+            "Required": false
+        },
+        "namespaceId": {
+            "Description": "The namespace used to indicate that a job is a customer-managed job.\nWhen you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "attach_policy": {
+        "policyName": {
+            "Description": "The name of the policy to attach.",
+            "Type": "string",
+            "Required": true
+        },
+        "target": {
+            "Description": "The identity to which the policy is attached. For example, a thing group or a certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_principal_policy": {
+        "policyName": {
+            "Description": "The policy name.",
+            "Type": "string",
+            "Required": true
+        },
+        "principal": {
+            "Description": "The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_security_profile": {
+        "securityProfileName": {
+            "Description": "The security profile that is attached.",
+            "Type": "string",
+            "Required": true
+        },
+        "securityProfileTargetArn": {
+            "Description": "The ARN of the target (thing group) to which the security profile is attached.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_thing_principal": {
+        "thingName": {
+            "Description": "The name of the thing.",
+            "Type": "string",
+            "Required": true
+        },
+        "principal": {
+            "Description": "The principal, which can be a certificate ARN (as returned from the CreateCertificate operation) or an Amazon Cognito ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_audit_mitigation_actions_task": {
+        "taskId": {
+            "Description": "The unique identifier for the task that you want to cancel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_audit_task": {
+        "taskId": {
+            "Description": "The ID of the audit you want to cancel. You can only cancel an audit that is \"IN_PROGRESS\".",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_certificate_transfer": {
+        "certificateId": {
+            "Description": "The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_detect_mitigation_actions_task": {
+        "taskId": {
+            "Description": "The unique identifier of the task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "cancel_job": {
+        "jobId": {
+            "Description": "The unique identifier you assigned to this job when it was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "reasonCode": {
+            "Description": "(Optional)A reason code string that explains why the job was canceled.",
+            "Type": "string",
+            "Required": false
+        },
+        "comment": {
+            "Description": "An optional comment string describing why the job was canceled.",
+            "Type": "string",
+            "Required": false
+        },
+        "force": {
+            "Description": "(Optional) If true job executions with status \"IN_PROGRESS\" and \"QUEUED\" are canceled, otherwise only job executions with status \"QUEUED\" are canceled. The default is false .\nCanceling a job which is \"IN_PROGRESS\", will cause a device which is executing the job to be unable to update the job execution status. Use caution and ensure that each device executing a job which is canceled is able to recover to a valid state.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "cancel_job_execution": {
+        "jobId": {
+            "Description": "The ID of the job to be canceled.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingName": {
+            "Description": "The name of the thing whose execution of the job will be canceled.",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "(Optional) If true the job execution will be canceled if it has status IN_PROGRESS or QUEUED, otherwise the job execution will be canceled only if it has status QUEUED. If you attempt to cancel a job execution that is IN_PROGRESS, and you do not set force to true, then an InvalidStateTransitionException will be thrown. The default is false .\nCanceling a job execution which is \"IN_PROGRESS\", will cause the device to be unable to update the job execution status. Use caution and ensure that the device is able to recover to a valid state.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "expectedVersion": {
+            "Description": "(Optional) The expected current version of the job execution. Each time you update the job execution, its version is incremented. If the version of the job execution stored in Jobs does not match, the update is rejected with a VersionMismatch error, and an ErrorResponse that contains the current job execution status data is returned. (This makes it unnecessary to perform a separate DescribeJobExecution request in order to obtain the job execution status data.)",
+            "Type": "integer",
+            "Required": false
+        },
+        "statusDetails": {
+            "Description": "A collection of name/value pairs that describe the status of the job execution. If not specified, the statusDetails are unchanged. You can specify at most 10 name/value pairs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "clear_default_authorizer": "No parameters defined",
+    "confirm_topic_rule_destination": {
+        "confirmationToken": {
+            "Description": "The token used to confirm ownership or access to the topic rule confirmation URL.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_audit_suppression": {
+        "checkName": {
+            "Description": "An audit check name. Checks must be enabled for your account. (Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or use UpdateAccountAuditConfiguration to select which checks are enabled.)",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceIdentifier": {
+            "Description": "Information that identifies the noncompliant resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "expirationDate": {
+            "Description": "The epoch timestamp in seconds at which this suppression expires.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "suppressIndefinitely": {
+            "Description": "Indicates whether a suppression should exist indefinitely or not.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the audit suppression.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientRequestToken": {
+            "Description": "Each audit supression must have a unique client request token. If you try to create a new audit suppression with the same token as one that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_authorizer": {
+        "authorizerName": {
+            "Description": "The authorizer name.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerFunctionArn": {
+            "Description": "The ARN of the authorizer's Lambda function.",
+            "Type": "string",
+            "Required": true
+        },
+        "tokenKeyName": {
+            "Description": "The name of the token key used to extract the token from the HTTP headers.",
+            "Type": "string",
+            "Required": false
+        },
+        "tokenSigningPublicKeys": {
+            "Description": "The public keys used to verify the digital signature returned by your custom authentication service.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "status": {
+            "Description": "The status of the create authorizer request.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the custom authorizer.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "signingDisabled": {
+            "Description": "Specifies whether IoT validates the token signature in an authorization request.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableCachingForHttp": {
+            "Description": "When true, the result from the authorizer\u2019s Lambda function is cached for clients that use persistent HTTP connections. The results are cached for the time specified by the Lambda function in refreshAfterInSeconds. This value does not affect authorization of clients that use MQTT connections.\nThe default value is false .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_billing_group": {
+        "billingGroupName": {
+            "Description": "The name you wish to give to the billing group.",
+            "Type": "string",
+            "Required": true
+        },
+        "billingGroupProperties": {
+            "Description": "The properties of the billing group.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the billing group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_certificate_from_csr": {
+        "certificateSigningRequest": {
+            "Description": "The certificate signing request (CSR).",
+            "Type": "string",
+            "Required": true
+        },
+        "setAsActive": {
+            "Description": "Specifies whether the certificate is active.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_custom_metric": {
+        "metricName": {
+            "Description": "The name of the custom metric. This will be used in the metric report submitted from the device/thing. The name can't begin with aws:. You can't change the name after you define it.",
+            "Type": "string",
+            "Required": true
+        },
+        "displayName": {
+            "Description": "The friendly name in the console for the custom metric. This name doesn't have to be unique. Don't use this name as the metric identifier in the device metric report. You can update the friendly name after you define it.",
+            "Type": "string",
+            "Required": false
+        },
+        "metricType": {
+            "Description": "The type of the custom metric.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the custom metric.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "Each custom metric must have a unique client request token. If you try to create a new custom metric that already exists with a different token, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_dimension": {
+        "name": {
+            "Description": "A unique identifier for the dimension. Choose something that describes the type and value to make it easy to remember what it does.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "Specifies the type of dimension. Supported types: TOPIC_FILTER.",
+            "Type": "string",
+            "Required": true
+        },
+        "stringValues": {
+            "Description": "Specifies the value or list of values for the dimension. For TOPIC_FILTER dimensions, this is a pattern used to match the MQTT topic (for example, \"admin/#\").",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the dimension.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "Each dimension must have a unique client request token. If you try to create a new dimension with the same token as a dimension that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_domain_configuration": {
+        "domainConfigurationName": {
+            "Description": "The name of the domain configuration. This value must be unique to a region.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": false
+        },
+        "serverCertificateArns": {
+            "Description": "The ARNs of the certificates that IoT passes to the device during the TLS handshake. Currently you can specify only one certificate ARN. This value is not required for Amazon Web Services-managed domains.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "validationCertificateArn": {
+            "Description": "The certificate used to validate the server certificate and prove domain name ownership. This certificate must be signed by a public certificate authority. This value is not required for Amazon Web Services-managed domains.",
+            "Type": "string",
+            "Required": false
+        },
+        "authorizerConfig": {
+            "Description": "An object that specifies the authorization service for a domain.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "serviceType": {
+            "Description": "The type of service delivered by the endpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the domain configuration.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_dynamic_thing_group": {
+        "thingGroupName": {
+            "Description": "The dynamic thing group name to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingGroupProperties": {
+            "Description": "The dynamic thing group properties.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "indexName": {
+            "Description": "The dynamic thing group index name.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryString": {
+            "Description": "The dynamic thing group search query string.\nSee Query Syntax for information about query string syntax.",
+            "Type": "string",
+            "Required": true
+        },
+        "queryVersion": {
+            "Description": "The dynamic thing group query version.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the dynamic thing group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_fleet_metric": {
+        "metricName": {
+            "Description": "The name of the fleet metric to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "queryString": {
+            "Description": "The search query string.",
+            "Type": "string",
+            "Required": true
+        },
+        "aggregationType": {
+            "Description": "The type of the aggregation query.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "period": {
+            "Description": "The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1 day)] and must be multiple of 60.",
+            "Type": "integer",
+            "Required": true
+        },
+        "aggregationField": {
+            "Description": "The field to aggregate.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The fleet metric description.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryVersion": {
+            "Description": "The query version.",
+            "Type": "string",
+            "Required": false
+        },
+        "indexName": {
+            "Description": "The name of the index to search.",
+            "Type": "string",
+            "Required": false
+        },
+        "unit": {
+            "Description": "Used to support unit transformation such as milliseconds to seconds. The unit must be supported by CW metric . Default to null.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Metadata, which can be used to manage the fleet metric.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_job": {
+        "jobId": {
+            "Description": "A job identifier which must be unique for your Amazon Web Services account. We recommend using a UUID. Alpha-numeric characters, \"-\" and \"_\" are valid for use here.",
+            "Type": "string",
+            "Required": true
+        },
+        "targets": {
+            "Description": "A list of things and thing groups to which the job should be sent.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "documentSource": {
+            "Description": "An S3 link to the job document. Required if you don't specify a value for document .",
+            "Type": "string",
+            "Required": false
+        },
+        "document": {
+            "Description": "The job document. Required if you don't specify a value for documentSource .",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A short text description of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "presignedUrlConfig": {
+            "Description": "Configuration information for pre-signed S3 URLs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "targetSelection": {
+            "Description": "Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "jobExecutionsRolloutConfig": {
+            "Description": "Allows you to create a staged rollout of the job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "abortConfig": {
+            "Description": "Allows you to create the criteria to abort a job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "timeoutConfig": {
+            "Description": "Specifies the amount of time each device has to finish its execution of the job. The timer is started when the job execution status is set to IN_PROGRESS. If the job execution status is not set to another terminal state before the time expires, it will be automatically set to TIMED_OUT .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the job.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "namespaceId": {
+            "Description": "The namespace used to indicate that a job is a customer-managed job.\nWhen you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.",
+            "Type": "string",
+            "Required": false
+        },
+        "jobTemplateArn": {
+            "Description": "The ARN of the job template used to create the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "jobExecutionsRetryConfig": {
+            "Description": "Allows you to create the criteria to retry a job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "documentParameters": {
+            "Description": "Parameters of an Amazon Web Services managed template that you can specify to create the job document.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_job_template": {
+        "jobTemplateId": {
+            "Description": "A unique identifier for the job template. We recommend using a UUID. Alpha-numeric characters, \"-\", and \"_\" are valid for use here.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobArn": {
+            "Description": "The ARN of the job to use as the basis for the job template.",
+            "Type": "string",
+            "Required": false
+        },
+        "documentSource": {
+            "Description": "An S3 link to the job document to use in the template. Required if you don't specify a value for document .",
+            "Type": "string",
+            "Required": false
+        },
+        "document": {
+            "Description": "The job document. Required if you don't specify a value for documentSource .",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "A description of the job document.",
+            "Type": "string",
+            "Required": true
+        },
+        "presignedUrlConfig": {
+            "Description": "Configuration for pre-signed S3 URLs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "jobExecutionsRolloutConfig": {
+            "Description": "Allows you to create a staged rollout of a job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "abortConfig": {
+            "Description": "The criteria that determine when and how a job abort takes place.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "timeoutConfig": {
+            "Description": "Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to IN_PROGRESS. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to TIMED_OUT .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the job template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "jobExecutionsRetryConfig": {
+            "Description": "Allows you to create the criteria to retry a job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_keys_and_certificate": {
+        "setAsActive": {
+            "Description": "Specifies whether the certificate is active.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_mitigation_action": {
+        "actionName": {
+            "Description": "A friendly name for the action. Choose a friendly name that accurately describes the action (for example, EnableLoggingAction ).",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The ARN of the IAM role that is used to apply the mitigation action.",
+            "Type": "string",
+            "Required": true
+        },
+        "actionParams": {
+            "Description": "Defines the type of action and the parameters for that action.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the mitigation action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_ota_update": {
+        "otaUpdateId": {
+            "Description": "The ID of the OTA update to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the OTA update.",
+            "Type": "string",
+            "Required": false
+        },
+        "targets": {
+            "Description": "The devices targeted to receive OTA updates.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "protocols": {
+            "Description": "The protocol used to transfer the OTA update image. Valid values are [HTTP], [MQTT], [HTTP, MQTT]. When both HTTP and MQTT are specified, the target device can choose the protocol.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "targetSelection": {
+            "Description": "Specifies whether the update will continue to run (CONTINUOUS), or will be complete after all the things specified as targets have completed the update (SNAPSHOT). If continuous, the update may also be run on a thing when a change is detected in a target. For example, an update will run on a thing when the thing is added to a target group, even after the update was completed by all things originally in the group. Valid values: CONTINUOUS | SNAPSHOT.",
+            "Type": "string",
+            "Required": false
+        },
+        "awsJobExecutionsRolloutConfig": {
+            "Description": "Configuration for the rollout of OTA updates.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "awsJobPresignedUrlConfig": {
+            "Description": "Configuration information for pre-signed URLs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "awsJobAbortConfig": {
+            "Description": "The criteria that determine when and how a job abort takes place.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "awsJobTimeoutConfig": {
+            "Description": "Specifies the amount of time each device has to finish its execution of the job. A timer is started when the job execution status is set to IN_PROGRESS. If the job execution status is not set to another terminal state before the timer expires, it will be automatically set to TIMED_OUT .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "files": {
+            "Description": "The files to be streamed by the OTA update.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "roleArn": {
+            "Description": "The IAM role that grants Amazon Web Services IoT Core access to the Amazon S3, IoT jobs and Amazon Web Services Code Signing resources to create an OTA update job.",
+            "Type": "string",
+            "Required": true
+        },
+        "additionalParameters": {
+            "Description": "A list of additional OTA update parameters which are name-value pairs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage updates.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_policy": {
+        "policyName": {
+            "Description": "The policy name.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyDocument": {
+            "Description": "The JSON document that describes the policy. policyDocument must have a minimum length of 1, with a maximum length of 2048, excluding whitespace.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the policy.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_policy_version": {
+        "policyName": {
+            "Description": "The policy name.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyDocument": {
+            "Description": "The JSON document that describes the policy. Minimum length of 1. Maximum length of 2048, excluding whitespace.",
+            "Type": "string",
+            "Required": true
+        },
+        "setAsDefault": {
+            "Description": "Specifies whether the policy version is set as the default. When this parameter is true, the new policy version becomes the operative version (that is, the version that is in effect for the certificates to which the policy is attached).",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_provisioning_claim": {
+        "templateName": {
+            "Description": "The name of the provisioning template to use.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_provisioning_template": {
+        "templateName": {
+            "Description": "The name of the provisioning template.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the provisioning template.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateBody": {
+            "Description": "The JSON formatted contents of the provisioning template.",
+            "Type": "string",
+            "Required": true
+        },
+        "enabled": {
+            "Description": "True to enable the provisioning template, otherwise false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "provisioningRoleArn": {
+            "Description": "The role ARN for the role associated with the provisioning template. This IoT role grants permission to provision a device.",
+            "Type": "string",
+            "Required": true
+        },
+        "preProvisioningHook": {
+            "Description": "Creates a pre-provisioning hook template.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the provisioning template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "type": {
+            "Description": "The type you define in a provisioning template. You can create a template with only one type. You can't change the template type after its creation. The default value is FLEET_PROVISIONING . For more information about provisioning template, see: Provisioning template .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_provisioning_template_version": {
+        "templateName": {
+            "Description": "The name of the provisioning template.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateBody": {
+            "Description": "The JSON formatted contents of the provisioning template.",
+            "Type": "string",
+            "Required": true
+        },
+        "setAsDefault": {
+            "Description": "Sets a fleet provision template version as the default version.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_role_alias": {
+        "roleAlias": {
+            "Description": "The role alias that points to a role ARN. This allows you to change the role without having to update the device.",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The role ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "credentialDurationSeconds": {
+            "Description": "How long (in seconds) the credentials will be valid. The default value is 3,600 seconds.\nThis value must be less than or equal to the maximum session duration of the IAM role that the role alias references.",
+            "Type": "integer",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the role alias.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_scheduled_audit": {
+        "frequency": {
+            "Description": "How often the scheduled audit takes place, either DAILY, WEEKLY, BIWEEKLY or MONTHLY. The start time of each audit is determined by the system.",
+            "Type": "string",
+            "Required": true
+        },
+        "dayOfMonth": {
+            "Description": "The day of the month on which the scheduled audit takes place. This can be \"1\" through \"31\" or \"LAST\". This field is required if the \"frequency\" parameter is set to MONTHLY . If days 29 to 31 are specified, and the month doesn't have that many days, the audit takes place on the LAST day of the month.",
+            "Type": "string",
+            "Required": false
+        },
+        "dayOfWeek": {
+            "Description": "The day of the week on which the scheduled audit takes place, either SUN , MON , TUE , WED , THU , FRI , or SAT . This field is required if the frequency parameter is set to WEEKLY or BIWEEKLY .",
+            "Type": "string",
+            "Required": false
+        },
+        "targetCheckNames": {
+            "Description": "Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or use UpdateAccountAuditConfiguration to select which checks are enabled.)",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "scheduledAuditName": {
+            "Description": "The name you want to give to the scheduled audit. (Max. 128 chars)",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the scheduled audit.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_security_profile": {
+        "securityProfileName": {
+            "Description": "The name you are giving to the security profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "securityProfileDescription": {
+            "Description": "A description of the security profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "behaviors": {
+            "Description": "Specifies the behaviors that, when violated by a device (thing), cause an alert.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "alertTargets": {
+            "Description": "Specifies the destinations to which alerts are sent. (Alerts are always sent to the console.) Alerts are generated when a device (thing) violates a behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "additionalMetricsToRetain": {
+            "Description": "A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here. Can be used with custom metrics; cannot be used with dimensions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "additionalMetricsToRetainV2": {
+            "Description": "A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here. Can be used with custom metrics; cannot be used with dimensions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the security profile.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_stream": {
+        "streamId": {
+            "Description": "The stream ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the stream.",
+            "Type": "string",
+            "Required": false
+        },
+        "files": {
+            "Description": "The files to stream.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "roleArn": {
+            "Description": "An IAM role that allows the IoT service principal to access your S3 files.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage streams.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_thing": {
+        "thingName": {
+            "Description": "The name of the thing to create.\nYou can't change a thing's name after you create it. To change a thing's name, you must create a new thing, give it the new name, and then delete the old thing.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingTypeName": {
+            "Description": "The name of the thing type associated with the new thing.",
+            "Type": "string",
+            "Required": false
+        },
+        "attributePayload": {
+            "Description": "The attribute payload, which consists of up to three name/value pairs in a JSON document. For example:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "billingGroupName": {
+            "Description": "The name of the billing group the thing will be added to.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_thing_group": {
+        "thingGroupName": {
+            "Description": "The thing group name to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "parentGroupName": {
+            "Description": "The name of the parent thing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingGroupProperties": {
+            "Description": "The thing group properties.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the thing group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_thing_type": {
+        "thingTypeName": {
+            "Description": "The name of the thing type.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingTypeProperties": {
+            "Description": "The ThingTypeProperties for the thing type to create. It contains information about the new thing type including a description, and a list of searchable thing attribute names.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the thing type.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_topic_rule": {
+        "ruleName": {
+            "Description": "The name of the rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "topicRulePayload": {
+            "Description": "The rule payload.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the topic rule.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_topic_rule_destination": {
+        "destinationConfiguration": {
+            "Description": "The topic rule destination configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_account_audit_configuration": {
+        "deleteScheduledAudits": {
+            "Description": "If true, all scheduled audits are deleted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_audit_suppression": {
+        "checkName": {
+            "Description": "An audit check name. Checks must be enabled for your account. (Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or use UpdateAccountAuditConfiguration to select which checks are enabled.)",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceIdentifier": {
+            "Description": "Information that identifies the noncompliant resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_authorizer": {
+        "authorizerName": {
+            "Description": "The name of the authorizer to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_billing_group": {
+        "billingGroupName": {
+            "Description": "The name of the billing group.",
+            "Type": "string",
+            "Required": true
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the billing group. If the version of the billing group does not match the expected version specified in the request, the DeleteBillingGroup request is rejected with a VersionConflictException .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_ca_certificate": {
+        "certificateId": {
+            "Description": "The ID of the certificate to delete. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_certificate": {
+        "certificateId": {
+            "Description": "The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        },
+        "forceDelete": {
+            "Description": "Forces the deletion of a certificate if it is inactive and is not attached to an IoT thing.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_custom_metric": {
+        "metricName": {
+            "Description": "The name of the custom metric.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dimension": {
+        "name": {
+            "Description": "The unique identifier for the dimension that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_domain_configuration": {
+        "domainConfigurationName": {
+            "Description": "The name of the domain configuration to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dynamic_thing_group": {
+        "thingGroupName": {
+            "Description": "The name of the dynamic thing group to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the dynamic thing group to delete.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_fleet_metric": {
+        "metricName": {
+            "Description": "The name of the fleet metric to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the fleet metric to delete.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_job": {
+        "jobId": {
+            "Description": "The ID of the job to be deleted.\nAfter a job deletion is completed, you may reuse this jobId when you create a new job. However, this is not recommended, and you must ensure that your devices are not using the jobId to refer to the deleted job.",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "(Optional) When true, you can delete a job which is \"IN_PROGRESS\". Otherwise, you can only delete a job which is in a terminal state (\"COMPLETED\" or \"CANCELED\") or an exception will occur. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "namespaceId": {
+            "Description": "The namespace used to indicate that a job is a customer-managed job.\nWhen you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_job_execution": {
+        "jobId": {
+            "Description": "The ID of the job whose execution on a particular device will be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingName": {
+            "Description": "The name of the thing whose job execution will be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionNumber": {
+            "Description": "The ID of the job execution to be deleted. The executionNumber refers to the execution of a particular job on a particular device.\nNote that once a job execution is deleted, the executionNumber may be reused by IoT, so be sure you get and use the correct value here.",
+            "Type": "integer",
+            "Required": true
+        },
+        "force": {
+            "Description": "(Optional) When true, you can delete a job execution which is \"IN_PROGRESS\". Otherwise, you can only delete a job execution which is in a terminal state (\"SUCCEEDED\", \"FAILED\", \"REJECTED\", \"REMOVED\" or \"CANCELED\") or an exception will occur. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "namespaceId": {
+            "Description": "The namespace used to indicate that a job is a customer-managed job.\nWhen you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_job_template": {
+        "jobTemplateId": {
+            "Description": "The unique identifier of the job template to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_mitigation_action": {
+        "actionName": {
+            "Description": "The name of the mitigation action that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_ota_update": {
+        "otaUpdateId": {
+            "Description": "The ID of the OTA update to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "deleteStream": {
+            "Description": "When true, the stream created by the OTAUpdate process is deleted when the OTA update is deleted. Ignored if the stream specified in the OTAUpdate is supplied by the user.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "forceDeleteAWSJob": {
+            "Description": "When true, deletes the IoT job created by the OTAUpdate process even if it is \"IN_PROGRESS\". Otherwise, if the job is not in a terminal state (\"COMPLETED\" or \"CANCELED\") an exception will occur. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_policy": {
+        "policyName": {
+            "Description": "The name of the policy to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_policy_version": {
+        "policyName": {
+            "Description": "The name of the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyVersionId": {
+            "Description": "The policy version ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_provisioning_template": {
+        "templateName": {
+            "Description": "The name of the fleet provision template to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_provisioning_template_version": {
+        "templateName": {
+            "Description": "The name of the provisioning template version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "versionId": {
+            "Description": "The provisioning template version ID to delete.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "delete_registration_code": "No parameters defined",
+    "delete_role_alias": {
+        "roleAlias": {
+            "Description": "The role alias to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_scheduled_audit": {
+        "scheduledAuditName": {
+            "Description": "The name of the scheduled audit you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_security_profile": {
+        "securityProfileName": {
+            "Description": "The name of the security profile to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different from the actual version, a VersionConflictException is thrown.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_stream": {
+        "streamId": {
+            "Description": "The stream ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_thing": {
+        "thingName": {
+            "Description": "The name of the thing to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the thing record in the registry. If the version of the record in the registry does not match the expected version specified in the request, the DeleteThing request is rejected with a VersionConflictException .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_thing_group": {
+        "thingGroupName": {
+            "Description": "The name of the thing group to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the thing group to delete.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_thing_type": {
+        "thingTypeName": {
+            "Description": "The name of the thing type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_topic_rule": {
+        "ruleName": {
+            "Description": "The name of the rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_topic_rule_destination": {
+        "arn": {
+            "Description": "The ARN of the topic rule destination to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_v2_logging_level": {
+        "targetType": {
+            "Description": "The type of resource for which you are configuring logging. Must be THING_Group .",
+            "Type": "string",
+            "Required": true
+        },
+        "targetName": {
+            "Description": "The name of the resource for which you are configuring logging.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "deprecate_thing_type": {
+        "thingTypeName": {
+            "Description": "The name of the thing type to deprecate.",
+            "Type": "string",
+            "Required": true
+        },
+        "undoDeprecate": {
+            "Description": "Whether to undeprecate a deprecated thing type. If true , the thing type will not be deprecated anymore and you can associate it with things.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_account_audit_configuration": "No parameters defined",
+    "describe_audit_finding": {
+        "findingId": {
+            "Description": "A unique identifier for a single audit finding. You can use this identifier to apply mitigation actions to the finding.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_audit_mitigation_actions_task": {
+        "taskId": {
+            "Description": "The unique identifier for the audit mitigation task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_audit_suppression": {
+        "checkName": {
+            "Description": "An audit check name. Checks must be enabled for your account. (Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or use UpdateAccountAuditConfiguration to select which checks are enabled.)",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceIdentifier": {
+            "Description": "Information that identifies the noncompliant resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "describe_audit_task": {
+        "taskId": {
+            "Description": "The ID of the audit whose information you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_authorizer": {
+        "authorizerName": {
+            "Description": "The name of the authorizer to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_billing_group": {
+        "billingGroupName": {
+            "Description": "The name of the billing group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_ca_certificate": {
+        "certificateId": {
+            "Description": "The CA certificate identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_certificate": {
+        "certificateId": {
+            "Description": "The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_custom_metric": {
+        "metricName": {
+            "Description": "The name of the custom metric.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_default_authorizer": "No parameters defined",
+    "describe_detect_mitigation_actions_task": {
+        "taskId": {
+            "Description": "The unique identifier of the task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dimension": {
+        "name": {
+            "Description": "The unique identifier for the dimension.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_domain_configuration": {
+        "domainConfigurationName": {
+            "Description": "The name of the domain configuration.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_endpoint": {
+        "endpointType": {
+            "Description": "The endpoint type. Valid endpoint types include:\nWe strongly recommend that customers use the newer iot:Data-ATS endpoint type to avoid issues related to the widespread distrust of Symantec certificate authorities.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "describe_event_configurations": "No parameters defined",
+    "describe_fleet_metric": {
+        "metricName": {
+            "Description": "The name of the fleet metric to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_index": {
+        "indexName": {
+            "Description": "The index name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_job": {
+        "jobId": {
+            "Description": "The unique identifier you assigned to this job when it was created.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_job_execution": {
+        "jobId": {
+            "Description": "The unique identifier you assigned to this job when it was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingName": {
+            "Description": "The name of the thing on which the job execution is running.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionNumber": {
+            "Description": "A string (consisting of the digits \"0\" through \"9\" which is used to specify a particular job execution on a particular device.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_job_template": {
+        "jobTemplateId": {
+            "Description": "The unique identifier of the job template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_managed_job_template": {
+        "templateName": {
+            "Description": "The unique name of a managed job template, which is required.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateVersion": {
+            "Description": "An optional parameter to specify version of a managed template. If not specified, the pre-defined default version is returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_mitigation_action": {
+        "actionName": {
+            "Description": "The friendly name that uniquely identifies the mitigation action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_provisioning_template": {
+        "templateName": {
+            "Description": "The name of the provisioning template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_provisioning_template_version": {
+        "templateName": {
+            "Description": "The template name.",
+            "Type": "string",
+            "Required": true
+        },
+        "versionId": {
+            "Description": "The provisioning template version ID.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "describe_role_alias": {
+        "roleAlias": {
+            "Description": "The role alias to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_scheduled_audit": {
+        "scheduledAuditName": {
+            "Description": "The name of the scheduled audit whose information you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_security_profile": {
+        "securityProfileName": {
+            "Description": "The name of the security profile whose information you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_stream": {
+        "streamId": {
+            "Description": "The stream ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_thing": {
+        "thingName": {
+            "Description": "The name of the thing.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_thing_group": {
+        "thingGroupName": {
+            "Description": "The name of the thing group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_thing_registration_task": {
+        "taskId": {
+            "Description": "The task ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_thing_type": {
+        "thingTypeName": {
+            "Description": "The name of the thing type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_policy": {
+        "policyName": {
+            "Description": "The policy to detach.",
+            "Type": "string",
+            "Required": true
+        },
+        "target": {
+            "Description": "The target from which the policy will be detached.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_principal_policy": {
+        "policyName": {
+            "Description": "The name of the policy to detach.",
+            "Type": "string",
+            "Required": true
+        },
+        "principal": {
+            "Description": "The principal.\nValid principals are CertificateArn (arn:aws:iot:region :accountId :cert/certificateId ), thingGroupArn (arn:aws:iot:region :accountId :thinggroup/groupName ) and CognitoId (region :id ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_security_profile": {
+        "securityProfileName": {
+            "Description": "The security profile that is detached.",
+            "Type": "string",
+            "Required": true
+        },
+        "securityProfileTargetArn": {
+            "Description": "The ARN of the thing group from which the security profile is detached.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_thing_principal": {
+        "thingName": {
+            "Description": "The name of the thing.",
+            "Type": "string",
+            "Required": true
+        },
+        "principal": {
+            "Description": "If the principal is a certificate, this value must be ARN of the certificate. If the principal is an Amazon Cognito identity, this value must be the ID of the Amazon Cognito identity.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_topic_rule": {
+        "ruleName": {
+            "Description": "The name of the rule to disable.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_topic_rule": {
+        "ruleName": {
+            "Description": "The name of the topic rule to enable.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_behavior_model_training_summaries": {
+        "securityProfileName": {
+            "Description": "The name of the security profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_buckets_aggregation": {
+        "indexName": {
+            "Description": "The name of the index to search.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryString": {
+            "Description": "The search query string.",
+            "Type": "string",
+            "Required": true
+        },
+        "aggregationField": {
+            "Description": "The aggregation field.",
+            "Type": "string",
+            "Required": true
+        },
+        "queryVersion": {
+            "Description": "The version of the query.",
+            "Type": "string",
+            "Required": false
+        },
+        "bucketsAggregationType": {
+            "Description": "The basic control of the response shape and the bucket aggregation type to perform.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "get_cardinality": {
+        "indexName": {
+            "Description": "The name of the index to search.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryString": {
+            "Description": "The search query string.",
+            "Type": "string",
+            "Required": true
+        },
+        "aggregationField": {
+            "Description": "The field to aggregate.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryVersion": {
+            "Description": "The query version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_effective_policies": {
+        "principal": {
+            "Description": "The principal. Valid principals are CertificateArn (arn:aws:iot:region :accountId :cert/certificateId ), thingGroupArn (arn:aws:iot:region :accountId :thinggroup/groupName ) and CognitoId (region :id ).",
+            "Type": "string",
+            "Required": false
+        },
+        "cognitoIdentityPoolId": {
+            "Description": "The Cognito identity pool ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingName": {
+            "Description": "The thing name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_indexing_configuration": "No parameters defined",
+    "get_job_document": {
+        "jobId": {
+            "Description": "The unique identifier you assigned to this job when it was created.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_logging_options": "No parameters defined",
+    "get_ota_update": {
+        "otaUpdateId": {
+            "Description": "The OTA update ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_percentiles": {
+        "indexName": {
+            "Description": "The name of the index to search.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryString": {
+            "Description": "The search query string.",
+            "Type": "string",
+            "Required": true
+        },
+        "aggregationField": {
+            "Description": "The field to aggregate.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryVersion": {
+            "Description": "The query version.",
+            "Type": "string",
+            "Required": false
+        },
+        "percents": {
+            "Description": "The percentile groups returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_policy": {
+        "policyName": {
+            "Description": "The name of the policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_policy_version": {
+        "policyName": {
+            "Description": "The name of the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyVersionId": {
+            "Description": "The policy version ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_registration_code": "No parameters defined",
+    "get_statistics": {
+        "indexName": {
+            "Description": "The name of the index to search. The default value is AWS_Things .",
+            "Type": "string",
+            "Required": false
+        },
+        "queryString": {
+            "Description": "The query used to search. You can specify \"*\" for the query string to get the count of all indexed things in your Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "aggregationField": {
+            "Description": "The aggregation field name.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryVersion": {
+            "Description": "The version of the query used to search.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_topic_rule": {
+        "ruleName": {
+            "Description": "The name of the rule.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_topic_rule_destination": {
+        "arn": {
+            "Description": "The ARN of the topic rule destination.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_v2_logging_options": "No parameters defined",
+    "list_active_violations": {
+        "thingName": {
+            "Description": "The name of the thing whose active violations are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "securityProfileName": {
+            "Description": "The name of the Device Defender security profile for which violations are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "behaviorCriteriaType": {
+            "Description": "The criteria for a behavior.",
+            "Type": "string",
+            "Required": false
+        },
+        "listSuppressedAlerts": {
+            "Description": "A list of all suppressed alerts.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "verificationState": {
+            "Description": "The verification state of the violation (detect alarm).",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_attached_policies": {
+        "target": {
+            "Description": "The group or principal for which the policies will be listed. Valid principals are CertificateArn (arn:aws:iot:region :accountId :cert/certificateId ), thingGroupArn (arn:aws:iot:region :accountId :thinggroup/groupName ) and CognitoId (region :id ).",
+            "Type": "string",
+            "Required": true
+        },
+        "recursive": {
+            "Description": "When true, recursively list attached policies.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "marker": {
+            "Description": "The token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageSize": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_audit_findings": {
+        "taskId": {
+            "Description": "A filter to limit results to the audit with the specified ID. You must specify either the taskId or the startTime and endTime, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "checkName": {
+            "Description": "A filter to limit results to the findings for the specified audit check.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceIdentifier": {
+            "Description": "Information identifying the noncompliant resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "A filter to limit results to those found after the specified time. You must specify either the startTime and endTime or the taskId, but not both.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "A filter to limit results to those found before the specified time. You must specify either the startTime and endTime or the taskId, but not both.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "listSuppressedFindings": {
+            "Description": "Boolean flag indicating whether only the suppressed findings or the unsuppressed findings should be listed. If this parameter isn't provided, the response will list both suppressed and unsuppressed findings.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_audit_mitigation_actions_executions": {
+        "taskId": {
+            "Description": "Specify this filter to limit results to actions for a specific audit mitigation actions task.",
+            "Type": "string",
+            "Required": true
+        },
+        "actionStatus": {
+            "Description": "Specify this filter to limit results to those with a specific status.",
+            "Type": "string",
+            "Required": false
+        },
+        "findingId": {
+            "Description": "Specify this filter to limit results to those that were applied to a specific audit finding.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_audit_mitigation_actions_tasks": {
+        "auditTaskId": {
+            "Description": "Specify this filter to limit results to tasks that were applied to results for a specific audit.",
+            "Type": "string",
+            "Required": false
+        },
+        "findingId": {
+            "Description": "Specify this filter to limit results to tasks that were applied to a specific audit finding.",
+            "Type": "string",
+            "Required": false
+        },
+        "taskStatus": {
+            "Description": "Specify this filter to limit results to tasks that are in a specific state.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "Specify this filter to limit results to tasks that began on or after a specific date and time.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "Specify this filter to limit results to tasks that were completed or canceled on or before a specific date and time.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "list_audit_suppressions": {
+        "checkName": {
+            "Description": "An audit check name. Checks must be enabled for your account. (Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or use UpdateAccountAuditConfiguration to select which checks are enabled.)",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceIdentifier": {
+            "Description": "Information that identifies the noncompliant resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ascendingOrder": {
+            "Description": "Determines whether suppressions are listed in ascending order by expiration date or not. If parameter isn't provided, ascendingOrder=true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_audit_tasks": {
+        "startTime": {
+            "Description": "The beginning of the time period. Audit information is retained for a limited time (90 days). Requesting a start time prior to what is retained results in an \"InvalidRequestException\".",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end of the time period.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "taskType": {
+            "Description": "A filter to limit the output to the specified type of audit: can be one of \"ON_DEMAND_AUDIT_TASK\" or \"SCHEDULED__AUDIT_TASK\".",
+            "Type": "string",
+            "Required": false
+        },
+        "taskStatus": {
+            "Description": "A filter to limit the output to audits with the specified completion status: can be one of \"IN_PROGRESS\", \"COMPLETED\", \"FAILED\", or \"CANCELED\".",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_authorizers": {
+        "pageSize": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "marker": {
+            "Description": "A marker used to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Return the list of authorizers in ascending alphabetical order.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status of the list authorizers request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_billing_groups": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "namePrefixFilter": {
+            "Description": "Limit the results to billing groups whose names have the given prefix.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_ca_certificates": {
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Determines the order of the results.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "templateName": {
+            "Description": "The name of the provisioning template.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_certificates": {
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_certificates_by_ca": {
+        "caCertificateId": {
+            "Description": "The ID of the CA certificate. This operation will list all registered device certificate that were signed by this CA certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_custom_metrics": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_detect_mitigation_actions_executions": {
+        "taskId": {
+            "Description": "The unique identifier of the task.",
+            "Type": "string",
+            "Required": false
+        },
+        "violationId": {
+            "Description": "The unique identifier of the violation.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingName": {
+            "Description": "The name of the thing whose mitigation actions are listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "A filter to limit results to those found after the specified time. You must specify either the startTime and endTime or the taskId, but not both.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end of the time period for which ML Detect mitigation actions executions are returned.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_detect_mitigation_actions_tasks": {
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "A filter to limit results to those found after the specified time. You must specify either the startTime and endTime or the taskId, but not both.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end of the time period for which ML Detect mitigation actions tasks are returned.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "list_dimensions": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to retrieve at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_domain_configurations": {
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "serviceType": {
+            "Description": "The type of service delivered by the endpoint.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_fleet_metrics": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this operation.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_indices": {
+        "nextToken": {
+            "Description": "The token used to get the next set of results, or null if there are no additional results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_job_executions_for_job": {
+        "jobId": {
+            "Description": "The unique identifier you assigned to this job when it was created.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The status of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_job_executions_for_thing": {
+        "thingName": {
+            "Description": "The thing name.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "An optional filter that lets you search for jobs that have the specified status.",
+            "Type": "string",
+            "Required": false
+        },
+        "namespaceId": {
+            "Description": "The namespace used to indicate that a job is a customer-managed job.\nWhen you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "jobId": {
+            "Description": "The unique identifier you assigned to this job when it was created.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_job_templates": {
+        "maxResults": {
+            "Description": "The maximum number of results to return in the list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to use to return the next set of results in the list.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_jobs": {
+        "status": {
+            "Description": "An optional filter that lets you search for jobs that have the specified status.",
+            "Type": "string",
+            "Required": false
+        },
+        "targetSelection": {
+            "Description": "Specifies whether the job will continue to run (CONTINUOUS), or will be complete after all those things specified as targets have completed the job (SNAPSHOT). If continuous, the job may also be run on a thing when a change is detected in a target. For example, a job will run on a thing when the thing is added to a target group, even after the job was completed by all things originally in the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingGroupName": {
+            "Description": "A filter that limits the returned jobs to those for the specified group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingGroupId": {
+            "Description": "A filter that limits the returned jobs to those for the specified group.",
+            "Type": "string",
+            "Required": false
+        },
+        "namespaceId": {
+            "Description": "The namespace used to indicate that a job is a customer-managed job.\nWhen you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_managed_job_templates": {
+        "templateName": {
+            "Description": "An optional parameter for template name. If specified, only the versions of the managed job templates that have the specified template name will be returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "Maximum number of entries that can be returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_metric_values": {
+        "thingName": {
+            "Description": "The name of the thing for which security profile metric values are returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The name of the security profile metric for which values are returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "dimensionName": {
+            "Description": "The dimension name.",
+            "Type": "string",
+            "Required": false
+        },
+        "dimensionValueOperator": {
+            "Description": "The dimension value operator.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "The start of the time period for which metric values are returned.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end of the time period for which metric values are returned.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_mitigation_actions": {
+        "actionType": {
+            "Description": "Specify a value to limit the result to mitigation actions with a specific action type.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_ota_updates": {
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "otaUpdateStatus": {
+            "Description": "The OTA update job status.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_outgoing_certificates": {
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Specifies the order for results. If True, the results are returned in ascending order, based on the creation date.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_policies": {
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Specifies the order for results. If true, the results are returned in ascending creation order.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_policy_principals": {
+        "policyName": {
+            "Description": "The policy name.",
+            "Type": "string",
+            "Required": true
+        },
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Specifies the order for results. If true, the results are returned in ascending creation order.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_policy_versions": {
+        "policyName": {
+            "Description": "The policy name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_principal_policies": {
+        "principal": {
+            "Description": "The principal. Valid principals are CertificateArn (arn:aws:iot:region :accountId :cert/certificateId ), thingGroupArn (arn:aws:iot:region :accountId :thinggroup/groupName ) and CognitoId (region :id ).",
+            "Type": "string",
+            "Required": true
+        },
+        "marker": {
+            "Description": "The marker for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageSize": {
+            "Description": "The result page size.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Specifies the order for results. If true, results are returned in ascending creation order.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_principal_things": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "principal": {
+            "Description": "The principal.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_provisioning_template_versions": {
+        "templateName": {
+            "Description": "The name of the provisioning template.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_provisioning_templates": {
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_role_aliases": {
+        "pageSize": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "marker": {
+            "Description": "A marker used to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Return the list of role aliases in ascending alphabetical order.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_scheduled_audits": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time. The default is 25.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_security_profiles": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "dimensionName": {
+            "Description": "A filter to limit results to the security profiles that use the defined dimension. Cannot be used with metricName",
+            "Type": "string",
+            "Required": false
+        },
+        "metricName": {
+            "Description": "The name of the custom metric. Cannot be used with dimensionName .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_security_profiles_for_target": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "recursive": {
+            "Description": "If true, return child groups too.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "securityProfileTargetArn": {
+            "Description": "The ARN of the target (thing group) whose attached security profiles you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_streams": {
+        "maxResults": {
+            "Description": "The maximum number of results to return at a time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A token used to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ascendingOrder": {
+            "Description": "Set to true to return the list of streams in ascending order.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_targets_for_policy": {
+        "policyName": {
+            "Description": "The policy name.",
+            "Type": "string",
+            "Required": true
+        },
+        "marker": {
+            "Description": "A marker used to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageSize": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_targets_for_security_profile": {
+        "securityProfileName": {
+            "Description": "The security profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_thing_groups": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "parentGroup": {
+            "Description": "A filter that limits the results to those with the specified parent group.",
+            "Type": "string",
+            "Required": false
+        },
+        "namePrefixFilter": {
+            "Description": "A filter that limits the results to those with the specified name prefix.",
+            "Type": "string",
+            "Required": false
+        },
+        "recursive": {
+            "Description": "If true, return child groups as well.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_thing_groups_for_thing": {
+        "thingName": {
+            "Description": "The thing name.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_thing_principals": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "thingName": {
+            "Description": "The name of the thing.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_thing_registration_task_reports": {
+        "taskId": {
+            "Description": "The id of the task.",
+            "Type": "string",
+            "Required": true
+        },
+        "reportType": {
+            "Description": "The type of task report.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_thing_registration_tasks": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status of the bulk thing provisioning task.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_thing_types": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "thingTypeName": {
+            "Description": "The name of the thing type.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_things": {
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "attributeName": {
+            "Description": "The attribute name used to search for things.",
+            "Type": "string",
+            "Required": false
+        },
+        "attributeValue": {
+            "Description": "The attribute value used to search for things.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingTypeName": {
+            "Description": "The name of the thing type used to search for things.",
+            "Type": "string",
+            "Required": false
+        },
+        "usePrefixAttributeValue": {
+            "Description": "When true, the action returns the thing resources with attribute values that start with the attributeValue provided.\nWhen false, or not present, the action returns only the thing resources with attribute values that match the entire attributeValue provided.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_things_in_billing_group": {
+        "billingGroupName": {
+            "Description": "The name of the billing group.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_things_in_thing_group": {
+        "thingGroupName": {
+            "Description": "The thing group name.",
+            "Type": "string",
+            "Required": true
+        },
+        "recursive": {
+            "Description": "When true, list things in this thing group and in all child groups as well.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_topic_rule_destinations": {
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_topic_rules": {
+        "topic": {
+            "Description": "The topic.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ruleDisabled": {
+            "Description": "Specifies whether the rule is disabled.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_v2_logging_levels": {
+        "targetType": {
+            "Description": "The type of resource for which you are configuring logging. Must be THING_Group .",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "To retrieve the next set of results, the nextToken value from a previous response; otherwise null to receive the first set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_violation_events": {
+        "startTime": {
+            "Description": "The start time for the alerts to be listed.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end time for the alerts to be listed.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "thingName": {
+            "Description": "A filter to limit results to those alerts caused by the specified thing.",
+            "Type": "string",
+            "Required": false
+        },
+        "securityProfileName": {
+            "Description": "A filter to limit results to those alerts generated by the specified security profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "behaviorCriteriaType": {
+            "Description": "The criteria for a behavior.",
+            "Type": "string",
+            "Required": false
+        },
+        "listSuppressedAlerts": {
+            "Description": "A list of all suppressed alerts.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "verificationState": {
+            "Description": "The verification state of the violation (detect alarm).",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_verification_state_on_violation": {
+        "violationId": {
+            "Description": "The violation ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "verificationState": {
+            "Description": "The verification state of the violation.",
+            "Type": "string",
+            "Required": true
+        },
+        "verificationStateDescription": {
+            "Description": "The description of the verification state of the violation (detect alarm).",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_ca_certificate": {
+        "caCertificate": {
+            "Description": "The CA certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "verificationCertificate": {
+            "Description": "The private key verification certificate. If certificateMode is SNI_ONLY , the verificationCertificate field must be empty. If certificateMode is DEFAULT or not provided, the verificationCertificate field must not be empty.",
+            "Type": "string",
+            "Required": false
+        },
+        "setAsActive": {
+            "Description": "A boolean value that specifies if the CA certificate is set to active.\nValid values: ACTIVE | INACTIVE",
+            "Type": "boolean",
+            "Required": false
+        },
+        "allowAutoRegistration": {
+            "Description": "Allows this CA certificate to be used for auto registration of device certificates.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "registrationConfig": {
+            "Description": "Information about the registration configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the CA certificate.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "certificateMode": {
+            "Description": "Describes the certificate mode in which the Certificate Authority (CA) will be registered. If the verificationCertificate field is not provided, set certificateMode to be SNI_ONLY . If the verificationCertificate field is provided, set certificateMode to be DEFAULT . When certificateMode is not provided, it defaults to DEFAULT . All the device certificates that are registered using this CA will be registered in the same certificate mode as the CA. For more information about certificate mode for device certificates, see certificate mode .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_certificate": {
+        "certificatePem": {
+            "Description": "The certificate data, in PEM format.",
+            "Type": "string",
+            "Required": true
+        },
+        "caCertificatePem": {
+            "Description": "The CA certificate used to sign the device certificate being registered.",
+            "Type": "string",
+            "Required": false
+        },
+        "setAsActive": {
+            "Description": "A boolean value that specifies if the certificate is set to active.\nValid values: ACTIVE | INACTIVE",
+            "Type": "boolean",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status of the register certificate request. Valid values that you can use include ACTIVE , INACTIVE , and REVOKED .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_certificate_without_ca": {
+        "certificatePem": {
+            "Description": "The certificate data, in PEM format.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The status of the register certificate request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "register_thing": {
+        "templateBody": {
+            "Description": "The provisioning template. See Provisioning Devices That Have Device Certificates for more information.",
+            "Type": "string",
+            "Required": true
+        },
+        "parameters": {
+            "Description": "The parameters for provisioning a thing. See Provisioning Templates for more information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "reject_certificate_transfer": {
+        "certificateId": {
+            "Description": "The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        },
+        "rejectReason": {
+            "Description": "The reason the certificate transfer was rejected.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "remove_thing_from_billing_group": {
+        "billingGroupName": {
+            "Description": "The name of the billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "billingGroupArn": {
+            "Description": "The ARN of the billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingName": {
+            "Description": "The name of the thing to be removed from the billing group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingArn": {
+            "Description": "The ARN of the thing to be removed from the billing group.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "remove_thing_from_thing_group": {
+        "thingGroupName": {
+            "Description": "The group name.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingGroupArn": {
+            "Description": "The group ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingName": {
+            "Description": "The name of the thing to remove from the group.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingArn": {
+            "Description": "The ARN of the thing to remove from the group.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "replace_topic_rule": {
+        "ruleName": {
+            "Description": "The name of the rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "topicRulePayload": {
+            "Description": "The rule payload.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "search_index": {
+        "indexName": {
+            "Description": "The search index name.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryString": {
+            "Description": "The search query string. For more information about the search query syntax, see Query syntax .",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token used to get the next set of results, or null if there are no additional results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return at one time.",
+            "Type": "integer",
+            "Required": false
+        },
+        "queryVersion": {
+            "Description": "The query version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "set_default_authorizer": {
+        "authorizerName": {
+            "Description": "The authorizer name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_default_policy_version": {
+        "policyName": {
+            "Description": "The policy name.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyVersionId": {
+            "Description": "The policy version ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_logging_options": {
+        "loggingOptionsPayload": {
+            "Description": "The logging options payload.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "set_v2_logging_level": {
+        "logTarget": {
+            "Description": "The log target.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "logLevel": {
+            "Description": "The log level.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_v2_logging_options": {
+        "roleArn": {
+            "Description": "The ARN of the role that allows IoT to write to Cloudwatch logs.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultLogLevel": {
+            "Description": "The default logging level.",
+            "Type": "string",
+            "Required": false
+        },
+        "disableAllLogs": {
+            "Description": "If true all logs are disabled. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "start_audit_mitigation_actions_task": {
+        "taskId": {
+            "Description": "A unique identifier for the task. You can use this identifier to check the status of the task or to cancel it.",
+            "Type": "string",
+            "Required": true
+        },
+        "target": {
+            "Description": "Specifies the audit findings to which the mitigation actions are applied. You can apply them to a type of audit check, to all findings from an audit, or to a specific set of findings.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "auditCheckToActionsMapping": {
+            "Description": "For an audit check, specifies which mitigation actions to apply. Those actions must be defined in your Amazon Web Services accounts.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "clientRequestToken": {
+            "Description": "Each audit mitigation task must have a unique client request token. If you try to start a new task with the same token as a task that already exists, an exception occurs. If you omit this value, a unique client request token is generated automatically.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_detect_mitigation_actions_task": {
+        "taskId": {
+            "Description": "The unique identifier of the task.",
+            "Type": "string",
+            "Required": true
+        },
+        "target": {
+            "Description": "Specifies the ML Detect findings to which the mitigation actions are applied.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "actions": {
+            "Description": "The actions to be performed when a device has unexpected behavior.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "violationEventOccurrenceRange": {
+            "Description": "Specifies the time period of which violation events occurred between.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "includeOnlyActiveViolations": {
+            "Description": "Specifies to list only active violations.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "includeSuppressedAlerts": {
+            "Description": "Specifies to include suppressed alerts.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "clientRequestToken": {
+            "Description": "Each mitigation action task must have a unique client request token. If you try to create a new task with the same token as a task that already exists, an exception occurs. If you omit this value, Amazon Web Services SDKs will automatically generate a unique client request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_on_demand_audit_task": {
+        "targetCheckNames": {
+            "Description": "Which checks are performed during the audit. The checks you specify must be enabled for your account or an exception occurs. Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or UpdateAccountAuditConfiguration to select which checks are enabled.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "start_thing_registration_task": {
+        "templateBody": {
+            "Description": "The provisioning template.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputFileBucket": {
+            "Description": "The S3 bucket that contains the input file.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputFileKey": {
+            "Description": "The name of input file within the S3 bucket. This file contains a newline delimited JSON file. Each line contains the parameter values to provision one device (thing).",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The IAM role ARN that grants permission the input file.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_thing_registration_task": {
+        "taskId": {
+            "Description": "The bulk thing provisioning task ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The new or modified tags for the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "test_authorization": {
+        "principal": {
+            "Description": "The principal. Valid principals are CertificateArn (arn:aws:iot:region :accountId :cert/certificateId ), thingGroupArn (arn:aws:iot:region :accountId :thinggroup/groupName ) and CognitoId (region :id ).",
+            "Type": "string",
+            "Required": false
+        },
+        "cognitoIdentityPoolId": {
+            "Description": "The Cognito identity pool ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "authInfos": {
+            "Description": "A list of authorization info objects. Simulating authorization will create a response for each authInfo object in the list.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "clientId": {
+            "Description": "The MQTT client ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyNamesToAdd": {
+            "Description": "When testing custom authorization, the policies specified here are treated as if they are attached to the principal being authorized.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "policyNamesToSkip": {
+            "Description": "When testing custom authorization, the policies specified here are treated as if they are not attached to the principal being authorized.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "test_invoke_authorizer": {
+        "authorizerName": {
+            "Description": "The custom authorizer name.",
+            "Type": "string",
+            "Required": true
+        },
+        "token": {
+            "Description": "The token returned by your custom authentication service.",
+            "Type": "string",
+            "Required": false
+        },
+        "tokenSignature": {
+            "Description": "The signature made with the token and your custom authentication service's private key. This value must be Base-64-encoded.",
+            "Type": "string",
+            "Required": false
+        },
+        "httpContext": {
+            "Description": "Specifies a test HTTP authorization request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "mqttContext": {
+            "Description": "Specifies a test MQTT authorization request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tlsContext": {
+            "Description": "Specifies a test TLS authorization request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "transfer_certificate": {
+        "certificateId": {
+            "Description": "The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        },
+        "targetAwsAccount": {
+            "Description": "The Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "transferMessage": {
+            "Description": "The transfer message.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of the keys of the tags to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_account_audit_configuration": {
+        "roleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the role that grants permission to IoT to access information about your devices, policies, certificates, and other items as required when performing an audit.",
+            "Type": "string",
+            "Required": false
+        },
+        "auditNotificationTargetConfigurations": {
+            "Description": "Information about the targets to which audit notifications are sent.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "auditCheckConfigurations": {
+            "Description": "Specifies which audit checks are enabled and disabled for this account. Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are currently enabled.\nSome data collection might start immediately when certain checks are enabled. When a check is disabled, any data collected so far in relation to the check is deleted.\nYou cannot disable a check if it's used by any scheduled audit. You must first delete the check from the scheduled audit or delete the scheduled audit itself.\nOn the first call to UpdateAccountAuditConfiguration, this parameter is required and must specify at least one enabled check.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_audit_suppression": {
+        "checkName": {
+            "Description": "An audit check name. Checks must be enabled for your account. (Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or use UpdateAccountAuditConfiguration to select which checks are enabled.)",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceIdentifier": {
+            "Description": "Information that identifies the noncompliant resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "expirationDate": {
+            "Description": "The expiration date (epoch timestamp in seconds) that you want the suppression to adhere to.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "suppressIndefinitely": {
+            "Description": "Indicates whether a suppression should exist indefinitely or not.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the audit suppression.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_authorizer": {
+        "authorizerName": {
+            "Description": "The authorizer name.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerFunctionArn": {
+            "Description": "The ARN of the authorizer's Lambda function.",
+            "Type": "string",
+            "Required": false
+        },
+        "tokenKeyName": {
+            "Description": "The key used to extract the token from the HTTP headers.",
+            "Type": "string",
+            "Required": false
+        },
+        "tokenSigningPublicKeys": {
+            "Description": "The public keys used to verify the token signature.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "status": {
+            "Description": "The status of the update authorizer request.",
+            "Type": "string",
+            "Required": false
+        },
+        "enableCachingForHttp": {
+            "Description": "When true , the result from the authorizer\u2019s Lambda function is cached for the time specified in refreshAfterInSeconds . The cached result is used while the device reuses the same HTTP connection.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_billing_group": {
+        "billingGroupName": {
+            "Description": "The name of the billing group.",
+            "Type": "string",
+            "Required": true
+        },
+        "billingGroupProperties": {
+            "Description": "The properties of the billing group.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the billing group. If the version of the billing group does not match the expected version specified in the request, the UpdateBillingGroup request is rejected with a VersionConflictException .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_ca_certificate": {
+        "certificateId": {
+            "Description": "The CA certificate identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "newStatus": {
+            "Description": "The updated status of the CA certificate.",
+            "Type": "string",
+            "Required": false
+        },
+        "newAutoRegistrationStatus": {
+            "Description": "The new value for the auto registration status. Valid values are: \"ENABLE\" or \"DISABLE\".",
+            "Type": "string",
+            "Required": false
+        },
+        "registrationConfig": {
+            "Description": "Information about the registration configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "removeAutoRegistration": {
+            "Description": "If true, removes auto registration.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_certificate": {
+        "certificateId": {
+            "Description": "The ID of the certificate. (The last part of the certificate ARN contains the certificate ID.)",
+            "Type": "string",
+            "Required": true
+        },
+        "newStatus": {
+            "Description": "The new status.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_custom_metric": {
+        "metricName": {
+            "Description": "The name of the custom metric. Cannot be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "displayName": {
+            "Description": "Field represents a friendly name in the console for the custom metric, it doesn't have to be unique. Don't use this name as the metric identifier in the device metric report. Can be updated.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_dimension": {
+        "name": {
+            "Description": "A unique identifier for the dimension. Choose something that describes the type and value to make it easy to remember what it does.",
+            "Type": "string",
+            "Required": true
+        },
+        "stringValues": {
+            "Description": "Specifies the value or list of values for the dimension. For TOPIC_FILTER dimensions, this is a pattern used to match the MQTT topic (for example, \"admin/#\").",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_domain_configuration": {
+        "domainConfigurationName": {
+            "Description": "The name of the domain configuration to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "authorizerConfig": {
+            "Description": "An object that specifies the authorization service for a domain.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "domainConfigurationStatus": {
+            "Description": "The status to which the domain configuration should be updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "removeAuthorizerConfig": {
+            "Description": "Removes the authorization configuration from a domain.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_dynamic_thing_group": {
+        "thingGroupName": {
+            "Description": "The name of the dynamic thing group to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingGroupProperties": {
+            "Description": "The dynamic thing group properties to update.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the dynamic thing group to update.",
+            "Type": "integer",
+            "Required": false
+        },
+        "indexName": {
+            "Description": "The dynamic thing group index to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryString": {
+            "Description": "The dynamic thing group search query string to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryVersion": {
+            "Description": "The dynamic thing group query version to update.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_event_configurations": {
+        "eventConfigurations": {
+            "Description": "The new event configuration values.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_fleet_metric": {
+        "metricName": {
+            "Description": "The name of the fleet metric to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "queryString": {
+            "Description": "The search query string.",
+            "Type": "string",
+            "Required": false
+        },
+        "aggregationType": {
+            "Description": "The type of the aggregation query.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "period": {
+            "Description": "The time in seconds between fleet metric emissions. Range [60(1 min), 86400(1 day)] and must be multiple of 60.",
+            "Type": "integer",
+            "Required": false
+        },
+        "aggregationField": {
+            "Description": "The field to aggregate.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the fleet metric.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryVersion": {
+            "Description": "The version of the query.",
+            "Type": "string",
+            "Required": false
+        },
+        "indexName": {
+            "Description": "The name of the index to search.",
+            "Type": "string",
+            "Required": true
+        },
+        "unit": {
+            "Description": "Used to support unit transformation such as milliseconds to seconds. The unit must be supported by CW metric .",
+            "Type": "string",
+            "Required": false
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the fleet metric record in the registry.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_indexing_configuration": {
+        "thingIndexingConfiguration": {
+            "Description": "Thing indexing configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "thingGroupIndexingConfiguration": {
+            "Description": "Thing group indexing configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_job": {
+        "jobId": {
+            "Description": "The ID of the job to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A short text description of the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "presignedUrlConfig": {
+            "Description": "Configuration information for pre-signed S3 URLs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "jobExecutionsRolloutConfig": {
+            "Description": "Allows you to create a staged rollout of the job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "abortConfig": {
+            "Description": "Allows you to create criteria to abort a job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "timeoutConfig": {
+            "Description": "Specifies the amount of time each device has to finish its execution of the job. The timer is started when the job execution status is set to IN_PROGRESS. If the job execution status is not set to another terminal state before the time expires, it will be automatically set to TIMED_OUT .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "namespaceId": {
+            "Description": "The namespace used to indicate that a job is a customer-managed job.\nWhen you specify a value for this parameter, Amazon Web Services IoT Core sends jobs notifications to MQTT topics that contain the value in the following format.",
+            "Type": "string",
+            "Required": false
+        },
+        "jobExecutionsRetryConfig": {
+            "Description": "Allows you to create the criteria to retry a job.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_mitigation_action": {
+        "actionName": {
+            "Description": "The friendly name for the mitigation action. You cannot change the name by using UpdateMitigationAction. Instead, you must delete and recreate the mitigation action with the new name.",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The ARN of the IAM role that is used to apply the mitigation action.",
+            "Type": "string",
+            "Required": false
+        },
+        "actionParams": {
+            "Description": "Defines the type of action and the parameters for that action.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_provisioning_template": {
+        "templateName": {
+            "Description": "The name of the provisioning template.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the provisioning template.",
+            "Type": "string",
+            "Required": false
+        },
+        "enabled": {
+            "Description": "True to enable the provisioning template, otherwise false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "defaultVersionId": {
+            "Description": "The ID of the default provisioning template version.",
+            "Type": "integer",
+            "Required": false
+        },
+        "provisioningRoleArn": {
+            "Description": "The ARN of the role associated with the provisioning template. This IoT role grants permission to provision a device.",
+            "Type": "string",
+            "Required": false
+        },
+        "preProvisioningHook": {
+            "Description": "Updates the pre-provisioning hook template.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "removePreProvisioningHook": {
+            "Description": "Removes pre-provisioning hook template.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_role_alias": {
+        "roleAlias": {
+            "Description": "The role alias to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "roleArn": {
+            "Description": "The role ARN.",
+            "Type": "string",
+            "Required": false
+        },
+        "credentialDurationSeconds": {
+            "Description": "The number of seconds the credential will be valid.\nThis value must be less than or equal to the maximum session duration of the IAM role that the role alias references.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_scheduled_audit": {
+        "frequency": {
+            "Description": "How often the scheduled audit takes place, either DAILY , WEEKLY , BIWEEKLY , or MONTHLY . The start time of each audit is determined by the system.",
+            "Type": "string",
+            "Required": false
+        },
+        "dayOfMonth": {
+            "Description": "The day of the month on which the scheduled audit takes place. This can be 1 through 31 or LAST . This field is required if the frequency parameter is set to MONTHLY . If days 29-31 are specified, and the month does not have that many days, the audit takes place on the \"LAST\" day of the month.",
+            "Type": "string",
+            "Required": false
+        },
+        "dayOfWeek": {
+            "Description": "The day of the week on which the scheduled audit takes place. This can be one of SUN , MON , TUE , WED , THU , FRI , or SAT . This field is required if the \"frequency\" parameter is set to WEEKLY or BIWEEKLY .",
+            "Type": "string",
+            "Required": false
+        },
+        "targetCheckNames": {
+            "Description": "Which checks are performed during the scheduled audit. Checks must be enabled for your account. (Use DescribeAccountAuditConfiguration to see the list of all checks, including those that are enabled or use UpdateAccountAuditConfiguration to select which checks are enabled.)",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "scheduledAuditName": {
+            "Description": "The name of the scheduled audit. (Max. 128 chars)",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_security_profile": {
+        "securityProfileName": {
+            "Description": "The name of the security profile you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "securityProfileDescription": {
+            "Description": "A description of the security profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "behaviors": {
+            "Description": "Specifies the behaviors that, when violated by a device (thing), cause an alert.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "alertTargets": {
+            "Description": "Where the alerts are sent. (Alerts are always sent to the console.)",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "additionalMetricsToRetain": {
+            "Description": "A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here. Can be used with custom metrics; cannot be used with dimensions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "additionalMetricsToRetainV2": {
+            "Description": "A list of metrics whose data is retained (stored). By default, data is retained for any metric used in the profile's behaviors, but it is also retained for any metric specified here. Can be used with custom metrics; cannot be used with dimensions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "deleteBehaviors": {
+            "Description": "If true, delete all behaviors defined for this security profile. If any behaviors are defined in the current invocation, an exception occurs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "deleteAlertTargets": {
+            "Description": "If true, delete all alertTargets defined for this security profile. If any alertTargets are defined in the current invocation, an exception occurs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "deleteAdditionalMetricsToRetain": {
+            "Description": "If true, delete all additionalMetricsToRetain defined for this security profile. If any additionalMetricsToRetain are defined in the current invocation, an exception occurs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the security profile. A new version is generated whenever the security profile is updated. If you specify a value that is different from the actual version, a VersionConflictException is thrown.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_stream": {
+        "streamId": {
+            "Description": "The stream ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the stream.",
+            "Type": "string",
+            "Required": false
+        },
+        "files": {
+            "Description": "The files associated with the stream.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "roleArn": {
+            "Description": "An IAM role that allows the IoT service principal assumes to access your S3 files.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_thing": {
+        "thingName": {
+            "Description": "The name of the thing to update.\nYou can't change a thing's name. To change a thing's name, you must create a new thing, give it the new name, and then delete the old thing.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingTypeName": {
+            "Description": "The name of the thing type.",
+            "Type": "string",
+            "Required": false
+        },
+        "attributePayload": {
+            "Description": "A list of thing attributes, a JSON string containing name-value pairs. For example:\nThis data is used to add new attributes or update existing attributes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the thing record in the registry. If the version of the record in the registry does not match the expected version specified in the request, the UpdateThing request is rejected with a VersionConflictException .",
+            "Type": "integer",
+            "Required": false
+        },
+        "removeThingType": {
+            "Description": "Remove a thing type association. If true , the association is removed.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_thing_group": {
+        "thingGroupName": {
+            "Description": "The thing group to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "thingGroupProperties": {
+            "Description": "The thing group properties.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "expectedVersion": {
+            "Description": "The expected version of the thing group. If this does not match the version of the thing group being updated, the update will fail.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_thing_groups_for_thing": {
+        "thingName": {
+            "Description": "The thing whose group memberships will be updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "thingGroupsToAdd": {
+            "Description": "The groups to which the thing will be added.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "thingGroupsToRemove": {
+            "Description": "The groups from which the thing will be removed.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "overrideDynamicGroups": {
+            "Description": "Override dynamic thing groups with static thing groups when 10-group limit is reached. If a thing belongs to 10 thing groups, and one or more of those groups are dynamic thing groups, adding a thing to a static group removes the thing from the last dynamic group.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_topic_rule_destination": {
+        "arn": {
+            "Description": "The ARN of the topic rule destination.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "The status of the topic rule destination. Valid values are:\nA topic rule destination was created but has not been confirmed. You can set status to IN_PROGRESS by calling UpdateTopicRuleDestination. Calling UpdateTopicRuleDestination causes a new confirmation challenge to be sent to your confirmation endpoint.\nConfirmation was completed, and traffic to this destination is allowed. You can set status to DISABLED by calling UpdateTopicRuleDestination .\nConfirmation was completed, and traffic to this destination is not allowed. You can set status to ENABLED by calling UpdateTopicRuleDestination .\nConfirmation could not be completed, for example if the confirmation timed out. You can call GetTopicRuleDestination for details about the error. You can set status to IN_PROGRESS by calling UpdateTopicRuleDestination. Calling UpdateTopicRuleDestination causes a new confirmation challenge to be sent to your confirmation endpoint.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "validate_security_profile_behaviors": {
+        "behaviors": {
+            "Description": "Specifies the behaviors that, when violated by a device (thing), cause an alert.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "startTime": {
+            "Description": "The start time for the alerts to be listed.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end time for the alerts to be listed.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "thingName": {
+            "Description": "A filter to limit results to those alerts caused by the specified thing.",
+            "Type": "string",
+            "Required": false
+        },
+        "securityProfileName": {
+            "Description": "A filter to limit results to those alerts generated by the specified security profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "behaviorCriteriaType": {
+            "Description": "The criteria for a behavior.",
+            "Type": "string",
+            "Required": false
+        },
+        "listSuppressedAlerts": {
+            "Description": "A list of all suppressed alerts.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "verificationState": {
+            "Description": "The verification state of the violation (detect alarm).",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

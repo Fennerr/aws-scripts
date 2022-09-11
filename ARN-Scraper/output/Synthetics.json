@@ -1,0 +1,368 @@
+{
+    "associate_resource": {
+        "GroupIdentifier": {
+            "Description": "Specifies the group. You can specify the group name, the ARN, or the group ID as the GroupIdentifier .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN of the canary that you want to associate with the specified group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_canary": {
+        "Name": {
+            "Description": "The name for this canary. Be sure to give it a descriptive name that distinguishes it from other canaries in your account.\nDo not include secrets or proprietary information in your canary names. The canary name makes up part of the canary ARN, and the ARN is included in outbound calls over the internet. For more information, see Security Considerations for Synthetics Canaries .",
+            "Type": "string",
+            "Required": true
+        },
+        "Code": {
+            "Description": "A structure that includes the entry point from which the canary should start running your script. If the script is stored in an S3 bucket, the bucket name, key, and version are also included.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ArtifactS3Location": {
+            "Description": "The location in Amazon S3 where Synthetics stores artifacts from the test runs of this canary. Artifacts include the log file, screenshots, and HAR files. The name of the S3 bucket can't include a period (.).",
+            "Type": "string",
+            "Required": true
+        },
+        "ExecutionRoleArn": {
+            "Description": "The ARN of the IAM role to be used to run the canary. This role must already exist, and must include lambda.amazonaws.com as a principal in the trust policy. The role must also have the following permissions:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Schedule": {
+            "Description": "A structure that contains information about how often the canary is to run and when these test runs are to stop.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RunConfig": {
+            "Description": "A structure that contains the configuration for individual canary runs, such as timeout value and environment variables.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SuccessRetentionPeriodInDays": {
+            "Description": "The number of days to retain data about successful runs of this canary. If you omit this field, the default of 31 days is used. The valid range is 1 to 455 days.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FailureRetentionPeriodInDays": {
+            "Description": "The number of days to retain data about failed runs of this canary. If you omit this field, the default of 31 days is used. The valid range is 1 to 455 days.",
+            "Type": "integer",
+            "Required": false
+        },
+        "RuntimeVersion": {
+            "Description": "Specifies the runtime version to use for the canary. For a list of valid runtime versions and more information about runtime versions, see Canary Runtime Versions .",
+            "Type": "string",
+            "Required": true
+        },
+        "VpcConfig": {
+            "Description": "If this canary is to test an endpoint in a VPC, this structure contains information about the subnet and security groups of the VPC endpoint. For more information, see Running a Canary in a VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs to associate with the canary. You can associate as many as 50 tags with a canary.\nTags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only the resources that have certain tag values.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ArtifactConfig": {
+            "Description": "A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_group": {
+        "Name": {
+            "Description": "The name for the group. It can include any Unicode characters.\nThe names for all groups in your account, across all Regions, must be unique.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of key-value pairs to associate with the group. You can associate as many as 50 tags with a group.\nTags can help you organize and categorize your resources. You can also use them to scope user permissions, by granting a user permission to access or change only the resources that have certain tag values.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_canary": {
+        "Name": {
+            "Description": "The name of the canary that you want to delete. To find the names of your canaries, use DescribeCanaries .",
+            "Type": "string",
+            "Required": true
+        },
+        "DeleteLambda": {
+            "Description": "Specifies whether to also delete the Lambda functions and layers used by this canary. The default is false.\nType: Boolean",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_group": {
+        "GroupIdentifier": {
+            "Description": "Specifies which group to delete. You can specify the group name, the ARN, or the group ID as the GroupIdentifier .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_canaries": {
+        "NextToken": {
+            "Description": "A token that indicates that there is more data available. You can use this token in a subsequent operation to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specify this parameter to limit how many canaries are returned each time you use the DescribeCanaries operation. If you omit this parameter, the default of 100 is used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Names": {
+            "Description": "Use this parameter to return only canaries that match the names that you specify here. You can specify as many as five canary names.\nIf you specify this parameter, the operation is successful only if you have authorization to view all the canaries that you specify in your request. If you do not have permission to view any of the canaries, the request fails with a 403 response.\nYou are required to use this parameter if you are logged on to a user or role that has an IAM policy that restricts which canaries that you are allowed to view. For more information, see Limiting a user to viewing specific canaries .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_canaries_last_run": {
+        "NextToken": {
+            "Description": "A token that indicates that there is more data available. You can use this token in a subsequent DescribeCanariesLastRun operation to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specify this parameter to limit how many runs are returned each time you use the DescribeLastRun operation. If you omit this parameter, the default of 100 is used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Names": {
+            "Description": "Use this parameter to return only canaries that match the names that you specify here. You can specify as many as five canary names.\nIf you specify this parameter, the operation is successful only if you have authorization to view all the canaries that you specify in your request. If you do not have permission to view any of the canaries, the request fails with a 403 response.\nYou are required to use the Names parameter if you are logged on to a user or role that has an IAM policy that restricts which canaries that you are allowed to view. For more information, see Limiting a user to viewing specific canaries .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_runtime_versions": {
+        "NextToken": {
+            "Description": "A token that indicates that there is more data available. You can use this token in a subsequent DescribeRuntimeVersions operation to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specify this parameter to limit how many runs are returned each time you use the DescribeRuntimeVersions operation. If you omit this parameter, the default of 100 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "disassociate_resource": {
+        "GroupIdentifier": {
+            "Description": "Specifies the group. You can specify the group name, the ARN, or the group ID as the GroupIdentifier .",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN of the canary that you want to remove from the specified group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_canary": {
+        "Name": {
+            "Description": "The name of the canary that you want details for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_canary_runs": {
+        "Name": {
+            "Description": "The name of the canary that you want to see runs for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A token that indicates that there is more data available. You can use this token in a subsequent GetCanaryRuns operation to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specify this parameter to limit how many runs are returned each time you use the GetCanaryRuns operation. If you omit this parameter, the default of 100 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_group": {
+        "GroupIdentifier": {
+            "Description": "Specifies the group to return information for. You can specify the group name, the ARN, or the group ID as the GroupIdentifier .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_associated_groups": {
+        "NextToken": {
+            "Description": "A token that indicates that there is more data available. You can use this token in a subsequent operation to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specify this parameter to limit how many groups are returned each time you use the ListAssociatedGroups operation. If you omit this parameter, the default of 20 is used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ResourceArn": {
+            "Description": "The ARN of the canary that you want to view groups for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_group_resources": {
+        "NextToken": {
+            "Description": "A token that indicates that there is more data available. You can use this token in a subsequent operation to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specify this parameter to limit how many canary ARNs are returned each time you use the ListGroupResources operation. If you omit this parameter, the default of 20 is used.",
+            "Type": "integer",
+            "Required": false
+        },
+        "GroupIdentifier": {
+            "Description": "Specifies the group to return information for. You can specify the group name, the ARN, or the group ID as the GroupIdentifier .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_groups": {
+        "NextToken": {
+            "Description": "A token that indicates that there is more data available. You can use this token in a subsequent operation to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specify this parameter to limit how many groups are returned each time you use the ListGroups operation. If you omit this parameter, the default of 20 is used.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the canary or group that you want to view tags for.\nThe ARN format of a canary is ``arn:aws:synthetics:Region :account-id :canary:canary-name `` .\nThe ARN format of a group is ``arn:aws:synthetics:Region :account-id :group:group-name ``",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_canary": {
+        "Name": {
+            "Description": "The name of the canary that you want to run. To find canary names, use DescribeCanaries .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_canary": {
+        "Name": {
+            "Description": "The name of the canary that you want to stop. To find the names of your canaries, use ListCanaries .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the canary or group that you're adding tags to.\nThe ARN format of a canary is ``arn:aws:synthetics:Region :account-id :canary:canary-name `` .\nThe ARN format of a group is ``arn:aws:synthetics:Region :account-id :group:group-name ``",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The list of key-value pairs to associate with the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the canary or group that you're removing tags from.\nThe ARN format of a canary is ``arn:aws:synthetics:Region :account-id :canary:canary-name `` .\nThe ARN format of a group is ``arn:aws:synthetics:Region :account-id :group:group-name ``",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_canary": {
+        "Name": {
+            "Description": "The name of the canary that you want to update. To find the names of your canaries, use DescribeCanaries .\nYou cannot change the name of a canary that has already been created.",
+            "Type": "string",
+            "Required": true
+        },
+        "Code": {
+            "Description": "A structure that includes the entry point from which the canary should start running your script. If the script is stored in an S3 bucket, the bucket name, key, and version are also included.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ExecutionRoleArn": {
+            "Description": "The ARN of the IAM role to be used to run the canary. This role must already exist, and must include lambda.amazonaws.com as a principal in the trust policy. The role must also have the following permissions:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "RuntimeVersion": {
+            "Description": "Specifies the runtime version to use for the canary. For a list of valid runtime versions and for more information about runtime versions, see Canary Runtime Versions .",
+            "Type": "string",
+            "Required": false
+        },
+        "Schedule": {
+            "Description": "A structure that contains information about how often the canary is to run, and when these runs are to stop.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RunConfig": {
+            "Description": "A structure that contains the timeout value that is used for each individual run of the canary.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SuccessRetentionPeriodInDays": {
+            "Description": "The number of days to retain data about successful runs of this canary.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FailureRetentionPeriodInDays": {
+            "Description": "The number of days to retain data about failed runs of this canary.",
+            "Type": "integer",
+            "Required": false
+        },
+        "VpcConfig": {
+            "Description": "If this canary is to test an endpoint in a VPC, this structure contains information about the subnet and security groups of the VPC endpoint. For more information, see Running a Canary in a VPC .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VisualReference": {
+            "Description": "Defines the screenshots to use as the baseline for comparisons during visual monitoring comparisons during future runs of this canary. If you omit this parameter, no changes are made to any baseline screenshots that the canary might be using already.\nVisual monitoring is supported only on canaries running the syn-puppeteer-node-3.2 runtime or later. For more information, see Visual monitoring and Visual monitoring blueprint",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ArtifactS3Location": {
+            "Description": "The location in Amazon S3 where Synthetics stores artifacts from the test runs of this canary. Artifacts include the log file, screenshots, and HAR files. The name of the S3 bucket can't include a period (.).",
+            "Type": "string",
+            "Required": false
+        },
+        "ArtifactConfig": {
+            "Description": "A structure that contains the configuration for canary artifacts, including the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

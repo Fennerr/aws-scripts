@@ -1,0 +1,449 @@
+{
+    "associate_node": {
+        "ServerName": {
+            "Description": "The name of the server with which to associate the node.",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeName": {
+            "Description": "The name of the node.",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineAttributes": {
+            "Description": "Engine attributes used for associating the node.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        }
+    },
+    "create_backup": {
+        "ServerName": {
+            "Description": "The name of the server that you want to back up.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A user-defined description of the backup.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "A map that contains tag keys and tag values to attach to an AWS OpsWorks-CM server backup.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "create_server": {
+        "AssociatePublicIpAddress": {
+            "Description": "Associate a public IP address with a server that you are launching. Valid values are true or false . The default value is true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "CustomDomain": {
+            "Description": "An optional public endpoint of a server, such as https://aws.my-company.com . To access the server, create a CNAME DNS record in your preferred DNS service that points the custom domain to the endpoint that is generated when the server is created (the value of the CreateServer Endpoint attribute). You cannot access the server by using the generated Endpoint value if the server is using a custom domain. If you specify a custom domain, you must also specify values for CustomCertificate and CustomPrivateKey .",
+            "Type": "string",
+            "Required": false
+        },
+        "CustomCertificate": {
+            "Description": "A PEM-formatted HTTPS certificate. The value can be be a single, self-signed certificate, or a certificate chain. If you specify a custom certificate, you must also specify values for CustomDomain and CustomPrivateKey. The following are requirements for the CustomCertificate value:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CustomPrivateKey": {
+            "Description": "A private key in PEM format for connecting to the server by using HTTPS. The private key must not be encrypted; it cannot be protected by a password or passphrase. If you specify a custom private key, you must also specify values for CustomDomain and CustomCertificate .",
+            "Type": "string",
+            "Required": false
+        },
+        "DisableAutomatedBackup": {
+            "Description": "Enable or disable scheduled backups. Valid values are true or false . The default value is true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Engine": {
+            "Description": "The configuration management engine to use. Valid values include ChefAutomate and Puppet .",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineModel": {
+            "Description": "The engine model of the server. Valid values in this release include Monolithic for Puppet and Single for Chef.",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The major release version of the engine that you want to use. For a Chef server, the valid value for EngineVersion is currently 2 . For a Puppet server, valid values are 2019 or 2017 .",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineAttributes": {
+            "Description": "Optional engine attributes on a specified server.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "BackupRetentionCount": {
+            "Description": "The number of automated backups that you want to keep. Whenever a new backup is created, AWS OpsWorks CM deletes the oldest backups if this number is exceeded. The default value is 1 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "ServerName": {
+            "Description": "The name of the server. The server name must be unique within your AWS account, within each region. Server names must start with a letter; then letters, numbers, or hyphens (-) are allowed, up to a maximum of 40 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceProfileArn": {
+            "Description": "The ARN of the instance profile that your Amazon EC2 instances use. Although the AWS OpsWorks console typically creates the instance profile for you, if you are using API commands instead, run the service-role-creation.yaml AWS CloudFormation template, located at https://s3.amazonaws.com/opsworks-cm-us-east-1-prod-default-assets/misc/opsworks-cm-roles.yaml. This template creates a CloudFormation stack that includes the instance profile you need.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceType": {
+            "Description": "The Amazon EC2 instance type to use. For example, m5.large .",
+            "Type": "string",
+            "Required": true
+        },
+        "KeyPair": {
+            "Description": "The Amazon EC2 key pair to set for the instance. This parameter is optional; if desired, you may specify this parameter to connect to your instances by using SSH.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "The start time for a one-hour period each week during which AWS OpsWorks CM performs maintenance on the instance. Valid values must be specified in the following format: DDD:HH:MM. MM must be specified as 00. The specified time is in coordinated universal time (UTC). The default value is a random one-hour period on Tuesday, Wednesday, or Friday. See TimeWindowDefinition for more information.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredBackupWindow": {
+            "Description": "The start time for a one-hour period during which AWS OpsWorks CM backs up application-level data on your server if automated backups are enabled. Valid values must be specified in one of the following formats:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "A list of security group IDs to attach to the Amazon EC2 instance. If you add this parameter, the specified security groups must be within the VPC that is specified by SubnetIds .\nIf you do not specify this parameter, AWS OpsWorks CM creates one new security group that uses TCP ports 22 and 443, open to 0.0.0.0/0 (everyone).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ServiceRoleArn": {
+            "Description": "The service role that the AWS OpsWorks CM service backend uses to work with your account. Although the AWS OpsWorks management console typically creates the service role for you, if you are using the AWS CLI or API commands, run the service-role-creation.yaml AWS CloudFormation template, located at https://s3.amazonaws.com/opsworks-cm-us-east-1-prod-default-assets/misc/opsworks-cm-roles.yaml. This template creates a CloudFormation stack that includes the service role and instance profile that you need.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubnetIds": {
+            "Description": "The IDs of subnets in which to launch the server EC2 instance.\nAmazon EC2-Classic customers: This field is required. All servers must run within a VPC. The VPC must have \"Auto Assign Public IP\" enabled.\nEC2-VPC customers: This field is optional. If you do not specify subnet IDs, your EC2 instances are created in a default subnet that is selected by Amazon EC2. If you specify subnet IDs, the VPC must have \"Auto Assign Public IP\" enabled.\nFor more information about supported Amazon EC2 platforms, see Supported Platforms .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A map that contains tag keys and tag values to attach to an AWS OpsWorks for Chef Automate or AWS OpsWorks for Puppet Enterprise server.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "BackupId": {
+            "Description": "If you specify this field, AWS OpsWorks CM creates the server by using the backup represented by BackupId.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_backup": {
+        "BackupId": {
+            "Description": "The ID of the backup to delete. Run the DescribeBackups command to get a list of backup IDs. Backup IDs are in the format ServerName-yyyyMMddHHmmssSSS .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_server": {
+        "ServerName": {
+            "Description": "The ID of the server to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account_attributes": "No parameters defined",
+    "describe_backups": {
+        "BackupId": {
+            "Description": "Describes a single backup.",
+            "Type": "string",
+            "Required": false
+        },
+        "ServerName": {
+            "Description": "Returns backups for the server with the specified ServerName.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "This is not currently implemented for DescribeBackups requests.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "This is not currently implemented for DescribeBackups requests.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_events": {
+        "ServerName": {
+            "Description": "The name of the server for which you want to view events.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "NextToken is a string that is returned in some command responses. It indicates that not all entries have been returned, and that you must run at least one more request to get remaining items. To get remaining results, call DescribeEvents again, and assign the token from the previous results as the value of the nextToken parameter. If there are no more results, the response object's nextToken parameter value is null . Setting a nextToken value that was not returned in your previous results causes an InvalidNextTokenException to occur.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "To receive a paginated response, use this parameter to specify the maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_node_association_status": {
+        "NodeAssociationStatusToken": {
+            "Description": "The token returned in either the AssociateNodeResponse or the DisassociateNodeResponse.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerName": {
+            "Description": "The name of the server from which to disassociate the node.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_servers": {
+        "ServerName": {
+            "Description": "Describes the server with the specified ServerName.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "This is not currently implemented for DescribeServers requests.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "This is not currently implemented for DescribeServers requests.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "disassociate_node": {
+        "ServerName": {
+            "Description": "The name of the server from which to disassociate the node.",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeName": {
+            "Description": "The name of the client node.",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineAttributes": {
+            "Description": "Engine attributes that are used for disassociating the node. No attributes are required for Puppet.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "export_server_engine_attribute": {
+        "ExportAttributeName": {
+            "Description": "The name of the export attribute. Currently, the supported export attribute is Userdata. This exports a user data script that includes parameters and values provided in the InputAttributes list.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerName": {
+            "Description": "The name of the server from which you are exporting the attribute.",
+            "Type": "string",
+            "Required": true
+        },
+        "InputAttributes": {
+            "Description": "The list of engine attributes. The list type is EngineAttribute. An EngineAttribute list item is a pair that includes an attribute name and its value. For the Userdata ExportAttributeName, the following are supported engine attribute names.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Number (ARN) of an AWS OpsWorks for Chef Automate or AWS OpsWorks for Puppet Enterprise server for which you want to show applied tags. For example, arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "NextToken is a string that is returned in some command responses. It indicates that not all entries have been returned, and that you must run at least one more request to get remaining items. To get remaining results, call ListTagsForResource again, and assign the token from the previous results as the value of the nextToken parameter. If there are no more results, the response object's nextToken parameter value is null . Setting a nextToken value that was not returned in your previous results causes an InvalidNextTokenException to occur.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "To receive a paginated response, use this parameter to specify the maximum number of results to be returned with a single call. If the number of available results exceeds this maximum, the response includes a NextToken value that you can assign to the NextToken request parameter to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "restore_server": {
+        "BackupId": {
+            "Description": "The ID of the backup that you want to use to restore a server.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerName": {
+            "Description": "The name of the server that you want to restore.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceType": {
+            "Description": "The type of instance to restore. Valid values must be specified in the following format: ^([cm][34]|t2).* For example, m5.large . Valid values are m5.large , r5.xlarge , and r5.2xlarge . If you do not specify this parameter, RestoreServer uses the instance type from the specified backup.",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyPair": {
+            "Description": "The name of the key pair to set on the new EC2 instance. This can be helpful if the administrator no longer has the SSH key.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_maintenance": {
+        "ServerName": {
+            "Description": "The name of the server on which to run maintenance.",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineAttributes": {
+            "Description": "Engine attributes that are specific to the server on which you want to run maintenance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Number (ARN) of a resource to which you want to apply tags. For example, arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A map that contains tag keys and tag values to attach to AWS OpsWorks-CM servers or backups.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Number (ARN) of a resource from which you want to remove tags. For example, arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of tags that you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_server": {
+        "DisableAutomatedBackup": {
+            "Description": "Setting DisableAutomatedBackup to true disables automated or scheduled backups. Automated backups are enabled by default.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "BackupRetentionCount": {
+            "Description": "Sets the number of automated backups that you want to keep.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ServerName": {
+            "Description": "The name of the server to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "Time windows always use coordinated universal time (UTC). Valid strings for day of week (DDD ) are: Mon, Tue, Wed, Thr, Fri, Sat, or Sun .",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredBackupWindow": {
+            "Description": "Time windows always use coordinated universal time (UTC). Valid strings for day of week (DDD ) are: Mon, Tue, Wed, Thr, Fri, Sat, or Sun .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_server_engine_attributes": {
+        "ServerName": {
+            "Description": "The name of the server to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeName": {
+            "Description": "The name of the engine attribute to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeValue": {
+            "Description": "The value to set for the attribute.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Number (ARN) of an AWS OpsWorks for Chef Automate or AWS OpsWorks for Puppet Enterprise server for which you want to show applied tags. For example, arn:aws:opsworks-cm:us-west-2:123456789012:server/test-owcm-server/EXAMPLE-66b0-4196-8274-d1a2bEXAMPLE .",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "NodeAssociationStatusToken": {
+            "Description": "The token returned in either the AssociateNodeResponse or the DisassociateNodeResponse.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerName": {
+            "Description": "The name of the server from which to disassociate the node.",
+            "Type": "string",
+            "Required": true
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

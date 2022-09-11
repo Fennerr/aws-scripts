@@ -1,0 +1,2384 @@
+{
+    "allocate_static_ip": {
+        "staticIpName": {
+            "Description": "The name of the static IP address.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_certificate_to_distribution": {
+        "distributionName": {
+            "Description": "The name of the distribution that the certificate will be attached to.\nUse the GetDistributions action to get a list of distribution names that you can specify.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateName": {
+            "Description": "The name of the certificate to attach to a distribution.\nOnly certificates with a status of ISSUED can be attached to a distribution.\nUse the GetCertificates action to get a list of certificate names that you can specify.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_disk": {
+        "diskName": {
+            "Description": "The unique Lightsail disk name (e.g., my-disk ).",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceName": {
+            "Description": "The name of the Lightsail instance where you want to utilize the storage disk.",
+            "Type": "string",
+            "Required": true
+        },
+        "diskPath": {
+            "Description": "The disk path to expose to the instance (e.g., /dev/xvdf ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_instances_to_load_balancer": {
+        "loadBalancerName": {
+            "Description": "The name of the load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceNames": {
+            "Description": "An array of strings representing the instance name(s) you want to attach to your load balancer.\nAn instance must be running before you can attach it to your load balancer.\nThere are no additional limits on the number of instances you can attach to your load balancer, aside from the limit of Lightsail instances you can create in your account (20).",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "attach_load_balancer_tls_certificate": {
+        "loadBalancerName": {
+            "Description": "The name of the load balancer to which you want to associate the SSL/TLS certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateName": {
+            "Description": "The name of your SSL/TLS certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_static_ip": {
+        "staticIpName": {
+            "Description": "The name of the static IP.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceName": {
+            "Description": "The instance name to which you want to attach the static IP address.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "close_instance_public_ports": {
+        "portInfo": {
+            "Description": "An object to describe the ports to close for the specified instance.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "instanceName": {
+            "Description": "The name of the instance for which to close ports.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "copy_snapshot": {
+        "sourceSnapshotName": {
+            "Description": "The name of the source manual snapshot to copy.\nConstraint:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "sourceResourceName": {
+            "Description": "The name of the source instance or disk from which the source automatic snapshot was created.\nConstraint:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "restoreDate": {
+            "Description": "The date of the source automatic snapshot to copy. Use the get auto snapshots operation to identify the dates of the available automatic snapshots.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "useLatestRestorableAutoSnapshot": {
+            "Description": "A Boolean value to indicate whether to use the latest available automatic snapshot of the specified source instance or disk.\nConstraints:",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        },
+        "targetSnapshotName": {
+            "Description": "The name of the new manual snapshot to be created as a copy.",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceRegion": {
+            "Description": "The Amazon Web Services Region where the source manual or automatic snapshot is located.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_bucket": {
+        "bucketName": {
+            "Description": "The name for the bucket.\nFor more information about bucket names, see Bucket naming rules in Amazon Lightsail in the Amazon Lightsail Developer Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "bundleId": {
+            "Description": "The ID of the bundle to use for the bucket.\nA bucket bundle specifies the monthly cost, storage space, and data transfer quota for a bucket.\nUse the GetBucketBundles action to get a list of bundle IDs that you can specify.\nUse the UpdateBucketBundle action to change the bundle after the bucket is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the bucket during creation.\nUse the TagResource action to tag the bucket after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "enableObjectVersioning": {
+            "Description": "A Boolean value that indicates whether to enable versioning of objects in the bucket.\nFor more information about versioning, see Enabling and suspending object versioning in a bucket in Amazon Lightsail in the Amazon Lightsail Developer Guide .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_bucket_access_key": {
+        "bucketName": {
+            "Description": "The name of the bucket that the new access key will belong to, and grant access to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_certificate": {
+        "certificateName": {
+            "Description": "The name for the certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainName": {
+            "Description": "The domain name (e.g., example.com ) for the certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "subjectAlternativeNames": {
+            "Description": "An array of strings that specify the alternate domains (e.g., example2.com ) and subdomains (e.g., blog.example.com ) for the certificate.\nYou can specify a maximum of nine alternate domains (in addition to the primary domain name).\nWildcard domain entries (e.g., *.example.com ) are not supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the certificate during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_cloud_formation_stack": {
+        "instances": {
+            "Description": "An array of parameters that will be used to create the new Amazon EC2 instance. You can only pass one instance entry at a time in this array. You will get an invalid parameter error if you pass more than one instance entry in this array.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_contact_method": {
+        "protocol": {
+            "Description": "The protocol of the contact method, such as Email or SMS (text messaging).\nThe SMS protocol is supported only in the following Amazon Web Services Regions.\nFor a list of countries/regions where SMS text messages can be sent, and the latest Amazon Web Services Regions where SMS text messaging is supported, see Supported Regions and Countries in the Amazon SNS Developer Guide .\nFor more information about notifications in Amazon Lightsail, see Notifications in Amazon Lightsail .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "contactEndpoint": {
+            "Description": "The destination of the contact method, such as an email address or a mobile phone number.\nUse the E.164 format when specifying a mobile phone number. E.164 is a standard for the phone number structure used for international telecommunication. Phone numbers that follow this format can have a maximum of 15 digits, and they are prefixed with the plus character (+) and the country code. For example, a U.S. phone number in E.164 format would be specified as +1XXX5550100. For more information, see E.164 on Wikipedia .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_container_service": {
+        "serviceName": {
+            "Description": "The name for the container service.\nThe name that you specify for your container service will make up part of its default domain. The default domain of a container service is typically https://&lt;ServiceName&gt;.&lt;RandomGUID&gt;.&lt;AWSRegion&gt;.cs.amazonlightsail.com. If the name of your container service is container-service-1, and it's located in the US East (Ohio) AWS region (us-east-2 ), then the domain for your container service will be like the following example: https://container-service-1.ur4EXAMPLE2uq.us-east-2.cs.amazonlightsail.com\nThe following are the requirements for container service names:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "power": {
+            "Description": "The power specification for the container service.\nThe power specifies the amount of memory, vCPUs, and base monthly cost of each node of the container service. The power and scale of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the power with the scale (the number of nodes) of the service.\nUse the GetContainerServicePowers action to get a list of power options that you can specify using this parameter, and their base monthly cost.",
+            "Type": "string",
+            "Required": true
+        },
+        "scale": {
+            "Description": "The scale specification for the container service.\nThe scale specifies the allocated compute nodes of the container service. The power and scale of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the power with the scale (the number of nodes) of the service.",
+            "Type": "integer",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the container service during create.\nUse the TagResource action to tag a resource after it's created.\nFor more information about tags in Lightsail, see the Amazon Lightsail Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "publicDomainNames": {
+            "Description": "The public domain names to use with the container service, such as example.com and www.example.com .\nYou can specify up to four public domain names for a container service. The domain names that you specify are used when you create a deployment with a container configured as the public endpoint of your container service.\nIf you don't specify public domain names, then you can use the default domain of the container service.\nYou can specify public domain names using a string to array map as shown in the example later on this page.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "deployment": {
+            "Description": "An object that describes a deployment for the container service.\nA deployment specifies the containers that will be launched on the container service and their settings, such as the ports to open, the environment variables to apply, and the launch command to run. It also specifies the container that will serve as the public endpoint of the deployment and its settings, such as the HTTP or HTTPS port to use, and the health check configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "privateRegistryAccess": {
+            "Description": "An object to describe the configuration for the container service to access private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.\nFor more information, see Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service in the Amazon Lightsail Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_container_service_deployment": {
+        "serviceName": {
+            "Description": "The name of the container service for which to create the deployment.",
+            "Type": "string",
+            "Required": true
+        },
+        "containers": {
+            "Description": "An object that describes the settings of the containers that will be launched on the container service.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "publicEndpoint": {
+            "Description": "An object that describes the settings of the public endpoint for the container service.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_container_service_registry_login": "No parameters defined",
+    "create_disk": {
+        "diskName": {
+            "Description": "The unique Lightsail disk name (e.g., my-disk ).",
+            "Type": "string",
+            "Required": true
+        },
+        "availabilityZone": {
+            "Description": "The Availability Zone where you want to create the disk (e.g., us-east-2a ). Use the same Availability Zone as the Lightsail instance to which you want to attach the disk.\nUse the get regions operation to list the Availability Zones where Lightsail is currently available.",
+            "Type": "string",
+            "Required": true
+        },
+        "sizeInGb": {
+            "Description": "The size of the disk in GB (e.g., 32 ).",
+            "Type": "integer",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "addOns": {
+            "Description": "An array of objects that represent the add-ons to enable for the new disk.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_disk_from_snapshot": {
+        "diskName": {
+            "Description": "The unique Lightsail disk name (e.g., my-disk ).",
+            "Type": "string",
+            "Required": true
+        },
+        "diskSnapshotName": {
+            "Description": "The name of the disk snapshot (e.g., my-snapshot ) from which to create the new storage disk.\nConstraint:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "availabilityZone": {
+            "Description": "The Availability Zone where you want to create the disk (e.g., us-east-2a ). Choose the same Availability Zone as the Lightsail instance where you want to create the disk.\nUse the GetRegions operation to list the Availability Zones where Lightsail is currently available.",
+            "Type": "string",
+            "Required": true
+        },
+        "sizeInGb": {
+            "Description": "The size of the disk in GB (e.g., 32 ).",
+            "Type": "integer",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "addOns": {
+            "Description": "An array of objects that represent the add-ons to enable for the new disk.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "sourceDiskName": {
+            "Description": "The name of the source disk from which the source automatic snapshot was created.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "restoreDate": {
+            "Description": "The date of the automatic snapshot to use for the new disk. Use the get auto snapshots operation to identify the dates of the available automatic snapshots.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "useLatestRestorableAutoSnapshot": {
+            "Description": "A Boolean value to indicate whether to use the latest available automatic snapshot.\nConstraints:",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        }
+    },
+    "create_disk_snapshot": {
+        "diskName": {
+            "Description": "The unique name of the source disk (e.g., Disk-Virginia-1 ).",
+            "Type": "string",
+            "Required": false
+        },
+        "diskSnapshotName": {
+            "Description": "The name of the destination disk snapshot (e.g., my-disk-snapshot ) based on the source disk.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceName": {
+            "Description": "The unique name of the source instance (e.g., Amazon_Linux-512MB-Virginia-1 ). When this is defined, a snapshot of the instance's system volume is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_distribution": {
+        "distributionName": {
+            "Description": "The name for the distribution.",
+            "Type": "string",
+            "Required": true
+        },
+        "origin": {
+            "Description": "An object that describes the origin resource for the distribution, such as a Lightsail instance, bucket, or load balancer.\nThe distribution pulls, caches, and serves content from the origin.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "defaultCacheBehavior": {
+            "Description": "An object that describes the default cache behavior for the distribution.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "cacheBehaviorSettings": {
+            "Description": "An object that describes the cache behavior settings for the distribution.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "cacheBehaviors": {
+            "Description": "An array of objects that describe the per-path cache behavior for the distribution.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "bundleId": {
+            "Description": "The bundle ID to use for the distribution.\nA distribution bundle describes the specifications of your distribution, such as the monthly cost and monthly network transfer quota.\nUse the GetDistributionBundles action to get a list of distribution bundle IDs that you can specify.",
+            "Type": "string",
+            "Required": true
+        },
+        "ipAddressType": {
+            "Description": "The IP address type for the distribution.\nThe possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.\nThe default value is dualstack .",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the distribution during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_domain": {
+        "domainName": {
+            "Description": "The domain name to manage (e.g., example.com ).",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_domain_entry": {
+        "domainName": {
+            "Description": "The domain name (e.g., example.com ) for which you want to create the domain entry.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainEntry": {
+            "Description": "An array of key-value pairs containing information about the domain entry request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_instance_snapshot": {
+        "instanceSnapshotName": {
+            "Description": "The name for your new snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceName": {
+            "Description": "The Lightsail instance on which to base your snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_instances": {
+        "instanceNames": {
+            "Description": "The names to use for your new Lightsail instances. Separate multiple values using quotation marks and commas, for example: [\"MyFirstInstance\",\"MySecondInstance\"]",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "availabilityZone": {
+            "Description": "The Availability Zone in which to create your instance. Use the following format: us-east-2a (case sensitive). You can get a list of Availability Zones by using the get regions operation. Be sure to add the include Availability Zones parameter to your request.",
+            "Type": "string",
+            "Required": true
+        },
+        "customImageName": {
+            "Description": "(Deprecated) The name for your custom image.",
+            "Type": "string",
+            "Required": false
+        },
+        "blueprintId": {
+            "Description": "The ID for a virtual private server image (e.g., app_wordpress_4_4 or app_lamp_7_0 ). Use the get blueprints operation to return a list of available images (or blueprints ).",
+            "Type": "string",
+            "Required": true
+        },
+        "bundleId": {
+            "Description": "The bundle of specification information for your virtual private server (or instance ), including the pricing plan (e.g., micro_1_0 ).",
+            "Type": "string",
+            "Required": true
+        },
+        "userData": {
+            "Description": "A launch script you can create that configures a server with additional user data. For example, you might want to run apt-get -y update .",
+            "Type": "string",
+            "Required": false
+        },
+        "keyPairName": {
+            "Description": "The name of your key pair.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "addOns": {
+            "Description": "An array of objects representing the add-ons to enable for the new instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ipAddressType": {
+            "Description": "The IP address type for the instance.\nThe possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.\nThe default value is dualstack .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_instances_from_snapshot": {
+        "instanceNames": {
+            "Description": "The names for your new instances.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "attachedDiskMapping": {
+            "Description": "An object containing information about one or more disk mappings.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "availabilityZone": {
+            "Description": "The Availability Zone where you want to create your instances. Use the following formatting: us-east-2a (case sensitive). You can get a list of Availability Zones by using the get regions operation. Be sure to add the include Availability Zones parameter to your request.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceSnapshotName": {
+            "Description": "The name of the instance snapshot on which you are basing your new instances. Use the get instance snapshots operation to return information about your existing snapshots.\nConstraint:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "bundleId": {
+            "Description": "The bundle of specification information for your virtual private server (or instance ), including the pricing plan (e.g., micro_1_0 ).",
+            "Type": "string",
+            "Required": true
+        },
+        "userData": {
+            "Description": "You can create a launch script that configures a server with additional user data. For example, apt-get -y update .",
+            "Type": "string",
+            "Required": false
+        },
+        "keyPairName": {
+            "Description": "The name for your key pair.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "addOns": {
+            "Description": "An array of objects representing the add-ons to enable for the new instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ipAddressType": {
+            "Description": "The IP address type for the instance.\nThe possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.\nThe default value is dualstack .",
+            "Type": "string",
+            "Required": false
+        },
+        "sourceInstanceName": {
+            "Description": "The name of the source instance from which the source automatic snapshot was created.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "restoreDate": {
+            "Description": "The date of the automatic snapshot to use for the new instance. Use the get auto snapshots operation to identify the dates of the available automatic snapshots.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "useLatestRestorableAutoSnapshot": {
+            "Description": "A Boolean value to indicate whether to use the latest available automatic snapshot.\nConstraints:",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        }
+    },
+    "create_key_pair": {
+        "keyPairName": {
+            "Description": "The name for your new key pair.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_load_balancer": {
+        "loadBalancerName": {
+            "Description": "The name of your load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "instancePort": {
+            "Description": "The instance port where you're creating your load balancer.",
+            "Type": "integer",
+            "Required": true
+        },
+        "healthCheckPath": {
+            "Description": "The path you provided to perform the load balancer health check. If you didn't specify a health check path, Lightsail uses the root path of your website (e.g., \"/\" ).\nYou may want to specify a custom health check path other than the root of your application if your home page loads slowly or has a lot of media or scripting on it.",
+            "Type": "string",
+            "Required": false
+        },
+        "certificateName": {
+            "Description": "The name of the SSL/TLS certificate.\nIf you specify certificateName, then certificateDomainName is required (and vice-versa).",
+            "Type": "string",
+            "Required": false
+        },
+        "certificateDomainName": {
+            "Description": "The domain name with which your certificate is associated (e.g., example.com ).\nIf you specify certificateDomainName, then certificateName is required (and vice-versa).",
+            "Type": "string",
+            "Required": false
+        },
+        "certificateAlternativeNames": {
+            "Description": "The optional alternative domains and subdomains to use with your SSL/TLS certificate (e.g., www.example.com, example.com, m.example.com, blog.example.com ).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ipAddressType": {
+            "Description": "The IP address type for the load balancer.\nThe possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.\nThe default value is dualstack .",
+            "Type": "string",
+            "Required": false
+        },
+        "tlsPolicyName": {
+            "Description": "The name of the TLS policy to apply to the load balancer.\nUse the GetLoadBalancerTlsPolicies action to get a list of TLS policy names that you can specify.\nFor more information about load balancer TLS policies, see Configuring TLS security policies on your Amazon Lightsail load balancers in the Amazon Lightsail Developer Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_load_balancer_tls_certificate": {
+        "loadBalancerName": {
+            "Description": "The load balancer name where you want to create the SSL/TLS certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateName": {
+            "Description": "The SSL/TLS certificate name.\nYou can have up to 10 certificates in your account at one time. Each Lightsail load balancer can have up to 2 certificates associated with it at one time. There is also an overall limit to the number of certificates that can be issue in a 365-day period. For more information, see Limits .",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateDomainName": {
+            "Description": "The domain name (e.g., example.com ) for your SSL/TLS certificate.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateAlternativeNames": {
+            "Description": "An array of strings listing alternative domains and subdomains for your SSL/TLS certificate. Lightsail will de-dupe the names for you. You can have a maximum of 9 alternative names (in addition to the 1 primary domain). We do not support wildcards (e.g., *.example.com ).",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_relational_database": {
+        "relationalDatabaseName": {
+            "Description": "The name to use for your new Lightsail database resource.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "availabilityZone": {
+            "Description": "The Availability Zone in which to create your new database. Use the us-east-2a case-sensitive format.\nYou can get a list of Availability Zones by using the get regions operation. Be sure to add the include relational database Availability Zones parameter to your request.",
+            "Type": "string",
+            "Required": false
+        },
+        "relationalDatabaseBlueprintId": {
+            "Description": "The blueprint ID for your new database. A blueprint describes the major engine version of a database.\nYou can get a list of database blueprints IDs by using the get relational database blueprints operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "relationalDatabaseBundleId": {
+            "Description": "The bundle ID for your new database. A bundle describes the performance specifications for your database.\nYou can get a list of database bundle IDs by using the get relational database bundles operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "masterDatabaseName": {
+            "Description": "The meaning of this parameter differs according to the database engine you use.\nThe name of the database to create when the Lightsail database resource is created. If this parameter isn't specified, no database is created in the database resource.\nConstraints:\nThe name of the database to create when the Lightsail database resource is created. If this parameter isn't specified, a database named postgres is created in the database resource.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "masterUsername": {
+            "Description": "The name for the master user.\nConstraints:\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": [
+                {},
+                {}
+            ]
+        },
+        "masterUserPassword": {
+            "Description": "The password for the master user. The password can include any printable ASCII character except \"/\", \"\"\", or \"@\". It cannot contain spaces.\nConstraints: Must contain from 8 to 41 characters.\nConstraints: Must contain from 8 to 128 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "preferredBackupWindow": {
+            "Description": "The daily time range during which automated backups are created for your new database if automated backups are enabled.\nThe default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region. For more information about the preferred backup window time blocks for each region, see the Working With Backups guide in the Amazon Relational Database Service (Amazon RDS) documentation.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "preferredMaintenanceWindow": {
+            "Description": "The weekly time range during which system maintenance can occur on your new database.\nThe default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "publiclyAccessible": {
+            "Description": "Specifies the accessibility options for your new database. A value of true specifies a database that is available to resources outside of your Lightsail account. A value of false specifies a database that is available only to your Lightsail resources in the same region as your database.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_relational_database_from_snapshot": {
+        "relationalDatabaseName": {
+            "Description": "The name to use for your new Lightsail database resource.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "availabilityZone": {
+            "Description": "The Availability Zone in which to create your new database. Use the us-east-2a case-sensitive format.\nYou can get a list of Availability Zones by using the get regions operation. Be sure to add the include relational database Availability Zones parameter to your request.",
+            "Type": "string",
+            "Required": false
+        },
+        "publiclyAccessible": {
+            "Description": "Specifies the accessibility options for your new database. A value of true specifies a database that is available to resources outside of your Lightsail account. A value of false specifies a database that is available only to your Lightsail resources in the same region as your database.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "relationalDatabaseSnapshotName": {
+            "Description": "The name of the database snapshot from which to create your new database.",
+            "Type": "string",
+            "Required": false
+        },
+        "relationalDatabaseBundleId": {
+            "Description": "The bundle ID for your new database. A bundle describes the performance specifications for your database.\nYou can get a list of database bundle IDs by using the get relational database bundles operation.\nWhen creating a new database from a snapshot, you cannot choose a bundle that is smaller than the bundle of the source database.",
+            "Type": "string",
+            "Required": false
+        },
+        "sourceRelationalDatabaseName": {
+            "Description": "The name of the source database.",
+            "Type": "string",
+            "Required": false
+        },
+        "restoreTime": {
+            "Description": "The date and time to restore your database from.\nConstraints:",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "useLatestRestorableTime": {
+            "Description": "Specifies whether your database is restored from the latest backup time. A value of true restores from the latest backup time.\nDefault: false\nConstraints: Cannot be specified if the restore time parameter is provided.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_relational_database_snapshot": {
+        "relationalDatabaseName": {
+            "Description": "The name of the database on which to base your new snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "relationalDatabaseSnapshotName": {
+            "Description": "The name for your new database snapshot.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "tags": {
+            "Description": "The tag keys and optional values to add to the resource during create.\nUse the TagResource action to tag a resource after it's created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_alarm": {
+        "alarmName": {
+            "Description": "The name of the alarm to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_auto_snapshot": {
+        "resourceName": {
+            "Description": "The name of the source instance or disk from which to delete the automatic snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "date": {
+            "Description": "The date of the automatic snapshot to delete in YYYY-MM-DD format. Use the get auto snapshots operation to get the available automatic snapshots for a resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_bucket": {
+        "bucketName": {
+            "Description": "The name of the bucket to delete.\nUse the GetBuckets action to get a list of bucket names that you can specify.",
+            "Type": "string",
+            "Required": true
+        },
+        "forceDelete": {
+            "Description": "A Boolean value that indicates whether to force delete the bucket.\nYou must force delete the bucket if it has one of the following conditions:",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        }
+    },
+    "delete_bucket_access_key": {
+        "bucketName": {
+            "Description": "The name of the bucket that the access key belongs to.",
+            "Type": "string",
+            "Required": true
+        },
+        "accessKeyId": {
+            "Description": "The ID of the access key to delete.\nUse the GetBucketAccessKeys action to get a list of access key IDs that you can specify.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_certificate": {
+        "certificateName": {
+            "Description": "The name of the certificate to delete.\nUse the GetCertificates action to get a list of certificate names that you can specify.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_contact_method": {
+        "protocol": {
+            "Description": "The protocol that will be deleted, such as Email or SMS (text messaging).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_container_image": {
+        "serviceName": {
+            "Description": "The name of the container service for which to delete a registered container image.",
+            "Type": "string",
+            "Required": true
+        },
+        "image": {
+            "Description": "The name of the container image to delete from the container service.\nUse the GetContainerImages action to get the name of the container images that are registered to a container service.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_container_service": {
+        "serviceName": {
+            "Description": "The name of the container service to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_disk": {
+        "diskName": {
+            "Description": "The unique name of the disk you want to delete (e.g., my-disk ).",
+            "Type": "string",
+            "Required": true
+        },
+        "forceDeleteAddOns": {
+            "Description": "A Boolean value to indicate whether to delete the enabled add-ons for the disk.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_disk_snapshot": {
+        "diskSnapshotName": {
+            "Description": "The name of the disk snapshot you want to delete (e.g., my-disk-snapshot ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_distribution": {
+        "distributionName": {
+            "Description": "The name of the distribution to delete.\nUse the GetDistributions action to get a list of distribution names that you can specify.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_domain": {
+        "domainName": {
+            "Description": "The specific domain name to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_domain_entry": {
+        "domainName": {
+            "Description": "The name of the domain entry to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainEntry": {
+            "Description": "An array of key-value pairs containing information about your domain entries.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "delete_instance": {
+        "instanceName": {
+            "Description": "The name of the instance to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "forceDeleteAddOns": {
+            "Description": "A Boolean value to indicate whether to delete the enabled add-ons for the disk.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_instance_snapshot": {
+        "instanceSnapshotName": {
+            "Description": "The name of the snapshot to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_key_pair": {
+        "keyPairName": {
+            "Description": "The name of the key pair to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "expectedFingerprint": {
+            "Description": "The RSA fingerprint of the Lightsail default key pair to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_known_host_keys": {
+        "instanceName": {
+            "Description": "The name of the instance for which you want to reset the host key or certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_load_balancer": {
+        "loadBalancerName": {
+            "Description": "The name of the load balancer you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_load_balancer_tls_certificate": {
+        "loadBalancerName": {
+            "Description": "The load balancer name.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateName": {
+            "Description": "The SSL/TLS certificate name.",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "When true, forces the deletion of an SSL/TLS certificate.\nThere can be two certificates associated with a Lightsail load balancer: the primary and the backup. The force parameter is required when the primary SSL/TLS certificate is in use by an instance attached to the load balancer.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_relational_database": {
+        "relationalDatabaseName": {
+            "Description": "The name of the database that you are deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "skipFinalSnapshot": {
+            "Description": "Determines whether a final database snapshot is created before your database is deleted. If true is specified, no database snapshot is created. If false is specified, a database snapshot is created before your database is deleted.\nYou must specify the final relational database snapshot name parameter if the skip final snapshot parameter is false .\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "finalRelationalDatabaseSnapshotName": {
+            "Description": "The name of the database snapshot created if skip final snapshot is false, which is the default value for that parameter.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "delete_relational_database_snapshot": {
+        "relationalDatabaseSnapshotName": {
+            "Description": "The name of the database snapshot that you are deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_certificate_from_distribution": {
+        "distributionName": {
+            "Description": "The name of the distribution from which to detach the certificate.\nUse the GetDistributions action to get a list of distribution names that you can specify.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_disk": {
+        "diskName": {
+            "Description": "The unique name of the disk you want to detach from your instance (e.g., my-disk ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "detach_instances_from_load_balancer": {
+        "loadBalancerName": {
+            "Description": "The name of the Lightsail load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "instanceNames": {
+            "Description": "An array of strings containing the names of the instances you want to detach from the load balancer.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "detach_static_ip": {
+        "staticIpName": {
+            "Description": "The name of the static IP to detach from the instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_add_on": {
+        "addOnType": {
+            "Description": "The add-on type to disable.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceName": {
+            "Description": "The name of the source resource for which to disable the add-on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "download_default_key_pair": "No parameters defined",
+    "enable_add_on": {
+        "resourceName": {
+            "Description": "The name of the source resource for which to enable or modify the add-on.",
+            "Type": "string",
+            "Required": true
+        },
+        "addOnRequest": {
+            "Description": "An array of strings representing the add-on to enable or modify.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "export_snapshot": {
+        "sourceSnapshotName": {
+            "Description": "The name of the instance or disk snapshot to be exported to Amazon EC2.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_active_names": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetActiveNames request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_alarms": {
+        "alarmName": {
+            "Description": "The name of the alarm.\nSpecify an alarm name to return information about a specific alarm.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetAlarms request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "monitoredResourceName": {
+            "Description": "The name of the Lightsail resource being monitored by the alarm.\nSpecify a monitored resource name to return information about all alarms for a specific resource.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_auto_snapshots": {
+        "resourceName": {
+            "Description": "The name of the source instance or disk from which to get automatic snapshot information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_blueprints": {
+        "includeInactive": {
+            "Description": "A Boolean value that indicates whether to include inactive (unavailable) blueprints in the response of your request.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetBlueprints request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_bucket_access_keys": {
+        "bucketName": {
+            "Description": "The name of the bucket for which to return access keys.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_bucket_bundles": {
+        "includeInactive": {
+            "Description": "A Boolean value that indicates whether to include inactive (unavailable) bundles in the response of your request.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_bucket_metric_data": {
+        "bucketName": {
+            "Description": "The name of the bucket for which to get metric data.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The metric for which you want to return information.\nValid bucket metric names are listed below, along with the most useful statistics to include in your request, and the published unit value.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "startTime": {
+            "Description": "The timestamp indicating the earliest data to be returned.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The timestamp indicating the latest data to be returned.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "period": {
+            "Description": "The granularity, in seconds, of the returned data points.",
+            "Type": "integer",
+            "Required": true
+        },
+        "statistics": {
+            "Description": "The statistic for the metric.\nThe following statistics are available:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "unit": {
+            "Description": "The unit for the metric data request.\nValid units depend on the metric data being requested. For the valid units with each available metric, see the metricName parameter.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_buckets": {
+        "bucketName": {
+            "Description": "The name of the bucket for which to return information.\nWhen omitted, the response includes all of your buckets in the Amazon Web Services Region where the request is made.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetBuckets request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeConnectedResources": {
+            "Description": "A Boolean value that indicates whether to include Lightsail instances that were given access to the bucket using the SetResourceAccessForBucket action.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_bundles": {
+        "includeInactive": {
+            "Description": "A Boolean value that indicates whether to include inactive (unavailable) bundles in the response of your request.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetBundles request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_certificates": {
+        "certificateStatuses": {
+            "Description": "The status of the certificates for which to return information.\nFor example, specify ISSUED to return only certificates with an ISSUED status.\nWhen omitted, the response includes all of your certificates in the Amazon Web Services Region where the request is made, regardless of their current status.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "includeCertificateDetails": {
+            "Description": "Indicates whether to include detailed information about the certificates in the response.\nWhen omitted, the response includes only the certificate names, Amazon Resource Names (ARNs), domain names, and tags.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "certificateName": {
+            "Description": "The name for the certificate for which to return information.\nWhen omitted, the response includes all of your certificates in the Amazon Web Services Region where the request is made.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_cloud_formation_stack_records": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetClouFormationStackRecords request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_contact_methods": {
+        "protocols": {
+            "Description": "The protocols used to send notifications, such as Email, or SMS (text messaging).\nSpecify a protocol in your request to return information about a specific contact method protocol.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_container_api_metadata": "No parameters defined",
+    "get_container_images": {
+        "serviceName": {
+            "Description": "The name of the container service for which to return registered container images.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_container_log": {
+        "serviceName": {
+            "Description": "The name of the container service for which to get a container log.",
+            "Type": "string",
+            "Required": true
+        },
+        "containerName": {
+            "Description": "The name of the container that is either running or previously ran on the container service for which to return a log.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start of the time interval for which to get log data.\nConstraints:\nYou can convert a human-friendly time to Unix time format using a converter like Epoch converter .",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "endTime": {
+            "Description": "The end of the time interval for which to get log data.\nConstraints:\nYou can convert a human-friendly time to Unix time format using a converter like Epoch converter .",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "filterPattern": {
+            "Description": "The pattern to use to filter the returned log events to a specific term.\nThe following are a few examples of filter patterns that you can specify:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetContainerLog request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_container_service_deployments": {
+        "serviceName": {
+            "Description": "The name of the container service for which to return deployments.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_container_service_metric_data": {
+        "serviceName": {
+            "Description": "The name of the container service for which to get metric data.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The metric for which you want to return information.\nValid container service metric names are listed below, along with the most useful statistics to include in your request, and the published unit value.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "startTime": {
+            "Description": "The start time of the time period.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end time of the time period.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "period": {
+            "Description": "The granularity, in seconds, of the returned data points.\nAll container service metric data is available in 5-minute (300 seconds) granularity.",
+            "Type": "integer",
+            "Required": true
+        },
+        "statistics": {
+            "Description": "The statistic for the metric.\nThe following statistics are available:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_container_service_powers": "No parameters defined",
+    "get_container_services": {
+        "serviceName": {
+            "Description": "The name of the container service for which to return information.\nWhen omitted, the response includes all of your container services in the Amazon Web Services Region where the request is made.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_disk": {
+        "diskName": {
+            "Description": "The name of the disk (e.g., my-disk ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_disk_snapshot": {
+        "diskSnapshotName": {
+            "Description": "The name of the disk snapshot (e.g., my-disk-snapshot ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_disk_snapshots": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetDiskSnapshots request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_disks": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetDisks request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_distribution_bundles": "No parameters defined",
+    "get_distribution_latest_cache_reset": {
+        "distributionName": {
+            "Description": "The name of the distribution for which to return the timestamp of the last cache reset.\nUse the GetDistributions action to get a list of distribution names that you can specify.\nWhen omitted, the response includes the latest cache reset timestamp of all your distributions.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_distribution_metric_data": {
+        "distributionName": {
+            "Description": "The name of the distribution for which to get metric data.\nUse the GetDistributions action to get a list of distribution names that you can specify.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The metric for which you want to return information.\nValid distribution metric names are listed below, along with the most useful statistics to include in your request, and the published unit value.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "startTime": {
+            "Description": "The start of the time interval for which to get metric data.\nConstraints:\nYou can convert a human-friendly time to Unix time format using a converter like Epoch converter .",
+            "Type": "datetime",
+            "Required": true,
+            "datetime variables": {}
+        },
+        "endTime": {
+            "Description": "The end of the time interval for which to get metric data.\nConstraints:\nYou can convert a human-friendly time to Unix time format using a converter like Epoch converter .",
+            "Type": "datetime",
+            "Required": true,
+            "datetime variables": {}
+        },
+        "period": {
+            "Description": "The granularity, in seconds, for the metric data points that will be returned.",
+            "Type": "integer",
+            "Required": true
+        },
+        "unit": {
+            "Description": "The unit for the metric data request.\nValid units depend on the metric data being requested. For the valid units with each available metric, see the metricName parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "statistics": {
+            "Description": "The statistic for the metric.\nThe following statistics are available:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_distributions": {
+        "distributionName": {
+            "Description": "The name of the distribution for which to return information.\nWhen omitted, the response includes all of your distributions in the Amazon Web Services Region where the request is made.",
+            "Type": "string",
+            "Required": false
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetDistributions request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_domain": {
+        "domainName": {
+            "Description": "The domain name for which your want to return information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domains": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetDomains request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_export_snapshot_records": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetExportSnapshotRecords request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_instance": {
+        "instanceName": {
+            "Description": "The name of the instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_instance_access_details": {
+        "instanceName": {
+            "Description": "The name of the instance to access.",
+            "Type": "string",
+            "Required": true
+        },
+        "protocol": {
+            "Description": "The protocol to use to connect to your instance. Defaults to ssh .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_instance_metric_data": {
+        "instanceName": {
+            "Description": "The name of the instance for which you want to get metrics data.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The metric for which you want to return information.\nValid instance metric names are listed below, along with the most useful statistics to include in your request, and the published unit value.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "period": {
+            "Description": "The granularity, in seconds, of the returned data points.\nThe StatusCheckFailed, StatusCheckFailed_Instance, and StatusCheckFailed_System instance metric data is available in 1-minute (60 seconds) granularity. All other instance metric data is available in 5-minute (300 seconds) granularity.",
+            "Type": "integer",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time of the time period.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end time of the time period.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "unit": {
+            "Description": "The unit for the metric data request. Valid units depend on the metric data being requested. For the valid units to specify with each available metric, see the metricName parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "statistics": {
+            "Description": "The statistic for the metric.\nThe following statistics are available:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_instance_port_states": {
+        "instanceName": {
+            "Description": "The name of the instance for which to return firewall port states.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_instance_snapshot": {
+        "instanceSnapshotName": {
+            "Description": "The name of the snapshot for which you are requesting information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_instance_snapshots": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetInstanceSnapshots request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_instance_state": {
+        "instanceName": {
+            "Description": "The name of the instance to get state information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_instances": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetInstances request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_key_pair": {
+        "keyPairName": {
+            "Description": "The name of the key pair for which you are requesting information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_key_pairs": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetKeyPairs request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeDefaultKeyPair": {
+            "Description": "A Boolean value that indicates whether to include the default key pair in the response of your request.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_load_balancer": {
+        "loadBalancerName": {
+            "Description": "The name of the load balancer.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_load_balancer_metric_data": {
+        "loadBalancerName": {
+            "Description": "The name of the load balancer.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The metric for which you want to return information.\nValid load balancer metric names are listed below, along with the most useful statistics to include in your request, and the published unit value.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "period": {
+            "Description": "The granularity, in seconds, of the returned data points.",
+            "Type": "integer",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time of the period.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The end time of the period.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "unit": {
+            "Description": "The unit for the metric data request. Valid units depend on the metric data being requested. For the valid units with each available metric, see the metricName parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "statistics": {
+            "Description": "The statistic for the metric.\nThe following statistics are available:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_load_balancer_tls_certificates": {
+        "loadBalancerName": {
+            "Description": "The name of the load balancer you associated with your SSL/TLS certificate.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_load_balancer_tls_policies": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetLoadBalancerTlsPolicies request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_load_balancers": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetLoadBalancers request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_operation": {
+        "operationId": {
+            "Description": "A GUID used to identify the operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_operations": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetOperations request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_operations_for_resource": {
+        "resourceName": {
+            "Description": "The name of the resource for which you are requesting information.",
+            "Type": "string",
+            "Required": true
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetOperationsForResource request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_regions": {
+        "includeAvailabilityZones": {
+            "Description": "A Boolean value indicating whether to also include Availability Zones in your get regions request. Availability Zones are indicated with a letter: e.g., us-east-2a .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "includeRelationalDatabaseAvailabilityZones": {
+            "Description": "A Boolean value indicating whether to also include Availability Zones for databases in your get regions request. Availability Zones are indicated with a letter (e.g., us-east-2a ).",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_relational_database": {
+        "relationalDatabaseName": {
+            "Description": "The name of the database that you are looking up.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_relational_database_blueprints": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetRelationalDatabaseBlueprints request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_relational_database_bundles": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetRelationalDatabaseBundles request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "includeInactive": {
+            "Description": "A Boolean value that indicates whether to include inactive (unavailable) bundles in the response of your request.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_relational_database_events": {
+        "relationalDatabaseName": {
+            "Description": "The name of the database from which to get events.",
+            "Type": "string",
+            "Required": true
+        },
+        "durationInMinutes": {
+            "Description": "The number of minutes in the past from which to retrieve events. For example, to get all events from the past 2 hours, enter 120.\nDefault: 60\nThe minimum is 1 and the maximum is 14 days (20160 minutes).",
+            "Type": "integer",
+            "Required": false
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetRelationalDatabaseEvents request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_relational_database_log_events": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database for which to get log events.",
+            "Type": "string",
+            "Required": true
+        },
+        "logStreamName": {
+            "Description": "The name of the log stream.\nUse the get relational database log streams operation to get a list of available log streams.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start of the time interval from which to get log events.\nConstraints:",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "endTime": {
+            "Description": "The end of the time interval from which to get log events.\nConstraints:",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "startFromHead": {
+            "Description": "Parameter to specify if the log should start from head or tail. If true is specified, the log event starts from the head of the log. If false is specified, the log event starts from the tail of the log.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next or previous page of results from your request.\nTo get a page token, perform an initial GetRelationalDatabaseLogEvents request. If your results are paginated, the response will return a next forward token and/or next backward token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_relational_database_log_streams": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database for which to get log streams.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_relational_database_master_user_password": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database for which to get the master user password.",
+            "Type": "string",
+            "Required": true
+        },
+        "passwordVersion": {
+            "Description": "The password version to return.\nSpecifying CURRENT or PREVIOUS returns the current or previous passwords respectively. Specifying PENDING returns the newest version of the password that will rotate to CURRENT. After the PENDING password rotates to CURRENT, the PENDING password is no longer available.\nDefault: CURRENT",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_relational_database_metric_data": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database from which to get metric data.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The metric for which you want to return information.\nValid relational database metric names are listed below, along with the most useful statistics to include in your request, and the published unit value. All relational database metric data is available in 1-minute (60 seconds) granularity.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "period": {
+            "Description": "The granularity, in seconds, of the returned data points.\nAll relational database metric data is available in 1-minute (60 seconds) granularity.",
+            "Type": "integer",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start of the time interval from which to get metric data.\nConstraints:",
+            "Type": "datetime",
+            "Required": true,
+            "datetime variables": {}
+        },
+        "endTime": {
+            "Description": "The end of the time interval from which to get metric data.\nConstraints:",
+            "Type": "datetime",
+            "Required": true,
+            "datetime variables": {}
+        },
+        "unit": {
+            "Description": "The unit for the metric data request. Valid units depend on the metric data being requested. For the valid units with each available metric, see the metricName parameter.",
+            "Type": "string",
+            "Required": true
+        },
+        "statistics": {
+            "Description": "The statistic for the metric.\nThe following statistics are available:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_relational_database_parameters": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database for which to get parameters.",
+            "Type": "string",
+            "Required": true
+        },
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetRelationalDatabaseParameters request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_relational_database_snapshot": {
+        "relationalDatabaseSnapshotName": {
+            "Description": "The name of the database snapshot for which to get information.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_relational_database_snapshots": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetRelationalDatabaseSnapshots request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_relational_databases": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetRelationalDatabases request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_static_ip": {
+        "staticIpName": {
+            "Description": "The name of the static IP in Lightsail.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_static_ips": {
+        "pageToken": {
+            "Description": "The token to advance to the next page of results from your request.\nTo get a page token, perform an initial GetStaticIps request. If your results are paginated, the response will return a next page token that you can specify as the page token in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "import_key_pair": {
+        "keyPairName": {
+            "Description": "The name of the key pair for which you want to import the public key.",
+            "Type": "string",
+            "Required": true
+        },
+        "publicKeyBase64": {
+            "Description": "A base64-encoded public key of the ssh-rsa type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "is_vpc_peered": "No parameters defined",
+    "open_instance_public_ports": {
+        "portInfo": {
+            "Description": "An object to describe the ports to open for the specified instance.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "instanceName": {
+            "Description": "The name of the instance for which to open ports.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "peer_vpc": "No parameters defined",
+    "put_alarm": {
+        "alarmName": {
+            "Description": "The name for the alarm. Specify the name of an existing alarm to update, and overwrite the previous configuration of the alarm.",
+            "Type": "string",
+            "Required": true
+        },
+        "metricName": {
+            "Description": "The name of the metric to associate with the alarm.\nYou can configure up to two alarms per metric.\nThe following metrics are available for each resource type:\nFor more information about these metrics, see Metrics available in Lightsail .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "monitoredResourceName": {
+            "Description": "The name of the Lightsail resource that will be monitored.\nInstances, load balancers, and relational databases are the only Lightsail resources that can currently be monitored by alarms.",
+            "Type": "string",
+            "Required": true
+        },
+        "comparisonOperator": {
+            "Description": "The arithmetic operation to use when comparing the specified statistic to the threshold. The specified statistic value is used as the first operand.",
+            "Type": "string",
+            "Required": true
+        },
+        "threshold": {
+            "Description": "The value against which the specified statistic is compared.",
+            "Type": "float",
+            "Required": true
+        },
+        "evaluationPeriods": {
+            "Description": "The number of most recent periods over which data is compared to the specified threshold. If you are setting an \"M out of N\" alarm, this value (evaluationPeriods ) is the N.\nIf you are setting an alarm that requires that a number of consecutive data points be breaching to trigger the alarm, this value specifies the rolling period of time in which data points are evaluated.\nEach evaluation period is five minutes long. For example, specify an evaluation period of 24 to evaluate a metric over a rolling period of two hours.\nYou can specify a minimum valuation period of 1 (5 minutes), and a maximum evaluation period of 288 (24 hours).",
+            "Type": "integer",
+            "Required": true
+        },
+        "datapointsToAlarm": {
+            "Description": "The number of data points that must be not within the specified threshold to trigger the alarm. If you are setting an \"M out of N\" alarm, this value (datapointsToAlarm ) is the M.",
+            "Type": "integer",
+            "Required": false
+        },
+        "treatMissingData": {
+            "Description": "Sets how this alarm will handle missing data points.\nAn alarm can treat missing data in the following ways:\nIf treatMissingData is not specified, the default behavior of missing is used.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "contactProtocols": {
+            "Description": "The contact protocols to use for the alarm, such as Email, SMS (text messaging), or both.\nA notification is sent via the specified contact protocol if notifications are enabled for the alarm, and when the alarm is triggered.\nA notification is not sent if a contact protocol is not specified, if the specified contact protocol is not configured in the Amazon Web Services Region, or if notifications are not enabled for the alarm using the notificationEnabled paramater.\nUse the CreateContactMethod action to configure a contact protocol in an Amazon Web Services Region.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "notificationTriggers": {
+            "Description": "The alarm states that trigger a notification.\nAn alarm has the following possible states:\nWhen you specify a notification trigger, the ALARM state must be specified. The INSUFFICIENT_DATA and OK states can be specified in addition to the ALARM state.\nThe notification trigger defaults to ALARM if you don't specify this parameter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {}
+            ]
+        },
+        "notificationEnabled": {
+            "Description": "Indicates whether the alarm is enabled.\nNotifications are enabled by default if you don't specify this parameter.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "put_instance_public_ports": {
+        "portInfos": {
+            "Description": "An array of objects to describe the ports to open for the specified instance.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "instanceName": {
+            "Description": "The name of the instance for which to open ports.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reboot_instance": {
+        "instanceName": {
+            "Description": "The name of the instance to reboot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reboot_relational_database": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database to reboot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "register_container_image": {
+        "serviceName": {
+            "Description": "The name of the container service for which to register a container image.",
+            "Type": "string",
+            "Required": true
+        },
+        "label": {
+            "Description": "The label for the container image when it's registered to the container service.\nUse a descriptive label that you can use to track the different versions of your registered container images.\nUse the GetContainerImages action to return the container images registered to a Lightsail container service. The label is the &lt;imagelabel&gt; portion of the following image name example:\nIf the name of your container service is mycontainerservice, and the label that you specify is mystaticwebsite, then the name of the registered container image will be :mycontainerservice.mystaticwebsite.1 .\nThe number at the end of these image name examples represents the version of the registered container image. If you push and register another container image to the same Lightsail container service, with the same label, then the version number for the new registered container image will be 2. If you push and register another container image, the version number will be 3, and so on.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "digest": {
+            "Description": "The digest of the container image to be registered.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "release_static_ip": {
+        "staticIpName": {
+            "Description": "The name of the static IP to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reset_distribution_cache": {
+        "distributionName": {
+            "Description": "The name of the distribution for which to reset cache.\nUse the GetDistributions action to get a list of distribution names that you can specify.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "send_contact_method_verification": {
+        "protocol": {
+            "Description": "The protocol to verify, such as Email or SMS (text messaging).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_ip_address_type": {
+        "resourceType": {
+            "Description": "The resource type.\nThe possible values are Distribution, Instance, and LoadBalancer .",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceName": {
+            "Description": "The name of the resource for which to set the IP address type.",
+            "Type": "string",
+            "Required": true
+        },
+        "ipAddressType": {
+            "Description": "The IP address type to set for the specified resource.\nThe possible values are ipv4 for IPv4 only, and dualstack for IPv4 and IPv6.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "set_resource_access_for_bucket": {
+        "resourceName": {
+            "Description": "The name of the Lightsail instance for which to set bucket access. The instance must be in a running or stopped state.",
+            "Type": "string",
+            "Required": true
+        },
+        "bucketName": {
+            "Description": "The name of the bucket for which to set access to another Lightsail resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "access": {
+            "Description": "The access setting.\nThe following access settings are available:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "start_instance": {
+        "instanceName": {
+            "Description": "The name of the instance (a virtual private server) to start.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_relational_database": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database to start.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_instance": {
+        "instanceName": {
+            "Description": "The name of the instance (a virtual private server) to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "When set to True, forces a Lightsail instance that is stuck in a stopping state to stop.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "stop_relational_database": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database to stop.",
+            "Type": "string",
+            "Required": true
+        },
+        "relationalDatabaseSnapshotName": {
+            "Description": "The name of your new database snapshot to be created before stopping your database.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceName": {
+            "Description": "The name of the resource to which you are adding tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which you want to add a tag.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag key and optional value.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "test_alarm": {
+        "alarmName": {
+            "Description": "The name of the alarm to test.",
+            "Type": "string",
+            "Required": true
+        },
+        "state": {
+            "Description": "The alarm state to test.\nAn alarm has the following possible states that can be tested:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "unpeer_vpc": "No parameters defined",
+    "untag_resource": {
+        "resourceName": {
+            "Description": "The name of the resource from which you are removing a tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource from which you want to remove a tag.",
+            "Type": "string",
+            "Required": false
+        },
+        "tagKeys": {
+            "Description": "The tag keys to delete from the specified resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_bucket": {
+        "bucketName": {
+            "Description": "The name of the bucket to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "accessRules": {
+            "Description": "An object that sets the public accessibility of objects in the specified bucket.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "versioning": {
+            "Description": "Specifies whether to enable or suspend versioning of objects in the bucket.\nThe following options can be specified:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "readonlyAccessAccounts": {
+            "Description": "An array of strings to specify the Amazon Web Services account IDs that can access the bucket.\nYou can give a maximum of 10 Amazon Web Services accounts access to a bucket.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "accessLogConfig": {
+            "Description": "An object that describes the access log configuration for the bucket.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_bucket_bundle": {
+        "bucketName": {
+            "Description": "The name of the bucket for which to update the bundle.",
+            "Type": "string",
+            "Required": true
+        },
+        "bundleId": {
+            "Description": "The ID of the new bundle to apply to the bucket.\nUse the GetBucketBundles action to get a list of bundle IDs that you can specify.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_container_service": {
+        "serviceName": {
+            "Description": "The name of the container service to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "power": {
+            "Description": "The power for the container service.\nThe power specifies the amount of memory, vCPUs, and base monthly cost of each node of the container service. The power and scale of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the power with the scale (the number of nodes) of the service.\nUse the GetContainerServicePowers action to view the specifications of each power option.",
+            "Type": "string",
+            "Required": false
+        },
+        "scale": {
+            "Description": "The scale for the container service.\nThe scale specifies the allocated compute nodes of the container service. The power and scale of a container service makes up its configured capacity. To determine the monthly price of your container service, multiply the base price of the power with the scale (the number of nodes) of the service.",
+            "Type": "integer",
+            "Required": false
+        },
+        "isDisabled": {
+            "Description": "A Boolean value to indicate whether the container service is disabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "publicDomainNames": {
+            "Description": "The public domain names to use with the container service, such as example.com and www.example.com .\nYou can specify up to four public domain names for a container service. The domain names that you specify are used when you create a deployment with a container configured as the public endpoint of your container service.\nIf you don't specify public domain names, then you can use the default domain of the container service.\nYou can specify public domain names using a string to array map as shown in the example later on this page.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "privateRegistryAccess": {
+            "Description": "An object to describe the configuration for the container service to access private container image repositories, such as Amazon Elastic Container Registry (Amazon ECR) private repositories.\nFor more information, see Configuring access to an Amazon ECR private repository for an Amazon Lightsail container service in the Amazon Lightsail Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_distribution": {
+        "distributionName": {
+            "Description": "The name of the distribution to update.\nUse the GetDistributions action to get a list of distribution names that you can specify.",
+            "Type": "string",
+            "Required": true
+        },
+        "origin": {
+            "Description": "An object that describes the origin resource for the distribution, such as a Lightsail instance, bucket, or load balancer.\nThe distribution pulls, caches, and serves content from the origin.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "defaultCacheBehavior": {
+            "Description": "An object that describes the default cache behavior for the distribution.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "cacheBehaviorSettings": {
+            "Description": "An object that describes the cache behavior settings for the distribution.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "cacheBehaviors": {
+            "Description": "An array of objects that describe the per-path cache behavior for the distribution.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "isEnabled": {
+            "Description": "Indicates whether to enable the distribution.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_distribution_bundle": {
+        "distributionName": {
+            "Description": "The name of the distribution for which to update the bundle.\nUse the GetDistributions action to get a list of distribution names that you can specify.",
+            "Type": "string",
+            "Required": false
+        },
+        "bundleId": {
+            "Description": "The bundle ID of the new bundle to apply to your distribution.\nUse the GetDistributionBundles action to get a list of distribution bundle IDs that you can specify.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_domain_entry": {
+        "domainName": {
+            "Description": "The name of the domain recordset to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainEntry": {
+            "Description": "An array of key-value pairs containing information about the domain entry.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_load_balancer_attribute": {
+        "loadBalancerName": {
+            "Description": "The name of the load balancer that you want to modify (e.g., my-load-balancer .",
+            "Type": "string",
+            "Required": true
+        },
+        "attributeName": {
+            "Description": "The name of the attribute you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "attributeValue": {
+            "Description": "The value that you want to specify for the attribute name.\nThe following values are supported depending on what you specify for the attributeName request parameter:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "update_relational_database": {
+        "relationalDatabaseName": {
+            "Description": "The name of your Lightsail database resource to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "masterUserPassword": {
+            "Description": "The password for the master user. The password can include any printable ASCII character except \"/\", \"\"\", or \"@\".\nMy**SQL**\nConstraints: Must contain from 8 to 41 characters.\nConstraints: Must contain from 8 to 128 characters.",
+            "Type": "string",
+            "Required": false
+        },
+        "rotateMasterUserPassword": {
+            "Description": "When true, the master user password is changed to a new strong password generated by Lightsail.\nUse the get relational database master user password operation to get the new password.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "preferredBackupWindow": {
+            "Description": "The daily time range during which automated backups are created for your database if automated backups are enabled.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "preferredMaintenanceWindow": {
+            "Description": "The weekly time range during which system maintenance can occur on your database.\nThe default is a 30-minute window selected at random from an 8-hour block of time for each AWS Region, occurring on a random day of the week.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "enableBackupRetention": {
+            "Description": "When true, enables automated backup retention for your database.\nUpdates are applied during the next maintenance window because this can result in an outage.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "disableBackupRetention": {
+            "Description": "When true, disables automated backup retention for your database.\nDisabling backup retention deletes all automated database backups. Before disabling this, you may want to create a snapshot of your database using the create relational database snapshot operation.\nUpdates are applied during the next maintenance window because this can result in an outage.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "publiclyAccessible": {
+            "Description": "Specifies the accessibility options for your database. A value of true specifies a database that is available to resources outside of your Lightsail account. A value of false specifies a database that is available only to your Lightsail resources in the same region as your database.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "applyImmediately": {
+            "Description": "When true, applies changes immediately. When false, applies changes during the preferred maintenance window. Some changes may cause an outage.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "caCertificateIdentifier": {
+            "Description": "Indicates the certificate that needs to be associated with the database.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_relational_database_parameters": {
+        "relationalDatabaseName": {
+            "Description": "The name of your database for which to update parameters.",
+            "Type": "string",
+            "Required": true
+        },
+        "parameters": {
+            "Description": "The database parameters to update.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

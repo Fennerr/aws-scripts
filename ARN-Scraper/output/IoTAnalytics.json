@@ -1,0 +1,546 @@
+{
+    "batch_put_message": {
+        "channelName": {
+            "Description": "The name of the channel where the messages are sent.",
+            "Type": "string",
+            "Required": true
+        },
+        "messages": {
+            "Description": "The list of messages to be sent. Each message has the format: { \"messageId\": \"string\", \"payload\": \"string\"}.\nThe field names of message payloads (data) that you send to IoT Analytics:\nFor example, {\"temp_01\": 29} or {\"_temp_01\": 29} are valid, but {\"temp-01\": 29}, {\"01_temp\": 29} or {\"__temp_01\": 29} are invalid in message payloads.",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "cancel_pipeline_reprocessing": {
+        "pipelineName": {
+            "Description": "The name of pipeline for which data reprocessing is canceled.",
+            "Type": "string",
+            "Required": true
+        },
+        "reprocessingId": {
+            "Description": "The ID of the reprocessing task (returned by StartPipelineReprocessing ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_channel": {
+        "channelName": {
+            "Description": "The name of the channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "channelStorage": {
+            "Description": "Where channel data is stored. You can choose one of serviceManagedS3 or customerManagedS3 storage. If not specified, the default is serviceManagedS3. You can't change this storage option after the channel is created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "retentionPeriod": {
+            "Description": "How long, in days, message data is kept for the channel. When customerManagedS3 storage is selected, this parameter is ignored.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the channel.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_dataset": {
+        "datasetName": {
+            "Description": "The name of the dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "actions": {
+            "Description": "A list of actions that create the dataset contents.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "triggers": {
+            "Description": "A list of triggers. A trigger causes dataset contents to be populated at a specified time interval or when another dataset's contents are created. The list of triggers can be empty or contain up to five DataSetTrigger objects.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "contentDeliveryRules": {
+            "Description": "When dataset contents are created, they are delivered to destinations specified here.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "retentionPeriod": {
+            "Description": "Optional. How long, in days, versions of dataset contents are kept for the dataset. If not specified or set to null, versions of dataset contents are retained for at most 90 days. The number of versions of dataset contents retained is determined by the versioningConfiguration parameter. For more information, see Keeping Multiple Versions of IoT Analytics datasets in the IoT Analytics User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "versioningConfiguration": {
+            "Description": "Optional. How many versions of dataset contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the retentionPeriod parameter. For more information, see Keeping Multiple Versions of IoT Analytics datasets in the IoT Analytics User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the dataset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "lateDataRules": {
+            "Description": "A list of data rules that send notifications to CloudWatch, when data arrives late. To specify lateDataRules, the dataset must use a DeltaTimer filter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_dataset_content": {
+        "datasetName": {
+            "Description": "The name of the dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "versionId": {
+            "Description": "The version ID of the dataset content. To specify versionId for a dataset content, the dataset must use a DeltaTimer filter.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_datastore": {
+        "datastoreName": {
+            "Description": "The name of the data store.",
+            "Type": "string",
+            "Required": true
+        },
+        "datastoreStorage": {
+            "Description": "Where data in a data store is stored.. You can choose serviceManagedS3 storage, customerManagedS3 storage, or iotSiteWiseMultiLayerStorage storage. The default is serviceManagedS3. You can't change the choice of Amazon S3 storage after your data store is created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "retentionPeriod": {
+            "Description": "How long, in days, message data is kept for the data store. When customerManagedS3 storage is selected, this parameter is ignored.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the data store.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "fileFormatConfiguration": {
+            "Description": "Contains the configuration information of file formats. IoT Analytics data stores support JSON and Parquet .\nThe default file format is JSON. You can specify only one format.\nYou can't change the file format after you create the data store.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "datastorePartitions": {
+            "Description": "Contains information about the partition dimensions in a data store.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_pipeline": {
+        "pipelineName": {
+            "Description": "The name of the pipeline.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineActivities": {
+            "Description": "A list of PipelineActivity objects. Activities perform transformations on your messages, such as removing, renaming or adding message attributes; filtering messages based on attribute values; invoking your Lambda unctions on messages for advanced processing; or performing mathematical transformations to normalize device data.\nThe list can be 2-25 PipelineActivity objects and must contain both a channel and a datastore activity. Each entry in the list must contain only one activity. For example:",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "Metadata which can be used to manage the pipeline.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_channel": {
+        "channelName": {
+            "Description": "The name of the channel to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dataset": {
+        "datasetName": {
+            "Description": "The name of the dataset to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_dataset_content": {
+        "datasetName": {
+            "Description": "The name of the dataset whose content is deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "versionId": {
+            "Description": "The version of the dataset whose content is deleted. You can also use the strings \"$LATEST\" or \"$LATEST_SUCCEEDED\" to delete the latest or latest successfully completed data set. If not specified, \"$LATEST_SUCCEEDED\" is the default.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_datastore": {
+        "datastoreName": {
+            "Description": "The name of the data store to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_pipeline": {
+        "pipelineName": {
+            "Description": "The name of the pipeline to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_channel": {
+        "channelName": {
+            "Description": "The name of the channel whose information is retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "includeStatistics": {
+            "Description": "If true, additional statistical information about the channel is included in the response. This feature can't be used with a channel whose S3 storage is customer-managed.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_dataset": {
+        "datasetName": {
+            "Description": "The name of the dataset whose information is retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_datastore": {
+        "datastoreName": {
+            "Description": "The name of the data store",
+            "Type": "string",
+            "Required": true
+        },
+        "includeStatistics": {
+            "Description": "If true, additional statistical information about the data store is included in the response. This feature can't be used with a data store whose S3 storage is customer-managed.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_logging_options": "No parameters defined",
+    "describe_pipeline": {
+        "pipelineName": {
+            "Description": "The name of the pipeline whose information is retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_dataset_content": {
+        "datasetName": {
+            "Description": "The name of the dataset whose contents are retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "versionId": {
+            "Description": "The version of the dataset whose contents are retrieved. You can also use the strings \"$LATEST\" or \"$LATEST_SUCCEEDED\" to retrieve the contents of the latest or latest successfully completed dataset. If not specified, \"$LATEST_SUCCEEDED\" is the default.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_channels": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this request.\nThe default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dataset_contents": {
+        "datasetName": {
+            "Description": "The name of the dataset whose contents information you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "scheduledOnOrAfter": {
+            "Description": "A filter to limit results to those dataset contents whose creation is scheduled on or after the given time. See the field triggers.schedule in the CreateDataset request. (timestamp)",
+            "Type": "datetime",
+            "Required": false
+        },
+        "scheduledBefore": {
+            "Description": "A filter to limit results to those dataset contents whose creation is scheduled before the given time. See the field triggers.schedule in the CreateDataset request. (timestamp)",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_datasets": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this request.\nThe default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_datastores": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this request.\nThe default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_pipelines": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in this request.\nThe default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource whose tags you want to list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_logging_options": {
+        "loggingOptions": {
+            "Description": "The new values of the IoT Analytics logging options.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "run_pipeline_activity": {
+        "pipelineActivity": {
+            "Description": "The pipeline activity that is run. This must not be a channel activity or a data store activity because these activities are used in a pipeline only to load the original message and to store the (possibly) transformed message. If a Lambda activity is specified, only short-running Lambda functions (those with a timeout of less than 30 seconds or less) can be used.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "payloads": {
+            "Description": "The sample message payloads on which the pipeline activity is run.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "sample_channel_data": {
+        "channelName": {
+            "Description": "The name of the channel whose message samples are retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxMessages": {
+            "Description": "The number of sample messages to be retrieved. The limit is 10. The default is also 10.",
+            "Type": "integer",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "The start of the time window from which sample messages are retrieved.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end of the time window from which sample messages are retrieved.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "start_pipeline_reprocessing": {
+        "pipelineName": {
+            "Description": "The name of the pipeline on which to start reprocessing.",
+            "Type": "string",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The start time (inclusive) of raw message data that is reprocessed.\nIf you specify a value for the startTime parameter, you must not use the channelMessages object.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The end time (exclusive) of raw message data that is reprocessed.\nIf you specify a value for the endTime parameter, you must not use the channelMessages object.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "channelMessages": {
+            "Description": "Specifies one or more sets of channel messages that you want to reprocess.\nIf you use the channelMessages object, you must not specify a value for startTime and endTime .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource whose tags you want to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The new or modified tags for the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource whose tags you want to remove.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of those tags which you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_channel": {
+        "channelName": {
+            "Description": "The name of the channel to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "channelStorage": {
+            "Description": "Where channel data is stored. You can choose one of serviceManagedS3 or customerManagedS3 storage. If not specified, the default is serviceManagedS3. You can't change this storage option after the channel is created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "retentionPeriod": {
+            "Description": "How long, in days, message data is kept for the channel. The retention period can't be updated if the channel's Amazon S3 storage is customer-managed.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_dataset": {
+        "datasetName": {
+            "Description": "The name of the dataset to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "actions": {
+            "Description": "A list of DatasetAction objects.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "triggers": {
+            "Description": "A list of DatasetTrigger objects. The list can be empty or can contain up to five DatasetTrigger objects.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "contentDeliveryRules": {
+            "Description": "When dataset contents are created, they are delivered to destinations specified here.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "retentionPeriod": {
+            "Description": "How long, in days, dataset contents are kept for the dataset.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "versioningConfiguration": {
+            "Description": "Optional. How many versions of dataset contents are kept. If not specified or set to null, only the latest version plus the latest succeeded version (if they are different) are kept for the time period specified by the retentionPeriod parameter. For more information, see Keeping Multiple Versions of IoT Analytics datasets in the IoT Analytics User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "lateDataRules": {
+            "Description": "A list of data rules that send notifications to CloudWatch, when data arrives late. To specify lateDataRules, the dataset must use a DeltaTimer filter.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_datastore": {
+        "datastoreName": {
+            "Description": "The name of the data store to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "retentionPeriod": {
+            "Description": "How long, in days, message data is kept for the data store. The retention period can't be updated if the data store's Amazon S3 storage is customer-managed.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "datastoreStorage": {
+            "Description": "Where data in a data store is stored.. You can choose serviceManagedS3 storage, customerManagedS3 storage, or iotSiteWiseMultiLayerStorage storage. The default is serviceManagedS3. You can't change the choice of Amazon S3 storage after your data store is created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "fileFormatConfiguration": {
+            "Description": "Contains the configuration information of file formats. IoT Analytics data stores support JSON and Parquet .\nThe default file format is JSON. You can specify only one format.\nYou can't change the file format after you create the data store.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_pipeline": {
+        "pipelineName": {
+            "Description": "The name of the pipeline to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "pipelineActivities": {
+            "Description": "A list of PipelineActivity objects. Activities perform transformations on your messages, such as removing, renaming or adding message attributes; filtering messages based on attribute values; invoking your Lambda functions on messages for advanced processing; or performing mathematical transformations to normalize device data.\nThe list can be 2-25 PipelineActivity objects and must contain both a channel and a datastore activity. Each entry in the list must contain only one activity. For example:",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

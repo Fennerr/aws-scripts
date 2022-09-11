@@ -1,0 +1,490 @@
+{
+    "add_permission": {
+        "Label": {
+            "Description": "The unique identification of the permission you're setting (for example, AliceSendMessage ). Maximum 80 characters. Allowed characters include alphanumeric characters, hyphens (- ), and underscores (_ ).",
+            "Type": "string",
+            "Required": true
+        },
+        "AWSAccountIds": {
+            "Description": "The Amazon Web Services account numbers of the principals who are to receive permission. For information about locating the Amazon Web Services account identification, see Your Amazon Web Services Identifiers in the Amazon SQS Developer Guide .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Actions": {
+            "Description": "The action the client wants to allow for the specified principal. Valid values: the name of any action or * .\nFor more information about these actions, see Overview of Managing Access Permissions to Your Amazon Simple Queue Service Resource in the Amazon SQS Developer Guide .\nSpecifying SendMessage, DeleteMessage, or ChangeMessageVisibility for ActionName.n also grants permissions for the corresponding batch versions of those actions: SendMessageBatch, DeleteMessageBatch, and ChangeMessageVisibilityBatch .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "change_message_visibility": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue whose message's visibility is changed.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReceiptHandle": {
+            "Description": "The receipt handle associated with the message whose visibility timeout is changed. This parameter is returned by the ``  ReceiveMessage `` action.",
+            "Type": "string",
+            "Required": true
+        },
+        "VisibilityTimeout": {
+            "Description": "The new value for the message's visibility timeout (in seconds). Values range: 0 to 43200. Maximum: 12 hours.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "change_message_visibility_batch": {
+        "Entries": {
+            "Description": "A list of receipt handles of the messages for which the visibility timeout must be changed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_queue": {
+        "QueueName": {
+            "Description": "The name of the new queue. The following limits apply to this name:\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Attributes": {
+            "Description": "A map of attributes with their corresponding values.\nThe following lists the names, descriptions, and values of the special request parameters that the CreateQueue action uses:\nThe following attributes apply only to server-side-encryption :\nThe following attributes apply only to FIFO (first-in-first-out) queues :\nThe following attributes apply only to high throughput for FIFO queues :\nTo enable high throughput for FIFO queues, do the following:\nIf you set these attributes to anything other than the values shown for enabling high throughput, normal throughput is in effect and deduplication occurs as specified.\nFor information on throughput quotas, see Quotas related to messages in the Amazon SQS Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        },
+        "tags": {
+            "Description": "Add cost allocation tags to the specified Amazon SQS queue. For an overview, see Tagging Your Amazon SQS Queues in the Amazon SQS Developer Guide .\nWhen you use queue tags, keep the following guidelines in mind:\nFor a full list of tag restrictions, see Quotas related to queues in the Amazon SQS Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "delete_message": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue from which messages are deleted.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReceiptHandle": {
+            "Description": "The receipt handle associated with the message to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_message_batch": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue from which messages are deleted.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "Entries": {
+            "Description": "A list of receipt handles for the messages to be deleted.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_queue": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue to delete.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_queue_attributes": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue whose attribute information is retrieved.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeNames": {
+            "Description": "A list of attributes for which to retrieve information.\nThe AttributeName.N parameter is optional, but if you don't specify values for this parameter, the request returns empty results.\nThe following attributes are supported:\nThe following attributes apply only to server-side-encryption :\nThe following attributes apply only to FIFO (first-in-first-out) queues :\nThe following attributes apply only to high throughput for FIFO queues :\nTo enable high throughput for FIFO queues, do the following:\nIf you set these attributes to anything other than the values shown for enabling high throughput, normal throughput is in effect and deduplication occurs as specified.\nFor information on throughput quotas, see Quotas related to messages in the Amazon SQS Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        }
+    },
+    "get_queue_url": {
+        "QueueName": {
+            "Description": "The name of the queue whose URL must be fetched. Maximum 80 characters. Valid values: alphanumeric characters, hyphens (- ), and underscores (_ ).\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueueOwnerAWSAccountId": {
+            "Description": "The Amazon Web Services account ID of the account that created the queue.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_dead_letter_source_queues": {
+        "QueueUrl": {
+            "Description": "The URL of a dead-letter queue.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Pagination token to request the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to include in the response. Value range is 1 to 1000. You must set MaxResults to receive a value for NextToken in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_queue_tags": {
+        "QueueUrl": {
+            "Description": "The URL of the queue.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_queues": {
+        "QueueNamePrefix": {
+            "Description": "A string to use for filtering the list results. Only those queues whose name begins with the specified string are returned.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token to request the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to include in the response. Value range is 1 to 1000. You must set MaxResults to receive a value for NextToken in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "purge_queue": {
+        "QueueUrl": {
+            "Description": "The URL of the queue from which the PurgeQueue action deletes messages.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "receive_message": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue from which messages are received.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeNames": {
+            "Description": "A list of attributes that need to be returned along with each message. These attributes include:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MessageAttributeNames": {
+            "Description": "The name of the message attribute, where N is the index.\nWhen using ReceiveMessage, you can send a list of attribute names to receive, or you can return all of the attributes by specifying All or .* in your request. You can also use all message attributes starting with a prefix, for example bar.* .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxNumberOfMessages": {
+            "Description": "The maximum number of messages to return. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10. Default: 1.",
+            "Type": "integer",
+            "Required": false
+        },
+        "VisibilityTimeout": {
+            "Description": "The duration (in seconds) that the received messages are hidden from subsequent retrieve requests after being retrieved by a ReceiveMessage request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "WaitTimeSeconds": {
+            "Description": "The duration (in seconds) for which the call waits for a message to arrive in the queue before returning. If a message is available, the call returns sooner than WaitTimeSeconds. If no messages are available and the wait time expires, the call returns successfully with an empty list of messages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ReceiveRequestAttemptId": {
+            "Description": "This parameter applies only to FIFO (first-in-first-out) queues.\nThe token used for deduplication of ReceiveMessage calls. If a networking issue occurs after a ReceiveMessage action, and instead of a response you receive a generic error, it is possible to retry the same action with an identical ReceiveRequestAttemptId to retrieve the same set of messages, even if their visibility timeout has not yet expired.\nThe maximum length of ReceiveRequestAttemptId is 128 characters. ReceiveRequestAttemptId can contain alphanumeric characters (a-z, A-Z, 0-9 ) and punctuation (!\"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~ ).\nFor best practices of using ReceiveRequestAttemptId, see Using the ReceiveRequestAttemptId Request Parameter in the Amazon SQS Developer Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "remove_permission": {
+        "Label": {
+            "Description": "The identification of the permission to remove. This is the label added using the ``  AddPermission `` action.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "send_message": {
+        "MessageBody": {
+            "Description": "The message to send. The minimum size is one character. The maximum size is 256 KB.",
+            "Type": "string",
+            "Required": true
+        },
+        "DelaySeconds": {
+            "Description": "The length of time, in seconds, for which to delay a specific message. Valid values: 0 to 900. Maximum: 15 minutes. Messages with a positive DelaySeconds value become available for processing after the delay period is finished. If you don't specify a value, the default value for the queue applies.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MessageAttributes": {
+            "Description": "Each message attribute consists of a Name, Type, and Value. For more information, see Amazon SQS message attributes in the Amazon SQS Developer Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MessageSystemAttributes": {
+            "Description": "The message system attribute to send. Each message system attribute consists of a Name, Type, and Value .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MessageDeduplicationId": {
+            "Description": "This parameter applies only to FIFO (first-in-first-out) queues.\nThe token used for deduplication of sent messages. If a message with a particular MessageDeduplicationId is sent successfully, any messages sent with the same MessageDeduplicationId are accepted successfully but aren't delivered during the 5-minute deduplication interval. For more information, see Exactly-once processing in the Amazon SQS Developer Guide .\nThe maximum length of MessageDeduplicationId is 128 characters. MessageDeduplicationId can contain alphanumeric characters (a-z, A-Z, 0-9 ) and punctuation (!\"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~ ).\nFor best practices of using MessageDeduplicationId, see Using the MessageDeduplicationId Property in the Amazon SQS Developer Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "MessageGroupId": {
+            "Description": "This parameter applies only to FIFO (first-in-first-out) queues.\nThe tag that specifies that a message belongs to a specific message group. Messages that belong to the same message group are processed in a FIFO manner (however, messages in different message groups might be processed out of order). To interleave multiple ordered streams within a single queue, use MessageGroupId values (for example, session data for multiple users). In this scenario, multiple consumers can process the queue, but the session data of each user is processed in a FIFO fashion.\nThe length of MessageGroupId is 128 characters. Valid values: alphanumeric characters and punctuation (!\"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~) .\nFor best practices of using MessageGroupId, see Using the MessageGroupId Property in the Amazon SQS Developer Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "send_message_batch": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue to which batched messages are sent.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "Entries": {
+            "Description": "A list of ``  SendMessageBatchRequestEntry `` items.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "set_queue_attributes": {
+        "QueueUrl": {
+            "Description": "The URL of the Amazon SQS queue whose attributes are set.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "Attributes": {
+            "Description": "A map of attributes to set.\nThe following lists the names, descriptions, and values of the special request parameters that the SetQueueAttributes action uses:\nThe following attributes apply only to server-side-encryption :\nThe following attribute applies only to FIFO (first-in-first-out) queues :\nThe following attributes apply only to high throughput for FIFO queues :\nTo enable high throughput for FIFO queues, do the following:\nIf you set these attributes to anything other than the values shown for enabling high throughput, normal throughput is in effect and deduplication occurs as specified.\nFor information on throughput quotas, see Quotas related to messages in the Amazon SQS Developer Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        }
+    },
+    "tag_queue": {
+        "QueueUrl": {
+            "Description": "The URL of the queue.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The list of tags to be added to the specified queue.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_queue": {
+        "QueueUrl": {
+            "Description": "The URL of the queue.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of tags to be removed from the specified queue.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "QueueNamePrefix": {
+            "Description": "A string to use for filtering the list results. Only those queues whose name begins with the specified string are returned.\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_available_subresources": "No parameters defined",
+    "get_queue_by_name": {
+        "QueueName": {
+            "Description": "The name of the queue whose URL must be fetched. Maximum 80 characters. Valid values: alphanumeric characters, hyphens (- ), and underscores (_ ).\nQueue URLs and names are case-sensitive.",
+            "Type": "string",
+            "Required": true
+        },
+        "QueueOwnerAWSAccountId": {
+            "Description": "The Amazon Web Services account ID of the account that created the queue.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "Message": {
+        "receipt_handle": {
+            "Description": "The Message's receipt_handle identifier. This must be set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "Queue": "No parameters defined",
+    "all": "No parameters defined",
+    "filter": {
+        "NextToken": {
+            "Description": "Pagination token to request the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to include in the response. Value range is 1 to 1000. You must set MaxResults to receive a value for NextToken in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "limit": {
+        "count": {
+            "Description": "The limit to the number of resources in the iterable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "page_size": {
+        "count": {
+            "Description": "The number of items returned by each service call",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "change_visibility": {
+        "VisibilityTimeout": {
+            "Description": "The new value for the message's visibility timeout (in seconds). Values range: 0 to 43200. Maximum: 12 hours.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "delete": "No parameters defined",
+    "delete_messages": {
+        "Entries": {
+            "Description": "A list of receipt handles for the messages to be deleted.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "load": "No parameters defined",
+    "purge": "No parameters defined",
+    "receive_messages": {
+        "AttributeNames": {
+            "Description": "A list of attributes that need to be returned along with each message. These attributes include:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MessageAttributeNames": {
+            "Description": "The name of the message attribute, where N is the index.\nWhen using ReceiveMessage, you can send a list of attribute names to receive, or you can return all of the attributes by specifying All or .* in your request. You can also use all message attributes starting with a prefix, for example bar.* .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxNumberOfMessages": {
+            "Description": "The maximum number of messages to return. Amazon SQS never returns more messages than this value (however, fewer messages might be returned). Valid values: 1 to 10. Default: 1.",
+            "Type": "integer",
+            "Required": false
+        },
+        "VisibilityTimeout": {
+            "Description": "The duration (in seconds) that the received messages are hidden from subsequent retrieve requests after being retrieved by a ReceiveMessage request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "WaitTimeSeconds": {
+            "Description": "The duration (in seconds) for which the call waits for a message to arrive in the queue before returning. If a message is available, the call returns sooner than WaitTimeSeconds. If no messages are available and the wait time expires, the call returns successfully with an empty list of messages.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ReceiveRequestAttemptId": {
+            "Description": "This parameter applies only to FIFO (first-in-first-out) queues.\nThe token used for deduplication of ReceiveMessage calls. If a networking issue occurs after a ReceiveMessage action, and instead of a response you receive a generic error, it is possible to retry the same action with an identical ReceiveRequestAttemptId to retrieve the same set of messages, even if their visibility timeout has not yet expired.\nThe maximum length of ReceiveRequestAttemptId is 128 characters. ReceiveRequestAttemptId can contain alphanumeric characters (a-z, A-Z, 0-9 ) and punctuation (!\"#$%&amp;'()*+,-./:;&lt;=&gt;?@[\\]^_`{|}~ ).\nFor best practices of using ReceiveRequestAttemptId, see Using the ReceiveRequestAttemptId Request Parameter in the Amazon SQS Developer Guide .",
+            "Type": "string",
+            "Required": false,
+            "string variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "reload": "No parameters defined",
+    "send_messages": {
+        "Entries": {
+            "Description": "A list of ``  SendMessageBatchRequestEntry `` items.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "set_attributes": {
+        "Attributes": {
+            "Description": "A map of attributes to set.\nThe following lists the names, descriptions, and values of the special request parameters that the SetQueueAttributes action uses:\nThe following attributes apply only to server-side-encryption :\nThe following attribute applies only to FIFO (first-in-first-out) queues :\nThe following attributes apply only to high throughput for FIFO queues :\nTo enable high throughput for FIFO queues, do the following:\nIf you set these attributes to anything other than the values shown for enabling high throughput, normal throughput is in effect and deduplication occurs as specified.\nFor information on throughput quotas, see Quotas related to messages in the Amazon SQS Developer Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {},
+                {},
+                {},
+                {},
+                {},
+                {}
+            ]
+        }
+    }
+}

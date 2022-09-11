@@ -1,0 +1,1051 @@
+{
+    "abort_environment_update": {
+        "EnvironmentId": {
+            "Description": "This specifies the ID of the environment with the in-progress update that you want to cancel.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "This specifies the name of the environment with the in-progress update that you want to cancel.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "apply_environment_managed_action": {
+        "EnvironmentName": {
+            "Description": "The name of the target environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentId": {
+            "Description": "The environment ID of the target environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "ActionId": {
+            "Description": "The action ID of the scheduled managed action to execute.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_environment_operations_role": {
+        "EnvironmentName": {
+            "Description": "The name of the environment to which to set the operations role.",
+            "Type": "string",
+            "Required": true
+        },
+        "OperationsRole": {
+            "Description": "The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "check_dns_availability": {
+        "CNAMEPrefix": {
+            "Description": "The prefix used when this CNAME is reserved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "compose_environments": {
+        "ApplicationName": {
+            "Description": "The name of the application to which the specified source bundles belong.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupName": {
+            "Description": "The name of the group to which the target environments belong. Specify a group name only if the environment name defined in each target environment's manifest ends with a + (plus) character. See Environment Manifest (env.yaml) for details.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionLabels": {
+            "Description": "A list of version labels, specifying one or more application source bundles that belong to the target application. Each source bundle must include an environment manifest that specifies the name of the environment and the name of the solution stack to use, and optionally can specify environment links to create.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_application": {
+        "ApplicationName": {
+            "Description": "The name of the application. Must be unique within your account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Your description of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceLifecycleConfig": {
+            "Description": "Specifies an application resource lifecycle configuration to prevent your application from accumulating too many versions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Specifies the tags applied to the application.\nElastic Beanstalk applies these tags only to the application. Environments that you create in the application don't inherit the tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_application_version": {
+        "ApplicationName": {
+            "Description": "The name of the application. If no application is found with this name, and AutoCreateApplication is false, returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionLabel": {
+            "Description": "A label identifying this version.\nConstraint: Must be unique per application. If an application version already exists with this label for the specified application, AWS Elastic Beanstalk returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of this application version.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceBuildInformation": {
+            "Description": "Specify a commit in an AWS CodeCommit Git repository to use as the source code for the application version.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SourceBundle": {
+            "Description": "The Amazon S3 bucket and key that identify the location of the source bundle for this version.\nSpecify a source bundle in S3 or a commit in an AWS CodeCommit repository (with SourceBuildInformation ), but not both. If neither SourceBundle nor SourceBuildInformation are provided, Elastic Beanstalk uses a sample application.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "BuildConfiguration": {
+            "Description": "Settings for an AWS CodeBuild build.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "AutoCreateApplication": {
+            "Description": "Set to true to create an application with the specified name if it doesn't already exist.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Process": {
+            "Description": "Pre-processes and validates the environment manifest (env.yaml ) and configuration files (*.config files in the .ebextensions folder) in the source bundle. Validating configuration files can identify issues prior to deploying the application version to an environment.\nYou must turn processing on for application versions that you create using AWS CodeBuild or AWS CodeCommit. For application versions built from a source bundle in Amazon S3, processing is optional.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Specifies the tags applied to the application version.\nElastic Beanstalk applies these tags only to the application version. Environments that use the application version don't inherit the tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_configuration_template": {
+        "ApplicationName": {
+            "Description": "The name of the Elastic Beanstalk application to associate with this configuration template.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateName": {
+            "Description": "The name of the configuration template.\nConstraint: This name must be unique per application.",
+            "Type": "string",
+            "Required": true
+        },
+        "SolutionStackName": {
+            "Description": "The name of an Elastic Beanstalk solution stack (platform version) that this configuration uses. For example, 64bit Amazon Linux 2013.09 running Tomcat 7 Java 7. A solution stack specifies the operating system, runtime, and application server for a configuration template. It also determines the set of configuration options as well as the possible and default values. For more information, see Supported Platforms in the AWS Elastic Beanstalk Developer Guide .\nYou must specify SolutionStackName if you don't specify PlatformArn, EnvironmentId, or SourceConfiguration .\nUse the ` ListAvailableSolutionStacks https://docs.aws.amazon.com/elasticbeanstalk/latest/api/API_ListAvailableSolutionStacks.html`__ API to obtain a list of available solution stacks.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlatformArn": {
+            "Description": "The Amazon Resource Name (ARN) of the custom platform. For more information, see Custom Platforms in the AWS Elastic Beanstalk Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceConfiguration": {
+            "Description": "An Elastic Beanstalk configuration template to base this one on. If specified, Elastic Beanstalk uses the configuration values from the specified configuration template to create a new configuration.\nValues specified in OptionSettings override any values obtained from the SourceConfiguration .\nYou must specify SourceConfiguration if you don't specify PlatformArn, EnvironmentId, or SolutionStackName .\nConstraint: If both solution stack name and source configuration are specified, the solution stack of the source configuration template must match the specified solution stack name.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EnvironmentId": {
+            "Description": "The ID of an environment whose settings you want to use to create the configuration template. You must specify EnvironmentId if you don't specify PlatformArn , SolutionStackName , or SourceConfiguration .",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "An optional description for this configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionSettings": {
+            "Description": "Option values for the Elastic Beanstalk configuration, such as the instance type. If specified, these values override the values obtained from the solution stack or the source configuration template. For a complete list of Elastic Beanstalk configuration options, see Option Values in the AWS Elastic Beanstalk Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Specifies the tags applied to the configuration template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_environment": {
+        "ApplicationName": {
+            "Description": "The name of the application that is associated with this environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentName": {
+            "Description": "A unique name for the environment.\nConstraint: Must be from 4 to 40 characters in length. The name can contain only letters, numbers, and hyphens. It can't start or end with a hyphen. This name must be unique within a region in your account. If the specified name already exists in the region, Elastic Beanstalk returns an InvalidParameterValue error.\nIf you don't specify the CNAMEPrefix parameter, the environment name becomes part of the CNAME, and therefore part of the visible URL for your application.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupName": {
+            "Description": "The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name parameter. See Environment Manifest (env.yaml) for details.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "Your description for this environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "CNAMEPrefix": {
+            "Description": "If specified, the environment attempts to use this value as the prefix for the CNAME in your Elastic Beanstalk environment URL. If not specified, the CNAME is generated automatically by appending a random alphanumeric string to the environment name.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tier": {
+            "Description": "Specifies the tier to use in creating this environment. The environment tier that you choose determines whether Elastic Beanstalk provisions resources to support a web application that handles HTTP(S) requests or a web application that handles background-processing tasks.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Specifies the tags applied to resources in the environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VersionLabel": {
+            "Description": "The name of the application version to deploy.\nDefault: If not specified, Elastic Beanstalk attempts to deploy the sample application.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateName": {
+            "Description": "The name of the Elastic Beanstalk configuration template to use with the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "SolutionStackName": {
+            "Description": "The name of an Elastic Beanstalk solution stack (platform version) to use with the environment. If specified, Elastic Beanstalk sets the configuration values to the default values associated with the specified solution stack. For a list of current solution stacks, see Elastic Beanstalk Supported Platforms in the AWS Elastic Beanstalk Platforms guide.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlatformArn": {
+            "Description": "The Amazon Resource Name (ARN) of the custom platform to use with the environment. For more information, see Custom Platforms in the AWS Elastic Beanstalk Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionSettings": {
+            "Description": "If specified, AWS Elastic Beanstalk sets the specified configuration options to the requested value in the configuration set for the new environment. These override the values obtained from the solution stack or the configuration template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OptionsToRemove": {
+            "Description": "A list of custom user-defined configuration options to remove from the configuration set for this new environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OperationsRole": {
+            "Description": "The Amazon Resource Name (ARN) of an existing IAM role to be used as the environment's operations role. If specified, Elastic Beanstalk uses the operations role for permissions to downstream services during this call and during subsequent calls acting on this environment. To specify an operations role, you must have the iam:PassRole permission for the role. For more information, see Operations roles in the AWS Elastic Beanstalk Developer Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_platform_version": {
+        "PlatformName": {
+            "Description": "The name of your custom platform.",
+            "Type": "string",
+            "Required": true
+        },
+        "PlatformVersion": {
+            "Description": "The number, such as 1.0.2, for the new platform version.",
+            "Type": "string",
+            "Required": true
+        },
+        "PlatformDefinitionBundle": {
+            "Description": "The location of the platform definition archive in Amazon S3.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "EnvironmentName": {
+            "Description": "The name of the builder environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionSettings": {
+            "Description": "The configuration option settings to apply to the builder environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Specifies the tags applied to the new platform version.\nElastic Beanstalk applies these tags only to the platform version. Environments that you create using the platform version don't inherit the tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_storage_location": "No parameters defined",
+    "delete_application": {
+        "ApplicationName": {
+            "Description": "The name of the application to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "TerminateEnvByForce": {
+            "Description": "When set to true, running environments will be terminated before deleting the application.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_application_version": {
+        "ApplicationName": {
+            "Description": "The name of the application to which the version belongs.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionLabel": {
+            "Description": "The label of the version to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeleteSourceBundle": {
+            "Description": "Set to true to delete the source bundle from your storage bucket. Otherwise, the application version is deleted only from Elastic Beanstalk and the source bundle remains in Amazon S3.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_configuration_template": {
+        "ApplicationName": {
+            "Description": "The name of the application to delete the configuration template from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateName": {
+            "Description": "The name of the configuration template to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment_configuration": {
+        "ApplicationName": {
+            "Description": "The name of the application the environment is associated with.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to delete the draft configuration from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_platform_version": {
+        "PlatformArn": {
+            "Description": "The ARN of the version of the custom platform.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_account_attributes": "No parameters defined",
+    "describe_application_versions": {
+        "ApplicationName": {
+            "Description": "Specify an application name to show only application versions for that application.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionLabels": {
+            "Description": "Specify a version label to show a specific application version.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "For a paginated request. Specify a maximum number of application versions to include in each response.\nIf no MaxRecords is specified, all available application versions are retrieved in a single response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be identical to the ones specified in the initial request.\nIf no NextToken is specified, the first page is retrieved.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_applications": {
+        "ApplicationNames": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to only include those with the specified names.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_configuration_options": {
+        "ApplicationName": {
+            "Description": "The name of the application associated with the configuration template or environment. Only needed if you want to describe the configuration options associated with either the configuration template or environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateName": {
+            "Description": "The name of the configuration template whose configuration options you want to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment whose configuration options you want to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "SolutionStackName": {
+            "Description": "The name of the solution stack whose configuration options you want to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlatformArn": {
+            "Description": "The ARN of the custom platform.",
+            "Type": "string",
+            "Required": false
+        },
+        "Options": {
+            "Description": "If specified, restricts the descriptions to only the specified options.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_configuration_settings": {
+        "ApplicationName": {
+            "Description": "The application for the environment or configuration template.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateName": {
+            "Description": "The name of the configuration template to describe.\nConditional: You must specify either this parameter or an EnvironmentName, but not both. If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination error. If you do not specify either, AWS Elastic Beanstalk returns a MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to describe.\nCondition: You must specify either this or a TemplateName, but not both. If you specify both, AWS Elastic Beanstalk returns an InvalidParameterCombination error. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_environment_health": {
+        "EnvironmentName": {
+            "Description": "Specify the environment by name.\nYou must specify either this or an EnvironmentName, or both.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentId": {
+            "Description": "Specify the environment by ID.\nYou must specify either this or an EnvironmentName, or both.",
+            "Type": "string",
+            "Required": false
+        },
+        "AttributeNames": {
+            "Description": "Specify the response elements to return. To retrieve all attributes, set to All. If no attribute names are specified, returns the name of the environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_environment_managed_action_history": {
+        "EnvironmentId": {
+            "Description": "The environment ID of the target environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the target environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token returned by a previous request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of items to return for a single request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_environment_managed_actions": {
+        "EnvironmentName": {
+            "Description": "The name of the target environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentId": {
+            "Description": "The environment ID of the target environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "To show only actions with a particular status, specify a status.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_environment_resources": {
+        "EnvironmentId": {
+            "Description": "The ID of the environment to retrieve AWS resource usage data.\nCondition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to retrieve AWS resource usage data.\nCondition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_environments": {
+        "ApplicationName": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionLabel": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentIds": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EnvironmentNames": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IncludeDeleted": {
+            "Description": "Indicates whether to include deleted environments:",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IncludedDeletedBackTo": {
+            "Description": "If specified when IncludeDeleted is set to true , then environments deleted after this date are displayed.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "For a paginated request. Specify a maximum number of environments to include in each response.\nIf no MaxRecords is specified, all available environments are retrieved in a single response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be identical to the ones specified in the initial request.\nIf no NextToken is specified, the first page is retrieved.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_events": {
+        "ApplicationName": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those associated with this application.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionLabel": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this application version.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateName": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that are associated with this environment configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentId": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlatformArn": {
+            "Description": "The ARN of a custom platform version. If specified, AWS Elastic Beanstalk restricts the returned descriptions to those associated with this custom platform version.",
+            "Type": "string",
+            "Required": false
+        },
+        "RequestId": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the described events to include only those associated with this request ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "Severity": {
+            "Description": "If specified, limits the events returned from this call to include only those with the specified severity or higher.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur on or after this time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to those that occur up to, but not including, the EndTime .",
+            "Type": "datetime",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "Specifies the maximum number of events that can be returned, beginning with the most recent event.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Pagination token. If specified, the events return the next batch of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_instances_health": {
+        "EnvironmentName": {
+            "Description": "Specify the AWS Elastic Beanstalk environment by name.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentId": {
+            "Description": "Specify the AWS Elastic Beanstalk environment by ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "AttributeNames": {
+            "Description": "Specifies the response elements you wish to receive. To retrieve all attributes, set to All. If no attribute names are specified, returns a list of instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "Specify the pagination token returned by a previous call.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_platform_version": {
+        "PlatformArn": {
+            "Description": "The ARN of the platform version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "disassociate_environment_operations_role": {
+        "EnvironmentName": {
+            "Description": "The name of the environment from which to disassociate the operations role.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_available_solution_stacks": "No parameters defined",
+    "list_platform_branches": {
+        "Filters": {
+            "Description": "Criteria for restricting the resulting list of platform branches. The filter is evaluated as a logical conjunction (AND) of the separate SearchFilter terms.\nThe following list shows valid attribute values for each of the SearchFilter terms. Most operators take a single value. The in and not_in operators can take multiple values.\nArray size: limited to 10 SearchFilter objects.\nWithin each SearchFilter item, the Values array is limited to 10 items.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of platform branch values returned in one call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be identical to the ones specified in the initial request.\nIf no NextToken is specified, the first page is retrieved.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_platform_versions": {
+        "Filters": {
+            "Description": "Criteria for restricting the resulting list of platform versions. The filter is interpreted as a logical conjunction (AND) of the separate PlatformFilter terms.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of platform version values returned in one call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be identical to the ones specified in the initial request.\nIf no NextToken is specified, the first page is retrieved.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resouce for which a tag list is requested.\nMust be the ARN of an Elastic Beanstalk resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "rebuild_environment": {
+        "EnvironmentId": {
+            "Description": "The ID of the environment to rebuild.\nCondition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to rebuild.\nCondition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "request_environment_info": {
+        "EnvironmentId": {
+            "Description": "The ID of the environment of the requested data.\nIf no such environment is found, RequestEnvironmentInfo returns an InvalidParameterValue error.\nCondition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment of the requested data.\nIf no such environment is found, RequestEnvironmentInfo returns an InvalidParameterValue error.\nCondition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "InfoType": {
+            "Description": "The type of information to request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restart_app_server": {
+        "EnvironmentId": {
+            "Description": "The ID of the environment to restart the server for.\nCondition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to restart the server for.\nCondition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "retrieve_environment_info": {
+        "EnvironmentId": {
+            "Description": "The ID of the data's environment.\nIf no such environment is found, returns an InvalidParameterValue error.\nCondition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the data's environment.\nIf no such environment is found, returns an InvalidParameterValue error.\nCondition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "InfoType": {
+            "Description": "The type of information to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "swap_environment_cnames": {
+        "SourceEnvironmentId": {
+            "Description": "The ID of the source environment.\nCondition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName. You may also specify both. If you specify the SourceEnvironmentId, you must specify the DestinationEnvironmentId .",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceEnvironmentName": {
+            "Description": "The name of the source environment.\nCondition: You must specify at least the SourceEnvironmentID or the SourceEnvironmentName. You may also specify both. If you specify the SourceEnvironmentName, you must specify the DestinationEnvironmentName .",
+            "Type": "string",
+            "Required": false
+        },
+        "DestinationEnvironmentId": {
+            "Description": "The ID of the destination environment.\nCondition: You must specify at least the DestinationEnvironmentID or the DestinationEnvironmentName. You may also specify both. You must specify the SourceEnvironmentId with the DestinationEnvironmentId .",
+            "Type": "string",
+            "Required": false
+        },
+        "DestinationEnvironmentName": {
+            "Description": "The name of the destination environment.\nCondition: You must specify at least the DestinationEnvironmentID or the DestinationEnvironmentName. You may also specify both. You must specify the SourceEnvironmentName with the DestinationEnvironmentName .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "terminate_environment": {
+        "EnvironmentId": {
+            "Description": "The ID of the environment to terminate.\nCondition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to terminate.\nCondition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "TerminateResources": {
+            "Description": "Indicates whether the associated AWS resources should shut down when the environment is terminated:\nFor more information, see the AWS Elastic Beanstalk User Guide.\nDefault: true\nValid Values: true | false",
+            "Type": "boolean",
+            "Required": false,
+            "boolean variables": {}
+        },
+        "ForceTerminate": {
+            "Description": "Terminates the target environment even if another environment in the same group is dependent on it.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_application": {
+        "ApplicationName": {
+            "Description": "The name of the application to update. If no such application is found, UpdateApplication returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A new description for the application.\nDefault: If not specified, AWS Elastic Beanstalk does not update the description.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_application_resource_lifecycle": {
+        "ApplicationName": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceLifecycleConfig": {
+            "Description": "The lifecycle configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_application_version": {
+        "ApplicationName": {
+            "Description": "The name of the application associated with this version.\nIf no application is found with this name, UpdateApplication returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionLabel": {
+            "Description": "The name of the version to update.\nIf no application version is found with this label, UpdateApplication returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A new description for this version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_configuration_template": {
+        "ApplicationName": {
+            "Description": "The name of the application associated with the configuration template to update.\nIf no application is found with this name, UpdateConfigurationTemplate returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateName": {
+            "Description": "The name of the configuration template to update.\nIf no configuration template is found with this name, UpdateConfigurationTemplate returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A new description for the configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionSettings": {
+            "Description": "A list of configuration option settings to update with the new specified option value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OptionsToRemove": {
+            "Description": "A list of configuration options to remove from the configuration set.\nConstraint: You can remove only UserDefined configuration options.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_environment": {
+        "ApplicationName": {
+            "Description": "The name of the application with which the environment is associated.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentId": {
+            "Description": "The ID of the environment to update.\nIf no environment with this ID exists, AWS Elastic Beanstalk returns an InvalidParameterValue error.\nCondition: You must specify either this or an EnvironmentName, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to update. If no environment with this name exists, AWS Elastic Beanstalk returns an InvalidParameterValue error.\nCondition: You must specify either this or an EnvironmentId, or both. If you do not specify either, AWS Elastic Beanstalk returns MissingRequiredParameter error.",
+            "Type": "string",
+            "Required": false
+        },
+        "GroupName": {
+            "Description": "The name of the group to which the target environment belongs. Specify a group name only if the environment's name is specified in an environment manifest and not with the environment name or environment ID parameters. See Environment Manifest (env.yaml) for details.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "If this parameter is specified, AWS Elastic Beanstalk updates the description of this environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tier": {
+            "Description": "This specifies the tier to use to update the environment.\nCondition: At this time, if you change the tier version, name, or type, AWS Elastic Beanstalk returns InvalidParameterValue error.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VersionLabel": {
+            "Description": "If this parameter is specified, AWS Elastic Beanstalk deploys the named application version to the environment. If no such application version is found, returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": false
+        },
+        "TemplateName": {
+            "Description": "If this parameter is specified, AWS Elastic Beanstalk deploys this configuration template to the environment. If no such configuration template is found, AWS Elastic Beanstalk returns an InvalidParameterValue error.",
+            "Type": "string",
+            "Required": false
+        },
+        "SolutionStackName": {
+            "Description": "This specifies the platform version that the environment will run after the environment is updated.",
+            "Type": "string",
+            "Required": false
+        },
+        "PlatformArn": {
+            "Description": "The ARN of the platform, if used.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionSettings": {
+            "Description": "If specified, AWS Elastic Beanstalk updates the configuration set associated with the running environment and sets the specified configuration options to the requested value.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OptionsToRemove": {
+            "Description": "A list of custom user-defined configuration options to remove from the configuration set for this environment.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resouce to be updated.\nMust be the ARN of an Elastic Beanstalk resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagsToAdd": {
+            "Description": "A list of tags to add or update. If a key of an existing tag is added, the tag's value is updated.\nSpecify at least one of these parameters: TagsToAdd, TagsToRemove .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TagsToRemove": {
+            "Description": "A list of tag keys to remove. If a tag key doesn't exist, it is silently ignored.\nSpecify at least one of these parameters: TagsToAdd, TagsToRemove .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "validate_configuration_settings": {
+        "ApplicationName": {
+            "Description": "The name of the application that the configuration template or environment belongs to.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateName": {
+            "Description": "The name of the configuration template to validate the settings against.\nCondition: You cannot specify both this and an environment name.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentName": {
+            "Description": "The name of the environment to validate the settings against.\nCondition: You cannot specify both this and a configuration template name.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionSettings": {
+            "Description": "A list of the options and desired values to evaluate.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "Filters": {
+            "Description": "Criteria for restricting the resulting list of platform versions. The filter is interpreted as a logical conjunction (AND) of the separate PlatformFilter terms.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "ApplicationName": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application.",
+            "Type": "string",
+            "Required": false
+        },
+        "VersionLabel": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that are associated with this application version.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnvironmentIds": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EnvironmentNames": {
+            "Description": "If specified, AWS Elastic Beanstalk restricts the returned descriptions to include only those that have the specified names.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IncludeDeleted": {
+            "Description": "Indicates whether to include deleted environments:",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IncludedDeletedBackTo": {
+            "Description": "If specified when IncludeDeleted is set to true , then environments deleted after this date are displayed.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "For a paginated request. Specify a maximum number of environments to include in each response.\nIf no MaxRecords is specified, all available environments are retrieved in a single response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "For a paginated request. Specify a token from a previous response page to retrieve the next response page. All other parameter values must be identical to the ones specified in the initial request.\nIf no NextToken is specified, the first page is retrieved.",
+            "Type": "string",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

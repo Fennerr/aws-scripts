@@ -1,0 +1,760 @@
+{
+    "add_draft_app_version_resource_mappings": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceMappings": {
+            "Description": "Mappings used to map logical resources from the template to physical resources. You can use the mapping type CFN_STACK if the application template uses a logical stack name. Or you can map individual resources by using the mapping type RESOURCE. We recommend using the mapping type CFN_STACK if the application is backed by a CloudFormation stack.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_app": {
+        "assessmentSchedule": {
+            "Description": "Assessment execution schedule with 'Daily' or 'Disabled' values.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The optional description for an app.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name for the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:partition :resiliencehub:region :account :resiliency-policy/policy-id . For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags assigned to the resource. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key/value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_recommendation_template": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "bucketName": {
+            "Description": "The name of the Amazon S3 bucket that will contain the recommendation template.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "format": {
+            "Description": "The format for the recommendation template.\nThe template is CloudFormation JSON.\nThe template is CloudFormation YAML.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name for the recommendation template.",
+            "Type": "string",
+            "Required": true
+        },
+        "recommendationIds": {
+            "Description": "Identifiers for the recommendations used to create a recommendation template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "recommendationTypes": {
+            "Description": "An array of strings that specify the recommendation template type or types.\nThe template is an  AlarmRecommendation template.\nThe template is a  SopRecommendation template.\nThe template is a  TestRecommendation template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags assigned to the resource. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key/value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_resiliency_policy": {
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "dataLocationConstraint": {
+            "Description": "Specifies a high-level geographical location constraint for where your resilience policy data can be stored.",
+            "Type": "string",
+            "Required": false
+        },
+        "policy": {
+            "Description": "The type of resiliency policy to be created, including the recovery time objective (RTO) and recovery point objective (RPO) in seconds.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "policyDescription": {
+            "Description": "The description for the policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyName": {
+            "Description": "The name of the policy",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags assigned to the resource. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key/value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tier": {
+            "Description": "The tier for this resiliency policy, ranging from the highest severity (MissionCritical ) to lowest (NonCritical ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_app": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "forceDelete": {
+            "Description": "A boolean option to force the deletion of a Resilience Hub application.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_app_assessment": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_recommendation_template": {
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "recommendationTemplateArn": {
+            "Description": "The Amazon Resource Name (ARN) for a recommendation template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resiliency_policy": {
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:partition :resiliencehub:region :account :resiliency-policy/policy-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_app": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_app_assessment": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_app_version_resources_resolution_status": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appVersion": {
+            "Description": "The version of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "resolutionId": {
+            "Description": "The identifier for a specific resolution.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_app_version_template": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appVersion": {
+            "Description": "The version of the application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_draft_app_version_resources_import_status": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_resiliency_policy": {
+        "policyArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:partition :resiliencehub:region :account :resiliency-policy/policy-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "import_resources_to_draft_app_version": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "sourceArns": {
+            "Description": "The Amazon Resource Names (ARNs) for the resources that you want to import.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "terraformSources": {
+            "Description": "A list of terraform file s3 URLs you need to import.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_alarm_recommendations": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_app_assessments": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id . For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "assessmentName": {
+            "Description": "The name for the assessment.",
+            "Type": "string",
+            "Required": false
+        },
+        "assessmentStatus": {
+            "Description": "The current status of the assessment for the resiliency policy.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "complianceStatus": {
+            "Description": "The current status of compliance for the resiliency policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "invoker": {
+            "Description": "Specifies the entity that invoked a specific assessment, either a User or the System .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "The default is to sort by ascending startTime . To sort by descending startTime , set reverseOrder to true .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_app_component_compliances": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_app_component_recommendations": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_app_version_resource_mappings": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appVersion": {
+            "Description": "The version of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_app_version_resources": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appVersion": {
+            "Description": "The version of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "resolutionId": {
+            "Description": "The identifier for a specific resolution.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_app_versions": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_apps": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id . For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name for the one of the listed applications.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_recommendation_templates": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name for one of the listed recommendation templates.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "recommendationTemplateArn": {
+            "Description": "The Amazon Resource Name (ARN) for a recommendation template.",
+            "Type": "string",
+            "Required": false
+        },
+        "reverseOrder": {
+            "Description": "The default is to sort by ascending startTime . To sort by descending startTime , set reverseOrder to true .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "status": {
+            "Description": "The status of the action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_resiliency_policies": {
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyName": {
+            "Description": "The name of the policy",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_sop_recommendations": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_suggested_resiliency_policies": {
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) for a specific resource in your Resilience Hub application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_test_recommendations": {
+        "assessmentArn": {
+            "Description": "The Amazon Resource Name (ARN) of the assessment. The format for this ARN is: arn:partition :resiliencehub:region :account :app-assessment/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_unsupported_app_version_resources": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appVersion": {
+            "Description": "The version of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to include in the response. If more results exist than the specified MaxResults value, a token is included in the response so that the remaining results can be retrieved.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Null, or the token from a previous call to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "resolutionId": {
+            "Description": "The identifier for a specific resolution.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "publish_app_version": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_draft_app_version_template": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appTemplateBody": {
+            "Description": "A JSON string that contains the body of the app template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_draft_app_version_resource_mappings": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appRegistryAppNames": {
+            "Description": "The names of the registered applications to remove from the resource mappings.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "logicalStackNames": {
+            "Description": "The names of the CloudFormation stacks to remove from the resource mappings.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceGroupNames": {
+            "Description": "The names of the resource groups to remove from the resource mappings.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "resourceNames": {
+            "Description": "The names of the resources to remove from the resource mappings.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "terraformSourceNames": {
+            "Description": "\n</p>\n\n(string) --\n\n",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "resolve_app_version_resources": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appVersion": {
+            "Description": "The version of the application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_app_assessment": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "appVersion": {
+            "Description": "The version of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "assessmentName": {
+            "Description": "The name for the assessment.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "Used for an idempotency token. A client token is a unique, case-sensitive string of up to 64 ASCII characters. You should not reuse the same client token for other API requests.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags assigned to the resource. A tag is a label that you assign to an Amazon Web Services resource. Each tag consists of a key/value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to assign to the resource. Each tag consists of a key/value pair.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of the tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_app": {
+        "appArn": {
+            "Description": "The Amazon Resource Name (ARN) of the application. The format for this ARN is: arn:partition :resiliencehub:region :account :app/app-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "assessmentSchedule": {
+            "Description": "Assessment execution schedule with 'Daily' or 'Disabled' values.",
+            "Type": "string",
+            "Required": false
+        },
+        "clearResiliencyPolicyArn": {
+            "Description": "Specifies if the resiliency policy ARN should be cleared.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "description": {
+            "Description": "The optional description for an app.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:partition :resiliencehub:region :account :resiliency-policy/policy-id . For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_resiliency_policy": {
+        "dataLocationConstraint": {
+            "Description": "Specifies a high-level geographical location constraint for where your resilience policy data can be stored.",
+            "Type": "string",
+            "Required": false
+        },
+        "policy": {
+            "Description": "The type of resiliency policy to be created, including the recovery time objective (RTO) and recovery point objective (RPO) in seconds.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "policyArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resiliency policy. The format for this ARN is: arn:partition :resiliencehub:region :account :resiliency-policy/policy-id. For more information about ARNs, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "policyDescription": {
+            "Description": "The description for the policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyName": {
+            "Description": "The name of the policy",
+            "Type": "string",
+            "Required": false
+        },
+        "tier": {
+            "Description": "The tier for this resiliency policy, ranging from the highest severity (MissionCritical ) to lowest (NonCritical ).",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

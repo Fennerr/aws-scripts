@@ -1,0 +1,749 @@
+{
+    "batch_check_layer_availability": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the image layers to check. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository that is associated with the image layers to check.",
+            "Type": "string",
+            "Required": true
+        },
+        "layerDigests": {
+            "Description": "The digests of the image layers to check.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_delete_image": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the image to delete. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The repository that contains the image to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageIds": {
+            "Description": "A list of image ID references that correspond to images to delete. The format of the imageIds reference is imageTag=tag or imageDigest=digest .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_get_image": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the images to describe. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The repository that contains the images to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageIds": {
+            "Description": "A list of image ID references that correspond to images to describe. The format of the imageIds reference is imageTag=tag or imageDigest=digest .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "acceptedMediaTypes": {
+            "Description": "The accepted media types for the request.\nValid values: application/vnd.docker.distribution.manifest.v1+json | application/vnd.docker.distribution.manifest.v2+json | application/vnd.oci.image.manifest.v1+json",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "batch_get_repository_scanning_configuration": {
+        "repositoryNames": {
+            "Description": "One or more repository names to get the scanning configuration for.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "complete_layer_upload": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry to which to upload layers. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository to associate with the image layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "uploadId": {
+            "Description": "The upload ID from a previous  InitiateLayerUpload operation to associate with the image layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "layerDigests": {
+            "Description": "The sha256 digest of the image layer.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_pull_through_cache_rule": {
+        "ecrRepositoryPrefix": {
+            "Description": "The repository name prefix to use when caching images from the source registry.",
+            "Type": "string",
+            "Required": true
+        },
+        "upstreamRegistryUrl": {
+            "Description": "The registry URL of the upstream public registry to use as the source for the pull through cache rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry to create the pull through cache rule for. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_repository": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry to create the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name to use for the repository. The repository name may be specified on its own (such as nginx-web-app ) or it can be prepended with a namespace to group the repository into a category (such as project-a/nginx-web-app ).",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The metadata that you apply to the repository to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "imageTagMutability": {
+            "Description": "The tag mutability setting for the repository. If this parameter is omitted, the default setting of MUTABLE will be used which will allow image tags to be overwritten. If IMMUTABLE is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageScanningConfiguration": {
+            "Description": "The image scanning configuration for the repository. This determines whether images are scanned for known vulnerabilities after being pushed to the repository.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "encryptionConfiguration": {
+            "Description": "The encryption configuration for the repository. This determines how the contents of your repository are encrypted at rest.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_lifecycle_policy": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_pull_through_cache_rule": {
+        "ecrRepositoryPrefix": {
+            "Description": "The Amazon ECR repository prefix associated with the pull through cache rule to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the pull through cache rule. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_registry_policy": "No parameters defined",
+    "delete_repository": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository to delete. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "If a repository contains images, forces the deletion.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_repository_policy": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository policy to delete. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository that is associated with the repository policy to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_image_replication_status": {
+        "repositoryName": {
+            "Description": "The name of the repository that the image is in.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageId": {
+            "Description": "An object with identifying information for an image in an Amazon ECR repository.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_image_scan_findings": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to describe the image scan findings for. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The repository for the image for which to describe the scan findings.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageId": {
+            "Description": "An object with identifying information for an image in an Amazon ECR repository.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribeImageScanFindings request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of image scan results returned by DescribeImageScanFindings in paginated output. When this parameter is used, DescribeImageScanFindings only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeImageScanFindings request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then DescribeImageScanFindings returns up to 100 results and a nextToken value, if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_images": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to describe images. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The repository that contains the images to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageIds": {
+            "Description": "The list of image IDs for the requested repository.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribeImages request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return. This option cannot be used when you specify images with imageIds .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of repository results returned by DescribeImages in paginated output. When this parameter is used, DescribeImages only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeImages request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then DescribeImages returns up to 100 results and a nextToken value, if applicable. This option cannot be used when you specify images with imageIds .",
+            "Type": "integer",
+            "Required": false
+        },
+        "filter": {
+            "Description": "The filter key and value with which to filter your DescribeImages results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "describe_pull_through_cache_rules": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry to return the pull through cache rules for. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "ecrRepositoryPrefixes": {
+            "Description": "The Amazon ECR repository prefixes associated with the pull through cache rules to return. If no repository prefix value is specified, all pull through cache rules are returned.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribePullThroughCacheRulesRequest request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of pull through cache rules returned by DescribePullThroughCacheRulesRequest in paginated output. When this parameter is used, DescribePullThroughCacheRulesRequest only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribePullThroughCacheRulesRequest request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then DescribePullThroughCacheRulesRequest returns up to 100 results and a nextToken value, if applicable.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_registry": "No parameters defined",
+    "describe_repositories": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repositories to be described. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryNames": {
+            "Description": "A list of repositories to describe. If this parameter is omitted, then all repositories in a registry are described.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated DescribeRepositories request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return. This option cannot be used when you specify repositories with repositoryNames .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of repository results returned by DescribeRepositories in paginated output. When this parameter is used, DescribeRepositories only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another DescribeRepositories request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then DescribeRepositories returns up to 100 results and a nextToken value, if applicable. This option cannot be used when you specify repositories with repositoryNames .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_authorization_token": {
+        "registryIds": {
+            "Description": "A list of Amazon Web Services account IDs that are associated with the registries for which to get AuthorizationData objects. If you do not specify a registry, the default registry is assumed.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_download_url_for_layer": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the image layer to download. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository that is associated with the image layer to download.",
+            "Type": "string",
+            "Required": true
+        },
+        "layerDigest": {
+            "Description": "The digest of the image layer to download.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_lifecycle_policy": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_lifecycle_policy_preview": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageIds": {
+            "Description": "The list of imageIDs to be included.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated GetLifecyclePolicyPreviewRequest request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return. This option cannot be used when you specify images with imageIds .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of repository results returned by GetLifecyclePolicyPreviewRequest in paginated output. When this parameter is used, GetLifecyclePolicyPreviewRequest only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another GetLifecyclePolicyPreviewRequest request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then GetLifecyclePolicyPreviewRequest returns up to 100 results and a nextToken value, if applicable. This option cannot be used when you specify images with imageIds .",
+            "Type": "integer",
+            "Required": false
+        },
+        "filter": {
+            "Description": "An optional parameter that filters results based on image tag status and all tags, if tagged.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_registry_policy": "No parameters defined",
+    "get_registry_scanning_configuration": "No parameters defined",
+    "get_repository_policy": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository with the policy to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "initiate_layer_upload": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry to which you intend to upload layers. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository to which you intend to upload layers.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_images": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to list images. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The repository with image IDs to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated ListImages request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of image results returned by ListImages in paginated output. When this parameter is used, ListImages only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another ListImages request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then ListImages returns up to 100 results and a nextToken value, if applicable.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filter": {
+            "Description": "The filter key and value with which to filter your ListImages results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) that identifies the resource for which to list the tags. Currently, the only supported resource is an Amazon ECR repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_image": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to put the image. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository in which to put the image.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageManifest": {
+            "Description": "The image manifest corresponding to the image to be uploaded.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageManifestMediaType": {
+            "Description": "The media type of the image manifest. If you push an image manifest that does not contain the mediaType field, you must specify the imageManifestMediaType in the request.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageTag": {
+            "Description": "The tag to associate with the image. This parameter is required for images that use the Docker Image Manifest V2 Schema 2 or Open Container Initiative (OCI) formats.",
+            "Type": "string",
+            "Required": false
+        },
+        "imageDigest": {
+            "Description": "The image digest of the image manifest corresponding to the image.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_image_scanning_configuration": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to update the image scanning configuration setting. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository in which to update the image scanning configuration setting.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageScanningConfiguration": {
+            "Description": "The image scanning configuration for the repository. This setting determines whether images are scanned for known vulnerabilities after being pushed to the repository.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_image_tag_mutability": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to update the image tag mutability settings. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository in which to update the image tag mutability settings.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageTagMutability": {
+            "Description": "The tag mutability setting for the repository. If MUTABLE is specified, image tags can be overwritten. If IMMUTABLE is specified, all image tags within the repository will be immutable which will prevent them from being overwritten.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_lifecycle_policy": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository to receive the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "lifecyclePolicyText": {
+            "Description": "The JSON repository policy text to apply to the repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_registry_policy": {
+        "policyText": {
+            "Description": "The JSON policy text to apply to your registry. The policy text follows the same format as IAM policy text. For more information, see Registry permissions in the Amazon Elastic Container Registry User Guide .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_registry_scanning_configuration": {
+        "scanType": {
+            "Description": "The scanning type to set for the registry.\nWhen a registry scanning configuration is not defined, by default the BASIC scan type is used. When basic scanning is used, you may specify filters to determine which individual repositories, or all repositories, are scanned when new images are pushed to those repositories. Alternatively, you can do manual scans of images with basic scanning.\nWhen the ENHANCED scan type is set, Amazon Inspector provides automated vulnerability scanning. You may choose between continuous scanning or scan on push and you may specify filters to determine which individual repositories, or all repositories, are scanned.",
+            "Type": "string",
+            "Required": false
+        },
+        "rules": {
+            "Description": "The scanning rules to use for the registry. A scanning rule is used to determine which repository filters are used and at what frequency scanning will occur.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_replication_configuration": {
+        "replicationConfiguration": {
+            "Description": "An object representing the replication configuration for a registry.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "set_repository_policy": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository to receive the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyText": {
+            "Description": "The JSON repository policy text to apply to the repository. For more information, see Amazon ECR repository policies in the Amazon Elastic Container Registry User Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "force": {
+            "Description": "If the policy you are attempting to set on a repository policy would prevent you from setting another policy in the future, you must force the  SetRepositoryPolicy operation. This is intended to prevent accidental repository lock outs.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "start_image_scan": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to start an image scan request. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository that contains the images to scan.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageId": {
+            "Description": "An object with identifying information for an image in an Amazon ECR repository.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "start_lifecycle_policy_preview": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository to be evaluated.",
+            "Type": "string",
+            "Required": true
+        },
+        "lifecyclePolicyText": {
+            "Description": "The policy to be evaluated against. If you do not specify a policy, the current policy for the repository is used.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the the resource to which to add tags. Currently, the only supported resource is an Amazon ECR repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags to add to the resource. A tag is an array of key-value pairs. Tag keys can have a maximum character length of 128 characters, and tag values can have a maximum length of 256 characters.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource from which to remove tags. Currently, the only supported resource is an Amazon ECR repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The keys of the tags to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "upload_layer_part": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry to which you are uploading layer parts. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository to which you are uploading layer parts.",
+            "Type": "string",
+            "Required": true
+        },
+        "uploadId": {
+            "Description": "The upload ID from a previous  InitiateLayerUpload operation to associate with the layer part upload.",
+            "Type": "string",
+            "Required": true
+        },
+        "partFirstByte": {
+            "Description": "The position of the first byte of the layer part witin the overall image layer.",
+            "Type": "integer",
+            "Required": true
+        },
+        "partLastByte": {
+            "Description": "The position of the last byte of the layer part within the overall image layer.",
+            "Type": "integer",
+            "Required": true
+        },
+        "layerPartBlob": {
+            "Description": "The base64-encoded layer part payload.",
+            "Type": "bytes",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository in which to list images. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The repository with image IDs to be listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "filter": {
+            "Description": "The filter key and value with which to filter your ListImages results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "registryId": {
+            "Description": "The Amazon Web Services account ID associated with the registry that contains the repository. If you do not specify a registry, the default registry is assumed.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryName": {
+            "Description": "The name of the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "imageIds": {
+            "Description": "The list of imageIDs to be included.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The nextToken value returned from a previous paginated GetLifecyclePolicyPreviewRequest request where maxResults was used and the results exceeded the value of that parameter. Pagination continues from the end of the previous results that returned the nextToken value. This value is null when there are no more results to return. This option cannot be used when you specify images with imageIds .",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of repository results returned by GetLifecyclePolicyPreviewRequest in paginated output. When this parameter is used, GetLifecyclePolicyPreviewRequest only returns maxResults results in a single page along with a nextToken response element. The remaining results of the initial request can be seen by sending another GetLifecyclePolicyPreviewRequest request with the returned nextToken value. This value can be between 1 and 1000. If this parameter is not used, then GetLifecyclePolicyPreviewRequest returns up to 100 results and a nextToken value, if applicable. This option cannot be used when you specify images with imageIds .",
+            "Type": "integer",
+            "Required": false
+        },
+        "filter": {
+            "Description": "An optional parameter that filters results based on image tag status and all tags, if tagged.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

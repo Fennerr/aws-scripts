@@ -1,0 +1,441 @@
+{
+    "accept_page": {
+        "PageId": {
+            "Description": "The Amazon Resource Name (ARN) of the engagement to a contact channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ContactChannelId": {
+            "Description": "The ARN of the contact channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "AcceptType": {
+            "Description": "The type indicates if the page was DELIVERED or READ .",
+            "Type": "string",
+            "Required": true
+        },
+        "Note": {
+            "Description": "Information provided by the user when the user acknowledges the page.",
+            "Type": "string",
+            "Required": false
+        },
+        "AcceptCode": {
+            "Description": "The accept code is a 6-digit code used to acknowledge the page.",
+            "Type": "string",
+            "Required": true
+        },
+        "AcceptCodeValidation": {
+            "Description": "An optional field that Incident Manager uses to ENFORCE AcceptCode validation when acknowledging an page. Acknowledgement can occur by replying to a page, or when entering the AcceptCode in the console. Enforcing AcceptCode validation causes Incident Manager to verify that the code entered by the user matches the code sent by Incident Manager with the page.\nIncident Manager can also IGNORE AcceptCode validation. Ignoring AcceptCode validation causes Incident Manager to accept any value entered for the AcceptCode .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "activate_contact_channel": {
+        "ContactChannelId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "ActivationCode": {
+            "Description": "The code sent to the contact channel when it was created in the contact.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_contact": {
+        "Alias": {
+            "Description": "The short name to quickly identify a contact or escalation plan. The contact alias must be unique and identifiable.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The full name of the contact or escalation plan.",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "To create an escalation plan use ESCALATION. To create a contact use PERSONAL .",
+            "Type": "string",
+            "Required": true
+        },
+        "Plan": {
+            "Description": "A list of stages. A contact has an engagement plan with stages that contact specified contact channels. An escalation plan uses stages that contact specified contacts.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Adds a tag to the target. You can only tag resources created in the first Region of your replication set.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_contact_channel": {
+        "ContactId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact you are adding the contact channel to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the contact channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "Incident Manager supports three types of contact channels:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DeliveryAddress": {
+            "Description": "The details that Incident Manager uses when trying to engage the contact channel. The format is dependent on the type of the contact channel. The following are the expected formats:",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "DeferActivation": {
+            "Description": "If you want to activate the channel at a later time, you can choose to defer activation. Incident Manager can't engage your contact channel until it has been activated.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IdempotencyToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "deactivate_contact_channel": {
+        "ContactChannelId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact channel you're deactivating.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_contact": {
+        "ContactId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact that you're deleting.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_contact_channel": {
+        "ContactChannelId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact channel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_engagement": {
+        "EngagementId": {
+            "Description": "The Amazon Resource Name (ARN) of the engagement you want the details of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_page": {
+        "PageId": {
+            "Description": "The ID of the engagement to a contact channel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_contact": {
+        "ContactId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact or escalation plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_contact_channel": {
+        "ContactChannelId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact channel you want information about.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_contact_policy": {
+        "ContactArn": {
+            "Description": "The Amazon Resource Name (ARN) of the contact or escalation plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_contact_channels": {
+        "ContactId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of contact channels per page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_contacts": {
+        "NextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of contacts and escalation plans per page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AliasPrefix": {
+            "Description": "Used to list only contacts who's aliases start with the specified prefix.",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The type of contact. A contact is type PERSONAL and an escalation plan is type ESCALATION .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_engagements": {
+        "NextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of engagements per page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "IncidentId": {
+            "Description": "The Amazon Resource Name (ARN) of the incident you're listing engagements for.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimeRangeValue": {
+            "Description": "The time range to lists engagements for an incident.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_page_receipts": {
+        "PageId": {
+            "Description": "The Amazon Resource Name (ARN) of the engagement to a specific contact channel.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of acknowledgements per page of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_pages_by_contact": {
+        "ContactId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact you are retrieving engagements for.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of engagements to contact channels to list per page of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_pages_by_engagement": {
+        "EngagementId": {
+            "Description": "The Amazon Resource Name (ARN) of the engagement.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of engagements to contact channels to list per page of results.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the contact or escalation plan.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_contact_policy": {
+        "ContactArn": {
+            "Description": "The Amazon Resource Name (ARN) of the contact or escalation plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "Policy": {
+            "Description": "Details of the resource policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "send_activation_code": {
+        "ContactChannelId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact channel.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_engagement": {
+        "ContactId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact being engaged.",
+            "Type": "string",
+            "Required": true
+        },
+        "Sender": {
+            "Description": "The user that started the engagement.",
+            "Type": "string",
+            "Required": true
+        },
+        "Subject": {
+            "Description": "The secure subject of the message that was sent to the contact. Use this field for engagements to VOICE or EMAIL .",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The secure content of the message that was sent to the contact. Use this field for engagements to VOICE or EMAIL .",
+            "Type": "string",
+            "Required": true
+        },
+        "PublicSubject": {
+            "Description": "The insecure subject of the message that was sent to the contact. Use this field for engagements to SMS .",
+            "Type": "string",
+            "Required": false
+        },
+        "PublicContent": {
+            "Description": "The insecure content of the message that was sent to the contact. Use this field for engagements to SMS .",
+            "Type": "string",
+            "Required": false
+        },
+        "IncidentId": {
+            "Description": "The ARN of the incident that the engagement is part of.",
+            "Type": "string",
+            "Required": false
+        },
+        "IdempotencyToken": {
+            "Description": "A token ensuring that the operation is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "stop_engagement": {
+        "EngagementId": {
+            "Description": "The Amazon Resource Name (ARN) of the engagement.",
+            "Type": "string",
+            "Required": true
+        },
+        "Reason": {
+            "Description": "The reason that you're stopping the engagement.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the contact or escalation plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags that you are adding to the contact or escalation plan.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the contact or escalation plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The key of the tag that you want to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_contact": {
+        "ContactId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact or escalation plan you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The full name of the contact or escalation plan.",
+            "Type": "string",
+            "Required": false
+        },
+        "Plan": {
+            "Description": "A list of stages. A contact has an engagement plan with stages for specified contact channels. An escalation plan uses these stages to contact specified contacts.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_contact_channel": {
+        "ContactChannelId": {
+            "Description": "The Amazon Resource Name (ARN) of the contact channel you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the contact channel.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeliveryAddress": {
+            "Description": "The details that Incident Manager uses when trying to engage the contact channel.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "EngagementId": {
+            "Description": "The Amazon Resource Name (ARN) of the engagement.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

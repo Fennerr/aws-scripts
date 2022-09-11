@@ -1,0 +1,284 @@
+{
+    "create_parallel_data": {
+        "Name": {
+            "Description": "A custom name for the parallel data resource in Amazon Translate. You must assign a name that is unique in the account and region.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A custom description for the parallel data resource in Amazon Translate.",
+            "Type": "string",
+            "Required": false
+        },
+        "ParallelDataConfig": {
+            "Description": "Specifies the format and S3 location of the parallel data input file.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "EncryptionKey": {
+            "Description": "The encryption key used to encrypt this object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request. This token is automatically generated when you use Amazon Translate through an AWS SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_parallel_data": {
+        "Name": {
+            "Description": "The name of the parallel data resource that is being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_terminology": {
+        "Name": {
+            "Description": "The name of the custom terminology being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_text_translation_job": {
+        "JobId": {
+            "Description": "The identifier that Amazon Translate generated for the job. The  StartTextTranslationJob operation returns this identifier in its response.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_parallel_data": {
+        "Name": {
+            "Description": "The name of the parallel data resource that is being retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_terminology": {
+        "Name": {
+            "Description": "The name of the custom terminology being retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "TerminologyDataFormat": {
+            "Description": "The data format of the custom terminology being retrieved.\nIf you don't specify this parameter, Amazon Translate returns a file with the same format as the file that was imported to create the terminology.\nIf you specify this parameter when you retrieve a multi-directional terminology resource, you must specify the same format as the input file that was imported to create it. Otherwise, Amazon Translate throws an error.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "import_terminology": {
+        "Name": {
+            "Description": "The name of the custom terminology being imported.",
+            "Type": "string",
+            "Required": true
+        },
+        "MergeStrategy": {
+            "Description": "The merge strategy of the custom terminology being imported. Currently, only the OVERWRITE merge strategy is supported. In this case, the imported terminology will overwrite an existing terminology of the same name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the custom terminology being imported.",
+            "Type": "string",
+            "Required": false
+        },
+        "TerminologyData": {
+            "Description": "The terminology data for the custom terminology being imported.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "EncryptionKey": {
+            "Description": "The encryption key for the custom terminology being imported.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_languages": {
+        "DisplayLanguageCode": {
+            "Description": "The language code for the language to use to display the language names in the response. The language code is en by default.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Include the NextToken value to fetch the next group of supported languages.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_parallel_data": {
+        "NextToken": {
+            "Description": "A string that specifies the next page of results to return in a paginated response.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of parallel data resources returned for each request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_terminologies": {
+        "NextToken": {
+            "Description": "If the result of the request to ListTerminologies was truncated, include the NextToken to fetch the next group of custom terminologies.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of custom terminologies returned per list request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_text_translation_jobs": {
+        "Filter": {
+            "Description": "The parameters that specify which batch translation jobs to retrieve. Filters include job name, job status, and submission time. You can only set one filter at a time.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "The token to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in each page. The default value is 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "start_text_translation_job": {
+        "JobName": {
+            "Description": "The name of the batch translation job to be performed.",
+            "Type": "string",
+            "Required": false
+        },
+        "InputDataConfig": {
+            "Description": "Specifies the format and location of the input documents for the translation job.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "OutputDataConfig": {
+            "Description": "Specifies the S3 folder to which your job output will be saved.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of an AWS Identity Access and Management (IAM) role that grants Amazon Translate read access to your input data. For more information, see  identity-and-access-management .",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceLanguageCode": {
+            "Description": "The language code of the input language. For a list of language codes, see  what-is-languages .\nAmazon Translate does not automatically detect a source language during batch translation jobs.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetLanguageCodes": {
+            "Description": "The language code of the output language.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "TerminologyNames": {
+            "Description": "The name of a custom terminology resource to add to the translation job. This resource lists examples source terms and the desired translation for each term.\nThis parameter accepts only one custom terminology resource.\nFor a list of available custom terminology resources, use the  ListTerminologies operation.\nFor more information, see  how-custom-terminology .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ParallelDataNames": {
+            "Description": "The name of a parallel data resource to add to the translation job. This resource consists of examples that show how you want segments of text to be translated. When you add parallel data to a translation job, you create an Active Custom Translation job.\nThis parameter accepts only one parallel data resource.\nFor a list of available parallel data resources, use the  ListParallelData operation.\nFor more information, see  customizing-translations-parallel-data .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request. This token is generated for you when using the Amazon Translate SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Settings": {
+            "Description": "Settings to configure your translation output, including the option to mask profane words and phrases. StartTextTranslationJob does not support the formality setting.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "stop_text_translation_job": {
+        "JobId": {
+            "Description": "The job ID of the job to be stopped.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "translate_text": {
+        "Text": {
+            "Description": "The text to translate. The text string can be a maximum of 5,000 bytes long. Depending on your character set, this may be fewer than 5,000 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "TerminologyNames": {
+            "Description": "The name of the terminology list file to be used in the TranslateText request. You can use 1 terminology list at most in a TranslateText request. Terminology lists can contain a maximum of 256 terms.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceLanguageCode": {
+            "Description": "The language code for the language of the source text. The language must be a language supported by Amazon Translate. For a list of language codes, see  what-is-languages .\nTo have Amazon Translate determine the source language of your text, you can specify auto in the SourceLanguageCode field. If you specify auto, Amazon Translate will call Amazon Comprehend to determine the source language.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetLanguageCode": {
+            "Description": "The language code requested for the language of the target text. The language must be a language supported by Amazon Translate.",
+            "Type": "string",
+            "Required": true
+        },
+        "Settings": {
+            "Description": "Settings to configure your translation output, including the option to set the formality level of the output text and the option to mask profane words and phrases.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_parallel_data": {
+        "Name": {
+            "Description": "The name of the parallel data resource being updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A custom description for the parallel data resource in Amazon Translate.",
+            "Type": "string",
+            "Required": false
+        },
+        "ParallelDataConfig": {
+            "Description": "Specifies the format and S3 location of the parallel data input file.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request. This token is automatically generated when you use Amazon Translate through an AWS SDK.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

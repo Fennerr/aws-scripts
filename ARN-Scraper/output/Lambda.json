@@ -1,0 +1,1526 @@
+{
+    "add_layer_version_permission": {
+        "LayerName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number.",
+            "Type": "integer",
+            "Required": true
+        },
+        "StatementId": {
+            "Description": "An identifier that distinguishes the policy from others on the same layer version.",
+            "Type": "string",
+            "Required": true
+        },
+        "Action": {
+            "Description": "The API action that grants access to the layer. For example, lambda:GetLayerVersion .",
+            "Type": "string",
+            "Required": true
+        },
+        "Principal": {
+            "Description": "An account ID, or * to grant layer usage permission to all accounts in an organization, or all Amazon Web Services accounts (if organizationId is not specified). For the last case, make sure that you really do want all Amazon Web Services accounts to have usage permission to this layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "OrganizationId": {
+            "Description": "With the principal set to * , grant permission to all accounts in the specified organization.",
+            "Type": "string",
+            "Required": false
+        },
+        "RevisionId": {
+            "Description": "Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "add_permission": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "StatementId": {
+            "Description": "A statement identifier that differentiates the statement from others in the same policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "Action": {
+            "Description": "The action that the principal can use on the function. For example, lambda:InvokeFunction or lambda:GetFunction .",
+            "Type": "string",
+            "Required": true
+        },
+        "Principal": {
+            "Description": "The Amazon Web Services service or account that invokes the function. If you specify a service, use SourceArn or SourceAccount to limit who can invoke the function through that service.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceArn": {
+            "Description": "For Amazon Web Services services, the ARN of the Amazon Web Services resource that invokes the function. For example, an Amazon S3 bucket or Amazon SNS topic.\nNote that Lambda configures the comparison using the StringLike operator.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceAccount": {
+            "Description": "For Amazon S3, the ID of the account that owns the resource. Use this together with SourceArn to ensure that the resource is owned by the specified account. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account.",
+            "Type": "string",
+            "Required": false
+        },
+        "EventSourceToken": {
+            "Description": "For Alexa Smart Home functions, a token that must be supplied by the invoker.",
+            "Type": "string",
+            "Required": false
+        },
+        "Qualifier": {
+            "Description": "Specify a version or alias to add permissions to a published version of the function.",
+            "Type": "string",
+            "Required": false
+        },
+        "RevisionId": {
+            "Description": "Only update the policy if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it.",
+            "Type": "string",
+            "Required": false
+        },
+        "PrincipalOrgID": {
+            "Description": "The identifier for your organization in Organizations. Use this to grant permissions to all the Amazon Web Services accounts under this organization.",
+            "Type": "string",
+            "Required": false
+        },
+        "FunctionUrlAuthType": {
+            "Description": "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated IAM users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_alias": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Name": {
+            "Description": "The name of the alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "FunctionVersion": {
+            "Description": "The function version that the alias invokes.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the alias.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoutingConfig": {
+            "Description": "The routing configuration of the alias.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_code_signing_config": {
+        "Description": {
+            "Description": "Descriptive name for this code signing configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowedPublishers": {
+            "Description": "Signing profiles for this code signing configuration.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "CodeSigningPolicies": {
+            "Description": "The code signing policies define the actions to take if the validation checks fail.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_event_source_mapping": {
+        "EventSourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the event source.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Enabled": {
+            "Description": "When true, the event source mapping is active. When false, Lambda pauses polling and invocation.\nDefault: True",
+            "Type": "boolean",
+            "Required": false
+        },
+        "BatchSize": {
+            "Description": "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "FilterCriteria": {
+            "Description": "(Streams and Amazon SQS) An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaximumBatchingWindowInSeconds": {
+            "Description": "(Streams and Amazon SQS standard queues) The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function.\nDefault: 0\nRelated setting: When you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ParallelizationFactor": {
+            "Description": "(Streams only) The number of batches to process from each shard concurrently.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StartingPosition": {
+            "Description": "The position in a stream from which to start reading. Required for Amazon Kinesis, Amazon DynamoDB, and Amazon MSK Streams sources. AT_TIMESTAMP is supported only for Amazon Kinesis streams.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartingPositionTimestamp": {
+            "Description": "With StartingPosition set to AT_TIMESTAMP , the time from which to start reading.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "DestinationConfig": {
+            "Description": "(Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded records.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaximumRecordAgeInSeconds": {
+            "Description": "(Streams only) Discard records older than the specified age. The default value is infinite (-1).",
+            "Type": "integer",
+            "Required": false
+        },
+        "BisectBatchOnFunctionError": {
+            "Description": "(Streams only) If the function returns an error, split the batch in two and retry.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MaximumRetryAttempts": {
+            "Description": "(Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TumblingWindowInSeconds": {
+            "Description": "(Streams only) The duration in seconds of a processing window. The range is between 1 second and 900 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Topics": {
+            "Description": "The name of the Kafka topic.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Queues": {
+            "Description": "(MQ) The name of the Amazon MQ broker destination queue to consume.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceAccessConfigurations": {
+            "Description": "An array of authentication protocols or VPC components required to secure your event source.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SelfManagedEventSource": {
+            "Description": "The self-managed Apache Kafka cluster to receive records from.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "FunctionResponseTypes": {
+            "Description": "(Streams and Amazon SQS) A list of current response type enums applied to the event source mapping.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AmazonManagedKafkaEventSourceConfig": {
+            "Description": "Specific configuration settings for an Amazon Managed Streaming for Apache Kafka (Amazon MSK) event source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SelfManagedKafkaEventSourceConfig": {
+            "Description": "Specific configuration settings for a self-managed Apache Kafka event source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_function": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Runtime": {
+            "Description": "The identifier of the function's runtime . Runtime is required if the deployment package is a .zip file archive.",
+            "Type": "string",
+            "Required": false
+        },
+        "Role": {
+            "Description": "The Amazon Resource Name (ARN) of the function's execution role.",
+            "Type": "string",
+            "Required": true
+        },
+        "Handler": {
+            "Description": "The name of the method within your code that Lambda calls to execute your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Programming Model .",
+            "Type": "string",
+            "Required": false
+        },
+        "Code": {
+            "Description": "The code for the function.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "A description of the function.",
+            "Type": "string",
+            "Required": false
+        },
+        "Timeout": {
+            "Description": "The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For additional information, see Lambda execution environment .",
+            "Type": "integer",
+            "Required": false
+        },
+        "MemorySize": {
+            "Description": "The amount of memory available to the function at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Publish": {
+            "Description": "Set to true to publish the first version of the function during creation.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "VpcConfig": {
+            "Description": "For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can only access resources and the internet through that VPC. For more information, see VPC Settings .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PackageType": {
+            "Description": "The type of deployment package. Set to Image for container image and set Zip for ZIP archive.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeadLetterConfig": {
+            "Description": "A dead letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead Letter Queues .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Environment": {
+            "Description": "Environment variables that are accessible from function code during execution.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KMSKeyArn": {
+            "Description": "The ARN of the Amazon Web Services Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.",
+            "Type": "string",
+            "Required": false
+        },
+        "TracingConfig": {
+            "Description": "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the function.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Layers": {
+            "Description": "A list of function layers to add to the function's execution environment. Specify each layer by its ARN, including the version.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FileSystemConfigs": {
+            "Description": "Connection settings for an Amazon EFS file system.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ImageConfig": {
+            "Description": "Container image configuration values that override the values in the container image Dockerfile.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CodeSigningConfigArn": {
+            "Description": "To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.",
+            "Type": "string",
+            "Required": false
+        },
+        "Architectures": {
+            "Description": "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EphemeralStorage": {
+            "Description": "The size of the function\u2019s /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10240 MB.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_function_url_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "The alias name.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthType": {
+            "Description": "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated IAM users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs .",
+            "Type": "string",
+            "Required": true
+        },
+        "Cors": {
+            "Description": "The cross-origin resource sharing (CORS) settings for your function URL.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_alias": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Name": {
+            "Description": "The name of the alias.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_code_signing_config": {
+        "CodeSigningConfigArn": {
+            "Description": "The The Amazon Resource Name (ARN) of the code signing configuration.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_event_source_mapping": {
+        "UUID": {
+            "Description": "The identifier of the event source mapping.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_function": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function or version.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "Specify a version to delete. You can't delete a version that's referenced by an alias.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_function_code_signing_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "delete_function_concurrency": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "delete_function_event_invoke_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "A version number or alias name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_function_url_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "The alias name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_layer_version": {
+        "LayerName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "delete_provisioned_concurrency_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "The version number or alias name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_account_settings": "No parameters defined",
+    "get_alias": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Name": {
+            "Description": "The name of the alias.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_code_signing_config": {
+        "CodeSigningConfigArn": {
+            "Description": "The The Amazon Resource Name (ARN) of the code signing configuration.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_event_source_mapping": {
+        "UUID": {
+            "Description": "The identifier of the event source mapping.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_function": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "Specify a version or alias to get details about a published version of the function.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_function_code_signing_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "get_function_concurrency": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "get_function_configuration": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "Specify a version or alias to get details about a published version of the function.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_function_event_invoke_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "A version number or alias name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_function_url_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "The alias name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_layer_version": {
+        "LayerName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_layer_version_by_arn": {
+        "Arn": {
+            "Description": "The ARN of the layer version.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_layer_version_policy": {
+        "LayerName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_policy": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "Specify a version or alias to get the policy for that resource.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_provisioned_concurrency_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "The version number or alias name.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "invoke": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "InvocationType": {
+            "Description": "Choose from the following options.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "LogType": {
+            "Description": "Set to Tail to include the execution log in the response. Applies to synchronously invoked functions only.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientContext": {
+            "Description": "Up to 3583 bytes of base64-encoded data about the invoking client to pass to the function in the context object.",
+            "Type": "string",
+            "Required": false
+        },
+        "Payload": {
+            "Description": "The JSON that you want to provide to your Lambda function as input.\nYou can enter the JSON directly. For example, --payload '{ \"key\": \"value\" }'. You can also specify a file path. For example, --payload file://payload.json .",
+            "Type": "bytes or seekable file-like object",
+            "Required": false
+        },
+        "Qualifier": {
+            "Description": "Specify a version or alias to invoke a published version of the function.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "invoke_async": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "InvokeArgs": {
+            "Description": "The JSON that you want to provide to your Lambda function as input.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        }
+    },
+    "list_aliases": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "FunctionVersion": {
+            "Description": "Specify a function version to only list aliases that invoke that version.",
+            "Type": "string",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "Limit the number of aliases returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_code_signing_configs": {
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "Maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_event_source_mappings": {
+        "EventSourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the event source.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Marker": {
+            "Description": "A pagination token returned by a previous call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of event source mappings to return. Note that ListEventSourceMappings returns a maximum of 100 items in each response, even if you set the number higher.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_function_event_invoke_configs": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of configurations to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_function_url_configs": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of function URLs to return in the response. Note that ListFunctionUrlConfigs returns a maximum of 50 items in each response, even if you set the number higher.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_functions": {
+        "MasterRegion": {
+            "Description": "For Lambda@Edge functions, the Amazon Web Services Region of the master function. For example, us-east-1 filters the list of functions to only include Lambda@Edge functions replicated from a master function in US East (N. Virginia). If specified, you must set FunctionVersion to ALL .",
+            "Type": "string",
+            "Required": false
+        },
+        "FunctionVersion": {
+            "Description": "Set to ALL to include entries for all published versions of each function.",
+            "Type": "string",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of functions to return in the response. Note that ListFunctions returns a maximum of 50 items in each response, even if you set the number higher.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_functions_by_code_signing_config": {
+        "CodeSigningConfigArn": {
+            "Description": "The The Amazon Resource Name (ARN) of the code signing configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "Maximum number of items to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_layer_versions": {
+        "CompatibleRuntime": {
+            "Description": "A runtime identifier. For example, go1.x .",
+            "Type": "string",
+            "Required": false
+        },
+        "LayerName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "Marker": {
+            "Description": "A pagination token returned by a previous call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of versions to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "CompatibleArchitecture": {
+            "Description": "The compatible instruction set architecture .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_layers": {
+        "CompatibleRuntime": {
+            "Description": "A runtime identifier. For example, go1.x .",
+            "Type": "string",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "A pagination token returned by a previous call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of layers to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "CompatibleArchitecture": {
+            "Description": "The compatible instruction set architecture .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_provisioned_concurrency_configs": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "Specify a number to limit the number of configurations returned.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags": {
+        "Resource": {
+            "Description": "The function's Amazon Resource Name (ARN). Note: Lambda does not support adding tags to aliases or versions.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_versions_by_function": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Marker": {
+            "Description": "Specify the pagination token that's returned by a previous request to retrieve the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxItems": {
+            "Description": "The maximum number of versions to return. Note that ListVersionsByFunction returns a maximum of 50 items in each response, even if you set the number higher.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "publish_layer_version": {
+        "LayerName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the version.",
+            "Type": "string",
+            "Required": false
+        },
+        "Content": {
+            "Description": "The function layer archive.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "CompatibleRuntimes": {
+            "Description": "A list of compatible function runtimes. Used for filtering with  ListLayers and  ListLayerVersions .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "LicenseInfo": {
+            "Description": "The layer's software license. It can be any of the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CompatibleArchitectures": {
+            "Description": "A list of compatible instruction set architectures .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "publish_version": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "CodeSha256": {
+            "Description": "Only publish a version if the hash value matches the value that's specified. Use this option to avoid publishing a version if the function code has changed since you last updated it. You can get the hash for the version that you uploaded from the output of  UpdateFunctionCode .",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description for the version to override the description in the function configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "RevisionId": {
+            "Description": "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid publishing a version if the function configuration has changed since you last updated it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_function_code_signing_config": {
+        "CodeSigningConfigArn": {
+            "Description": "The The Amazon Resource Name (ARN) of the code signing configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "put_function_concurrency": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ReservedConcurrentExecutions": {
+            "Description": "The number of simultaneous executions to reserve for the function.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "put_function_event_invoke_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "A version number or alias name.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaximumRetryAttempts": {
+            "Description": "The maximum number of times to retry when the function returns an error.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaximumEventAgeInSeconds": {
+            "Description": "The maximum age of a request that Lambda sends to a function for processing.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DestinationConfig": {
+            "Description": "A destination for events after they have been sent to a function for processing.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "put_provisioned_concurrency_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "The version number or alias name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisionedConcurrentExecutions": {
+            "Description": "The amount of provisioned concurrency to allocate for the version or alias.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "remove_layer_version_permission": {
+        "LayerName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the layer.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number.",
+            "Type": "integer",
+            "Required": true
+        },
+        "StatementId": {
+            "Description": "The identifier that was specified when the statement was added.",
+            "Type": "string",
+            "Required": true
+        },
+        "RevisionId": {
+            "Description": "Only update the policy if the revision ID matches the ID specified. Use this option to avoid modifying a policy that has changed since you last read it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "remove_permission": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "StatementId": {
+            "Description": "Statement ID of the permission to remove.",
+            "Type": "string",
+            "Required": true
+        },
+        "Qualifier": {
+            "Description": "Specify a version or alias to remove permissions from a published version of the function.",
+            "Type": "string",
+            "Required": false
+        },
+        "RevisionId": {
+            "Description": "Only update the policy if the revision ID matches the ID that's specified. Use this option to avoid modifying a policy that has changed since you last read it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "Resource": {
+            "Description": "The function's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A list of tags to apply to the function.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "Resource": {
+            "Description": "The function's Amazon Resource Name (ARN).",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of tag keys to remove from the function.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_alias": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Name": {
+            "Description": "The name of the alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "FunctionVersion": {
+            "Description": "The function version that the alias invokes.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description of the alias.",
+            "Type": "string",
+            "Required": false
+        },
+        "RoutingConfig": {
+            "Description": "The routing configuration of the alias.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RevisionId": {
+            "Description": "Only update the alias if the revision ID matches the ID that's specified. Use this option to avoid modifying an alias that has changed since you last read it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_code_signing_config": {
+        "CodeSigningConfigArn": {
+            "Description": "The The Amazon Resource Name (ARN) of the code signing configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Descriptive name for this code signing configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowedPublishers": {
+            "Description": "Signing profiles for this code signing configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CodeSigningPolicies": {
+            "Description": "The code signing policy.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_event_source_mapping": {
+        "UUID": {
+            "Description": "The identifier of the event source mapping.",
+            "Type": "string",
+            "Required": true
+        },
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it's limited to 64 characters in length.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Enabled": {
+            "Description": "When true, the event source mapping is active. When false, Lambda pauses polling and invocation.\nDefault: True",
+            "Type": "boolean",
+            "Required": false
+        },
+        "BatchSize": {
+            "Description": "The maximum number of records in each batch that Lambda pulls from your stream or queue and sends to your function. Lambda passes all of the records in the batch to the function in a single call, up to the payload limit for synchronous invocation (6 MB).",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "FilterCriteria": {
+            "Description": "(Streams and Amazon SQS) An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaximumBatchingWindowInSeconds": {
+            "Description": "(Streams and Amazon SQS standard queues) The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function.\nDefault: 0\nRelated setting: When you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DestinationConfig": {
+            "Description": "(Streams only) An Amazon SQS queue or Amazon SNS topic destination for discarded records.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MaximumRecordAgeInSeconds": {
+            "Description": "(Streams only) Discard records older than the specified age. The default value is infinite (-1).",
+            "Type": "integer",
+            "Required": false
+        },
+        "BisectBatchOnFunctionError": {
+            "Description": "(Streams only) If the function returns an error, split the batch in two and retry.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MaximumRetryAttempts": {
+            "Description": "(Streams only) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ParallelizationFactor": {
+            "Description": "(Streams only) The number of batches to process from each shard concurrently.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SourceAccessConfigurations": {
+            "Description": "An array of authentication protocols or VPC components required to secure your event source.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TumblingWindowInSeconds": {
+            "Description": "(Streams only) The duration in seconds of a processing window. The range is between 1 second and 900 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FunctionResponseTypes": {
+            "Description": "(Streams and Amazon SQS) A list of current response type enums applied to the event source mapping.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_function_code": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ZipFile": {
+            "Description": "The base64-encoded contents of the deployment package. Amazon Web Services SDK and Amazon Web Services CLI clients handle the encoding for you. Use only with a function defined with a .zip file archive deployment package.",
+            "Type": "bytes",
+            "Required": false
+        },
+        "S3Bucket": {
+            "Description": "An Amazon S3 bucket in the same Amazon Web Services Region as your function. The bucket can be in a different Amazon Web Services account. Use only with a function defined with a .zip file archive deployment package.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3Key": {
+            "Description": "The Amazon S3 key of the deployment package. Use only with a function defined with a .zip file archive deployment package.",
+            "Type": "string",
+            "Required": false
+        },
+        "S3ObjectVersion": {
+            "Description": "For versioned objects, the version of the deployment package object to use.",
+            "Type": "string",
+            "Required": false
+        },
+        "ImageUri": {
+            "Description": "URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip file archive.",
+            "Type": "string",
+            "Required": false
+        },
+        "Publish": {
+            "Description": "Set to true to publish a new version of the function after updating the code. This has the same effect as calling  PublishVersion separately.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DryRun": {
+            "Description": "Set to true to validate the request parameters and access permissions without modifying the function code.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "RevisionId": {
+            "Description": "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it.",
+            "Type": "string",
+            "Required": false
+        },
+        "Architectures": {
+            "Description": "The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64 .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_function_configuration": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Role": {
+            "Description": "The Amazon Resource Name (ARN) of the function's execution role.",
+            "Type": "string",
+            "Required": false
+        },
+        "Handler": {
+            "Description": "The name of the method within your code that Lambda calls to execute your function. Handler is required if the deployment package is a .zip file archive. The format includes the file name. It can also include namespaces and other qualifiers, depending on the runtime. For more information, see Programming Model .",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description of the function.",
+            "Type": "string",
+            "Required": false
+        },
+        "Timeout": {
+            "Description": "The amount of time (in seconds) that Lambda allows a function to run before stopping it. The default is 3 seconds. The maximum allowed value is 900 seconds. For additional information, see Lambda execution environment .",
+            "Type": "integer",
+            "Required": false
+        },
+        "MemorySize": {
+            "Description": "The amount of memory available to the function at runtime. Increasing the function memory also increases its CPU allocation. The default value is 128 MB. The value can be any multiple of 1 MB.",
+            "Type": "integer",
+            "Required": false
+        },
+        "VpcConfig": {
+            "Description": "For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can only access resources and the internet through that VPC. For more information, see VPC Settings .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Environment": {
+            "Description": "Environment variables that are accessible from function code during execution.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Runtime": {
+            "Description": "The identifier of the function's runtime . Runtime is required if the deployment package is a .zip file archive.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeadLetterConfig": {
+            "Description": "A dead letter queue configuration that specifies the queue or topic where Lambda sends asynchronous events when they fail processing. For more information, see Dead Letter Queues .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "KMSKeyArn": {
+            "Description": "The ARN of the Amazon Web Services Key Management Service (KMS) key that's used to encrypt your function's environment variables. If it's not provided, Lambda uses a default service key.",
+            "Type": "string",
+            "Required": false
+        },
+        "TracingConfig": {
+            "Description": "Set Mode to Active to sample and trace a subset of incoming requests with X-Ray .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RevisionId": {
+            "Description": "Only update the function if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it.",
+            "Type": "string",
+            "Required": false
+        },
+        "Layers": {
+            "Description": "A list of function layers to add to the function's execution environment. Specify each layer by its ARN, including the version.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FileSystemConfigs": {
+            "Description": "Connection settings for an Amazon EFS file system.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ImageConfig": {
+            "Description": "\nContainer image configuration values that override the values in the container image Docker file.\n\nEntryPoint (list) --Specifies the entry point to their application, which is typically the location of the runtime executable.\n\n(string) --\n\n\nCommand (list) --Specifies parameters that you want to pass in with ENTRYPOINT.\n\n(string) --\n\n\nWorkingDirectory (string) --Specifies the working directory.\n\n\n",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EphemeralStorage": {
+            "Description": "The size of the function\u2019s /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10240 MB.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_function_event_invoke_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "A version number or alias name.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaximumRetryAttempts": {
+            "Description": "The maximum number of times to retry when the function returns an error.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaximumEventAgeInSeconds": {
+            "Description": "The maximum age of a request that Lambda sends to a function for processing.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DestinationConfig": {
+            "Description": "A destination for events after they have been sent to a function for processing.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "update_function_url_config": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "The alias name.",
+            "Type": "string",
+            "Required": false
+        },
+        "AuthType": {
+            "Description": "The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated IAM users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Security and auth model for Lambda function URLs .",
+            "Type": "string",
+            "Required": false
+        },
+        "Cors": {
+            "Description": "The cross-origin resource sharing (CORS) settings for your function URL.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function.\nThe length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "FunctionName": {
+            "Description": "The name of the Lambda function, version, or alias.\nYou can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Qualifier": {
+            "Description": "Specify a version or alias to get details about a published version of the function.",
+            "Type": "string",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,655 @@
+{
+    "create_dataset": {
+        "DatasetName": {
+            "Description": "The name of the dataset being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetSchema": {
+            "Description": "A JSON description of the data that is in each time series dataset, including names, column names, and data types.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ServerSideKmsKeyId": {
+            "Description": "Provides the identifier of the KMS key used to encrypt dataset data by Amazon Lookout for Equipment.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Any tags associated with the ingested data described in the dataset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_inference_scheduler": {
+        "ModelName": {
+            "Description": "The name of the previously trained ML model being used to create the inference scheduler.",
+            "Type": "string",
+            "Required": true
+        },
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataDelayOffsetInMinutes": {
+            "Description": "The interval (in minutes) of planned delay at the start of each inference segment. For example, if inference is set to run every ten minutes, the delay is set to five minutes and the time is 09:08. The inference scheduler will wake up at the configured interval (which, without a delay configured, would be 09:10) plus the additional five minute delay time (so 09:15) to check your Amazon S3 bucket. The delay provides a buffer for you to upload data at the same frequency, so that you don't have to stop and restart the scheduler when uploading new data.\nFor more information, see Understanding the inference process .",
+            "Type": "integer",
+            "Required": false
+        },
+        "DataUploadFrequency": {
+            "Description": "How often data is uploaded to the source Amazon S3 bucket for the input data. The value chosen is the length of time between data uploads. For instance, if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time data to the source bucket once every 5 minutes. This frequency also determines how often Amazon Lookout for Equipment runs inference on your data.\nFor more information, see Understanding the inference process .",
+            "Type": "string",
+            "Required": true
+        },
+        "DataInputConfiguration": {
+            "Description": "Specifies configuration information for the input data for the inference scheduler, including delimiter, format, and dataset location.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DataOutputConfiguration": {
+            "Description": "Specifies configuration information for the output results for the inference scheduler, including the S3 location for the output.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access the data source being used for the inference.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServerSideKmsKeyId": {
+            "Description": "Provides the identifier of the KMS key used to encrypt inference scheduler data by Amazon Lookout for Equipment.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Any tags associated with the inference scheduler.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_label": {
+        "LabelGroupName": {
+            "Description": "The name of a group of labels.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartTime": {
+            "Description": "The start time of the labeled event.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The end time of the labeled event.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "Rating": {
+            "Description": "Indicates whether a labeled event represents an anomaly.",
+            "Type": "string",
+            "Required": true
+        },
+        "FaultCode": {
+            "Description": "Provides additional information about the label. The fault code must be defined in the FaultCodes attribute of the label group.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "string",
+            "Required": false
+        },
+        "Notes": {
+            "Description": "Metadata providing additional information about the label.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "string",
+            "Required": false
+        },
+        "Equipment": {
+            "Description": "Indicates that a label pertains to a particular piece of equipment.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request to create a label. If you do not set the client request token, Lookout for Equipment generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_label_group": {
+        "LabelGroupName": {
+            "Description": "Names a group of labels.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "string",
+            "Required": true
+        },
+        "FaultCodes": {
+            "Description": "The acceptable fault codes (indicating the type of anomaly associated with the label) that can be used with this label group.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request to create a label group. If you do not set the client request token, Lookout for Equipment generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Tags that provide metadata about the label group you are creating.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_model": {
+        "ModelName": {
+            "Description": "The name for the ML model to be created.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetName": {
+            "Description": "The name of the dataset for the ML model being created.",
+            "Type": "string",
+            "Required": true
+        },
+        "DatasetSchema": {
+            "Description": "The data schema for the ML model being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LabelsInputConfiguration": {
+            "Description": "The input configuration for the labels being used for the ML model that's being created.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "TrainingDataStartTime": {
+            "Description": "Indicates the time reference in the dataset that should be used to begin the subset of training data for the ML model.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "TrainingDataEndTime": {
+            "Description": "Indicates the time reference in the dataset that should be used to end the subset of training data for the ML model.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EvaluationDataStartTime": {
+            "Description": "Indicates the time reference in the dataset that should be used to begin the subset of evaluation data for the ML model.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EvaluationDataEndTime": {
+            "Description": "Indicates the time reference in the dataset that should be used to end the subset of evaluation data for the ML model.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access the data source being used to create the ML model.",
+            "Type": "string",
+            "Required": false
+        },
+        "DataPreProcessingConfiguration": {
+            "Description": "The configuration is the TargetSamplingRate, which is the sampling rate of the data after post processing by Amazon Lookout for Equipment. For example, if you provide data that has been collected at a 1 second level and you want the system to resample the data at a 1 minute rate before training, the TargetSamplingRate is 1 minute.\nWhen providing a value for the TargetSamplingRate, you must attach the prefix \"PT\" to the rate you want. The value for a 1 second rate is therefore PT1S, the value for a 15 minute rate is PT15M, and the value for a 1 hour rate is PT1H",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ServerSideKmsKeyId": {
+            "Description": "Provides the identifier of the KMS key used to encrypt model data by Amazon Lookout for Equipment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Any tags associated with the ML model being created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "OffCondition": {
+            "Description": "Indicates that the asset associated with this sensor has been shut off. As long as this condition is met, Lookout for Equipment will not use data from this asset for training, evaluation, or inference.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_dataset": {
+        "DatasetName": {
+            "Description": "The name of the dataset to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_inference_scheduler": {
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_label": {
+        "LabelGroupName": {
+            "Description": "The name of the label group that contains the label that you want to delete. Data in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "string",
+            "Required": true
+        },
+        "LabelId": {
+            "Description": "The ID of the label that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_label_group": {
+        "LabelGroupName": {
+            "Description": "The name of the label group that you want to delete. Data in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_model": {
+        "ModelName": {
+            "Description": "The name of the ML model to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_data_ingestion_job": {
+        "JobId": {
+            "Description": "The job ID of the data ingestion job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dataset": {
+        "DatasetName": {
+            "Description": "The name of the dataset to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_inference_scheduler": {
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler being described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_label": {
+        "LabelGroupName": {
+            "Description": "Returns the name of the group containing the label.",
+            "Type": "string",
+            "Required": true
+        },
+        "LabelId": {
+            "Description": "Returns the ID of the label.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_label_group": {
+        "LabelGroupName": {
+            "Description": "Returns the name of the label group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_model": {
+        "ModelName": {
+            "Description": "The name of the ML model to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_data_ingestion_jobs": {
+        "DatasetName": {
+            "Description": "The name of the dataset being used for the data ingestion job.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of data ingestion jobs.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of data ingestion jobs to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Status": {
+            "Description": "Indicates the status of the data ingestion job.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_datasets": {
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of datasets.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of datasets to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DatasetNameBeginsWith": {
+            "Description": "The beginning of the name of the datasets to be listed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_inference_events": {
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of inference events.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of inference events to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler for the inference events listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntervalStartTime": {
+            "Description": "Lookout for Equipment will return all the inference events with an end time equal to or greater than the start time given.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "IntervalEndTime": {
+            "Description": "Returns all the inference events with an end start time equal to or greater than less than the end time given",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "list_inference_executions": {
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of inference executions.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of inference executions to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler for the inference execution listed.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataStartTimeAfter": {
+            "Description": "The time reference in the inferenced dataset after which Amazon Lookout for Equipment started the inference execution.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "DataEndTimeBefore": {
+            "Description": "The time reference in the inferenced dataset before which Amazon Lookout for Equipment stopped the inference execution.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Status": {
+            "Description": "The status of the inference execution.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_inference_schedulers": {
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of inference schedulers.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of inference schedulers to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "InferenceSchedulerNameBeginsWith": {
+            "Description": "The beginning of the name of the inference schedulers to be listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "ModelName": {
+            "Description": "The name of the ML model used by the inference scheduler to be listed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_label_groups": {
+        "LabelGroupNameBeginsWith": {
+            "Description": "The beginning of the name of the label groups to be listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of label groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of label groups to list.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_labels": {
+        "LabelGroupName": {
+            "Description": "Retruns the name of the label group.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntervalStartTime": {
+            "Description": "Returns all the labels with a end time equal to or later than the start time given.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "IntervalEndTime": {
+            "Description": "Returns all labels with a start time earlier than the end time given.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "FaultCode": {
+            "Description": "Returns labels with a particular fault code.",
+            "Type": "string",
+            "Required": false
+        },
+        "Equipment": {
+            "Description": "Lists the labels that pertain to a particular piece of equipment.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of label groups.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of labels to list.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_models": {
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of ML models.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of ML models to list.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Status": {
+            "Description": "The status of the ML model.",
+            "Type": "string",
+            "Required": false
+        },
+        "ModelNameBeginsWith": {
+            "Description": "The beginning of the name of the ML models being listed.",
+            "Type": "string",
+            "Required": false
+        },
+        "DatasetNameBeginsWith": {
+            "Description": "The beginning of the name of the dataset of the ML models to be listed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_sensor_statistics": {
+        "DatasetName": {
+            "Description": "The name of the dataset associated with the list of Sensor Statistics.",
+            "Type": "string",
+            "Required": true
+        },
+        "IngestionJobId": {
+            "Description": "The ingestion job id associated with the list of Sensor Statistics. To get sensor statistics for a particular ingestion job id, both dataset name and ingestion job id must be submitted as inputs.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Specifies the maximum number of sensors for which to retrieve statistics.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "An opaque pagination token indicating where to continue the listing of sensor statistics.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource (such as the dataset or model) that is the focus of the ListTagsForResource operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_data_ingestion_job": {
+        "DatasetName": {
+            "Description": "The name of the dataset being used by the data ingestion job.",
+            "Type": "string",
+            "Required": true
+        },
+        "IngestionInputConfiguration": {
+            "Description": "Specifies information for the input data for the data ingestion job, including dataset S3 location.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access the data source for the data ingestion job.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique identifier for the request. If you do not set the client request token, Amazon Lookout for Equipment generates one.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_inference_scheduler": {
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler to be started.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_inference_scheduler": {
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler to be stopped.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the specific resource to which the tag should be associated.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tag or tags to be associated with a specific resource. Both the tag key and value are specified.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to which the tag is currently associated.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Specifies the key of the tag to be removed from a specified resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_inference_scheduler": {
+        "InferenceSchedulerName": {
+            "Description": "The name of the inference scheduler to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataDelayOffsetInMinutes": {
+            "Description": "A period of time (in minutes) by which inference on the data is delayed after the data starts. For instance, if you select an offset delay time of five minutes, inference will not begin on the data until the first data measurement after the five minute mark. For example, if five minutes is selected, the inference scheduler will wake up at the configured frequency with the additional five minute delay time to check the customer S3 bucket. The customer can upload data at the same frequency and they don't need to stop and restart the scheduler when uploading new data.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DataUploadFrequency": {
+            "Description": "How often data is uploaded to the source S3 bucket for the input data. The value chosen is the length of time between data uploads. For instance, if you select 5 minutes, Amazon Lookout for Equipment will upload the real-time data to the source bucket once every 5 minutes. This frequency also determines how often Amazon Lookout for Equipment starts a scheduled inference on your data. In this example, it starts once every 5 minutes.",
+            "Type": "string",
+            "Required": false
+        },
+        "DataInputConfiguration": {
+            "Description": "Specifies information for the input data for the inference scheduler, including delimiter, format, and dataset location.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DataOutputConfiguration": {
+            "Description": "Specifies information for the output results from the inference scheduler, including the output S3 location.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of a role with permission to access the data source for the inference scheduler.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_label_group": {
+        "LabelGroupName": {
+            "Description": "The name of the label group to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "FaultCodes": {
+            "Description": "Updates the code indicating the type of anomaly associated with the label.\nData in this field will be retained for service usage. Follow best practices for the security of your data.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    }
+}

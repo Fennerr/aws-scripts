@@ -1,0 +1,499 @@
+{
+    "add_tags_to_stream": {
+        "StreamName": {
+            "Description": "The name of the stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "A set of up to 10 key-value pairs to use to create the tags.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_stream": {
+        "StreamName": {
+            "Description": "A name to identify the stream. The stream name is scoped to the Amazon Web Services account used by the application that creates the stream. It is also scoped by Amazon Web Services Region. That is, two streams in two different Amazon Web Services accounts can have the same name. Two streams in the same Amazon Web Services account but in two different Regions can also have the same name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardCount": {
+            "Description": "The number of shards that the stream will use. The throughput of the stream is a function of the number of shards; more shards are required for greater provisioned throughput.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StreamModeDetails": {
+            "Description": "Indicates the capacity mode of the data stream. Currently, in Kinesis Data Streams, you can choose between an on-demand capacity mode and a provisioned capacity mode for your data streams.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "decrease_stream_retention_period": {
+        "StreamName": {
+            "Description": "The name of the stream to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetentionPeriodHours": {
+            "Description": "The new retention period of the stream, in hours. Must be less than the current retention period.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "delete_stream": {
+        "StreamName": {
+            "Description": "The name of the stream to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnforceConsumerDeletion": {
+            "Description": "If this parameter is unset (null ) or if you set it to false , and the stream has registered consumers, the call to DeleteStream fails with a ResourceInUseException .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "deregister_stream_consumer": {
+        "StreamARN": {
+            "Description": "The ARN of the Kinesis data stream that the consumer is registered with. For more information, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces .",
+            "Type": "string",
+            "Required": false
+        },
+        "ConsumerName": {
+            "Description": "The name that you gave to the consumer.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConsumerARN": {
+            "Description": "The ARN returned by Kinesis Data Streams when you registered the consumer. If you don't know the ARN of the consumer that you want to deregister, you can use the ListStreamConsumers operation to get a list of the descriptions of all the consumers that are currently registered with a given data stream. The description of a consumer contains its ARN.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_limits": "No parameters defined",
+    "describe_stream": {
+        "StreamName": {
+            "Description": "The name of the stream to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The maximum number of shards to return in a single call. The default value is 100. If you specify a value greater than 100, at most 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ExclusiveStartShardId": {
+            "Description": "The shard ID of the shard to start with.\nSpecify this parameter to indicate that you want to describe the stream starting with the shard whose ID immediately follows ExclusiveStartShardId .\nIf you don't specify this parameter, the default behavior for DescribeStream is to describe the stream starting with the first shard in the stream.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_stream_consumer": {
+        "StreamARN": {
+            "Description": "The ARN of the Kinesis data stream that the consumer is registered with. For more information, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces .",
+            "Type": "string",
+            "Required": false
+        },
+        "ConsumerName": {
+            "Description": "The name that you gave to the consumer.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConsumerARN": {
+            "Description": "The ARN returned by Kinesis Data Streams when you registered the consumer.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_stream_summary": {
+        "StreamName": {
+            "Description": "The name of the stream to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_enhanced_monitoring": {
+        "StreamName": {
+            "Description": "The name of the Kinesis data stream for which to disable enhanced monitoring.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardLevelMetrics": {
+            "Description": "List of shard-level metrics to disable.\nThe following are the valid shard-level metrics. The value \"ALL \" disables every metric.\nFor more information, see Monitoring the Amazon Kinesis Data Streams Service with Amazon CloudWatch in the Amazon Kinesis Data Streams Developer Guide .",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "enable_enhanced_monitoring": {
+        "StreamName": {
+            "Description": "The name of the stream for which to enable enhanced monitoring.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardLevelMetrics": {
+            "Description": "List of shard-level metrics to enable.\nThe following are the valid shard-level metrics. The value \"ALL \" enables every metric.\nFor more information, see Monitoring the Amazon Kinesis Data Streams Service with Amazon CloudWatch in the Amazon Kinesis Data Streams Developer Guide .",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "get_records": {
+        "ShardIterator": {
+            "Description": "The position in the shard from which you want to start sequentially reading data records. A shard iterator specifies this position using the sequence number of a data record in the shard.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The maximum number of records to return. Specify a value of up to 10,000. If you specify a value that is greater than 10,000,  GetRecords throws InvalidArgumentException . The default value is 10,000.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_shard_iterator": {
+        "StreamName": {
+            "Description": "The name of the Amazon Kinesis data stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardId": {
+            "Description": "The shard ID of the Kinesis Data Streams shard to get the iterator for.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardIteratorType": {
+            "Description": "Determines how the shard iterator is used to start reading data records from the shard.\nThe following are the valid Amazon Kinesis shard iterator types:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "StartingSequenceNumber": {
+            "Description": "The sequence number of the data record in the shard from which to start reading. Used with shard iterator type AT_SEQUENCE_NUMBER and AFTER_SEQUENCE_NUMBER.",
+            "Type": "string",
+            "Required": false
+        },
+        "Timestamp": {
+            "Description": "The time stamp of the data record from which to start reading. Used with shard iterator type AT_TIMESTAMP. A time stamp is the Unix epoch date with precision in milliseconds. For example, 2016-04-04T19:58:46.480-00:00 or 1459799926.480 . If a record with this exact time stamp does not exist, the iterator returned is for the next (later) record. If the time stamp is older than the current trim horizon, the iterator returned is for the oldest untrimmed data record (TRIM_HORIZON).",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "increase_stream_retention_period": {
+        "StreamName": {
+            "Description": "The name of the stream to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "RetentionPeriodHours": {
+            "Description": "The new retention period of the stream, in hours. Must be more than the current retention period.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "list_shards": {
+        "StreamName": {
+            "Description": "The name of the data stream whose shards you want to list.\nYou cannot specify this parameter if you specify the NextToken parameter.",
+            "Type": "string",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "When the number of shards in the data stream is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of shards in the data stream, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListShards to list the next set of shards.\nDon't specify StreamName or StreamCreationTimestamp if you specify NextToken because the latter unambiguously identifies the stream.\nYou can optionally specify a value for the MaxResults parameter when you specify NextToken. If you specify a MaxResults value that is less than the number of shards that the operation returns if you don't specify MaxResults, the response will contain a new NextToken value. You can use the new NextToken value in a subsequent call to the ListShards operation.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExclusiveStartShardId": {
+            "Description": "Specify this parameter to indicate that you want to list the shards starting with the shard whose ID immediately follows ExclusiveStartShardId .\nIf you don't specify this parameter, the default behavior is for ListShards to list the shards starting with the first one in the stream.\nYou cannot specify this parameter if you specify NextToken .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of shards to return in a single call to ListShards. The maximum number of shards to return in a single call. The default value is 1000. If you specify a value greater than 1000, at most 1000 results are returned.\nWhen the number of shards to be listed is greater than the value of MaxResults, the response contains a NextToken value that you can use in a subsequent call to ListShards to list the next set of shards.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StreamCreationTimestamp": {
+            "Description": "Specify this input parameter to distinguish data streams that have the same name. For example, if you create a data stream and then delete it, and you later create another data stream with the same name, you can use this input parameter to specify which of the two streams you want to list the shards for.\nYou cannot specify this parameter if you specify the NextToken parameter.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "ShardFilter": {
+            "Description": "Enables you to filter out the response of the ListShards API. You can only specify one filter at a time.\nIf you use the ShardFilter parameter when invoking the ListShards API, the Type is the required property and must be specified. If you specify the AT_TRIM_HORIZON, FROM_TRIM_HORIZON, or AT_LATEST types, you do not need to specify either the ShardId or the Timestamp optional properties.\nIf you specify the AFTER_SHARD_ID type, you must also provide the value for the optional ShardId property. The ShardId property is identical in fuctionality to the ExclusiveStartShardId parameter of the ListShards API. When ShardId property is specified, the response includes the shards starting with the shard whose ID immediately follows the ShardId that you provided.\nIf you specify the AT_TIMESTAMP or FROM_TIMESTAMP_ID type, you must also provide the value for the optional Timestamp property. If you specify the AT_TIMESTAMP type, then all shards that were open at the provided timestamp are returned. If you specify the FROM_TIMESTAMP type, then all shards starting from the provided timestamp to TIP are returned.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_stream_consumers": {
+        "StreamARN": {
+            "Description": "The ARN of the Kinesis data stream for which you want to list the registered consumers. For more information, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "When the number of consumers that are registered with the data stream is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of consumers that are registered with the data stream, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListStreamConsumers to list the next set of registered consumers.\nDon't specify StreamName or StreamCreationTimestamp if you specify NextToken because the latter unambiguously identifies the stream.\nYou can optionally specify a value for the MaxResults parameter when you specify NextToken. If you specify a MaxResults value that is less than the number of consumers that the operation returns if you don't specify MaxResults, the response will contain a new NextToken value. You can use the new NextToken value in a subsequent call to the ListStreamConsumers operation to list the next set of consumers.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of consumers that you want a single call of ListStreamConsumers to return. The default value is 100. If you specify a value greater than 100, at most 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "StreamCreationTimestamp": {
+            "Description": "Specify this input parameter to distinguish data streams that have the same name. For example, if you create a data stream and then delete it, and you later create another data stream with the same name, you can use this input parameter to specify which of the two streams you want to list the consumers for.\nYou can't specify this parameter if you specify the NextToken parameter.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_streams": {
+        "Limit": {
+            "Description": "The maximum number of streams to list. The default value is 100. If you specify a value greater than 100, at most 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ExclusiveStartStreamName": {
+            "Description": "The name of the stream to start the list with.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_stream": {
+        "StreamName": {
+            "Description": "The name of the stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExclusiveStartTagKey": {
+            "Description": "The key to use as the starting point for the list of tags. If this parameter is set, ListTagsForStream gets all tags that occur after ExclusiveStartTagKey .",
+            "Type": "string",
+            "Required": false
+        },
+        "Limit": {
+            "Description": "The number of tags to return. If this number is less than the total number of tags associated with the stream, HasMoreTags is set to true . To list additional tags, set ExclusiveStartTagKey to the last key in the response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "merge_shards": {
+        "StreamName": {
+            "Description": "The name of the stream for the merge.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardToMerge": {
+            "Description": "The shard ID of the shard to combine with the adjacent shard for the merge.",
+            "Type": "string",
+            "Required": true
+        },
+        "AdjacentShardToMerge": {
+            "Description": "The shard ID of the adjacent shard for the merge.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_record": {
+        "StreamName": {
+            "Description": "The name of the stream to put the data record into.",
+            "Type": "string",
+            "Required": true
+        },
+        "Data": {
+            "Description": "The data blob to put into the record, which is base64-encoded when the blob is serialized. When the data blob (the payload before base64-encoding) is added to the partition key size, the total size must not exceed the maximum record size (1 MiB).",
+            "Type": "bytes",
+            "Required": true
+        },
+        "PartitionKey": {
+            "Description": "Determines which shard in the stream the data record is assigned to. Partition keys are Unicode strings with a maximum length limit of 256 characters for each key. Amazon Kinesis Data Streams uses the partition key as input to a hash function that maps the partition key and associated data to a specific shard. Specifically, an MD5 hash function is used to map partition keys to 128-bit integer values and to map associated data records to shards. As a result of this hashing mechanism, all data records with the same partition key map to the same shard within the stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExplicitHashKey": {
+            "Description": "The hash value used to explicitly determine the shard the data record is assigned to by overriding the partition key hash.",
+            "Type": "string",
+            "Required": false
+        },
+        "SequenceNumberForOrdering": {
+            "Description": "Guarantees strictly increasing sequence numbers, for puts from the same client and to the same partition key. Usage: set the SequenceNumberForOrdering of record n to the sequence number of record n-1 (as returned in the result when putting record n-1 ). If this parameter is not set, records are coarsely ordered based on arrival time.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_records": {
+        "Records": {
+            "Description": "The records associated with the request.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "StreamName": {
+            "Description": "The stream name associated with the request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "register_stream_consumer": {
+        "StreamARN": {
+            "Description": "The ARN of the Kinesis data stream that you want to register the consumer with. For more info, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces .",
+            "Type": "string",
+            "Required": true
+        },
+        "ConsumerName": {
+            "Description": "For a given Kinesis data stream, each consumer must have a unique name. However, consumer names don't have to be unique across data streams.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_tags_from_stream": {
+        "StreamName": {
+            "Description": "The name of the stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "A list of tag keys. Each corresponding tag is removed from the stream.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "split_shard": {
+        "StreamName": {
+            "Description": "The name of the stream for the shard split.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardToSplit": {
+            "Description": "The shard ID of the shard to split.",
+            "Type": "string",
+            "Required": true
+        },
+        "NewStartingHashKey": {
+            "Description": "A hash key value for the starting hash key of one of the child shards created by the split. The hash key range for a given shard constitutes a set of ordered contiguous positive integers. The value for NewStartingHashKey must be in the range of hash keys being mapped into the shard. The NewStartingHashKey hash key value and all higher hash key values in hash key range are distributed to one of the child shards. All the lower hash key values in the range are distributed to the other child shard.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_stream_encryption": {
+        "StreamName": {
+            "Description": "The name of the stream for which to start encrypting records.",
+            "Type": "string",
+            "Required": true
+        },
+        "EncryptionType": {
+            "Description": "The encryption type to use. The only valid value is KMS .",
+            "Type": "string",
+            "Required": true
+        },
+        "KeyId": {
+            "Description": "The GUID for the customer-managed Amazon Web Services KMS key to use for encryption. This value can be a globally unique identifier, a fully specified Amazon Resource Name (ARN) to either an alias or a key, or an alias name prefixed by \"alias/\".You can also use a master key owned by Kinesis Data Streams by specifying the alias aws/kinesis .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "stop_stream_encryption": {
+        "StreamName": {
+            "Description": "The name of the stream on which to stop encrypting records.",
+            "Type": "string",
+            "Required": true
+        },
+        "EncryptionType": {
+            "Description": "The encryption type. The only valid value is KMS .",
+            "Type": "string",
+            "Required": true
+        },
+        "KeyId": {
+            "Description": "The GUID for the customer-managed Amazon Web Services KMS key to use for encryption. This value can be a globally unique identifier, a fully specified Amazon Resource Name (ARN) to either an alias or a key, or an alias name prefixed by \"alias/\".You can also use a master key owned by Kinesis Data Streams by specifying the alias aws/kinesis .",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "subscribe_to_shard": {
+        "ConsumerARN": {
+            "Description": "For this parameter, use the value you obtained when you called  RegisterStreamConsumer .",
+            "Type": "string",
+            "Required": true
+        },
+        "ShardId": {
+            "Description": "The ID of the shard you want to subscribe to. To see a list of all the shards for a given stream, use  ListShards .",
+            "Type": "string",
+            "Required": true
+        },
+        "StartingPosition": {
+            "Description": "The starting position in the data stream from which to start streaming.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_shard_count": {
+        "StreamName": {
+            "Description": "The name of the stream.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetShardCount": {
+            "Description": "The new number of shards. This value has the following default limits. By default, you cannot do the following:",
+            "Type": "integer",
+            "Required": true,
+            "integer variables": {}
+        },
+        "ScalingType": {
+            "Description": "The scaling type. Uniform scaling creates shards of equal size.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_stream_mode": {
+        "StreamARN": {
+            "Description": "Specifies the ARN of the data stream whose capacity mode you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "StreamModeDetails": {
+            "Description": "Specifies the capacity mode to which you want to set your data stream. Currently, in Kinesis Data Streams, you can choose between an on-demand capacity mode and a provisioned capacity mode for your data streams.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "StreamName": {
+            "Description": "The name of the stream to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "Limit": {
+            "Description": "The maximum number of shards to return in a single call. The default value is 100. If you specify a value greater than 100, at most 100 results are returned.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ExclusiveStartShardId": {
+            "Description": "The shard ID of the shard to start with.\nSpecify this parameter to indicate that you want to describe the stream starting with the shard whose ID immediately follows ExclusiveStartShardId .\nIf you don't specify this parameter, the default behavior for DescribeStream is to describe the stream starting with the first shard in the stream.",
+            "Type": "string",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,958 @@
+{
+    "create_app": {
+        "name": {
+            "Description": "The name for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The repository for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "platform": {
+            "Description": "The platform or framework for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "iamServiceRoleArn": {
+            "Description": "The AWS Identity and Access Management (IAM) service role for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "oauthToken": {
+            "Description": "The OAuth token for a third-party source control system for an Amplify app. The OAuth token is used to create a webhook and a read-only deploy key using SSH cloning. The OAuth token is not stored.\nUse oauthToken for repository providers other than GitHub, such as Bitbucket or CodeCommit. To authorize access to GitHub as your repository provider, use accessToken .\nYou must specify either oauthToken or accessToken when you create a new app.\nExisting Amplify apps deployed from a GitHub repository using OAuth continue to work with CI/CD. However, we strongly recommend that you migrate these apps to use the GitHub App. For more information, see Migrating an existing OAuth app to the Amplify GitHub App in the Amplify User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "accessToken": {
+            "Description": "The personal access token for a GitHub repository for an Amplify app. The personal access token is used to authorize access to a GitHub repository using the Amplify GitHub App. The token is not stored.\nUse accessToken for GitHub repositories only. To authorize access to a repository provider such as Bitbucket or CodeCommit, use oauthToken .\nYou must specify either accessToken or oauthToken when you create a new app.\nExisting Amplify apps deployed from a GitHub repository using OAuth continue to work with CI/CD. However, we strongly recommend that you migrate these apps to use the GitHub App. For more information, see Migrating an existing OAuth app to the Amplify GitHub App in the Amplify User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentVariables": {
+            "Description": "The environment variables map for an Amplify app.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "enableBranchAutoBuild": {
+            "Description": "Enables the auto building of branches for an Amplify app.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableBranchAutoDeletion": {
+            "Description": "Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableBasicAuth": {
+            "Description": "Enables basic authorization for an Amplify app. This will apply to all branches that are part of this app.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "basicAuthCredentials": {
+            "Description": "The credentials for basic authorization for an Amplify app. You must base64-encode the authorization credentials and provide them in the format user:password .",
+            "Type": "string",
+            "Required": false
+        },
+        "customRules": {
+            "Description": "The custom rewrite and redirect rules for an Amplify app.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tag for an Amplify app.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "buildSpec": {
+            "Description": "The build specification (build spec) for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "customHeaders": {
+            "Description": "The custom HTTP headers for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "enableAutoBranchCreation": {
+            "Description": "Enables automated branch creation for an Amplify app.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "autoBranchCreationPatterns": {
+            "Description": "The automated branch creation glob patterns for an Amplify app.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "autoBranchCreationConfig": {
+            "Description": "The automated branch creation configuration for an Amplify app.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_backend_environment": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "environmentName": {
+            "Description": "The name for the backend environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "stackName": {
+            "Description": "The AWS CloudFormation stack name of a backend environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "deploymentArtifacts": {
+            "Description": "The name of deployment artifacts.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_branch": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "stage": {
+            "Description": "Describes the current stage for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "framework": {
+            "Description": "The framework for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "enableNotification": {
+            "Description": "Enables notifications for the branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableAutoBuild": {
+            "Description": "Enables auto building for the branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "environmentVariables": {
+            "Description": "The environment variables for the branch.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "basicAuthCredentials": {
+            "Description": "The basic authorization credentials for the branch. You must base64-encode the authorization credentials and provide them in the format user:password .",
+            "Type": "string",
+            "Required": false
+        },
+        "enableBasicAuth": {
+            "Description": "Enables basic authorization for the branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enablePerformanceMode": {
+            "Description": "Enables performance mode for the branch.\nPerformance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. When performance mode is enabled, hosting configuration or code changes can take up to 10 minutes to roll out.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tag for the branch.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "buildSpec": {
+            "Description": "The build specification (build spec) for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "ttl": {
+            "Description": "The content Time To Live (TTL) for the website in seconds.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The display name for a branch. This is used as the default domain prefix.",
+            "Type": "string",
+            "Required": false
+        },
+        "enablePullRequestPreview": {
+            "Description": "Enables pull request previews for this branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "pullRequestEnvironmentName": {
+            "Description": "The Amplify environment name for the pull request.",
+            "Type": "string",
+            "Required": false
+        },
+        "backendEnvironmentArn": {
+            "Description": "The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_deployment": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch, for the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "fileMap": {
+            "Description": "An optional file map that contains the file name as the key and the file content md5 hash as the value. If this argument is provided, the service will generate a unique upload URL per file. Otherwise, the service will only generate a single upload URL for the zipped files.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_domain_association": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainName": {
+            "Description": "The domain name for the domain association.",
+            "Type": "string",
+            "Required": true
+        },
+        "enableAutoSubDomain": {
+            "Description": "Enables the automated creation of subdomains for branches.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "subDomainSettings": {
+            "Description": "The setting for the subdomain.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "autoSubDomainCreationPatterns": {
+            "Description": "Sets the branch patterns for automatic subdomain creation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "autoSubDomainIAMRole": {
+            "Description": "The required AWS Identity and Access Management (IAM) service role for the Amazon Resource Name (ARN) for automatically creating subdomains.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_webhook": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for a branch that is part of an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description for a webhook.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_app": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_backend_environment": {
+        "appId": {
+            "Description": "The unique ID of an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "environmentName": {
+            "Description": "The name of a backend environment of an Amplify app.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_branch": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_domain_association": {
+        "appId": {
+            "Description": "The unique id for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_job": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch, for the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobId": {
+            "Description": "The unique ID for the job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_webhook": {
+        "webhookId": {
+            "Description": "The unique ID for a webhook.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "generate_access_logs": {
+        "startTime": {
+            "Description": "The time at which the logs should start. The time range specified is inclusive of the start time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "endTime": {
+            "Description": "The time at which the logs should end. The time range specified is inclusive of the end time.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "domainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_app": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_artifact_url": {
+        "artifactId": {
+            "Description": "The unique ID for an artifact.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_backend_environment": {
+        "appId": {
+            "Description": "The unique id for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "environmentName": {
+            "Description": "The name for the backend environment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_branch": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_domain_association": {
+        "appId": {
+            "Description": "The unique id for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_job": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The branch name for the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobId": {
+            "Description": "The unique ID for the job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_webhook": {
+        "webhookId": {
+            "Description": "The unique ID for a webhook.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_apps": {
+        "nextToken": {
+            "Description": "A pagination token. If non-null, the pagination token is returned in a result. Pass its value in another request to retrieve more entries.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_artifacts": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name of a branch that is part of an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobId": {
+            "Description": "The unique ID for a job.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A pagination token. Set to null to start listing artifacts from start. If a non-null pagination token is returned in a result, pass its value in here to list more artifacts.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_backend_environments": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "environmentName": {
+            "Description": "The name of the backend environment",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token. Set to null to start listing backend environments from the start. If a non-null pagination token is returned in a result, pass its value in here to list more backend environments.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_branches": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A pagination token. Set to null to start listing branches from the start. If a non-null pagination token is returned in a result, pass its value in here to list more branches.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_domain_associations": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A pagination token. Set to null to start listing apps from the start. If non-null, a pagination token is returned in a result. Pass its value in here to list more projects.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_jobs": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for a branch.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A pagination token. Set to null to start listing steps from the start. If a non-null pagination token is returned in a result, pass its value in here to list more steps.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) to use to list tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_webhooks": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "A pagination token. Set to null to start listing webhooks from the start. If non-null,the pagination token is returned in a result. Pass its value in here to list more webhooks.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "start_deployment": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch, for the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobId": {
+            "Description": "The job ID for this deployment, generated by the create deployment request.",
+            "Type": "string",
+            "Required": false
+        },
+        "sourceUrl": {
+            "Description": "The source URL for this deployment, used when calling start deployment without create deployment. The source URL can be any HTTP GET URL that is publicly accessible and downloads a single .zip file.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_job": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The branch name for the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobId": {
+            "Description": "The unique ID for an existing job. This is required if the value of jobType is RETRY .",
+            "Type": "string",
+            "Required": false
+        },
+        "jobType": {
+            "Description": "Describes the type for the job. The job type RELEASE starts a new job with the latest change from the specified branch. This value is available only for apps that are connected to a repository. The job type RETRY retries an existing job. If the job type value is RETRY, the jobId is also required.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobReason": {
+            "Description": "A descriptive reason for starting this job.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitId": {
+            "Description": "The commit ID from a third-party repository provider for the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitMessage": {
+            "Description": "The commit message from a third-party repository provider for the job.",
+            "Type": "string",
+            "Required": false
+        },
+        "commitTime": {
+            "Description": "The commit date and time for the job.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "stop_job": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch, for the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobId": {
+            "Description": "The unique id for the job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) to use to tag a resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags used to tag the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) to use to untag a resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag keys to use to untag a resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_app": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "platform": {
+            "Description": "The platform for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "iamServiceRoleArn": {
+            "Description": "The AWS Identity and Access Management (IAM) service role for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "environmentVariables": {
+            "Description": "The environment variables for an Amplify app.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "enableBranchAutoBuild": {
+            "Description": "Enables branch auto-building for an Amplify app.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableBranchAutoDeletion": {
+            "Description": "Automatically disconnects a branch in the Amplify Console when you delete a branch from your Git repository.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableBasicAuth": {
+            "Description": "Enables basic authorization for an Amplify app.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "basicAuthCredentials": {
+            "Description": "The basic authorization credentials for an Amplify app. You must base64-encode the authorization credentials and provide them in the format user:password .",
+            "Type": "string",
+            "Required": false
+        },
+        "customRules": {
+            "Description": "The custom redirect and rewrite rules for an Amplify app.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "buildSpec": {
+            "Description": "The build specification (build spec) for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "customHeaders": {
+            "Description": "The custom HTTP headers for an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "enableAutoBranchCreation": {
+            "Description": "Enables automated branch creation for an Amplify app.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "autoBranchCreationPatterns": {
+            "Description": "Describes the automated branch creation glob patterns for an Amplify app.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "autoBranchCreationConfig": {
+            "Description": "The automated branch creation configuration for an Amplify app.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "repository": {
+            "Description": "The name of the repository for an Amplify app",
+            "Type": "string",
+            "Required": false
+        },
+        "oauthToken": {
+            "Description": "The OAuth token for a third-party source control system for an Amplify app. The OAuth token is used to create a webhook and a read-only deploy key using SSH cloning. The OAuth token is not stored.\nUse oauthToken for repository providers other than GitHub, such as Bitbucket or CodeCommit.\nTo authorize access to GitHub as your repository provider, use accessToken .\nYou must specify either oauthToken or accessToken when you update an app.\nExisting Amplify apps deployed from a GitHub repository using OAuth continue to work with CI/CD. However, we strongly recommend that you migrate these apps to use the GitHub App. For more information, see Migrating an existing OAuth app to the Amplify GitHub App in the Amplify User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "accessToken": {
+            "Description": "The personal access token for a GitHub repository for an Amplify app. The personal access token is used to authorize access to a GitHub repository using the Amplify GitHub App. The token is not stored.\nUse accessToken for GitHub repositories only. To authorize access to a repository provider such as Bitbucket or CodeCommit, use oauthToken .\nYou must specify either accessToken or oauthToken when you update an app.\nExisting Amplify apps deployed from a GitHub repository using OAuth continue to work with CI/CD. However, we strongly recommend that you migrate these apps to use the GitHub App. For more information, see Migrating an existing OAuth app to the Amplify GitHub App in the Amplify User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_branch": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for the branch.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "framework": {
+            "Description": "The framework for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "stage": {
+            "Description": "Describes the current stage for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "enableNotification": {
+            "Description": "Enables notifications for the branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enableAutoBuild": {
+            "Description": "Enables auto building for the branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "environmentVariables": {
+            "Description": "The environment variables for the branch.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "basicAuthCredentials": {
+            "Description": "The basic authorization credentials for the branch. You must base64-encode the authorization credentials and provide them in the format user:password .",
+            "Type": "string",
+            "Required": false
+        },
+        "enableBasicAuth": {
+            "Description": "Enables basic authorization for the branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "enablePerformanceMode": {
+            "Description": "Enables performance mode for the branch.\nPerformance mode optimizes for faster hosting performance by keeping content cached at the edge for a longer interval. When performance mode is enabled, hosting configuration or code changes can take up to 10 minutes to roll out.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "buildSpec": {
+            "Description": "The build specification (build spec) for the branch.",
+            "Type": "string",
+            "Required": false
+        },
+        "ttl": {
+            "Description": "The content Time to Live (TTL) for the website in seconds.",
+            "Type": "string",
+            "Required": false
+        },
+        "displayName": {
+            "Description": "The display name for a branch. This is used as the default domain prefix.",
+            "Type": "string",
+            "Required": false
+        },
+        "enablePullRequestPreview": {
+            "Description": "Enables pull request previews for this branch.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "pullRequestEnvironmentName": {
+            "Description": "The Amplify environment name for the pull request.",
+            "Type": "string",
+            "Required": false
+        },
+        "backendEnvironmentArn": {
+            "Description": "The Amazon Resource Name (ARN) for a backend environment that is part of an Amplify app.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_domain_association": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "enableAutoSubDomain": {
+            "Description": "Enables the automated creation of subdomains for branches.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "subDomainSettings": {
+            "Description": "Describes the settings for the subdomain.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "autoSubDomainCreationPatterns": {
+            "Description": "Sets the branch patterns for automatic subdomain creation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "autoSubDomainIAMRole": {
+            "Description": "The required AWS Identity and Access Management (IAM) service role for the Amazon Resource Name (ARN) for automatically creating subdomains.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_webhook": {
+        "webhookId": {
+            "Description": "The unique ID for a webhook.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for a branch that is part of an Amplify app.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description for a webhook.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "appId": {
+            "Description": "The unique ID for an Amplify app.",
+            "Type": "string",
+            "Required": true
+        },
+        "branchName": {
+            "Description": "The name for a branch.",
+            "Type": "string",
+            "Required": true
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

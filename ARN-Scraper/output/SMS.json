@@ -1,0 +1,507 @@
+{
+    "create_app": {
+        "name": {
+            "Description": "The name of the new application.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the new application",
+            "Type": "string",
+            "Required": false
+        },
+        "roleName": {
+            "Description": "The name of the service role in the customer's account to be used by Server Migration Service.",
+            "Type": "string",
+            "Required": false
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of application creation.",
+            "Type": "string",
+            "Required": false
+        },
+        "serverGroups": {
+            "Description": "The server groups to include in the application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags to be associated with the application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_replication_job": {
+        "serverId": {
+            "Description": "The ID of the server.",
+            "Type": "string",
+            "Required": true
+        },
+        "seedReplicationTime": {
+            "Description": "The seed replication time.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "frequency": {
+            "Description": "The time between consecutive replication runs, in hours.",
+            "Type": "integer",
+            "Required": false
+        },
+        "runOnce": {
+            "Description": "Indicates whether to run the replication job one time.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "licenseType": {
+            "Description": "The license type to be used for the AMI created by a successful replication run.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleName": {
+            "Description": "The name of the IAM role to be used by the Server Migration Service.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the replication job.",
+            "Type": "string",
+            "Required": false
+        },
+        "numberOfRecentAmisToKeep": {
+            "Description": "The maximum number of SMS-created AMIs to retain. The oldest is deleted after the maximum number is reached and a new AMI is created.",
+            "Type": "integer",
+            "Required": false
+        },
+        "encrypted": {
+            "Description": "Indicates whether the replication job produces encrypted AMIs.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "kmsKeyId": {
+            "Description": "The ID of the KMS key for replication jobs that produce encrypted AMIs. This value can be any of the following:\nIf encrypted is true but a KMS key ID is not specified, the customer's default KMS key for Amazon EBS is used.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "delete_app": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "forceStopAppReplication": {
+            "Description": "Indicates whether to stop all replication jobs corresponding to the servers in the application while deleting the application.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "forceTerminateApp": {
+            "Description": "Indicates whether to terminate the stack corresponding to the application while deleting the application.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_app_launch_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_app_replication_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_app_validation_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_replication_job": {
+        "replicationJobId": {
+            "Description": "The ID of the replication job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_server_catalog": "No parameters defined",
+    "disassociate_connector": {
+        "connectorId": {
+            "Description": "The ID of the connector.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "generate_change_set": {
+        "appId": {
+            "Description": "The ID of the application associated with the change set.",
+            "Type": "string",
+            "Required": false
+        },
+        "changesetFormat": {
+            "Description": "The format for the change set.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "generate_template": {
+        "appId": {
+            "Description": "The ID of the application associated with the CloudFormation template.",
+            "Type": "string",
+            "Required": false
+        },
+        "templateFormat": {
+            "Description": "The format for generating the CloudFormation template.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_app": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_app_launch_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_app_replication_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_app_validation_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_app_validation_output": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_connectors": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call. The default value is 50. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_replication_jobs": {
+        "replicationJobId": {
+            "Description": "The ID of the replication job.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call. The default value is 50. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_replication_runs": {
+        "replicationJobId": {
+            "Description": "The ID of the replication job.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call. The default value is 50. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_servers": {
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call. The default value is 50. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "vmServerAddressList": {
+            "Description": "The server addresses.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "import_app_catalog": {
+        "roleName": {
+            "Description": "The name of the service role. If you omit this parameter, we create a service-linked role for Migration Hub in your account. Otherwise, the role that you provide must have the policy and trust policy described in the Migration Hub User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "import_server_catalog": "No parameters defined",
+    "launch_app": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_apps": {
+        "appIds": {
+            "Description": "The unique application IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return in a single call. The default value is 100. To retrieve the remaining results, make another call with the returned NextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "notify_app_validation_output": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "notificationContext": {
+            "Description": "The notification information.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_app_launch_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleName": {
+            "Description": "The name of service role in the customer's account that CloudFormation uses to launch the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "autoLaunch": {
+            "Description": "Indicates whether the application is configured to launch automatically after replication is complete.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "serverGroupLaunchConfigurations": {
+            "Description": "Information about the launch configurations for server groups in the application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_app_replication_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "serverGroupReplicationConfigurations": {
+            "Description": "Information about the replication configurations for server groups in the application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "put_app_validation_configuration": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "appValidationConfigurations": {
+            "Description": "The configuration for application validation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "serverGroupValidationConfigurations": {
+            "Description": "The configuration for instance validation.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "start_app_replication": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_on_demand_app_replication": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the replication run.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_on_demand_replication_run": {
+        "replicationJobId": {
+            "Description": "The ID of the replication job.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "The description of the replication run.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "stop_app_replication": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "terminate_app": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_app": {
+        "appId": {
+            "Description": "The ID of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The new name of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The new description of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleName": {
+            "Description": "The name of the service role in the customer's account used by Server Migration Service.",
+            "Type": "string",
+            "Required": false
+        },
+        "serverGroups": {
+            "Description": "The server groups in the application to update.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "The tags to associate with the application.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_replication_job": {
+        "replicationJobId": {
+            "Description": "The ID of the replication job.",
+            "Type": "string",
+            "Required": true
+        },
+        "frequency": {
+            "Description": "The time between consecutive replication runs, in hours.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextReplicationRunStartTime": {
+            "Description": "The start time of the next replication run.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "licenseType": {
+            "Description": "The license type to be used for the AMI created by a successful replication run.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleName": {
+            "Description": "The name of the IAM role to be used by Server Migration Service.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the replication job.",
+            "Type": "string",
+            "Required": false
+        },
+        "numberOfRecentAmisToKeep": {
+            "Description": "The maximum number of SMS-created AMIs to retain. The oldest is deleted after the maximum number is reached and a new AMI is created.",
+            "Type": "integer",
+            "Required": false
+        },
+        "encrypted": {
+            "Description": "When true, the replication job produces encrypted AMIs. For more information, KmsKeyId .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "kmsKeyId": {
+            "Description": "The ID of the KMS key for replication jobs that produce encrypted AMIs. This value can be any of the following:\nIf encrypted is enabled but a KMS key ID is not specified, the customer's default KMS key for Amazon EBS is used.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "paginate": {
+        "appIds": {
+            "Description": "The unique application IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

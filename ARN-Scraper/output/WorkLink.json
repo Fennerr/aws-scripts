@@ -1,0 +1,443 @@
+{
+    "associate_domain": {
+        "FleetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The fully qualified domain name (FQDN).",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The name to display.",
+            "Type": "string",
+            "Required": false
+        },
+        "AcmCertificateArn": {
+            "Description": "The ARN of an issued ACM certificate that is valid for the domain being associated.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_website_authorization_provider": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizationProviderType": {
+            "Description": "The authorization provider type.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The domain name of the authorization provider. This applies only to SAML-based authorization providers.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_website_certificate_authority": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Certificate": {
+            "Description": "The root certificate of the CA.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The certificate name to display.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_fleet": {
+        "FleetName": {
+            "Description": "A unique name for the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The fleet name to display.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptimizeForEndUserLocation": {
+            "Description": "The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to add to the resource. A tag is a key-value pair.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_fleet": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_audit_stream_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_company_network_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_device": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceId": {
+            "Description": "A unique identifier for a registered user's device.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_device_policy_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_domain": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_fleet_metadata": {
+        "FleetArn": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_identity_provider_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_website_certificate_authority": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "WebsiteCaId": {
+            "Description": "A unique identifier for the certificate authority.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_domain": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_website_authorization_provider": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuthorizationProviderId": {
+            "Description": "A unique identifier for the authorization provider.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_website_certificate_authority": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "WebsiteCaId": {
+            "Description": "A unique identifier for the CA.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_devices": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be included in the next page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_domains": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be included in the next page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_fleets": {
+        "NextToken": {
+            "Description": "The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be included in the next page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_website_authorization_providers": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token to use to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be included in the next page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_website_certificate_authorities": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be included in the next page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token used to retrieve the next page of results for this operation. If this value is null, it retrieves the first page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "restore_domain_access": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "revoke_domain_access": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "sign_out_user": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Username": {
+            "Description": "The name of the user.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to add to the resource. A tag is a key-value pair.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_audit_stream_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "AuditStreamArn": {
+            "Description": "The ARN of the Amazon Kinesis data stream that receives the audit events.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_company_network_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "VpcId": {
+            "Description": "The VPC with connectivity to associated websites.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubnetIds": {
+            "Description": "The subnets used for X-ENI connections from Amazon WorkLink rendering containers.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "SecurityGroupIds": {
+            "Description": "The security groups associated with access to the provided subnets.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_device_policy_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeviceCaCertificate": {
+            "Description": "The certificate chain, including intermediate certificates and the root certificate authority certificate used to issue device certificates.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_domain_metadata": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The name to display.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_fleet_metadata": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The fleet name to display. The existing DisplayName is unset if null is passed.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptimizeForEndUserLocation": {
+            "Description": "The option to optimize for better performance by routing traffic through the closest AWS Region to users, which may be outside of your home Region.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_identity_provider_configuration": {
+        "FleetArn": {
+            "Description": "The ARN of the fleet.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityProviderType": {
+            "Description": "The type of identity provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityProviderSamlMetadata": {
+            "Description": "The SAML metadata document provided by the customer\u2019s identity provider. The existing IdentityProviderSamlMetadata is unset if null is passed.",
+            "Type": "string",
+            "Required": false
+        }
+    }
+}

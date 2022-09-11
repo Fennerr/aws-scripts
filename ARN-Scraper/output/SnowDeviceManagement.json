@@ -1,0 +1,202 @@
+{
+    "cancel_task": {
+        "taskId": {
+            "Description": "The ID of the task that you are attempting to cancel. You can retrieve a task ID by using the ListTasks operation.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_task": {
+        "clientToken": {
+            "Description": "A token ensuring that the action is called only once with the specified details.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "command": {
+            "Description": "The task to be performed. Only one task is executed on a device at a time.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "description": {
+            "Description": "A description of the task and its targets.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "Optional metadata that you assign to a resource. You can use tags to categorize a resource in different ways, such as by purpose, owner, or environment.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "targets": {
+            "Description": "A list of managed device IDs.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_device": {
+        "managedDeviceId": {
+            "Description": "The ID of the device that you are checking the information of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_device_ec2_instances": {
+        "instanceIds": {
+            "Description": "A list of instance IDs associated with the managed device.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "managedDeviceId": {
+            "Description": "The ID of the managed device.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_execution": {
+        "managedDeviceId": {
+            "Description": "The ID of the managed device.",
+            "Type": "string",
+            "Required": true
+        },
+        "taskId": {
+            "Description": "The ID of the task that the action is describing.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_task": {
+        "taskId": {
+            "Description": "The ID of the task to be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_device_resources": {
+        "managedDeviceId": {
+            "Description": "The ID of the managed device that you are listing the resources of.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of resources per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "type": {
+            "Description": "A structure used to filter the results by type of resource.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_devices": {
+        "jobId": {
+            "Description": "The ID of the job used to order the device.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of devices to list per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token to continue to the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_executions": {
+        "maxResults": {
+            "Description": "The maximum number of tasks to list per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token to continue to the next page of tasks.",
+            "Type": "string",
+            "Required": false
+        },
+        "state": {
+            "Description": "A structure used to filter the tasks by their current state.",
+            "Type": "string",
+            "Required": false
+        },
+        "taskId": {
+            "Description": "The ID of the task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the device or task.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tasks": {
+        "maxResults": {
+            "Description": "The maximum number of tasks per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "A pagination token to continue to the next page of tasks.",
+            "Type": "string",
+            "Required": false
+        },
+        "state": {
+            "Description": "A structure used to filter the list of tasks.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the device or task.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Optional metadata that you assign to a resource. You can use tags to categorize a resource in different ways, such as by purpose, owner, or environment.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the device or task.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "Optional metadata that you assign to a resource. You can use tags to categorize a resource in different ways, such as by purpose, owner, or environment.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "state": {
+            "Description": "A structure used to filter the list of tasks.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

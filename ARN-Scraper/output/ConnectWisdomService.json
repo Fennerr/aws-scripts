@@ -1,0 +1,598 @@
+{
+    "create_assistant": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description of the assistant.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the assistant.",
+            "Type": "string",
+            "Required": true
+        },
+        "serverSideEncryptionConfiguration": {
+            "Description": "The KMS key used for encryption.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "type": {
+            "Description": "The type of assistant.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_assistant_association": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "association": {
+            "Description": "The identifier of the associated resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "associationType": {
+            "Description": "The type of association.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_content": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "metadata": {
+            "Description": "A key/value map to store attributes without affecting tagging or recommendations. For example, when synchronizing data between an external system and Wisdom, you can store an external version identifier as metadata to utilize for determining drift.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "name": {
+            "Description": "The name of the content. Each piece of content in a knowledge base must have a unique name. You can retrieve a piece of content using only its knowledge base and its name with the SearchContent API.",
+            "Type": "string",
+            "Required": true
+        },
+        "overrideLinkOutUri": {
+            "Description": "The URI you want to use for the article. If the knowledge base has a templateUri, setting this argument overrides it for this piece of content.",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "title": {
+            "Description": "The title of the content. If not set, the title is equal to the name.",
+            "Type": "string",
+            "Required": false
+        },
+        "uploadId": {
+            "Description": "A pointer to the uploaded asset. This value is returned by StartContentUpload .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_knowledge_base": {
+        "clientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description.",
+            "Type": "string",
+            "Required": false
+        },
+        "knowledgeBaseType": {
+            "Description": "The type of knowledge base. Only CUSTOM knowledge bases allow you to upload your own content. EXTERNAL knowledge bases support integrations with third-party systems whose content is synchronized automatically.",
+            "Type": "string",
+            "Required": true
+        },
+        "name": {
+            "Description": "The name of the knowledge base.",
+            "Type": "string",
+            "Required": true
+        },
+        "renderingConfiguration": {
+            "Description": "Information about how to render the content.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "serverSideEncryptionConfiguration": {
+            "Description": "The KMS key used for encryption.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "sourceConfiguration": {
+            "Description": "The source of the knowledge base content. Only set this argument for EXTERNAL knowledge bases.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_session": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "description": {
+            "Description": "The description.",
+            "Type": "string",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the session.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_assistant": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_assistant_association": {
+        "assistantAssociationId": {
+            "Description": "The identifier of the assistant association. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_content": {
+        "contentId": {
+            "Description": "The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_knowledge_base": {
+        "knowledgeBaseId": {
+            "Description": "The knowledge base to delete content from. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_assistant": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_assistant_association": {
+        "assistantAssociationId": {
+            "Description": "The identifier of the assistant association. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_content": {
+        "contentId": {
+            "Description": "The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_content_summary": {
+        "contentId": {
+            "Description": "The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_knowledge_base": {
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_recommendations": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "sessionId": {
+            "Description": "The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "waitTimeSeconds": {
+            "Description": "The duration (in seconds) for which the call waits for a recommendation to be made available before returning. If a recommendation is available, the call returns sooner than WaitTimeSeconds . If no messages are available and the wait time expires, the call returns successfully with an empty list.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_session": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "sessionId": {
+            "Description": "The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_assistant_associations": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_assistants": {
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_contents": {
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_knowledge_bases": {
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "notify_recommendations_received": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "recommendationIds": {
+            "Description": "The identifiers of the recommendations.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "sessionId": {
+            "Description": "The identifier of the session. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_feedback": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "feedback": {
+            "Description": "The feedback.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "targetId": {
+            "Description": "The identifier of a recommendation. or The identifier of the result data.",
+            "Type": "string",
+            "Required": true
+        },
+        "targetType": {
+            "Description": "The type of the targetId for which The feedback. is targeted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "query_assistant": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "queryText": {
+            "Description": "The text to search for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_knowledge_base_template_uri": {
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "search_content": {
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "searchExpression": {
+            "Description": "The search expression to filter results.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "search_sessions": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "searchExpression": {
+            "Description": "The search expression to filter results.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "start_content_upload": {
+        "contentType": {
+            "Description": "The type of content to upload.",
+            "Type": "string",
+            "Required": true
+        },
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag keys.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_content": {
+        "contentId": {
+            "Description": "The identifier of the content. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN",
+            "Type": "string",
+            "Required": true
+        },
+        "metadata": {
+            "Description": "A key/value map to store attributes without affecting tagging or recommendations. For example, when synchronizing data between an external system and Wisdom, you can store an external version identifier as metadata to utilize for determining drift.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "overrideLinkOutUri": {
+            "Description": "The URI for the article. If the knowledge base has a templateUri, setting this argument overrides it for this piece of content. To remove an existing overrideLinkOurUri , exclude this argument and set removeOverrideLinkOutUri to true.",
+            "Type": "string",
+            "Required": false
+        },
+        "removeOverrideLinkOutUri": {
+            "Description": "Unset the existing overrideLinkOutUri if it exists.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "revisionId": {
+            "Description": "The revisionId of the content resource to update, taken from an earlier call to GetContent , GetContentSummary , SearchContent , or ListContents . If included, this argument acts as an optimistic lock to ensure content was not modified since it was last read. If it has been modified, this API throws a PreconditionFailedException .",
+            "Type": "string",
+            "Required": false
+        },
+        "title": {
+            "Description": "The title of the content.",
+            "Type": "string",
+            "Required": false
+        },
+        "uploadId": {
+            "Description": "A pointer to the uploaded asset. This value is returned by StartContentUpload .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_knowledge_base_template_uri": {
+        "knowledgeBaseId": {
+            "Description": "The identifier of the knowledge base. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "templateUri": {
+            "Description": "The template URI to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "assistantId": {
+            "Description": "The identifier of the Wisdom assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.",
+            "Type": "string",
+            "Required": true
+        },
+        "searchExpression": {
+            "Description": "The search expression to filter results.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

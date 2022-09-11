@@ -1,0 +1,118 @@
+{
+    "create_project": {
+        "name": {
+            "Description": "Name of the project.",
+            "Type": "string",
+            "Required": false
+        },
+        "region": {
+            "Description": "Default region where project resources should be created.",
+            "Type": "string",
+            "Required": false
+        },
+        "contents": {
+            "Description": "ZIP or YAML file which contains configuration settings to be used when creating the project. This may be the contents of the file downloaded from the URL provided in an export project operation.",
+            "Type": "bytes or seekable file-like object",
+            "Required": false
+        },
+        "snapshotId": {
+            "Description": "Unique identifier for an exported snapshot of project configuration. This snapshot identifier is included in the share URL when a project is exported.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_project": {
+        "projectId": {
+            "Description": "Unique project identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_bundle": {
+        "bundleId": {
+            "Description": "Unique bundle identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_project": {
+        "projectId": {
+            "Description": "Unique project identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "syncFromResources": {
+            "Description": "If set to true, causes AWS Mobile Hub to synchronize information from other services, e.g., update state of AWS CloudFormation stacks in the AWS Mobile Hub project.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "export_bundle": {
+        "bundleId": {
+            "Description": "Unique bundle identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "projectId": {
+            "Description": "Unique project identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "platform": {
+            "Description": "Developer desktop or target application platform.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "export_project": {
+        "projectId": {
+            "Description": "Unique project identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_bundles": {
+        "maxResults": {
+            "Description": "Maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Pagination token. Set to null to start listing bundles from start. If non-null pagination token is returned in a result, then pass its value in here in another request to list more bundles.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_projects": {
+        "maxResults": {
+            "Description": "Maximum number of records to list in a single response.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "Pagination token. Set to null to start listing projects from start. If non-null pagination token is returned in a result, then pass its value in here in another request to list more projects.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_project": {
+        "contents": {
+            "Description": "ZIP or YAML file which contains project configuration to be updated. This should be the contents of the file downloaded from the URL provided in an export project operation.",
+            "Type": "bytes or seekable file-like object",
+            "Required": false
+        },
+        "projectId": {
+            "Description": "Unique project identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

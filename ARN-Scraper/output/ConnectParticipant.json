@@ -1,0 +1,172 @@
+{
+    "complete_attachment_upload": {
+        "AttachmentIds": {
+            "Description": "A list of unique identifiers for the attachments.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectionToken": {
+            "Description": "The authentication token associated with the participant's connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_participant_connection": {
+        "Type": {
+            "Description": "Type of connection information required.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ParticipantToken": {
+            "Description": "This is a header parameter.\nThe ParticipantToken as obtained from StartChatContact API response.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectParticipant": {
+            "Description": "Amazon Connect Participant is used to mark the participant as connected for message streaming.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "disconnect_participant": {
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConnectionToken": {
+            "Description": "The authentication token associated with the participant's connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_attachment": {
+        "AttachmentId": {
+            "Description": "A unique identifier for the attachment.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectionToken": {
+            "Description": "The authentication token associated with the participant's connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_transcript": {
+        "ContactId": {
+            "Description": "The contactId from the current contact chain for which transcript is needed.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in the page. Default: 10.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The pagination token. Use the value returned previously in the next subsequent request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "ScanDirection": {
+            "Description": "The direction from StartPosition from which to retrieve message. Default: BACKWARD when no StartPosition is provided, FORWARD with StartPosition.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortOrder": {
+            "Description": "The sort order for the records. Default: DESCENDING.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartPosition": {
+            "Description": "A filtering option for where to start.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ConnectionToken": {
+            "Description": "The authentication token associated with the participant's connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "send_event": {
+        "ContentType": {
+            "Description": "The content type of the request. Supported types are:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Content": {
+            "Description": "The content of the event to be sent (for example, message text). This is not yet supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConnectionToken": {
+            "Description": "The authentication token associated with the participant's connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "send_message": {
+        "ContentType": {
+            "Description": "The type of the content. Supported types are text/plain.",
+            "Type": "string",
+            "Required": true
+        },
+        "Content": {
+            "Description": "The content of the message.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "ConnectionToken": {
+            "Description": "The authentication token associated with the connection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_attachment_upload": {
+        "ContentType": {
+            "Description": "Describes the MIME file type of the attachment. For a list of supported file types, see Feature specifications in the Amazon Connect Administrator Guide .",
+            "Type": "string",
+            "Required": true
+        },
+        "AttachmentSizeInBytes": {
+            "Description": "The size of the attachment in bytes.",
+            "Type": "integer",
+            "Required": true
+        },
+        "AttachmentName": {
+            "Description": "A case-sensitive name of the attachment being uploaded.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "A unique case sensitive identifier to support idempotency of request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConnectionToken": {
+            "Description": "The authentication token associated with the participant's connection.",
+            "Type": "string",
+            "Required": true
+        }
+    }
+}

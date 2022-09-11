@@ -1,0 +1,2155 @@
+{
+    "accept_portfolio_share": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PortfolioShareType": {
+            "Description": "The type of shared portfolios to accept. The default is to accept imported portfolios.\nFor example, aws servicecatalog accept-portfolio-share --portfolio-id \"port-2qwzkwxt3y5fk\" --portfolio-share-type AWS_ORGANIZATIONS",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "associate_budget_with_resource": {
+        "BudgetName": {
+            "Description": "The name of the budget you want to associate.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceId": {
+            "Description": "The resource identifier. Either a portfolio-id or a product-id.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_principal_with_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PrincipalARN": {
+            "Description": "The ARN of the principal (IAM user, role, or group).",
+            "Type": "string",
+            "Required": true
+        },
+        "PrincipalType": {
+            "Description": "The principal type. The supported value is IAM .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_product_with_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourcePortfolioId": {
+            "Description": "The identifier of the source portfolio.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "associate_service_action_with_provisioning_artifact": {
+        "ProductId": {
+            "Description": "The product identifier. For example, prod-abcdzk7xy33qa .",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact. For example, pa-4abcdjnxjj6ne .",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceActionId": {
+            "Description": "The self-service action identifier. For example, act-fs7abcd89wxyz .",
+            "Type": "string",
+            "Required": true
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "associate_tag_option_with_resource": {
+        "ResourceId": {
+            "Description": "The resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagOptionId": {
+            "Description": "The TagOption identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "batch_associate_service_action_with_provisioning_artifact": {
+        "ServiceActionAssociations": {
+            "Description": "One or more associations, each consisting of the Action ID, the Product ID, and the Provisioning Artifact ID.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "batch_disassociate_service_action_from_provisioning_artifact": {
+        "ServiceActionAssociations": {
+            "Description": "One or more associations, each consisting of the Action ID, the Product ID, and the Provisioning Artifact ID.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "copy_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SourceProductArn": {
+            "Description": "The Amazon Resource Name (ARN) of the source product.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetProductId": {
+            "Description": "The identifier of the target product. By default, a new product is created.",
+            "Type": "string",
+            "Required": false
+        },
+        "TargetProductName": {
+            "Description": "A name for the target product. The default is the name of the source product.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceProvisioningArtifactIdentifiers": {
+            "Description": "The identifiers of the provisioning artifacts (also known as versions) of the product to copy. By default, all provisioning artifacts are copied.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "CopyOptions": {
+            "Description": "The copy options. If the value is CopyTags, the tags from the source product are copied to the target product.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_constraint": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "The constraint parameters, in JSON format. The syntax depends on the constraint type as follows:\nYou are required to specify either the RoleArn or the LocalRoleName but can't use both.\nSpecify the RoleArn property as follows:\nSpecify the LocalRoleName property as follows:\nIf you specify the LocalRoleName property, when an account uses the launch constraint, the IAM role with that name in the account will be used. This allows launch-role constraints to be account-agnostic so the administrator can create fewer resources per shared account.\nYou cannot have both a LAUNCH and a STACKSET constraint.\nYou also cannot have more than one LAUNCH constraint on a product and portfolio.\nSpecify the NotificationArns property as follows:\nSpecify the TagUpdatesOnProvisionedProduct property as follows:\nThe TagUpdatesOnProvisionedProduct property accepts a string value of ALLOWED or NOT_ALLOWED .\nSpecify the Parameters property as follows:\nYou cannot have both a LAUNCH and a STACKSET constraint.\nYou also cannot have more than one STACKSET constraint on a product and portfolio.\nProducts with a STACKSET constraint will launch an CloudFormation stack set.\nSpecify the Rules property. For more information, see Template Constraint Rules .",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of constraint.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Description": {
+            "Description": "The description of the constraint.",
+            "Type": "string",
+            "Required": false
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DisplayName": {
+            "Description": "The name to use for display purposes.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the portfolio.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProviderName": {
+            "Description": "The name of the portfolio provider.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "One or more tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_portfolio_share": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID. For example, 123456789012 .",
+            "Type": "string",
+            "Required": false
+        },
+        "OrganizationNode": {
+            "Description": "The organization node to whom you are going to share. When you pass OrganizationNode, it creates PortfolioShare for all of the Amazon Web Services accounts that are associated to the OrganizationNode. The output returns a PortfolioShareToken, which enables the administrator to monitor the status of the PortfolioShare creation process.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ShareTagOptions": {
+            "Description": "Enables or disables TagOptions sharing when creating the portfolio share. If this flag is not provided, TagOptions sharing is disabled.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Name": {
+            "Description": "The name of the product.",
+            "Type": "string",
+            "Required": true
+        },
+        "Owner": {
+            "Description": "The owner of the product.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description of the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "Distributor": {
+            "Description": "The distributor of the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "SupportDescription": {
+            "Description": "The support information about the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "SupportEmail": {
+            "Description": "The contact email for product support.",
+            "Type": "string",
+            "Required": false
+        },
+        "SupportUrl": {
+            "Description": "The contact URL for product support.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductType": {
+            "Description": "The type of product.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "One or more tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ProvisioningArtifactParameters": {
+            "Description": "The configuration of the provisioning artifact.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_provisioned_product_plan": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PlanName": {
+            "Description": "The name of the plan.",
+            "Type": "string",
+            "Required": true
+        },
+        "PlanType": {
+            "Description": "The plan type.",
+            "Type": "string",
+            "Required": true
+        },
+        "NotificationArns": {
+            "Description": "Passed to CloudFormation. The SNS topic ARNs to which to publish stack-related events.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PathId": {
+            "Description": "The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use  ListLaunchPaths .",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisionedProductName": {
+            "Description": "A user-friendly name for the provisioned product. This value must be unique for the Amazon Web Services account and cannot be updated after the product is provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningParameters": {
+            "Description": "Parameters specified by the administrator that are required for provisioning the product.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "One or more tags.\nIf the plan is for an existing provisioned product, the product must have a RESOURCE_UPDATE constraint with TagUpdatesOnProvisionedProduct set to ALLOWED to allow tag updates.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_provisioning_artifact": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "The configuration for the provisioning artifact.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_service_action": {
+        "Name": {
+            "Description": "The self-service action name.",
+            "Type": "string",
+            "Required": true
+        },
+        "DefinitionType": {
+            "Description": "The service action definition type. For example, SSM_AUTOMATION .",
+            "Type": "string",
+            "Required": true
+        },
+        "Definition": {
+            "Description": "The self-service action definition. Can be one of the following:\nThe name of the Amazon Web Services Systems Manager document (SSM document). For example, AWS-RestartEC2Instance .\nIf you are using a shared SSM document, you must provide the ARN instead of the name.\nThe Amazon Web Services Systems Manager automation document version. For example, \"Version\": \"1\"\nThe Amazon Resource Name (ARN) of the role that performs the self-service actions on your behalf. For example, \"AssumeRole\": \"arn:aws:iam::12345678910:role/ActionRole\" .\nTo reuse the provisioned product launch role, set to \"AssumeRole\": \"LAUNCH_ROLE\" .\nThe list of parameters in JSON format.\nFor example: [{\\\"Name\\\":\\\"InstanceId\\\",\\\"Type\\\":\\\"TARGET\\\"}] or [{\\\"Name\\\":\\\"InstanceId\\\",\\\"Type\\\":\\\"TEXT_VALUE\\\"}] .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "The self-service action description.",
+            "Type": "string",
+            "Required": false
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_tag_option": {
+        "Key": {
+            "Description": "The TagOption key.",
+            "Type": "string",
+            "Required": true
+        },
+        "Value": {
+            "Description": "The TagOption value.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_constraint": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The identifier of the constraint.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_portfolio_share": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "OrganizationNode": {
+            "Description": "The organization node to whom you are going to stop sharing.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_provisioned_product_plan": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PlanId": {
+            "Description": "The plan identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "IgnoreErrors": {
+            "Description": "If set to true, Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_provisioning_artifact": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_service_action": {
+        "Id": {
+            "Description": "The self-service action identifier. For example, act-fs7abcd89wxyz .",
+            "Type": "string",
+            "Required": true
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "delete_tag_option": {
+        "Id": {
+            "Description": "The TagOption identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_constraint": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The identifier of the constraint.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_copy_product_status": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CopyProductToken": {
+            "Description": "The token for the copy product operation. This token is returned by  CopyProduct .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_portfolio_share_status": {
+        "PortfolioShareToken": {
+            "Description": "The token for the portfolio share operation. This token is returned either by CreatePortfolioShare or by DeletePortfolioShare.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_portfolio_shares": {
+        "PortfolioId": {
+            "Description": "The unique identifier of the portfolio for which shares will be retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of portfolio share to summarize. This field acts as a filter on the type of portfolio share, which can be one of the following:",
+            "Type": "string",
+            "Required": true
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The product name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_product_as_admin": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The product name.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourcePortfolioId": {
+            "Description": "The unique identifier of the shared portfolio that the specified product is associated with.\nYou can provide this parameter to retrieve the shared TagOptions associated with the product. If this parameter is provided and if TagOptions sharing is enabled in the portfolio share, the API returns both local and shared TagOptions associated with the product. Otherwise only local TagOptions will be returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_product_view": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The product view identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_provisioned_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The provisioned product identifier. You must provide the name or ID, but not both.\nIf you do not provide a name or ID, or you provide both name and ID, an InvalidParametersException will occur.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the provisioned product. You must provide the name or ID, but not both.\nIf you do not provide a name or ID, or you provide both name and ID, an InvalidParametersException will occur.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_provisioned_product_plan": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PlanId": {
+            "Description": "The plan identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_provisioning_artifact": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningArtifactName": {
+            "Description": "The provisioning artifact name.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductName": {
+            "Description": "The product name.",
+            "Type": "string",
+            "Required": false
+        },
+        "Verbose": {
+            "Description": "Indicates whether a verbose level of detail is enabled.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_provisioning_parameters": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier. You must provide the product name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductName": {
+            "Description": "The name of the product. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningArtifactName": {
+            "Description": "The name of the provisioning artifact. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "PathId": {
+            "Description": "The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use  ListLaunchPaths . You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "PathName": {
+            "Description": "The name of the path. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_record": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The record identifier of the provisioned product. This identifier is returned by the request operation.",
+            "Type": "string",
+            "Required": true
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_service_action": {
+        "Id": {
+            "Description": "The self-service action identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "describe_service_action_execution_parameters": {
+        "ProvisionedProductId": {
+            "Description": "The identifier of the provisioned product.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceActionId": {
+            "Description": "The self-service action identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "describe_tag_option": {
+        "Id": {
+            "Description": "The TagOption identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_aws_organizations_access": "No parameters defined",
+    "disassociate_budget_from_resource": {
+        "BudgetName": {
+            "Description": "The name of the budget you want to disassociate.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceId": {
+            "Description": "The resource identifier you want to disassociate from. Either a portfolio-id or a product-id.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_principal_from_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PrincipalARN": {
+            "Description": "The ARN of the principal (IAM user, role, or group).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_product_from_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_service_action_from_provisioning_artifact": {
+        "ProductId": {
+            "Description": "The product identifier. For example, prod-abcdzk7xy33qa .",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact. For example, pa-4abcdjnxjj6ne .",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceActionId": {
+            "Description": "The self-service action identifier. For example, act-fs7abcd89wxyz .",
+            "Type": "string",
+            "Required": true
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "disassociate_tag_option_from_resource": {
+        "ResourceId": {
+            "Description": "The resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagOptionId": {
+            "Description": "The TagOption identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_aws_organizations_access": "No parameters defined",
+    "execute_provisioned_product_plan": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PlanId": {
+            "Description": "The plan identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "execute_provisioned_product_service_action": {
+        "ProvisionedProductId": {
+            "Description": "The identifier of the provisioned product.",
+            "Type": "string",
+            "Required": true
+        },
+        "ServiceActionId": {
+            "Description": "The self-service action identifier. For example, act-fs7abcd89wxyz .",
+            "Type": "string",
+            "Required": true
+        },
+        "ExecuteToken": {
+            "Description": "An idempotency token that uniquely identifies the execute request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Parameters": {
+            "Description": "A map of all self-service action parameters and their values. If a provided parameter is of a special type, such as TARGET, the provided value will override the default value generated by Service Catalog. If the parameters field is not provided, no additional parameters are passed and default values will be used for any special parameters such as TARGET .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_aws_organizations_access_status": "No parameters defined",
+    "get_provisioned_product_outputs": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisionedProductId": {
+            "Description": "The identifier of the provisioned product that you want the outputs from.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisionedProductName": {
+            "Description": "The name of the provisioned product that you want the outputs from.",
+            "Type": "string",
+            "Required": false
+        },
+        "OutputKeys": {
+            "Description": "The list of keys that the API should return with their values. If none are provided, the API will return all outputs of the provisioned product.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "import_as_provisioned_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisionedProductName": {
+            "Description": "The user-friendly name of the provisioned product. The value must be unique for the Amazon Web Services account. The name cannot be updated after the product is provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "PhysicalId": {
+            "Description": "The unique identifier of the resource to be imported. It only currently supports CloudFormation stack IDs.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdempotencyToken": {
+            "Description": "A unique identifier that you provide to ensure idempotency. If multiple requests differ only by the idempotency token, the same response is returned for each repeated request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_accepted_portfolio_shares": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PortfolioShareType": {
+            "Description": "The type of shared portfolios to list. The default is to list imported portfolios.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_budgets_for_resource": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ResourceId": {
+            "Description": "The resource identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_constraints_for_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_launch_paths": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_organization_portfolio_access": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier. For example, port-2abcdext3y5fk .",
+            "Type": "string",
+            "Required": true
+        },
+        "OrganizationNodeType": {
+            "Description": "The organization node type that will be returned in the output.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_portfolio_access": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "OrganizationParentId": {
+            "Description": "The ID of an organization node the portfolio is shared with. All children of this node with an inherited portfolio share will be returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_portfolios": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_portfolios_for_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_principals_for_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_provisioned_product_plans": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisionProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccessLevelFilter": {
+            "Description": "The access level to use to obtain results. The default is User .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_provisioning_artifacts": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_provisioning_artifacts_for_service_action": {
+        "ServiceActionId": {
+            "Description": "The self-service action identifier. For example, act-fs7abcd89wxyz .",
+            "Type": "string",
+            "Required": true
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_record_history": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AccessLevelFilter": {
+            "Description": "The access level to use to obtain results. The default is User .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SearchFilter": {
+            "Description": "The search filter to scope the results.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_resources_for_tag_option": {
+        "TagOptionId": {
+            "Description": "The TagOption identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "The resource type.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_service_actions": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_service_actions_for_provisioning_artifact": {
+        "ProductId": {
+            "Description": "The product identifier. For example, prod-abcdzk7xy33qa .",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact. For example, pa-4abcdjnxjj6ne .",
+            "Type": "string",
+            "Required": true
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_stack_instances_for_provisioned_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisionedProductId": {
+            "Description": "The identifier of the provisioned product.",
+            "Type": "string",
+            "Required": true
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tag_options": {
+        "Filters": {
+            "Description": "The search filters. If no search filters are specified, the output includes all TagOptions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "provision_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductName": {
+            "Description": "The name of the product. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningArtifactName": {
+            "Description": "The name of the provisioning artifact. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "PathId": {
+            "Description": "The path identifier of the product. This value is optional if the product has a default path, and required if the product has more than one path. To list the paths for a product, use  ListLaunchPaths . You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "PathName": {
+            "Description": "The name of the path. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisionedProductName": {
+            "Description": "A user-friendly name for the provisioned product. This value must be unique for the Amazon Web Services account and cannot be updated after the product is provisioned.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningParameters": {
+            "Description": "Parameters specified by the administrator that are required for provisioning the product.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ProvisioningPreferences": {
+            "Description": "An object that contains information about the provisioning preferences for a stack set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "One or more tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NotificationArns": {
+            "Description": "Passed to CloudFormation. The SNS topic ARNs to which to publish stack-related events.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ProvisionToken": {
+            "Description": "An idempotency token that uniquely identifies the provisioning request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reject_portfolio_share": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "PortfolioShareType": {
+            "Description": "The type of shared portfolios to reject. The default is to reject imported portfolios.\nFor example, aws servicecatalog reject-portfolio-share --portfolio-id \"port-2qwzkwxt3y5fk\" --portfolio-share-type AWS_ORGANIZATIONS",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "scan_provisioned_products": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AccessLevelFilter": {
+            "Description": "The access level to use to obtain results. The default is User .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "search_products": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "The search filters. If no search filters are specified, the output includes all products to which the caller has access.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "SortBy": {
+            "Description": "The sort field. If no value is specified, the results are not sorted.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortOrder": {
+            "Description": "The sort order. If no value is specified, the results are not sorted.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "search_products_as_admin": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The search filters. If no search filters are specified, the output includes all products to which the administrator has access.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SortBy": {
+            "Description": "The sort field. If no value is specified, the results are not sorted.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortOrder": {
+            "Description": "The sort order. If no value is specified, the results are not sorted.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ProductSource": {
+            "Description": "Access level of the source of the product.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "search_provisioned_products": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AccessLevelFilter": {
+            "Description": "The access level to use to obtain results. The default is User .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Filters": {
+            "Description": "The search filters.\nWhen the key is SearchQuery, the searchable fields are arn, createdTime, id, lastRecordId, idempotencyToken, name, physicalId, productId, provisioningArtifact, type, status, tags, userArn, userArnSession, lastProvisioningRecordId, lastSuccessfulProvisioningRecordId, productName, and provisioningArtifactName .\nExample: \"SearchQuery\":[\"status:AVAILABLE\"]",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SortBy": {
+            "Description": "The sort field. If no value is specified, the results are not sorted. The valid values are arn , id , name , and lastRecordId .",
+            "Type": "string",
+            "Required": false
+        },
+        "SortOrder": {
+            "Description": "The sort order. If no value is specified, the results are not sorted.",
+            "Type": "string",
+            "Required": false
+        },
+        "PageSize": {
+            "Description": "The maximum number of items to return with this call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PageToken": {
+            "Description": "The page token for the next set of results. To retrieve the first set of results, use null.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "terminate_provisioned_product": {
+        "ProvisionedProductName": {
+            "Description": "The name of the provisioned product. You cannot specify both ProvisionedProductName and ProvisionedProductId .",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisionedProductId": {
+            "Description": "The identifier of the provisioned product. You cannot specify both ProvisionedProductName and ProvisionedProductId .",
+            "Type": "string",
+            "Required": false
+        },
+        "TerminateToken": {
+            "Description": "An idempotency token that uniquely identifies the termination request. This token is only valid during the termination process. After the provisioned product is terminated, subsequent requests to terminate the same provisioned product always return ResourceNotFound .\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "IgnoreErrors": {
+            "Description": "If set to true, Service Catalog stops managing the specified provisioned product even if it cannot delete the underlying resources.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "RetainPhysicalResources": {
+            "Description": "When this boolean parameter is set to true, the TerminateProvisionedProduct API deletes the Service Catalog provisioned product. However, it does not remove the CloudFormation stack, stack set, or the underlying resources of the deleted provisioned product. The default value is false.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_constraint": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The identifier of the constraint.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The updated description of the constraint.",
+            "Type": "string",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "The constraint parameters, in JSON format. The syntax depends on the constraint type as follows:\nYou are required to specify either the RoleArn or the LocalRoleName but can't use both.\nSpecify the RoleArn property as follows:\nSpecify the LocalRoleName property as follows:\nIf you specify the LocalRoleName property, when an account uses the launch constraint, the IAM role with that name in the account will be used. This allows launch-role constraints to be account-agnostic so the administrator can create fewer resources per shared account.\nYou cannot have both a LAUNCH and a STACKSET constraint.\nYou also cannot have more than one LAUNCH constraint on a product and portfolio.\nSpecify the NotificationArns property as follows:\nSpecify the TagUpdatesOnProvisionedProduct property as follows:\nThe TagUpdatesOnProvisionedProduct property accepts a string value of ALLOWED or NOT_ALLOWED .\nSpecify the Parameters property as follows:\nYou cannot have both a LAUNCH and a STACKSET constraint.\nYou also cannot have more than one STACKSET constraint on a product and portfolio.\nProducts with a STACKSET constraint will launch an CloudFormation stack set.\nSpecify the Rules property. For more information, see Template Constraint Rules .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_portfolio": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "DisplayName": {
+            "Description": "The name to use for display purposes.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of the portfolio.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProviderName": {
+            "Description": "The updated name of the portfolio provider.",
+            "Type": "string",
+            "Required": false
+        },
+        "AddTags": {
+            "Description": "The tags to add.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RemoveTags": {
+            "Description": "The tags to remove.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_portfolio_share": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The unique identifier of the portfolio for which the share will be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountId": {
+            "Description": "The Amazon Web Services account Id of the recipient account. This field is required when updating an external account to account type share.",
+            "Type": "string",
+            "Required": false
+        },
+        "OrganizationNode": {
+            "Description": "Information about the organization node.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ShareTagOptions": {
+            "Description": "A flag to enable or disable TagOptions sharing for the portfolio share. If this field is not provided, the current state of TagOptions sharing on the portfolio share will not be modified.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Id": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The updated product name.",
+            "Type": "string",
+            "Required": false
+        },
+        "Owner": {
+            "Description": "The updated owner of the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "Distributor": {
+            "Description": "The updated distributor of the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "SupportDescription": {
+            "Description": "The updated support description for the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "SupportEmail": {
+            "Description": "The updated support email for the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "SupportUrl": {
+            "Description": "The updated support URL for the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "AddTags": {
+            "Description": "The tags to add to the product.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RemoveTags": {
+            "Description": "The tags to remove from the product.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_provisioned_product": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisionedProductName": {
+            "Description": "The name of the provisioned product. You cannot specify both ProvisionedProductName and ProvisionedProductId .",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisionedProductId": {
+            "Description": "The identifier of the provisioned product. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductId": {
+            "Description": "The identifier of the product. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductName": {
+            "Description": "The name of the product. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningArtifactName": {
+            "Description": "The name of the provisioning artifact. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "PathId": {
+            "Description": "The path identifier. This value is optional if the product has a default path, and required if the product has more than one path. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "PathName": {
+            "Description": "The name of the path. You must provide the name or ID, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProvisioningParameters": {
+            "Description": "The new parameters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ProvisioningPreferences": {
+            "Description": "An object that contains information about the provisioning preferences for a stack set.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "One or more tags. Requires the product to have RESOURCE_UPDATE constraint with TagUpdatesOnProvisionedProduct set to ALLOWED to allow tag updates.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UpdateToken": {
+            "Description": "The idempotency token that uniquely identifies the provisioning update request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_provisioned_product_properties": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProvisionedProductId": {
+            "Description": "The identifier of the provisioned product.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisionedProductProperties": {
+            "Description": "A map that contains the provisioned product properties to be updated.\nThe LAUNCH_ROLE key accepts role ARNs. This key allows an administrator to call UpdateProvisionedProductProperties to update the launch role that is associated with a provisioned product. This role is used when an end user calls a provisioning operation such as UpdateProvisionedProduct, TerminateProvisionedProduct, or ExecuteProvisionedProductServiceAction. Only a role ARN is valid. A user ARN is invalid.\nThe OWNER key accepts IAM user ARNs, IAM role ARNs, and STS assumed-role ARNs. The owner is the user that has permission to see, update, terminate, and execute service actions in the provisioned product.\nThe administrator can change the owner of a provisioned product to another IAM or STS entity within the same account. Both end user owners and administrators can see ownership history of the provisioned product using the ListRecordHistory API. The new owner can describe all past records for the provisioned product using the DescribeRecord API. The previous owner can no longer use DescribeRecord, but can still see the product's history from when he was an owner using ListRecordHistory .\nIf a provisioned product ownership is assigned to an end user, they can see and perform any action through the API or Service Catalog console such as update, terminate, and execute service actions. If an end user provisions a product and the owner is updated to someone else, they will no longer be able to see or perform any actions through API or the Service Catalog console on that provisioned product.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "IdempotencyToken": {
+            "Description": "The idempotency token that uniquely identifies the provisioning product update request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_provisioning_artifact": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ProductId": {
+            "Description": "The product identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProvisioningArtifactId": {
+            "Description": "The identifier of the provisioning artifact.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The updated name of the provisioning artifact.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "The updated description of the provisioning artifact.",
+            "Type": "string",
+            "Required": false
+        },
+        "Active": {
+            "Description": "Indicates whether the product version is active.\nInactive provisioning artifacts are invisible to end users. End users cannot launch or update a provisioned product from an inactive provisioning artifact.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Guidance": {
+            "Description": "Information set by the administrator to provide guidance to end users about which provisioning artifacts to use.\nThe DEFAULT value indicates that the product version is active.\nThe administrator can set the guidance to DEPRECATED to inform users that the product version is deprecated. Users are able to make updates to a provisioned product of a deprecated version but cannot launch new provisioned products using a deprecated version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_service_action": {
+        "Id": {
+            "Description": "The self-service action identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The self-service action name.",
+            "Type": "string",
+            "Required": false
+        },
+        "Definition": {
+            "Description": "A map that defines the self-service action.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Description": {
+            "Description": "The self-service action description.",
+            "Type": "string",
+            "Required": false
+        },
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "update_tag_option": {
+        "Id": {
+            "Description": "The TagOption identifier.",
+            "Type": "string",
+            "Required": true
+        },
+        "Value": {
+            "Description": "The updated value.",
+            "Type": "string",
+            "Required": false
+        },
+        "Active": {
+            "Description": "The updated active state.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "AcceptLanguage": {
+            "Description": "The language code.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PortfolioId": {
+            "Description": "The portfolio identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "The search filters. If no search filters are specified, the output includes all products to which the administrator has access.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SortBy": {
+            "Description": "The sort field. If no value is specified, the results are not sorted.",
+            "Type": "string",
+            "Required": false
+        },
+        "SortOrder": {
+            "Description": "The sort order. If no value is specified, the results are not sorted.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductSource": {
+            "Description": "Access level of the source of the product.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

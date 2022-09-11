@@ -1,0 +1,1366 @@
+{
+    "attach_instances": {
+        "InstanceIds": {
+            "Description": "The IDs of the instances. You can specify up to 20 instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "attach_load_balancer_target_groups": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetGroupARNs": {
+            "Description": "The Amazon Resource Names (ARN) of the target groups. You can specify up to 10 target groups. To get the ARN of a target group, use the Elastic Load Balancing DescribeTargetGroups API operation.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "attach_load_balancers": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LoadBalancerNames": {
+            "Description": "The names of the load balancers. You can specify up to 10 load balancers.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_delete_scheduled_action": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScheduledActionNames": {
+            "Description": "The names of the scheduled actions to delete. The maximum number allowed is 50.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "batch_put_scheduled_update_group_action": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScheduledUpdateGroupActions": {
+            "Description": "One or more scheduled actions. The maximum number allowed is 50.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "cancel_instance_refresh": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "complete_lifecycle_action": {
+        "LifecycleHookName": {
+            "Description": "The name of the lifecycle hook.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LifecycleActionToken": {
+            "Description": "A universally unique identifier (UUID) that identifies a specific lifecycle action associated with an instance. Amazon EC2 Auto Scaling sends this token to the notification target you specified when you created the lifecycle hook.",
+            "Type": "string",
+            "Required": false
+        },
+        "LifecycleActionResult": {
+            "Description": "The action for the group to take. You can specify either CONTINUE or ABANDON .",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceId": {
+            "Description": "The ID of the instance.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_auto_scaling_group": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group. This name must be unique per Region per account.",
+            "Type": "string",
+            "Required": true
+        },
+        "LaunchConfigurationName": {
+            "Description": "The name of the launch configuration to use to launch instances.\nConditional: You must specify either a launch template (LaunchTemplate or MixedInstancesPolicy ) or a launch configuration (LaunchConfigurationName or InstanceId ).",
+            "Type": "string",
+            "Required": false
+        },
+        "LaunchTemplate": {
+            "Description": "Information used to specify the launch template and version to use to launch instances.\nConditional: You must specify either a launch template (LaunchTemplate or MixedInstancesPolicy ) or a launch configuration (LaunchConfigurationName or InstanceId ).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MixedInstancesPolicy": {
+            "Description": "An embedded object that specifies a mixed instances policy.\nFor more information, see Auto Scaling groups with multiple instance types and purchase options in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "InstanceId": {
+            "Description": "The ID of the instance used to base the launch configuration on. If specified, Amazon EC2 Auto Scaling uses the configuration values from the specified instance to create a new launch configuration. To get the instance ID, use the Amazon EC2 DescribeInstances API operation. For more information, see Creating an Auto Scaling group using an EC2 instance in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "MinSize": {
+            "Description": "The minimum size of the group.",
+            "Type": "integer",
+            "Required": true
+        },
+        "MaxSize": {
+            "Description": "The maximum size of the group.",
+            "Type": "integer",
+            "Required": true
+        },
+        "DesiredCapacity": {
+            "Description": "The desired capacity is the initial capacity of the Auto Scaling group at the time of its creation and the capacity it attempts to maintain. It can scale beyond this capacity if you configure auto scaling. This number must be greater than or equal to the minimum size of the group and less than or equal to the maximum size of the group. If you do not specify a desired capacity, the default is the minimum size of the group.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DefaultCooldown": {
+            "Description": "The amount of time, in seconds, between one scaling activity ending and another one starting due to simple scaling policies. For more information, see Scaling cooldowns for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide .\nDefault: 300 seconds",
+            "Type": "integer",
+            "Required": false
+        },
+        "AvailabilityZones": {
+            "Description": "A list of Availability Zones where instances in the Auto Scaling group can be created. Used for launching into the default VPC subnet in each Availability Zone when not using the VPCZoneIdentifier property, or for attaching a network interface when an existing network interface ID is specified in a launch template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "LoadBalancerNames": {
+            "Description": "A list of Classic Load Balancers associated with this Auto Scaling group. For Application Load Balancers, Network Load Balancers, and Gateway Load Balancer, specify the TargetGroupARNs property instead.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "TargetGroupARNs": {
+            "Description": "The Amazon Resource Names (ARN) of the target groups to associate with the Auto Scaling group. Instances are registered as targets with the target groups. The target groups receive incoming traffic and route requests to one or more registered targets. For more information, see Use Elastic Load Balancing to distribute traffic across the instances in your Auto Scaling group in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "HealthCheckType": {
+            "Description": "The service to use for the health checks. The valid values are EC2 (default) and ELB . If you configure an Auto Scaling group to use load balancer (ELB) health checks, it considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks. For more information, see Health checks for Auto Scaling instances in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckGracePeriod": {
+            "Description": "The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service and marking it unhealthy due to a failed Elastic Load Balancing or custom health check. This is useful if your instances do not immediately pass these health checks after they enter the InService state. For more information, see Health check grace period in the Amazon EC2 Auto Scaling User Guide .\nDefault: 0 seconds",
+            "Type": "integer",
+            "Required": false
+        },
+        "PlacementGroup": {
+            "Description": "The name of the placement group into which to launch your instances. For more information, see Placement groups in the Amazon EC2 User Guide for Linux Instances .",
+            "Type": "string",
+            "Required": false
+        },
+        "VPCZoneIdentifier": {
+            "Description": "A comma-separated list of subnet IDs for a virtual private cloud (VPC) where instances in the Auto Scaling group can be created. If you specify VPCZoneIdentifier with AvailabilityZones , the subnets that you specify must reside in those Availability Zones.",
+            "Type": "string",
+            "Required": false
+        },
+        "TerminationPolicies": {
+            "Description": "A policy or a list of policies that are used to select the instance to terminate. These policies are executed in the order that you list them. For more information, see Work with Amazon EC2 Auto Scaling termination policies in the Amazon EC2 Auto Scaling User Guide .\nValid values: Default | AllocationStrategy | ClosestToNextInstanceHour | NewestInstance | OldestInstance | OldestLaunchConfiguration | OldestLaunchTemplate | arn:aws:lambda:region:account-id:function:my-function:my-alias",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NewInstancesProtectedFromScaleIn": {
+            "Description": "Indicates whether newly launched instances are protected from termination by Amazon EC2 Auto Scaling when scaling in. For more information about preventing instances from terminating on scale in, see Using instance scale-in protection in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "CapacityRebalance": {
+            "Description": "Indicates whether Capacity Rebalancing is enabled. Otherwise, Capacity Rebalancing is disabled. When you turn on Capacity Rebalancing, Amazon EC2 Auto Scaling attempts to launch a Spot Instance whenever Amazon EC2 notifies that a Spot Instance is at an elevated risk of interruption. After launching a new instance, it then terminates an old instance. For more information, see Use Capacity Rebalancing to handle Amazon EC2 Spot Interruptions in the in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "LifecycleHookSpecificationList": {
+            "Description": "One or more lifecycle hooks to add to the Auto Scaling group before instances are launched.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "One or more tags. You can tag your Auto Scaling group and propagate the tags to the Amazon EC2 instances it launches. Tags are not propagated to Amazon EBS volumes. To add tags to Amazon EBS volumes, specify the tags in a launch template but use caution. If the launch template specifies an instance tag with a key that is also specified for the Auto Scaling group, Amazon EC2 Auto Scaling overrides the value of that instance tag with the value specified by the Auto Scaling group. For more information, see Tag Auto Scaling groups and instances in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ServiceLinkedRoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling group uses to call other Amazon Web Services service on your behalf. By default, Amazon EC2 Auto Scaling uses a service-linked role named AWSServiceRoleForAutoScaling , which it creates if it does not exist. For more information, see Service-linked roles in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxInstanceLifetime": {
+            "Description": "The maximum amount of time, in seconds, that an instance can be in service. The default is null. If specified, the value must be either 0 or a number equal to or greater than 86,400 seconds (1 day). For more information, see Replacing Auto Scaling instances based on maximum instance lifetime in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "integer",
+            "Required": false
+        },
+        "Context": {
+            "Description": "Reserved.",
+            "Type": "string",
+            "Required": false
+        },
+        "DesiredCapacityType": {
+            "Description": "The unit of measurement for the value specified for desired capacity. Amazon EC2 Auto Scaling supports DesiredCapacityType for attribute-based instance type selection only. For more information, see Creating an Auto Scaling group using attribute-based instance type selection in the Amazon EC2 Auto Scaling User Guide .\nBy default, Amazon EC2 Auto Scaling specifies units, which translates into number of instances.\nValid values: units | vcpu | memory-mib",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultInstanceWarmup": {
+            "Description": "The amount of time, in seconds, until a newly launched instance can contribute to the Amazon CloudWatch metrics. This delay lets an instance finish initializing before Amazon EC2 Auto Scaling aggregates instance metrics, resulting in more reliable usage data. Set this value equal to the amount of time that it takes for resource consumption to become stable after an instance reaches the InService state. For more information, see Set the default instance warmup for an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide .\nDefault: None",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_launch_configuration": {
+        "LaunchConfigurationName": {
+            "Description": "The name of the launch configuration. This name must be unique per Region per account.",
+            "Type": "string",
+            "Required": true
+        },
+        "ImageId": {
+            "Description": "The ID of the Amazon Machine Image (AMI) that was assigned during registration. For more information, see Finding a Linux AMI in the Amazon EC2 User Guide for Linux Instances .\nIf you specify InstanceId, an ImageId is not required.",
+            "Type": "string",
+            "Required": false
+        },
+        "KeyName": {
+            "Description": "The name of the key pair. For more information, see Amazon EC2 key pairs and Linux instances in the Amazon EC2 User Guide for Linux Instances .",
+            "Type": "string",
+            "Required": false
+        },
+        "SecurityGroups": {
+            "Description": "A list that contains the security group IDs to assign to the instances in the Auto Scaling group. For more information, see Control traffic to resources using security groups in the Amazon Virtual Private Cloud User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClassicLinkVPCId": {
+            "Description": "The ID of a ClassicLink-enabled VPC to link your EC2-Classic instances to. For more information, see ClassicLink in the Amazon EC2 User Guide for Linux Instances .",
+            "Type": "string",
+            "Required": false
+        },
+        "ClassicLinkVPCSecurityGroups": {
+            "Description": "The IDs of one or more security groups for the specified ClassicLink-enabled VPC.\nIf you specify the ClassicLinkVPCId property, you must specify ClassicLinkVPCSecurityGroups .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "UserData": {
+            "Description": "The user data to make available to the launched EC2 instances. For more information, see Instance metadata and user data (Linux) and Instance metadata and user data (Windows). If you are using a command line tool, base64-encoding is performed for you, and you can load the text from a file. Otherwise, you must provide base64-encoded text. User data is limited to 16 KB.",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceId": {
+            "Description": "The ID of the instance to use to create the launch configuration. The new launch configuration derives attributes from the instance, except for the block device mapping.\nTo create a launch configuration with a block device mapping or override any other instance attributes, specify them as part of the same request.\nFor more information, see Creating a launch configuration using an EC2 instance in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceType": {
+            "Description": "Specifies the instance type of the EC2 instance. For information about available instance types, see Available instance types in the Amazon EC2 User Guide for Linux Instances .\nIf you specify InstanceId, an InstanceType is not required.",
+            "Type": "string",
+            "Required": false
+        },
+        "KernelId": {
+            "Description": "The ID of the kernel associated with the AMI.",
+            "Type": "string",
+            "Required": false
+        },
+        "RamdiskId": {
+            "Description": "The ID of the RAM disk to select.",
+            "Type": "string",
+            "Required": false
+        },
+        "BlockDeviceMappings": {
+            "Description": "The block device mapping entries that define the block devices to attach to the instances at launch. By default, the block devices specified in the block device mapping for the AMI are used. For more information, see Block device mappings in the Amazon EC2 User Guide for Linux Instances .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "InstanceMonitoring": {
+            "Description": "Controls whether instances in this group are launched with detailed (true ) or basic (false ) monitoring.\nThe default value is true (enabled).",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SpotPrice": {
+            "Description": "The maximum hourly price to be paid for any Spot Instance launched to fulfill the request. Spot Instances are launched when the price you specify exceeds the current Spot price. For more information, see Request Spot Instances for fault-tolerant and flexible applications in the Amazon EC2 Auto Scaling User Guide .\nValid Range: Minimum value of 0.001",
+            "Type": "string",
+            "Required": false
+        },
+        "IamInstanceProfile": {
+            "Description": "The name or the Amazon Resource Name (ARN) of the instance profile associated with the IAM role for the instance. The instance profile contains the IAM role. For more information, see IAM role for applications that run on Amazon EC2 instances in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "EbsOptimized": {
+            "Description": "Specifies whether the launch configuration is optimized for EBS I/O (true ) or not (false ). The optimization provides dedicated throughput to Amazon EBS and an optimized configuration stack to provide optimal I/O performance. This optimization is not available with all instance types. Additional fees are incurred when you enable EBS optimization for an instance type that is not EBS-optimized by default. For more information, see Amazon EBS-optimized instances in the Amazon EC2 User Guide for Linux Instances .\nThe default value is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AssociatePublicIpAddress": {
+            "Description": "Specifies whether to assign a public IPv4 address to the group's instances. If the instance is launched into a default subnet, the default is to assign a public IPv4 address, unless you disabled the option to assign a public IPv4 address on the subnet. If the instance is launched into a nondefault subnet, the default is not to assign a public IPv4 address, unless you enabled the option to assign a public IPv4 address on the subnet.\nIf you specify true, each instance in the Auto Scaling group receives a unique public IPv4 address. For more information, see Launching Auto Scaling instances in a VPC in the Amazon EC2 Auto Scaling User Guide .\nIf you specify this property, you must specify at least one subnet for VPCZoneIdentifier when you create your group.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PlacementTenancy": {
+            "Description": "The tenancy of the instance, either default or dedicated. An instance with dedicated tenancy runs on isolated, single-tenant hardware and can only be launched into a VPC. To launch dedicated instances into a shared tenancy VPC (a VPC with the instance placement tenancy attribute set to default ), you must set the value of this property to dedicated. For more information, see Configuring instance tenancy with Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide .\nIf you specify PlacementTenancy, you must specify at least one subnet for VPCZoneIdentifier when you create your group.\nValid values: default | dedicated",
+            "Type": "string",
+            "Required": false
+        },
+        "MetadataOptions": {
+            "Description": "The metadata options for the instances. For more information, see Configuring the Instance Metadata Options in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_or_update_tags": {
+        "Tags": {
+            "Description": "One or more tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_auto_scaling_group": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceDelete": {
+            "Description": "Specifies that the group is to be deleted along with all instances associated with the group, without waiting for all instances to be terminated. This action also deletes any outstanding lifecycle actions associated with the group.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_launch_configuration": {
+        "LaunchConfigurationName": {
+            "Description": "The name of the launch configuration.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_lifecycle_hook": {
+        "LifecycleHookName": {
+            "Description": "The name of the lifecycle hook.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_notification_configuration": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "TopicARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon SNS topic.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_policy": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": false
+        },
+        "PolicyName": {
+            "Description": "The name or Amazon Resource Name (ARN) of the policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_scheduled_action": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScheduledActionName": {
+            "Description": "The name of the action to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_tags": {
+        "Tags": {
+            "Description": "One or more tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "delete_warm_pool": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ForceDelete": {
+            "Description": "Specifies that the warm pool is to be deleted along with all of its associated instances, without waiting for all instances to be terminated. This parameter also deletes any outstanding lifecycle actions associated with the warm pool instances.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_account_limits": "No parameters defined",
+    "describe_adjustment_types": "No parameters defined",
+    "describe_auto_scaling_groups": {
+        "AutoScalingGroupNames": {
+            "Description": "The names of the Auto Scaling groups. By default, you can only specify up to 50 names. You can optionally increase this limit using the MaxRecords property.\nIf you omit this property, all Auto Scaling groups are described.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 50 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "One or more filters to limit the results based on specific tags.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_auto_scaling_instances": {
+        "InstanceIds": {
+            "Description": "The IDs of the instances. If you omit this property, all Auto Scaling instances are described. If you specify an ID that does not exist, it is ignored with no error.\nArray Members: Maximum number of 50 items.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 50 and the maximum value is 50 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_auto_scaling_notification_types": "No parameters defined",
+    "describe_instance_refreshes": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "InstanceRefreshIds": {
+            "Description": "One or more instance refresh IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 50 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_launch_configurations": {
+        "LaunchConfigurationNames": {
+            "Description": "The launch configuration names. If you omit this property, all launch configurations are described.\nArray Members: Maximum number of 50 items.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 50 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_lifecycle_hook_types": "No parameters defined",
+    "describe_lifecycle_hooks": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LifecycleHookNames": {
+            "Description": "The names of one or more lifecycle hooks. If you omit this property, all lifecycle hooks are described.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_load_balancer_target_groups": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 100 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_load_balancers": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 100 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_metric_collection_types": "No parameters defined",
+    "describe_notification_configurations": {
+        "AutoScalingGroupNames": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 50 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_policies": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": false
+        },
+        "PolicyNames": {
+            "Description": "The names of one or more policies. If you omit this property, all policies are described. If a group name is provided, the results are limited to that group. If you specify an unknown policy name, it is ignored with no error.\nArray Members: Maximum number of 50 items.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PolicyTypes": {
+            "Description": "One or more policy types. The valid values are SimpleScaling, StepScaling, TargetTrackingScaling, and PredictiveScaling .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to be returned with each call. The default value is 50 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_scaling_activities": {
+        "ActivityIds": {
+            "Description": "The activity IDs of the desired scaling activities. If you omit this property, all activities for the past six weeks are described. If unknown activities are requested, they are ignored with no error. If you specify an Auto Scaling group, the results are limited to that group.\nArray Members: Maximum number of 50 IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": false
+        },
+        "IncludeDeletedGroups": {
+            "Description": "Indicates whether to include scaling activity from deleted Auto Scaling groups.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 100 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_scaling_process_types": "No parameters defined",
+    "describe_scheduled_actions": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": false
+        },
+        "ScheduledActionNames": {
+            "Description": "The names of one or more scheduled actions. If you omit this property, all scheduled actions are described. If you specify an unknown scheduled action, it is ignored with no error.\nArray Members: Maximum number of 50 actions.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "StartTime": {
+            "Description": "The earliest scheduled start time to return. If scheduled action names are provided, this property is ignored.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The latest scheduled start time to return. If scheduled action names are provided, this property is ignored.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 50 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_tags": {
+        "Filters": {
+            "Description": "One or more filters to scope the tags to return. The maximum number of filters per filter type (for example, auto-scaling-group ) is 1000.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of items to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of items to return with this call. The default value is 50 and the maximum value is 100 .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_termination_policy_types": "No parameters defined",
+    "describe_warm_pool": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of instances to return with this call. The maximum value is 50 .",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next set of instances to return. (You received this token from a previous call.)",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "detach_instances": {
+        "InstanceIds": {
+            "Description": "The IDs of the instances. You can specify up to 20 instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShouldDecrementDesiredCapacity": {
+            "Description": "Indicates whether the Auto Scaling group decrements the desired capacity value by the number of instances detached.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "detach_load_balancer_target_groups": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetGroupARNs": {
+            "Description": "The Amazon Resource Names (ARN) of the target groups. You can specify up to 10 target groups.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "detach_load_balancers": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LoadBalancerNames": {
+            "Description": "The names of the load balancers. You can specify up to 10 load balancers.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "disable_metrics_collection": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Metrics": {
+            "Description": "Identifies the metrics to disable.\nYou can specify one or more of the following metrics:\nIf you omit this property, all metrics are disabled.\nFor more information, see Auto Scaling group metrics in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "enable_metrics_collection": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Metrics": {
+            "Description": "Identifies the metrics to enable.\nYou can specify one or more of the following metrics:\nIf you specify Granularity and don't specify any metrics, all metrics are enabled.\nFor more information, see Auto Scaling group metrics in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Granularity": {
+            "Description": "The frequency at which Amazon EC2 Auto Scaling sends aggregated data to CloudWatch. The only valid value is 1Minute .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enter_standby": {
+        "InstanceIds": {
+            "Description": "The IDs of the instances. You can specify up to 20 instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShouldDecrementDesiredCapacity": {
+            "Description": "Indicates whether to decrement the desired capacity of the Auto Scaling group by the number of instances moved to Standby mode.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "execute_policy": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": false
+        },
+        "PolicyName": {
+            "Description": "The name or ARN of the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "HonorCooldown": {
+            "Description": "Indicates whether Amazon EC2 Auto Scaling waits for the cooldown period to complete before executing the policy.\nValid only if the policy type is SimpleScaling. For more information, see Scaling cooldowns for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MetricValue": {
+            "Description": "The metric value to compare to BreachThreshold. This enables you to execute a policy of type StepScaling and determine which step adjustment to use. For example, if the breach threshold is 50 and you want to use a step adjustment with a lower bound of 0 and an upper bound of 10, you can set the metric value to 59.\nIf you specify a metric value that doesn't correspond to a step adjustment for the policy, the call returns an error.\nRequired if the policy type is StepScaling and not supported otherwise.",
+            "Type": "float",
+            "Required": false
+        },
+        "BreachThreshold": {
+            "Description": "The breach threshold for the alarm.\nRequired if the policy type is StepScaling and not supported otherwise.",
+            "Type": "float",
+            "Required": false
+        }
+    },
+    "exit_standby": {
+        "InstanceIds": {
+            "Description": "The IDs of the instances. You can specify up to 20 instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_predictive_scaling_forecast": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyName": {
+            "Description": "The name of the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "StartTime": {
+            "Description": "The inclusive start time of the time range for the forecast data to get. At most, the date and time can be one year before the current date and time.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "EndTime": {
+            "Description": "The exclusive end time of the time range for the forecast data to get. The maximum time duration between the start and end time is 30 days.\nAlthough this parameter can accept a date and time that is more than two days in the future, the availability of forecast data has limits. Amazon EC2 Auto Scaling only issues forecasts for periods of two days in advance.",
+            "Type": "datetime",
+            "Required": true
+        }
+    },
+    "put_lifecycle_hook": {
+        "LifecycleHookName": {
+            "Description": "The name of the lifecycle hook.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LifecycleTransition": {
+            "Description": "The lifecycle transition. For Auto Scaling groups, there are two major lifecycle transitions.\nRequired for new lifecycle hooks, but optional when updating existing hooks.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "RoleARN": {
+            "Description": "The ARN of the IAM role that allows the Auto Scaling group to publish to the specified notification target.\nValid only if the notification target is an Amazon SNS topic or an Amazon SQS queue. Required for new lifecycle hooks, but optional when updating existing hooks.",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationTargetARN": {
+            "Description": "The Amazon Resource Name (ARN) of the notification target that Amazon EC2 Auto Scaling uses to notify you when an instance is in a wait state for the lifecycle hook. You can specify either an Amazon SNS topic or an Amazon SQS queue.\nIf you specify an empty string, this overrides the current ARN.\nThis operation uses the JSON format when sending notifications to an Amazon SQS queue, and an email key-value pair format when sending notifications to an Amazon SNS topic.\nWhen you specify a notification target, Amazon EC2 Auto Scaling sends it a test message. Test messages contain the following additional key-value pair: \"Event\": \"autoscaling:TEST_NOTIFICATION\" .",
+            "Type": "string",
+            "Required": false
+        },
+        "NotificationMetadata": {
+            "Description": "Additional information that you want to include any time Amazon EC2 Auto Scaling sends a message to the notification target.",
+            "Type": "string",
+            "Required": false
+        },
+        "HeartbeatTimeout": {
+            "Description": "The maximum time, in seconds, that can elapse before the lifecycle hook times out. The range is from 30 to 7200 seconds. The default value is 3600 seconds (1 hour).",
+            "Type": "integer",
+            "Required": false
+        },
+        "DefaultResult": {
+            "Description": "The action the Auto Scaling group takes when the lifecycle hook timeout elapses or if an unexpected failure occurs. The default value is ABANDON .\nValid values: CONTINUE | ABANDON",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_notification_configuration": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "TopicARN": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon SNS topic.",
+            "Type": "string",
+            "Required": true
+        },
+        "NotificationTypes": {
+            "Description": "The type of event that causes the notification to be sent. To query the notification types supported by Amazon EC2 Auto Scaling, call the  DescribeAutoScalingNotificationTypes API.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "put_scaling_policy": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyName": {
+            "Description": "The name of the policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "PolicyType": {
+            "Description": "One of the following policy types:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "AdjustmentType": {
+            "Description": "Specifies how the scaling adjustment is interpreted (for example, an absolute number or a percentage). The valid values are ChangeInCapacity, ExactCapacity, and PercentChangeInCapacity .\nRequired if the policy type is StepScaling or SimpleScaling. For more information, see Scaling adjustment types in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "MinAdjustmentStep": {
+            "Description": "Available for backward compatibility. Use MinAdjustmentMagnitude instead.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinAdjustmentMagnitude": {
+            "Description": "The minimum value to scale by when the adjustment type is PercentChangeInCapacity. For example, suppose that you create a step scaling policy to scale out an Auto Scaling group by 25 percent and you specify a MinAdjustmentMagnitude of 2. If the group has 4 instances and the scaling policy is performed, 25 percent of 4 is 1. However, because you specified a MinAdjustmentMagnitude of 2, Amazon EC2 Auto Scaling scales out the group by 2 instances.\nValid only if the policy type is StepScaling or SimpleScaling. For more information, see Scaling adjustment types in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "integer",
+            "Required": false
+        },
+        "ScalingAdjustment": {
+            "Description": "The amount by which to scale, based on the specified adjustment type. A positive value adds to the current capacity while a negative number removes from the current capacity. For exact capacity, you must specify a positive value.\nRequired if the policy type is SimpleScaling. (Not used with any other policy type.)",
+            "Type": "integer",
+            "Required": false
+        },
+        "Cooldown": {
+            "Description": "A cooldown period, in seconds, that applies to a specific simple scaling policy. When a cooldown period is specified here, it overrides the default cooldown.\nValid only if the policy type is SimpleScaling. For more information, see Scaling cooldowns for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide .\nDefault: None",
+            "Type": "integer",
+            "Required": false
+        },
+        "MetricAggregationType": {
+            "Description": "The aggregation type for the CloudWatch metrics. The valid values are Minimum, Maximum, and Average. If the aggregation type is null, the value is treated as Average .\nValid only if the policy type is StepScaling .",
+            "Type": "string",
+            "Required": false
+        },
+        "StepAdjustments": {
+            "Description": "A set of adjustments that enable you to scale based on the size of the alarm breach.\nRequired if the policy type is StepScaling. (Not used with any other policy type.)",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "EstimatedInstanceWarmup": {
+            "Description": "The estimated time, in seconds, until a newly launched instance can contribute to the CloudWatch metrics. This warm-up period applies to instances launched due to a specific target tracking or step scaling policy. When a warm-up period is specified here, it overrides the default instance warmup.\nValid only if the policy type is TargetTrackingScaling or StepScaling .",
+            "Type": "integer",
+            "Required": false
+        },
+        "TargetTrackingConfiguration": {
+            "Description": "A target tracking scaling policy. Provides support for predefined or custom metrics.\nThe following predefined metrics are available:\nIf you specify ALBRequestCountPerTarget for the metric, you must specify the ResourceLabel property with the PredefinedMetricSpecification .\nFor more information, see TargetTrackingConfiguration in the Amazon EC2 Auto Scaling API Reference .\nRequired if the policy type is TargetTrackingScaling .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "Enabled": {
+            "Description": "Indicates whether the scaling policy is enabled or disabled. The default is enabled. For more information, see Disabling a scaling policy for an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PredictiveScalingConfiguration": {
+            "Description": "A predictive scaling policy. Provides support for predefined and custom metrics.\nPredefined metrics include CPU utilization, network in/out, and the Application Load Balancer request count.\nFor more information, see PredictiveScalingConfiguration in the Amazon EC2 Auto Scaling API Reference .\nRequired if the policy type is PredictiveScaling .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_scheduled_update_group_action": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScheduledActionName": {
+            "Description": "The name of this scaling action.",
+            "Type": "string",
+            "Required": true
+        },
+        "Time": {
+            "Description": "This property is no longer used.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The date and time for this action to start, in YYYY-MM-DDThh:mm:ssZ format in UTC/GMT only and in quotes (for example, \"2021-06-01T00:00:00Z\" ).\nIf you specify Recurrence and StartTime, Amazon EC2 Auto Scaling performs the action at this time, and then performs the action based on the specified recurrence.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The date and time for the recurring schedule to end, in UTC. For example, \"2021-06-01T00:00:00Z\" .",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Recurrence": {
+            "Description": "The recurring schedule for this action. This format consists of five fields separated by white spaces: [Minute] [Hour] [Day_of_Month] [Month_of_Year] [Day_of_Week]. The value must be in quotes (for example, \"30 0 1 1,6,12 *\" ). For more information about this format, see Crontab .\nWhen StartTime and EndTime are specified with Recurrence, they form the boundaries of when the recurring action starts and stops.\nCron expressions use Universal Coordinated Time (UTC) by default.",
+            "Type": "string",
+            "Required": false
+        },
+        "MinSize": {
+            "Description": "The minimum size of the Auto Scaling group.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaxSize": {
+            "Description": "The maximum size of the Auto Scaling group.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DesiredCapacity": {
+            "Description": "The desired capacity is the initial capacity of the Auto Scaling group after the scheduled action runs and the capacity it attempts to maintain. It can scale beyond this capacity if you add more scaling conditions.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TimeZone": {
+            "Description": "Specifies the time zone for a cron expression. If a time zone is not provided, UTC is used by default.\nValid values are the canonical names of the IANA time zones, derived from the IANA Time Zone Database (such as Etc/GMT+9 or Pacific/Tahiti ). For more information, see https://en.wikipedia.org/wiki/List_of_tz_database_time_zones .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_warm_pool": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxGroupPreparedCapacity": {
+            "Description": "Specifies the maximum number of instances that are allowed to be in the warm pool or in any state except Terminated for the Auto Scaling group. This is an optional property. Specify it only if you do not want the warm pool size to be determined by the difference between the group's maximum capacity and its desired capacity.\nIf the desired capacity of the Auto Scaling group is higher than the MaxGroupPreparedCapacity, the capacity of the warm pool is 0, unless you specify a value for MinSize. To remove a value that you previously set, include the property but specify -1 for the value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MinSize": {
+            "Description": "Specifies the minimum number of instances to maintain in the warm pool. This helps you to ensure that there is always a certain number of warmed instances available to handle traffic spikes. Defaults to 0 if not specified.",
+            "Type": "integer",
+            "Required": false
+        },
+        "PoolState": {
+            "Description": "Sets the instance state to transition to after the lifecycle actions are complete. Default is Stopped .",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceReusePolicy": {
+            "Description": "Indicates whether instances in the Auto Scaling group can be returned to the warm pool on scale in. The default is to terminate instances in the Auto Scaling group when the group scales in.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "record_lifecycle_action_heartbeat": {
+        "LifecycleHookName": {
+            "Description": "The name of the lifecycle hook.",
+            "Type": "string",
+            "Required": true
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LifecycleActionToken": {
+            "Description": "A token that uniquely identifies a specific lifecycle action associated with an instance. Amazon EC2 Auto Scaling sends this token to the notification target that you specified when you created the lifecycle hook.",
+            "Type": "string",
+            "Required": false
+        },
+        "InstanceId": {
+            "Description": "The ID of the instance.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "resume_processes": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScalingProcesses": {
+            "Description": "One or more of the following processes:\nIf you omit this property, all processes are specified.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "set_desired_capacity": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "DesiredCapacity": {
+            "Description": "The desired capacity is the initial capacity of the Auto Scaling group after this operation completes and the capacity it attempts to maintain.",
+            "Type": "integer",
+            "Required": true
+        },
+        "HonorCooldown": {
+            "Description": "Indicates whether Amazon EC2 Auto Scaling waits for the cooldown period to complete before initiating a scaling activity to set your Auto Scaling group to its new capacity. By default, Amazon EC2 Auto Scaling does not honor the cooldown period during manual scaling activities.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "set_instance_health": {
+        "InstanceId": {
+            "Description": "The ID of the instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "HealthStatus": {
+            "Description": "The health status of the instance. Set to Healthy to have the instance remain in service. Set to Unhealthy to have the instance be out of service. Amazon EC2 Auto Scaling terminates and replaces the unhealthy instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShouldRespectGracePeriod": {
+            "Description": "If the Auto Scaling group of the specified instance has a HealthCheckGracePeriod specified for the group, by default, this call respects the grace period. Set this to False, to have the call not respect the grace period associated with the group.\nFor more information about the health check grace period, see CreateAutoScalingGroup in the Amazon EC2 Auto Scaling API Reference .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "set_instance_protection": {
+        "InstanceIds": {
+            "Description": "One or more instance IDs. You can specify up to 50 instances.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProtectedFromScaleIn": {
+            "Description": "Indicates whether the instance is protected from termination by Amazon EC2 Auto Scaling when scaling in.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "start_instance_refresh": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Strategy": {
+            "Description": "The strategy to use for the instance refresh. The only valid value is Rolling .\nA rolling update helps you update your instances gradually. A rolling update can fail due to failed health checks or if instances are on standby or are protected from scale in. If the rolling update process fails, any instances that are replaced are not rolled back to their previous configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "DesiredConfiguration": {
+            "Description": "The desired configuration. For example, the desired configuration can specify a new launch template or a new version of the current launch template.\nOnce the instance refresh succeeds, Amazon EC2 Auto Scaling updates the settings of the Auto Scaling group to reflect the new desired configuration.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Preferences": {
+            "Description": "Set of preferences associated with the instance refresh request. If not provided, the default values are used.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "suspend_processes": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "ScalingProcesses": {
+            "Description": "One or more of the following processes:\nIf you omit this property, all processes are specified.",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "terminate_instance_in_auto_scaling_group": {
+        "InstanceId": {
+            "Description": "The ID of the instance.",
+            "Type": "string",
+            "Required": true
+        },
+        "ShouldDecrementDesiredCapacity": {
+            "Description": "Indicates whether terminating the instance also decrements the size of the Auto Scaling group.",
+            "Type": "boolean",
+            "Required": true
+        }
+    },
+    "update_auto_scaling_group": {
+        "AutoScalingGroupName": {
+            "Description": "The name of the Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "LaunchConfigurationName": {
+            "Description": "The name of the launch configuration. If you specify LaunchConfigurationName in your update request, you can't specify LaunchTemplate or MixedInstancesPolicy .",
+            "Type": "string",
+            "Required": false
+        },
+        "LaunchTemplate": {
+            "Description": "The launch template and version to use to specify the updates. If you specify LaunchTemplate in your update request, you can't specify LaunchConfigurationName or MixedInstancesPolicy .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MixedInstancesPolicy": {
+            "Description": "An embedded object that specifies a mixed instances policy. For more information, see Auto Scaling groups with multiple instance types and purchase options in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MinSize": {
+            "Description": "The minimum size of the Auto Scaling group.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaxSize": {
+            "Description": "The maximum size of the Auto Scaling group.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DesiredCapacity": {
+            "Description": "The desired capacity is the initial capacity of the Auto Scaling group after this operation completes and the capacity it attempts to maintain. This number must be greater than or equal to the minimum size of the group and less than or equal to the maximum size of the group.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DefaultCooldown": {
+            "Description": "The amount of time, in seconds, between one scaling activity ending and another one starting due to simple scaling policies. For more information, see Scaling cooldowns for Amazon EC2 Auto Scaling in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "integer",
+            "Required": false
+        },
+        "AvailabilityZones": {
+            "Description": "One or more Availability Zones for the group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "HealthCheckType": {
+            "Description": "The service to use for the health checks. The valid values are EC2 and ELB . If you configure an Auto Scaling group to use ELB health checks, it considers the instance unhealthy if it fails either the EC2 status checks or the load balancer health checks.",
+            "Type": "string",
+            "Required": false
+        },
+        "HealthCheckGracePeriod": {
+            "Description": "The amount of time, in seconds, that Amazon EC2 Auto Scaling waits before checking the health status of an EC2 instance that has come into service and marking it unhealthy due to a failed Elastic Load Balancing or custom health check. This is useful if your instances do not immediately pass these health checks after they enter the InService state. For more information, see Health check grace period in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "integer",
+            "Required": false
+        },
+        "PlacementGroup": {
+            "Description": "The name of an existing placement group into which to launch your instances. For more information, see Placement groups in the Amazon EC2 User Guide for Linux Instances .",
+            "Type": "string",
+            "Required": false
+        },
+        "VPCZoneIdentifier": {
+            "Description": "A comma-separated list of subnet IDs for a virtual private cloud (VPC). If you specify VPCZoneIdentifier with AvailabilityZones , the subnets that you specify must reside in those Availability Zones.",
+            "Type": "string",
+            "Required": false
+        },
+        "TerminationPolicies": {
+            "Description": "A policy or a list of policies that are used to select the instances to terminate. The policies are executed in the order that you list them. For more information, see Work with Amazon EC2 Auto Scaling termination policies in the Amazon EC2 Auto Scaling User Guide .\nValid values: Default | AllocationStrategy | ClosestToNextInstanceHour | NewestInstance | OldestInstance | OldestLaunchConfiguration | OldestLaunchTemplate | arn:aws:lambda:region:account-id:function:my-function:my-alias",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "NewInstancesProtectedFromScaleIn": {
+            "Description": "Indicates whether newly launched instances are protected from termination by Amazon EC2 Auto Scaling when scaling in. For more information about preventing instances from terminating on scale in, see Using instance scale-in protection in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ServiceLinkedRoleARN": {
+            "Description": "The Amazon Resource Name (ARN) of the service-linked role that the Auto Scaling group uses to call other Amazon Web Services on your behalf. For more information, see Service-linked roles in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxInstanceLifetime": {
+            "Description": "The maximum amount of time, in seconds, that an instance can be in service. The default is null. If specified, the value must be either 0 or a number equal to or greater than 86,400 seconds (1 day). To clear a previously set value, specify a new value of 0. For more information, see Replacing Auto Scaling instances based on maximum instance lifetime in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "integer",
+            "Required": false
+        },
+        "CapacityRebalance": {
+            "Description": "Enables or disables Capacity Rebalancing. For more information, see Use Capacity Rebalancing to handle Amazon EC2 Spot Interruptions in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Context": {
+            "Description": "Reserved.",
+            "Type": "string",
+            "Required": false
+        },
+        "DesiredCapacityType": {
+            "Description": "The unit of measurement for the value specified for desired capacity. Amazon EC2 Auto Scaling supports DesiredCapacityType for attribute-based instance type selection only. For more information, see Creating an Auto Scaling group using attribute-based instance type selection in the Amazon EC2 Auto Scaling User Guide .\nBy default, Amazon EC2 Auto Scaling specifies units, which translates into number of instances.\nValid values: units | vcpu | memory-mib",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultInstanceWarmup": {
+            "Description": "The amount of time, in seconds, until a newly launched instance can contribute to the Amazon CloudWatch metrics. This delay lets an instance finish initializing before Amazon EC2 Auto Scaling aggregates instance metrics, resulting in more reliable usage data. Set this value equal to the amount of time that it takes for resource consumption to become stable after an instance reaches the InService state. For more information, see Set the default instance warmup for an Auto Scaling group in the Amazon EC2 Auto Scaling User Guide .",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "Filters": {
+            "Description": "One or more filters to scope the tags to return. The maximum number of filters per filter type (for example, auto-scaling-group ) is 1000.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

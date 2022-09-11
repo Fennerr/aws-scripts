@@ -1,0 +1,960 @@
+{
+    "add_profile_key": {
+        "ProfileId": {
+            "Description": "The unique identifier of a customer profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "KeyName": {
+            "Description": "A searchable identifier of a customer profile. The predefined keys you can use include: _account, _profileId, _assetId, _caseId, _orderId, _fullName, _phone, _email, _ctrContactId, _marketoLeadId, _salesforceAccountId, _salesforceContactId, _salesforceAssetId, _zendeskUserId, _zendeskExternalId, _zendeskTicketId, _serviceNowSystemId, _serviceNowIncidentId, _segmentUserId, _shopifyCustomerId, _shopifyOrderId.",
+            "Type": "string",
+            "Required": true
+        },
+        "Values": {
+            "Description": "A list of key values.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_domain": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultExpirationDays": {
+            "Description": "The default number of days until the data within the domain expires.",
+            "Type": "integer",
+            "Required": true
+        },
+        "DefaultEncryptionKey": {
+            "Description": "The default encryption key, which is an AWS managed key, is used when no specific type of encryption key is specified. It is used to encrypt all data before it is placed in permanent or semi-permanent storage.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeadLetterQueueUrl": {
+            "Description": "The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications. You must set up a policy on the DeadLetterQueue for the SendMessage operation to enable Amazon Connect Customer Profiles to send messages to the DeadLetterQueue.",
+            "Type": "string",
+            "Required": false
+        },
+        "Matching": {
+            "Description": "The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains.\nAfter the Identity Resolution Job completes, use the GetMatches API to return and review the results. Or, if you have configured ExportingConfig in the MatchingRequest, you can download the results from S3.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_integration_workflow": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkflowType": {
+            "Description": "The type of workflow. The only supported value is APPFLOW_INTEGRATION.",
+            "Type": "string",
+            "Required": true
+        },
+        "IntegrationConfig": {
+            "Description": "Configuration data for integration workflow.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role. Customer Profiles assumes this role to create resources on your behalf as part of workflow execution.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_profile": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountNumber": {
+            "Description": "A unique account number that you have given to the customer.",
+            "Type": "string",
+            "Required": false
+        },
+        "AdditionalInformation": {
+            "Description": "Any additional information relevant to the customer\u2019s profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "PartyType": {
+            "Description": "The type of profile used to describe the customer.",
+            "Type": "string",
+            "Required": false
+        },
+        "BusinessName": {
+            "Description": "The name of the customer\u2019s business.",
+            "Type": "string",
+            "Required": false
+        },
+        "FirstName": {
+            "Description": "The customer\u2019s first name.",
+            "Type": "string",
+            "Required": false
+        },
+        "MiddleName": {
+            "Description": "The customer\u2019s middle name.",
+            "Type": "string",
+            "Required": false
+        },
+        "LastName": {
+            "Description": "The customer\u2019s last name.",
+            "Type": "string",
+            "Required": false
+        },
+        "BirthDate": {
+            "Description": "The customer\u2019s birth date.",
+            "Type": "string",
+            "Required": false
+        },
+        "Gender": {
+            "Description": "The gender with which the customer identifies.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumber": {
+            "Description": "The customer\u2019s phone number, which has not been specified as a mobile, home, or business number.",
+            "Type": "string",
+            "Required": false
+        },
+        "MobilePhoneNumber": {
+            "Description": "The customer\u2019s mobile phone number.",
+            "Type": "string",
+            "Required": false
+        },
+        "HomePhoneNumber": {
+            "Description": "The customer\u2019s home phone number.",
+            "Type": "string",
+            "Required": false
+        },
+        "BusinessPhoneNumber": {
+            "Description": "The customer\u2019s business phone number.",
+            "Type": "string",
+            "Required": false
+        },
+        "EmailAddress": {
+            "Description": "The customer\u2019s email address, which has not been specified as a personal or business address.",
+            "Type": "string",
+            "Required": false
+        },
+        "PersonalEmailAddress": {
+            "Description": "The customer\u2019s personal email address.",
+            "Type": "string",
+            "Required": false
+        },
+        "BusinessEmailAddress": {
+            "Description": "The customer\u2019s business email address.",
+            "Type": "string",
+            "Required": false
+        },
+        "Address": {
+            "Description": "A generic address associated with the customer that is not mailing, shipping, or billing.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ShippingAddress": {
+            "Description": "The customer\u2019s shipping address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MailingAddress": {
+            "Description": "The customer\u2019s mailing address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "BillingAddress": {
+            "Description": "The customer\u2019s billing address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Attributes": {
+            "Description": "A key value pair of attributes of a customer profile.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_domain": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_integration": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "Uri": {
+            "Description": "The URI of the S3 bucket or any other type of data source.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_profile": {
+        "ProfileId": {
+            "Description": "The unique identifier of a customer profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_profile_key": {
+        "ProfileId": {
+            "Description": "The unique identifier of a customer profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "KeyName": {
+            "Description": "A searchable identifier of a customer profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "Values": {
+            "Description": "A list of key values.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_profile_object": {
+        "ProfileId": {
+            "Description": "The unique identifier of a customer profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProfileObjectUniqueKey": {
+            "Description": "The unique identifier of the profile object generated by the service.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_profile_object_type": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_workflow": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkflowId": {
+            "Description": "Unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_auto_merging_preview": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "Consolidation": {
+            "Description": "A list of matching attributes that represent matching criteria.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ConflictResolution": {
+            "Description": "How the auto-merging process should resolve conflicts between different profiles.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "MinAllowedConfidenceScoreForMerging": {
+            "Description": "Minimum confidence score required for profiles within a matching group to be merged during the auto-merge process.",
+            "Type": "float",
+            "Required": false
+        }
+    },
+    "get_domain": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_identity_resolution_job": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The unique identifier of the Identity Resolution Job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_integration": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "Uri": {
+            "Description": "The URI of the S3 bucket or any other type of data source.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_matches": {
+        "NextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_profile_object_type": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_profile_object_type_template": {
+        "TemplateId": {
+            "Description": "A unique identifier for the object template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_workflow": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkflowId": {
+            "Description": "Unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_workflow_steps": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkflowId": {
+            "Description": "Unique identifier for the workflow.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_account_integrations": {
+        "Uri": {
+            "Description": "The URI of the S3 bucket or any other type of data source.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token from the previous ListAccountIntegrations API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects returned per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "IncludeHidden": {
+            "Description": "Boolean to indicate if hidden integration should be returned. Defaults to False .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_domains": {
+        "NextToken": {
+            "Description": "The pagination token from the previous ListDomain API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects returned per page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_identity_resolution_jobs": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_integrations": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The pagination token from the previous ListIntegrations API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects returned per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "IncludeHidden": {
+            "Description": "Boolean to indicate if hidden integration should be returned. Defaults to False .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "list_profile_object_type_templates": {
+        "NextToken": {
+            "Description": "The pagination token from the previous ListObjectTypeTemplates API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects returned per page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_profile_object_types": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Identifies the next page of results to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects returned per page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_profile_objects": {
+        "NextToken": {
+            "Description": "The pagination token from the previous call to ListProfileObjects.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects returned per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProfileId": {
+            "Description": "The unique identifier of a customer profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectFilter": {
+            "Description": "Applies a filter to the response to include profile objects with the specified index values. This filter is only supported for ObjectTypeName _asset, _case and _order.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource for which you want to view tags.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_workflows": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "WorkflowType": {
+            "Description": "The type of workflow. The only supported value is APPFLOW_INTEGRATION.",
+            "Type": "string",
+            "Required": false
+        },
+        "Status": {
+            "Description": "Status of workflow execution.",
+            "Type": "string",
+            "Required": false
+        },
+        "QueryStartDate": {
+            "Description": "Retrieve workflows started after timestamp.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "QueryEndDate": {
+            "Description": "Retrieve workflows ended after timestamp.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "merge_profiles": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "MainProfileId": {
+            "Description": "The identifier of the profile to be taken.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProfileIdsToBeMerged": {
+            "Description": "The identifier of the profile to be merged into MainProfileId.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "FieldSourceProfileIds": {
+            "Description": "The identifiers of the fields in the profile that has the information you want to apply to the merge. For example, say you want to merge EmailAddress from Profile1 into MainProfile. This would be the identifier of the EmailAddress field in Profile1.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_integration": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "Uri": {
+            "Description": "The URI of the S3 bucket or any other type of data source.",
+            "Type": "string",
+            "Required": false
+        },
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "FlowDefinition": {
+            "Description": "The configuration that controls how Customer Profiles retrieves data from the source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ObjectTypeNames": {
+            "Description": "A map in which each key is an event type from an external application such as Segment or Shopify, and each value is an ObjectTypeName (template) used to ingest the event. It supports the following event types: SegmentIdentify, ShopifyCreateCustomers, ShopifyUpdateCustomers, ShopifyCreateDraftOrders, ShopifyUpdateDraftOrders, ShopifyCreateOrders, and ShopifyUpdatedOrders .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "put_profile_object": {
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": true
+        },
+        "Object": {
+            "Description": "A string that is serialized from a JSON object.",
+            "Type": "string",
+            "Required": true
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_profile_object_type": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "ObjectTypeName": {
+            "Description": "The name of the profile object type.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Description of the profile object type.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "A unique identifier for the object template. For some attributes in the request, the service will use the default value from the object template when TemplateId is present. If these attributes are present in the request, the service may return a BadRequestException . These attributes include: AllowProfileCreation, SourceLastUpdatedTimestampFormat, Fields, and Keys. For example, if AllowProfileCreation is set to true when TemplateId is set, the service may return a BadRequestException .",
+            "Type": "string",
+            "Required": false
+        },
+        "ExpirationDays": {
+            "Description": "The number of days until the data in the object expires.",
+            "Type": "integer",
+            "Required": false
+        },
+        "EncryptionKey": {
+            "Description": "The customer-provided key to encrypt the profile object that will be created in this profile object type.",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowProfileCreation": {
+            "Description": "Indicates whether a profile should be created when data is received if one doesn\u2019t exist for an object of this type. The default is FALSE . If the AllowProfileCreation flag is set to FALSE , then the service tries to fetch a standard profile and associate this object with the profile. If it is set to TRUE , and if no match is found, then the service creates a new standard profile.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "SourceLastUpdatedTimestampFormat": {
+            "Description": "The format of your sourceLastUpdatedTimestamp that was previously set up.",
+            "Type": "string",
+            "Required": false
+        },
+        "Fields": {
+            "Description": "A map of the name and ObjectType field.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Keys": {
+            "Description": "A list of unique keys that can be used to map data to the profile.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "search_profiles": {
+        "NextToken": {
+            "Description": "The pagination token from the previous SearchProfiles API call.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of objects returned per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "KeyName": {
+            "Description": "A searchable identifier of a customer profile. The predefined keys you can use to search include: _account, _profileId, _assetId, _caseId, _orderId, _fullName, _phone, _email, _ctrContactId, _marketoLeadId, _salesforceAccountId, _salesforceContactId, _salesforceAssetId, _zendeskUserId, _zendeskExternalId, _zendeskTicketId, _serviceNowSystemId, _serviceNowIncidentId, _segmentUserId, _shopifyCustomerId, _shopifyOrderId.",
+            "Type": "string",
+            "Required": true
+        },
+        "Values": {
+            "Description": "A list of key values.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource that you're adding tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource from which you are removing tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The list of tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_domain": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultExpirationDays": {
+            "Description": "The default number of days until the data within the domain expires.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DefaultEncryptionKey": {
+            "Description": "The default encryption key, which is an AWS managed key, is used when no specific type of encryption key is specified. It is used to encrypt all data before it is placed in permanent or semi-permanent storage. If specified as an empty string, it will clear any existing value.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeadLetterQueueUrl": {
+            "Description": "The URL of the SQS dead letter queue, which is used for reporting errors associated with ingesting data from third party applications. If specified as an empty string, it will clear any existing value. You must set up a policy on the DeadLetterQueue for the SendMessage operation to enable Amazon Connect Customer Profiles to send messages to the DeadLetterQueue.",
+            "Type": "string",
+            "Required": false
+        },
+        "Matching": {
+            "Description": "The process of matching duplicate profiles. If Matching = true, Amazon Connect Customer Profiles starts a weekly batch process called Identity Resolution Job. If you do not specify a date and time for Identity Resolution Job to run, by default it runs every Saturday at 12AM UTC to detect duplicate profiles in your domains.\nAfter the Identity Resolution Job completes, use the GetMatches API to return and review the results. Or, if you have configured ExportingConfig in the MatchingRequest, you can download the results from S3.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "The tags used to organize, track, or control access for this resource.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_profile": {
+        "DomainName": {
+            "Description": "The unique name of the domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProfileId": {
+            "Description": "The unique identifier of a customer profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "AdditionalInformation": {
+            "Description": "Any additional information relevant to the customer\u2019s profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccountNumber": {
+            "Description": "A unique account number that you have given to the customer.",
+            "Type": "string",
+            "Required": false
+        },
+        "PartyType": {
+            "Description": "The type of profile used to describe the customer.",
+            "Type": "string",
+            "Required": false
+        },
+        "BusinessName": {
+            "Description": "The name of the customer\u2019s business.",
+            "Type": "string",
+            "Required": false
+        },
+        "FirstName": {
+            "Description": "The customer\u2019s first name.",
+            "Type": "string",
+            "Required": false
+        },
+        "MiddleName": {
+            "Description": "The customer\u2019s middle name.",
+            "Type": "string",
+            "Required": false
+        },
+        "LastName": {
+            "Description": "The customer\u2019s last name.",
+            "Type": "string",
+            "Required": false
+        },
+        "BirthDate": {
+            "Description": "The customer\u2019s birth date.",
+            "Type": "string",
+            "Required": false
+        },
+        "Gender": {
+            "Description": "The gender with which the customer identifies.",
+            "Type": "string",
+            "Required": false
+        },
+        "PhoneNumber": {
+            "Description": "The customer\u2019s phone number, which has not been specified as a mobile, home, or business number.",
+            "Type": "string",
+            "Required": false
+        },
+        "MobilePhoneNumber": {
+            "Description": "The customer\u2019s mobile phone number.",
+            "Type": "string",
+            "Required": false
+        },
+        "HomePhoneNumber": {
+            "Description": "The customer\u2019s home phone number.",
+            "Type": "string",
+            "Required": false
+        },
+        "BusinessPhoneNumber": {
+            "Description": "The customer\u2019s business phone number.",
+            "Type": "string",
+            "Required": false
+        },
+        "EmailAddress": {
+            "Description": "The customer\u2019s email address, which has not been specified as a personal or business address.",
+            "Type": "string",
+            "Required": false
+        },
+        "PersonalEmailAddress": {
+            "Description": "The customer\u2019s personal email address.",
+            "Type": "string",
+            "Required": false
+        },
+        "BusinessEmailAddress": {
+            "Description": "The customer\u2019s business email address.",
+            "Type": "string",
+            "Required": false
+        },
+        "Address": {
+            "Description": "A generic address associated with the customer that is not mailing, shipping, or billing.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ShippingAddress": {
+            "Description": "The customer\u2019s shipping address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "MailingAddress": {
+            "Description": "The customer\u2019s mailing address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "BillingAddress": {
+            "Description": "The customer\u2019s billing address.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Attributes": {
+            "Description": "A key value pair of attributes of a customer profile.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

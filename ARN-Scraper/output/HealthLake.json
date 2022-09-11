@@ -1,0 +1,262 @@
+{
+    "create_fhir_datastore": {
+        "DatastoreName": {
+            "Description": "The user generated name for the Data Store.",
+            "Type": "string",
+            "Required": false
+        },
+        "DatastoreTypeVersion": {
+            "Description": "The FHIR version of the Data Store. The only supported version is R4.",
+            "Type": "string",
+            "Required": true
+        },
+        "SseConfiguration": {
+            "Description": "The server-side encryption key configuration for a customer provided encryption key specified for creating a Data Store.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PreloadDataConfig": {
+            "Description": "Optional parameter to preload data upon creation of the Data Store. Currently, the only supported preloaded data is synthetic data generated from Synthea.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "Optional user provided token used for ensuring idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Resource tags that are applied to a Data Store when it is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_fhir_datastore": {
+        "DatastoreId": {
+            "Description": "The AWS-generated ID for the Data Store to be deleted.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fhir_datastore": {
+        "DatastoreId": {
+            "Description": "The AWS-generated Data Store id. This is part of the \u2018CreateFHIRDatastore\u2019 output.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_fhir_export_job": {
+        "DatastoreId": {
+            "Description": "The AWS generated ID for the Data Store from which files are being exported from for an export job.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The AWS generated ID for an export job.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_fhir_import_job": {
+        "DatastoreId": {
+            "Description": "The AWS-generated ID of the Data Store.",
+            "Type": "string",
+            "Required": true
+        },
+        "JobId": {
+            "Description": "The AWS-generated job ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_fhir_datastores": {
+        "Filter": {
+            "Description": "Lists all filters associated with a FHIR Data Store request.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "Fetches the next page of Data Stores when results are paginated.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of Data Stores returned in a single page of a ListFHIRDatastoresRequest call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_fhir_export_jobs": {
+        "DatastoreId": {
+            "Description": "This parameter limits the response to the export job with the specified Data Store ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token used to identify the next page of results to return for a ListFHIRExportJobs query.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "This parameter limits the number of results returned for a ListFHIRExportJobs to a maximum quantity specified by the user.",
+            "Type": "integer",
+            "Required": false
+        },
+        "JobName": {
+            "Description": "This parameter limits the response to the export job with the specified job name.",
+            "Type": "string",
+            "Required": false
+        },
+        "JobStatus": {
+            "Description": "This parameter limits the response to the export jobs with the specified job status.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubmittedBefore": {
+            "Description": "This parameter limits the response to FHIR export jobs submitted before a user specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "SubmittedAfter": {
+            "Description": "This parameter limits the response to FHIR export jobs submitted after a user specified date.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_fhir_import_jobs": {
+        "DatastoreId": {
+            "Description": "This parameter limits the response to the import job with the specified Data Store ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token used to identify the next page of results to return for a ListFHIRImportJobs query.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "This parameter limits the number of results returned for a ListFHIRImportJobs to a maximum quantity specified by the user.",
+            "Type": "integer",
+            "Required": false
+        },
+        "JobName": {
+            "Description": "This parameter limits the response to the import job with the specified job name.",
+            "Type": "string",
+            "Required": false
+        },
+        "JobStatus": {
+            "Description": "This parameter limits the response to the import job with the specified job status.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubmittedBefore": {
+            "Description": "This parameter limits the response to FHIR import jobs submitted before a user specified date.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "SubmittedAfter": {
+            "Description": "This parameter limits the response to FHIR import jobs submitted after a user specified date.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name(ARN) of the Data Store for which tags are being added.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_fhir_export_job": {
+        "JobName": {
+            "Description": "The user generated name for an export job.",
+            "Type": "string",
+            "Required": false
+        },
+        "OutputDataConfig": {
+            "Description": "The output data configuration that was supplied when the export job was created.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DatastoreId": {
+            "Description": "The AWS generated ID for the Data Store from which files are being exported for an export job.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name used during the initiation of the job.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "An optional user provided token used for ensuring idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_fhir_import_job": {
+        "JobName": {
+            "Description": "The name of the FHIR Import job in the StartFHIRImport job request.",
+            "Type": "string",
+            "Required": false
+        },
+        "InputDataConfig": {
+            "Description": "The input properties of the FHIR Import job in the StartFHIRImport job request.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "JobOutputDataConfig": {
+            "Description": "The output data configuration that was supplied when the export job was created.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DatastoreId": {
+            "Description": "The AWS-generated Data Store ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataAccessRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) that gives Amazon HealthLake access permission.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "Optional user provided token used for ensuring idempotency.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name(ARN)that gives Amazon HealthLake access to the Data Store which tags are being added to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The user specified key and value pair tags being added to a Data Store.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "\"The Amazon Resource Name(ARN) of the Data Store for which tags are being removed",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys for the tags to be removed from the Healthlake Data Store.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    }
+}

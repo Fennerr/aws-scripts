@@ -1,0 +1,1079 @@
+{
+    "accept_grant": {
+        "GrantArn": {
+            "Description": "Amazon Resource Name (ARN) of the grant.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "check_in_license": {
+        "LicenseConsumptionToken": {
+            "Description": "License consumption token.",
+            "Type": "string",
+            "Required": true
+        },
+        "Beneficiary": {
+            "Description": "License beneficiary.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "checkout_borrow_license": {
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license. The license must use the borrow consumption configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Entitlements": {
+            "Description": "License entitlements. Partial checkouts are not supported.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "DigitalSignatureMethod": {
+            "Description": "Digital signature method. The possible value is JSON Web Signature (JWS) algorithm PS384. For more information, see RFC 7518 Digital Signature with RSASSA-PSS .",
+            "Type": "string",
+            "Required": true
+        },
+        "NodeId": {
+            "Description": "Node ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "CheckoutMetadata": {
+            "Description": "Information about constraints.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "checkout_license": {
+        "ProductSKU": {
+            "Description": "Product SKU.",
+            "Type": "string",
+            "Required": true
+        },
+        "CheckoutType": {
+            "Description": "Checkout type.",
+            "Type": "string",
+            "Required": true
+        },
+        "KeyFingerprint": {
+            "Description": "Key fingerprint identifying the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "Entitlements": {
+            "Description": "License entitlements.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Beneficiary": {
+            "Description": "License beneficiary.",
+            "Type": "string",
+            "Required": false
+        },
+        "NodeId": {
+            "Description": "Node ID.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_grant": {
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantName": {
+            "Description": "Grant name.",
+            "Type": "string",
+            "Required": true
+        },
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "Principals": {
+            "Description": "The grant principals.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "HomeRegion": {
+            "Description": "Home Region of the grant.",
+            "Type": "string",
+            "Required": true
+        },
+        "AllowedOperations": {
+            "Description": "Allowed operations for the grant.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_grant_version": {
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantArn": {
+            "Description": "Amazon Resource Name (ARN) of the grant.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantName": {
+            "Description": "Grant name.",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowedOperations": {
+            "Description": "Allowed operations for the grant.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Status": {
+            "Description": "Grant status.",
+            "Type": "string",
+            "Required": false
+        },
+        "StatusReason": {
+            "Description": "Grant status reason.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceVersion": {
+            "Description": "Current version of the grant.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_license": {
+        "LicenseName": {
+            "Description": "License name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProductName": {
+            "Description": "Product name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProductSKU": {
+            "Description": "Product SKU.",
+            "Type": "string",
+            "Required": true
+        },
+        "Issuer": {
+            "Description": "License issuer.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "HomeRegion": {
+            "Description": "Home Region for the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "Validity": {
+            "Description": "Date and time range during which the license is valid, in ISO8601-UTC format.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Entitlements": {
+            "Description": "License entitlements.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Beneficiary": {
+            "Description": "License beneficiary.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConsumptionConfiguration": {
+            "Description": "Configuration for consumption of the license. Choose a provisional configuration for workloads running with continuous connectivity. Choose a borrow configuration for workloads with offline usage.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LicenseMetadata": {
+            "Description": "Information about the license.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_license_configuration": {
+        "Name": {
+            "Description": "Name of the license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Description of the license configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "LicenseCountingType": {
+            "Description": "Dimension used to track the license inventory.",
+            "Type": "string",
+            "Required": true
+        },
+        "LicenseCount": {
+            "Description": "Number of licenses managed by the license configuration.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LicenseCountHardLimit": {
+            "Description": "Indicates whether hard or soft license enforcement is used. Exceeding a hard limit blocks the launch of new instances.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "LicenseRules": {
+            "Description": "License rules. The syntax is #name=value (for example, #allowedTenancy=EC2-DedicatedHost). The available rules vary by dimension, as follows.\nThe unit for licenseAffinityToHost is days and the range is 1 to 180. The possible values for allowedTenancy are EC2-Default, EC2-DedicatedHost, and EC2-DedicatedInstance. The possible values for honorVcpuOptimization are True and False .",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Tags": {
+            "Description": "Tags to add to the license configuration.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DisassociateWhenNotFound": {
+            "Description": "When true, disassociates a resource when software is uninstalled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ProductInformationList": {
+            "Description": "Product information.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_license_conversion_task_for_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the resource you are converting the license type for.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceLicenseContext": {
+            "Description": "Information that identifies the license type you are converting from. For the structure of the source license, see Convert a license type using the AWS CLI in the License Manager User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "DestinationLicenseContext": {
+            "Description": "Information that identifies the license type you are converting to. For the structure of the destination license, see Convert a license type using the AWS CLI in the License Manager User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "create_license_manager_report_generator": {
+        "ReportGeneratorName": {
+            "Description": "Name of the report generator.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "Type of reports to generate. The following report types an be generated:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "ReportContext": {
+            "Description": "Defines the type of license configuration the report generator tracks.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ReportFrequency": {
+            "Description": "Frequency by which reports are generated. Reports can be generated daily, monthly, or weekly.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Description of the report generator.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Tags to add to the report generator.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_license_version": {
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "LicenseName": {
+            "Description": "License name.",
+            "Type": "string",
+            "Required": true
+        },
+        "ProductName": {
+            "Description": "Product name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Issuer": {
+            "Description": "License issuer.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "HomeRegion": {
+            "Description": "Home Region of the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "Validity": {
+            "Description": "Date and time range during which the license is valid, in ISO8601-UTC format.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LicenseMetadata": {
+            "Description": "Information about the license.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Entitlements": {
+            "Description": "License entitlements.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ConsumptionConfiguration": {
+            "Description": "Configuration for consumption of the license. Choose a provisional configuration for workloads running with continuous connectivity. Choose a borrow configuration for workloads with offline usage.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Status": {
+            "Description": "License status.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceVersion": {
+            "Description": "Current version of the license.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_token": {
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license. The ARN is mapped to the aud claim of the JWT token.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArns": {
+            "Description": "Amazon Resource Name (ARN) of the IAM roles to embed in the token. License Manager does not check whether the roles are in use.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ExpirationInDays": {
+            "Description": "Token expiration, in days, counted from token creation. The default is 365 days.",
+            "Type": "integer",
+            "Required": false
+        },
+        "TokenProperties": {
+            "Description": "Data specified by the caller to be included in the JWT token. The data is mapped to the amr claim of the JWT token.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ClientToken": {
+            "Description": "Idempotency token, valid for 10 minutes.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_grant": {
+        "GrantArn": {
+            "Description": "Amazon Resource Name (ARN) of the grant.",
+            "Type": "string",
+            "Required": true
+        },
+        "StatusReason": {
+            "Description": "The Status reason for the delete request.",
+            "Type": "string",
+            "Required": false
+        },
+        "Version": {
+            "Description": "Current version of the grant.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_license": {
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceVersion": {
+            "Description": "Current version of the license.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_license_configuration": {
+        "LicenseConfigurationArn": {
+            "Description": "ID of the license configuration.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_license_manager_report_generator": {
+        "LicenseManagerReportGeneratorArn": {
+            "Description": "Amazon Resource Name (ARN) of the report generator to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_token": {
+        "TokenId": {
+            "Description": "Token ID.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "extend_license_consumption": {
+        "LicenseConsumptionToken": {
+            "Description": "License consumption token.",
+            "Type": "string",
+            "Required": true
+        },
+        "DryRun": {
+            "Description": "Checks whether you have the required permissions for the action, without actually making the request. Provides an error response if you do not have the required permissions.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_access_token": {
+        "Token": {
+            "Description": "Refresh token, encoded as a JWT token.",
+            "Type": "string",
+            "Required": true
+        },
+        "TokenProperties": {
+            "Description": "Token properties to validate against those present in the JWT token.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_grant": {
+        "GrantArn": {
+            "Description": "Amazon Resource Name (ARN) of the grant.",
+            "Type": "string",
+            "Required": true
+        },
+        "Version": {
+            "Description": "Grant version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_license": {
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "Version": {
+            "Description": "License version.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_license_configuration": {
+        "LicenseConfigurationArn": {
+            "Description": "Amazon Resource Name (ARN) of the license configuration.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_license_conversion_task": {
+        "LicenseConversionTaskId": {
+            "Description": "ID of the license type conversion task to retrieve information on.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_license_manager_report_generator": {
+        "LicenseManagerReportGeneratorArn": {
+            "Description": "Amazon Resource Name (ARN) of the report generator.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_license_usage": {
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_service_settings": "No parameters defined",
+    "list_associations_for_license_configuration": {
+        "LicenseConfigurationArn": {
+            "Description": "Amazon Resource Name (ARN) of a license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_distributed_grants": {
+        "GrantArns": {
+            "Description": "Amazon Resource Names (ARNs) of the grants.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_failures_for_license_configuration_operations": {
+        "LicenseConfigurationArn": {
+            "Description": "Amazon Resource Name of the license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_license_configurations": {
+        "LicenseConfigurationArns": {
+            "Description": "Amazon Resource Names (ARN) of the license configurations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters and logical operators are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_license_conversion_tasks": {
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. Valid filters are ResourceArns and Status .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "list_license_manager_report_generators": {
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_license_specifications_for_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of a resource that has an associated license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_license_versions": {
+        "LicenseArn": {
+            "Description": "Amazon Resource Name (ARN) of the license.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_licenses": {
+        "LicenseArns": {
+            "Description": "Amazon Resource Names (ARNs) of the licenses.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_received_grants": {
+        "GrantArns": {
+            "Description": "Amazon Resource Names (ARNs) of the grants.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_received_licenses": {
+        "LicenseArns": {
+            "Description": "Amazon Resource Names (ARNs) of the licenses.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_resource_inventory": {
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters and logical operators are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the license configuration.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tokens": {
+        "TokenIds": {
+            "Description": "Token IDs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filter is supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_usage_for_license_configuration": {
+        "LicenseConfigurationArn": {
+            "Description": "Amazon Resource Name (ARN) of the license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "Maximum number of results to return in a single call.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Token for the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters and logical operators are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        }
+    },
+    "reject_grant": {
+        "GrantArn": {
+            "Description": "Amazon Resource Name (ARN) of the grant.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "One or more tags.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "Keys identifying the tags to remove.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_license_configuration": {
+        "LicenseConfigurationArn": {
+            "Description": "Amazon Resource Name (ARN) of the license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "LicenseConfigurationStatus": {
+            "Description": "New status of the license configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "LicenseRules": {
+            "Description": "New license rule. The only rule that you can add after you create a license configuration is licenseAffinityToHost.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "LicenseCount": {
+            "Description": "New number of licenses managed by the license configuration.",
+            "Type": "integer",
+            "Required": false
+        },
+        "LicenseCountHardLimit": {
+            "Description": "New hard limit of the number of available licenses.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Name": {
+            "Description": "New name of the license configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "New description of the license configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "ProductInformationList": {
+            "Description": "New product information.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DisassociateWhenNotFound": {
+            "Description": "When true, disassociates a resource when software is uninstalled.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_license_manager_report_generator": {
+        "LicenseManagerReportGeneratorArn": {
+            "Description": "Amazon Resource Name (ARN) of the report generator to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "ReportGeneratorName": {
+            "Description": "Name of the report generator.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "Type of reports to generate. The following report types are supported:",
+            "Type": "list",
+            "Required": true,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "ReportContext": {
+            "Description": "The report context.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ReportFrequency": {
+            "Description": "Frequency by which reports are generated.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ClientToken": {
+            "Description": "Unique, case-sensitive identifier that you provide to ensure the idempotency of the request.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Description of the report generator.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_license_specifications_for_resource": {
+        "ResourceArn": {
+            "Description": "Amazon Resource Name (ARN) of the Amazon Web Services resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "AddLicenseSpecifications": {
+            "Description": "ARNs of the license configurations to add.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RemoveLicenseSpecifications": {
+            "Description": "ARNs of the license configurations to remove.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_service_settings": {
+        "S3BucketArn": {
+            "Description": "Amazon Resource Name (ARN) of the Amazon S3 bucket where the License Manager information is stored.",
+            "Type": "string",
+            "Required": false
+        },
+        "SnsTopicArn": {
+            "Description": "Amazon Resource Name (ARN) of the Amazon SNS topic used for License Manager alerts.",
+            "Type": "string",
+            "Required": false
+        },
+        "OrganizationConfiguration": {
+            "Description": "Enables integration with Organizations for cross-account discovery.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EnableCrossAccountsDiscovery": {
+            "Description": "Activates cross-account discovery.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "LicenseConfigurationArn": {
+            "Description": "Amazon Resource Name (ARN) of the license configuration.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "Filters to scope the results. The following filters and logical operators are supported:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

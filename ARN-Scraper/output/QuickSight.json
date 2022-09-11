@@ -1,0 +1,2857 @@
+{
+    "cancel_ingestion": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "The ID of the dataset used in the ingestion.",
+            "Type": "string",
+            "Required": true
+        },
+        "IngestionId": {
+            "Description": "An ID for the ingestion.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_account_customization": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that you want to customize Amazon QuickSight for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The Amazon QuickSight namespace that you want to add customizations to.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccountCustomization": {
+            "Description": "The Amazon QuickSight customizations you're adding in the current Amazon Web Services Region. You can add these to an Amazon Web Services account and a QuickSight namespace.\nFor example, you can add a default theme by setting AccountCustomization to the midnight theme: \"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight::aws:theme/MIDNIGHT\" }. Or, you can add a custom theme by specifying \"AccountCustomization\": { \"DefaultTheme\": \"arn:aws:quicksight:us-west-2:111122223333:theme/bdb844d0-0fe9-4d9d-b520-0fe602d93639\" } .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "A list of the tags that you want to attach to this resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_account_subscription": {
+        "Edition": {
+            "Description": "The edition of Amazon QuickSight that you want your account to have. Currently, you can choose from ENTERPRISE or ENTERPRISE_AND_Q .\nIf you choose ENTERPRISE_AND_Q, the following parameters are required:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "AuthenticationMethod": {
+            "Description": "The method that you want to use to authenticate your Amazon QuickSight account. Currently, the valid values for this parameter are IAM_AND_QUICKSIGHT, IAM_ONLY, and ACTIVE_DIRECTORY .\nIf you choose ACTIVE_DIRECTORY, provide an ActiveDirectoryName and an AdminGroup associated with your Active Directory.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID of the account that you're using to create your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "AccountName": {
+            "Description": "The name of your Amazon QuickSight account. This name is unique over all of Amazon Web Services, and it appears only when users sign in. You can't change AccountName value after the Amazon QuickSight account is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "NotificationEmail": {
+            "Description": "The email address that you want Amazon QuickSight to send notifications to regarding your Amazon QuickSight account or Amazon QuickSight subscription.",
+            "Type": "string",
+            "Required": true
+        },
+        "ActiveDirectoryName": {
+            "Description": "The name of your Active Directory. This field is required if ACTIVE_DIRECTORY is the selected authentication method of the new Amazon QuickSight account.",
+            "Type": "string",
+            "Required": false
+        },
+        "Realm": {
+            "Description": "The realm of the Active Directory that is associated with your Amazon QuickSight account. This field is required if ACTIVE_DIRECTORY is the selected authentication method of the new Amazon QuickSight account.",
+            "Type": "string",
+            "Required": false
+        },
+        "DirectoryId": {
+            "Description": "The ID of the Active Directory that is associated with your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": false
+        },
+        "AdminGroup": {
+            "Description": "The admin group associated with your Active Directory. This field is required if ACTIVE_DIRECTORY is the selected authentication method of the new Amazon QuickSight account. For more information about using Active Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight Enterprise Edition in the Amazon QuickSight User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AuthorGroup": {
+            "Description": "The author group associated with your Active Directory. For more information about using Active Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight Enterprise Edition in the Amazon QuickSight User Guide.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ReaderGroup": {
+            "Description": "The reader group associated with your Active Direcrtory. For more information about using Active Directory in Amazon QuickSight, see Using Active Directory with Amazon QuickSight Enterprise Edition in the Amazon QuickSight User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FirstName": {
+            "Description": "The first name of the author of the Amazon QuickSight account to use for future communications. This field is required if ENTERPPRISE_AND_Q is the selected edition of the new Amazon QuickSight account.",
+            "Type": "string",
+            "Required": false
+        },
+        "LastName": {
+            "Description": "The last name of the author of the Amazon QuickSight account to use for future communications. This field is required if ENTERPPRISE_AND_Q is the selected edition of the new Amazon QuickSight account.",
+            "Type": "string",
+            "Required": false
+        },
+        "EmailAddress": {
+            "Description": "The email address of the author of the Amazon QuickSight account to use for future communications. This field is required if ENTERPPRISE_AND_Q is the selected edition of the new Amazon QuickSight account.",
+            "Type": "string",
+            "Required": false
+        },
+        "ContactNumber": {
+            "Description": "A 10-digit phone number for the author of the Amazon QuickSight account to use for future communications. This field is required if ENTERPPRISE_AND_Q is the selected edition of the new Amazon QuickSight account.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_analysis": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account where you are creating an analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalysisId": {
+            "Description": "The ID for the analysis that you're creating. This ID displays in the URL of the analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A descriptive name for the analysis that you're creating. This name displays for the analysis in the Amazon QuickSight console.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "The parameter names and override values that you want to use. An analysis can have any parameter type, and some parameters might accept multiple values.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Permissions": {
+            "Description": "A structure that describes the principals and the resource-level permissions on an analysis. You can use the Permissions structure to grant permissions by providing a list of Identity and Access Management (IAM) action information for each principal listed by Amazon Resource Name (ARN).\nTo specify no permissions, omit Permissions .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceEntity": {
+            "Description": "A source entity to use for the analysis that you're creating. This metadata structure contains details that describe a source template and one or more datasets.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ThemeArn": {
+            "Description": "The ARN for the theme to apply to the analysis that you're creating. To see the theme in the Amazon QuickSight console, make sure that you have access to it.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Contains a map of the key-value pairs for the resource tag or tags assigned to the analysis.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_dashboard": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account where you want to create the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard, also added to the IAM policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The display name of the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "The parameters for the creation of the dashboard, which you want to use to override the default settings. A dashboard can have any type of parameters, and some parameters might accept multiple values.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Permissions": {
+            "Description": "A structure that contains the permissions of the dashboard. You can use this structure for granting permissions by providing a list of IAM action information for each principal ARN.\nTo specify no permissions, omit the permissions list.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceEntity": {
+            "Description": "The entity that you are using as a source when you create the dashboard. In SourceEntity, you specify the type of object you're using as source. You can only create a dashboard from a template, so you use a SourceTemplate entity. If you need to create a dashboard from an analysis, first convert the analysis to a template by using the `` CreateTemplate `` API operation. For SourceTemplate, specify the Amazon Resource Name (ARN) of the source template. The SourceTemplate ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region.\nUse the DataSetReferences entity within SourceTemplate to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Contains a map of the key-value pairs for the resource tag or tags assigned to the dashboard.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VersionDescription": {
+            "Description": "A description for the first version of the dashboard being created.",
+            "Type": "string",
+            "Required": false
+        },
+        "DashboardPublishOptions": {
+            "Description": "Options for publishing the dashboard when you create it:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ThemeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If you add a value for this field, it overrides the value that is used in the source entity. The theme ARN must exist in the same Amazon Web Services account where you create the dashboard.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_data_set": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "An ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The display name for the dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "PhysicalTableMap": {
+            "Description": "Declares the physical tables that are available in the underlying data sources.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LogicalTableMap": {
+            "Description": "Configures the combination and transformation of the data from the physical tables.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ImportMode": {
+            "Description": "Indicates whether you want to import the data into SPICE.",
+            "Type": "string",
+            "Required": true
+        },
+        "ColumnGroups": {
+            "Description": "Groupings of columns that work together in certain Amazon QuickSight features. Currently, only geospatial hierarchy is supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FieldFolders": {
+            "Description": "The folder that contains fields and nested subfolders for your dataset.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Permissions": {
+            "Description": "A list of resource permissions on the dataset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RowLevelPermissionDataSet": {
+            "Description": "The row-level security configuration for the data that you want to create.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RowLevelPermissionTagConfiguration": {
+            "Description": "The configuration of tags on a dataset to set row-level security. Row-level security tags are currently supported for anonymous embedding only.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ColumnLevelPermissionRules": {
+            "Description": "A set of one or more definitions of a `` ColumnLevelPermissionRule `` .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Contains a map of the key-value pairs for the resource tag or tags assigned to the dataset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DataSetUsageConfiguration": {
+            "Description": "The usage configuration to apply to child datasets that reference this dataset as a source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_data_source": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "An ID for the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A display name for the data source.",
+            "Type": "string",
+            "Required": true
+        },
+        "Type": {
+            "Description": "The type of the data source. To return a list of all data sources, use ListDataSources .\nUse AMAZON_ELASTICSEARCH for Amazon OpenSearch Service.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceParameters": {
+            "Description": "The parameters that Amazon QuickSight uses to connect to your underlying source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Credentials": {
+            "Description": "The credentials Amazon QuickSight that uses to connect to your underlying source. Currently, only credentials based on user name and password are supported.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Permissions": {
+            "Description": "A list of resource permissions on the data source.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VpcConnectionProperties": {
+            "Description": "Use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SslProperties": {
+            "Description": "Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Contains a map of the key-value pairs for the resource tag or tags assigned to the data source.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_folder": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account where you want to create the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the folder.",
+            "Type": "string",
+            "Required": false
+        },
+        "FolderType": {
+            "Description": "The type of folder. By default, folderType is SHARED .",
+            "Type": "string",
+            "Required": false
+        },
+        "ParentFolderArn": {
+            "Description": "The Amazon Resource Name (ARN) for the parent folder.",
+            "Type": "string",
+            "Required": false
+        },
+        "Permissions": {
+            "Description": "A structure that describes the principals and the resource-level permissions of a folder.\nTo specify no permissions, omit Permissions .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Tags for the folder.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_folder_membership": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The ID of the asset (the dashboard, analysis, or dataset).",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberType": {
+            "Description": "The type of the member, including DASHBOARD, ANALYSIS, and DATASET .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_group": {
+        "GroupName": {
+            "Description": "A name for the group that you want to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description for the group that you want to create.",
+            "Type": "string",
+            "Required": false
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that you want the group to be a part of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_group_membership": {
+        "MemberName": {
+            "Description": "The name of the user that you want to add to the group membership.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The name of the group that you want to add the user to.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that you want the user to be a part of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_iam_policy_assignment": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account where you want to assign an IAM policy to Amazon QuickSight users or groups.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentName": {
+            "Description": "The name of the assignment, also called a rule. It must be unique within an Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentStatus": {
+            "Description": "The status of the assignment. Possible values are as follows:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "PolicyArn": {
+            "Description": "The ARN for the IAM policy to apply to the Amazon QuickSight users and groups specified in this assignment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Identities": {
+            "Description": "The Amazon QuickSight users, groups, or both that you want to assign the policy to.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Namespace": {
+            "Description": "The namespace that contains the assignment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_ingestion": {
+        "DataSetId": {
+            "Description": "The ID of the dataset used in the ingestion.",
+            "Type": "string",
+            "Required": true
+        },
+        "IngestionId": {
+            "Description": "An ID for the ingestion.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "IngestionType": {
+            "Description": "The type of ingestion that you want to create.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_namespace": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that you want to create the Amazon QuickSight namespace in.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The name that you want to use to describe the new namespace.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityStore": {
+            "Description": "Specifies the type of your user identity directory. Currently, this supports users with an identity type of QUICKSIGHT .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags that you want to associate with the namespace that you're creating.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_template": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. You use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "An ID for the template that you want to create. This template is unique per Amazon Web Services Region; in each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A display name for the template.",
+            "Type": "string",
+            "Required": false
+        },
+        "Permissions": {
+            "Description": "A list of resource permissions to be set on the template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceEntity": {
+            "Description": "The entity that you are using as a source when you create the template. In SourceEntity, you specify the type of object you're using as source: SourceTemplate for a template or SourceAnalysis for an analysis. Both of these require an Amazon Resource Name (ARN). For SourceTemplate, specify the ARN of the source template. For SourceAnalysis, specify the ARN of the source analysis. The SourceTemplate ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region.\nUse the DataSetReferences entity within SourceTemplate or SourceAnalysis to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VersionDescription": {
+            "Description": "A description of the current template version being created. This API operation creates the first version of the template. Every time UpdateTemplate is called, a new version is created. Each version of the template maintains a description of the version in the VersionDescription field.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_template_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template that you creating an alias for.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "An ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The name that you want to give to the template alias that you're creating. Don't start the alias name with the $ character. Alias names that start with $ are reserved by Amazon QuickSight.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateVersionNumber": {
+            "Description": "The version number of the template.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "create_theme": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account where you want to store the new theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "An ID for the theme that you want to create. The theme ID is unique per Amazon Web Services Region in each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A display name for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "BaseThemeId": {
+            "Description": "The ID of the theme that a custom theme will inherit from. All themes inherit from one of the starting themes defined by Amazon QuickSight. For a list of the starting themes, use ListThemes or choose Themes from within an analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionDescription": {
+            "Description": "A description of the first version of the theme that you're creating. Every time UpdateTheme is called, a new version is created. Each version of the theme has a description of the version in the VersionDescription field.",
+            "Type": "string",
+            "Required": false
+        },
+        "Configuration": {
+            "Description": "The theme configuration, which contains the theme display properties.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Permissions": {
+            "Description": "A valid grouping of resource permissions to apply to the new theme.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "A map of the key-value pairs for the resource tag or tags that you want to add to the resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_theme_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme for the new theme alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "An ID for the theme alias.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The name that you want to give to the theme alias that you are creating. The alias name can't begin with a $. Alias names that start with $ are reserved by Amazon QuickSight.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeVersionNumber": {
+            "Description": "The version number of the theme.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "delete_account_customization": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that you want to delete Amazon QuickSight customizations from in this Amazon Web Services Region.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The Amazon QuickSight namespace that you're deleting the customizations from.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_analysis": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account where you want to delete an analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalysisId": {
+            "Description": "The ID of the analysis that you're deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "RecoveryWindowInDays": {
+            "Description": "A value that specifies the number of days that Amazon QuickSight waits before it deletes the analysis. You can't use this parameter with the ForceDeleteWithoutRecovery option in the same API call. The default value is 30.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ForceDeleteWithoutRecovery": {
+            "Description": "This option defaults to the value NoForceDeleteWithoutRecovery . To immediately delete the analysis, add the ForceDeleteWithoutRecovery option. You can't restore an analysis after it's deleted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_dashboard": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboard that you're deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number of the dashboard. If the version number property is provided, only the specified version of the dashboard is deleted.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_data_set": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_data_source": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_folder": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_folder_membership": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The Folder ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberId": {
+            "Description": "The ID of the asset (the dashboard, analysis, or dataset) that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "MemberType": {
+            "Description": "The type of the member, including DASHBOARD, ANALYSIS, and DATASET",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_group": {
+        "GroupName": {
+            "Description": "The name of the group that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace of the group that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_group_membership": {
+        "MemberName": {
+            "Description": "The name of the user that you want to delete from the group membership.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The name of the group that you want to delete the user from.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace of the group that you want to remove a user from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_iam_policy_assignment": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID where you want to delete the IAM policy assignment.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentName": {
+            "Description": "The name of the assignment.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that contains the assignment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_namespace": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that you want to delete the Amazon QuickSight namespace from.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_template": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template that you're deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "An ID for the template you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "Specifies the version of the template that you want to delete. If you don't provide a version number, DeleteTemplate deletes all versions of the template.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_template_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the item to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template that the specified alias is for.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The name for the template alias. To delete a specific alias, you delete the version that the alias points to. You can specify the alias name, or specify the latest version of the template by providing the keyword $LATEST in the AliasName parameter.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_theme": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme that you're deleting.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "An ID for the theme that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version of the theme that you want to delete.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_theme_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme alias to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme that the specified alias is for.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The unique name for the theme alias to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user": {
+        "UserName": {
+            "Description": "The name of the user that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace. Currently, you should set this to default .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_user_by_principal_id": {
+        "PrincipalId": {
+            "Description": "The principal ID of the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace. Currently, you should set this to default .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account_customization": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that you want to describe Amazon QuickSight customizations for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The Amazon QuickSight namespace that you want to describe Amazon QuickSight customizations for.",
+            "Type": "string",
+            "Required": false
+        },
+        "Resolved": {
+            "Description": "The Resolved flag works with the other parameters to determine which view of Amazon QuickSight customizations is returned. You can add this flag to your command to use the same view that Amazon QuickSight uses to identify which customizations to apply to the console. Omit this flag, or set it to no-resolved , to reveal customizations that are configured at different levels.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_account_settings": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the settings that you want to list.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_account_subscription": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID associated with your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_analysis": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the analysis. You must be using the Amazon Web Services account that the analysis is in.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalysisId": {
+            "Description": "The ID of the analysis that you're describing. The ID is part of the URL of the analysis.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_analysis_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the analysis whose permissions you're describing. You must be using the Amazon Web Services account that the analysis is in.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalysisId": {
+            "Description": "The ID of the analysis whose permissions you're describing. The ID is part of the analysis URL.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_dashboard": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboard that you're describing.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number for the dashboard. If a version number isn't passed, the latest published dashboard version is described.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AliasName": {
+            "Description": "The alias name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_dashboard_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboard that you're describing permissions for.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard, also added to the IAM policy.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_data_set": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_data_set_permissions": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "The ID for the dataset that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_data_source": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_data_source_permissions": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_folder": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_folder_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_folder_resolved_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_group": {
+        "GroupName": {
+            "Description": "The name of the group that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace of the group that you want described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_group_membership": {
+        "MemberName": {
+            "Description": "The user name of the user that you want to search for.",
+            "Type": "string",
+            "Required": true
+        },
+        "GroupName": {
+            "Description": "The name of the group that you want to search.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that includes the group you are searching within.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_iam_policy_assignment": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the assignment that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentName": {
+            "Description": "The name of the assignment, also called a rule.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that contains the assignment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_ingestion": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "The ID of the dataset used in the ingestion.",
+            "Type": "string",
+            "Required": true
+        },
+        "IngestionId": {
+            "Description": "An ID for the ingestion.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_ip_restriction": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the IP rules.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_namespace": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the Amazon QuickSight namespace that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_template": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template that you're describing.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "(Optional) The number for the version to describe. If a VersionNumber parameter value isn't provided, the latest version of the template is described.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AliasName": {
+            "Description": "The alias of the template that you want to describe. If you name a specific alias, you describe the version that the alias points to. You can specify the latest version of the template by providing the keyword $LATEST in the AliasName parameter. The keyword $PUBLISHED doesn't apply to templates.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_template_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template alias that you're describing.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The name of the template alias that you want to describe. If you name a specific alias, you describe the version that the alias points to. You can specify the latest version of the template by providing the keyword $LATEST in the AliasName parameter. The keyword $PUBLISHED doesn't apply to templates.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_template_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template that you're describing.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_theme": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme that you're describing.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number for the version to describe. If a VersionNumber parameter value isn't provided, the latest version of the theme is described.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AliasName": {
+            "Description": "The alias of the theme that you want to describe. If you name a specific alias, you describe the version that the alias points to. You can specify the latest version of the theme by providing the keyword $LATEST in the AliasName parameter. The keyword $PUBLISHED doesn't apply to themes.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_theme_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme alias that you're describing.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The name of the theme alias that you want to describe.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_theme_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme that you're describing.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme that you want to describe permissions for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_user": {
+        "UserName": {
+            "Description": "The name of the user that you want to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace. Currently, you should set this to default .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "generate_embed_url_for_anonymous_user": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the dashboard that you're embedding.",
+            "Type": "string",
+            "Required": true
+        },
+        "SessionLifetimeInMinutes": {
+            "Description": "How many minutes the session is valid. The session lifetime must be in [15-600] minutes range.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Namespace": {
+            "Description": "The Amazon QuickSight namespace that the anonymous user virtually belongs to. If you are not using an Amazon QuickSight custom namespace, set this to default .",
+            "Type": "string",
+            "Required": true
+        },
+        "SessionTags": {
+            "Description": "The session tags used for row-level security. Before you use this parameter, make sure that you have configured the relevant datasets using the DataSet$RowLevelPermissionTagConfiguration parameter so that session tags can be used to provide row-level security.\nThese are not the tags used for the Amazon Web Services resource tagging feature. For more information, see Using Row-Level Security (RLS) with Tags in the Amazon QuickSight User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AuthorizedResourceArns": {
+            "Description": "The Amazon Resource Names (ARNs) for the Amazon QuickSight resources that the user is authorized to access during the lifetime of the session. If you choose Dashboard embedding experience, pass the list of dashboard ARNs in the account that you want the user to be able to view. Currently, you can pass up to 25 dashboard ARNs in each API call.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "ExperienceConfiguration": {
+            "Description": "The configuration of the experience that you are embedding.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AllowedDomains": {
+            "Description": "The domains that you want to add to the allow list for access to the generated URL that is then embedded. This optional parameter overrides the static domains that are configured in the Manage QuickSight menu in the Amazon QuickSight console. Instead, it allows only the domains that you include in this parameter. You can list up to three domains or subdomains in each API call.\nTo include all subdomains under a specific domain to the allow list, use *. For example, https://*.sapp.amazon.com includes all subdomains under https://sapp.amazon.com .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "generate_embed_url_for_registered_user": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the dashboard that you're embedding.",
+            "Type": "string",
+            "Required": true
+        },
+        "SessionLifetimeInMinutes": {
+            "Description": "How many minutes the session is valid. The session lifetime must be in [15-600] minutes range.",
+            "Type": "integer",
+            "Required": false
+        },
+        "UserArn": {
+            "Description": "The Amazon Resource Name for the registered user.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExperienceConfiguration": {
+            "Description": "The experience you are embedding. For registered users, you can embed Amazon QuickSight dashboards, Amazon QuickSight visuals, the Amazon QuickSight Q search bar, or the entire Amazon QuickSight console.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "AllowedDomains": {
+            "Description": "The domains that you want to add to the allow list for access to the generated URL that is then embedded. This optional parameter overrides the static domains that are configured in the Manage QuickSight menu in the Amazon QuickSight console. Instead, it allows only the domains that you include in this parameter. You can list up to three domains or subdomains in each API call.\nTo include all subdomains under a specific domain to the allow list, use *. For example, https://*.sapp.amazon.com includes all subdomains under https://sapp.amazon.com .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_dashboard_embed_url": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the dashboard that you're embedding.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard, also added to the Identity and Access Management (IAM) policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "IdentityType": {
+            "Description": "The authentication method that the user uses to sign in.",
+            "Type": "string",
+            "Required": true
+        },
+        "SessionLifetimeInMinutes": {
+            "Description": "How many minutes the session is valid. The session lifetime must be 15-600 minutes.",
+            "Type": "integer",
+            "Required": false
+        },
+        "UndoRedoDisabled": {
+            "Description": "Remove the undo/redo button on the embedded dashboard. The default is FALSE, which enables the undo/redo button.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ResetDisabled": {
+            "Description": "Remove the reset button on the embedded dashboard. The default is FALSE, which enables the reset button.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "StatePersistenceEnabled": {
+            "Description": "Adds persistence of state for the user session in an embedded dashboard. Persistence applies to the sheet and the parameter settings. These are control settings that the dashboard subscriber (Amazon QuickSight reader) chooses while viewing the dashboard. If this is set to TRUE , the settings are the same when the subscriber reopens the same dashboard URL. The state is stored in Amazon QuickSight, not in a browser cookie. If this is set to FALSE, the state of the user session is not persisted. The default is FALSE .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "UserArn": {
+            "Description": "The Amazon QuickSight user's Amazon Resource Name (ARN), for use with QUICKSIGHT identity type. You can use this for any Amazon QuickSight users in your account (readers, authors, or admins) authenticated as one of the following:\nOmit this parameter for users in the third group \u2013 IAM users and IAM role-based sessions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Namespace": {
+            "Description": "The Amazon QuickSight namespace that contains the dashboard IDs in this request. If you're not using a custom namespace, set Namespace = default .",
+            "Type": "string",
+            "Required": false
+        },
+        "AdditionalDashboardIds": {
+            "Description": "A list of one or more dashboard IDs that you want anonymous users to have tempporary access to. Currently, the IdentityType parameter must be set to ANONYMOUS because other identity types authenticate as Amazon QuickSight or IAM users. For example, if you set \"--dashboard-id dash_id1 --dashboard-id dash_id2 dash_id3 identity-type ANONYMOUS \", the session can access all three dashboards.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_session_embed_url": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account associated with your Amazon QuickSight subscription.",
+            "Type": "string",
+            "Required": true
+        },
+        "EntryPoint": {
+            "Description": "The URL you use to access the embedded session. The entry point URL is constrained to the following paths:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SessionLifetimeInMinutes": {
+            "Description": "How many minutes the session is valid. The session lifetime must be 15-600 minutes.",
+            "Type": "integer",
+            "Required": false
+        },
+        "UserArn": {
+            "Description": "The Amazon QuickSight user's Amazon Resource Name (ARN), for use with QUICKSIGHT identity type. You can use this for any type of Amazon QuickSight users in your account (readers, authors, or admins). They need to be authenticated as one of the following:\nOmit this parameter for users in the third group, IAM users and IAM role-based sessions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_analyses": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the analyses.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token that can be used in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dashboard_versions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboard that you're listing versions for.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_dashboards": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboards that you're listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_data_sets": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_data_sources": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_folder_members": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_folders": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_group_memberships": {
+        "GroupName": {
+            "Description": "The name of the group that you want to see a membership list of.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token that can be used in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return from this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace of the group that you want a list of users from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_groups": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token that can be used in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Namespace": {
+            "Description": "The namespace that you want a list of groups from.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_iam_policy_assignments": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains these IAM policy assignments.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentStatus": {
+            "Description": "The status of the assignments.",
+            "Type": "string",
+            "Required": false
+        },
+        "Namespace": {
+            "Description": "The namespace for the assignments.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_iam_policy_assignments_for_user": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the assignments.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The name of the user.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Namespace": {
+            "Description": "The namespace of the assignment.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_ingestions": {
+        "DataSetId": {
+            "Description": "The ID of the dataset used in the ingestion.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_namespaces": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the Amazon QuickSight namespaces that you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A unique pagination token that can be used in a subsequent request. You will receive a pagination token in the response body of a previous ListNameSpaces API call if there is more data that can be returned. To receive the data, make another ListNamespaces API call with the returned token to retrieve the next page of data. Each token is valid for 24 hours. If you try to make a ListNamespaces API call with an expired token, you will receive a HTTP 400 InvalidNextTokenException error.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want a list of tags for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_template_aliases": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template aliases that you're listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_template_versions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the templates that you're listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_templates": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the templates that you're listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_theme_aliases": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme aliases that you're listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_theme_versions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the themes that you're listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_themes": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the themes that you're listing.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Type": {
+            "Description": "The type of themes that you want to list. Valid options include the following:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "list_user_groups": {
+        "UserName": {
+            "Description": "The Amazon QuickSight user name that you want to list group memberships for.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace. Currently, you should set this to default .",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token that can be used in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return from this request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_users": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token that can be used in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return from this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Namespace": {
+            "Description": "The namespace. Currently, you should set this to default .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "register_user": {
+        "IdentityType": {
+            "Description": "Amazon QuickSight supports several ways of managing the identity of users. This parameter accepts two values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Email": {
+            "Description": "The email address of the user that you want to register.",
+            "Type": "string",
+            "Required": true
+        },
+        "UserRole": {
+            "Description": "The Amazon QuickSight role for the user. The user role can be one of the following:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "IamArn": {
+            "Description": "The ARN of the IAM user or role that you are registering with Amazon QuickSight.",
+            "Type": "string",
+            "Required": false
+        },
+        "SessionName": {
+            "Description": "You need to use this parameter only when you register one or more users using an assumed IAM role. You don't need to provide the session name for other scenarios, for example when you are registering an IAM user or an Amazon QuickSight user. You can register multiple users using the same IAM role if each user has a different session name. For more information on assuming IAM roles, see ` assume-role https://docs.aws.amazon.com/cli/latest/reference/sts/assume-role.html`__ in the CLI Reference.",
+            "Type": "string",
+            "Required": false
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace. Currently, you should set this to default .",
+            "Type": "string",
+            "Required": true
+        },
+        "UserName": {
+            "Description": "The Amazon QuickSight user name that you want to create for the user you are registering.",
+            "Type": "string",
+            "Required": false
+        },
+        "CustomPermissionsName": {
+            "Description": "(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:\nTo add custom permissions to an existing user, use `` UpdateUser `` instead.\nA set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the RegisterUser API operation to assign the named set of permissions to a Amazon QuickSight user.\nAmazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).\nThis feature is available only to Amazon QuickSight Enterprise edition subscriptions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ExternalLoginFederationProviderType": {
+            "Description": "The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. The type of supported external login provider can be one of the following.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CustomFederationProviderUrl": {
+            "Description": "The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. This parameter should only be used when ExternalLoginFederationProviderType parameter is set to CUSTOM_OIDC .",
+            "Type": "string",
+            "Required": false
+        },
+        "ExternalLoginId": {
+            "Description": "The identity ID for a user in the external login provider.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "restore_analysis": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalysisId": {
+            "Description": "The ID of the analysis that you're restoring.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "search_analyses": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the analyses that you're searching for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "The structure for the search filters that you want to apply to your search.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "A pagination token that can be used in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_dashboards": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the user whose dashboards you're searching for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "The filters to apply to the search. Currently, you can search only by user name, for example, \"Filters\": [ { \"Name\": \"QUICKSIGHT_USER\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\" } ]",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_folders": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "The filters to apply to the search. Currently, you can search only by the parent folder ARN. For example, \"Filters\": [ { \"Name\": \"PARENT_FOLDER_ARN\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:folder/folderId\" } ] .",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "NextToken": {
+            "Description": "The token for the next set of results, or null if there are no more results.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "search_groups": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "A pagination token that can be used in a subsequent request.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return from this request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Namespace": {
+            "Description": "The namespace that you want to search.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "The structure for the search filters that you want to apply to your search.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Contains a map of the key-value pairs for the resource tag or tags assigned to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to untag.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The keys of the key-value pairs for the resource tag or tags assigned to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_account_customization": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that you want to update Amazon QuickSight customizations for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace that you want to update Amazon QuickSight customizations for.",
+            "Type": "string",
+            "Required": false
+        },
+        "AccountCustomization": {
+            "Description": "The Amazon QuickSight customizations you're updating in the current Amazon Web Services Region.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_account_settings": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the Amazon QuickSight settings that you want to list.",
+            "Type": "string",
+            "Required": true
+        },
+        "DefaultNamespace": {
+            "Description": "The default namespace for this Amazon Web Services account. Currently, the default is default. Identity and Access Management (IAM) users that register for the first time with Amazon QuickSight provide an email address that becomes associated with the default namespace.",
+            "Type": "string",
+            "Required": true
+        },
+        "NotificationEmail": {
+            "Description": "The email address that you want Amazon QuickSight to send notifications to regarding your Amazon Web Services account or Amazon QuickSight subscription.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_analysis": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the analysis that you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalysisId": {
+            "Description": "The ID for the analysis that you're updating. This ID displays in the URL of the analysis.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A descriptive name for the analysis that you're updating. This name displays for the analysis in the Amazon QuickSight console.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "The parameter names and override values that you want to use. An analysis can have any parameter type, and some parameters might accept multiple values.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SourceEntity": {
+            "Description": "A source entity to use for the analysis that you're updating. This metadata structure contains details that describe a source template and one or more datasets.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "ThemeArn": {
+            "Description": "The Amazon Resource Name (ARN) for the theme to apply to the analysis that you're creating. To see the theme in the Amazon QuickSight console, make sure that you have access to it.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_analysis_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the analysis whose permissions you're updating. You must be using the Amazon Web Services account that the analysis is in.",
+            "Type": "string",
+            "Required": true
+        },
+        "AnalysisId": {
+            "Description": "The ID of the analysis whose permissions you're updating. The ID is part of the analysis URL.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantPermissions": {
+            "Description": "A structure that describes the permissions to add and the principal to add them to.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokePermissions": {
+            "Description": "A structure that describes the permissions to remove and the principal to remove them from.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_dashboard": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboard that you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The display name of the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceEntity": {
+            "Description": "The entity that you are using as a source when you update the dashboard. In SourceEntity, you specify the type of object you're using as source. You can only update a dashboard from a template, so you use a SourceTemplate entity. If you need to update a dashboard from an analysis, first convert the analysis to a template by using the `` CreateTemplate `` API operation. For SourceTemplate, specify the Amazon Resource Name (ARN) of the source template. The SourceTemplate ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region.\nUse the DataSetReferences entity within SourceTemplate to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Parameters": {
+            "Description": "A structure that contains the parameters of the dashboard. These are parameter overrides for a dashboard. A dashboard can have any type of parameters, and some parameters might accept multiple values.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VersionDescription": {
+            "Description": "A description for the first version of the dashboard being created.",
+            "Type": "string",
+            "Required": false
+        },
+        "DashboardPublishOptions": {
+            "Description": "Options for publishing the dashboard when you create it:",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": [
+                {},
+                {}
+            ]
+        },
+        "ThemeArn": {
+            "Description": "The Amazon Resource Name (ARN) of the theme that is being used for this dashboard. If you add a value for this field, it overrides the value that was originally associated with the entity. The theme ARN must exist in the same Amazon Web Services account where you create the dashboard.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_dashboard_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboard whose permissions you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantPermissions": {
+            "Description": "The permissions that you want to grant on this resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokePermissions": {
+            "Description": "The permissions that you want to revoke from this resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "GrantLinkPermissions": {
+            "Description": "Grants link permissions to all users in a defined namespace.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokeLinkPermissions": {
+            "Description": "Revokes link permissions from all users in a defined namespace.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_dashboard_published_version": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the dashboard that you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "DashboardId": {
+            "Description": "The ID for the dashboard.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version number of the dashboard.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "update_data_set": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "The ID for the dataset that you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The display name for the dataset.",
+            "Type": "string",
+            "Required": true
+        },
+        "PhysicalTableMap": {
+            "Description": "Declares the physical tables that are available in the underlying data sources.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "LogicalTableMap": {
+            "Description": "Configures the combination and transformation of the data from the physical tables.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ImportMode": {
+            "Description": "Indicates whether you want to import the data into SPICE.",
+            "Type": "string",
+            "Required": true
+        },
+        "ColumnGroups": {
+            "Description": "Groupings of columns that work together in certain Amazon QuickSight features. Currently, only geospatial hierarchy is supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "FieldFolders": {
+            "Description": "The folder that contains fields and nested subfolders for your dataset.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RowLevelPermissionDataSet": {
+            "Description": "The row-level security configuration for the data you want to create.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "RowLevelPermissionTagConfiguration": {
+            "Description": "The configuration of tags on a dataset to set row-level security. Row-level security tags are currently supported for anonymous embedding only.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "ColumnLevelPermissionRules": {
+            "Description": "A set of one or more definitions of a `` ColumnLevelPermissionRule `` .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DataSetUsageConfiguration": {
+            "Description": "The usage configuration to apply to child datasets that reference this dataset as a source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_data_set_permissions": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSetId": {
+            "Description": "The ID for the dataset whose permissions you want to update. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantPermissions": {
+            "Description": "The resource permissions that you want to grant to the dataset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokePermissions": {
+            "Description": "The resource permissions that you want to revoke from the dataset.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_data_source": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A display name for the data source.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceParameters": {
+            "Description": "The parameters that Amazon QuickSight uses to connect to your underlying source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Credentials": {
+            "Description": "The credentials that Amazon QuickSight that uses to connect to your underlying source. Currently, only credentials based on user name and password are supported.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VpcConnectionProperties": {
+            "Description": "Use this parameter only when you want Amazon QuickSight to use a VPC connection when connecting to your underlying source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "SslProperties": {
+            "Description": "Secure Socket Layer (SSL) properties that apply when Amazon QuickSight connects to your underlying source.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_data_source_permissions": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DataSourceId": {
+            "Description": "The ID of the data source. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantPermissions": {
+            "Description": "A list of resource permissions that you want to grant on the data source.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokePermissions": {
+            "Description": "A list of resource permissions that you want to revoke on the data source.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_folder": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the folder.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_folder_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that contains the folder to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "FolderId": {
+            "Description": "The ID of the folder.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantPermissions": {
+            "Description": "The permissions that you want to grant on a resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokePermissions": {
+            "Description": "The permissions that you want to revoke from a resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_group": {
+        "GroupName": {
+            "Description": "The name of the group that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the group that you want to update.",
+            "Type": "string",
+            "Required": false
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the group is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace of the group that you want to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_iam_policy_assignment": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the IAM policy assignment.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentName": {
+            "Description": "The name of the assignment, also called a rule. This name must be unique within an Amazon Web Services account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace of the assignment.",
+            "Type": "string",
+            "Required": true
+        },
+        "AssignmentStatus": {
+            "Description": "The status of the assignment. Possible values are as follows:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PolicyArn": {
+            "Description": "The ARN for the IAM policy to apply to the Amazon QuickSight users and groups specified in this assignment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Identities": {
+            "Description": "The Amazon QuickSight users, groups, or both that you want to assign the policy to.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_ip_restriction": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the IP rules.",
+            "Type": "string",
+            "Required": true
+        },
+        "IpRestrictionRuleMap": {
+            "Description": "A map that describes the updated IP rules with CIDR ranges and descriptions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Enabled": {
+            "Description": "A value that specifies whether IP rules are turned on.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_public_sharing_settings": {
+        "AwsAccountId": {
+            "Description": "The Amazon Web Services account ID associated with your Amazon QuickSight subscription.",
+            "Type": "string",
+            "Required": true
+        },
+        "PublicSharingEnabled": {
+            "Description": "A Boolean value that indicates whether public sharing is turned on for an Amazon QuickSight account.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "update_template": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template that you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceEntity": {
+            "Description": "The entity that you are using as a source when you update the template. In SourceEntity, you specify the type of object you're using as source: SourceTemplate for a template or SourceAnalysis for an analysis. Both of these require an Amazon Resource Name (ARN). For SourceTemplate, specify the ARN of the source template. For SourceAnalysis, specify the ARN of the source analysis. The SourceTemplate ARN can contain any Amazon Web Services account and any Amazon QuickSight-supported Amazon Web Services Region;.\nUse the DataSetReferences entity within SourceTemplate or SourceAnalysis to list the replacement datasets for the placeholders listed in the original. The schema in each dataset must match its placeholder.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "VersionDescription": {
+            "Description": "A description of the current template version that is being updated. Every time you call UpdateTemplate , you create a new version of the template. Each version of the template maintains a description of the version in the VersionDescription field.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name for the template.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_template_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template alias that you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The alias of the template that you want to update. If you name a specific alias, you update the version that the alias points to. You can specify the latest version of the template by providing the keyword $LATEST in the AliasName parameter. The keyword $PUBLISHED doesn't apply to templates.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateVersionNumber": {
+            "Description": "The version number of the template.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "update_template_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "TemplateId": {
+            "Description": "The ID for the template.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantPermissions": {
+            "Description": "A list of resource permissions to be granted on the template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokePermissions": {
+            "Description": "A list of resource permissions to be revoked from the template.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_theme": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme that you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name for the theme.",
+            "Type": "string",
+            "Required": false
+        },
+        "BaseThemeId": {
+            "Description": "The theme ID, defined by Amazon QuickSight, that a custom theme inherits from. All themes initially inherit from a default Amazon QuickSight theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionDescription": {
+            "Description": "A description of the theme version that you're updating Every time that you call UpdateTheme , you create a new version of the theme. Each version of the theme maintains a description of the version in VersionDescription .",
+            "Type": "string",
+            "Required": false
+        },
+        "Configuration": {
+            "Description": "The theme configuration, which contains the theme display properties.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_theme_alias": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme alias that you're updating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "AliasName": {
+            "Description": "The name of the theme alias that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeVersionNumber": {
+            "Description": "The version number of the theme that the alias should reference.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "update_theme_permissions": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "ThemeId": {
+            "Description": "The ID for the theme.",
+            "Type": "string",
+            "Required": true
+        },
+        "GrantPermissions": {
+            "Description": "A list of resource permissions to be granted for the theme.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "RevokePermissions": {
+            "Description": "A list of resource permissions to be revoked from the theme.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_user": {
+        "UserName": {
+            "Description": "The Amazon QuickSight user name that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "AwsAccountId": {
+            "Description": "The ID for the Amazon Web Services account that the user is in. Currently, you use the ID for the Amazon Web Services account that contains your Amazon QuickSight account.",
+            "Type": "string",
+            "Required": true
+        },
+        "Namespace": {
+            "Description": "The namespace. Currently, you should set this to default .",
+            "Type": "string",
+            "Required": true
+        },
+        "Email": {
+            "Description": "The email address of the user that you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "Role": {
+            "Description": "The Amazon QuickSight role of the user. The role can be one of the following default security cohorts:\nThe name of the Amazon QuickSight role is invisible to the user except for the console screens dealing with permissions.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "CustomPermissionsName": {
+            "Description": "(Enterprise edition only) The name of the custom permissions profile that you want to assign to this user. Customized permissions allows you to control a user's access by restricting access the following operations:\nA set of custom permissions includes any combination of these restrictions. Currently, you need to create the profile names for custom permission sets by using the Amazon QuickSight console. Then, you use the RegisterUser API operation to assign the named set of permissions to a Amazon QuickSight user.\nAmazon QuickSight custom permissions are applied through IAM policies. Therefore, they override the permissions typically granted by assigning Amazon QuickSight users to one of the default security cohorts in Amazon QuickSight (admin, author, reader).\nThis feature is available only to Amazon QuickSight Enterprise edition subscriptions.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "UnapplyCustomPermissions": {
+            "Description": "A flag that you use to indicate that you want to remove all custom permissions from this user. Using this parameter resets the user to the state it was in before a custom permissions profile was applied. This parameter defaults to NULL and it doesn't accept any other value.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ExternalLoginFederationProviderType": {
+            "Description": "The type of supported external login provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. The type of supported external login provider can be one of the following.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "CustomFederationProviderUrl": {
+            "Description": "The URL of the custom OpenID Connect (OIDC) provider that provides identity to let a user federate into Amazon QuickSight with an associated Identity and Access Management(IAM) role. This parameter should only be used when ExternalLoginFederationProviderType parameter is set to CUSTOM_OIDC .",
+            "Type": "string",
+            "Required": false
+        },
+        "ExternalLoginId": {
+            "Description": "The identity ID for a user in the external login provider.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "AwsAccountId": {
+            "Description": "The ID of the Amazon Web Services account that contains the user whose dashboards you're searching for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "The filters to apply to the search. Currently, you can search only by user name, for example, \"Filters\": [ { \"Name\": \"QUICKSIGHT_USER\", \"Operator\": \"StringEquals\", \"Value\": \"arn:aws:quicksight:us-east-1:1:user/default/UserName1\" } ]",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

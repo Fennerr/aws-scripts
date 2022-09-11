@@ -1,0 +1,1070 @@
+{
+    "associate_external_connection": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository to which the external connection is added.",
+            "Type": "string",
+            "Required": true
+        },
+        "externalConnection": {
+            "Description": "The name of the external connection to add to the repository. The following values are supported:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "copy_package_versions": {
+        "domain": {
+            "Description": "The name of the domain that contains the source and destination repositories.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "sourceRepository": {
+            "Description": "The name of the repository that contains the package versions to be copied.",
+            "Type": "string",
+            "Required": true
+        },
+        "destinationRepository": {
+            "Description": "The name of the repository into which package versions are copied.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The format of the package versions to be copied.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package versions to be copied. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package that contains the versions to be copied.",
+            "Type": "string",
+            "Required": true
+        },
+        "versions": {
+            "Description": "The versions of the package to be copied.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "versionRevisions": {
+            "Description": "A list of key-value pairs. The keys are package versions and the values are package version revisions. A CopyPackageVersion operation succeeds if the specified versions in the source repository match the specified package version revision.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "allowOverwrite": {
+            "Description": "Set to true to overwrite a package version that already exists in the destination repository. If set to false and the package version already exists in the destination repository, the package version is returned in the failedVersions field of the response with an ALREADY_EXISTS error code.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "includeFromUpstream": {
+            "Description": "Set to true to copy packages from repositories that are upstream from the source repository to the destination repository. The default setting is false. For more information, see Working with upstream repositories .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_domain": {
+        "domain": {
+            "Description": "The name of the domain to create. All domain names in an Amazon Web Services Region that are in the same Amazon Web Services account must be unique. The domain name is used as the prefix in DNS hostnames. Do not use sensitive information in a domain name because it is publicly discoverable.",
+            "Type": "string",
+            "Required": true
+        },
+        "encryptionKey": {
+            "Description": "The encryption key for the domain. This is used to encrypt content stored in a domain. An encryption key can be a key ID, a key Amazon Resource Name (ARN), a key alias, or a key alias ARN. To specify an encryptionKey, your IAM role must have kms:DescribeKey and kms:CreateGrant permissions on the encryption key that is used. For more information, see DescribeKey in the Key Management Service API Reference and Key Management Service API Permissions Reference in the Key Management Service Developer Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "tags": {
+            "Description": "One or more tag key-value pairs for the domain.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_repository": {
+        "domain": {
+            "Description": "The name of the domain that contains the created repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository to create.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "A description of the created repository.",
+            "Type": "string",
+            "Required": false
+        },
+        "upstreams": {
+            "Description": "A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "One or more tag key-value pairs for the repository.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_domain": {
+        "domain": {
+            "Description": "The name of the domain to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_domain_permissions_policy": {
+        "domain": {
+            "Description": "The name of the domain associated with the resource policy to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyRevision": {
+            "Description": "The current revision of the resource policy to be deleted. This revision is used for optimistic locking, which prevents others from overwriting your changes to the domain's resource policy.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_package_versions": {
+        "domain": {
+            "Description": "The name of the domain that contains the package to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the package versions to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The format of the package versions to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package versions to be deleted. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package with the versions to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "versions": {
+            "Description": "An array of strings that specify the versions of the package to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "expectedStatus": {
+            "Description": "The expected status of the package version to delete.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "delete_repository": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_repository_permissions_policy": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository associated with the resource policy to be deleted.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that is associated with the resource policy to be deleted",
+            "Type": "string",
+            "Required": true
+        },
+        "policyRevision": {
+            "Description": "The revision of the repository's resource policy to be deleted. This revision is used for optimistic locking, which prevents others from accidentally overwriting your changes to the repository's resource policy.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_domain": {
+        "domain": {
+            "Description": "A string that specifies the name of the requested domain.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_package": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the requested package.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "A format that specifies the type of the requested package.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the requested package. The package component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the requested package.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_package_version": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the package version.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the package version.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "A format that specifies the type of the requested package version.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the requested package version. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the requested package version.",
+            "Type": "string",
+            "Required": true
+        },
+        "packageVersion": {
+            "Description": "A string that contains the package version (for example, 3.5.2 ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_repository": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository to describe.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "A string that specifies the name of the requested repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_external_connection": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository from which to remove the external repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository from which the external connection will be removed.",
+            "Type": "string",
+            "Required": true
+        },
+        "externalConnection": {
+            "Description": "The name of the external connection to be removed from the repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "dispose_package_versions": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository you want to dispose.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the package versions you want to dispose.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "A format that specifies the type of package versions you want to dispose.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package versions to be disposed. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package with the versions you want to dispose.",
+            "Type": "string",
+            "Required": true
+        },
+        "versions": {
+            "Description": "The versions of the package you want to dispose.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "versionRevisions": {
+            "Description": "The revisions of the package versions you want to dispose.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "expectedStatus": {
+            "Description": "The expected status of the package version to dispose.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_authorization_token": {
+        "domain": {
+            "Description": "The name of the domain that is in scope for the generated authorization token.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "durationSeconds": {
+            "Description": "The time, in seconds, that the generated authorization token is valid. Valid values are 0 and any number between 900 (15 minutes) and 43200 (12 hours). A value of 0 will set the expiration of the authorization token to the same expiration of the user's role's temporary credentials.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_domain_permissions_policy": {
+        "domain": {
+            "Description": "The name of the domain to which the resource policy is attached.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_package_version_asset": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the package version with the requested asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The repository that contains the package version with the requested asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "A format that specifies the type of the package version with the requested asset file.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package version with the requested asset file. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package that contains the requested asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "packageVersion": {
+            "Description": "A string that contains the package version (for example, 3.5.2 ).",
+            "Type": "string",
+            "Required": true
+        },
+        "asset": {
+            "Description": "The name of the requested asset.",
+            "Type": "string",
+            "Required": true
+        },
+        "packageVersionRevision": {
+            "Description": "The name of the package version revision that contains the requested asset.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_package_version_readme": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the package version with the requested readme file.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The repository that contains the package with the requested readme file.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "A format that specifies the type of the package version with the requested readme file.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package version with the requested readme file. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package version that contains the requested readme file.",
+            "Type": "string",
+            "Required": true
+        },
+        "packageVersion": {
+            "Description": "A string that contains the package version (for example, 3.5.2 ).",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_repository_endpoint": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain that contains the repository. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "Returns which endpoint of a repository to return. A repository has one endpoint for each package format.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_repository_permissions_policy": {
+        "domain": {
+            "Description": "The name of the domain containing the repository whose associated resource policy is to be retrieved.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository whose associated resource policy is to be retrieved.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_domains": {
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_package_version_assets": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository associated with the package version assets.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the package that contains the requested package version assets.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The format of the package that contains the requested package version assets.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package version that contains the requested package version assets. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package that contains the requested package version assets.",
+            "Type": "string",
+            "Required": true
+        },
+        "packageVersion": {
+            "Description": "A string that contains the package version (for example, 3.5.2 ).",
+            "Type": "string",
+            "Required": true
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_package_version_dependencies": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the requested package version dependencies.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the requested package version.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The format of the package with the requested dependencies.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package version with the requested dependencies. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package versions' package.",
+            "Type": "string",
+            "Required": true
+        },
+        "packageVersion": {
+            "Description": "A string that contains the package version (for example, 3.5.2 ).",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_package_versions": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the requested package versions.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the requested package versions.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The format of the returned package versions.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package that contains the requested package versions. The package component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package for which you want to request package versions.",
+            "Type": "string",
+            "Required": true
+        },
+        "status": {
+            "Description": "A string that filters the requested package versions by status.",
+            "Type": "string",
+            "Required": false
+        },
+        "sortBy": {
+            "Description": "How to sort the requested list of package versions.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "originType": {
+            "Description": "The originType used to filter package versions. Only package versions with the provided originType will be returned.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_packages": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the requested packages.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the requested packages.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "The format used to filter requested packages. Only packages from the provided format will be returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "namespace": {
+            "Description": "The namespace used to filter requested packages. Only packages with the provided namespace will be returned. The package component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "packagePrefix": {
+            "Description": "A prefix used to filter requested packages. Only packages with names that start with packagePrefix are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "publish": {
+            "Description": "The value of the Publish package origin control restriction used to filter requested packages. Only packages with the provided restriction are returned. For more information, see PackageOriginRestrictions .",
+            "Type": "string",
+            "Required": false
+        },
+        "upstream": {
+            "Description": "The value of the Upstream package origin control restriction used to filter requested packages. Only packages with the provided restriction are returned. For more information, see PackageOriginRestrictions .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_repositories": {
+        "repositoryPrefix": {
+            "Description": "A prefix used to filter returned repositories. Only repositories with names that start with repositoryPrefix are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_repositories_in_domain": {
+        "domain": {
+            "Description": "The name of the domain that contains the returned list of repositories.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "administratorAccount": {
+            "Description": "Filter the list of repositories to only include those that are managed by the Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryPrefix": {
+            "Description": "A prefix used to filter returned repositories. Only repositories with names that start with repositoryPrefix are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to return per page.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to get tags for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_domain_permissions_policy": {
+        "domain": {
+            "Description": "The name of the domain on which to set the resource policy.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyRevision": {
+            "Description": "The current revision of the resource policy to be set. This revision is used for optimistic locking, which prevents others from overwriting your changes to the domain's resource policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyDocument": {
+            "Description": "A valid displayable JSON Aspen policy string to be set as the access control resource policy on the provided domain.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_package_origin_configuration": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository that contains the package.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "A format that specifies the type of the package to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package to be updated. The package component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "restrictions": {
+            "Description": "A PackageOriginRestrictions object that contains information about the upstream and publish package origin restrictions. The upstream restriction determines if new package versions can be ingested or retained from external connections or upstream repositories. The publish restriction determines if new package versions can be published directly to the repository.\nYou must include both the desired upstream and publish restrictions.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "put_repository_permissions_policy": {
+        "domain": {
+            "Description": "The name of the domain containing the repository to set the resource policy on.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository to set the resource policy on.",
+            "Type": "string",
+            "Required": true
+        },
+        "policyRevision": {
+            "Description": "Sets the revision of the resource policy that specifies permissions to access the repository. This revision is used for optimistic locking, which prevents others from overwriting your changes to the repository's resource policy.",
+            "Type": "string",
+            "Required": false
+        },
+        "policyDocument": {
+            "Description": "A valid displayable JSON Aspen policy string to be set as the access control resource policy on the provided repository.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to add or update tags for.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags you want to modify or add to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag key for each tag that you want to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_package_versions_status": {
+        "domain": {
+            "Description": "The name of the domain that contains the repository that contains the package versions with a status to be updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The repository that contains the package versions with the status you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "format": {
+            "Description": "A format that specifies the type of the package with the statuses to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "namespace": {
+            "Description": "The namespace of the package version to be updated. The package version component that specifies its namespace depends on its type. For example:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "package": {
+            "Description": "The name of the package with the version statuses to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "versions": {
+            "Description": "An array of strings that specify the versions of the package with the statuses to update.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "versionRevisions": {
+            "Description": "A map of package versions and package version revisions. The map key is the package version (for example, 3.5.2 ), and the map value is the package version revision.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "expectedStatus": {
+            "Description": "The package version\u2019s expected status before it is updated. If expectedStatus is provided, the package version's status is updated only if its status at the time UpdatePackageVersionsStatus is called matches expectedStatus .",
+            "Type": "string",
+            "Required": false
+        },
+        "targetStatus": {
+            "Description": "The status you want to change the package version status to.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_repository": {
+        "domain": {
+            "Description": "The name of the domain associated with the repository to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "repository": {
+            "Description": "The name of the repository to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "description": {
+            "Description": "An updated repository description.",
+            "Type": "string",
+            "Required": false
+        },
+        "upstreams": {
+            "Description": "A list of upstream repositories to associate with the repository. The order of the upstream repositories in the list determines their priority order when CodeArtifact looks for a requested package version. For more information, see Working with upstream repositories .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "domain": {
+            "Description": "The name of the domain that contains the returned list of repositories.",
+            "Type": "string",
+            "Required": true
+        },
+        "domainOwner": {
+            "Description": "The 12-digit account number of the Amazon Web Services account that owns the domain. It does not include dashes or spaces.",
+            "Type": "string",
+            "Required": false
+        },
+        "administratorAccount": {
+            "Description": "Filter the list of repositories to only include those that are managed by the Amazon Web Services account ID.",
+            "Type": "string",
+            "Required": false
+        },
+        "repositoryPrefix": {
+            "Description": "A prefix used to filter returned repositories. Only repositories with names that start with repositoryPrefix are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

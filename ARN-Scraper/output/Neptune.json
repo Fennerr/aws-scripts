@@ -1,0 +1,2198 @@
+{
+    "add_role_to_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "The name of the DB cluster to associate the IAM role with.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role to associate with the Neptune DB cluster, for example arn:aws:iam::123456789012:role/NeptuneAccessRole .",
+            "Type": "string",
+            "Required": true
+        },
+        "FeatureName": {
+            "Description": "The name of the feature for the Neptune DB cluster that the IAM role is to be associated with. For the list of supported feature names, see DBEngineVersion .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "add_source_identifier_to_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the event notification subscription you want to add a source identifier to.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceIdentifier": {
+            "Description": "The identifier of the event source to be added.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "add_tags_to_resource": {
+        "ResourceName": {
+            "Description": "The Amazon Neptune resource that the tags are added to. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see Constructing an Amazon Resource Name (ARN) .",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the Amazon Neptune resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "apply_pending_maintenance_action": {
+        "ResourceIdentifier": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that the pending maintenance action applies to. For information about creating an ARN, see Constructing an Amazon Resource Name (ARN) .",
+            "Type": "string",
+            "Required": true
+        },
+        "ApplyAction": {
+            "Description": "The pending maintenance action to apply to this resource.\nValid values: system-update, db-upgrade",
+            "Type": "string",
+            "Required": true
+        },
+        "OptInType": {
+            "Description": "A value that specifies the type of opt-in request, or undoes an opt-in request. An opt-in request of type immediate can't be undone.\nValid values:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "copy_db_cluster_parameter_group": {
+        "SourceDBClusterParameterGroupIdentifier": {
+            "Description": "The identifier or Amazon Resource Name (ARN) for the source DB cluster parameter group. For information about creating an ARN, see Constructing an Amazon Resource Name (ARN) .\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TargetDBClusterParameterGroupIdentifier": {
+            "Description": "The identifier for the copied DB cluster parameter group.\nConstraints:\nExample: my-cluster-param-group1",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TargetDBClusterParameterGroupDescription": {
+            "Description": "A description for the copied DB cluster parameter group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the copied DB cluster parameter group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "copy_db_cluster_snapshot": {
+        "SourceDBClusterSnapshotIdentifier": {
+            "Description": "The identifier of the DB cluster snapshot to copy. This parameter is not case-sensitive.\nConstraints:\nExample: my-cluster-snapshot1",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TargetDBClusterSnapshotIdentifier": {
+            "Description": "The identifier of the new DB cluster snapshot to create from the source DB cluster snapshot. This parameter is not case-sensitive.\nConstraints:\nExample: my-cluster-snapshot2",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "The Amazon Amazon KMS key ID for an encrypted DB cluster snapshot. The KMS key ID is the Amazon Resource Name (ARN), KMS key identifier, or the KMS key alias for the KMS encryption key.\nIf you copy an encrypted DB cluster snapshot from your Amazon account, you can specify a value for KmsKeyId to encrypt the copy with a new KMS encryption key. If you don't specify a value for KmsKeyId, then the copy of the DB cluster snapshot is encrypted with the same KMS key as the source DB cluster snapshot.\nIf you copy an encrypted DB cluster snapshot that is shared from another Amazon account, then you must specify a value for KmsKeyId .\nKMS encryption keys are specific to the Amazon Region that they are created in, and you can't use encryption keys from one Amazon Region in another Amazon Region.\nYou cannot encrypt an unencrypted DB cluster snapshot when you copy it. If you try to copy an unencrypted DB cluster snapshot and specify a value for the KmsKeyId parameter, an error is returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreSignedUrl": {
+            "Description": "Not currently supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "CopyTags": {
+            "Description": "True to copy all tags from the source DB cluster snapshot to the target DB cluster snapshot, and otherwise false. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to assign to the new DB cluster snapshot copy.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceRegion": {
+            "Description": "The ID of the region that contains the snapshot to be copied.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "copy_db_parameter_group": {
+        "SourceDBParameterGroupIdentifier": {
+            "Description": "The identifier or ARN for the source DB parameter group. For information about creating an ARN, see Constructing an Amazon Resource Name (ARN) .\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TargetDBParameterGroupIdentifier": {
+            "Description": "The identifier for the copied DB parameter group.\nConstraints:\nExample: my-db-parameter-group",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "TargetDBParameterGroupDescription": {
+            "Description": "A description for the copied DB parameter group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the copied DB parameter group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_db_cluster": {
+        "AvailabilityZones": {
+            "Description": "A list of EC2 Availability Zones that instances in the DB cluster can be created in.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "BackupRetentionPeriod": {
+            "Description": "The number of days for which automated backups are retained. You must specify a minimum value of 1.\nDefault: 1\nConstraints:",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "CharacterSetName": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "CopyTagsToSnapshot": {
+            "Description": "If set to ``true`` , tags are copied to any snapshot of the DB cluster that is created.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DatabaseName": {
+            "Description": "The name for your database of up to 64 alpha-numeric characters. If you do not provide a name, Amazon Neptune will not create a database in the DB cluster you are creating.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBClusterIdentifier": {
+            "Description": "The DB cluster identifier. This parameter is stored as a lowercase string.\nConstraints:\nExample: my-cluster1",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group to associate with this DB cluster. If this argument is omitted, the default is used.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "A list of EC2 VPC security groups to associate with this DB cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DBSubnetGroupName": {
+            "Description": "A DB subnet group to associate with this DB cluster.\nConstraints: Must match the name of an existing DBSubnetGroup. Must not be default.\nExample: mySubnetgroup",
+            "Type": "string",
+            "Required": false
+        },
+        "Engine": {
+            "Description": "The name of the database engine to be used for this DB cluster.\nValid Values: neptune",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineVersion": {
+            "Description": "The version number of the database engine to use for the new DB cluster.\nExample: 1.0.2.1",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port number on which the instances in the DB cluster accept connections.\nDefault: 8182",
+            "Type": "integer",
+            "Required": false
+        },
+        "MasterUsername": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "MasterUserPassword": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionGroupName": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredBackupWindow": {
+            "Description": "The daily time range during which automated backups are created if automated backups are enabled using the BackupRetentionPeriod parameter.\nThe default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region. To see the time blocks available, see Adjusting the Preferred Maintenance Window in the Amazon Neptune User Guide.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).\nFormat: ddd:hh24:mi-ddd:hh24:mi\nThe default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region, occurring on a random day of the week. To see the time blocks available, see Adjusting the Preferred Maintenance Window in the Amazon Neptune User Guide.\nValid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.\nConstraints: Minimum 30-minute window.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicationSourceIdentifier": {
+            "Description": "The Amazon Resource Name (ARN) of the source DB instance or DB cluster if this DB cluster is created as a Read Replica.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to assign to the new DB cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "StorageEncrypted": {
+            "Description": "Specifies whether the DB cluster is encrypted.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "The Amazon KMS key identifier for an encrypted DB cluster.\nThe KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB cluster with the same Amazon account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key.\nIf an encryption key is not specified in KmsKeyId :\nAmazon KMS creates the default encryption key for your Amazon account. Your Amazon account has a different default encryption key for each Amazon Region.\nIf you create a Read Replica of an encrypted DB cluster in another Amazon Region, you must set KmsKeyId to a KMS key ID that is valid in the destination Amazon Region. This key is used to encrypt the Read Replica in that Amazon Region.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PreSignedUrl": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnableIAMDatabaseAuthentication": {
+            "Description": "If set to true, enables Amazon Identity and Access Management (IAM) authentication for the entire DB cluster (this cannot be set at an instance level).\nDefault: false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EnableCloudwatchLogsExports": {
+            "Description": "The list of log types that need to be enabled for exporting to CloudWatch Logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DeletionProtection": {
+            "Description": "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "GlobalClusterIdentifier": {
+            "Description": "The ID of the Neptune global database to which this new DB cluster should be added.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceRegion": {
+            "Description": "The ID of the region that contains the source for the db cluster.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_db_cluster_endpoint": {
+        "DBClusterIdentifier": {
+            "Description": "The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        },
+        "DBClusterEndpointIdentifier": {
+            "Description": "The identifier to use for the new endpoint. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        },
+        "EndpointType": {
+            "Description": "The type of the endpoint. One of: READER, WRITER, ANY .",
+            "Type": "string",
+            "Required": true
+        },
+        "StaticMembers": {
+            "Description": "List of DB instance identifiers that are part of the custom endpoint group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ExcludedMembers": {
+            "Description": "List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the Amazon Neptune resource.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_db_cluster_parameter_group": {
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DBParameterGroupFamily": {
+            "Description": "The DB cluster parameter group family name. A DB cluster parameter group can be associated with one and only one DB cluster parameter group family, and can be applied only to a DB cluster running a database engine and engine version compatible with that DB cluster parameter group family.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the DB cluster parameter group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the new DB cluster parameter group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_db_cluster_snapshot": {
+        "DBClusterSnapshotIdentifier": {
+            "Description": "The identifier of the DB cluster snapshot. This parameter is stored as a lowercase string.\nConstraints:\nExample: my-cluster1-snapshot1",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DBClusterIdentifier": {
+            "Description": "The identifier of the DB cluster to create a snapshot for. This parameter is not case-sensitive.\nConstraints:\nExample: my-cluster1",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the DB cluster snapshot.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_db_instance": {
+        "DBName": {
+            "Description": "Not supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBInstanceIdentifier": {
+            "Description": "The DB instance identifier. This parameter is stored as a lowercase string.\nConstraints:\nExample: mydbinstance",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "AllocatedStorage": {
+            "Description": "Not supported by Neptune.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DBInstanceClass": {
+            "Description": "The compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all Amazon Regions.",
+            "Type": "string",
+            "Required": true
+        },
+        "Engine": {
+            "Description": "The name of the database engine to be used for this instance.\nValid Values: neptune",
+            "Type": "string",
+            "Required": true
+        },
+        "MasterUsername": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "MasterUserPassword": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBSecurityGroups": {
+            "Description": "A list of DB security groups to associate with this DB instance.\nDefault: The default DB security group for the database engine.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "A list of EC2 VPC security groups to associate with this DB instance.\nNot applicable. The associated list of EC2 VPC security groups is managed by the DB cluster. For more information, see  CreateDBCluster .\nDefault: The default EC2 VPC security group for the DB subnet group's VPC.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "AvailabilityZone": {
+            "Description": "The EC2 Availability Zone that the DB instance is created in\nDefault: A random, system-chosen Availability Zone in the endpoint's Amazon Region.\nExample: us-east-1d\nConstraint: The AvailabilityZone parameter can't be specified if the MultiAZ parameter is set to true. The specified Availability Zone must be in the same Amazon Region as the current endpoint.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBSubnetGroupName": {
+            "Description": "A DB subnet group to associate with this DB instance.\nIf there is no DB subnet group, then it is a non-VPC DB instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "The time range each week during which system maintenance can occur, in Universal Coordinated Time (UTC).\nFormat: ddd:hh24:mi-ddd:hh24:mi\nThe default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region, occurring on a random day of the week.\nValid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.\nConstraints: Minimum 30-minute window.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBParameterGroupName": {
+            "Description": "The name of the DB parameter group to associate with this DB instance. If this argument is omitted, the default DBParameterGroup for the specified engine is used.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "BackupRetentionPeriod": {
+            "Description": "The number of days for which automated backups are retained.\nNot applicable. The retention period for automated backups is managed by the DB cluster. For more information, see  CreateDBCluster .\nDefault: 1\nConstraints:",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "PreferredBackupWindow": {
+            "Description": "The daily time range during which automated backups are created.\nNot applicable. The daily time range for creating automated backups is managed by the DB cluster. For more information, see  CreateDBCluster .",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port number on which the database accepts connections.\nNot applicable. The port is managed by the DB cluster. For more information, see  CreateDBCluster .\nDefault: 8182\nType: Integer",
+            "Type": "integer",
+            "Required": false
+        },
+        "MultiAZ": {
+            "Description": "Specifies if the DB instance is a Multi-AZ deployment. You can't set the AvailabilityZone parameter if the MultiAZ parameter is set to true.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The version number of the database engine to use. Currently, setting this parameter has no effect.",
+            "Type": "string",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "Indicates that minor engine upgrades are applied automatically to the DB instance during the maintenance window.\nDefault: true",
+            "Type": "boolean",
+            "Required": false
+        },
+        "LicenseModel": {
+            "Description": "License model information for this DB instance.\nValid values: license-included | bring-your-own-license | general-public-license",
+            "Type": "string",
+            "Required": false
+        },
+        "Iops": {
+            "Description": "The amount of Provisioned IOPS (input/output operations per second) to be initially allocated for the DB instance.",
+            "Type": "integer",
+            "Required": false
+        },
+        "OptionGroupName": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "CharacterSetName": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "PubliclyAccessible": {
+            "Description": "This flag should no longer be used.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to assign to the new instance.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DBClusterIdentifier": {
+            "Description": "The identifier of the DB cluster that the instance will belong to.\nFor information on creating a DB cluster, see  CreateDBCluster .\nType: String",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageType": {
+            "Description": "Specifies the storage type to be associated with the DB instance.\nNot applicable. Storage is managed by the DB Cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "TdeCredentialArn": {
+            "Description": "The ARN from the key store with which to associate the instance for TDE encryption.",
+            "Type": "string",
+            "Required": false
+        },
+        "TdeCredentialPassword": {
+            "Description": "The password for the given ARN from the key store in order to access the device.",
+            "Type": "string",
+            "Required": false
+        },
+        "StorageEncrypted": {
+            "Description": "Specifies whether the DB instance is encrypted.\nNot applicable. The encryption for DB instances is managed by the DB cluster. For more information, see  CreateDBCluster .\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "KmsKeyId": {
+            "Description": "The Amazon KMS key identifier for an encrypted DB instance.\nThe KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are creating a DB instance with the same Amazon account that owns the KMS encryption key used to encrypt the new DB instance, then you can use the KMS key alias instead of the ARN for the KM encryption key.\nNot applicable. The KMS key identifier is managed by the DB cluster. For more information, see  CreateDBCluster .\nIf the StorageEncrypted parameter is true, and you do not specify a value for the KmsKeyId parameter, then Amazon Neptune will use your default encryption key. Amazon KMS creates the default encryption key for your Amazon account. Your Amazon account has a different default encryption key for each Amazon Region.",
+            "Type": "string",
+            "Required": false
+        },
+        "Domain": {
+            "Description": "Specify the Active Directory Domain to create the instance in.",
+            "Type": "string",
+            "Required": false
+        },
+        "CopyTagsToSnapshot": {
+            "Description": "True to copy all tags from the DB instance to snapshots of the DB instance, and otherwise false. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MonitoringInterval": {
+            "Description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0.\nIf MonitoringRoleArn is specified, then you must also set MonitoringInterval to a value other than 0.\nValid Values: 0, 1, 5, 10, 15, 30, 60",
+            "Type": "integer",
+            "Required": false
+        },
+        "MonitoringRoleArn": {
+            "Description": "The ARN for the IAM role that permits Neptune to send enhanced monitoring metrics to Amazon CloudWatch Logs. For example, arn:aws:iam:123456789012:role/emaccess .\nIf MonitoringInterval is set to a value other than 0, then you must supply a MonitoringRoleArn value.",
+            "Type": "string",
+            "Required": false
+        },
+        "DomainIAMRoleName": {
+            "Description": "Specify the name of the IAM role to be used when making API calls to the Directory Service.",
+            "Type": "string",
+            "Required": false
+        },
+        "PromotionTier": {
+            "Description": "A value that specifies the order in which an Read Replica is promoted to the primary instance after a failure of the existing primary instance.\nDefault: 1\nValid Values: 0 - 15",
+            "Type": "integer",
+            "Required": false
+        },
+        "Timezone": {
+            "Description": "The time zone of the DB instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnableIAMDatabaseAuthentication": {
+            "Description": "Not supported by Neptune (ignored).",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EnablePerformanceInsights": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PerformanceInsightsKMSKeyId": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "EnableCloudwatchLogsExports": {
+            "Description": "The list of log types that need to be enabled for exporting to CloudWatch Logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DeletionProtection": {
+            "Description": "A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. See Deleting a DB Instance .\nDB instances in a DB cluster can be deleted even when deletion protection is enabled in their parent DB cluster.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "create_db_parameter_group": {
+        "DBParameterGroupName": {
+            "Description": "The name of the DB parameter group.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "DBParameterGroupFamily": {
+            "Description": "The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "The description for the DB parameter group.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the new DB parameter group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_db_subnet_group": {
+        "DBSubnetGroupName": {
+            "Description": "The name for the DB subnet group. This value is stored as a lowercase string.\nConstraints: Must contain no more than 255 letters, numbers, periods, underscores, spaces, or hyphens. Must not be default.\nExample: mySubnetgroup",
+            "Type": "string",
+            "Required": true
+        },
+        "DBSubnetGroupDescription": {
+            "Description": "The description for the DB subnet group.",
+            "Type": "string",
+            "Required": true
+        },
+        "SubnetIds": {
+            "Description": "The EC2 Subnet IDs for the DB subnet group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the new DB subnet group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_event_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the subscription.\nConstraints: The name must be less than 255 characters.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnsTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceType": {
+            "Description": "The type of source that is generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.\nValid values: db-instance | db-cluster | db-parameter-group | db-security-group | db-snapshot | db-cluster-snapshot",
+            "Type": "string",
+            "Required": false
+        },
+        "EventCategories": {
+            "Description": "A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType by using the DescribeEventCategories action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "SourceIds": {
+            "Description": "The list of identifiers of the event sources for which events are returned. If not specified, then all sources are included in the response. An identifier must begin with a letter and must contain only ASCII letters, digits, and hyphens; it can't end with a hyphen or contain two consecutive hyphens.\nConstraints:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Enabled": {
+            "Description": "A Boolean value; set to true to activate the subscription, set to false to create the subscription but not active it.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "The tags to be applied to the new event subscription.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_global_cluster": {
+        "GlobalClusterIdentifier": {
+            "Description": "The cluster identifier of the new global database cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceDBClusterIdentifier": {
+            "Description": "(Optional ) The Amazon Resource Name (ARN) of an existing Neptune DB cluster to use as the primary cluster of the new global database.",
+            "Type": "string",
+            "Required": false
+        },
+        "Engine": {
+            "Description": "The name of the database engine to be used in the global database.\nValid values: neptune",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The Neptune engine version to be used by the global database.\nValid values: 1.2.0.0 or above.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeletionProtection": {
+            "Description": "The deletion protection setting for the new global database. The global database can't be deleted when deletion protection is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "StorageEncrypted": {
+            "Description": "The storage encryption setting for the new global database cluster.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "delete_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "The DB cluster identifier for the DB cluster to be deleted. This parameter isn't case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "SkipFinalSnapshot": {
+            "Description": "Determines whether a final DB cluster snapshot is created before the DB cluster is deleted. If true is specified, no DB cluster snapshot is created. If false is specified, a DB cluster snapshot is created before the DB cluster is deleted.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "FinalDBSnapshotIdentifier": {
+            "Description": "The DB cluster snapshot identifier of the new DB cluster snapshot created when SkipFinalSnapshot is set to false .\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "delete_db_cluster_endpoint": {
+        "DBClusterEndpointIdentifier": {
+            "Description": "The identifier associated with the custom endpoint. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_db_cluster_parameter_group": {
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "delete_db_cluster_snapshot": {
+        "DBClusterSnapshotIdentifier": {
+            "Description": "The identifier of the DB cluster snapshot to delete.\nConstraints: Must be the name of an existing DB cluster snapshot in the available state.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_db_instance": {
+        "DBInstanceIdentifier": {
+            "Description": "The DB instance identifier for the DB instance to be deleted. This parameter isn't case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "SkipFinalSnapshot": {
+            "Description": "Determines whether a final DB snapshot is created before the DB instance is deleted. If true is specified, no DBSnapshot is created. If false is specified, a DB snapshot is created before the DB instance is deleted.\nNote that when a DB instance is in a failure state and has a status of 'failed', 'incompatible-restore', or 'incompatible-network', it can only be deleted when the SkipFinalSnapshot parameter is set to \"true\".\nSpecify true when deleting a Read Replica.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "FinalDBSnapshotIdentifier": {
+            "Description": "The DBSnapshotIdentifier of the new DBSnapshot created when SkipFinalSnapshot is set to false .\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        }
+    },
+    "delete_db_parameter_group": {
+        "DBParameterGroupName": {
+            "Description": "The name of the DB parameter group.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        }
+    },
+    "delete_db_subnet_group": {
+        "DBSubnetGroupName": {
+            "Description": "The name of the database subnet group to delete.\nConstraints:\nConstraints: Must match the name of an existing DBSubnetGroup. Must not be default.\nExample: mySubnetgroup",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_event_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the event notification subscription you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_global_cluster": {
+        "GlobalClusterIdentifier": {
+            "Description": "The cluster identifier of the global database cluster being deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_db_cluster_endpoints": {
+        "DBClusterIdentifier": {
+            "Description": "The DB cluster identifier of the DB cluster associated with the endpoint. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBClusterEndpointIdentifier": {
+            "Description": "The identifier of the endpoint to describe. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A set of name-value pairs that define which endpoints to include in the output. The filters are specified as name-value pairs, in the format Name=*endpoint_type* ,Values=*endpoint_type1* ,*endpoint_type2* ,.... Name can be one of: db-cluster-endpoint-type, db-cluster-endpoint-custom-type, db-cluster-endpoint-id, db-cluster-endpoint-status. Values for the db-cluster-endpoint-type filter can be one or more of: reader, writer, custom. Values for the db-cluster-endpoint-custom-type filter can be one or more of: reader, any. Values for the db-cluster-endpoint-status filter can be one or more of: available, creating, deleting, inactive, modifying .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so you can retrieve the remaining results.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBClusterEndpoints request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_db_cluster_parameter_groups": {
+        "DBClusterParameterGroupName": {
+            "Description": "The name of a specific DB cluster parameter group to return details for.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBClusterParameterGroups request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_db_cluster_parameters": {
+        "DBClusterParameterGroupName": {
+            "Description": "The name of a specific DB cluster parameter group to return parameter details for.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Source": {
+            "Description": "A value that indicates to return only parameters for a specific source. Parameter sources can be engine , service , or customer .",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBClusterParameters request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_db_cluster_snapshot_attributes": {
+        "DBClusterSnapshotIdentifier": {
+            "Description": "The identifier for the DB cluster snapshot to describe the attributes for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_db_cluster_snapshots": {
+        "DBClusterIdentifier": {
+            "Description": "The ID of the DB cluster to retrieve the list of DB cluster snapshots for. This parameter can't be used in conjunction with the DBClusterSnapshotIdentifier parameter. This parameter is not case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DBClusterSnapshotIdentifier": {
+            "Description": "A specific DB cluster snapshot identifier to describe. This parameter can't be used in conjunction with the DBClusterIdentifier parameter. This value is stored as a lowercase string.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SnapshotType": {
+            "Description": "The type of DB cluster snapshots to be returned. You can specify one of the following values:\nIf you don't specify a SnapshotType value, then both automated and manual DB cluster snapshots are returned. You can include shared DB cluster snapshots with these results by setting the IncludeShared parameter to true. You can include public DB cluster snapshots with these results by setting the IncludePublic parameter to true .\nThe IncludeShared and IncludePublic parameters don't apply for SnapshotType values of manual or automated. The IncludePublic parameter doesn't apply when SnapshotType is set to shared. The IncludeShared parameter doesn't apply when SnapshotType is set to public .",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBClusterSnapshots request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "IncludeShared": {
+            "Description": "True to include shared manual DB cluster snapshots from other Amazon accounts that this Amazon account has been given permission to copy or restore, and otherwise false. The default is false .\nYou can give an Amazon account permission to restore a manual DB cluster snapshot from another Amazon account by the  ModifyDBClusterSnapshotAttribute API action.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "IncludePublic": {
+            "Description": "True to include manual DB cluster snapshots that are public and can be copied or restored by any Amazon account, and otherwise false. The default is false. The default is false.\nYou can share a manual DB cluster snapshot as public by using the  ModifyDBClusterSnapshotAttribute API action.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_db_clusters": {
+        "DBClusterIdentifier": {
+            "Description": "The user-supplied DB cluster identifier. If this parameter is specified, information from only the specific DB cluster is returned. This parameter isn't case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "A filter that specifies one or more DB clusters to describe.\nSupported filters:\nFor example, to invoke this API from the Amazon CLI and filter so that only Neptune DB clusters are returned, you could use the following command:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous  DescribeDBClusters request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_db_engine_versions": {
+        "Engine": {
+            "Description": "The database engine to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The database engine version to return.\nExample: 5.1.49",
+            "Type": "string",
+            "Required": false
+        },
+        "DBParameterGroupFamily": {
+            "Description": "The name of a specific DB parameter group family to return details for.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "Not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more than the MaxRecords value is available, a pagination token called a marker is included in the response so that the following results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "DefaultOnly": {
+            "Description": "Indicates that only the default version of the specified engine or engine and major version combination is returned.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ListSupportedCharacterSets": {
+            "Description": "If this parameter is specified and the requested engine supports the CharacterSetName parameter for CreateDBInstance , the response includes a list of supported character sets for each engine version.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "ListSupportedTimezones": {
+            "Description": "If this parameter is specified and the requested engine supports the TimeZone parameter for CreateDBInstance , the response includes a list of supported time zones for each engine version.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "describe_db_instances": {
+        "DBInstanceIdentifier": {
+            "Description": "The user-supplied instance identifier. If this parameter is specified, information from only the specific DB instance is returned. This parameter isn't case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "A filter that specifies one or more DB instances to describe.\nSupported filters:\nFor example, to invoke this API from the Amazon CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBInstances request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_db_parameter_groups": {
+        "DBParameterGroupName": {
+            "Description": "The name of a specific DB parameter group to return details for.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBParameterGroups request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_db_parameters": {
+        "DBParameterGroupName": {
+            "Description": "The name of a specific DB parameter group to return details for.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Source": {
+            "Description": "The parameter types to return.\nDefault: All parameter types returned\nValid Values: user | system | engine-default",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBParameters request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_db_subnet_groups": {
+        "DBSubnetGroupName": {
+            "Description": "The name of the DB subnet group to return details for.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBSubnetGroups request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_engine_default_cluster_parameters": {
+        "DBParameterGroupFamily": {
+            "Description": "The name of the DB cluster parameter group family to return engine parameter information for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeEngineDefaultClusterParameters request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_engine_default_parameters": {
+        "DBParameterGroupFamily": {
+            "Description": "The name of the DB parameter group family.",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "Not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeEngineDefaultParameters request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_event_categories": {
+        "SourceType": {
+            "Description": "The type of source that is generating the events.\nValid values: db-instance | db-parameter-group | db-security-group | db-snapshot",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "describe_event_subscriptions": {
+        "SubscriptionName": {
+            "Description": "The name of the event notification subscription you want to describe.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_events": {
+        "SourceIdentifier": {
+            "Description": "The identifier of the event source for which events are returned. If not specified, then all sources are included in the response.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SourceType": {
+            "Description": "The event source to retrieve events for. If no value is specified, all events are returned.",
+            "Type": "string",
+            "Required": false
+        },
+        "StartTime": {
+            "Description": "The beginning of the time interval to retrieve events for, specified in ISO 8601 format. For more information about ISO 8601, go to the ISO8601 Wikipedia page.\nExample: 2009-07-08T18:00Z",
+            "Type": "datetime",
+            "Required": false
+        },
+        "EndTime": {
+            "Description": "The end of the time interval for which to retrieve events, specified in ISO 8601 format. For more information about ISO 8601, go to the ISO8601 Wikipedia page.\nExample: 2009-07-08T18:00Z",
+            "Type": "datetime",
+            "Required": false
+        },
+        "Duration": {
+            "Description": "The number of minutes to retrieve events for.\nDefault: 60",
+            "Type": "integer",
+            "Required": false
+        },
+        "EventCategories": {
+            "Description": "A list of event categories that trigger notifications for a event notification subscription.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeEvents request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_global_clusters": {
+        "GlobalClusterIdentifier": {
+            "Description": "The user-supplied DB cluster identifier. If this parameter is specified, only information about the specified DB cluster is returned. This parameter is not case-sensitive.\nConstraints: If supplied, must match an existing DB cluster identifier.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination marker token is included in the response that you can use to retrieve the remaining results.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "(Optional ) A pagination token returned by a previous call to DescribeGlobalClusters . If this parameter is specified, the response will only include records beyond the marker, up to the number specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_orderable_db_instance_options": {
+        "Engine": {
+            "Description": "The name of the engine to retrieve DB instance options for.",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineVersion": {
+            "Description": "The engine version filter value. Specify this parameter to show only the available offerings matching the specified engine version.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBInstanceClass": {
+            "Description": "The DB instance class filter value. Specify this parameter to show only the available offerings matching the specified DB instance class.",
+            "Type": "string",
+            "Required": false
+        },
+        "LicenseModel": {
+            "Description": "The license model filter value. Specify this parameter to show only the available offerings matching the specified license model.",
+            "Type": "string",
+            "Required": false
+        },
+        "Vpc": {
+            "Description": "The VPC filter value. Specify this parameter to show only the available VPC or non-VPC offerings.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeOrderableDBInstanceOptions request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_pending_maintenance_actions": {
+        "ResourceIdentifier": {
+            "Description": "The ARN of a resource to return pending maintenance actions for.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A filter that specifies one or more resources to return pending maintenance actions for.\nSupported filters:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribePendingMaintenanceActions request. If this parameter is specified, the response includes only records beyond the marker, up to a number of records specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "describe_valid_db_instance_modifications": {
+        "DBInstanceIdentifier": {
+            "Description": "The customer identifier or the ARN of your DB instance.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "failover_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "A DB cluster identifier to force a failover for. This parameter is not case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "TargetDBInstanceIdentifier": {
+            "Description": "The name of the instance to promote to the primary instance.\nYou must specify the instance identifier for an Read Replica in the DB cluster. For example, mydbcluster-replica1 .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "failover_global_cluster": {
+        "GlobalClusterIdentifier": {
+            "Description": "Identifier of the Neptune global database that should be failed over. The identifier is the unique key assigned by the user when the Neptune global database was created. In other words, it's the name of the global database that you want to fail over.\nConstraints: Must match the identifier of an existing Neptune global database.",
+            "Type": "string",
+            "Required": true
+        },
+        "TargetDbClusterIdentifier": {
+            "Description": "The Amazon Resource Name (ARN) of the secondary Neptune DB cluster that you want to promote to primary for the global database.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceName": {
+            "Description": "The Amazon Neptune resource with tags to be listed. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see Constructing an Amazon Resource Name (ARN) .",
+            "Type": "string",
+            "Required": true
+        },
+        "Filters": {
+            "Description": "This parameter is not currently supported.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "The DB cluster identifier for the cluster being modified. This parameter is not case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "NewDBClusterIdentifier": {
+            "Description": "The new DB cluster identifier for the DB cluster when renaming a DB cluster. This value is stored as a lowercase string.\nConstraints:\nExample: my-cluster2",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "ApplyImmediately": {
+            "Description": "A value that specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow setting for the DB cluster. If this parameter is set to false, changes to the DB cluster are applied during the next maintenance window.\nThe ApplyImmediately parameter only affects NewDBClusterIdentifier values. If you set the ApplyImmediately parameter value to false, then changes to NewDBClusterIdentifier values are applied during the next maintenance window. All other changes are applied immediately, regardless of the value of the ApplyImmediately parameter.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "BackupRetentionPeriod": {
+            "Description": "The number of days for which automated backups are retained. You must specify a minimum value of 1.\nDefault: 1\nConstraints:",
+            "Type": "integer",
+            "Required": false,
+            "integer variables": {}
+        },
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group to use for the DB cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "A list of VPC security groups that the DB cluster will belong to.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Port": {
+            "Description": "The port number on which the DB cluster accepts connections.\nConstraints: Value must be 1150-65535\nDefault: The same port as the original DB cluster.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MasterUserPassword": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionGroupName": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "PreferredBackupWindow": {
+            "Description": "The daily time range during which automated backups are created if automated backups are enabled, using the BackupRetentionPeriod parameter.\nThe default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "The weekly time range during which system maintenance can occur, in Universal Coordinated Time (UTC).\nFormat: ddd:hh24:mi-ddd:hh24:mi\nThe default is a 30-minute window selected at random from an 8-hour block of time for each Amazon Region, occurring on a random day of the week.\nValid Days: Mon, Tue, Wed, Thu, Fri, Sat, Sun.\nConstraints: Minimum 30-minute window.",
+            "Type": "string",
+            "Required": false
+        },
+        "EnableIAMDatabaseAuthentication": {
+            "Description": "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "CloudwatchLogsExportConfiguration": {
+            "Description": "The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EngineVersion": {
+            "Description": "The version number of the database engine to which you want to upgrade. Changing this parameter results in an outage. The change is applied during the next maintenance window unless the ApplyImmediately parameter is set to true.\nFor a list of valid engine versions, see Engine Releases for Amazon Neptune, or call DescribeDBEngineVersions .",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowMajorVersionUpgrade": {
+            "Description": "A value that indicates whether upgrades between different major versions are allowed.\nConstraints: You must set the allow-major-version-upgrade flag when providing an EngineVersion parameter that uses a different major version than the DB cluster's current version.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "DBInstanceParameterGroupName": {
+            "Description": "The name of the DB parameter group to apply to all instances of the DB cluster.\nDefault: The existing name setting\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DeletionProtection": {
+            "Description": "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "CopyTagsToSnapshot": {
+            "Description": "If set to ``true`` , tags are copied to any snapshot of the DB cluster that is created.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "modify_db_cluster_endpoint": {
+        "DBClusterEndpointIdentifier": {
+            "Description": "The identifier of the endpoint to modify. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        },
+        "EndpointType": {
+            "Description": "The type of the endpoint. One of: READER , WRITER , ANY .",
+            "Type": "string",
+            "Required": false
+        },
+        "StaticMembers": {
+            "Description": "List of DB instance identifiers that are part of the custom endpoint group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ExcludedMembers": {
+            "Description": "List of DB instance identifiers that aren't part of the custom endpoint group. All other eligible instances are reachable through the custom endpoint. Only relevant if the list of static members is empty.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_db_cluster_parameter_group": {
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group to modify.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "A list of parameters in the DB cluster parameter group to modify.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "modify_db_cluster_snapshot_attribute": {
+        "DBClusterSnapshotIdentifier": {
+            "Description": "The identifier for the DB cluster snapshot to modify the attributes for.",
+            "Type": "string",
+            "Required": true
+        },
+        "AttributeName": {
+            "Description": "The name of the DB cluster snapshot attribute to modify.\nTo manage authorization for other Amazon accounts to copy or restore a manual DB cluster snapshot, set this value to restore .",
+            "Type": "string",
+            "Required": true
+        },
+        "ValuesToAdd": {
+            "Description": "A list of DB cluster snapshot attributes to add to the attribute specified by AttributeName .\nTo authorize other Amazon accounts to copy or restore a manual DB cluster snapshot, set this list to include one or more Amazon account IDs, or all to make the manual DB cluster snapshot restorable by any Amazon account. Do not add the all value for any manual DB cluster snapshots that contain private information that you don't want available to all Amazon accounts.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "ValuesToRemove": {
+            "Description": "A list of DB cluster snapshot attributes to remove from the attribute specified by AttributeName .\nTo remove authorization for other Amazon accounts to copy or restore a manual DB cluster snapshot, set this list to include one or more Amazon account identifiers, or all to remove authorization for any Amazon account to copy or restore the DB cluster snapshot. If you specify all, an Amazon account whose account ID is explicitly added to the restore attribute can still copy or restore a manual DB cluster snapshot.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "modify_db_instance": {
+        "DBInstanceIdentifier": {
+            "Description": "The DB instance identifier. This value is stored as a lowercase string.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "AllocatedStorage": {
+            "Description": "Not supported by Neptune.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DBInstanceClass": {
+            "Description": "The new compute and memory capacity of the DB instance, for example, db.m4.large. Not all DB instance classes are available in all Amazon Regions.\nIf you modify the DB instance class, an outage occurs during the change. The change is applied during the next maintenance window, unless ApplyImmediately is specified as true for this request.\nDefault: Uses existing setting",
+            "Type": "string",
+            "Required": false
+        },
+        "DBSubnetGroupName": {
+            "Description": "The new DB subnet group for the DB instance. You can use this parameter to move your DB instance to a different VPC.\nChanging the subnet group causes an outage during the change. The change is applied during the next maintenance window, unless you specify true for the ApplyImmediately parameter.\nConstraints: If supplied, must match the name of an existing DBSubnetGroup.\nExample: mySubnetGroup",
+            "Type": "string",
+            "Required": false
+        },
+        "DBSecurityGroups": {
+            "Description": "A list of DB security groups to authorize on this DB instance. Changing this setting doesn't result in an outage and the change is asynchronously applied as soon as possible.\nConstraints:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "A list of EC2 VPC security groups to authorize on this DB instance. This change is asynchronously applied as soon as possible.\nNot applicable. The associated list of EC2 VPC security groups is managed by the DB cluster. For more information, see  ModifyDBCluster .\nConstraints:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "ApplyImmediately": {
+            "Description": "Specifies whether the modifications in this request and any pending modifications are asynchronously applied as soon as possible, regardless of the PreferredMaintenanceWindow setting for the DB instance.\nIf this parameter is set to false, changes to the DB instance are applied during the next maintenance window. Some parameter changes can cause an outage and are applied on the next call to  RebootDBInstance, or the next failure reboot.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MasterUserPassword": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "DBParameterGroupName": {
+            "Description": "The name of the DB parameter group to apply to the DB instance. Changing this setting doesn't result in an outage. The parameter group name itself is changed immediately, but the actual parameter changes are not applied until you reboot the instance without failover. The db instance will NOT be rebooted automatically and the parameter changes will NOT be applied during the next maintenance window.\nDefault: Uses existing setting\nConstraints: The DB parameter group must be in the same DB parameter group family as this DB instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "BackupRetentionPeriod": {
+            "Description": "Not applicable. The retention period for automated backups is managed by the DB cluster. For more information, see  ModifyDBCluster .\nDefault: Uses existing setting",
+            "Type": "integer",
+            "Required": false
+        },
+        "PreferredBackupWindow": {
+            "Description": "The daily time range during which automated backups are created if automated backups are enabled.\nNot applicable. The daily time range for creating automated backups is managed by the DB cluster. For more information, see  ModifyDBCluster .\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "PreferredMaintenanceWindow": {
+            "Description": "The weekly time range (in UTC) during which system maintenance can occur, which might result in an outage. Changing this parameter doesn't result in an outage, except in the following situation, and the change is asynchronously applied as soon as possible. If there are pending actions that cause a reboot, and the maintenance window is changed to include the current time, then changing this parameter will cause a reboot of the DB instance. If moving this window to the current time, there must be at least 30 minutes between the current time and end of the window to ensure pending changes are applied.\nDefault: Uses existing setting\nFormat: ddd:hh24:mi-ddd:hh24:mi\nValid Days: Mon | Tue | Wed | Thu | Fri | Sat | Sun\nConstraints: Must be at least 30 minutes",
+            "Type": "string",
+            "Required": false
+        },
+        "MultiAZ": {
+            "Description": "Specifies if the DB instance is a Multi-AZ deployment. Changing this parameter doesn't result in an outage and the change is applied during the next maintenance window unless the ApplyImmediately parameter is set to true for this request.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The version number of the database engine to upgrade to. Currently, setting this parameter has no effect. To upgrade your database engine to the most recent release, use the  ApplyPendingMaintenanceAction API.",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowMajorVersionUpgrade": {
+            "Description": "Indicates that major version upgrades are allowed. Changing this parameter doesn't result in an outage and the change is asynchronously applied as soon as possible.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "AutoMinorVersionUpgrade": {
+            "Description": "Indicates that minor version upgrades are applied automatically to the DB instance during the maintenance window. Changing this parameter doesn't result in an outage except in the following case and the change is asynchronously applied as soon as possible. An outage will result if this parameter is set to true during the maintenance window, and a newer minor version is available, and Neptune has enabled auto patching for that engine version.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "LicenseModel": {
+            "Description": "Not supported by Neptune.",
+            "Type": "string",
+            "Required": false
+        },
+        "Iops": {
+            "Description": "The new Provisioned IOPS (I/O operations per second) value for the instance.\nChanging this setting doesn't result in an outage and the change is applied during the next maintenance window unless the ApplyImmediately parameter is set to true for this request.\nDefault: Uses existing setting",
+            "Type": "integer",
+            "Required": false
+        },
+        "OptionGroupName": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "NewDBInstanceIdentifier": {
+            "Description": "The new DB instance identifier for the DB instance when renaming a DB instance. When you change the DB instance identifier, an instance reboot will occur immediately if you set Apply Immediately to true, or will occur during the next maintenance window if Apply Immediately to false. This value is stored as a lowercase string.\nConstraints:\nExample: mydbinstance",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "StorageType": {
+            "Description": "Not supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "TdeCredentialArn": {
+            "Description": "The ARN from the key store with which to associate the instance for TDE encryption.",
+            "Type": "string",
+            "Required": false
+        },
+        "TdeCredentialPassword": {
+            "Description": "The password for the given ARN from the key store in order to access the device.",
+            "Type": "string",
+            "Required": false
+        },
+        "CACertificateIdentifier": {
+            "Description": "Indicates the certificate that needs to be associated with the instance.",
+            "Type": "string",
+            "Required": false
+        },
+        "Domain": {
+            "Description": "Not supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "CopyTagsToSnapshot": {
+            "Description": "True to copy all tags from the DB instance to snapshots of the DB instance, and otherwise false. The default is false.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MonitoringInterval": {
+            "Description": "The interval, in seconds, between points when Enhanced Monitoring metrics are collected for the DB instance. To disable collecting Enhanced Monitoring metrics, specify 0. The default is 0.\nIf MonitoringRoleArn is specified, then you must also set MonitoringInterval to a value other than 0.\nValid Values: 0, 1, 5, 10, 15, 30, 60",
+            "Type": "integer",
+            "Required": false
+        },
+        "DBPortNumber": {
+            "Description": "The port number on which the database accepts connections.\nThe value of the DBPortNumber parameter must not match any of the port values specified for options in the option group for the DB instance.\nYour database will restart when you change the DBPortNumber value regardless of the value of the ApplyImmediately parameter.\nDefault: 8182",
+            "Type": "integer",
+            "Required": false
+        },
+        "PubliclyAccessible": {
+            "Description": "This flag should no longer be used.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "MonitoringRoleArn": {
+            "Description": "The ARN for the IAM role that permits Neptune to send enhanced monitoring metrics to Amazon CloudWatch Logs. For example, arn:aws:iam:123456789012:role/emaccess .\nIf MonitoringInterval is set to a value other than 0, then you must supply a MonitoringRoleArn value.",
+            "Type": "string",
+            "Required": false
+        },
+        "DomainIAMRoleName": {
+            "Description": "Not supported",
+            "Type": "string",
+            "Required": false
+        },
+        "PromotionTier": {
+            "Description": "A value that specifies the order in which a Read Replica is promoted to the primary instance after a failure of the existing primary instance.\nDefault: 1\nValid Values: 0 - 15",
+            "Type": "integer",
+            "Required": false
+        },
+        "EnableIAMDatabaseAuthentication": {
+            "Description": "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false.\nYou can enable IAM database authentication for the following database engines\nNot applicable. Mapping Amazon IAM accounts to database accounts is managed by the DB cluster. For more information, see  ModifyDBCluster .\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EnablePerformanceInsights": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "boolean",
+            "Required": false
+        },
+        "PerformanceInsightsKMSKeyId": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "CloudwatchLogsExportConfiguration": {
+            "Description": "The configuration setting for the log types to be enabled for export to CloudWatch Logs for a specific DB instance or DB cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "DeletionProtection": {
+            "Description": "A value that indicates whether the DB instance has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled. See Deleting a DB Instance .",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "modify_db_parameter_group": {
+        "DBParameterGroupName": {
+            "Description": "The name of the DB parameter group.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Parameters": {
+            "Description": "An array of parameter names, values, and the apply method for the parameter update. At least one parameter name, value, and apply method must be supplied; subsequent arguments are optional. A maximum of 20 parameters can be modified in a single request.\nValid Values (for the application method): immediate | pending-reboot",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "modify_db_subnet_group": {
+        "DBSubnetGroupName": {
+            "Description": "The name for the DB subnet group. This value is stored as a lowercase string. You can't modify the default subnet group.\nConstraints: Must match the name of an existing DBSubnetGroup. Must not be default.\nExample: mySubnetgroup",
+            "Type": "string",
+            "Required": true
+        },
+        "DBSubnetGroupDescription": {
+            "Description": "The description for the DB subnet group.",
+            "Type": "string",
+            "Required": false
+        },
+        "SubnetIds": {
+            "Description": "The EC2 subnet IDs for the DB subnet group.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "modify_event_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the event notification subscription.",
+            "Type": "string",
+            "Required": true
+        },
+        "SnsTopicArn": {
+            "Description": "The Amazon Resource Name (ARN) of the SNS topic created for event notification. The ARN is created by Amazon SNS when you create a topic and subscribe to it.",
+            "Type": "string",
+            "Required": false
+        },
+        "SourceType": {
+            "Description": "The type of source that is generating the events. For example, if you want to be notified of events generated by a DB instance, you would set this parameter to db-instance. if this value is not specified, all events are returned.\nValid values: db-instance | db-parameter-group | db-security-group | db-snapshot",
+            "Type": "string",
+            "Required": false
+        },
+        "EventCategories": {
+            "Description": "A list of event categories for a SourceType that you want to subscribe to. You can see a list of the categories for a given SourceType by using the DescribeEventCategories action.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Enabled": {
+            "Description": "A Boolean value; set to true to activate the subscription.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "modify_global_cluster": {
+        "GlobalClusterIdentifier": {
+            "Description": "The DB cluster identifier for the global cluster being modified. This parameter is not case-sensitive.\nConstraints: Must match the identifier of an existing global database cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "NewGlobalClusterIdentifier": {
+            "Description": "A new cluster identifier to assign to the global database. This value is stored as a lowercase string.\nConstraints:\nExample: my-cluster2",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DeletionProtection": {
+            "Description": "Indicates whether the global database has deletion protection enabled. The global database cannot be deleted when deletion protection is enabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EngineVersion": {
+            "Description": "The version number of the database engine to which you want to upgrade. Changing this parameter will result in an outage. The change is applied during the next maintenance window unless ApplyImmediately is enabled.\nTo list all of the available Neptune engine versions, use the following command:",
+            "Type": "string",
+            "Required": false
+        },
+        "AllowMajorVersionUpgrade": {
+            "Description": "A value that indicates whether major version upgrades are allowed.\nConstraints: You must allow major version upgrades if you specify a value for the EngineVersion parameter that is a different major version than the DB cluster's current version.\nIf you upgrade the major version of a global database, the cluster and DB instance parameter groups are set to the default parameter groups for the new version, so you will need to apply any custom parameter groups after completing the upgrade.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "promote_read_replica_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "Not supported.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "reboot_db_instance": {
+        "DBInstanceIdentifier": {
+            "Description": "The DB instance identifier. This parameter is stored as a lowercase string.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ForceFailover": {
+            "Description": "When true, the reboot is conducted through a MultiAZ failover.\nConstraint: You can't specify true if the instance is not configured for MultiAZ.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "remove_from_global_cluster": {
+        "GlobalClusterIdentifier": {
+            "Description": "The identifier of the Neptune global database from which to detach the specified Neptune DB cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "DbClusterIdentifier": {
+            "Description": "The Amazon Resource Name (ARN) identifying the cluster to be detached from the Neptune global database cluster.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_role_from_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "The name of the DB cluster to disassociate the IAM role from.",
+            "Type": "string",
+            "Required": true
+        },
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role to disassociate from the DB cluster, for example arn:aws:iam::123456789012:role/NeptuneAccessRole .",
+            "Type": "string",
+            "Required": true
+        },
+        "FeatureName": {
+            "Description": "The name of the feature for the DB cluster that the IAM role is to be disassociated from. For the list of supported feature names, see DescribeDBEngineVersions .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "remove_source_identifier_from_subscription": {
+        "SubscriptionName": {
+            "Description": "The name of the event notification subscription you want to remove a source identifier from.",
+            "Type": "string",
+            "Required": true
+        },
+        "SourceIdentifier": {
+            "Description": "The source identifier to be removed from the subscription, such as the DB instance identifier for a DB instance or the name of a security group.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "remove_tags_from_resource": {
+        "ResourceName": {
+            "Description": "The Amazon Neptune resource that the tags are removed from. This value is an Amazon Resource Name (ARN). For information about creating an ARN, see Constructing an Amazon Resource Name (ARN) .",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag key (name) of the tag to be removed.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "reset_db_cluster_parameter_group": {
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group to reset.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResetAllParameters": {
+            "Description": "A value that is set to true to reset all parameters in the DB cluster parameter group to their default values, and false otherwise. You can't use this parameter if there is a list of parameter names specified for the Parameters parameter.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "A list of parameter names in the DB cluster parameter group to reset to the default values. You can't use this parameter if the ResetAllParameters parameter is set to true .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "reset_db_parameter_group": {
+        "DBParameterGroupName": {
+            "Description": "The name of the DB parameter group.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "ResetAllParameters": {
+            "Description": "Specifies whether (true ) or not (false ) to reset all parameters in the DB parameter group to default values.\nDefault: true",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Parameters": {
+            "Description": "To reset the entire DB parameter group, specify the DBParameterGroup name and ResetAllParameters parameters. To reset specific parameters, provide a list of the following: ParameterName and ApplyMethod. A maximum of 20 parameters can be modified in a single request.\nValid Values (for Apply method): pending-reboot",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "restore_db_cluster_from_snapshot": {
+        "AvailabilityZones": {
+            "Description": "Provides the list of EC2 Availability Zones that instances in the restored DB cluster can be created in.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DBClusterIdentifier": {
+            "Description": "The name of the DB cluster to create from the DB snapshot or DB cluster snapshot. This parameter isn't case-sensitive.\nConstraints:\nExample: my-snapshot-id",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "SnapshotIdentifier": {
+            "Description": "The identifier for the DB snapshot or DB cluster snapshot to restore from.\nYou can use either the name or the Amazon Resource Name (ARN) to specify a DB cluster snapshot. However, you can use only the ARN to specify a DB snapshot.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Engine": {
+            "Description": "The database engine to use for the new DB cluster.\nDefault: The same as source\nConstraint: Must be compatible with the engine of the source",
+            "Type": "string",
+            "Required": true
+        },
+        "EngineVersion": {
+            "Description": "The version of the database engine to use for the new DB cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port number on which the new DB cluster accepts connections.\nConstraints: Value must be 1150-65535\nDefault: The same port as the original DB cluster.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DBSubnetGroupName": {
+            "Description": "The name of the DB subnet group to use for the new DB cluster.\nConstraints: If supplied, must match the name of an existing DBSubnetGroup.\nExample: mySubnetgroup",
+            "Type": "string",
+            "Required": false
+        },
+        "DatabaseName": {
+            "Description": "Not supported.",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionGroupName": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "A list of VPC security groups that the new DB cluster will belong to.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be assigned to the restored DB cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "The Amazon KMS key identifier to use when restoring an encrypted DB cluster from a DB snapshot or DB cluster snapshot.\nThe KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are restoring a DB cluster with the same Amazon account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key.\nIf you do not specify a value for the KmsKeyId parameter, then the following will occur:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EnableIAMDatabaseAuthentication": {
+            "Description": "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EnableCloudwatchLogsExports": {
+            "Description": "The list of logs that the restored DB cluster is to export to Amazon CloudWatch Logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group to associate with the new DB cluster.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DeletionProtection": {
+            "Description": "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "CopyTagsToSnapshot": {
+            "Description": "If set to ``true`` , tags are copied to any snapshot of the restored DB cluster that is created.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "restore_db_cluster_to_point_in_time": {
+        "DBClusterIdentifier": {
+            "Description": "The name of the new DB cluster to be created.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "RestoreType": {
+            "Description": "The type of restore to be performed. You can specify one of the following values:\nIf you don't specify a RestoreType value, then the new DB cluster is restored as a full copy of the source DB cluster.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "SourceDBClusterIdentifier": {
+            "Description": "The identifier of the source DB cluster from which to restore.\nConstraints:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "RestoreToTime": {
+            "Description": "The date and time to restore the DB cluster to.\nValid Values: Value must be a time in Universal Coordinated Time (UTC) format\nConstraints:\nExample: 2015-03-07T23:45:00Z",
+            "Type": "datetime",
+            "Required": false,
+            "datetime variables": {}
+        },
+        "UseLatestRestorableTime": {
+            "Description": "A value that is set to true to restore the DB cluster to the latest restorable backup time, and false otherwise.\nDefault: false\nConstraints: Cannot be specified if RestoreToTime parameter is provided.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Port": {
+            "Description": "The port number on which the new DB cluster accepts connections.\nConstraints: Value must be 1150-65535\nDefault: The same port as the original DB cluster.",
+            "Type": "integer",
+            "Required": false
+        },
+        "DBSubnetGroupName": {
+            "Description": "The DB subnet group name to use for the new DB cluster.\nConstraints: If supplied, must match the name of an existing DBSubnetGroup.\nExample: mySubnetgroup",
+            "Type": "string",
+            "Required": false
+        },
+        "OptionGroupName": {
+            "Description": "(Not supported by Neptune)",
+            "Type": "string",
+            "Required": false
+        },
+        "VpcSecurityGroupIds": {
+            "Description": "A list of VPC security groups that the new DB cluster belongs to.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "The tags to be applied to the restored DB cluster.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "KmsKeyId": {
+            "Description": "The Amazon KMS key identifier to use when restoring an encrypted DB cluster from an encrypted DB cluster.\nThe KMS key identifier is the Amazon Resource Name (ARN) for the KMS encryption key. If you are restoring a DB cluster with the same Amazon account that owns the KMS encryption key used to encrypt the new DB cluster, then you can use the KMS key alias instead of the ARN for the KMS encryption key.\nYou can restore to a new DB cluster and encrypt the new DB cluster with a KMS key that is different than the KMS key used to encrypt the source DB cluster. The new DB cluster is encrypted with the KMS key identified by the KmsKeyId parameter.\nIf you do not specify a value for the KmsKeyId parameter, then the following will occur:\nIf DBClusterIdentifier refers to a DB cluster that is not encrypted, then the restore request is rejected.",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "EnableIAMDatabaseAuthentication": {
+            "Description": "True to enable mapping of Amazon Identity and Access Management (IAM) accounts to database accounts, and otherwise false.\nDefault: false",
+            "Type": "boolean",
+            "Required": false
+        },
+        "EnableCloudwatchLogsExports": {
+            "Description": "The list of logs that the restored DB cluster is to export to CloudWatch Logs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "DBClusterParameterGroupName": {
+            "Description": "The name of the DB cluster parameter group to associate with the new DB cluster.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "DeletionProtection": {
+            "Description": "A value that indicates whether the DB cluster has deletion protection enabled. The database can't be deleted when deletion protection is enabled. By default, deletion protection is disabled.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "start_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "The DB cluster identifier of the Neptune DB cluster to be started. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "stop_db_cluster": {
+        "DBClusterIdentifier": {
+            "Description": "The DB cluster identifier of the Neptune DB cluster to be stopped. This parameter is stored as a lowercase string.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "ResourceIdentifier": {
+            "Description": "The ARN of a resource to return pending maintenance actions for.",
+            "Type": "string",
+            "Required": false
+        },
+        "Filters": {
+            "Description": "A filter that specifies one or more resources to return pending maintenance actions for.\nSupported filters:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "wait": {
+        "DBInstanceIdentifier": {
+            "Description": "The user-supplied instance identifier. If this parameter is specified, information from only the specific DB instance is returned. This parameter isn't case-sensitive.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "Filters": {
+            "Description": "A filter that specifies one or more DB instances to describe.\nSupported filters:\nFor example, to invoke this API from the Amazon CLI and filter so that only Neptune DB instances are returned, you could use the following command:",
+            "Type": "list",
+            "Required": false,
+            "list variables": [
+                {},
+                {}
+            ]
+        },
+        "MaxRecords": {
+            "Description": "The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that the remaining results can be retrieved.\nDefault: 100\nConstraints: Minimum 20, maximum 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Marker": {
+            "Description": "An optional pagination token provided by a previous DescribeDBInstances request. If this parameter is specified, the response includes only records beyond the marker, up to the value specified by MaxRecords .",
+            "Type": "string",
+            "Required": false
+        },
+        "WaiterConfig": {
+            "Description": "A dictionary that provides parameters to control waiting behavior.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

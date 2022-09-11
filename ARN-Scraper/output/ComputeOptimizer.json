@@ -1,0 +1,469 @@
+{
+    "delete_recommendation_preferences": {
+        "resourceType": {
+            "Description": "The target resource type of the recommendation preference to delete.\nThe Ec2Instance option encompasses standalone instances and instances that are part of Auto Scaling groups. The AutoScalingGroup option encompasses only instances that are part of an Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "scope": {
+            "Description": "An object that describes the scope of the recommendation preference to delete.\nYou can delete recommendation preferences that are created at the organization level (for management accounts of an organization only), account level, and resource level. For more information, see Activating enhanced infrastructure metrics in the Compute Optimizer User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "recommendationPreferenceNames": {
+            "Description": "The name of the recommendation preference to delete.\nEnhanced infrastructure metrics (EnhancedInfrastructureMetrics ) is the only feature that can be activated through preferences. Therefore, it is also the only recommendation preference that can be deleted.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "describe_recommendation_export_jobs": {
+        "jobIds": {
+            "Description": "The identification numbers of the export jobs to return.\nAn export job ID is returned when you create an export using the  ExportAutoScalingGroupRecommendations or  ExportEC2InstanceRecommendations actions.\nAll export jobs created in the last seven days are returned if this parameter is omitted.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that returns a more specific list of export jobs.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of export jobs.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of export jobs to return with a single request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "export_auto_scaling_group_recommendations": {
+        "accountIds": {
+            "Description": "The IDs of the Amazon Web Services accounts for which to export Auto Scaling group recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.\nThis parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.\nRecommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.\nYou can specify multiple account IDs per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that exports a more specific set of Auto Scaling group recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "fieldsToExport": {
+            "Description": "The recommendations data to include in the export file. For more information about the fields that can be exported, see Exported files in the Compute Optimizer User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "s3DestinationConfig": {
+            "Description": "An object to specify the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for the export job.\nYou must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permissions policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute Optimizer in the Compute Optimizer User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "fileFormat": {
+            "Description": "The format of the export file.\nThe only export file format currently supported is Csv .",
+            "Type": "string",
+            "Required": false
+        },
+        "includeMemberAccounts": {
+            "Description": "Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.\nThe member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see Compute Optimizer and Amazon Web Services Organizations trusted access in the Compute Optimizer User Guide .\nRecommendations for member accounts of the organization are not included in the export file if this parameter is omitted.\nThis parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.\nRecommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "recommendationPreferences": {
+            "Description": "An object to specify the preferences for the Auto Scaling group recommendations to export.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "export_ebs_volume_recommendations": {
+        "accountIds": {
+            "Description": "The IDs of the Amazon Web Services accounts for which to export Amazon EBS volume recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.\nThis parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.\nRecommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.\nYou can specify multiple account IDs per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that exports a more specific set of Amazon EBS volume recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "fieldsToExport": {
+            "Description": "The recommendations data to include in the export file. For more information about the fields that can be exported, see Exported files in the Compute Optimizer User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "s3DestinationConfig": {
+            "Description": "Describes the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for a recommendations export job.\nYou must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permission policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute Optimizer in the Compute Optimizer User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "fileFormat": {
+            "Description": "The format of the export file.\nThe only export file format currently supported is Csv .",
+            "Type": "string",
+            "Required": false
+        },
+        "includeMemberAccounts": {
+            "Description": "Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.\nThe member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see Compute Optimizer and Amazon Web Services Organizations trusted access in the Compute Optimizer User Guide .\nRecommendations for member accounts of the organization are not included in the export file if this parameter is omitted.\nThis parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.\nRecommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "export_ec2_instance_recommendations": {
+        "accountIds": {
+            "Description": "The IDs of the Amazon Web Services accounts for which to export instance recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.\nThis parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.\nRecommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.\nYou can specify multiple account IDs per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that exports a more specific set of instance recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "fieldsToExport": {
+            "Description": "The recommendations data to include in the export file. For more information about the fields that can be exported, see Exported files in the Compute Optimizer User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "s3DestinationConfig": {
+            "Description": "An object to specify the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for the export job.\nYou must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permissions policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute Optimizer in the Compute Optimizer User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "fileFormat": {
+            "Description": "The format of the export file.\nThe only export file format currently supported is Csv .",
+            "Type": "string",
+            "Required": false
+        },
+        "includeMemberAccounts": {
+            "Description": "Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.\nThe member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see Compute Optimizer and Amazon Web Services Organizations trusted access in the Compute Optimizer User Guide .\nRecommendations for member accounts of the organization are not included in the export file if this parameter is omitted.\nRecommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "recommendationPreferences": {
+            "Description": "An object to specify the preferences for the Amazon EC2 instance recommendations to export.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "export_lambda_function_recommendations": {
+        "accountIds": {
+            "Description": "The IDs of the Amazon Web Services accounts for which to export Lambda function recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to export recommendations.\nThis parameter cannot be specified together with the include member accounts parameter. The parameters are mutually exclusive.\nRecommendations for member accounts are not included in the export if this parameter, or the include member accounts parameter, is omitted.\nYou can specify multiple account IDs per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that exports a more specific set of Lambda function recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "fieldsToExport": {
+            "Description": "The recommendations data to include in the export file. For more information about the fields that can be exported, see Exported files in the Compute Optimizer User Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "s3DestinationConfig": {
+            "Description": "Describes the destination Amazon Simple Storage Service (Amazon S3) bucket name and key prefix for a recommendations export job.\nYou must create the destination Amazon S3 bucket for your recommendations export before you create the export job. Compute Optimizer does not create the S3 bucket for you. After you create the S3 bucket, ensure that it has the required permission policy to allow Compute Optimizer to write the export file to it. If you plan to specify an object prefix when you create the export job, you must include the object prefix in the policy that you add to the S3 bucket. For more information, see Amazon S3 Bucket Policy for Compute Optimizer in the Compute Optimizer User Guide .",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "fileFormat": {
+            "Description": "The format of the export file.\nThe only export file format currently supported is Csv .",
+            "Type": "string",
+            "Required": false
+        },
+        "includeMemberAccounts": {
+            "Description": "Indicates whether to include recommendations for resources in all member accounts of the organization if your account is the management account of an organization.\nThe member accounts must also be opted in to Compute Optimizer, and trusted access for Compute Optimizer must be enabled in the organization account. For more information, see Compute Optimizer and Amazon Web Services Organizations trusted access in the Compute Optimizer User Guide .\nRecommendations for member accounts of the organization are not included in the export file if this parameter is omitted.\nThis parameter cannot be specified together with the account IDs parameter. The parameters are mutually exclusive.\nRecommendations for member accounts are not included in the export if this parameter, or the account IDs parameter, is omitted.",
+            "Type": "boolean",
+            "Required": false
+        }
+    },
+    "get_auto_scaling_group_recommendations": {
+        "accountIds": {
+            "Description": "The ID of the Amazon Web Services account for which to return Auto Scaling group recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to return Auto Scaling group recommendations.\nOnly one account ID can be specified per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "autoScalingGroupArns": {
+            "Description": "The Amazon Resource Name (ARN) of the Auto Scaling groups for which to return recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of Auto Scaling group recommendations.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of Auto Scaling group recommendations to return with a single request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that returns a more specific list of Auto Scaling group recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "recommendationPreferences": {
+            "Description": "An object to specify the preferences for the Auto Scaling group recommendations to return in the response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_ebs_volume_recommendations": {
+        "volumeArns": {
+            "Description": "The Amazon Resource Name (ARN) of the volumes for which to return recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of volume recommendations.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of volume recommendations to return with a single request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that returns a more specific list of volume recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "accountIds": {
+            "Description": "The ID of the Amazon Web Services account for which to return volume recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to return volume recommendations.\nOnly one account ID can be specified per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "get_ec2_instance_recommendations": {
+        "instanceArns": {
+            "Description": "The Amazon Resource Name (ARN) of the instances for which to return recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of instance recommendations.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of instance recommendations to return with a single request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that returns a more specific list of instance recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "accountIds": {
+            "Description": "The ID of the Amazon Web Services account for which to return instance recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to return instance recommendations.\nOnly one account ID can be specified per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "recommendationPreferences": {
+            "Description": "An object to specify the preferences for the Amazon EC2 instance recommendations to return in the response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_ec2_recommendation_projected_metrics": {
+        "instanceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the instances for which to return recommendation projected metrics.",
+            "Type": "string",
+            "Required": true
+        },
+        "stat": {
+            "Description": "The statistic of the projected metrics.",
+            "Type": "string",
+            "Required": true
+        },
+        "period": {
+            "Description": "The granularity, in seconds, of the projected metrics data points.",
+            "Type": "integer",
+            "Required": true
+        },
+        "startTime": {
+            "Description": "The timestamp of the first projected metrics data point to return.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "endTime": {
+            "Description": "The timestamp of the last projected metrics data point to return.",
+            "Type": "datetime",
+            "Required": true
+        },
+        "recommendationPreferences": {
+            "Description": "An object to specify the preferences for the Amazon EC2 recommendation projected metrics to return in the response.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "get_effective_recommendation_preferences": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource for which to confirm effective recommendation preferences. Only EC2 instance and Auto Scaling group ARNs are currently supported.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_enrollment_status": "No parameters defined",
+    "get_enrollment_statuses_for_organization": {
+        "filters": {
+            "Description": "An array of objects to specify a filter that returns a more specific list of account enrollment statuses.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of account enrollment statuses.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of account enrollment statuses to return with a single request. You can specify up to 100 statuses to return with each request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_lambda_function_recommendations": {
+        "functionArns": {
+            "Description": "The Amazon Resource Name (ARN) of the functions for which to return recommendations.\nYou can specify a qualified or unqualified ARN. If you specify an unqualified ARN without a function version suffix, Compute Optimizer will return recommendations for the latest ($LATEST ) version of the function. If you specify a qualified ARN with a version suffix, Compute Optimizer will return recommendations for the specified function version. For more information about using function versions, see Using versions in the Lambda Developer Guide .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "accountIds": {
+            "Description": "The ID of the Amazon Web Services account for which to return function recommendations.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to return function recommendations.\nOnly one account ID can be specified per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "filters": {
+            "Description": "An array of objects to specify a filter that returns a more specific list of function recommendations.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of function recommendations.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of function recommendations to return with a single request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_recommendation_preferences": {
+        "resourceType": {
+            "Description": "The target resource type of the recommendation preference for which to return preferences.\nThe Ec2Instance option encompasses standalone instances and instances that are part of Auto Scaling groups. The AutoScalingGroup option encompasses only instances that are part of an Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "scope": {
+            "Description": "An object that describes the scope of the recommendation preference to return.\nYou can return recommendation preferences that are created at the organization level (for management accounts of an organization only), account level, and resource level. For more information, see Activating enhanced infrastructure metrics in the Compute Optimizer User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of recommendation preferences.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of recommendation preferences to return with a single request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_recommendation_summaries": {
+        "accountIds": {
+            "Description": "The ID of the Amazon Web Services account for which to return recommendation summaries.\nIf your account is the management account of an organization, use this parameter to specify the member account for which you want to return recommendation summaries.\nOnly one account ID can be specified per request.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "nextToken": {
+            "Description": "The token to advance to the next page of recommendation summaries.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of recommendation summaries to return with a single request.\nTo retrieve the remaining results, make another request with the returned nextToken value.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "put_recommendation_preferences": {
+        "resourceType": {
+            "Description": "The target resource type of the recommendation preference to create.\nThe Ec2Instance option encompasses standalone instances and instances that are part of Auto Scaling groups. The AutoScalingGroup option encompasses only instances that are part of an Auto Scaling group.",
+            "Type": "string",
+            "Required": true
+        },
+        "scope": {
+            "Description": "An object that describes the scope of the recommendation preference to create.\nYou can create recommendation preferences at the organization level (for management accounts of an organization only), account level, and resource level. For more information, see Activating enhanced infrastructure metrics in the Compute Optimizer User Guide .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "enhancedInfrastructureMetrics": {
+            "Description": "The status of the enhanced infrastructure metrics recommendation preference to create or update.\nSpecify the Active status to activate the preference, or specify Inactive to deactivate the preference.\nFor more information, see Enhanced infrastructure metrics in the Compute Optimizer User Guide .",
+            "Type": "string",
+            "Required": false
+        },
+        "inferredWorkloadTypes": {
+            "Description": "The status of the inferred workload types recommendation preference to create or update.\nSpecify the Inactive status to deactivate the feature, or specify Active to activate it.\nFor more information, see Inferred workload types in the Compute Optimizer User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_enrollment_status": {
+        "status": {
+            "Description": "The new enrollment status of the account.\nThe following status options are available:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "includeMemberAccounts": {
+            "Description": "Indicates whether to enroll member accounts of the organization if the account is the management account of an organization.",
+            "Type": "boolean",
+            "Required": false
+        }
+    }
+}

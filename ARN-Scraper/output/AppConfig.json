@@ -1,0 +1,832 @@
+{
+    "create_application": {
+        "Name": {
+            "Description": "A name for the application.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Metadata to assign to the application. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_configuration_profile": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A name for the configuration profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the configuration profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "LocationUri": {
+            "Description": "A URI to locate the configuration. You can specify the AppConfig hosted configuration store, Systems Manager (SSM) document, an SSM Parameter Store parameter, or an Amazon S3 object. For the hosted configuration store and for feature flags, specify hosted. For an SSM document, specify either the document name in the format ssm-document://&lt;Document_name&gt; or the Amazon Resource Name (ARN). For a parameter, specify either the parameter name in the format ssm-parameter://&lt;Parameter_name&gt; or the ARN. For an Amazon S3 object, specify the URI in the following format: s3://&lt;bucket&gt;/&lt;objectKey&gt;. Here is an example: s3://my-bucket/my-app/us-east-1/my-config.json",
+            "Type": "string",
+            "Required": true
+        },
+        "RetrievalRoleArn": {
+            "Description": "The ARN of an IAM role with permission to access the configuration at the specified LocationUri .",
+            "Type": "string",
+            "Required": false
+        },
+        "Validators": {
+            "Description": "A list of methods for validating the configuration.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Metadata to assign to the configuration profile. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Type": {
+            "Description": "The type of configurations contained in the profile. AppConfig supports feature flags and freeform configurations. We recommend you create feature flag configurations to enable or disable new features and freeform configurations to distribute configurations to an application. When calling this API, enter one of the following values for Type :",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_deployment_strategy": {
+        "Name": {
+            "Description": "A name for the deployment strategy.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the deployment strategy.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeploymentDurationInMinutes": {
+            "Description": "Total amount of time for a deployment to last.",
+            "Type": "integer",
+            "Required": true
+        },
+        "FinalBakeTimeInMinutes": {
+            "Description": "Specifies the amount of time AppConfig monitors for Amazon CloudWatch alarms after the configuration has been deployed to 100% of its targets, before considering the deployment to be complete. If an alarm is triggered during this time, AppConfig rolls back the deployment. You must configure permissions for AppConfig to roll back based on CloudWatch alarms. For more information, see Configuring permissions for rollback based on Amazon CloudWatch alarms in the AppConfig User Guide .",
+            "Type": "integer",
+            "Required": false
+        },
+        "GrowthFactor": {
+            "Description": "The percentage of targets to receive a deployed configuration during each interval.",
+            "Type": "float",
+            "Required": true
+        },
+        "GrowthType": {
+            "Description": "The algorithm used to define how percentage grows over time. AppConfig supports the following growth types:\nExpressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets.",
+            "Type": "string",
+            "Required": false
+        },
+        "ReplicateTo": {
+            "Description": "Save the deployment strategy to a Systems Manager (SSM) document.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Metadata to assign to the deployment strategy. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_environment": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A name for the environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Monitors": {
+            "Description": "Amazon CloudWatch alarms to monitor during the deployment process.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "Metadata to assign to the environment. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_extension": {
+        "Name": {
+            "Description": "A name for the extension. Each extension name in your account must be unique. Extension versions use the same name.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Information about the extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "Actions": {
+            "Description": "The actions defined in the extension.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "Parameters": {
+            "Description": "The parameters accepted by the extension. You specify parameter values when you associate the extension to an AppConfig resource by using the CreateExtensionAssociation API action. For Lambda extension actions, these parameters are included in the Lambda request object.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Adds one or more tags for the specified extension. Tags are metadata that help you categorize resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "LatestVersionNumber": {
+            "Description": "You can omit this field when you create an extension. When you create a new version, specify the most recent current version number. For example, you create version 3, enter 2 for this field.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "create_extension_association": {
+        "ExtensionIdentifier": {
+            "Description": "The name, the ID, or the Amazon Resource Name (ARN) of the extension.",
+            "Type": "string",
+            "Required": true
+        },
+        "ExtensionVersionNumber": {
+            "Description": "The version number of the extension. If not specified, AppConfig uses the maximum version of the extension.",
+            "Type": "integer",
+            "Required": false
+        },
+        "ResourceIdentifier": {
+            "Description": "The ARN of an application, configuration profile, or environment.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "The parameter names and values defined in the extensions. Extension parameters marked Required must be entered for this field.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Tags": {
+            "Description": "Adds one or more tags for the specified extension association. Tags are metadata that help you categorize resources in different ways, for example, by purpose, owner, or environment. Each tag consists of a key and an optional value, both of which you define.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_hosted_configuration_version": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The configuration profile ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the configuration.",
+            "Type": "string",
+            "Required": false
+        },
+        "Content": {
+            "Description": "The content of the configuration or the configuration data.",
+            "Type": "bytes or seekable file-like object",
+            "Required": true
+        },
+        "ContentType": {
+            "Description": "A standard MIME type describing the format of the configuration content. For more information, see Content-Type .",
+            "Type": "string",
+            "Required": true
+        },
+        "LatestVersionNumber": {
+            "Description": "An optional locking token used to prevent race conditions from overwriting configuration updates when creating a new version. To ensure your data is not overwritten when creating multiple hosted configuration versions in rapid succession, specify the version number of the latest hosted configuration version.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_application": {
+        "ApplicationId": {
+            "Description": "The ID of the application to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_configuration_profile": {
+        "ApplicationId": {
+            "Description": "The application ID that includes the configuration profile you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The ID of the configuration profile you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_deployment_strategy": {
+        "DeploymentStrategyId": {
+            "Description": "The ID of the deployment strategy you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_environment": {
+        "ApplicationId": {
+            "Description": "The application ID that includes the environment that you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentId": {
+            "Description": "The ID of the environment that you want to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_extension": {
+        "ExtensionIdentifier": {
+            "Description": "The name, ID, or Amazon Resource Name (ARN) of the extension you want to delete.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "A specific version of an extension to delete. If omitted, the highest version is deleted.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "delete_extension_association": {
+        "ExtensionAssociationId": {
+            "Description": "The ID of the extension association to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_hosted_configuration_version": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The configuration profile ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The versions number to delete.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_application": {
+        "ApplicationId": {
+            "Description": "The ID of the application you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_configuration": {
+        "Application": {
+            "Description": "The application to get. Specify either the application name or the application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Environment": {
+            "Description": "The environment to get. Specify either the environment name or the environment ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Configuration": {
+            "Description": "The configuration to get. Specify either the configuration name or the configuration ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientId": {
+            "Description": "The clientId parameter in the following command is a unique, user-specified ID to identify the client for the configuration. This ID enables AppConfig to deploy the configuration in intervals, as defined in the deployment strategy.",
+            "Type": "string",
+            "Required": true
+        },
+        "ClientConfigurationVersion": {
+            "Description": "The configuration version returned in the most recent GetConfiguration response.\nFor more information about working with configurations, see Retrieving the Configuration in the AppConfig User Guide .",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_configuration_profile": {
+        "ApplicationId": {
+            "Description": "The ID of the application that includes the configuration profile you want to get.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The ID of the configuration profile that you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_deployment": {
+        "ApplicationId": {
+            "Description": "The ID of the application that includes the deployment you want to get.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentId": {
+            "Description": "The ID of the environment that includes the deployment you want to get.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeploymentNumber": {
+            "Description": "The sequence number of the deployment.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "get_deployment_strategy": {
+        "DeploymentStrategyId": {
+            "Description": "The ID of the deployment strategy to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_environment": {
+        "ApplicationId": {
+            "Description": "The ID of the application that includes the environment you want to get.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentId": {
+            "Description": "The ID of the environment that you want to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_extension": {
+        "ExtensionIdentifier": {
+            "Description": "The name, the ID, or the Amazon Resource Name (ARN) of the extension.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The extension version number. If no version number was defined, AppConfig uses the highest version.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "get_extension_association": {
+        "ExtensionAssociationId": {
+            "Description": "The extension association ID to get.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_hosted_configuration_version": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The configuration profile ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "VersionNumber": {
+            "Description": "The version.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "list_applications": {
+        "MaxResults": {
+            "Description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to start the list. Next token is a pagination token generated by AppConfig to describe what page the previous List call ended on. For the first List request, the nextToken should not be set. On subsequent calls, the nextToken parameter should be set to the previous responses nextToken value. Use this token to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_configuration_profiles": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to start the list. Use this token to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Type": {
+            "Description": "A filter based on the type of configurations that the configuration profile contains. A configuration can be a feature flag or a freeform configuration.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_deployment_strategies": {
+        "MaxResults": {
+            "Description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to start the list. Use this token to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_deployments": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentId": {
+            "Description": "The environment ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items that may be returned for this call. If there are items that have not yet been returned, the response will include a non-null NextToken that you can provide in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "The token returned by a prior call to this operation indicating the next set of results to be returned. If not specified, the operation will return the first set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_environments": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to start the list. Use this token to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_extension_associations": {
+        "ResourceIdentifier": {
+            "Description": "The ARN of an application, configuration profile, or environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExtensionIdentifier": {
+            "Description": "The name, the ID, or the Amazon Resource Name (ARN) of the extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "ExtensionVersionNumber": {
+            "Description": "The version number for the extension defined in the association.",
+            "Type": "integer",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to start the list. Use this token to get the next set of results or pass null to get the first set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_extensions": {
+        "MaxResults": {
+            "Description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to start the list. Use this token to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The extension name.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_hosted_configuration_versions": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The configuration profile ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "MaxResults": {
+            "Description": "The maximum number of items to return for this call. The call also returns a token that you can specify in a subsequent call to get the next set of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "A token to start the list. Use this token to get the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The resource ARN.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "start_deployment": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentId": {
+            "Description": "The environment ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeploymentStrategyId": {
+            "Description": "The deployment strategy ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The configuration profile ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationVersion": {
+            "Description": "The configuration version to deploy.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the deployment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Tags": {
+            "Description": "Metadata to assign to the deployment. Tags help organize and categorize your AppConfig resources. Each tag consists of a key and an optional value, both of which you define.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "stop_deployment": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentId": {
+            "Description": "The environment ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "DeploymentNumber": {
+            "Description": "The sequence number of the deployment.",
+            "Type": "integer",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the resource for which to retrieve tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The key-value string map. The valid character set is [a-zA-Z+-=._:/]. The tag key can be up to 128 characters and must not start with aws:. The tag value can be up to 256 characters.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the resource for which to remove tags.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag keys to delete.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_application": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the application.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description of the application.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_configuration_profile": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The ID of the configuration profile.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the configuration profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description of the configuration profile.",
+            "Type": "string",
+            "Required": false
+        },
+        "RetrievalRoleArn": {
+            "Description": "The ARN of an IAM role with permission to access the configuration at the specified LocationUri .",
+            "Type": "string",
+            "Required": false
+        },
+        "Validators": {
+            "Description": "A list of methods for validating the configuration.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_deployment_strategy": {
+        "DeploymentStrategyId": {
+            "Description": "The deployment strategy ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "A description of the deployment strategy.",
+            "Type": "string",
+            "Required": false
+        },
+        "DeploymentDurationInMinutes": {
+            "Description": "Total amount of time for a deployment to last.",
+            "Type": "integer",
+            "Required": false
+        },
+        "FinalBakeTimeInMinutes": {
+            "Description": "The amount of time that AppConfig monitors for alarms before considering the deployment to be complete and no longer eligible for automatic rollback.",
+            "Type": "integer",
+            "Required": false
+        },
+        "GrowthFactor": {
+            "Description": "The percentage of targets to receive a deployed configuration during each interval.",
+            "Type": "float",
+            "Required": false
+        },
+        "GrowthType": {
+            "Description": "The algorithm used to define how percentage grows over time. AppConfig supports the following growth types:\nExpressed numerically, the deployment rolls out as follows: 2% of the targets, 4% of the targets, 8% of the targets, and continues until the configuration has been deployed to all targets.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_environment": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "EnvironmentId": {
+            "Description": "The environment ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "The name of the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Description": {
+            "Description": "A description of the environment.",
+            "Type": "string",
+            "Required": false
+        },
+        "Monitors": {
+            "Description": "Amazon CloudWatch alarms to monitor during the deployment process.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_extension": {
+        "ExtensionIdentifier": {
+            "Description": "The name, the ID, or the Amazon Resource Name (ARN) of the extension.",
+            "Type": "string",
+            "Required": true
+        },
+        "Description": {
+            "Description": "Information about the extension.",
+            "Type": "string",
+            "Required": false
+        },
+        "Actions": {
+            "Description": "The actions defined in the extension.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "Parameters": {
+            "Description": "One or more parameters for the actions called by the extension.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "VersionNumber": {
+            "Description": "The extension version number.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "update_extension_association": {
+        "ExtensionAssociationId": {
+            "Description": "The system-generated ID for the association.",
+            "Type": "string",
+            "Required": true
+        },
+        "Parameters": {
+            "Description": "The parameter names and values defined in the extension.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "validate_configuration": {
+        "ApplicationId": {
+            "Description": "The application ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationProfileId": {
+            "Description": "The configuration profile ID.",
+            "Type": "string",
+            "Required": true
+        },
+        "ConfigurationVersion": {
+            "Description": "The version of the configuration to validate.",
+            "Type": "string",
+            "Required": true
+        }
+    }
+}

@@ -1,0 +1,180 @@
+{
+    "create_app_monitor": {
+        "AppMonitorConfiguration": {
+            "Description": "A structure that contains much of the configuration data for the app monitor. If you are using Amazon Cognito for authorization, you must include this structure in your request, and it must include the ID of the Amazon Cognito identity pool to use for authorization. If you don't include AppMonitorConfiguration, you must set up your own authorization method. For more information, see Authorize your application to send data to Amazon Web Services .\nIf you omit this argument, the sample rate used for RUM is set to 10% of the user sessions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CwLogEnabled": {
+            "Description": "Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to Amazon CloudWatch Logs in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur Amazon CloudWatch Logs charges.\nIf you omit this parameter, the default is false .",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Domain": {
+            "Description": "The top-level internet domain name for which your application has administrative authority.",
+            "Type": "string",
+            "Required": true
+        },
+        "Name": {
+            "Description": "A name for the app monitor.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "Assigns one or more tags (key-value pairs) to the app monitor.\nTags can help you organize and categorize your resources. You can also use them to scope user permissions by granting a user permission to access or change only resources with certain tag values.\nTags don't have any semantic meaning to Amazon Web Services and are interpreted strictly as strings of characters.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_app_monitor": {
+        "Name": {
+            "Description": "The name of the app monitor to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_app_monitor": {
+        "Name": {
+            "Description": "The app monitor to retrieve information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_app_monitor_data": {
+        "Filters": {
+            "Description": "An array of structures that you can use to filter the results to those that match one or more sets of key-value pairs that you specify.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "MaxResults": {
+            "Description": "The maximum number of results to return in one operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the app monitor that collected the data that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "Use the token returned by the previous operation to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "TimeRange": {
+            "Description": "A structure that defines the time range that you want to retrieve results from.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "list_app_monitors": {
+        "MaxResults": {
+            "Description": "The maximum number of results to return in one operation.",
+            "Type": "integer",
+            "Required": false
+        },
+        "NextToken": {
+            "Description": "Use the token returned by the previous operation to request the next page of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the resource that you want to see the tags of.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_rum_events": {
+        "AppMonitorDetails": {
+            "Description": "A structure that contains information about the app monitor that collected this telemetry information.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "BatchId": {
+            "Description": "A unique identifier for this batch of RUM event data.",
+            "Type": "string",
+            "Required": true
+        },
+        "Id": {
+            "Description": "The ID of the app monitor that is sending this data.",
+            "Type": "string",
+            "Required": true
+        },
+        "RumEvents": {
+            "Description": "An array of structures that contain the telemetry event data.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "UserDetails": {
+            "Description": "A structure that contains information about the user session that this batch of events was collected from.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the CloudWatch RUM resource that you're adding tags to.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The list of key-value pairs to associate with the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceArn": {
+            "Description": "The ARN of the CloudWatch RUM resource that you're removing tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The list of tag keys to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_app_monitor": {
+        "AppMonitorConfiguration": {
+            "Description": "A structure that contains much of the configuration data for the app monitor. If you are using Amazon Cognito for authorization, you must include this structure in your request, and it must include the ID of the Amazon Cognito identity pool to use for authorization. If you don't include AppMonitorConfiguration, you must set up your own authorization method. For more information, see Authorize your application to send data to Amazon Web Services .",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "CwLogEnabled": {
+            "Description": "Data collected by RUM is kept by RUM for 30 days and then deleted. This parameter specifies whether RUM sends a copy of this telemetry data to Amazon CloudWatch Logs in your account. This enables you to keep the telemetry data for more than 30 days, but it does incur Amazon CloudWatch Logs charges.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "Domain": {
+            "Description": "The top-level internet domain name for which your application has administrative authority.",
+            "Type": "string",
+            "Required": false
+        },
+        "Name": {
+            "Description": "The name of the app monitor to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

@@ -1,0 +1,428 @@
+{
+    "create_alarm_model": {
+        "alarmModelName": {
+            "Description": "A unique name that helps you identify the alarm model. You can't change this name after you create the alarm model.",
+            "Type": "string",
+            "Required": true
+        },
+        "alarmModelDescription": {
+            "Description": "A description that tells you what the alarm model detects.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleArn": {
+            "Description": "The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of key-value pairs that contain metadata for the alarm model. The tags help you manage the alarm model. For more information, see Tagging your AWS IoT Events resources in the AWS IoT Events Developer Guide .\nYou can create up to 50 tags for one alarm model.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "key": {
+            "Description": "An input attribute used as a key to create an alarm. AWS IoT Events routes inputs associated with this key to the alarm.",
+            "Type": "string",
+            "Required": false
+        },
+        "severity": {
+            "Description": "A non-negative integer that reflects the severity level of the alarm.",
+            "Type": "integer",
+            "Required": false
+        },
+        "alarmRule": {
+            "Description": "Defines when your alarm is invoked.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "alarmNotification": {
+            "Description": "Contains information about one or more notification actions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "alarmEventActions": {
+            "Description": "Contains information about one or more alarm actions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "alarmCapabilities": {
+            "Description": "Contains the configuration information of alarm state changes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_detector_model": {
+        "detectorModelName": {
+            "Description": "The name of the detector model.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorModelDefinition": {
+            "Description": "Information that defines how the detectors operate.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "detectorModelDescription": {
+            "Description": "A brief description of the detector model.",
+            "Type": "string",
+            "Required": false
+        },
+        "key": {
+            "Description": "The input attribute key used to identify a device or system to create a detector (an instance of the detector model) and then to route each input received to the appropriate detector (instance). This parameter uses a JSON-path expression in the message payload of each input to specify the attribute-value pair that is used to identify the device associated with the input.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleArn": {
+            "Description": "The ARN of the role that grants permission to AWS IoT Events to perform its operations.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the detector model.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "evaluationMethod": {
+            "Description": "Information about the order in which events are evaluated and how actions are executed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "create_input": {
+        "inputName": {
+            "Description": "The name you want to give to the input.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputDescription": {
+            "Description": "A brief description of the input.",
+            "Type": "string",
+            "Required": false
+        },
+        "inputDefinition": {
+            "Description": "The definition of the input.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "Metadata that can be used to manage the input.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "delete_alarm_model": {
+        "alarmModelName": {
+            "Description": "The name of the alarm model.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_detector_model": {
+        "detectorModelName": {
+            "Description": "The name of the detector model to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_input": {
+        "inputName": {
+            "Description": "The name of the input to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_alarm_model": {
+        "alarmModelName": {
+            "Description": "The name of the alarm model.",
+            "Type": "string",
+            "Required": true
+        },
+        "alarmModelVersion": {
+            "Description": "The version of the alarm model.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_detector_model": {
+        "detectorModelName": {
+            "Description": "The name of the detector model.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorModelVersion": {
+            "Description": "The version of the detector model.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_detector_model_analysis": {
+        "analysisId": {
+            "Description": "The ID of the analysis result that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_input": {
+        "inputName": {
+            "Description": "The name of the input.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_logging_options": "No parameters defined",
+    "get_detector_model_analysis_results": {
+        "analysisId": {
+            "Description": "The ID of the analysis result that you want to retrieve.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token that you can use to return the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_alarm_model_versions": {
+        "alarmModelName": {
+            "Description": "The name of the alarm model.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token that you can use to return the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_alarm_models": {
+        "nextToken": {
+            "Description": "The token that you can use to return the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_detector_model_versions": {
+        "detectorModelName": {
+            "Description": "The name of the detector model whose versions are returned.",
+            "Type": "string",
+            "Required": true
+        },
+        "nextToken": {
+            "Description": "The token that you can use to return the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_detector_models": {
+        "nextToken": {
+            "Description": "The token that you can use to return the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_input_routings": {
+        "inputIdentifier": {
+            "Description": "The identifer of the routed input.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token that you can use to return the next set of results.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_inputs": {
+        "nextToken": {
+            "Description": "The token that you can use to return the next set of results.",
+            "Type": "string",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "The maximum number of results to be returned per request.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "put_logging_options": {
+        "loggingOptions": {
+            "Description": "The new values of the AWS IoT Events logging options.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "start_detector_model_analysis": {
+        "detectorModelDefinition": {
+            "Description": "Information that defines how a detector operates.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The new or modified tags for the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "A list of the keys of the tags to be removed from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_alarm_model": {
+        "alarmModelName": {
+            "Description": "The name of the alarm model.",
+            "Type": "string",
+            "Required": true
+        },
+        "alarmModelDescription": {
+            "Description": "The description of the alarm model.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleArn": {
+            "Description": "The ARN of the IAM role that allows the alarm to perform actions and access AWS resources. For more information, see Amazon Resource Names (ARNs) in the AWS General Reference .",
+            "Type": "string",
+            "Required": true
+        },
+        "severity": {
+            "Description": "A non-negative integer that reflects the severity level of the alarm.",
+            "Type": "integer",
+            "Required": false
+        },
+        "alarmRule": {
+            "Description": "Defines when your alarm is invoked.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "alarmNotification": {
+            "Description": "Contains information about one or more notification actions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "alarmEventActions": {
+            "Description": "Contains information about one or more alarm actions.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "alarmCapabilities": {
+            "Description": "Contains the configuration information of alarm state changes.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "update_detector_model": {
+        "detectorModelName": {
+            "Description": "The name of the detector model that is updated.",
+            "Type": "string",
+            "Required": true
+        },
+        "detectorModelDefinition": {
+            "Description": "Information that defines how a detector operates.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "detectorModelDescription": {
+            "Description": "A brief description of the detector model.",
+            "Type": "string",
+            "Required": false
+        },
+        "roleArn": {
+            "Description": "The ARN of the role that grants permission to AWS IoT Events to perform its operations.",
+            "Type": "string",
+            "Required": true
+        },
+        "evaluationMethod": {
+            "Description": "Information about the order in which events are evaluated and how actions are executed.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "update_input": {
+        "inputName": {
+            "Description": "The name of the input you want to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "inputDescription": {
+            "Description": "A brief description of the input.",
+            "Type": "string",
+            "Required": false
+        },
+        "inputDefinition": {
+            "Description": "The definition of the input.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    }
+}

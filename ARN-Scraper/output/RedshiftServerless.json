@@ -1,0 +1,667 @@
+{
+    "convert_recovery_point_to_snapshot": {
+        "recoveryPointId": {
+            "Description": "The unique identifier of the recovery point.",
+            "Type": "string",
+            "Required": true
+        },
+        "retentionPeriod": {
+            "Description": "How long to retain the snapshot.",
+            "Type": "integer",
+            "Required": false
+        },
+        "snapshotName": {
+            "Description": "The name of the snapshot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_endpoint_access": {
+        "endpointName": {
+            "Description": "The name of the VPC endpoint. An endpoint name must contain 1-30 characters. Valid characters are A-Z, a-z, 0-9, and hyphen(-). The first character must be a letter. The name can't contain two consecutive hyphens or end with a hyphen.",
+            "Type": "string",
+            "Required": true
+        },
+        "subnetIds": {
+            "Description": "The unique identifers of subnets from which Amazon Redshift Serverless chooses one to deploy a VPC endpoint.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        },
+        "vpcSecurityGroupIds": {
+            "Description": "The unique identifiers of the security group that defines the ports, protocols, and sources for inbound traffic that you are authorizing into your endpoint.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workgroupName": {
+            "Description": "The name of the workgroup to associate with the VPC endpoint.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_namespace": {
+        "adminUserPassword": {
+            "Description": "The password of the administrator for the first database created in the namespace.",
+            "Type": "string",
+            "Required": false
+        },
+        "adminUsername": {
+            "Description": "The username of the administrator for the first database created in the namespace.",
+            "Type": "string",
+            "Required": false
+        },
+        "dbName": {
+            "Description": "The name of the first database created in the namespace.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultIamRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace.",
+            "Type": "string",
+            "Required": false
+        },
+        "iamRoles": {
+            "Description": "A list of IAM roles to associate with the namespace.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "kmsKeyId": {
+            "Description": "The ID of the Amazon Web Services Key Management Service key used to encrypt your data.",
+            "Type": "string",
+            "Required": false
+        },
+        "logExports": {
+            "Description": "The types of logs the namespace can export. Available export types are userlog, connectionlog, and useractivitylog .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "namespaceName": {
+            "Description": "The name of the namespace.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "A list of tag instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_snapshot": {
+        "namespaceName": {
+            "Description": "The namespace to create a snapshot for.",
+            "Type": "string",
+            "Required": true
+        },
+        "retentionPeriod": {
+            "Description": "How long to retain the created snapshot.",
+            "Type": "integer",
+            "Required": false
+        },
+        "snapshotName": {
+            "Description": "The name of the snapshot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_usage_limit": {
+        "amount": {
+            "Description": "The limit amount. If time-based, this amount is in Redshift Processing Units (RPU) consumed per hour. If data-based, this amount is in terabytes (TB) of data transferred between Regions in cross-account sharing. The value must be a positive number.",
+            "Type": "integer",
+            "Required": true
+        },
+        "breachAction": {
+            "Description": "The action that Amazon Redshift Serverless takes when the limit is reached. The default is log.",
+            "Type": "string",
+            "Required": false
+        },
+        "period": {
+            "Description": "The time period that the amount applies to. A weekly period begins on Sunday. The default is monthly.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the Amazon Redshift Serverless resource to create the usage limit for.",
+            "Type": "string",
+            "Required": true
+        },
+        "usageType": {
+            "Description": "The type of Amazon Redshift Serverless usage to create a usage limit for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_workgroup": {
+        "baseCapacity": {
+            "Description": "The base data warehouse capacity of the workgroup in Redshift Processing Units (RPUs).",
+            "Type": "integer",
+            "Required": false
+        },
+        "configParameters": {
+            "Description": "An array of parameters to set for more control over a serverless database. The options are datestyle, enable_user_activity_logging, query_group, search_path, and max_query_execution_time .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "enhancedVpcRouting": {
+            "Description": "The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC instead of over the internet.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "namespaceName": {
+            "Description": "The name of the namespace to associate with the workgroup.",
+            "Type": "string",
+            "Required": true
+        },
+        "publiclyAccessible": {
+            "Description": "A value that specifies whether the workgroup can be accessed from a public network.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "securityGroupIds": {
+            "Description": "An array of security group IDs to associate with the workgroup.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "subnetIds": {
+            "Description": "An array of VPC subnet IDs to associate with the workgroup.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "tags": {
+            "Description": "A array of tag instances.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workgroupName": {
+            "Description": "The name of the created workgroup.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_endpoint_access": {
+        "endpointName": {
+            "Description": "The name of the VPC endpoint to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_namespace": {
+        "finalSnapshotName": {
+            "Description": "The name of the snapshot to be created before the namespace is deleted.",
+            "Type": "string",
+            "Required": false
+        },
+        "finalSnapshotRetentionPeriod": {
+            "Description": "How long to retain the final snapshot.",
+            "Type": "integer",
+            "Required": false
+        },
+        "namespaceName": {
+            "Description": "The name of the namespace to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_resource_policy": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the policy to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_snapshot": {
+        "snapshotName": {
+            "Description": "The name of the snapshot to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_usage_limit": {
+        "usageLimitId": {
+            "Description": "The unique identifier of the usage limit to delete.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_workgroup": {
+        "workgroupName": {
+            "Description": "The name of the workgroup to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_credentials": {
+        "dbName": {
+            "Description": "The name of the database to get temporary authorization to log on to.\nConstraints:",
+            "Type": "string",
+            "Required": false,
+            "string variables": {}
+        },
+        "durationSeconds": {
+            "Description": "The number of seconds until the returned temporary password expires. The minimum is 900 seconds, and the maximum is 3600 seconds.",
+            "Type": "integer",
+            "Required": false
+        },
+        "workgroupName": {
+            "Description": "The name of the workgroup associated with the database.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_endpoint_access": {
+        "endpointName": {
+            "Description": "The name of the VPC endpoint to return information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_namespace": {
+        "namespaceName": {
+            "Description": "The name of the namespace to retrieve information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_recovery_point": {
+        "recoveryPointId": {
+            "Description": "The unique identifier of the recovery point to return information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_resource_policy": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to return.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_snapshot": {
+        "ownerAccount": {
+            "Description": "The owner Amazon Web Services account of a snapshot shared with another user.",
+            "Type": "string",
+            "Required": false
+        },
+        "snapshotArn": {
+            "Description": "The Amazon Resource Name (ARN) of the snapshot to return.",
+            "Type": "string",
+            "Required": false
+        },
+        "snapshotName": {
+            "Description": "The name of the snapshot to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "get_usage_limit": {
+        "usageLimitId": {
+            "Description": "The unique identifier of the usage limit to return information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "get_workgroup": {
+        "workgroupName": {
+            "Description": "The name of the workgroup to return information for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_endpoint_access": {
+        "maxResults": {
+            "Description": "An optional parameter that specifies the maximum number of results to return. You can use nextToken to get the next page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If your initial ListEndpointAccess operation returns a nextToken , you can include the returned nextToken in subsequent ListEndpointAccess operations, which returns results in the next page.",
+            "Type": "string",
+            "Required": false
+        },
+        "vpcId": {
+            "Description": "The unique identifier of the virtual private cloud with access to Amazon Redshift Serverless.",
+            "Type": "string",
+            "Required": false
+        },
+        "workgroupName": {
+            "Description": "The name of the workgroup associated with the VPC endpoint to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_namespaces": {
+        "maxResults": {
+            "Description": "An optional parameter that specifies the maximum number of results to return. You can use nextToken to get the next page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If your initial ListNamespaces operation returns a nextToken , you can include the returned nextToken in subsequent ListNamespaces operations, which returns results in the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_recovery_points": {
+        "endTime": {
+            "Description": "The time when creation of the recovery point finished.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "An optional parameter that specifies the maximum number of results to return. You can use nextToken to get the next page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "namespaceName": {
+            "Description": "The name of the namespace to list recovery points for.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If your initial ListRecoveryPoints operation returns a nextToken , you can include the returned nextToken in subsequent ListRecoveryPoints operations, which returns results in the next page.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "The time when the recovery point's creation was initiated.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_snapshots": {
+        "endTime": {
+            "Description": "The timestamp showing when the snapshot creation finished.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "maxResults": {
+            "Description": "An optional parameter that specifies the maximum number of results to return. You can use nextToken to get the next page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "namespaceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the namespace from which to list all snapshots.",
+            "Type": "string",
+            "Required": false
+        },
+        "namespaceName": {
+            "Description": "The namespace from which to list all snapshots.",
+            "Type": "string",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page.",
+            "Type": "string",
+            "Required": false
+        },
+        "ownerAccount": {
+            "Description": "The owner Amazon Web Services account of the snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "startTime": {
+            "Description": "The time when the creation of the snapshot was initiated.",
+            "Type": "datetime",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to list tags for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_usage_limits": {
+        "maxResults": {
+            "Description": "An optional parameter that specifies the maximum number of results to return. You can use nextToken to get the next page of results. The default is 100.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If your initial ListUsageLimits operation returns a nextToken , you can include the returned nextToken in subsequent ListUsageLimits operations, which returns results in the next page.",
+            "Type": "string",
+            "Required": false
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) associated with the resource whose usage limits you want to list.",
+            "Type": "string",
+            "Required": false
+        },
+        "usageType": {
+            "Description": "The Amazon Redshift Serverless feature whose limits you want to see.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_workgroups": {
+        "maxResults": {
+            "Description": "An optional parameter that specifies the maximum number of results to return. You can use nextToken to get the next page of results.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "If your initial ListWorkgroups operation returns a nextToken , you can include the returned nextToken in subsequent ListNamespaces operations, which returns results in the next page.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "put_resource_policy": {
+        "policy": {
+            "Description": "The policy to create or update. For example, the following policy grants a user authorization to restore a snapshot.",
+            "Type": "string",
+            "Required": true
+        },
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the account to create or update a resource policy for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restore_from_recovery_point": {
+        "namespaceName": {
+            "Description": "The name of the namespace to restore data into.",
+            "Type": "string",
+            "Required": true
+        },
+        "recoveryPointId": {
+            "Description": "The unique identifier of the recovery point to restore from.",
+            "Type": "string",
+            "Required": true
+        },
+        "workgroupName": {
+            "Description": "The name of the workgroup used to restore data.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "restore_from_snapshot": {
+        "namespaceName": {
+            "Description": "The name of the namespace to restore the snapshot to.",
+            "Type": "string",
+            "Required": true
+        },
+        "ownerAccount": {
+            "Description": "The Amazon Web Services account that owns the snapshot.",
+            "Type": "string",
+            "Required": false
+        },
+        "snapshotArn": {
+            "Description": "The Amazon Resource Name (ARN) of the snapshot to restore from.",
+            "Type": "string",
+            "Required": false
+        },
+        "snapshotName": {
+            "Description": "The name of the snapshot to restore from.",
+            "Type": "string",
+            "Required": false
+        },
+        "workgroupName": {
+            "Description": "The name of the workgroup used to restore the snapshot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to tag.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The map of the key-value pairs used to tag the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag or set of tags to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_endpoint_access": {
+        "endpointName": {
+            "Description": "The name of the VPC endpoint to update.",
+            "Type": "string",
+            "Required": true
+        },
+        "vpcSecurityGroupIds": {
+            "Description": "The list of VPC security groups associated with the endpoint after the endpoint is modified.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_namespace": {
+        "adminUserPassword": {
+            "Description": "The password of the administrator for the first database created in the namespace.",
+            "Type": "string",
+            "Required": false
+        },
+        "adminUsername": {
+            "Description": "The username of the administrator for the first database created in the namespace.",
+            "Type": "string",
+            "Required": false
+        },
+        "defaultIamRoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the IAM role to set as a default in the namespace.",
+            "Type": "string",
+            "Required": false
+        },
+        "iamRoles": {
+            "Description": "A list of IAM roles to associate with the namespace.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "kmsKeyId": {
+            "Description": "The ID of the Amazon Web Services Key Management Service key used to encrypt your data.",
+            "Type": "string",
+            "Required": false
+        },
+        "logExports": {
+            "Description": "The types of logs the namespace can export. The export types are userlog, connectionlog, and useractivitylog .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "namespaceName": {
+            "Description": "The name of the namespace.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_snapshot": {
+        "retentionPeriod": {
+            "Description": "The new retention period of the snapshot.",
+            "Type": "integer",
+            "Required": false
+        },
+        "snapshotName": {
+            "Description": "The name of the snapshot.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_usage_limit": {
+        "amount": {
+            "Description": "The new limit amount. For more information about this parameter.",
+            "Type": "integer",
+            "Required": false
+        },
+        "breachAction": {
+            "Description": "The new action that Amazon Redshift Serverless takes when the limit is reached.",
+            "Type": "string",
+            "Required": false
+        },
+        "usageLimitId": {
+            "Description": "The identifier of the usage limit to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "update_workgroup": {
+        "baseCapacity": {
+            "Description": "The new base data warehouse capacity in Redshift Processing Units (RPUs).",
+            "Type": "integer",
+            "Required": false
+        },
+        "configParameters": {
+            "Description": "An array of parameters to set for advanced control over a database. The options are datestyle, enable_user_activity_logging, query_group, search_path, and max_query_execution_time .",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "enhancedVpcRouting": {
+            "Description": "The value that specifies whether to turn on enhanced virtual private cloud (VPC) routing, which forces Amazon Redshift Serverless to route traffic through your VPC.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "publiclyAccessible": {
+            "Description": "A value that specifies whether the workgroup can be accessible from a public network.",
+            "Type": "boolean",
+            "Required": false
+        },
+        "securityGroupIds": {
+            "Description": "An array of security group IDs to associate with the workgroup.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "subnetIds": {
+            "Description": "An array of VPC subnet IDs to associate with the workgroup.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "workgroupName": {
+            "Description": "The name of the workgroup to update.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "paginate": {
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

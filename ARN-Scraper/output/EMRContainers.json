@@ -1,0 +1,364 @@
+{
+    "cancel_job_run": {
+        "id": {
+            "Description": "The ID of the job run to cancel.",
+            "Type": "string",
+            "Required": true
+        },
+        "virtualClusterId": {
+            "Description": "The ID of the virtual cluster for which the job run will be canceled.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "create_managed_endpoint": {
+        "name": {
+            "Description": "The name of the managed endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "virtualClusterId": {
+            "Description": "The ID of the virtual cluster for which a managed endpoint is created.",
+            "Type": "string",
+            "Required": true
+        },
+        "type": {
+            "Description": "The type of the managed endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "releaseLabel": {
+            "Description": "The Amazon EMR release version.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionRoleArn": {
+            "Description": "The ARN of the execution role.",
+            "Type": "string",
+            "Required": true
+        },
+        "certificateArn": {
+            "Description": "The certificate ARN provided by users for the managed endpoint. This field is under deprecation and will be removed in future releases.",
+            "Type": "string",
+            "Required": false
+        },
+        "configurationOverrides": {
+            "Description": "The configuration settings that will be used to override existing configurations.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The client idempotency token for this create call.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags of the managed endpoint.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "create_virtual_cluster": {
+        "name": {
+            "Description": "The specified name of the virtual cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "containerProvider": {
+            "Description": "The container provider of the virtual cluster.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "clientToken": {
+            "Description": "The client token of the virtual cluster.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags assigned to the virtual cluster.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "delete_managed_endpoint": {
+        "id": {
+            "Description": "The ID of the managed endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "virtualClusterId": {
+            "Description": "The ID of the endpoint's virtual cluster.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_virtual_cluster": {
+        "id": {
+            "Description": "The ID of the virtual cluster that will be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_job_run": {
+        "id": {
+            "Description": "The ID of the job run request.",
+            "Type": "string",
+            "Required": true
+        },
+        "virtualClusterId": {
+            "Description": "The ID of the virtual cluster for which the job run is submitted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_managed_endpoint": {
+        "id": {
+            "Description": "This output displays ID of the managed endpoint.",
+            "Type": "string",
+            "Required": true
+        },
+        "virtualClusterId": {
+            "Description": "The ID of the endpoint's virtual cluster.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_virtual_cluster": {
+        "id": {
+            "Description": "The ID of the virtual cluster that will be described.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_job_runs": {
+        "virtualClusterId": {
+            "Description": "The ID of the virtual cluster for which to list the job run.",
+            "Type": "string",
+            "Required": true
+        },
+        "createdBefore": {
+            "Description": "The date and time before which the job runs were submitted.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "createdAfter": {
+            "Description": "The date and time after which the job runs were submitted.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "name": {
+            "Description": "The name of the job run.",
+            "Type": "string",
+            "Required": false
+        },
+        "states": {
+            "Description": "The states of the job run.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of job runs that can be listed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of job runs to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_managed_endpoints": {
+        "virtualClusterId": {
+            "Description": "The ID of the virtual cluster.",
+            "Type": "string",
+            "Required": true
+        },
+        "createdBefore": {
+            "Description": "The date and time before which the endpoints are created.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "createdAfter": {
+            "Description": "The date and time after which the endpoints are created.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "types": {
+            "Description": "The types of the managed endpoints.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "states": {
+            "Description": "The states of the managed endpoints.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of managed endpoints that can be listed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of managed endpoints to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "resourceArn": {
+            "Description": "The ARN of tagged resources.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "list_virtual_clusters": {
+        "containerProviderId": {
+            "Description": "The container provider ID of the virtual cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerProviderType": {
+            "Description": "The container provider type of the virtual cluster. EKS is the only supported type as of now.",
+            "Type": "string",
+            "Required": false
+        },
+        "createdAfter": {
+            "Description": "The date and time after which the virtual clusters are created.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "createdBefore": {
+            "Description": "The date and time before which the virtual clusters are created.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "states": {
+            "Description": "The states of the requested virtual clusters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "maxResults": {
+            "Description": "The maximum number of virtual clusters that can be listed.",
+            "Type": "integer",
+            "Required": false
+        },
+        "nextToken": {
+            "Description": "The token for the next set of virtual clusters to return.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "start_job_run": {
+        "name": {
+            "Description": "The name of the job run.",
+            "Type": "string",
+            "Required": false
+        },
+        "virtualClusterId": {
+            "Description": "The virtual cluster ID for which the job run request is submitted.",
+            "Type": "string",
+            "Required": true
+        },
+        "clientToken": {
+            "Description": "The client idempotency token of the job run request.\nThis field is autopopulated if not provided.",
+            "Type": "string",
+            "Required": true
+        },
+        "executionRoleArn": {
+            "Description": "The execution role ARN for the job run.",
+            "Type": "string",
+            "Required": true
+        },
+        "releaseLabel": {
+            "Description": "The Amazon EMR release version to use for the job run.",
+            "Type": "string",
+            "Required": true
+        },
+        "jobDriver": {
+            "Description": "The job driver for the job run.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        },
+        "configurationOverrides": {
+            "Description": "The configuration overrides for the job run.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "tags": {
+            "Description": "The tags assigned to job runs.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "tag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of resources.",
+            "Type": "string",
+            "Required": true
+        },
+        "tags": {
+            "Description": "The tags assigned to resources.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "untag_resource": {
+        "resourceArn": {
+            "Description": "The ARN of resources.",
+            "Type": "string",
+            "Required": true
+        },
+        "tagKeys": {
+            "Description": "The tag keys of the resources.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "paginate": {
+        "containerProviderId": {
+            "Description": "The container provider ID of the virtual cluster.",
+            "Type": "string",
+            "Required": false
+        },
+        "containerProviderType": {
+            "Description": "The container provider type of the virtual cluster. EKS is the only supported type as of now.",
+            "Type": "string",
+            "Required": false
+        },
+        "createdAfter": {
+            "Description": "The date and time after which the virtual clusters are created.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "createdBefore": {
+            "Description": "The date and time before which the virtual clusters are created.",
+            "Type": "datetime",
+            "Required": false
+        },
+        "states": {
+            "Description": "The states of the requested virtual clusters.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}

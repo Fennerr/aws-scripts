@@ -1,0 +1,366 @@
+{
+    "associate_drt_log_bucket": {
+        "LogBucket": {
+            "Description": "The Amazon S3 bucket that contains the logs that you want to share.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_drt_role": {
+        "RoleArn": {
+            "Description": "The Amazon Resource Name (ARN) of the role the SRT will use to access your Amazon Web Services account.\nPrior to making the AssociateDRTRole request, you must attach the AWSShieldDRTAccessPolicy managed policy to this role. For more information see `Attaching and Detaching IAM Policies &lt; https://docs.aws.amazon.com/IAM/latest/UserGuide/access_policies_manage-attach-detach.html&gt;`__ .",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_health_check": {
+        "ProtectionId": {
+            "Description": "The unique identifier (ID) for the  Protection object to add the health check association to.",
+            "Type": "string",
+            "Required": true
+        },
+        "HealthCheckArn": {
+            "Description": "The Amazon Resource Name (ARN) of the health check to associate with the protection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "associate_proactive_engagement_details": {
+        "EmergencyContactList": {
+            "Description": "A list of email addresses and phone numbers that the Shield Response Team (SRT) can use to contact you for escalations to the SRT and to initiate proactive customer support.\nTo enable proactive engagement, the contact list must include at least one phone number.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "create_protection": {
+        "Name": {
+            "Description": "Friendly name for the Protection you are creating.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the resource to be protected.\nThe ARN should be in one of the following formats:",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Tags": {
+            "Description": "One or more tag key-value pairs for the  Protection object that is created.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_protection_group": {
+        "ProtectionGroupId": {
+            "Description": "The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Aggregation": {
+            "Description": "Defines how Shield combines resource data for the group in order to detect, mitigate, and report events.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Pattern": {
+            "Description": "The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "The resource type to include in the protection group. All protected resources of this type are included in the protection group. Newly protected resources of this type are automatically added to the group. You must set this when you set Pattern to BY_RESOURCE_TYPE and you must not set it for any other Pattern setting.",
+            "Type": "string",
+            "Required": false
+        },
+        "Members": {
+            "Description": "The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set Pattern to ARBITRARY and you must not set it for any other Pattern setting.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "Tags": {
+            "Description": "One or more tag key-value pairs for the protection group.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "create_subscription": "No parameters defined",
+    "delete_protection": {
+        "ProtectionId": {
+            "Description": "The unique identifier (ID) for the  Protection object to be deleted.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_protection_group": {
+        "ProtectionGroupId": {
+            "Description": "The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "delete_subscription": "No parameters defined",
+    "describe_attack": {
+        "AttackId": {
+            "Description": "The unique identifier (ID) for the attack.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_attack_statistics": "No parameters defined",
+    "describe_drt_access": "No parameters defined",
+    "describe_emergency_contact_settings": "No parameters defined",
+    "describe_protection": {
+        "ProtectionId": {
+            "Description": "The unique identifier (ID) for the  Protection object to describe. You must provide either the ResourceArn of the protected resource or the ProtectionID of the protection, but not both.",
+            "Type": "string",
+            "Required": false
+        },
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the protected Amazon Web Services resource. You must provide either the ResourceArn of the protected resource or the ProtectionID of the protection, but not both.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "describe_protection_group": {
+        "ProtectionGroupId": {
+            "Description": "The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "describe_subscription": "No parameters defined",
+    "disable_application_layer_automatic_response": {
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the protected resource.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disable_proactive_engagement": "No parameters defined",
+    "disassociate_drt_log_bucket": {
+        "LogBucket": {
+            "Description": "The Amazon S3 bucket that contains the logs that you want to share.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "disassociate_drt_role": "No parameters defined",
+    "disassociate_health_check": {
+        "ProtectionId": {
+            "Description": "The unique identifier (ID) for the  Protection object to remove the health check association from.",
+            "Type": "string",
+            "Required": true
+        },
+        "HealthCheckArn": {
+            "Description": "The Amazon Resource Name (ARN) of the health check that is associated with the protection.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "enable_application_layer_automatic_response": {
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the protected resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Action": {
+            "Description": "Specifies the action setting that Shield Advanced should use in the WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "enable_proactive_engagement": "No parameters defined",
+    "get_subscription_state": "No parameters defined",
+    "list_attacks": {
+        "ResourceArns": {
+            "Description": "The ARNs (Amazon Resource Names) of the resources that were attacked. If you leave this blank, all applicable resources for this account will be included.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        },
+        "StartTime": {
+            "Description": "The start of the time period for the attacks. This is a timestamp type. The request syntax listing for this call indicates a number type, but you can provide the time in any valid timestamp format setting.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "EndTime": {
+            "Description": "The end of the time period for the attacks. This is a timestamp type. The request syntax listing for this call indicates a number type, but you can provide the time in any valid timestamp format setting.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "NextToken": {
+            "Description": "When you request a list of objects from Shield Advanced, if the response does not include all of the remaining available objects, Shield Advanced includes a NextToken value in the response. You can retrieve the next batch of objects by requesting the list again and providing the token that was returned by the prior call in your request.\nYou can indicate the maximum number of objects that you want Shield Advanced to return for a single call with the MaxResults setting. Shield Advanced will not return more than MaxResults objects, but may return fewer, even if more objects are still available.\nWhenever more objects remain that Shield Advanced has not yet returned to you, the response will include a NextToken value.\nOn your first call to a list operation, leave this setting empty.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The greatest number of objects that you want Shield Advanced to return to the list request. Shield Advanced might return fewer objects than you indicate in this setting, even if more objects are available. If there are more objects remaining, Shield Advanced will always also return a NextToken value in the response.\nThe default setting is 20.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_protection_groups": {
+        "NextToken": {
+            "Description": "When you request a list of objects from Shield Advanced, if the response does not include all of the remaining available objects, Shield Advanced includes a NextToken value in the response. You can retrieve the next batch of objects by requesting the list again and providing the token that was returned by the prior call in your request.\nYou can indicate the maximum number of objects that you want Shield Advanced to return for a single call with the MaxResults setting. Shield Advanced will not return more than MaxResults objects, but may return fewer, even if more objects are still available.\nWhenever more objects remain that Shield Advanced has not yet returned to you, the response will include a NextToken value.\nOn your first call to a list operation, leave this setting empty.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The greatest number of objects that you want Shield Advanced to return to the list request. Shield Advanced might return fewer objects than you indicate in this setting, even if more objects are available. If there are more objects remaining, Shield Advanced will always also return a NextToken value in the response.\nThe default setting is 20.",
+            "Type": "integer",
+            "Required": false
+        },
+        "InclusionFilters": {
+            "Description": "Narrows the set of protection groups that the call retrieves. You can retrieve a single protection group by its name and you can retrieve all protection groups that are configured with specific pattern or aggregation settings. You can provide up to one criteria per filter type. Shield Advanced returns the protection groups that exactly match all of the search criteria that you provide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_protections": {
+        "NextToken": {
+            "Description": "When you request a list of objects from Shield Advanced, if the response does not include all of the remaining available objects, Shield Advanced includes a NextToken value in the response. You can retrieve the next batch of objects by requesting the list again and providing the token that was returned by the prior call in your request.\nYou can indicate the maximum number of objects that you want Shield Advanced to return for a single call with the MaxResults setting. Shield Advanced will not return more than MaxResults objects, but may return fewer, even if more objects are still available.\nWhenever more objects remain that Shield Advanced has not yet returned to you, the response will include a NextToken value.\nOn your first call to a list operation, leave this setting empty.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The greatest number of objects that you want Shield Advanced to return to the list request. Shield Advanced might return fewer objects than you indicate in this setting, even if more objects are available. If there are more objects remaining, Shield Advanced will always also return a NextToken value in the response.\nThe default setting is 20.",
+            "Type": "integer",
+            "Required": false
+        },
+        "InclusionFilters": {
+            "Description": "Narrows the set of protections that the call retrieves. You can retrieve a single protection by providing its name or the ARN (Amazon Resource Name) of its protected resource. You can also retrieve all protections for a specific resource type. You can provide up to one criteria per filter type. Shield Advanced returns protections that exactly match all of the filter criteria that you provide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    },
+    "list_resources_in_protection_group": {
+        "ProtectionGroupId": {
+            "Description": "The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it.",
+            "Type": "string",
+            "Required": true
+        },
+        "NextToken": {
+            "Description": "When you request a list of objects from Shield Advanced, if the response does not include all of the remaining available objects, Shield Advanced includes a NextToken value in the response. You can retrieve the next batch of objects by requesting the list again and providing the token that was returned by the prior call in your request.\nYou can indicate the maximum number of objects that you want Shield Advanced to return for a single call with the MaxResults setting. Shield Advanced will not return more than MaxResults objects, but may return fewer, even if more objects are still available.\nWhenever more objects remain that Shield Advanced has not yet returned to you, the response will include a NextToken value.\nOn your first call to a list operation, leave this setting empty.",
+            "Type": "string",
+            "Required": false
+        },
+        "MaxResults": {
+            "Description": "The greatest number of objects that you want Shield Advanced to return to the list request. Shield Advanced might return fewer objects than you indicate in this setting, even if more objects are available. If there are more objects remaining, Shield Advanced will always also return a NextToken value in the response.\nThe default setting is 20.",
+            "Type": "integer",
+            "Required": false
+        }
+    },
+    "list_tags_for_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource to get tags for.",
+            "Type": "string",
+            "Required": true
+        }
+    },
+    "tag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to add or update tags for.",
+            "Type": "string",
+            "Required": true
+        },
+        "Tags": {
+            "Description": "The tags that you want to modify or add to the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "untag_resource": {
+        "ResourceARN": {
+            "Description": "The Amazon Resource Name (ARN) of the resource that you want to remove tags from.",
+            "Type": "string",
+            "Required": true
+        },
+        "TagKeys": {
+            "Description": "The tag key for each tag that you want to remove from the resource.",
+            "Type": "list",
+            "Required": true,
+            "list variables": {}
+        }
+    },
+    "update_application_layer_automatic_response": {
+        "ResourceArn": {
+            "Description": "The ARN (Amazon Resource Name) of the resource.",
+            "Type": "string",
+            "Required": true
+        },
+        "Action": {
+            "Description": "Specifies the action setting that Shield Advanced should use in the WAF rules that it creates on behalf of the protected resource in response to DDoS attacks. You specify this as part of the configuration for the automatic application layer DDoS mitigation feature, when you enable or update automatic mitigation. Shield Advanced creates the WAF rules in a Shield Advanced-managed rule group, inside the web ACL that you have associated with the resource.",
+            "Type": "dict",
+            "Required": true,
+            "dict variables": {}
+        }
+    },
+    "update_emergency_contact_settings": {
+        "EmergencyContactList": {
+            "Description": "A list of email addresses and phone numbers that the Shield Response Team (SRT) can use to contact you if you have proactive engagement enabled, for escalations to the SRT and to initiate proactive customer support.\nIf you have proactive engagement enabled, the contact list must include at least one phone number.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_protection_group": {
+        "ProtectionGroupId": {
+            "Description": "The name of the protection group. You use this to identify the protection group in lists and to manage the protection group, for example to update, delete, or describe it.",
+            "Type": "string",
+            "Required": true
+        },
+        "Aggregation": {
+            "Description": "Defines how Shield combines resource data for the group in order to detect, mitigate, and report events.",
+            "Type": "string",
+            "Required": true,
+            "string variables": {}
+        },
+        "Pattern": {
+            "Description": "The criteria to use to choose the protected resources for inclusion in the group. You can include all resources that have protections, provide a list of resource Amazon Resource Names (ARNs), or include all resources of a specified resource type.",
+            "Type": "string",
+            "Required": true
+        },
+        "ResourceType": {
+            "Description": "The resource type to include in the protection group. All protected resources of this type are included in the protection group. You must set this when you set Pattern to BY_RESOURCE_TYPE and you must not set it for any other Pattern setting.",
+            "Type": "string",
+            "Required": false
+        },
+        "Members": {
+            "Description": "The Amazon Resource Names (ARNs) of the resources to include in the protection group. You must set this when you set Pattern to ARBITRARY and you must not set it for any other Pattern setting.",
+            "Type": "list",
+            "Required": false,
+            "list variables": {}
+        }
+    },
+    "update_subscription": {
+        "AutoRenew": {
+            "Description": "When you initally create a subscription, AutoRenew is set to ENABLED . If ENABLED , the subscription will be automatically renewed at the end of the existing subscription period. You can change this by submitting an UpdateSubscription request. If the UpdateSubscription request does not included a value for AutoRenew , the existing value for AutoRenew remains unchanged.",
+            "Type": "string",
+            "Required": false
+        }
+    },
+    "paginate": {
+        "InclusionFilters": {
+            "Description": "Narrows the set of protections that the call retrieves. You can retrieve a single protection by providing its name or the ARN (Amazon Resource Name) of its protected resource. You can also retrieve all protections for a specific resource type. You can provide up to one criteria per filter type. Shield Advanced returns protections that exactly match all of the filter criteria that you provide.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        },
+        "PaginationConfig": {
+            "Description": "A dictionary that provides parameters to control pagination.",
+            "Type": "dict",
+            "Required": false,
+            "dict variables": {}
+        }
+    }
+}
