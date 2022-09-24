@@ -1,4 +1,5 @@
 #!/usr/bin/env python3
+from distutils.command.config import config
 import boto3
 import argparse
 import json
@@ -48,7 +49,7 @@ def save_data(filename,data):
     output_dir.mkdir(exist_ok=True)
     filepath = output_dir / filename
     with filepath.open("w") as write_file:
-        json.dump(data, write_file, indent=4)
+        json.dump(data, write_file, indent=4, default=str)
 
 
 ###################################################
@@ -75,7 +76,7 @@ def get_cloudwatch_log_policies(specific_region):
 
 def get_ecr_repository_policies(specific_region):
     if specific_region == None:
-        regions = s.get_available_regions('lambda')
+        regions = s.get_available_regions('ecr')
         regions = [i for i in regions if i not in not_allowed_regions]
     else:
         regions = [specific_region]
@@ -85,6 +86,17 @@ def get_ecr_repository_policies(specific_region):
         ecr = s.client('ecr',region_name=region)
         try:
             ecr_respositories = ecr.describe_repositories()["repositories"]
+        except ecr.exceptions.ClientError as e:
+            logging.warning("Unexpected error for region %s: %s" % (region,e))
+            continue
+
+        ecr_respositories = []
+        try:
+            response = ecr.describe_repositories()
+            ecr_respositories.extend(response["repositories"])
+            while 'nextToken' in response.keys():
+                response = ecr.describe_repositories(nextToken = response['nextToken'])
+                ecr_respositories.extend(response['repositories'])
         except ecr.exceptions.ClientError as e:
             logging.warning("Unexpected error for region %s: %s" % (region,e))
             continue
@@ -110,6 +122,45 @@ def get_ecr_repository_policies(specific_region):
                 logger.debug(f"{respoitory_name} does not have an access policy defined")
                 continue
     save_data(f"{account_id}-ecr_respository_policies.json",policies)
+
+def get_guardduty_detector_configurations(specific_region):
+    if specific_region == None:
+        regions = s.get_available_regions('guardduty')
+        regions = [i for i in regions if i not in not_allowed_regions]
+    else:
+        regions = [specific_region]
+    configurations = []
+
+    for region in regions:
+        guardduty = s.client('guardduty',region_name=region)
+        try:
+            guardduty_detector_ids = guardduty.list_detectors()["DetectorIds"]
+        except guardduty.exceptions.ClientError as e:
+            logging.warning("Unexpected error for region %s: %s" % (region,e))
+            continue
+        
+        if not guardduty_detector_ids:
+            logger.info(f"No GuardDuty detectors in {region}")
+            continue
+
+        logger.info(f"Found {len(guardduty_detector_ids)} GuardDuty detectors in {region}")
+
+        for guardduty_detector_id in guardduty_detector_ids:
+            configuration = guardduty.get_detector(DetectorId=guardduty_detector_id)
+            del configuration['ResponseMetadata']
+            try:
+                data = {
+                    'GuardDuty Detector': guardduty_detector_id,
+                    'Region': region,
+                    'Configuration': configuration
+                }
+                configurations.append(data)
+                logger.debug(f"{region} - {guardduty_detector_id} has the following access policy defined")
+                logger.debug(json.dumps(data))
+            except guardduty.exceptions.ClientError as e:
+                logger.warning("[GuardDuty] Unexpected error: %s" % e)
+                continue
+    save_data(f"{account_id}-guardduty_detector_configurations.json",configurations)
 
 def get_iam_role_trust_policies(specific_region):
     if specific_region:
@@ -137,7 +188,6 @@ def get_iam_role_trust_policies(specific_region):
         except iam.exceptions.ClientError as e:
             logger.warning("[IAM] Unexpected error: %s" % e)
     save_data(f"{account_id}-iam_role_trust_policies.json",role_trust_policies)
-
 
 def get_lambda_policies(specific_region):
     if specific_region == None:
@@ -175,7 +225,6 @@ def get_lambda_policies(specific_region):
                 continue
     save_data(f"{account_id}-lambda_policies.json",policies)
 
-
 def get_s3_bucket_policies(region):
     s3 = s.client('s3',region_name=region)
     buckets = s3.list_buckets().get('Buckets')
@@ -197,7 +246,6 @@ def get_s3_bucket_policies(region):
         except s3.exceptions.ClientError as e:
             logger.warning("[S3] Unexpected error: %s" % e)
     save_data(f"{account_id}-s3_bucket_policies.json",bucket_policies)
-
 
 def get_sqs_access_policies(specific_region):
     if specific_region == None:
@@ -233,9 +281,87 @@ def get_sqs_access_policies(specific_region):
             except sqs.exceptions.ClientError as e:
                 logger.warning("[SQS] Unexpected error: {e}")
     save_data(f"{account_id}-sqs_access_policies.json",queue_policies)
-    # Analysis Ideas
+    # Analysis Ideash
     # Get a list of trusted AWS principals: cat 123456789012-sqs_access_policies.json | jq -r '.[].Policy.Statement[].Principal'  | more 
     # View access policies allowing access to a principal: cat 123456789012-sqs_access_policies.json | jq '.[] | select(.Policy.Statement[].Principal.AWS=="arn:aws:iam::123456789012:root")' | more
+
+def get_ecs_task_definitions(specific_region):
+    if specific_region == None:
+        regions = s.get_available_regions('ecs')
+        regions = [i for i in regions if i not in not_allowed_regions]
+    else:
+        regions = [specific_region]
+    
+    definitions = []
+
+    for region in regions:
+        logger.debug(f"Enumerating ECS Task Difinitions for {region}")
+        ecs = s.client('ecs',region_name=region)
+        task_definition_arns = []
+        try:
+            response = ecs.list_task_definitions()
+            task_definition_arns.extend(response['taskDefinitionArns'])
+            while 'nextToken' in response.keys():
+                response = ecs.list_task_definitions(nextToken = response['nextToken'])
+                task_definition_arns.extend(response['taskDefinitionArns'])
+        except ecs.exceptions.ClientError as e:
+            logging.warning("Unexpected error for region %s: %s" % (region,e))
+            continue
+
+        if not task_definition_arns:
+            logger.info(f"No ECS Task Definitions in {region}")
+            continue
+
+        logger.info(f"Found {len(task_definition_arns)} ECS Task Definitions in {region}")
+
+        for task_definition_arn in task_definition_arns:
+            task_definition = ecs.describe_task_definition(taskDefinition=task_definition_arn)['taskDefinition']
+            try:
+                data = {
+                    'Task Definition ARN': task_definition_arn,
+                    'Region': region,
+                    'Policy': task_definition
+                }
+                definitions.append(data)
+                logger.debug(data)
+            except ecs.exceptions.ResourceNotFoundException:
+                continue
+    save_data(f"{account_id}-ecs-task_definitions.json",definitions)
+
+
+def check_ecs_exec_enabled(specific_region):
+    if specific_region == None:
+        regions = s.get_available_regions('ecs')
+        regions = [i for i in regions if i not in not_allowed_regions]
+    else:
+        regions = [specific_region]
+    
+    total_task_data = []
+    for region in regions:
+        ecs = s.client('ecs',region_name=region)
+        clusters = ecs.list_clusters()['clusterArns']
+        for cluster in clusters:
+            tasks = ecs.list_tasks(cluster=cluster)['taskArns']
+            if not tasks:
+                continue
+            # for task in tasks:
+            task_data = ecs.describe_tasks(tasks=tasks,cluster=cluster)['tasks']
+            for individual_task_data in task_data:
+                if "enableExecuteCommand" in individual_task_data.keys():
+                    print(f"Looks like ECS exec is enabled for cluster {cluster}")
+                for container_definition in individual_task_data['containers']:
+                    if not "managedAgents" in container_definition.keys():
+                        continue
+                    for managed_agent in container_definition['managedAgents']:
+                        if managed_agent["name"] == "ExecuteCommandAgent":
+                            print("Found an ECS container with the ECS Exec Managed Agent on it")
+                            print(task_data)
+                            continue    
+            print(f"Nothing found for {cluster}")
+        total_task_data.append(task_data)
+
+    save_data(f"{account_id}-ecs-task_data.json",total_task_data)
+
 
 ###################################################
 # Setup Logging
@@ -283,6 +409,7 @@ if args.env:
 else:
     s = boto3.session.Session(profile_name=args.profile)
 
+
 # Check that the profile creds are valid
 sts = s.client('sts')
 try:
@@ -306,5 +433,7 @@ if not args.region:
 # get_lambda_policies(specific_region=args.region)
 # get_sqs_access_policies(specific_region=args.region)
 # get_cloudwatch_log_policies(specific_region=args.region)
-# get_ecr_repository_policies(specific_region=args.region)
-get_iam_role_trust_policies(specific_region=args.region)
+get_ecr_repository_policies(specific_region=args.region)
+# get_iam_role_trust_policies(specific_region=args.region)
+# get_guardduty_detector_configurations(specific_region=args.region)
+# get_ecs_task_definitions(specific_region=args.region)

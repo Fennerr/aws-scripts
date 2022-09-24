@@ -2,8 +2,8 @@
 
 import sys
 
-# TODO: 
-#   PRE-CHECK: test that $HOME/.aws/ directory exists or create|fail 
+# TODO:
+#   PRE-CHECK: test that $HOME/.aws/ directory exists or create|fail
 #   CHECK: Username must be prefixed with DOMAIN in the format "CORP\" (vs "COPR/" or empty)
 
 # Let the script know where to find modules
@@ -44,12 +44,14 @@ sslverification = True
 
 # idpentryurl: The initial url that starts the authentication process.
 idpentryurl = 'https://sts.absa.co.za/adfs/ls/IdpInitiatedSignOn.aspx?loginToRp=urn:amazon:webservices'
+sanlam_indie_url = 'https://accounts.google.com/o/saml2/intisso?idpid=C022e2pxs&spid=526176122839&forceauthn=false'
+idpentryurl = sanlam_indie_url
 
 # Uncomment to enable low level debugging
 #logging.basicConfig(level=logging.DEBUG)
 
 # proxy details
-proxy = {'https': 'bc-vip.intra.absa.co.za:8080'}
+#proxy = {'https': 'bc-vip.intra.absa.co.za:8080'}
 
 ##########################################################################
 
@@ -96,9 +98,9 @@ for inputtag in formsoup.find_all(re.compile('(INPUT|input)')):
 print (">>>>>>>>>>>>>> Payload: ", payload)
 
 # Some IdPs don't explicitly set a form action, but if one is set we should
-# build the idpauthformsubmiturl by combining the scheme and hostname 
+# build the idpauthformsubmiturl by combining the scheme and hostname
 # from the entry url with the form action target
-# If the action tag doesn't exist, we just stick with the 
+# If the action tag doesn't exist, we just stick with the
 # idpauthformsubmiturl above
 
 
