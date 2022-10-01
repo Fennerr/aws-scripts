@@ -1,0 +1,36 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "docker-build",
+			"label": "docker-build",
+			"platform": "python",
+			"dockerBuild": {
+				"tag": "awsscripts:latest",
+				"dockerfile": "${workspaceFolder}/Dockerfile",
+				"context": "${workspaceFolder}",
+				"pull": true
+			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: debug",
+			"dependsOn": [
+				"docker-build"
+			],
+			"dockerRun": {
+				"image": "awsscripts",
+				"volumes": [
+					{
+						"localPath": "C:\\Users\\jmoor\\.aws\\credentials",
+						"containerPath": "/home/appuser/.aws/credentials",
+						"permissions": "ro"
+					}
+				]
+			},
+			"python": {
+				"file": "test.py"
+			}
+		}
+	]
+}

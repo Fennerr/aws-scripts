@@ -1,7 +1,7 @@
 import boto3
 
-from util.args import args
-from util.logging import logger
+from lib.util.args import args
+from lib.util.logging import logger
 
 ########################
 # Helper Functions
@@ -16,8 +16,8 @@ def find_not_allowed_regions():
     not_allowed_regions = []
     for region in regions:
         try:
-            sqs = s.client('sqs',region_name=region)
-            sqs.list_queues()
+            ec2 = s.client('ec2',region_name=region)
+            ec2
             logger.debug(f"Region {region} is allowed")
         except:
             not_allowed_regions.append(region)
