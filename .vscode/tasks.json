@@ -15,9 +15,34 @@
 		{
 			"type": "docker-run",
 			"label": "docker-run: debug",
-			"dependsOn": [
-				"docker-build"
-			],
+			// "dependsOn": [
+			// 	"docker-build"
+			// ],
+			"dockerRun": {
+				"image": "awsscripts",
+				"volumes": [
+					{
+						"localPath": "${userHome}${pathSeparator}.aws${pathSeparator}credentials",
+						"containerPath": "/home/appuser/.aws/credentials",
+						"permissions": "ro"
+					},
+					{
+						"containerPath": "/app", 
+						"localPath": "${workspaceFolder}"
+					}
+				]
+			},
+			"python": {
+				"file": "test.py"
+			},
+			""
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: debug-windows",
+			// "dependsOn": [
+			// 	"docker-build"
+			// ],
 			"dockerRun": {
 				"image": "awsscripts",
 				"volumes": [
@@ -25,6 +50,10 @@
 						"localPath": "%userprofile%\\.aws\\credentials",
 						"containerPath": "/home/appuser/.aws/credentials",
 						"permissions": "ro"
+					},
+					{
+						"containerPath": "/app", 
+						"localPath": "${workspaceFolder}"
 					}
 				]
 			},
