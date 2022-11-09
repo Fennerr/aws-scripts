@@ -429,6 +429,8 @@ if not args.region:
         logger.debug(f"Not allowed regions: {not_allowed_regions}")
     else:
         logger.debug("All regions are allowed")
+else:
+    not_allowed_regions = []
 
 # get_lambda_policies(specific_region=args.region)
 # get_sqs_access_policies(specific_region=args.region)
